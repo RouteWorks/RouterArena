@@ -112,13 +112,18 @@ class ModelInference:
             "gpt-4o": "openai",
             "gpt-4o-mini": "openai",
             "gpt-4-1106-preview": "openai",
-            
+            "o1-mini": "openai",
+            "o4-mini": "openai",
+            "gpt-5-chat-latest": "openai",
+            "gpt-5-mini": "openai",
+            "gpt-5-nano": "openai",
+        
             # Anthropic models
             "claude-3-haiku-20240307": "anthropic",
             "claude-3-sonnet-20240229": "anthropic",
             "claude-3-opus-20240229": "anthropic",
             "claude-3-7-sonnet-20250219": "anthropic",
-            
+        
             # Google models
             "gemini-pro": "google",
             "gemini-1.5-pro": "google",
@@ -127,83 +132,69 @@ class ModelInference:
             "gemini-2.5-flash": "google",
             "gemini-2.5-pro": "google",
             "gemini-1.5-pro-latest": "google",
-
-
-            
+        
             # Mistral models
             "mistral-7b-instruct": "mistral",
             "mistral-medium": "mistral",
             "mistral-large": "mistral",
             "mixtral-8x7b-instruct": "mistral",
-
-            'codestral-latest': "mistral",
-            'open-mixtral-8x7b': "mistral",
-            'mistral-large-latest': "mistral",
-            'mistral-medium-latest': "mistral",
-            'mistral-small-latest': "mistral",
-            'open-mistral-7b': "mistral",
-            'open-mistral-nemo': "mistral",
-            
+            "codestral-latest": "mistral",
+            "open-mixtral-8x7b": "mistral",
+            "mistral-large-latest": "mistral",
+            "mistral-medium-latest": "mistral",
+            "mistral-small-latest": "mistral",
+            "open-mistral-7b": "mistral",
+            "open-mistral-nemo": "mistral",
+        
             # DeepSeek models
-            "deepseek-chat": "deepseek",
+            "deepseek-chat": "openrouter",
             "deepseek-coder": "deepseek",
-            
+        
             # Perplexity models
             "llama-3.1-sonar-small-128k-online": "perplexity",
             "llama-3.1-sonar-large-128k-online": "perplexity",
-            
-            # Azure models (use deployment names)
+        
+            # Azure models
             "azure-gpt-4": "azure",
             "azure-gpt-35-turbo": "azure",
-            
-            # Together AI models (example models - most open source models will use this)
+        
+            # Together AI models
             "WizardLM/WizardLM-13B-V1.2": "together",
             "meta-llama/Llama-2-7b-chat-hf": "together",
             "meta-llama/Llama-2-13b-chat-hf": "together",
             "meta-llama/Llama-2-70b-chat-hf": "together",
             "meta/llama-2-70b-chat": "together",
-            # "mistralai/mixtral-8x7b-chat": "together",
             "zero-one-ai/Yi-34B-Chat": "together",
-
-            # others:
+            "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo": "together",
+            "meta-llama/Meta-Llama-3-70B-Instruct-Turbo": "together",
+            "meta-llama/Llama-3-70b-chat-hf": "together",
+        
+            # OpenRouter
             "mistralai/mixtral-8x7b-instruct": "openrouter",
             "mistralai/mistral-7b-instruct": "openrouter",
             "meta-llama/llama-3-8b-instruct": "openrouter",
-
+            "anthropic/claude-3.5-sonnet": "openrouter",
+            "Qwen/QwQ-32B": "openrouter",
+            "google/gemini-flash-1.5": "openrouter",
+        
+            # Replicate
             "meta/codellama-34b-instruct": "replicate",
             "meta/llama-2-70b-chat": "replicate",
-
-            "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo": "together",
-            "meta-llama/Meta-Llama-3-70B-Instruct-Turbo": "together",
-
-            "meta-llama/Llama-3-70b-chat-hf": "together",
-            "anthropic/claude-3.5-sonnet": "openrouter",
-
-            "Qwen/QwQ-32B": "openrouter",
-
-            # AWS Bedrock models
+        
+            # AWS Bedrock
             "llama-3-1-8b-instruct": "aws",
-            "llama-3-2-1b-instruct": "aws", 
+            "llama-3-2-1b-instruct": "aws",
             "llama-3-2-3b-instruct": "aws",
             "llama-3-3-70b-instruct": "aws",
             "llama-3-1-405b-instruct": "aws",
-
+        
+            # X.ai
             "grok-4": "xai",
-            "deepseek/deepseek-chat": "openrouter",
+        
+            # Zhipu
             "glm-4-air": "zhipu",
             "glm-4-flash": "zhipu",
             "glm-4-plus": "zhipu",
-            "google/gemini-flash-1.5": "openrouter",
-
-
-            'o1-mini': 'openai',
-            'gemini-2.5-pro': 'google',
-            'gpt-5-chat-latest': 'openai',
-            'gpt-5-mini': 'openai',
-            'gpt-5-nano': 'openai',
-            'o4-mini': 'openai',
-
-
         }
         
         # Check if exact model name is in mapping
