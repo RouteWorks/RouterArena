@@ -179,7 +179,6 @@ class ModelInference:
         
             # Replicate
             "meta/codellama-34b-instruct": "replicate",
-            "meta/llama-2-70b-chat": "replicate",
         
             # AWS Bedrock
             "llama-3-1-8b-instruct": "aws",
