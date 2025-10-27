@@ -7,6 +7,7 @@
 - Conda (Anaconda or Miniconda)
 
 ### Step 1: Create a Conda Environment
+
 ```bash
 conda create -n routerarena python=3.10 -y
 conda activate routerarena
@@ -14,11 +15,11 @@ pip install -r requirements.txt
 ```
 
 ### Step 2: Set Up API Keys
-Use the `.env` file in the project root with your API keys. The step is required if you want to use our pipeline to make LLM inferences. 
-
+Use the `.env` file in the project root with your API keys. The step is required if you want to use our pipeline to make LLM inferences.
 
 ### Step 3: Download Dataset
 Run this command to download dataset from [HF dataset](https://huggingface.co/datasets/louielu02/RouterEvalBenchmark).
+
 ```bash
 python ./scripts/process_datasets/prep_datasets.py
 ```
@@ -44,6 +45,7 @@ Options:
 - `--model_name`: Model name (e.g., `gpt-4o`, `claude-3-5-sonnet`, `gemini-2.5-pro`)
 
 **Example**:
+
 ```bash
 # Run inference with GPT-4o
 python main.py --model_name gpt-4o
@@ -57,22 +59,24 @@ python main.py --model_name claude-3-7-sonnet-20250219 --run-full
 **Output**: Results saved to `cached_results/<universal_model_name>.jsonl`
 
 For convenience, you could initialize inference on all models using `$MAX_CONCURRENT` threads with this command:  
+
 ```bash
 ./run_inference.sh
 ```
-
 
 ### 2. LLM Evaluation
 
 Evaluate model responses using automated metrics and judge models.
 
 **Single model evaluation**:
+
 ```bash
 cd llm_evaluation
 python evaluate_models.py <universal_model_name> --cached-results-dir ../cached_results/
 ```
 
 **Batch evaluation** (all models in `../cached_results/`):
+
 ```bash
 cd llm_evaluation
 python batch_evaluate.py
@@ -82,8 +86,7 @@ Both methods automatically evaluate the query-answer pairs from the correspondin
 
 **Input**: Inference results from `cached_results/<universal_model_name>.jsonl`
 
-**Output**: Same file with evaluation metrics added (e.g., correctness scores, cost, metric, etc) 
-
+**Output**: Same file with evaluation metrics added (e.g., correctness scores, cost, metric, etc)
 
 ### 3. Router Evaluation
 
@@ -92,6 +95,7 @@ Evaluate routers based on their model selection predictions for given queries.
 **Step 1: Create Router Predictions**
 
 Create a prediction file in `./router_inference/predictions/<router_name>.json` with the following structure:
+
 ```json
 [
   {
@@ -107,6 +111,7 @@ Create a prediction file in `./router_inference/predictions/<router_name>.json` 
 **Step 2: Create Router Config**
 
 Create a config file in `./router_inference/config/<router_name>.json`:
+
 ```json
 {
   "pipeline_params": {
@@ -118,15 +123,16 @@ Create a config file in `./router_inference/config/<router_name>.json`:
   }
 }
 ```
+
 *Note: Model costs represent averaged price per 1k queries (based on 10% dataset sample from `./llm_inference/datasets/router_data_10.json`)*
 
 **Step 3: Run Evaluation**
+
 ```bash
 python ./router_inference/compare_router_accuracy.py
 ```
 
 **Output**: Generates `./router_inference/all_router_data.json` with evaluation results.
-
 
 ## Cost Tracking
 
@@ -146,6 +152,7 @@ Please use the canonical model name defined in `./universal_model_names.py`. Cos
 ## Output Formats
 
 ### Cached Results Format (`./cached_results/<universal_model_name>.jsonl`)
+
 ```json
 {
   "global_index": "AIME_0",
@@ -168,7 +175,6 @@ Please use the canonical model name defined in `./universal_model_names.py`. Cos
   }
 }
 ```
-
 
 ## Citation:
 If you find our project helpful, please give us a star and cite us by:

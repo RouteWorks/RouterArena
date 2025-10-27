@@ -77,16 +77,16 @@ declare -a RUNNING_MODELS=()
 wait_for_slot() {
     while [ ${#PIDS[@]} -ge $MAX_CONCURRENT ]; do
         echo "Currently running ${#PIDS[@]} processes (max: $MAX_CONCURRENT). Checking for completed processes..."
-        
+
         # Check finished processes
         local new_pids=()
         local new_models=()
         local completed_count=0
-        
+
         for i in "${!PIDS[@]}"; do
             local pid=${PIDS[$i]}
             local model=${RUNNING_MODELS[$i]}
-            
+
             if kill -0 $pid 2>/dev/null; then
                 new_pids+=($pid)
                 new_models+=("$model")
@@ -101,20 +101,20 @@ wait_for_slot() {
                 fi
             fi
         done
-        
+
         PIDS=("${new_pids[@]}")
         RUNNING_MODELS=("${new_models[@]}")
-        
+
         if [ $completed_count -gt 0 ]; then
             echo "Cleaned up $completed_count completed processes. Currently running: ${#PIDS[@]}"
         fi
-        
+
         if [ ${#PIDS[@]} -ge $MAX_CONCURRENT ]; then
             echo "Still at max capacity. Waiting 2 seconds before next check..."
             sleep 2
         fi
     done
-    
+
     echo "Available slots: $((MAX_CONCURRENT - ${#PIDS[@]}))"
 }
 
@@ -122,14 +122,14 @@ wait_for_slot() {
 echo "Starting inference..."
 for model in "${MODELS_TO_RUN[@]}"; do
     wait_for_slot
-    
+
     echo -e "${YELLOW}Starting: $model${NC}"
     if [ "$RUN_FULL" = true ]; then
         python3 ./main.py --model_name "$model" --run-full &
     else
         python3 ./main.py --model_name "$model" &
     fi
-    
+
     PIDS+=($!)
     RUNNING_MODELS+=("$model")
     sleep 1
@@ -143,16 +143,16 @@ echo
 
 while [ ${#PIDS[@]} -gt 0 ]; do
     echo "$(date): Checking status of ${#PIDS[@]} remaining processes..."
-    
+
     # Check if any processes are still running
     new_pids=()
     new_models=()
     any_running=false
-    
+
     for i in "${!PIDS[@]}"; do
         pid=${PIDS[$i]}
         model=${RUNNING_MODELS[$i]}
-        
+
         if kill -0 $pid 2>/dev/null; then
             new_pids+=($pid)
             new_models+=("$model")
@@ -168,16 +168,16 @@ while [ ${#PIDS[@]} -gt 0 ]; do
             fi
         fi
     done
-    
+
     PIDS=("${new_pids[@]}")
     RUNNING_MODELS=("${new_models[@]}")
-    
+
     # If no processes are running, break out
     if [ "$any_running" = false ]; then
         echo "All processes have completed!"
         break
     fi
-    
+
     sleep $WAIT_TIME
 done
 

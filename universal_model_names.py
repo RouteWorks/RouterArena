@@ -1,11 +1,9 @@
 """
 Universal model names for ICLR router evaluation.
 
-This module contains the list of universal model names that correspond to 
+This module contains the list of universal model names that correspond to
 files in ./router_evaluation/llm_inference/outputs/
 """
-
-import os
 
 universal_names = [
     "01-ai_Yi-34B-Chat",
@@ -119,7 +117,6 @@ mapping = {
     "mistralai/mixtral-8x7b-chat": "mistralai_Mixtral-8x7B-Instruct-v0.1",
     "anthropic/claude-3.5-sonnet": "claude-3-5-sonnet",
     "openai/gpt-4o": "gpt-4o",
-
 }
 
 
@@ -127,12 +124,12 @@ class ModelNameManager:
     """
     Manager for model names.
     """
+
     def __init__(self):
         self.universal_names = universal_names
         # Basic mapping for common variations
 
         self.missing_models = set()
-
 
     def get_universal_name_non_static(self, model_name: str) -> str:
         """Convert a model name to its universal equivalent."""
@@ -146,7 +143,6 @@ class ModelNameManager:
             # raise ValueError(f"Model name {model_name} not found in universal_names or mapping")
 
         return model_name
-    
 
     @staticmethod
     def get_universal_name(model_name: str) -> str:
@@ -158,4 +154,6 @@ class ModelNameManager:
             return mapping[model_name]
         else:
             # self.missing_models.add(model_name)
-            raise ValueError(f"Model name {model_name} not found in universal_names or mapping")
+            raise ValueError(
+                f"Model name {model_name} not found in universal_names or mapping"
+            )

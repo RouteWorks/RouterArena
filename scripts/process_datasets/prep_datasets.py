@@ -5,18 +5,20 @@ import json
 import pickle
 import zlib
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-from datasets import load_dataset, concatenate_datasets
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
+from datasets import load_dataset
 
-save_dir = './dataset/'
+save_dir = "./dataset/"
 
-router_benchmark = load_dataset('louielu02/RouterEvalBenchmark', split='full')
+router_benchmark = load_dataset("louielu02/RouterEvalBenchmark", split="full")
 router_benchmark.save_to_disk(os.path.join(save_dir, "routerevalbench"))
+
 
 def add_idx_map(x: dict, idx: int) -> dict:
     # We convert to string for consistency
     x["_index"] = str(idx)
     return x
+
 
 def translate_private_test_cases(encoded_data):
     try:
@@ -58,17 +60,24 @@ def map_to_example(row):
         # "_index": row["_index"],
     }
 
+
 router_benchmark_df = router_benchmark.to_pandas()
-router_benchmark_lcb = router_benchmark_df[router_benchmark_df["Dataset name"] == "LiveCodeBench"]
-router_benchmark_lcb["idx"] = router_benchmark_lcb["Global Index"].str.split("_").str[-1]
+router_benchmark_lcb = router_benchmark_df[
+    router_benchmark_df["Dataset name"] == "LiveCodeBench"
+]
+router_benchmark_lcb["idx"] = (
+    router_benchmark_lcb["Global Index"].str.split("_").str[-1]
+)
 
 # Load LiveCodeBench datasets with error handling
-lcd_v2 = load_dataset("lighteval/code_generation_lite", "release_v2", split='test')
+lcd_v2 = load_dataset("lighteval/code_generation_lite", "release_v2", split="test")
 
 
 # Filter lcb_codegen to keep only rows whose question_content is in router_benchmark_lcb
 router_benchmark_lcb_questions = set(router_benchmark_lcb["idx"])
-print(f"Number of unique questions in router_benchmark_lcb: {len(router_benchmark_lcb_questions)}")
+print(
+    f"Number of unique questions in router_benchmark_lcb: {len(router_benchmark_lcb_questions)}"
+)
 
 # Add index column to the dataset using map
 lcb_codegen = lcd_v2.map(add_idx_map, with_indices=True)
@@ -81,11 +90,12 @@ for _, row in router_benchmark_lcb.iterrows():
 
 print(f"Created mapping for {len(question_to_global_idx)} questions")
 
+
 # Add global_idx field to each example by matching question content
 def add_global_idx(example):
     # Try to find matching question in router_benchmark_lcb
     prompt = example["question_content"]
-    
+
     # Look for exact match first
     if prompt in question_to_global_idx:
         example["global_idx"] = question_to_global_idx[prompt]
@@ -98,8 +108,9 @@ def add_global_idx(example):
                 break
         else:
             example["global_idx"] = None
-    
+
     return example
+
 
 lcb_codegen = lcb_codegen.map(add_global_idx)
 print(f"Added global_idx field to {len(lcb_codegen)} examples")
@@ -118,7 +129,9 @@ lcb_codegen = lcb_codegen.map(
 )
 
 # Filter out examples where private_test_cases translation failed
-lcb_codegen = lcb_codegen.filter(lambda example: example["private_test_cases"] is not None)
+lcb_codegen = lcb_codegen.filter(
+    lambda example: example["private_test_cases"] is not None
+)
 print(f"Number of rows after filtering out failed translations: {len(lcb_codegen)}")
 
 # Fix the remove_columns issue by creating a new list without "_index"
