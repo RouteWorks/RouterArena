@@ -22,3 +22,6 @@ venv/
 # OS files
 .DS_Store
 Thumbs.db
+
+.mypy_cache/*
+.ruff_cache/*
