@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
+
 """
 Model inference utilities for different API providers.
 Supports OpenAI, Together, Anthropic, Google, Mistral, Azure, etc.

@@ -51,20 +51,20 @@ repos:
     - id: detect-private-key
     - id: mixed-line-ending
       args: [--fix=lf]
-# - repo: local
-#   hooks:
-#     - id: addlicense-cpp-like
-#       name: Add SPDX headers (C/C++/CUDA/IPP)
-#       language: system
-#       entry: tools/addlicense.sh
-#       pass_filenames: true
-#       files: '\.(c|cc|cpp|h|hpp|cu|cuh|ipp)$'
-#     - id: addlicense-py
-#       name: Add SPDX headers (Python)
-#       language: system
-#       entry: tools/addlicense.sh
-#       pass_filenames: true
-#       files: '\.py$'
+- repo: local
+  hooks:
+    - id: addlicense-cpp-like
+      name: Add SPDX headers (C/C++/CUDA/IPP)
+      language: system
+      entry: tools/addlicense.sh
+      pass_filenames: true
+      files: '\.(c|cc|cpp|h|hpp|cu|cuh|ipp)$'
+    - id: addlicense-py
+      name: Add SPDX headers (Python)
+      language: system
+      entry: tools/addlicense.sh
+      pass_filenames: true
+      files: '\.py$'
 # Add mypy hooks for both local runs and CI (manual stage)
 - repo: local
   hooks:
