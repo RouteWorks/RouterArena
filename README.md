@@ -25,7 +25,7 @@ That's it! 🎉 All dependencies are installed automatically.
 Use the `.env` file in the project root with your API keys. The step is required if you want to use our pipeline to make LLM inferences.
 
 ### Step 4: Download Dataset
-Run this command to download dataset from [HF dataset](https://huggingface.co/datasets/louielu02/RouterEvalBenchmark).
+Run this command to download dataset from [HF dataset](https://huggingface.co/datasets/louielu02/RouterArena).
 
 ```bash
 uv run python ./scripts/process_datasets/prep_datasets.py

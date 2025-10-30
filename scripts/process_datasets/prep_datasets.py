@@ -9,12 +9,274 @@ import pickle
 import zlib
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
-from datasets import load_dataset  # type: ignore[import-untyped]
+from datasets import load_dataset, load_from_disk  # type: ignore[import-untyped]
+from typing import Dict, Any, List
 
 save_dir = "./dataset/"
 
-router_benchmark = load_dataset("louielu02/RouterEvalBenchmark", split="full")
-router_benchmark.save_to_disk(os.path.join(save_dir, "routerevalbench"))
+router_benchmark = load_dataset("louielu02/RouterArena", split="full")
+router_benchmark.save_to_disk(os.path.join(save_dir, "routerarena"))
+
+
+def escape_format_braces(text):
+    """
+    Escape curly braces in input text to prevent them from being interpreted
+    as format variables when using str.format().
+    """
+    if not isinstance(text, str):
+        return text
+    result = ""
+    i = 0
+    while i < len(text):
+        if text[i] == "{":
+            if i + 1 < len(text) and text[i + 1] == "{":
+                result += "{{"
+                i += 2
+            else:
+                result += "{{"
+                i += 1
+        elif text[i] == "}":
+            if i + 1 < len(text) and text[i + 1] == "}":
+                result += "}}"
+                i += 2
+            else:
+                result += "}}"
+                i += 1
+        else:
+            result += text[i]
+            i += 1
+    return result
+
+
+def safe_format_prompt(prompt_template, **kwargs):
+    """
+    Safely format a prompt template by escaping curly braces in the input data.
+    """
+    escaped_kwargs = {}
+    for key, value in kwargs.items():
+        if isinstance(value, str):
+            escaped_kwargs[key] = escape_format_braces(value)
+        else:
+            escaped_kwargs[key] = value
+    return prompt_template.format(**escaped_kwargs)
+
+
+def build_formatted_prompts_from_router_eval_benchmark(
+    split_name: str,
+) -> List[Dict[str, Any]]:
+    # Load benchmark split
+    ds = load_dataset("louielu02/RouterEvalBenchmark")[split_name]
+
+    # Load LiveCodeBench dataset saved to disk (if available)
+    lcd_dataset_list: List[Dict[str, Any]] = []
+    lcd_global_idx_map: Dict[str, Dict[str, Any]] = {}
+    lcd_index_map: Dict[str, Dict[str, Any]] = {}
+    lcd_prompt_prefix_map: Dict[str, Dict[str, Any]] = {}
+    try:
+        lcd = load_from_disk("./dataset/livecodebench")
+        # Convert to list for index-based access
+        lcd_dataset_list = lcd.to_list()
+        # Build fast lookup maps
+        for item in lcd_dataset_list:
+            gidx_key = (
+                str(item.get("global_idx"))
+                if item.get("global_idx") is not None
+                else None
+            )
+            if gidx_key is not None:
+                lcd_global_idx_map[gidx_key] = item
+            idx_key = (
+                str(item.get("_index")) if item.get("_index") is not None else None
+            )
+            if idx_key is not None:
+                lcd_index_map[idx_key] = item
+            # Use prompt prefix (from processed dataset) for fuzzy matching fallback
+            prompt_text = item.get("prompt") or ""
+            if isinstance(prompt_text, str) and prompt_text:
+                lcd_prompt_prefix_map[prompt_text[:120]] = item
+    except Exception as e:
+        print(
+            f"[prep] Warning: could not load ./dataset/livecodebench ({e}). LiveCodeBench prompts may fail."
+        )
+
+    # Load configs for all known datasets
+    config_dir = "./config/eval_config/zero-shot"
+    dataset_names = [
+        "AIME",
+        "ArcMMLU",
+        "AsDiv",
+        "ChessInstruct_mcq",
+        "ChessInstruct",
+        "Ethics_commonsense",
+        "Ethics_deontology",
+        "Ethics_justice",
+        "Ethics_virtue",
+        "FinQA",
+        "GeoBench",
+        "GeoGraphyData",
+        "GSM8K",
+        "LiveCodeBench",
+        "MATH",
+        "MathQA",
+        "MedMCQA",
+        "MMLUPro",
+        "MMLU",
+        "MusicTheoryBench",
+        "NarrativeQA",
+        "OpenTDB",
+        "PubMedQA",
+        "QANTA",
+        "SocialiQA",
+        "SuperGLUE-CausalReasoning",
+        "SuperGLUE-ClozeTest",
+        "SuperGLUE-Entailment",
+        "SuperGLUE-QA",
+        "SuperGLUE-RC",
+        "SuperGLUE-Wic",
+        "SuperGLUE-Wsc",
+        "WMT19-cs-en",
+        "WMT19-de-en",
+        "WMT19-fi-en",
+        "WMT19-gu-en",
+        "WMT19-kk-en",
+        "WMT19-lt-en",
+        "WMT19-ru-en",
+        "WMT19-zh-en",
+    ]
+    dataset_configs: Dict[str, Dict[str, Any]] = {}
+    for dataset_name in dataset_names:
+        cfg_path = os.path.join(config_dir, f"{dataset_name}.json")
+        try:
+            with open(cfg_path, "r", encoding="utf-8") as f:
+                cfg = json.load(f)
+                dataset_configs[dataset_name] = cfg.get("eval_params", {})
+        except FileNotFoundError:
+            print(f"[prep] Warning: Config file not found for {dataset_name}")
+            continue
+
+    formatted: List[Dict[str, Any]] = []
+    for row in ds:
+        global_index = (
+            row.get("Global Index")
+            or row.get("global_index")
+            or row.get("global index")
+        )
+        dataset_name_full = row.get("Dataset name") or ""
+
+        if "Ethics" in dataset_name_full:
+            base_dataset_name = dataset_name_full
+        elif "ChessInstruct_mcq" in dataset_name_full:
+            base_dataset_name = dataset_name_full
+        else:
+            base_dataset_name = str(dataset_name_full).split("_", 1)[0]
+
+        assert base_dataset_name in dataset_configs, (
+            f"No config for {base_dataset_name}"
+        )
+        eval_params = dataset_configs[base_dataset_name]
+
+        # Build options string if present
+        options_list = row.get("Options")
+        options_str = ""
+        if options_list:
+            letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            for i, opt in enumerate(options_list):
+                letter = letters[i] if i < len(letters) else "-"
+                options_str += f"{letter}. {opt}\n"
+
+        question = row.get("Question", "")
+        context_val = row.get("Context", "")
+        context_for_prompt = context_val if context_val != "" else "None"
+
+        if base_dataset_name == "LiveCodeBench":
+            # Primary: use global index to match the processed lcb dataset's global_idx
+            lcd_row = lcd_global_idx_map.get(str(global_index))
+            if lcd_row is None:
+                # Fallback: try _index suffix
+                idx = str(global_index).split("_")[-1]
+                lcd_row = lcd_index_map.get(idx)
+            if lcd_row is None:
+                # Fallback: fuzzy match by question/prompt prefix
+                q_prefix = (question or "")[:120]
+                lcd_row = lcd_prompt_prefix_map.get(q_prefix)
+            if lcd_row is None:
+                raise AssertionError(
+                    f"LiveCodeBench row not found for Global Index {global_index} by global_idx, index, or prompt match."
+                )
+            prompt = (
+                eval_params.get("is_stdin_prompt")
+                if lcd_row.get("is_stdin")
+                else eval_params.get("not_is_stdin_prompt")
+            )
+            prompt_formatted = safe_format_prompt(
+                prompt or "{Question}", Question=question
+            )
+        elif base_dataset_name == "SuperGLUE-RC":
+            prompt_formatted = safe_format_prompt(
+                eval_params.get("prompt", "{Question}"),
+                Question=question,
+                Answer=row.get("Answer", ""),
+            )
+        elif base_dataset_name == "SuperGLUE-Wic":
+            prompt_formatted = safe_format_prompt(
+                eval_params.get("prompt", "{Question}"),
+                Question=question,
+                Context=context_val,
+            )
+        elif not options_list:
+            prompt_formatted = safe_format_prompt(
+                eval_params.get("prompt", "{Question}"),
+                Context=context_for_prompt,
+                Question=question,
+            )
+        else:
+            prompt_formatted = safe_format_prompt(
+                eval_params.get("prompt", "{Question}"),
+                Context=context_for_prompt,
+                Question=question,
+                Options=options_str,
+            )
+
+        if len(prompt_formatted) > 10000:
+            prompt_formatted = f"{prompt_formatted[:5000]}...{prompt_formatted[-5000:]}"
+
+        assert len(prompt_formatted) > 0, (
+            f"Prompt formatted is empty for {dataset_name_full}"
+        )
+
+        formatted.append(
+            {
+                "prompt_formatted": prompt_formatted,
+                "global index": global_index,
+            }
+        )
+    return formatted
+
+
+def write_pipeline_datasets() -> None:
+    out_dir = "./llm_inference/datasets"
+    os.makedirs(out_dir, exist_ok=True)
+
+    # full split
+    full_data = build_formatted_prompts_from_router_eval_benchmark("full")
+    with open(os.path.join(out_dir, "router_data.json"), "w", encoding="utf-8") as f:
+        json.dump(full_data, f, ensure_ascii=False, indent=2)
+    print(
+        f"[prep] Wrote {len(full_data)} items to {os.path.join(out_dir, 'router_data.json')}"
+    )
+
+    # sub_10 split (if available)
+    try:
+        sub10_data = build_formatted_prompts_from_router_eval_benchmark("sub_10")
+        with open(
+            os.path.join(out_dir, "router_data_10.json"), "w", encoding="utf-8"
+        ) as f:
+            json.dump(sub10_data, f, ensure_ascii=False, indent=2)
+        print(
+            f"[prep] Wrote {len(sub10_data)} items to {os.path.join(out_dir, 'router_data_10.json')}"
+        )
+    except Exception as e:
+        print(f"[prep] Warning: could not build sub_10 split: {e}")
 
 
 def add_idx_map(x: dict, idx: int) -> dict:
@@ -66,7 +328,7 @@ def map_to_example(row):
 
 router_benchmark_df = router_benchmark.to_pandas()
 router_benchmark_lcb = router_benchmark_df[
-    router_benchmark_df["Dataset name"] == "LiveCodeBench"
+    router_benchmark_df["Global Index"].str.contains("LiveCodeBench")
 ]
 router_benchmark_lcb["idx"] = (
     router_benchmark_lcb["Global Index"].str.split("_").str[-1]
@@ -146,3 +408,5 @@ lcb_codegen = lcb_codegen.map(
 )
 
 lcb_codegen.save_to_disk(os.path.join(save_dir, "livecodebench"))
+
+write_pipeline_datasets()

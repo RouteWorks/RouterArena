@@ -106,13 +106,15 @@ def inference_pipeline(config: Dict[str, Any], on_full=False):
 
     data_path = "./llm_inference/datasets/router_data.json"
 
-    # Load data
+    # Load data (must be prepared by prep_datasets.py)
     logger.info(f"Loading data from: {data_path}")
+    if not os.path.exists(data_path):
+        raise FileNotFoundError(
+            f"{data_path} not found. Run scripts/process_datasets/prep_datasets.py first to prepare the dataset."
+        )
 
-    with open(data_path, "r") as f:
+    with open(data_path, "r", encoding="utf-8") as f:
         data = json.load(f)
-
-    data = data[:2]
 
     logger.info(f"Loaded {len(data)} data points")
 

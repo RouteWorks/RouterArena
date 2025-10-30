@@ -95,6 +95,10 @@
       "input_token_price_per_million": 0.4,
       "output_token_price_per_million": 1.6
     },
+    "gpt-4.1-mini-2025-04-14": {
+      "input_token_price_per_million": 0.4,
+      "output_token_price_per_million": 1.6
+    },
     "gpt-4.1-nano": {
       "input_token_price_per_million": 0.1,
       "output_token_price_per_million": 0.4
@@ -107,6 +111,10 @@
       "input_token_price_per_million": 0.15,
       "output_token_price_per_million": 0.6
     },
+    "gpt-5": {
+      "input_token_price_per_million": 1.25,
+      "output_token_price_per_million": 10.0
+    },
     "gpt-5-chat-latest": {
       "input_token_price_per_million": 1.25,
       "output_token_price_per_million": 10.0
@@ -115,7 +123,15 @@
       "input_token_price_per_million": 0.25,
       "output_token_price_per_million": 2.0
     },
+    "gpt-5-mini-2025-08-07": {
+      "input_token_price_per_million": 0.25,
+      "output_token_price_per_million": 2.0
+    },
     "gpt-5-nano": {
+      "input_token_price_per_million": 0.05,
+      "output_token_price_per_million": 0.4
+    },
+    "gpt-5-nano-2025-08-07": {
       "input_token_price_per_million": 0.05,
       "output_token_price_per_million": 0.4
     },
@@ -260,6 +276,10 @@
       "output_token_price_per_million": 4.4
     },
     "o4-mini": {
+      "input_token_price_per_million": 1.1,
+      "output_token_price_per_million": 4.4
+    },
+    "o4-mini-2025-04-16": {
       "input_token_price_per_million": 1.1,
       "output_token_price_per_million": 4.4
     },
