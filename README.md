@@ -3,25 +3,30 @@
 ## Installation
 
 ### Prerequisites
-- Python 3.10
-- Conda (Anaconda or Miniconda)
+- Python 3.11+ (we'll install it automatically if needed)
+- Internet connection
 
-### Step 1: Create a Conda Environment
-
+### Step 1: Install uv (if you don't have it)
 ```bash
-conda create -n routerarena python=3.10 -y
-conda activate routerarena
-pip install -r requirements.txt
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### Step 2: Set Up API Keys
+### Step 2: Install RouterArena
+```bash
+cd RouterArena
+uv sync
+```
+
+That's it! 🎉 All dependencies are installed automatically.
+
+### Step 3: Set Up API Keys
 Use the `.env` file in the project root with your API keys. The step is required if you want to use our pipeline to make LLM inferences.
 
-### Step 3: Download Dataset
+### Step 4: Download Dataset
 Run this command to download dataset from [HF dataset](https://huggingface.co/datasets/louielu02/RouterEvalBenchmark).
 
 ```bash
-python ./scripts/process_datasets/prep_datasets.py
+uv run python ./scripts/process_datasets/prep_datasets.py
 ```
 
 ## Usage
@@ -38,7 +43,7 @@ Run inference on a specific model:
 
 ```bash
 cd llm_inference
-python main.py --model_name gpt-4o
+uv run python main.py --model_name gpt-4o
 ```
 
 Options:
@@ -48,10 +53,7 @@ Options:
 
 ```bash
 # Run inference with GPT-4o
-python main.py --model_name gpt-4o
-
-# Run inference with Claude 3.7 Sonnet (full dataset)
-python main.py --model_name claude-3-7-sonnet-20250219 --run-full
+uv run python main.py --model_name gpt-4o
 ```
 
 **Input**: Questions from `llm_inference/datasets/router_data.json`, which is a local copy from the [huggingface dataset](https://huggingface.co/datasets/louielu02/RouterEvalBenchmark).
@@ -61,7 +63,7 @@ python main.py --model_name claude-3-7-sonnet-20250219 --run-full
 For convenience, you could initialize inference on all models using `$MAX_CONCURRENT` threads with this command:  
 
 ```bash
-./run_inference.sh
+uv run ./run_inference.sh
 ```
 
 ### 2. LLM Evaluation
@@ -72,14 +74,14 @@ Evaluate model responses using automated metrics and judge models.
 
 ```bash
 cd llm_evaluation
-python evaluate_models.py <universal_model_name> --cached-results-dir ../cached_results/
+uv run python evaluate_models.py <universal_model_name> --cached-results-dir ../cached_results/
 ```
 
 **Batch evaluation** (all models in `../cached_results/`):
 
 ```bash
 cd llm_evaluation
-python batch_evaluate.py
+uv run python batch_evaluate.py
 ```
 
 Both methods automatically evaluate the query-answer pairs from the corresponding model files in `../cached_results/`. Evaluation results are appended to the same files as additional fields.
@@ -129,7 +131,7 @@ Create a config file in `./router_inference/config/<router_name>.json`:
 **Step 3: Run Evaluation**
 
 ```bash
-python ./router_inference/compare_router_accuracy.py
+uv run python ./router_inference/compare_router_accuracy.py
 ```
 
 **Output**: Generates `./router_inference/all_router_data.json` with evaluation results.
