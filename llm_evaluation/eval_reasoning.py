@@ -3,6 +3,7 @@
 
 import os
 import json
+from typing import Any, Dict
 from metrics import (
     mcq_exact_match,
     mcq_accuracy,
@@ -14,7 +15,7 @@ from metrics import (
     superglue_exact_match,
     superglue_clozetest,
 )
-from datasets import load_from_disk  # type: ignore[import-not-found,import-untyped]
+from datasets import load_from_disk
 
 # Dataset to metric mapping
 dataset2metric = {
@@ -201,8 +202,8 @@ def eval(pred_dir, eval_params, pipeline_config, all_data):
         scores: Dictionary of evaluation scores
         raw_results: Detailed results for each prediction
     """
-    scores = dict()
-    all_raw_results = dict()
+    scores: Dict[str, float] = {}
+    all_raw_results: Dict[str, Dict[str, Any]] = {}
 
     # Get the appropriate scorers for this dataset and metrics
     dataset_name = eval_params["dataset"]

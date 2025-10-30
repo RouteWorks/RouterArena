@@ -6,13 +6,13 @@ import string
 import json
 import copy
 
-import jieba  # type: ignore[import-not-found,import-untyped]
-from fuzzywuzzy import fuzz  # type: ignore[import-not-found,import-untyped]
+import jieba
+from fuzzywuzzy import fuzz
 import difflib
 
 from collections import Counter
-from rouge import Rouge  # type: ignore[import-not-found,import-untyped]
-import regex  # type: ignore[import-untyped]
+from rouge import Rouge
+import regex
 
 from metric_utils import (
     choice_answer_clean,
@@ -130,7 +130,7 @@ def classification_score(prediction, ground_truth, **kwargs):
             score = 0.0
     else:
         best_match = None
-        highest_similarity = 0
+        highest_similarity = 0.0
         for string in all_classes:
             similarity = difflib.SequenceMatcher(None, string, prediction).ratio()
             if similarity > highest_similarity:
@@ -528,24 +528,25 @@ def math_equal(
 
     try:  # 1. numerical equal
         if is_digit(prediction) and is_digit(reference):
-            prediction = parse_digits(prediction)
-            reference = parse_digits(reference)
-            # number questions
-            if include_percentage:
-                gt_result = [reference / 100, reference, reference * 100]
-            else:
-                gt_result = [reference]
-            for item in gt_result:
-                try:
-                    if is_close:
-                        if numeric_equal(prediction, item):
-                            return True
-                    else:
-                        if item == prediction:
-                            return True
-                except Exception:
-                    continue
-            return False
+            pred_val = parse_digits(prediction)
+            ref_val = parse_digits(reference)
+            if pred_val is not None and ref_val is not None:
+                # number questions
+                if include_percentage:
+                    gt_result: list[float] = [ref_val / 100, ref_val, ref_val * 100]
+                else:
+                    gt_result = [ref_val]
+                for item in gt_result:
+                    try:
+                        if is_close:
+                            if numeric_equal(pred_val, item):
+                                return True
+                        else:
+                            if item == pred_val:
+                                return True
+                    except Exception:
+                        continue
+                return False
     except Exception:
         pass
 

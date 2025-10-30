@@ -20,7 +20,10 @@ import tempfile
 import time
 import zlib
 from io import StringIO
-from typing import Optional
+from typing import Optional, Any, Dict
+
+# Global storage for original references used by reliability_guard
+originals: Dict[str, Any] = {}
 
 
 def has_code(response):
@@ -126,8 +129,7 @@ def post_process_tests_inputs(raw_text, is_stdin):
 
             # If no matches are found, fall back to line-by-line parsing
             cleaned_lines = cleaned_string.split("\n")
-            if test_cases is None:
-                test_cases = []
+            test_cases = []
             for line in cleaned_lines:
                 try:
                     test_case = json.loads(line)
@@ -229,10 +231,9 @@ def prepare_test_input_output_std(test_case):
 
 def run_test_func(completion, is_extracted, test_input, test_output):
     # print(f"inside: {completion}")
+    # Define the namespace in which to execute the completion code
+    namespace: Dict[str, Any] = {}
     if not is_extracted:
-        # Define the namespace in which to execute the completion code
-        namespace = {}
-
         # Execute the generated code in the namespace
 
         exec(completion, namespace)
@@ -273,8 +274,6 @@ def run_test_func(completion, is_extracted, test_input, test_output):
 
         return True, result_output
     else:
-        namespace = {}
-
         # Execute the generated code in the namespace
 
         exec(completion, namespace)
@@ -313,7 +312,7 @@ def run_test_std(completion, test_input, test_output):
         # Simulate that the code is being run as the main script
         completion = '__name__ = "__main__"\n' + completion
 
-    namespace = {}
+    namespace: Dict[str, Any] = {}
     exec(completion, namespace)
 
     output_value = output.getvalue().strip()
@@ -409,7 +408,7 @@ def swallow_io(redirect_input=True):
 
     with contextlib.redirect_stdout(stream), contextlib.redirect_stderr(stream):
         if redirect_input:
-            with contextlib.redirect_stdin(StringIO()):  # Redirect stdin if enabled
+            with redirect_stdin(StringIO()):  # Redirect stdin if enabled
                 yield stream
         else:
             yield stream  # Do not redirect stdin
@@ -443,8 +442,18 @@ class WriteOnlyStringIO(io.StringIO):
         return False
 
 
-class redirect_stdin(contextlib._RedirectStream):  # type: ignore
-    _stream = "stdin"
+class redirect_stdin:
+    def __init__(self, new_target: Any):
+        self._new_target = new_target
+        self._old_target: Any = None
+
+    def __enter__(self) -> Any:
+        self._old_target = sys.stdin
+        sys.stdin = self._new_target
+        return self._new_target
+
+    def __exit__(self, exc_type, exc, tb) -> None:
+        sys.stdin = self._old_target
 
 
 @contextlib.contextmanager
@@ -479,62 +488,68 @@ def reliability_guard(maximum_memory_bytes: Optional[int] = None):
 
     import builtins
 
-    from typing import Any, cast
+    from typing import Any
 
-    builtins.exit = cast(Any, None)  # type: ignore[assignment]
-    builtins.quit = cast(Any, None)  # type: ignore[assignment]
-
-    import os
+    # Prepare Any-typed aliases to avoid mypy assignment errors
+    builtins_mod: Any = builtins
+    os_mod: Any = os
+    shutil_mod: Any = shutil
+    subprocess_mod: Any = subprocess
+    modules_any: Any = sys.modules
 
     os.environ["OMP_NUM_THREADS"] = "1"
 
-    os.kill = cast(Any, None)  # type: ignore[assignment]
-    os.system = cast(Any, None)  # type: ignore[assignment]
-    os.putenv = cast(Any, None)  # type: ignore[assignment]
-    os.remove = cast(Any, None)  # type: ignore[assignment]
-    os.removedirs = cast(Any, None)  # type: ignore[assignment]
-    os.rmdir = cast(Any, None)  # type: ignore[assignment]
-    os.fchdir = cast(Any, None)  # type: ignore[assignment]
-    os.setuid = cast(Any, None)  # type: ignore[assignment]
-    os.fork = cast(Any, None)  # type: ignore[assignment]
-    os.forkpty = cast(Any, None)  # type: ignore[assignment]
-    os.killpg = cast(Any, None)  # type: ignore[assignment]
-    os.rename = cast(Any, None)  # type: ignore[assignment]
-    os.renames = cast(Any, None)  # type: ignore[assignment]
-    os.truncate = cast(Any, None)  # type: ignore[assignment]
-    os.replace = cast(Any, None)  # type: ignore[assignment]
-    os.unlink = cast(Any, None)  # type: ignore[assignment]
-    os.fchmod = cast(Any, None)  # type: ignore[assignment]
-    os.fchown = cast(Any, None)  # type: ignore[assignment]
-    os.chmod = cast(Any, None)  # type: ignore[assignment]
-    os.chown = cast(Any, None)  # type: ignore[assignment]
-    os.chroot = cast(Any, None)  # type: ignore[assignment]
-    os.fchdir = cast(Any, None)  # type: ignore[assignment]
-    os.lchflags = cast(Any, None)  # type: ignore[attr-defined,assignment]
-    os.lchmod = cast(Any, None)  # type: ignore[attr-defined,assignment]
-    os.lchown = cast(Any, None)  # type: ignore[assignment]
-    os.getcwd = cast(Any, None)  # type: ignore[assignment]
-    os.chdir = cast(Any, None)  # type: ignore[assignment]
+    # Disable selected builtins
+    setattr(builtins_mod, "exit", None)
+    setattr(builtins_mod, "quit", None)
 
-    import shutil
+    # Disable destructive os functions (guard where platform-specific)
+    for name in [
+        "kill",
+        "system",
+        "putenv",
+        "remove",
+        "removedirs",
+        "rmdir",
+        "fchdir",
+        "setuid",
+        "fork",
+        "forkpty",
+        "killpg",
+        "rename",
+        "renames",
+        "truncate",
+        "replace",
+        "unlink",
+        "fchmod",
+        "fchown",
+        "chmod",
+        "chown",
+        "chroot",
+        "getcwd",
+        "chdir",
+        "lchflags",
+        "lchmod",
+        "lchown",
+    ]:
+        try:
+            setattr(os_mod, name, None)
+        except Exception:
+            pass
 
-    shutil.rmtree = cast(Any, None)  # type: ignore[assignment]
-    shutil.move = cast(Any, None)  # type: ignore[assignment]
-    shutil.chown = cast(Any, None)  # type: ignore[assignment]
+    # Disable dangerous shutil functions
+    for name in ["rmtree", "move", "chown"]:
+        try:
+            setattr(shutil_mod, name, None)
+        except Exception:
+            pass
 
-    import subprocess
+    # Disable subprocess.Popen
+    setattr(subprocess_mod, "Popen", None)
 
-    setattr(subprocess, "Popen", cast(Any, None))  # type: ignore[misc]
-
-    # __builtins__["help"] = None   # this line is commented out as it results into error
-
-    import sys
-
-    sys.modules["ipdb"] = None  # type: ignore[assignment]
-    sys.modules["joblib"] = None  # type: ignore[assignment]
-    sys.modules["resource"] = None  # type: ignore[assignment]
-    sys.modules["psutil"] = None  # type: ignore[assignment]
-    sys.modules["tkinter"] = None  # type: ignore[assignment]
+    # Hide selected modules
+    for name in ["ipdb", "joblib", "resource", "psutil", "tkinter"]:
+        modules_any[name] = None
 
 
 def save_original_references():
@@ -600,7 +615,7 @@ def restore_original_references():
         setattr(shutil, func_name, original_func)
 
     # Restore 'subprocess' functions
-    subprocess.Popen = originals["subprocess"]["Popen"]
+    setattr(subprocess, "Popen", originals["subprocess"]["Popen"])  # type: ignore[misc]
 
     # Restore sys modules
     for module_name, original_module in originals["sys_modules"].items():

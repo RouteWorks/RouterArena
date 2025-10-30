@@ -18,7 +18,7 @@ import argparse
 import glob
 from typing import Dict, List, Any, Optional
 import sys
-from tqdm import tqdm  # type: ignore[import-untyped]
+from tqdm import tqdm
 
 # Add the current directory to Python path to import eval modules
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -98,8 +98,8 @@ class ModelEvaluator:
         print("Loading ground truth data...")
         try:
             # Load data directly without LiveCodeBench dependency
-            from datasets import load_dataset  # type: ignore[import-not-found,import-untyped]
-            import pandas as pd  # type: ignore[import-untyped]
+            from datasets import load_dataset
+            import pandas as pd
 
             # Load the router eval benchmark dataset
             router_eval_bench = load_dataset("louielu02/RouterEvalBenchmark")["full"]
@@ -347,14 +347,21 @@ class ModelEvaluator:
 
             # Evaluate each entry in this dataset
             for entry in dataset_entries:
-                global_index = entry.get("global_index")
+                global_index_val = entry.get("global_index")
                 generated_answer = entry.get("generated_answer", "")
 
                 try:
                     # Get ground truth for this entry
-                    ground_truth = self._get_ground_truth(global_index, dataset_name)
+                    if not isinstance(global_index_val, str):
+                        print(
+                            f"Warning: Invalid global_index {global_index_val} for dataset {dataset_name}"
+                        )
+                        continue
+                    ground_truth = self._get_ground_truth(
+                        global_index_val, dataset_name
+                    )
                     if ground_truth is None:
-                        print(f"Warning: No ground truth found for {global_index}")
+                        print(f"Warning: No ground truth found for {global_index_val}")
                         continue
 
                     # Evaluate using the appropriate scorer
@@ -394,7 +401,7 @@ class ModelEvaluator:
                         "metric": "error",
                         "inference_cost": 0.0,
                     }
-                    print(f"Error evaluating {global_index}: {e}")
+                    print(f"Error evaluating {global_index_val}: {e}")
                     continue
 
             dataset_scores[dataset_name] = len(dataset_entries)
@@ -572,7 +579,10 @@ def main():
 
     args = parser.parse_args()
 
-    universal_name = model_name_manager.get_universal_name(args.model_name)
+    if model_name_manager is not None:
+        universal_name = model_name_manager.get_universal_name(args.model_name)
+    else:
+        universal_name = args.model_name
     print(f"Input model name: {args.model_name}")
     print(f"Universal model name: {universal_name}")
 

@@ -211,8 +211,8 @@ class ModelInference:
     def _call_xai(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call XAI API."""
 
-        from xai_sdk import Client  # type: ignore[import-untyped]
-        from xai_sdk.chat import user, system  # type: ignore[import-untyped]
+        from xai_sdk import Client
+        from xai_sdk.chat import user, system
 
         client = Client(
             api_key=os.getenv("XAI_API_KEY"),
@@ -239,7 +239,7 @@ class ModelInference:
         }
 
     def _call_zhipu(self, model_name: str, prompt: str) -> Dict[str, Any]:
-        from zhipuai import ZhipuAI  # type: ignore[import-untyped]
+        from zhipuai import ZhipuAI
 
         client = ZhipuAI(api_key=os.getenv("ZHIPU_API_KEY"))
 
@@ -264,7 +264,7 @@ class ModelInference:
 
     def _call_replicate(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call Replicate API."""
-        import replicate  # type: ignore[import-not-found]
+        import replicate
 
         client = replicate.Client(api_token=self.replicate_api_key)
 
@@ -333,7 +333,7 @@ class ModelInference:
 
     def _call_openai(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call OpenAI API."""
-        import openai  # type: ignore[import-untyped]
+        import openai
 
         client = openai.OpenAI(api_key=self.openai_api_key)
 
@@ -367,7 +367,7 @@ class ModelInference:
 
     def _call_together(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call Together AI API."""
-        import together  # type: ignore[import-untyped]
+        import together
 
         client = together.Together(api_key=self.together_api_key)
 
@@ -405,7 +405,7 @@ class ModelInference:
 
     def _call_anthropic(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call Anthropic API."""
-        import anthropic  # type: ignore[import-untyped]
+        import anthropic
 
         client = anthropic.Anthropic(api_key=self.anthropic_api_key)
 
@@ -438,7 +438,7 @@ class ModelInference:
 
     def _call_google(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call Google AI API."""
-        import google.generativeai as genai  # type: ignore[import-untyped]
+        import google.generativeai as genai
 
         genai.configure(api_key=self.google_api_key)
 
@@ -466,7 +466,7 @@ class ModelInference:
 
     def _call_mistral(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call Mistral AI API."""
-        from mistralai import Mistral  # type: ignore[import-untyped]
+        from mistralai import Mistral
 
         client = Mistral(api_key=self.mistral_api_key)
 
@@ -514,7 +514,7 @@ class ModelInference:
 
     def _call_azure(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call Azure OpenAI API."""
-        import openai  # type: ignore[import-untyped]
+        import openai
 
         client = openai.AzureOpenAI(
             api_key=self.azure_api_key,
@@ -639,8 +639,8 @@ class ModelInference:
 
     def _call_aws(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call AWS Bedrock API."""
-        import boto3  # type: ignore[import-untyped]
-        from botocore.exceptions import ClientError  # type: ignore[import-untyped]
+        import boto3
+        from botocore.exceptions import ClientError
 
         # Map model names to their inference profile ARNs
         model_arn_mapping = {
