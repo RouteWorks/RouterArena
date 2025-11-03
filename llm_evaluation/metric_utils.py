@@ -7,10 +7,10 @@ from math import isclose
 
 from typing import Any, Optional, List
 
-from latex2sympy2 import latex2sympy  # type: ignore[import-not-found,import-untyped]
-from sympy import N, simplify  # type: ignore[import-not-found,import-untyped]
-from sympy.parsing.latex import parse_latex  # type: ignore[import-not-found,import-untyped]
-from sympy.parsing.sympy_parser import parse_expr  # type: ignore[import-not-found,import-untyped]
+from latex2sympy2 import latex2sympy
+from sympy import N, simplify
+from sympy.parsing.latex import parse_latex
+from sympy.parsing.sympy_parser import parse_expr
 
 
 def choice_answer_clean(pred: str) -> str:
