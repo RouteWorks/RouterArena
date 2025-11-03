@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import re
-import regex  # type: ignore[import-untyped]
+import regex
 from math import isclose
 
 from typing import Any, Optional, List

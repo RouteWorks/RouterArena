@@ -175,7 +175,7 @@ def build_chat(tokenizer, prompt, chat_template):
             messages, tokenize=False, add_generation_prompt=True
         )
     elif "longchat" in chat_template or "vicuna" in chat_template:
-        from fastchat.model import get_conversation_template  # type: ignore[import-not-found]
+        from fastchat.model import get_conversation_template
 
         conv = get_conversation_template("vicuna")
         conv.append_message(conv.roles[0], prompt)

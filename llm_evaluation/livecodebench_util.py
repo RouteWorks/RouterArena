@@ -615,7 +615,7 @@ def restore_original_references():
         setattr(shutil, func_name, original_func)
 
     # Restore 'subprocess' functions
-    setattr(subprocess, "Popen", originals["subprocess"]["Popen"])  # type: ignore[misc]
+    setattr(subprocess, "Popen", originals["subprocess"]["Popen"])
 
     # Restore sys modules
     for module_name, original_module in originals["sys_modules"].items():

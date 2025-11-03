@@ -95,8 +95,8 @@ def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
     Returns:
         Dictionary mapping global_index to ground truth data
     """
-    from datasets import load_from_disk  # type: ignore[import-not-found,import-untyped]
-    import pandas as pd  # type: ignore[import-untyped]
+    from datasets import load_from_disk
+    import pandas as pd
 
     if split not in ["sub_10", "full"]:
         raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
@@ -176,7 +176,7 @@ def get_livecodebench_ground_truth(global_index: str) -> Optional[Dict[str, Any]
     """
     global _livecodebench_cache
     try:
-        from datasets import load_from_disk  # type: ignore[import-not-found,import-untyped]
+        from datasets import load_from_disk
 
         # Load LiveCodeBench dataset (cache it if needed)
         if _livecodebench_cache is None:
@@ -296,7 +296,7 @@ def evaluate_single_prediction(
             # which works because code_accuracy accepts dict as ground_truth
             score, metric_name = evaluator._evaluate_single_entry(
                 generated_answer,
-                ground_truth,  # type: ignore[arg-type]
+                ground_truth,
                 scorer_func,
                 dataset_name,
             )

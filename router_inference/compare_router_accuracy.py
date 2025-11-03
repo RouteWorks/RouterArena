@@ -199,7 +199,7 @@ def main():
     evaluation_dict = build_complete_evaluation_dictionary()
 
     # Load RouterEvalBench dataset and create global_index to bloom_level mapping
-    from datasets import load_dataset  # type: ignore[import-untyped]
+    from datasets import load_dataset
 
     # Load the routerevalbench dataset from local path
     dataset_path = "./dataset/routerevalbench"

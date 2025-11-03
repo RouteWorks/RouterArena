@@ -18,7 +18,7 @@ import argparse
 import glob
 from typing import Dict, List, Any, Optional
 import sys
-from tqdm import tqdm  # type: ignore[import-untyped]
+from tqdm import tqdm
 
 # Add the current directory to Python path to import eval modules
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -98,8 +98,8 @@ class ModelEvaluator:
         print("Loading ground truth data...")
         try:
             # Load data directly without LiveCodeBench dependency
-            from datasets import load_from_disk  # type: ignore[import-untyped]
-            import pandas as pd  # type: ignore[import-untyped]
+            from datasets import load_from_disk
+            import pandas as pd
 
             # Load the router eval benchmark dataset
             router_eval_bench = load_from_disk("./dataset/routerarena")
@@ -439,7 +439,7 @@ class ModelEvaluator:
         print(f"Evaluation completed. Evaluated {evaluated_count} new entries.")
         return self._compile_final_results(universal_model_name, cached_results)
 
-    def _get_ground_truth(self, global_index: str, dataset_name: str) -> Optional[str]:
+    def _get_ground_truth(self, global_index: str, dataset_name: str) -> Optional[Any]:
         """Get ground truth for a specific global_index from the dataset."""
         # Load dataset if not already loaded
         if self.all_data is None:
@@ -482,7 +482,7 @@ class ModelEvaluator:
         return None
 
     def _evaluate_single_entry(
-        self, generated_answer: str, ground_truth: str, scorer, dataset_name: str
+        self, generated_answer: str, ground_truth: Any, scorer, dataset_name: str
     ) -> tuple:
         """Evaluate a single entry using the appropriate scorer."""
         try:
