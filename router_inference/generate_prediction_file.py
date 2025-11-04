@@ -11,7 +11,7 @@ testing the RouterArena pipeline.
 Usage:
     python router_inference/generate_prediction_file.py <router_name> <split>
 
-    split: either "10" for 10% split (809 entries) or "full" (8400 entries)
+    split: either "sub_10" for 10% split (809 entries) or "full" (8400 entries)
 """
 
 import argparse
@@ -56,7 +56,7 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
     Load dataset file.
 
     Args:
-        split: Either "10" or "full"
+        split: Either "sub_10" or "full"
 
     Returns:
         List of dataset entries
@@ -64,7 +64,7 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
     dataset_path = DATASET_PATHS.get(split)
 
     if not dataset_path:
-        raise ValueError(f"Invalid split: {split}. Must be '10' or 'full'")
+        raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
 
     if not os.path.exists(dataset_path):
         raise FileNotFoundError(f"Dataset file not found: {dataset_path}")
