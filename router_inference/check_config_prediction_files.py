@@ -15,7 +15,7 @@ This script validates:
 Usage:
     python router_inference/check_config_prediction_files.py <router_name> <split>
 
-    split: either "10" for 10% split or "full" for full dataset
+    split: either "sub_10" for 10% split or "full" for full dataset
 """
 
 import argparse
@@ -31,13 +31,13 @@ from universal_model_names import ModelNameManager
 
 # Expected dataset sizes
 EXPECTED_SIZES = {
-    "10": 809,
+    "sub_10": 809,
     "full": 8400,
 }
 
 # Dataset file paths
 DATASET_PATHS = {
-    "10": "./dataset/router_data_10.json",
+    "sub_10": "./dataset/router_data_10.json",
     "full": "./dataset/router_data.json",
 }
 
@@ -89,7 +89,7 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
     Load dataset file.
 
     Args:
-        split: Either "10" or "full"
+        split: Either "sub_10" or "full"
 
     Returns:
         List of dataset entries
@@ -97,7 +97,7 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
     dataset_path = DATASET_PATHS.get(split)
 
     if not dataset_path:
-        raise ValueError(f"Invalid split: {split}. Must be '10' or 'full'")
+        raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
 
     if not os.path.exists(dataset_path):
         raise FileNotFoundError(f"Dataset file not found: {dataset_path}")
@@ -143,7 +143,7 @@ def check_prediction_size(
 
     Args:
         predictions: List of prediction dictionaries
-        split: Either "10" or "full"
+        split: Either "sub_10" or "full"
 
     Returns:
         Tuple of (is_valid, error_message)
@@ -151,7 +151,7 @@ def check_prediction_size(
     expected_size = EXPECTED_SIZES.get(split)
 
     if expected_size is None:
-        return False, f"Invalid split: {split}. Must be '10' or 'full'"
+        return False, f"Invalid split: {split}. Must be 'sub_10' or 'full'"
 
     actual_size = len(predictions)
 
@@ -286,8 +286,8 @@ def main():
     parser.add_argument(
         "split",
         type=str,
-        choices=["10", "full"],
-        help="Dataset split: '10' for 10%% split (809 entries) or 'full' (8400 entries)",
+        choices=["sub_10", "full"],
+        help="Dataset split: 'sub_10' for 10%% split (809 entries) or 'full' (8400 entries)",
     )
 
     args = parser.parse_args()

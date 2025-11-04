@@ -43,19 +43,21 @@ The current leaderboard is computed considering the accuracy and overall cost fo
 
 If you want your router on the leaderboard, please contact us via email at yifan.lu@rice.edu or jxing@rice.edu, or submit a GitHub issue. For fairness, we have withheld the ground truth answers for the full dataset. However, you can still test your router using the sub-sampled 10% dataset by following the steps below.
 
-## Usage
+## Setup
 
-### Step 1: Install uv (if you don't have it)
+### Step 1: Install uv and RouterArena
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-### Step 2: Install RouterArena
-
-```bash
 cd RouterArena
 uv sync
+```
+
+### Step 2: Download Dataset
+Run this command to download the dataset from the [HF dataset](https://huggingface.co/datasets/RouteWorks/RouterArena).
+
+```bash
+uv run python ./scripts/process_datasets/prep_datasets.py
 ```
 
 ### Step 3: Set Up API Keys
@@ -64,24 +66,20 @@ This step is **required only if you plan to use our pipeline to make LLM inferen
 
 ```bash
 # Example .env file
-OPENAI_API_KEY=your_openai_key_here
-ANTHROPIC_API_KEY=your_anthropic_key_here
-GOOGLE_API_KEY=your_google_key_here
-MISTRAL_API_KEY=your_mistral_key_here
-HF_TOKEN=your_huggingface_token_here
-# ... add other keys as needed
+OPENAI_API_KEY=<Your-Key>
+ANTHROPIC_API_KEY=<Your-Key>
+HF_TOKEN=<Your-Key>
+# ...
 ```
 
+#### Optional:
 See the `ModelInference` class in `RouterArena/llm_inference/model_inference.py` for the complete list of supported providers and required environment variables. You can extend that class to support additional models, or submit a GitHub issue to request support for new providers.
 
-### Step 4: Download Dataset
-Run this command to download the dataset from the [HF dataset](https://huggingface.co/datasets/RouteWorks/RouterArena).
+## Usage
 
-```bash
-uv run python ./scripts/process_datasets/prep_datasets.py
-```
+Follow the steps below to evaluate your router. You can start with the `sub_10` split (10% sub-sampled dataset) to test your setup and code. The `sub_10` split includes ground truth answers for local testing. Once ready, you can evaluate on the `full` dataset for official leaderboard submission.
 
-### Step 5: Prepare Config File and Model Costs
+### Step 1: Prepare Config File
 
 Create a config file in `./router_inference/config/<router_name>.json`. We have created an example router for demonstration purposes:
 
@@ -101,7 +99,7 @@ Create a config file in `./router_inference/config/<router_name>.json`. We have 
 
 *Note: The model name must be the same as the one used in `./universal_model_names.py` (see next step for details)*
 
-**Important**: You also need to add cost information for each model (same model naming requirement as above) in `./model_cost/cost.json`. For each model in your config, add an entry with the pricing per million tokens:
+**Important**: For each model in your config, add an entry with the pricing per million tokens in this format:
 
 ```json
 {
@@ -109,143 +107,56 @@ Create a config file in `./router_inference/config/<router_name>.json`. We have 
     "input_token_price_per_million": 0.15,
     "output_token_price_per_million": 0.6
   },
-  "claude-3-haiku-20240307": {
-    "input_token_price_per_million": 0.25,
-    "output_token_price_per_million": 1.25
-  },
-  "gemini-2.0-flash-001": {
-    "input_token_price_per_million": 0.1,
-    "output_token_price_per_million": 0.4
-  },
-  "mistral-medium": {
-    "input_token_price_per_million": 2.7,
-    "output_token_price_per_million": 8.1
-  }
 }
 ```
 
-### Step 6:
-API providers may use different names for the same model (e.g., `gpt-4o`, `openai/gpt-4o`). We manage this via `./universal_model_names.py`:
-- `universal_names`: canonical model names used in this project
-- `mapping`: maps external provider names to our canonical names
+### Step 2: Verify Model Names
 
-Please make sure the model you used are listed here, or you have added it there (if you add a model, please make sure you add the API inference endpoint at `RouterArena/llm_inference/model_inference.py`).
+Ensure all models in your config are listed in `./universal_model_names.py`. If you add a new model, you must also add the API inference endpoint in `RouterArena/llm_inference/model_inference.py`.
 
-### Step 7: Generate Router's Prediction File
+### Step 3: Generate Router's Prediction File
 
-You need to create a prediction file that contains your router's model selections for each query. You can use the helper script to generate a template prediction file:
+Generate a template prediction file:
 
 ```bash
-uv run python ./router_inference/generate_prediction_file.py your-router 10
+uv run python ./router_inference/generate_prediction_file.py your-router sub_10
 ```
 
-This command generates a prediction file at `./router_inference/predictions/your-router.json` for the 10% split. Use `full` instead of `10` for the complete dataset.
+Use `full` instead of `sub_10` for the complete dataset. **Important**: Replace the placeholder model choices in the `prediction` field with your router's actual selections.
 
-**Important**: The generated file uses a **placeholder router** that simply cycles through models in the config file sequentially. You **must replace the model choices** in the `prediction` field with your router's actual selections. The script is only meant to provide a template structure with all required fields populated.
+### Step 4: Validate Config and Prediction Files
 
-An example prediction file structure:
-
-```json
-[
-  {
-    "global index": "ArcMMLU_655",
-    "prompt": "Question text here...",
-    "prediction": "gpt-4o-mini",  // Auto generated by the generate_prediction_file.py
-    "generated_result": null,     // Will be filled after LLM inference
-    "cost": null,                 // Will be filled after evaluation
-    "accuracy": null              // Will be filled after evaluation
-  }
-]
-```
-
-Alternatively, you can create the prediction file manually or integrate it into your router's inference pipeline. The `generated_result`, `cost`, and `accuracy` fields can be left as `null` initially—they will be populated by the LLM inference and evaluation in later steps.
-
-### Step 8: Sanity Check for Config and Prediction Files
-
-Before proceeding with LLM inference, it's recommended to validate your config and prediction files using our validation script:
+Validate your config and prediction files before proceeding:
 
 ```bash
-uv run python ./router_inference/check_config_prediction_files.py your-router 10
+uv run python ./router_inference/check_config_prediction_files.py your-router sub_10
 ```
 
-This script performs the following checks:
+This script checks: (1) all model names are valid, (2) prediction file has correct size (809 for `sub_10`, 8400 for `full`), and (3) all entries have valid `global_index`, `prompt`, and `prediction` fields.
 
-1. **Config Validation**: Verifies that all model names in your config file are valid and can be found in `ModelNameManager`
-2. **Prediction File Size**: Ensures your prediction file has the correct number of entries (809 for 10% split, 8400 for full dataset)
-3. **Field Validation**: Validates that each prediction entry:
-   - Has a `global_index` that exists in the dataset
-   - Has a `prompt` that exactly matches the dataset
-   - Has a `prediction` (model selection) that is one of the models listed in your config
+## Run LLM Inference
 
-If all checks pass, you'll see `✓ ALL CHECKS PASSED!` and can proceed to the next step. If there are errors, the script will list them so you can fix any issues before running LLM inference and evaluation.
-
-### Step 9: Run LLM Inference
-
-Once your prediction file is ready, run the LLM inference script to make API calls for each query using the selected models:
+Run the inference script to make API calls for each query using the selected models:
 
 ```bash
 uv run python ./llm_inference/run.py your-router
 ```
 
-This script will:
-1. **Load your prediction file** from `./router_inference/predictions/your-router.json`
-2. **Make API calls** for each query using the model specified in the `prediction` field
-3. **Use cached results** when available (if the same model has already processed the same query)
-4. **Save results incrementally** back to the prediction file, updating the `generated_result` field with:
-   - `generated_answer`: The model's response
-   - `success`: Whether the API call succeeded
-   - `token_usage`: Input/output token counts
-   - `provider`: The API provider used
-   - `error`: Any error message (if failed)
+The script loads your prediction file, makes API calls using the models specified in the `prediction` field, and saves results incrementally. It uses cached results when available and saves progress after each query, so you can safely interrupt and resume. Results are saved to `./cached_results/` for reuse across routers.
 
-The script automatically saves progress after each query, so you can safely interrupt and resume later. Results are also saved to `./cached_results/` for reuse across different routers.
+**Note**: Requires valid API keys (see Setup Step 3). The script skips entries that already have successful results.
 
-**Note**: This step requires valid API keys (see Step 3) for the models you're using. The script will skip entries that already have successful results, making it safe to re-run.
+## LLM Evaluation and Compute RouterArena Score
 
-### Step 10: Run LLM Evaluation
+**Important**: For the `sub_10` split (testing), you can run evaluation locally and get RouterArena scores. For the `full` dataset (official leaderboard), ground truth answers are not available locally. After running LLM inference on the `full` dataset, submit your prediction file via GitHub issue or contact us at yifan.lu@rice.edu or jxing@rice.edu for official evaluation.
 
-After LLM inference is complete, evaluate the generated answers to compute accuracy and cost metrics:
+For local evaluation on the `sub_10` split, run the evaluation script:
 
 ```bash
 uv run python ./llm_evaluation/run.py your-router sub_10
 ```
 
-This script will:
-1. **Load your prediction file** from `./router_inference/predictions/your-router.json`
-2. **Determine the dataset** for each query based on its `global_index` (e.g., "AIME_112" → AIME dataset)
-3. **Evaluate each generated answer** against the ground truth using dataset-specific metrics:
-   - Math problems (AIME, MATH, etc.) → `math_metric`
-   - Multiple-choice questions (MMLUPro, ArcMMLU, etc.) → `mcq_accuracy`
-   - Code problems (LiveCodeBench) → `code_accuracy`
-   - And other specialized metrics as needed
-4. **Calculate inference cost** based on token usage and model pricing from `./model_cost/cost.json`
-5. **Save results incrementally** to the prediction file, updating:
-   - `accuracy`: Evaluation score (0.0 to 1.0)
-   - `cost`: Inference cost in dollars
-
-The script uses the `sub_10` split for testing (with ground truth answers available locally). For the full dataset evaluation, use `full` instead, but note that ground truth answers are not available locally—you'll need to submit your predictions via GitHub Issue for official evaluation.
-
-The script automatically skips entries that are already evaluated, making it safe to re-run or resume after interruption.
-
-### Step 11: Compute RouterArena Score
-
-After evaluation is complete, compute your router's RouterArena score:
-
-```bash
-uv run python ./router_evaluation/compute_scores.py your-router
-```
-
-This script calculates:
-1. **Average Accuracy**: The mean accuracy across all evaluated queries
-2. **Total Cost**: The sum of all inference costs
-3. **Average Cost per 1K Queries**: Total cost normalized to 1000 queries
-4. **RouterArena Score**: A composite score that balances accuracy and cost. It ranges from 0 to 1, with higher scores indicating better trade-offs between accuracy and cost efficiency.
-
-**Note**: Scores computed on the `sub_10` split are for testing purposes. To submit your router for the official leaderboard, you need to:
-1. Generate predictions and run evaluation for the `full` dataset
-2. Contact us at yifan.lu@rice.edu or jxing@rice.edu, or submit a GitHub issue with your results
-
-The leaderboard rankings are based on RouterArena scores computed on the full dataset.
+The script evaluates generated answers against ground truth, calculates inference costs, and computes router-level metrics including the RouterArena score (ranging 0-1). It skips already-evaluated entries, making it safe to re-run or resume.
 
 ## Citation:
 If you find our project helpful, please give us a star and cite us by:

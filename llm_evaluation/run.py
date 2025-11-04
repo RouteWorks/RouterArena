@@ -24,6 +24,7 @@ import os
 import sys
 import logging
 import datetime
+import math
 from typing import Dict, Any, List, Optional
 
 # Add parent directory to path for imports
@@ -39,6 +40,37 @@ from eval_reasoning import get_scorers_for_dataset
 from evaluate_models import load_eval_config_for_dataset
 
 logger = logging.getLogger(__name__)
+
+
+def compute_arena_score(cost, accuracy, beta=0.1, c_max=200, c_min=0.0044):
+    """
+    Compute the RouterArena score S_i,β for a given cost and accuracy.
+
+    Parameters:
+    -----------
+    cost : float
+        The cost c_i of the model or router (per 1000 queries).
+    accuracy : float
+        The accuracy A_i of the model or router.
+    beta : float, optional
+        Weighting factor between accuracy and cost (default = 0.1).
+    c_max : float, optional
+        Maximum cost (default = 200).
+    c_min : float, optional
+        Minimum cost (default = 0.0044).
+
+    Returns:
+    --------
+    float
+        The computed RouterArena score S_i,β.
+    """
+    # Compute normalized cost C_i
+    C_i = (math.log2(c_max) - math.log2(cost)) / (math.log2(c_max) - math.log2(c_min))
+
+    # Compute score S_i,β
+    S = ((1 + beta) * accuracy * C_i) / (beta * accuracy + C_i)
+
+    return S
 
 
 def load_predictions_file(router_name: str) -> List[Dict[str, Any]]:
@@ -95,8 +127,8 @@ def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
     Returns:
         Dictionary mapping global_index to ground truth data
     """
-    from datasets import load_from_disk
-    import pandas as pd
+    from datasets import load_from_disk  # type: ignore[import-not-found,import-untyped]
+    import pandas as pd  # type: ignore[import-untyped]
 
     if split not in ["sub_10", "full"]:
         raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
@@ -176,7 +208,7 @@ def get_livecodebench_ground_truth(global_index: str) -> Optional[Dict[str, Any]
     """
     global _livecodebench_cache
     try:
-        from datasets import load_from_disk
+        from datasets import load_from_disk  # type: ignore[import-not-found,import-untyped]
 
         # Load LiveCodeBench dataset (cache it if needed)
         if _livecodebench_cache is None:
@@ -296,7 +328,7 @@ def evaluate_single_prediction(
             # which works because code_accuracy accepts dict as ground_truth
             score, metric_name = evaluator._evaluate_single_entry(
                 generated_answer,
-                ground_truth,
+                ground_truth,  # type: ignore[arg-type]
                 scorer_func,
                 dataset_name,
             )
@@ -415,42 +447,58 @@ def process_router_predictions(
 
 def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) -> None:
     """
-    Compute router-level metrics (accuracy, cost, etc.) and display them.
+    Compute router-level metrics (accuracy, cost, RouterArena score, etc.) and display them.
 
     Args:
         predictions: List of prediction dictionaries with evaluation results
         router_name: Name of the router
     """
-    total_accuracy = 0.0
-    total_cost = 0.0
-    count = 0
-    cost_count = 0
+    accuracies = []
+    costs = []
+    valid_cost_count = 0
 
     for prediction in predictions:
         accuracy = prediction.get("accuracy")
         if accuracy is not None:
-            total_accuracy += accuracy
-            count += 1
+            accuracies.append(accuracy)
 
         cost = prediction.get("cost")
         if cost is not None and cost > 0:
-            total_cost += cost
-            cost_count += 1
+            costs.append(cost)
+            valid_cost_count += 1
 
-    avg_accuracy = total_accuracy / count if count > 0 else 0.0
-    avg_cost = total_cost / cost_count if cost_count > 0 else 0.0
-    avg_cost_per_1k = avg_cost * 1000 if avg_cost else 0.0
+    # Compute average accuracy
+    avg_accuracy = sum(accuracies) / len(accuracies) if accuracies else 0.0
 
-    logger.info("\n" + "=" * 60)
-    logger.info(f"Router Metrics: {router_name}")
-    logger.info("=" * 60)
+    # Compute total cost (sum of all costs)
+    total_cost = sum(costs) if costs else 0.0
+
+    # Compute average cost per 1000 queries for RouterArena score calculation
+    num_queries = len(predictions)
+    avg_cost_per_1000 = (total_cost / num_queries * 1000) if num_queries > 0 else 0.0
+
+    # Compute RouterArena score using average cost per 1000 queries and average accuracy
+    arena_score = compute_arena_score(avg_cost_per_1000, avg_accuracy)
+
+    # Print results
+    logger.info("\n" + "=" * 80)
+    logger.info(f"Router: {router_name}")
+    logger.info("=" * 80)
+    logger.info(f"Total Queries: {num_queries}")
+    logger.info(f"Queries with Accuracy: {len(accuracies)}")
+    logger.info(f"Queries with Valid Cost: {valid_cost_count}")
     logger.info(f"Average Accuracy: {avg_accuracy:.4f}")
-    logger.info(f"Average Cost per Query: ${avg_cost:.6f}")
-    logger.info(f"Average Cost per 1K Queries: ${avg_cost_per_1k:.4f}")
-    logger.info(f"Total Queries: {len(predictions)}")
-    logger.info(f"Queries with Accuracy: {count}")
-    logger.info(f"Queries with Cost: {cost_count}")
-    logger.info("=" * 60 + "\n")
+    logger.info(f"Total Cost: ${total_cost:.6f}")
+    if num_queries > 0:
+        logger.info(f"Average Cost per Query: ${total_cost / num_queries:.6f}")
+    else:
+        logger.info("Average Cost per Query: $0.00")
+    logger.info(f"Average Cost per 1K Queries: ${avg_cost_per_1000:.4f}")
+    logger.info(f"RouterArena Score: {arena_score:.4f}")
+    logger.info(
+        "PLEASE NOTE: The sub_10 dataset is a subset of the full dataset and is used for testing purposes. It is generally easier than the full dataset."
+    )
+    logger.info("=" * 80 + "\n")
 
 
 def main():

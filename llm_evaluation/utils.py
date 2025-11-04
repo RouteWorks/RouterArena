@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
 # SPDX-License-Identifier: Apache-2.0
 
-import pandas as pd
-from datasets import load_from_disk
+import pandas as pd  # type: ignore[import-untyped]
+from datasets import load_from_disk  # type: ignore[import-not-found,import-untyped]
 
 
 def escape_format_braces(text):

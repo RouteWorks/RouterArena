@@ -488,20 +488,44 @@ def reliability_guard(maximum_memory_bytes: Optional[int] = None):
 
     import builtins
 
-    from typing import Any
+    from typing import Any, cast
+
+    builtins.exit = cast(Any, None)  # type: ignore[assignment]
+    builtins.quit = cast(Any, None)  # type: ignore[assignment]
 
     # Prepare Any-typed aliases to avoid mypy assignment errors
-    builtins_mod: Any = builtins
     os_mod: Any = os
-    shutil_mod: Any = shutil
     subprocess_mod: Any = subprocess
-    modules_any: Any = sys.modules
 
     os.environ["OMP_NUM_THREADS"] = "1"
 
-    # Disable selected builtins
-    setattr(builtins_mod, "exit", None)
-    setattr(builtins_mod, "quit", None)
+    os.kill = cast(Any, None)  # type: ignore[assignment]
+    os.system = cast(Any, None)  # type: ignore[assignment]
+    os.putenv = cast(Any, None)  # type: ignore[assignment]
+    os.remove = cast(Any, None)  # type: ignore[assignment]
+    os.removedirs = cast(Any, None)  # type: ignore[assignment]
+    os.rmdir = cast(Any, None)  # type: ignore[assignment]
+    os.fchdir = cast(Any, None)  # type: ignore[assignment]
+    os.setuid = cast(Any, None)  # type: ignore[assignment]
+    os.fork = cast(Any, None)  # type: ignore[assignment]
+    os.forkpty = cast(Any, None)  # type: ignore[assignment]
+    os.killpg = cast(Any, None)  # type: ignore[assignment]
+    os.rename = cast(Any, None)  # type: ignore[assignment]
+    os.renames = cast(Any, None)  # type: ignore[assignment]
+    os.truncate = cast(Any, None)  # type: ignore[assignment]
+    os.replace = cast(Any, None)  # type: ignore[assignment]
+    os.unlink = cast(Any, None)  # type: ignore[assignment]
+    os.fchmod = cast(Any, None)  # type: ignore[assignment]
+    os.fchown = cast(Any, None)  # type: ignore[assignment]
+    os.chmod = cast(Any, None)  # type: ignore[assignment]
+    os.chown = cast(Any, None)  # type: ignore[assignment]
+    os.chroot = cast(Any, None)  # type: ignore[assignment]
+    os.fchdir = cast(Any, None)  # type: ignore[assignment]
+    os.lchflags = cast(Any, None)  # type: ignore[attr-defined,assignment]
+    os.lchmod = cast(Any, None)  # type: ignore[attr-defined,assignment]
+    os.lchown = cast(Any, None)  # type: ignore[assignment]
+    os.getcwd = cast(Any, None)  # type: ignore[assignment]
+    os.chdir = cast(Any, None)  # type: ignore[assignment]
 
     # Disable destructive os functions (guard where platform-specific)
     for name in [
@@ -537,19 +561,22 @@ def reliability_guard(maximum_memory_bytes: Optional[int] = None):
         except Exception:
             pass
 
-    # Disable dangerous shutil functions
-    for name in ["rmtree", "move", "chown"]:
-        try:
-            setattr(shutil_mod, name, None)
-        except Exception:
-            pass
+    shutil.rmtree = cast(Any, None)  # type: ignore[assignment]
+    shutil.move = cast(Any, None)  # type: ignore[assignment]
+    shutil.chown = cast(Any, None)  # type: ignore[assignment]
 
     # Disable subprocess.Popen
     setattr(subprocess_mod, "Popen", None)
 
-    # Hide selected modules
-    for name in ["ipdb", "joblib", "resource", "psutil", "tkinter"]:
-        modules_any[name] = None
+    setattr(subprocess, "Popen", cast(Any, None))  # type: ignore[misc]
+
+    # __builtins__["help"] = None   # this line is commented out as it results into error
+
+    sys.modules["ipdb"] = None  # type: ignore[assignment]
+    sys.modules["joblib"] = None  # type: ignore[assignment]
+    sys.modules["resource"] = None  # type: ignore[assignment]
+    sys.modules["psutil"] = None  # type: ignore[assignment]
+    sys.modules["tkinter"] = None  # type: ignore[assignment]
 
 
 def save_original_references():
