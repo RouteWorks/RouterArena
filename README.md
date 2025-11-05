@@ -33,9 +33,24 @@ RouterArena addresses this gap by providing a uniform, multi-dimensional benchma
 
 <h3 align="left">RouterArena Leaderboard</h3>
 
-<p align="center">
+| Rank | Router | Affiliation | Type | Arena | Opt.Select | Opt.Cost | Opt.Acc | Latency | Robustness |
+|------|---------|--------------|--------|--------|------------|-----------|----------|----------|-------------|
+| 🥇 | MIRT-BERT | USTC | Academic | 0.6689 | 0.0344 | 0.1962 | 0.7818 | 0.2703 | 0.9450 |
+| 🥈 | Azure | Microsoft | Commercial | 0.6666 | 0.2252 | 0.4632 | 0.8196 | — | — |
+| 🥉 | NIRT-BERT | USTC | Academic | 0.6612 | 0.0383 | 0.1404 | 0.7788 | 0.1042 | 0.4450 |
+| 4 | GPT-5 | OpenAI | Commercial | 0.6432 | — | — | — | — | — |
+| 5 | vLLM-SR | vLLM | Commercial | 0.6432 | 0.0479 | 0.1254 | 0.7933 | 0.0019 | 1.0000 |
+| 6 | CARROT | UMich | Academic | 0.6387 | 0.0268 | 0.0677 | 0.7863 | 0.0150 | 0.9360 |
+| 7 | NotDiamond | NotDiamond | Commercial | 0.6300 | 0.0155 | 0.0214 | 0.7681 | — | — |
+| 8 | MLP | Academic | Academic | 0.5756 | 0.1339 | 0.2445 | 0.8332 | 0.9091 | 0.9690 |
+| 9 | GraphRouter | UIUC | Academic | 0.5722 | 0.0473 | 0.3833 | 0.7425 | 0.0270 | 0.9750 |
+| 10 | KNN | Academic | Academic | 0.5548 | 0.1309 | 0.2549 | 0.7877 | 0.0133 | 0.5130 |
+| 11 | RouteLLM | Berkeley | Academic | 0.4807 | 0.9972 | 0.9963 | 0.6876 | 0.0040 | 0.9980 |
+| 12 | RouterDC | SUSTech | Academic | 0.3375 | 0.3984 | 0.7300 | 0.4905 | 0.1075 | 0.9760 |
+
+<!-- <p align="center">
   <img src="images/leaderboard.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
-</p>
+</p> -->
 
 The current leaderboard is computed considering the accuracy and overall cost for each router. For more details, please read our [blog](https://www.notion.so/Who-Routes-LLM-Routers-28d52ffb519c805483e8e93f02502d5b).
 
