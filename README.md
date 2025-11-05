@@ -33,7 +33,7 @@ RouterArena addresses this gap by providing a uniform, multi-dimensional benchma
 
 <h3 align="left">RouterArena Leaderboard</h3>
 
-| Rank | Router | Affiliation | Arena | Opt.Sel | Opt.Cost | Opt.Acc | Lat | Robustness |
+| Rank | Router | Affiliation | Arena | Opt.Sel | Opt.Cost | Opt.Acc | Lat | Robust |
 |------|---------|--------------|--------|------------|-----------|----------|----------|-------------|
 | 🥇 | MIRT-BERT | 🟨 USTC | 66.89 | 3.44 | 19.62 | 78.18 | 27.03 | 94.50 |
 | 🥈 | Azure | 🟦&nbsp;Microsoft | 66.66 | 22.52 | 46.32 | 81.96 | — | — |
