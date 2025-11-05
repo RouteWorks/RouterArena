@@ -43,7 +43,7 @@ RouterArena addresses this gap by providing a uniform, multi-dimensional benchma
 | 6 | CARROT | 🟨 UMich | 63.87 | 2.68 | 6.77 | 78.63 | 1.50 | 93.60 |
 | 7 | NotDiamond | 🟦&nbsp;NotDiamond | 63.00 | 1.55 | 2.14 | 76.81 | — | — |
 | 8 | MLP | 🟨 Academic | 57.56 | 13.39 | 24.45 | 83.32 | 90.91 | 96.90 |
-| 9 | GraphRouter |  UIUC | 57.22 | 4.73 | 38.33 | 74.25 | 2.70 | 97.50 |
+| 9 | GraphRouter | 🟨 UIUC | 57.22 | 4.73 | 38.33 | 74.25 | 2.70 | 97.50 |
 | 10 | KNN | 🟨 Academic | 55.48 | 13.09 | 25.49 | 78.77 | 1.33 | 51.30 |
 | 11 | RouteLLM | 🟨 Berkeley | 48.07 | 99.72 | 99.63 | 68.76 | 0.40 | 99.80 |
 | 12 | RouterDC | 🟨 SUSTech | 33.75 | 39.84 | 73.00 | 49.05 | 10.75 | 97.60 |
