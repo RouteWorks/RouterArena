@@ -38,6 +38,7 @@ import json
 import shutil
 import subprocess
 import sys
+import os
 import textwrap
 from datetime import datetime, timezone
 from pathlib import Path
@@ -47,7 +48,6 @@ from typing import Iterable, Optional
 REPO_ROOT = Path(__file__).resolve().parents[1]
 WORKTREES_DIR = REPO_ROOT / ".pr_worktrees"
 ARTIFACTS_DIR = REPO_ROOT / "pr_evaluations"
-DATASET_DIR = REPO_ROOT / "dataset"
 
 
 class CommandError(RuntimeError):
@@ -186,16 +186,44 @@ def ensure_prediction_file_added(
     )
 
 
+def find_dataset_source() -> Optional[Path]:
+    """Locate a dataset directory accessible from the current environment."""
+
+    env_path = os.getenv("ROUTERARENA_DATASET_DIR")
+    if env_path:
+        candidate = Path(env_path).expanduser().resolve()
+        if candidate.exists():
+            return candidate
+
+    # Start with the repo root (either canonical checkout or temporary worktree).
+    candidates = [REPO_ROOT / "dataset"]
+
+    # Also consider parent directories, which covers the main checkout when running
+    # inside a git worktree located at <repo>/.pr_worktrees/<branch>.
+    for parent in REPO_ROOT.parents:
+        candidates.append(parent / "dataset")
+
+    seen = set()
+    for candidate in candidates:
+        if candidate in seen:
+            continue
+        seen.add(candidate)
+        if candidate.exists():
+            return candidate
+
+    return None
+
+
 def sync_dataset_into_worktree(worktree_path: Path) -> None:
     """Ensure the evaluation dataset is present inside the temporary worktree."""
 
-    if not DATASET_DIR.exists():
+    source = find_dataset_source()
+    if not source:
         print("⚠ Maintainer dataset directory not found; skipping dataset sync.")
         return
 
     destination = worktree_path / "dataset"
-    # shutil.copytree with dirs_exist_ok=True updates existing contents.
-    shutil.copytree(DATASET_DIR, destination, dirs_exist_ok=True)
+    shutil.copytree(source, destination, dirs_exist_ok=True)
 
 
 def compute_scores(prediction_file: Path) -> dict[str, float]:

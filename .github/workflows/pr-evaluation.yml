@@ -44,8 +44,31 @@ jobs:
           set -euo pipefail
           echo "Detected router submission: ${{ steps.detect.outputs.router }}"
 
+      - name: Prepare dataset
+        if: ${{ steps.detect.outputs.router != '' }}
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          set -euo pipefail
+          # Verify HF_TOKEN is set if needed for private datasets
+          if [[ -z "${HF_TOKEN:-}" ]]; then
+            echo "⚠ Warning: HF_TOKEN not set. This may fail if accessing private datasets."
+          fi
+          # Prepare dataset if not already present
+          if [[ ! -d "${{ github.workspace }}/dataset" ]] || [[ ! -f "${{ github.workspace }}/dataset/router_data_10.json" ]]; then
+            echo "Preparing dataset..."
+            # Ensure dataset directory exists
+            mkdir -p "${{ github.workspace }}/dataset"
+            uv run python scripts/process_datasets/prep_datasets.py
+          else
+            echo "Dataset already present, skipping download."
+          fi
+
       - name: Evaluate submission
         if: ${{ steps.detect.outputs.router != '' }}
+        env:
+          ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           set -euo pipefail
           uv run python automation/process_pr_submission.py \
