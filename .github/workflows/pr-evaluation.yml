@@ -1,0 +1,54 @@
+name: Router Submission Evaluation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "router_inference/predictions/**"
+
+jobs:
+  evaluate-router:
+    runs-on: self-hosted
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect new prediction file
+        id: detect
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          NEW_FILES=$(git diff --name-status origin/main...HEAD -- router_inference/predictions/*.json | awk '$1 == "A" {print $2}')
+          if [[ -z "$NEW_FILES" ]]; then
+            echo "No newly added prediction file detected; skipping evaluation."
+            echo "router=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [[ $(echo "$NEW_FILES" | wc -l) -ne 1 ]]; then
+            echo "Expected exactly one new prediction file, found:" >&2
+            echo "$NEW_FILES" >&2
+            exit 1
+          fi
+          ROUTER_NAME=$(basename "$NEW_FILES" .json)
+          echo "router=$ROUTER_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Show detected router
+        if: ${{ steps.detect.outputs.router != '' }}
+        run: |
+          set -euo pipefail
+          echo "Detected router submission: ${{ steps.detect.outputs.router }}"
+
+      - name: Evaluate submission
+        if: ${{ steps.detect.outputs.router != '' }}
+        run: |
+          set -euo pipefail
+          uv run python automation/process_pr_submission.py \
+            --pr "${{ github.event.pull_request.number }}" \
+            --router "${{ steps.detect.outputs.router }}" \
+            --split sub_10
