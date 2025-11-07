@@ -108,6 +108,113 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
     return data
 
 
+def load_cost_config() -> Dict[str, Any]:
+    """
+    Load cost configuration from model_cost/cost.json.
+
+    Returns:
+        Dictionary mapping model names to cost configurations
+    """
+    possible_paths = [
+        "./model_cost/cost.json",
+        "../model_cost/cost.json",
+        "model_cost/cost.json",
+    ]
+
+    for path in possible_paths:
+        if os.path.exists(path):
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception as e:
+                print(f"Warning: Could not load cost configuration from {path}: {e}")
+                return {}
+
+    return {}
+
+
+def check_model_costs(
+    predictions: List[Dict[str, Any]], config: Dict[str, Any]
+) -> Tuple[bool, List[str]]:
+    """
+    Check that all models used in predictions have cost configurations.
+
+    Args:
+        predictions: List of prediction dictionaries
+        config: Configuration dictionary
+
+    Returns:
+        Tuple of (is_valid, list_of_errors)
+    """
+    errors = []
+    cost_config = load_cost_config()
+
+    if not cost_config:
+        errors.append(
+            "Cost configuration file (model_cost/cost.json) not found. "
+            "Cannot validate model costs."
+        )
+        return False, errors
+
+    # Get all unique models from predictions
+    used_models = set()
+    model_manager = ModelNameManager()
+
+    for prediction in predictions:
+        model_prediction = prediction.get("prediction")
+        if model_prediction:
+            used_models.add(model_prediction)
+
+    # Also include models from config
+    config_models = config.get("pipeline_params", {}).get("models", [])
+    for model in config_models:
+        used_models.add(model)
+
+    # Check each model has cost configuration
+    missing_costs = []
+    for model_name in used_models:
+        try:
+            # Convert to universal name for cost lookup
+            universal_name = model_manager.get_universal_name(model_name)
+
+            # Remove _batch suffix if present
+            cost_lookup_name = universal_name
+            if universal_name.endswith("_batch"):
+                cost_lookup_name = universal_name[:-6]
+
+            # Check if cost exists (exact match or partial match)
+            has_cost = False
+            if cost_lookup_name in cost_config:
+                has_cost = True
+            else:
+                # Try partial matches
+                for config_name in cost_config.keys():
+                    if (
+                        config_name in cost_lookup_name
+                        or cost_lookup_name in config_name
+                    ):
+                        has_cost = True
+                        break
+
+            if not has_cost:
+                missing_costs.append(f"{model_name} (universal: {cost_lookup_name})")
+        except Exception as e:
+            # If we can't convert, try original name
+            if model_name not in cost_config:
+                missing_costs.append(f"{model_name} (conversion failed: {str(e)})")
+
+    if missing_costs:
+        errors.append(f"Missing cost configuration for {len(missing_costs)} model(s):")
+        for model in missing_costs:
+            errors.append(f"  - {model}")
+        errors.append(
+            "\nPlease add cost configuration to model_cost/cost.json or update "
+            "your router config to use models with existing cost configurations."
+        )
+
+    return len(missing_costs) == 0, errors
+
+
 def check_config_models(config: Dict[str, Any]) -> Tuple[bool, List[str]]:
     """
     Check that all model names in config can be found in ModelNameManager.
@@ -303,6 +410,8 @@ def main():
 
     all_valid = True
     errors_summary = []
+    config = None  # Initialize config variable
+    predictions = None  # Initialize predictions variable
 
     # Check 1: Load and validate config
     print("\n[1] Checking config file...")
@@ -330,6 +439,7 @@ def main():
         all_valid = False
         errors_summary.append(f"Config error: {str(e)}")
         valid_models = set()
+        config = None
 
     # Check 2: Load and validate predictions
     print("\n[2] Checking prediction file...")
@@ -352,7 +462,7 @@ def main():
         print(f"✗ Error loading predictions: {e}")
         all_valid = False
         errors_summary.append(f"Predictions error: {str(e)}")
-        predictions = []
+        predictions = None
 
     # Check 3: Load dataset and validate fields
     print("\n[3] Checking prediction fields against dataset...")
@@ -360,7 +470,7 @@ def main():
         dataset = load_dataset(args.split)
         print(f"✓ Dataset loaded: {len(dataset)} entries")
 
-        if predictions and valid_models:
+        if predictions is not None and valid_models:
             fields_valid, field_errors = check_prediction_fields(
                 predictions, dataset, valid_models
             )
@@ -380,6 +490,30 @@ def main():
         print(f"✗ Error loading dataset: {e}")
         all_valid = False
         errors_summary.append(f"Dataset error: {str(e)}")
+
+    # Check 4: Validate model costs
+    print("\n[4] Checking model cost configurations...")
+    try:
+        if predictions is not None and config is not None:
+            cost_valid, cost_errors = check_model_costs(predictions, config)
+            if cost_valid:
+                cost_config = load_cost_config()
+                print(
+                    f"✓ All models have cost configurations ({len(cost_config)} models in cost file)"
+                )
+            else:
+                print("✗ Missing cost configurations found:")
+                for error in cost_errors:
+                    print(f"  {error}")
+                all_valid = False
+                errors_summary.extend(cost_errors)
+        else:
+            print("⚠ Skipping cost check (predictions or config not loaded)")
+
+    except Exception as e:
+        print(f"✗ Error checking model costs: {e}")
+        all_valid = False
+        errors_summary.append(f"Cost check error: {str(e)}")
 
     # Final summary
     print("\n" + "=" * 80)

@@ -11,7 +11,7 @@ jobs:
     runs-on: self-hosted
     permissions:
       contents: read
-      pull-requests: read
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -38,11 +38,31 @@ jobs:
           ROUTER_NAME=$(basename "$NEW_FILES" .json)
           echo "router=$ROUTER_NAME" >> "$GITHUB_OUTPUT"
 
+          # Detect split based on prediction file size
+          PREDICTION_FILE="router_inference/predictions/${ROUTER_NAME}.json"
+          if [[ ! -f "$PREDICTION_FILE" ]]; then
+            echo "Error: Prediction file not found at $PREDICTION_FILE" >&2
+            exit 1
+          fi
+          ENTRY_COUNT=$(python3 -c "import json; print(len(json.load(open('$PREDICTION_FILE'))))")
+          echo "Prediction file contains $ENTRY_COUNT entries"
+
+          if [[ "$ENTRY_COUNT" -eq 8400 ]]; then
+            SPLIT="full"
+          elif [[ "$ENTRY_COUNT" -eq 809 ]]; then
+            SPLIT="sub_10"
+          else
+            echo "Warning: Unexpected prediction file size ($ENTRY_COUNT entries). Defaulting to sub_10." >&2
+            SPLIT="sub_10"
+          fi
+          echo "split=$SPLIT" >> "$GITHUB_OUTPUT"
+
       - name: Show detected router
         if: ${{ steps.detect.outputs.router != '' }}
         run: |
           set -euo pipefail
           echo "Detected router submission: ${{ steps.detect.outputs.router }}"
+          echo "Detected split: ${{ steps.detect.outputs.split }}"
 
       - name: Prepare dataset
         if: ${{ steps.detect.outputs.router != '' }}
@@ -54,18 +74,14 @@ jobs:
           if [[ -z "${HF_TOKEN:-}" ]]; then
             echo "⚠ Warning: HF_TOKEN not set. This may fail if accessing private datasets."
           fi
-          # Prepare dataset if not already present
-          if [[ ! -d "${{ github.workspace }}/dataset" ]] || [[ ! -f "${{ github.workspace }}/dataset/router_data_10.json" ]]; then
-            echo "Preparing dataset..."
-            # Ensure dataset directory exists
-            mkdir -p "${{ github.workspace }}/dataset"
-            uv run python scripts/process_datasets/prep_datasets.py
-          else
-            echo "Dataset already present, skipping download."
-          fi
+          # Always prepare dataset to ensure it's available
+          echo "Preparing dataset..."
+          mkdir -p "${{ github.workspace }}/dataset"
+          uv run python scripts/process_datasets/prep_datasets.py
 
       - name: Evaluate submission
         if: ${{ steps.detect.outputs.router != '' }}
+        id: evaluate
         env:
           ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -74,4 +90,67 @@ jobs:
           uv run python automation/process_pr_submission.py \
             --pr "${{ github.event.pull_request.number }}" \
             --router "${{ steps.detect.outputs.router }}" \
-            --split sub_10
+            --split "${{ steps.detect.outputs.split }}" > evaluation_output.txt 2>&1
+          # Extract metrics from output
+          if grep -q "Metrics:" evaluation_output.txt; then
+            python3 automation/extract_metrics.py evaluation_output.txt
+          fi
+          cat evaluation_output.txt
+
+      - name: Post evaluation results as PR comment
+        if: ${{ steps.detect.outputs.router != '' && steps.evaluate.outcome == 'success' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            let comment = '## 📊 Router Evaluation Results\n\n';
+            comment += `**Router:** \`${{ steps.detect.outputs.router }}\`\n`;
+            comment += `**Dataset Split:** \`${{ steps.detect.outputs.split }}\`\n\n`;
+
+            // Try to read metrics from file
+            try {
+              if (fs.existsSync('metrics.json')) {
+                const metrics = JSON.parse(fs.readFileSync('metrics.json', 'utf8'));
+                comment += '### Metrics\n\n';
+                comment += '| Metric | Value |\n';
+                comment += '|--------|-------|\n';
+                comment += `| **RouterArena Score** | ${metrics.arena_score.toFixed(4)} |\n`;
+                comment += `| **Accuracy** | ${(metrics.accuracy * 100).toFixed(2)}% |\n`;
+                comment += `| **Total Cost** | $${metrics.total_cost.toFixed(6)} |\n`;
+                comment += `| **Avg Cost per Query** | $${metrics.avg_cost_per_query.toFixed(6)} |\n`;
+                comment += `| **Avg Cost per 1K Queries** | $${metrics.avg_cost_per_1000.toFixed(4)} |\n`;
+                comment += `| **Number of Queries** | ${metrics.num_queries} |\n`;
+              } else {
+                // Fallback: try to parse from evaluation output
+                const output = fs.readFileSync('evaluation_output.txt', 'utf8');
+                const metricsMatch = output.match(/Metrics:\s*(\{[\s\S]*?\})/);
+                if (metricsMatch) {
+                  const metrics = JSON.parse(metricsMatch[1]);
+                  comment += '### Metrics\n\n';
+                  comment += '| Metric | Value |\n';
+                  comment += '|--------|-------|\n';
+                  comment += `| **RouterArena Score** | ${metrics.arena_score.toFixed(4)} |\n`;
+                  comment += `| **Accuracy** | ${(metrics.accuracy * 100).toFixed(2)}% |\n`;
+                  comment += `| **Total Cost** | $${metrics.total_cost.toFixed(6)} |\n`;
+                  comment += `| **Avg Cost per Query** | $${metrics.avg_cost_per_query.toFixed(6)} |\n`;
+                  comment += `| **Avg Cost per 1K Queries** | $${metrics.avg_cost_per_1000.toFixed(4)} |\n`;
+                  comment += `| **Number of Queries** | ${metrics.num_queries} |\n`;
+                } else {
+                  comment += '⚠️ Could not parse evaluation metrics from output.\n';
+                }
+              }
+            } catch (error) {
+              comment += `⚠️ Error reading metrics: ${error.message}\n`;
+            }
+
+            comment += '\n---\n';
+            comment += '*Evaluation completed by RouterArena automated workflow*';
+
+            github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
