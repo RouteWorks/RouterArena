@@ -1,0 +1,8 @@
+{
+    "pipeline_params": {
+        "router_name": "glm-4-air-router",
+        "models": [
+            "glm-4-air"
+        ]
+    }
+}

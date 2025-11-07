@@ -14,11 +14,41 @@ from typing import Dict, Any, List
 
 save_dir = "./dataset/"
 
+# Load public dataset (without answers for full split)
 router_benchmark = load_dataset("RouteWorks/RouterArena", split="sub_10")
 router_benchmark.save_to_disk(os.path.join(save_dir, "routerarena_10"))
 
 router_benchmark = load_dataset("RouteWorks/RouterArena", split="full")
 router_benchmark.save_to_disk(os.path.join(save_dir, "routerarena"))
+
+# If HF_TOKEN is available, also load from private repo with answers for full split
+hf_token = os.getenv("HF_TOKEN") or os.getenv("HUGGING_FACE_HUB_TOKEN")
+if hf_token:
+    try:
+        print(
+            "[prep] HF_TOKEN detected. Loading full dataset with answers from private repo..."
+        )
+        router_benchmark_with_answers = load_dataset(
+            "RouteWorks/RouterEvalBenchmark",
+            split="full",
+            token=hf_token,
+        )
+        # Overwrite the full dataset with the one containing answers
+        router_benchmark_with_answers.save_to_disk(
+            os.path.join(save_dir, "routerarena")
+        )
+        print("[prep] Successfully loaded full dataset with answers from private repo.")
+    except Exception as e:
+        print(
+            f"[prep] Warning: Could not load from private repo (this is OK for public users): {e}"
+        )
+        print(
+            "[prep] Continuing with public dataset (answers will be missing for full split)."
+        )
+else:
+    print(
+        "[prep] No HF_TOKEN found. Using public dataset (answers missing for full split)."
+    )
 
 
 def escape_format_braces(text):
