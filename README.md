@@ -4,7 +4,7 @@
   <br>
   <p>
     <!-- <a href="https://www.python.org/"><img alt="Python" src="https://img.shields.io/badge/Python-3.10%E2%80%933.12-blue"></a> -->
-    <a href="https://www.notion.so/Who-Routes-LLM-Routers-28d52ffb519c805483e8e93f02502d5b"><img alt="Blog" src="https://img.shields.io/badge/Blog-Read-FF5722?logo=rss&logoColor=white&labelColor=555555"></a>
+    <a href="https://huggingface.co/blog/JerryPotter/who-routes-the-routers"><img alt="Blog" src="https://img.shields.io/badge/Blog-Read-FF5722?logo=rss&logoColor=white&labelColor=555555"></a>
     <a href="https://arxiv.org/abs/2510.00202"><img alt="arXiv: RouterArena" src="https://img.shields.io/badge/arXiv-RouterArena-b31b1b?logo=arxiv&logoColor=white&labelColor=555555"></a>
     <a href="https://huggingface.co/datasets/louielu02/RouterArena"><img alt="Hugging Face Dataset" src="https://img.shields.io/badge/%20Hugging%20Face-Dataset-yellow?logo=huggingface&logoColor=white&labelColor=555555"></a>
     <br>
@@ -17,7 +17,7 @@
 <h2 align="center"> Make Router Evaluation Open and Standardized </h2>
 
 <p align="center">
-  <img src="images/routerarena_diagram.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
+  <img src="images/routerarena-diagram.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
 </p>
 
 **RouterArena** is an open evaluation platform and leaderboard for **LLM routers** — systems that automatically select the best model for a given query. As the LLM ecosystem diversifies into specialized models of varying size, capability, and cost, routing has become essential for balancing performance and efficiency. Yet, unlike models, routers currently lack a unified evaluation standard that measures how well they trade off accuracy, cost, robustness, and latency.
@@ -54,7 +54,7 @@ RouterArena addresses this gap by providing a uniform, multi-dimensional benchma
   <img src="images/leaderboard.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
 </p> -->
 
-The current leaderboard is computed considering the accuracy and overall cost for each router. For more details, please read our [blog](https://www.notion.so/Who-Routes-LLM-Routers-28d52ffb519c805483e8e93f02502d5b).
+The current leaderboard is computed considering the accuracy and overall cost for each router. For more details, please read our [blog](https://huggingface.co/blog/JerryPotter/who-routes-the-routers).
 
 <h2 align="left">Have your router on there!</h3>
 
