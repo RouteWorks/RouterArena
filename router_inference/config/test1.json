@@ -1,0 +1,11 @@
+{
+    "pipeline_params": {
+        "router_name": "test1",
+        "models": [
+            "gpt-4o-mini",
+            "claude-3-haiku-20240307",
+            "gemini-2.0-flash-001",
+            "mistral-medium"
+        ]
+    }
+  }
