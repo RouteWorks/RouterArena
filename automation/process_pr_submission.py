@@ -47,6 +47,7 @@ from typing import Iterable, Optional
 REPO_ROOT = Path(__file__).resolve().parents[1]
 WORKTREES_DIR = REPO_ROOT / ".pr_worktrees"
 ARTIFACTS_DIR = REPO_ROOT / "pr_evaluations"
+DATASET_DIR = REPO_ROOT / "dataset"
 
 
 class CommandError(RuntimeError):
@@ -183,6 +184,18 @@ def ensure_prediction_file_added(
             """
         ).strip()
     )
+
+
+def sync_dataset_into_worktree(worktree_path: Path) -> None:
+    """Ensure the evaluation dataset is present inside the temporary worktree."""
+
+    if not DATASET_DIR.exists():
+        print("⚠ Maintainer dataset directory not found; skipping dataset sync.")
+        return
+
+    destination = worktree_path / "dataset"
+    # shutil.copytree with dirs_exist_ok=True updates existing contents.
+    shutil.copytree(DATASET_DIR, destination, dirs_exist_ok=True)
 
 
 def compute_scores(prediction_file: Path) -> dict[str, float]:
@@ -329,6 +342,8 @@ def main(argv: Optional[list[str]] = None) -> int:
             args.pr, args.remote, keep_existing=args.keep_worktree
         )
         print(f"✔ Created worktree at {worktree_path}")
+
+        sync_dataset_into_worktree(worktree_path)
 
         if not args.allow_existing_prediction:
             ensure_prediction_file_added(worktree_path, base_ref, args.router)
