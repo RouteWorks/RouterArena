@@ -386,6 +386,7 @@ def main(argv: Optional[list[str]] = None) -> int:
             "router_inference/check_config_prediction_files.py",
             args.router,
             args.split,
+            "--check-generated-result",
         ]
         validation_result = run_command(validation_cmd, cwd=worktree_path, capture=True)
 

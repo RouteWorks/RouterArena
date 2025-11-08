@@ -73,6 +73,21 @@ def compute_arena_score(cost, accuracy, beta=0.1, c_max=200, c_min=0.0044):
     float
         The computed RouterArena score S_i,β.
     """
+    # Validate inputs
+    if cost is None or cost <= 0:
+        raise ValueError(
+            f"Invalid cost value: {cost}. Cost must be positive. "
+            "This usually means no entries were evaluated (all entries skipped)."
+        )
+
+    if accuracy is None or accuracy < 0 or accuracy > 1:
+        raise ValueError(
+            f"Invalid accuracy value: {accuracy}. Accuracy must be between 0 and 1."
+        )
+
+    # Clamp cost to valid range for log2 calculation
+    cost = max(c_min, min(cost, c_max))
+
     # Compute normalized cost C_i
     C_i = (math.log2(c_max) - math.log2(cost)) / (math.log2(c_max) - math.log2(c_min))
 
@@ -496,6 +511,23 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
         if cost is not None and cost > 0:
             costs.append(cost)
             valid_cost_count += 1
+
+    # Check if any entries were evaluated
+    if not accuracies and not costs:
+        raise ValueError(
+            "No entries were evaluated. All prediction entries are missing 'generated_result' fields. "
+            "Please run llm_inference/run.py first to generate model outputs before evaluation."
+        )
+
+    if not accuracies:
+        raise ValueError(
+            "No entries have accuracy values. Cannot compute RouterArena score without accuracy data."
+        )
+
+    if not costs:
+        raise ValueError(
+            "No entries have valid cost values. Cannot compute RouterArena score without cost data."
+        )
 
     # Compute average accuracy
     avg_accuracy = sum(accuracies) / len(accuracies) if accuracies else 0.0

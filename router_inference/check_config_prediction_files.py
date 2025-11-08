@@ -275,6 +275,7 @@ def check_prediction_fields(
     predictions: List[Dict[str, Any]],
     dataset: List[Dict[str, Any]],
     valid_models: Set[str],
+    check_generated_result: bool = False,
 ) -> Tuple[bool, List[str]]:
     """
     Check that each prediction has correct fields matching the dataset.
@@ -377,6 +378,27 @@ def check_prediction_fields(
                     f"(also failed to convert: {str(e)})"
                 )
 
+        # Check generated_result - only if flag is enabled (for post-inference validation)
+        # This check is skipped by default since validation runs before inference
+        if check_generated_result:
+            generated_result = prediction.get("generated_result")
+            if generated_result is None:
+                errors.append(
+                    f"Entry {i} (global_index: {pred_global_index}): "
+                    f"missing generated_result (must be a non-null string). "
+                    f"Please run llm_inference/run.py first to generate model outputs."
+                )
+            elif not isinstance(generated_result, str):
+                errors.append(
+                    f"Entry {i} (global_index: {pred_global_index}): "
+                    f"generated_result must be a string, got {type(generated_result).__name__}"
+                )
+            elif not generated_result.strip():
+                errors.append(
+                    f"Entry {i} (global_index: {pred_global_index}): "
+                    f"generated_result is an empty string (must be non-empty)"
+                )
+
     return len(errors) == 0, errors
 
 
@@ -395,6 +417,12 @@ def main():
         type=str,
         choices=["sub_10", "full"],
         help="Dataset split: 'sub_10' for 10%% split (809 entries) or 'full' (8400 entries)",
+    )
+    parser.add_argument(
+        "--check-generated-result",
+        action="store_true",
+        default=False,
+        help="Check that generated_result field is present and valid (for post-inference validation)",
     )
 
     args = parser.parse_args()
@@ -472,7 +500,7 @@ def main():
 
         if predictions is not None and valid_models:
             fields_valid, field_errors = check_prediction_fields(
-                predictions, dataset, valid_models
+                predictions, dataset, valid_models, args.check_generated_result
             )
             if fields_valid:
                 print("✓ All prediction fields match dataset correctly")
