@@ -58,7 +58,7 @@ The current leaderboard is computed considering the accuracy and overall cost fo
 
 <h2 align="left">Have your router on there!</h3>
 
-If you want your router on the leaderboard, please contact us via email at yifan.lu@rice.edu or jxing@rice.edu, or submit a GitHub issue. For fairness, we have withheld the ground truth answers for the full dataset. However, you can still test your router using the sub-sampled 10% dataset by following the steps below.
+If you want your router on the leaderboard, submit a Pull Request with your router's prediction file. For questions or issues, please open a GitHub issue. For fairness, we have withheld the ground truth answers for the full dataset. However, you can still test your router using the sub-sampled 10% dataset by following the steps below.
 
 ## Setup
 
@@ -116,7 +116,7 @@ Create a config file in `./router_inference/config/<router_name>.json`. We have 
 
 *Note: The model name must be the same as the one used in `./universal_model_names.py` (see next step for details)*
 
-**Important**: For each model in your config, add an entry with the pricing per million tokens in this format:
+**Important**: For each model in your config, add an entry with the pricing per million tokens in this format at `model_cost/cost.json`:
 
 ```json
 {
@@ -165,7 +165,27 @@ The script loads your prediction file, makes API calls using the models specifie
 
 ## LLM Evaluation and Compute RouterArena Score
 
-**Important**: For the `sub_10` split (testing), you can run evaluation locally and get RouterArena scores. For the `full` dataset (official leaderboard), ground truth answers are not available locally. After running LLM inference on the `full` dataset, submit your prediction file via GitHub issue or contact us at yifan.lu@rice.edu or jxing@rice.edu for official evaluation.
+**Important**: For the `sub_10` split (testing), you can run evaluation locally and get RouterArena scores. For the `full` dataset (official leaderboard), ground truth answers are not available locally, but you can submit your router for automatic evaluation via Pull Request.
+
+### Submitting Your Router for Official Evaluation
+
+After running LLM inference on the `full` dataset and ensuring your prediction file has `generated_result` fields populated, submit a Pull Request:
+
+1. **Fork the repository** and create a new branch
+2. **Add your files**:
+   - `router_inference/config/<router_name>.json` - Your router configuration
+   - `router_inference/predictions/<router_name>.json` - Your prediction file with `generated_result` fields populated
+3. **Open a Pull Request** - The automated workflow will:
+   - Validate your submission
+   - Run evaluation on the full dataset
+   - Post results as a comment on your PR
+   - Update the leaderboard upon approval
+
+**Note**: Make sure to run `llm_inference/run.py` first to populate the `generated_result` fields in your prediction file before submitting.
+
+For questions or issues, please open a GitHub issue.
+
+### Local Evaluation (sub_10 split)
 
 For local evaluation on the `sub_10` split, run the evaluation script:
 
