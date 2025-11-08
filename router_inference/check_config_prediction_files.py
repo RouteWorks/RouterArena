@@ -385,19 +385,45 @@ def check_prediction_fields(
             if generated_result is None:
                 errors.append(
                     f"Entry {i} (global_index: {pred_global_index}): "
-                    f"missing generated_result (must be a non-null string). "
+                    f"missing generated_result (must be a dictionary). "
                     f"Please run llm_inference/run.py first to generate model outputs."
                 )
-            elif not isinstance(generated_result, str):
+            elif not isinstance(generated_result, dict):
                 errors.append(
                     f"Entry {i} (global_index: {pred_global_index}): "
-                    f"generated_result must be a string, got {type(generated_result).__name__}"
+                    f"generated_result must be a dictionary, got {type(generated_result).__name__}"
                 )
-            elif not generated_result.strip():
-                errors.append(
-                    f"Entry {i} (global_index: {pred_global_index}): "
-                    f"generated_result is an empty string (must be non-empty)"
-                )
+            else:
+                # Validate dictionary structure
+                required_fields = ["generated_answer", "success", "token_usage"]
+                missing_fields = [
+                    field for field in required_fields if field not in generated_result
+                ]
+                if missing_fields:
+                    errors.append(
+                        f"Entry {i} (global_index: {pred_global_index}): "
+                        f"generated_result dictionary missing required fields: {', '.join(missing_fields)}"
+                    )
+                elif not isinstance(generated_result.get("generated_answer"), str):
+                    errors.append(
+                        f"Entry {i} (global_index: {pred_global_index}): "
+                        f"generated_result.generated_answer must be a string"
+                    )
+                elif (
+                    generated_result.get("success", False)
+                    and not generated_result.get("generated_answer", "").strip()
+                ):
+                    # Only require non-empty generated_answer if success is True
+                    # Failed entries (success=False) may have empty generated_answer
+                    errors.append(
+                        f"Entry {i} (global_index: {pred_global_index}): "
+                        f"generated_result.generated_answer is empty but success is True"
+                    )
+                elif not isinstance(generated_result.get("success"), bool):
+                    errors.append(
+                        f"Entry {i} (global_index: {pred_global_index}): "
+                        f"generated_result.success must be a boolean"
+                    )
 
     return len(errors) == 0, errors
 
