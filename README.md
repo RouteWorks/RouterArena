@@ -60,6 +60,10 @@ The current leaderboard is computed considering the accuracy and overall cost fo
 
 If you want your router on the leaderboard, submit a Pull Request with your router's prediction file. For questions or issues, please open a GitHub issue. For fairness, we have withheld the ground truth answers for the full dataset. However, you can still test your router using the sub-sampled 10% dataset by following the steps below.
 
+<p align="center">
+  <img src="images/pipeline.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
+</p>
+
 ## Setup
 
 ### Step 1: Install uv and RouterArena
