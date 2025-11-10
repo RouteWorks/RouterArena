@@ -15,7 +15,7 @@ from metrics import (
     superglue_exact_match,
     superglue_clozetest,
 )
-from datasets import load_from_disk  # type: ignore[import-not-found,import-untyped]
+from datasets import load_from_disk
 
 # Dataset to metric mapping
 dataset2metric = {

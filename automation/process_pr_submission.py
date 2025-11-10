@@ -33,6 +33,7 @@ GitHub token with read access to the repository is only needed if the default
 
 from __future__ import annotations
 
+import math
 import argparse
 import json
 import shutil
@@ -269,8 +270,6 @@ def compute_arena_score(
     c_min: float = 0.0044,
 ) -> float:
     """Mirror the project-wide arena score calculation."""
-
-    import math
 
     if cost <= 0:
         # Avoid math domain errors – treat missing cost as neutral.

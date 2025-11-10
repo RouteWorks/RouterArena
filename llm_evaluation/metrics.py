@@ -6,13 +6,13 @@ import string
 import json
 import copy
 
-import jieba  # type: ignore[import-not-found,import-untyped]
-from fuzzywuzzy import fuzz  # type: ignore[import-not-found,import-untyped]
+import jieba
+from fuzzywuzzy import fuzz
 import difflib
 
 from collections import Counter
-from rouge import Rouge  # type: ignore[import-not-found,import-untyped]
-import regex  # type: ignore[import-untyped]
+from rouge import Rouge
+import regex
 
 from metric_utils import (
     choice_answer_clean,

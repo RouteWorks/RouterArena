@@ -490,8 +490,8 @@ def reliability_guard(maximum_memory_bytes: Optional[int] = None):
 
     from typing import Any, cast
 
-    builtins.exit = cast(Any, None)  # type: ignore[assignment]
-    builtins.quit = cast(Any, None)  # type: ignore[assignment]
+    builtins.exit = cast(Any, None)
+    builtins.quit = cast(Any, None)
 
     # Prepare Any-typed aliases to avoid mypy assignment errors
     os_mod: Any = os
@@ -499,33 +499,33 @@ def reliability_guard(maximum_memory_bytes: Optional[int] = None):
 
     os.environ["OMP_NUM_THREADS"] = "1"
 
-    os.kill = cast(Any, None)  # type: ignore[assignment]
-    os.system = cast(Any, None)  # type: ignore[assignment]
-    os.putenv = cast(Any, None)  # type: ignore[assignment]
-    os.remove = cast(Any, None)  # type: ignore[assignment]
-    os.removedirs = cast(Any, None)  # type: ignore[assignment]
-    os.rmdir = cast(Any, None)  # type: ignore[assignment]
-    os.fchdir = cast(Any, None)  # type: ignore[assignment]
-    os.setuid = cast(Any, None)  # type: ignore[assignment]
-    os.fork = cast(Any, None)  # type: ignore[assignment]
-    os.forkpty = cast(Any, None)  # type: ignore[assignment]
-    os.killpg = cast(Any, None)  # type: ignore[assignment]
-    os.rename = cast(Any, None)  # type: ignore[assignment]
-    os.renames = cast(Any, None)  # type: ignore[assignment]
-    os.truncate = cast(Any, None)  # type: ignore[assignment]
-    os.replace = cast(Any, None)  # type: ignore[assignment]
-    os.unlink = cast(Any, None)  # type: ignore[assignment]
-    os.fchmod = cast(Any, None)  # type: ignore[assignment]
-    os.fchown = cast(Any, None)  # type: ignore[assignment]
-    os.chmod = cast(Any, None)  # type: ignore[assignment]
-    os.chown = cast(Any, None)  # type: ignore[assignment]
-    os.chroot = cast(Any, None)  # type: ignore[assignment]
-    os.fchdir = cast(Any, None)  # type: ignore[assignment]
-    os.lchflags = cast(Any, None)  # type: ignore[attr-defined,assignment]
-    os.lchmod = cast(Any, None)  # type: ignore[attr-defined,assignment]
-    os.lchown = cast(Any, None)  # type: ignore[assignment]
-    os.getcwd = cast(Any, None)  # type: ignore[assignment]
-    os.chdir = cast(Any, None)  # type: ignore[assignment]
+    os.kill = cast(Any, None)
+    os.system = cast(Any, None)
+    os.putenv = cast(Any, None)
+    os.remove = cast(Any, None)
+    os.removedirs = cast(Any, None)
+    os.rmdir = cast(Any, None)
+    os.fchdir = cast(Any, None)
+    os.setuid = cast(Any, None)
+    os.fork = cast(Any, None)
+    os.forkpty = cast(Any, None)
+    os.killpg = cast(Any, None)
+    os.rename = cast(Any, None)
+    os.renames = cast(Any, None)
+    os.truncate = cast(Any, None)
+    os.replace = cast(Any, None)
+    os.unlink = cast(Any, None)
+    os.fchmod = cast(Any, None)
+    os.fchown = cast(Any, None)
+    os.chmod = cast(Any, None)
+    os.chown = cast(Any, None)
+    os.chroot = cast(Any, None)
+    os.fchdir = cast(Any, None)
+    os.lchflags = cast(Any, None)  # type: ignore[attr-defined]
+    os.lchmod = cast(Any, None)  # type: ignore[attr-defined]
+    os.lchown = cast(Any, None)
+    os.getcwd = cast(Any, None)
+    os.chdir = cast(Any, None)
 
     # Disable destructive os functions (guard where platform-specific)
     for name in [
@@ -561,14 +561,14 @@ def reliability_guard(maximum_memory_bytes: Optional[int] = None):
         except Exception:
             pass
 
-    shutil.rmtree = cast(Any, None)  # type: ignore[assignment]
-    shutil.move = cast(Any, None)  # type: ignore[assignment]
-    shutil.chown = cast(Any, None)  # type: ignore[assignment]
+    shutil.rmtree = cast(Any, None)
+    shutil.move = cast(Any, None)
+    shutil.chown = cast(Any, None)
 
     # Disable subprocess.Popen
     setattr(subprocess_mod, "Popen", None)
 
-    setattr(subprocess, "Popen", cast(Any, None))  # type: ignore[misc]
+    setattr(subprocess, "Popen", cast(Any, None))
 
     # __builtins__["help"] = None   # this line is commented out as it results into error
 

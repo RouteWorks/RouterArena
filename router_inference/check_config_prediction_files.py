@@ -111,26 +111,25 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
 def load_cost_config() -> Dict[str, Any]:
     """
     Load cost configuration from model_cost/cost.json.
+    Uses a canonical path relative to the project root.
 
     Returns:
         Dictionary mapping model names to cost configurations
     """
-    possible_paths = [
-        "./model_cost/cost.json",
-        "../model_cost/cost.json",
-        "model_cost/cost.json",
-    ]
+    # Get the project root directory (parent of router_inference/)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(script_dir)
+    cost_file_path = os.path.join(project_root, "model_cost", "cost.json")
 
-    for path in possible_paths:
-        if os.path.exists(path):
-            try:
-                with open(path, "r", encoding="utf-8") as f:
-                    return json.load(f)
-            except Exception as e:
-                print(f"Warning: Could not load cost configuration from {path}: {e}")
-                return {}
+    if not os.path.exists(cost_file_path):
+        return {}
 
-    return {}
+    try:
+        with open(cost_file_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"Warning: Could not load cost configuration from {cost_file_path}: {e}")
+        return {}
 
 
 def check_model_costs(

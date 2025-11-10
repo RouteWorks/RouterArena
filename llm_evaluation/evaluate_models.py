@@ -18,7 +18,7 @@ import argparse
 import glob
 from typing import Dict, List, Any, Optional
 import sys
-from tqdm import tqdm  # type: ignore[import-untyped]
+from tqdm import tqdm
 
 # Add the current directory to Python path to import eval modules
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
