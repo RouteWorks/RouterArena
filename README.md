@@ -17,7 +17,7 @@
 <h2 align="center"> Make Router Evaluation Open and Standardized </h2>
 
 <p align="center">
-  <img src="images/routerarena-diagram.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
+  <img src="images/routerarena-diagram.png" alt="RouterArena Diagram" width="1000" />
 </p>
 
 **RouterArena** is an open evaluation platform and leaderboard for **LLM routers** — systems that automatically select the best model for a given query. As the LLM ecosystem diversifies into specialized models of varying size, capability, and cost, routing has become essential for balancing performance and efficiency. Yet, unlike models, routers currently lack a unified evaluation standard that measures how well they trade off accuracy, cost, robustness, and latency.
@@ -61,7 +61,7 @@ The current leaderboard is computed considering the accuracy and overall cost fo
 If you want your router on the leaderboard, submit a Pull Request with your router's prediction file. For questions or issues, please open a GitHub issue. For fairness, we have withheld the ground truth answers for the full dataset. However, you can still test your router using the sub-sampled 10% dataset by following the steps below.
 
 <p align="center">
-  <img src="images/pipeline.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
+  <img src="images/pipeline.png" alt="RouterArena Evaluation Pipeline" width="1000" />
 </p>
 
 ## Setup
