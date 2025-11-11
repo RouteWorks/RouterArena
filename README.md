@@ -95,11 +95,11 @@ See the [`ModelInference`](./llm_inference/model_inference.py) class for the com
 
 ## Get Routing Decisions
 
-Follow the steps below to evaluate your router. You can start with the `sub_10` split (10% sub-sampled dataset) to test your setup and code. The `sub_10` split includes ground truth answers for local testing. Once ready, you can evaluate on the `full` dataset for official leaderboard submission.
+Follow the steps below to obtain your router's model choices for each query. Start with the `sub_10` split (a 10% subset with ground-truth answers) for local testing. Once your setup works, you can evaluate on the `full` dataset for official leaderboard submission.
 
 ### Step 1: Prepare Config File
 
-Create a config file in `./router_inference/config/<router_name>.json`. We have created an example router for demonstration purposes:
+Create a config file in `./router_inference/config/<router_name>.json`. An example config file is included [here](./router_inference/config/your-router.json).
 
 ```json
 {
@@ -108,16 +108,13 @@ Create a config file in `./router_inference/config/<router_name>.json`. We have 
       "models": [
           "gpt-4o-mini",
           "claude-3-haiku-20240307",
-          "gemini-2.0-flash-001",
-          "mistral-medium"
+          "gemini-2.0-flash-001"
       ]
   }
 }
 ```
 
-*Note: The model name must be the same as the one used in `./universal_model_names.py` (see next step for details)*
-
-**Important**: For each model in your config, add an entry with the pricing per million tokens in this format at `model_cost/cost.json`:
+For each model in your config, add an entry with the pricing per million tokens in this format at [`model_cost/cost.json`](./model_cost/cost.json):
 
 ```json
 {
@@ -130,7 +127,7 @@ Create a config file in `./router_inference/config/<router_name>.json`. We have 
 
 ### Step 2: Verify Model Names
 
-Ensure all models in your config are listed in `./universal_model_names.py`. If you add a new model, you must also add the API inference endpoint in `RouterArena/llm_inference/model_inference.py`.
+Ensure all models in your above config files are listed in [`./universal_model_names.py`](./universal_model_names.py). If you add a new model, you must also add the API inference endpoint in [`llm_inference/model_inference.py`](./llm_inference/model_inference.py).
 
 ### Step 3: Generate Router's Prediction File
 
