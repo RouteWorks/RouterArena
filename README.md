@@ -11,24 +11,24 @@
 
 </div>
 
-<h2 align="center"> Make Router Evaluation Open and Standardized </h2>
+<h1 align="center"> Make Router Evaluation Open and Standardized </h1>
 
 <p align="center">
   <img src="images/routerarena-diagram.png" alt="RouterArena Diagram" width="1000" />
 </p>
 
-**RouterArena** is an open evaluation platform and leaderboard for **LLM routers** — systems that automatically select the best model for a given query. As the LLM ecosystem diversifies into specialized models of varying size, capability, and cost, routing has become essential for balancing performance and efficiency. Yet, unlike models, routers currently lack a unified evaluation standard that measures how well they trade off accuracy, cost, robustness, and latency.
+**RouterArena** is an open evaluation platform and leaderboard for **LLM routers**—systems that automatically select the best model for a given query. As the LLM ecosystem diversifies with models varying in size, capability, and cost, **routing** has become critical for balancing performance and cost. Yet, LLM routers currently lack a standardized evaluation framework to assess how effectively they trade off accuracy, cost, and other related metrics.
 
-RouterArena addresses this gap by providing a uniform, multi-dimensional benchmarking framework for both open-source and commercial routers. It introduces a principled dataset with diverse domains and difficulty levels, a comprehensive suite of evaluation metrics, and an automated leaderboard for transparent comparison. By standardizing router evaluation, RouterArena lays the foundation for reproducible, fair, and continuous progress in the next generation of routing systems.
+RouterArena bridges this gap by providing an open evaluation platform and benchmarking framework for both open-source and commercial routers. It has the following key features:
 
-<h3 align="left">Key Features</h3>
+- 🌍 **Diverse Data Coverage**: A principly-constructed, diverse evaluation dataset spanning 9 domains and 44 categories with easy, medium, and hard difficulty levels.
+- 📊 **Comprehensive Metrics**: Five router-critical metrics measuring accuracy, cost, optimality, robustness, and latency.
+- ⚙️ **Automated Evaluation**: An automated evaluation framework to simplify the evaluation process for open-source and commercial routers.
+- 🏆 **Live Leaderboard**: A live leaderboard to track the performance of routers across multiple dimensions.
 
-- **Diverse Data Coverage**: A principled, diverse evaluation dataset spanning 9 domains and 44 categories
-- **Comprehensive Eval Metrics**: Five complementary evaluation metrics capturing accuracy, cost, optimality, robustness, and latency.
-- **Uniform Eval Framework**: Fairly benchmarked open-sourced and commercial routers.
-- **Live Leaderboard**: Ranking routers across multiple dimensions.
+We aim for RouterArena to serve as a foundation for the community to evaluate, understand, and advance LLM routing systems.
 
-<h3 align="left">RouterArena Leaderboard</h3>
+# RouterArena Leaderboard
 
 | Rank | Router | Affiliation | Arena | Opt.Sel | Opt.Cost | Opt.Acc | Lat | Robust |
 |------|---------|--------------|--------|------------|-----------|----------|----------|-------------|
