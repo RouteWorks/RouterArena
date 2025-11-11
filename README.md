@@ -3,13 +3,10 @@
 
   <br>
   <p>
-    <!-- <a href="https://www.python.org/"><img alt="Python" src="https://img.shields.io/badge/Python-3.10%E2%80%933.12-blue"></a> -->
     <a href="https://huggingface.co/blog/JerryPotter/who-routes-the-routers"><img alt="Blog" src="https://img.shields.io/badge/Blog-Read-FF5722?logo=rss&logoColor=white&labelColor=555555"></a>
     <a href="https://arxiv.org/abs/2510.00202"><img alt="arXiv: RouterArena" src="https://img.shields.io/badge/arXiv-RouterArena-b31b1b?logo=arxiv&logoColor=white&labelColor=555555"></a>
-    <a href="https://huggingface.co/datasets/louielu02/RouterArena"><img alt="Hugging Face Dataset" src="https://img.shields.io/badge/%20Hugging%20Face-Dataset-yellow?logo=huggingface&logoColor=white&labelColor=555555"></a>
+    <a href="https://huggingface.co/datasets/RouteWorks/RouterArena"><img alt="Hugging Face Dataset" src="https://img.shields.io/badge/%20Hugging%20Face-Dataset-yellow?logo=huggingface&logoColor=white&labelColor=555555"></a>
     <br>
-    <!-- <a href="https://join.slack.com/t/ovg-project/shared_invite/zt-3fr01t8s7-ZtDhHSJQ00hcLHgwKx3Dmw"><img alt="Slack Join" src="https://img.shields.io/badge/Slack-Join-4A154B?logo=slack&logoColor=white&labelColor=555555"></a> -->
-    <!-- <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache_2.0-blue.svg"></a> -->
   </p>
 
 </div>
