@@ -14,7 +14,7 @@
 <h1 align="center"> Make Router Evaluation Open and Standardized </h1>
 
 <p align="center">
-  <img src="images/routerarena-diagram.png" alt="RouterArena Diagram" width="1000" />
+  <img src="images/routerarena-diagram.png" alt="RouterArena Diagram" width="700" />
 </p>
 
 **RouterArena** is an open evaluation platform and leaderboard for **LLM routers**—systems that automatically select the best model for a given query. As the LLM ecosystem diversifies with models varying in size, capability, and cost, **routing** has become critical for balancing performance and cost. Yet, LLM routers currently lack a standardized evaluation framework to assess how effectively they trade off accuracy, cost, and other related metrics.
@@ -58,7 +58,7 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 If you want your router on the leaderboard, submit a Pull Request with your router's prediction file. For questions or issues, please open a GitHub issue. For fairness, we have withheld the ground truth answers for the full dataset. However, you can still test your router using the sub-sampled 10% dataset by following the steps below.
 
 <p align="center">
-  <img src="images/pipeline.png" alt="RouterArena Evaluation Pipeline" width="1000" />
+  <img src="images/pipeline.png" alt="RouterArena Evaluation Pipeline" width="700" />
 </p>
 
 ## Setup
