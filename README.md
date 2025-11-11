@@ -63,9 +63,9 @@ To use our framework to evaluate your router and get your router on the leaderbo
   <img src="images/pipeline.png" alt="RouterArena Evaluation Pipeline" width="700" />
 </p>
 
-## Setup
+## 1. Setup
 
-### Step 1: Install uv and RouterArena
+### Step 1.1: Install uv and RouterArena
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -73,14 +73,14 @@ cd RouterArena
 uv sync
 ```
 
-### Step 2: Download Dataset
+### Step 1.2: Download Dataset
 Download the dataset from [HF dataset](https://huggingface.co/datasets/RouteWorks/RouterArena).
 
 ```bash
 uv run python ./scripts/process_datasets/prep_datasets.py
 ```
 
-### Step 3: Set Up API Keys (Optional)
+### Step 1.3: Set Up API Keys (Optional)
 
 Update the API keys in the `.env` file in the project root. This step is **required only if you use our pipeline for LLM inferences**.
 
@@ -93,11 +93,11 @@ ANTHROPIC_API_KEY=<Your-Key>
 
 See the [`ModelInference`](./llm_inference/model_inference.py) class for the complete list of supported providers and required environment variables. You can extend that class to support more models, or submit a GitHub issue to request support for new providers.
 
-## Get Routing Decisions
+## 2. Get Routing Decisions
 
 Follow the steps below to obtain your router's model choices for each query. Start with the `sub_10` split (a 10% subset with ground-truth answers) for local testing. Once your setup works, you can evaluate on the `full` dataset (ground-truth answers are hidden) for official leaderboard submission.
 
-### Step 1: Prepare Config File
+### Step 2.1: Prepare Config File
 
 Create a config file in `./router_inference/config/<router_name>.json`. An example config file is included [here](./router_inference/config/your-router.json).
 
@@ -128,7 +128,7 @@ For each model in your config, add an entry with the pricing per million tokens 
 > [!NOTE]
 > Ensure all models in your above config files are listed in [`./universal_model_names.py`](./universal_model_names.py). If you add a new model, you must also add the API inference endpoint in [`llm_inference/model_inference.py`](./llm_inference/model_inference.py).
 
-### Step 2: Generate Router's Prediction File
+### Step 2.2: Generate Router's Prediction File
 
 Generate a template prediction file:
 
@@ -138,7 +138,7 @@ uv run python ./router_inference/generate_prediction_file.py your-router [sub_10
 
 **Important**: Replace the placeholder model choices of the `prediction` field in the generated prediction file with your router's actual selections. We will automate this process in a future version.
 
-### Step 3: Validate Config and Prediction Files
+### Step 2.3: Validate Config and Prediction Files
 
 ```bash
 uv run python ./router_inference/check_config_prediction_files.py your-router [sub_10|full]
@@ -146,7 +146,7 @@ uv run python ./router_inference/check_config_prediction_files.py your-router [s
 
 This script checks: (1) all model names are valid, (2) prediction file has correct size (809 for `sub_10`, 8400 for `full`), and (3) all entries have valid `global_index`, `prompt`, and `prediction` fields.
 
-## Run LLM Inference
+## 3. Run LLM Inference
 
 Run the inference script to make API calls for each query using the selected models:
 
@@ -156,7 +156,7 @@ uv run python ./llm_inference/run.py your-router [sub_10|full]
 
 The script loads your prediction file, makes API calls using the models specified in the `prediction` field, and saves results incrementally. It uses cached results when available and saves progress after each query, so you can safely interrupt and resume. Results are saved to `./cached_results/` for reuse across routers.
 
-## Leaderboard Evaluation via Pull Request
+## 4. Leaderboard Evaluation via Pull Request
 
 If you want to evaluate your router on the full dataset, you can submit a Pull Request with your prediction file:
 
