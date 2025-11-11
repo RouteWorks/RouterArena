@@ -136,7 +136,7 @@ Generate a template prediction file:
 uv run python ./router_inference/generate_prediction_file.py your-router [sub_10|full]
 ```
 
-**Important**: Replace the placeholder model choices in the `prediction` field with your router's actual selections.
+**Important**: Replace the placeholder model choices of the `prediction` field in the generated prediction file with your router's actual selections. We will automate this process in a future version.
 
 ### Step 3: Validate Config and Prediction Files
 
