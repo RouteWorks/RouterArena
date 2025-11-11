@@ -26,9 +26,11 @@ RouterArena bridges this gap by providing an open evaluation platform and benchm
 - ⚙️ **Automated Evaluation**: An automated evaluation framework to simplify the evaluation process for open-source and commercial routers.
 - 🏆 **Live Leaderboard**: A live leaderboard to track the performance of routers across multiple dimensions.
 
-We aim for RouterArena to serve as a foundation for the community to evaluate, understand, and advance LLM routing systems.
+*We aim for RouterArena to serve as a foundation for the community to evaluate, understand, and advance LLM routing systems.*
 
-# RouterArena Leaderboard
+# Current Leaderboard
+
+For more details, please see our [website](https://routeworks.github.io/leaderboard) and [blog](https://huggingface.co/blog/JerryPotter/who-routes-the-routers).
 
 | Rank | Router | Affiliation | Arena | Opt.Sel | Opt.Cost | Opt.Acc | Lat | Robust |
 |------|---------|--------------|--------|------------|-----------|----------|----------|-------------|
@@ -51,9 +53,7 @@ We aim for RouterArena to serve as a foundation for the community to evaluate, u
   <img src="images/leaderboard.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
 </p> -->
 
-The current leaderboard is computed considering the accuracy and overall cost for each router. For more details, please read our [blog](https://huggingface.co/blog/JerryPotter/who-routes-the-routers).
-
-<h2 align="left">Have your router on there!</h3>
+# Have your router on the leaderboard!
 
 If you want your router on the leaderboard, submit a Pull Request with your router's prediction file. For questions or issues, please open a GitHub issue. For fairness, we have withheld the ground truth answers for the full dataset. However, you can still test your router using the sub-sampled 10% dataset by following the steps below.
 
