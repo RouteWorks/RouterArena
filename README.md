@@ -179,6 +179,32 @@ uv run python ./llm_evaluation/run.py your-router sub_10
 
 The script evaluates generated answers against ground truth, calculates inference costs, and computes router-level metrics. It skips already-evaluated entries, making it safe to re-run or resume.
 
+## Contributing
+
+We welcome and appreciate contributions and collaborations of any kind.
+
+We use pre-commit to ensure a consistent coding style. You can set it up by
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+Before pushing your code, run the following and make sure your code passes all checks.
+
+```bash
+pre-commit run --all-files
+```
+
+## Contacts
+
+Feel free to contact us for contributions and collaborations.
+
+```
+Yifan Lu (yifan.lu@rice.edu)
+Jiarong Xing (jxing@rice.edu)
+```
+
 ## Citation:
 If you find our project helpful, please give us a star and cite us by:
 
