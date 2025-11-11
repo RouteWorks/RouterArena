@@ -125,26 +125,23 @@ For each model in your config, add an entry with the pricing per million tokens 
 }
 ```
 
-### Step 2: Verify Model Names
+> [!NOTE]
+> Ensure all models in your above config files are listed in [`./universal_model_names.py`](./universal_model_names.py). If you add a new model, you must also add the API inference endpoint in [`llm_inference/model_inference.py`](./llm_inference/model_inference.py).
 
-Ensure all models in your above config files are listed in [`./universal_model_names.py`](./universal_model_names.py). If you add a new model, you must also add the API inference endpoint in [`llm_inference/model_inference.py`](./llm_inference/model_inference.py).
-
-### Step 3: Generate Router's Prediction File
+### Step 2: Generate Router's Prediction File
 
 Generate a template prediction file:
 
 ```bash
-uv run python ./router_inference/generate_prediction_file.py your-router sub_10
+uv run python ./router_inference/generate_prediction_file.py your-router [sub_10|full]
 ```
 
-Use `full` instead of `sub_10` for the complete dataset. **Important**: Replace the placeholder model choices in the `prediction` field with your router's actual selections.
+**Important**: Replace the placeholder model choices in the `prediction` field with your router's actual selections.
 
-### Step 4: Validate Config and Prediction Files
-
-Validate your config and prediction files before proceeding:
+### Step 3: Validate Config and Prediction Files
 
 ```bash
-uv run python ./router_inference/check_config_prediction_files.py your-router sub_10
+uv run python ./router_inference/check_config_prediction_files.py your-router [sub_10|full]
 ```
 
 This script checks: (1) all model names are valid, (2) prediction file has correct size (809 for `sub_10`, 8400 for `full`), and (3) all entries have valid `global_index`, `prompt`, and `prediction` fields.
