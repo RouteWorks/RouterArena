@@ -53,9 +53,11 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
   <img src="images/leaderboard.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
 </p> -->
 
-# Have your router on the leaderboard!
+<!-- # Have your router on the leaderboard! -->
 
-If you want your router on the leaderboard, submit a Pull Request with your router's prediction file. For questions or issues, please open a GitHub issue. For fairness, we have withheld the ground truth answers for the full dataset. However, you can still test your router using the sub-sampled 10% dataset by following the steps below.
+# Evaluating Your Router
+
+To use our framework to evaluate your router and get your router on the leaderboard, you can follow the steps below. The evaluation pipelines include two stages as shown in the diagram below. First, you need to generate a prediction file for your router. Then, you can open a Pull Request with your router's prediction file to trigger our automated evaluation workflow.
 
 <p align="center">
   <img src="images/pipeline.png" alt="RouterArena Evaluation Pipeline" width="700" />
@@ -72,26 +74,24 @@ uv sync
 ```
 
 ### Step 2: Download Dataset
-Run this command to download the dataset from the [HF dataset](https://huggingface.co/datasets/RouteWorks/RouterArena).
+Download the dataset from [HF dataset](https://huggingface.co/datasets/RouteWorks/RouterArena).
 
 ```bash
 uv run python ./scripts/process_datasets/prep_datasets.py
 ```
 
-### Step 3: Set Up API Keys
+### Step 3: Set Up API Keys (Optional)
 
-This step is **required only if you plan to use our pipeline to make LLM inferences**. Create a `.env` file in the project root and add the API keys for the providers you need:
+Update the API keys in the `.env` file in the project root. This step is **required only if you use our pipeline for LLM inferences**.
 
 ```bash
 # Example .env file
 OPENAI_API_KEY=<Your-Key>
 ANTHROPIC_API_KEY=<Your-Key>
-HF_TOKEN=<Your-Key>
 # ...
 ```
 
-#### Optional:
-See the `ModelInference` class in `RouterArena/llm_inference/model_inference.py` for the complete list of supported providers and required environment variables. You can extend that class to support additional models, or submit a GitHub issue to request support for new providers.
+See the [`ModelInference`](./llm_inference/model_inference.py) class for the complete list of supported providers and required environment variables. You can extend that class to support more models, or submit a GitHub issue to request support for new providers.
 
 ## Usage
 
