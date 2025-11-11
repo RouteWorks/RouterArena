@@ -2,10 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 """
-Generate Prediction File for Toy Router.
+Generate Prediction File using ExampleRouter.
 
-This script generates a prediction file for a toy router that cycles through
-models in the config file using a simple modulo operation. This is useful for
+This script generates a prediction file using the ExampleRouter class,
+which cycles through models in the config file. This is useful for
 testing the RouterArena pipeline.
 
 Usage:
@@ -23,32 +23,13 @@ from typing import Dict, Any, List
 # Add parent directory to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 
+from router_inference.router import ExampleRouter, BaseRouter
+
 # Dataset file paths
 DATASET_PATHS = {
     "sub_10": "./dataset/router_data_10.json",
     "full": "./dataset/router_data.json",
 }
-
-
-def load_config(router_name: str) -> Dict[str, Any]:
-    """
-    Load router config file.
-
-    Args:
-        router_name: Name of the router
-
-    Returns:
-        Configuration dictionary
-    """
-    config_path = f"./router_inference/config/{router_name}.json"
-
-    if not os.path.exists(config_path):
-        raise FileNotFoundError(f"Config file not found: {config_path}")
-
-    with open(config_path, "r", encoding="utf-8") as f:
-        config = json.load(f)
-
-    return config
 
 
 def load_dataset(split: str) -> List[Dict[str, Any]]:
@@ -76,37 +57,29 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
 
 
 def generate_predictions(
-    dataset: List[Dict[str, Any]], models: List[str]
+    dataset: List[Dict[str, Any]], router: BaseRouter
 ) -> List[Dict[str, Any]]:
     """
-    Generate predictions by cycling through models using modulo operation.
+    Generate predictions using the ExampleRouter.
 
     Args:
         dataset: List of dataset entries
-        models: List of model names to cycle through
+        router: ExampleRouter instance to use for predictions
 
     Returns:
         List of prediction dictionaries
     """
     predictions = []
 
-    # Get the list of model names (only those with non-null cost)
-    model_names = [model for model in models]
-
-    if not model_names:
-        raise ValueError("No models with non-null cost found in config")
-
-    for i, entry in enumerate(dataset):
+    for entry in dataset:
         global_index = entry.get("global index")
         prompt = entry.get("prompt_formatted") or entry.get("prompt")
 
         if not global_index or not prompt:
             continue
 
-        # Use modulo operation to cycle through models
-        # NOTE: This is a toy router, you could implement your own logic here, or create a prediction file in your own router loop.
-        model_index = i % len(model_names)
-        selected_model = model_names[model_index]
+        # Use the router to get prediction (validation is handled by BaseRouter)
+        selected_model = router.get_prediction(prompt)
 
         # Create prediction entry
         prediction_entry = {
@@ -145,7 +118,7 @@ def save_predictions(predictions: List[Dict[str, Any]], router_name: str) -> Non
 def main():
     """Main function to handle command line arguments and generate predictions."""
     parser = argparse.ArgumentParser(
-        description="Generate prediction file for toy router"
+        description="Generate prediction file using ExampleRouter"
     )
     parser.add_argument(
         "router_name",
@@ -170,12 +143,14 @@ def main():
     print(f"Dataset split: {args.split}")
     print("=" * 80)
 
-    # Load config
-    print("\n[1] Loading config...")
-    config = load_config(args.router_name)
-    models = config.get("pipeline_params", {}).get("models", [])
-    print(f"✓ Config loaded: {len(models)} models in config")
-    print(f"  Models: {', '.join(models)}")
+    # Initialize router
+    print("\n[1] Initializing router...")
+
+    ## You should replace ExampleRouter with your own router implementation.
+    router = ExampleRouter(args.router_name)
+
+    print(f"✓ Router initialized: {router.router_name}")
+    print(f"  Available models: {', '.join(router.models)}")
 
     # Load dataset
     print("\n[2] Loading dataset...")
@@ -184,9 +159,9 @@ def main():
 
     # Generate predictions
     print("\n[3] Generating predictions...")
-    predictions = generate_predictions(dataset, models)
+    predictions = generate_predictions(dataset, router)
     print(f"✓ Generated {len(predictions)} predictions")
-    print("  Using toy router logic: cycling through models")
+    print("  Using ExampleRouter: cycling through models")
 
     # Save predictions
     print("\n[4] Saving predictions...")

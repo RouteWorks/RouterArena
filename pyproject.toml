@@ -106,3 +106,5 @@ plugins = ['pydantic.mypy']
 ignore_missing_imports = true
 check_untyped_defs = true
 follow_imports = "silent"
+namespace_packages = true
+explicit_package_bases = true

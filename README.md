@@ -128,15 +128,27 @@ For each model in your config, add an entry with the pricing per million tokens 
 > [!NOTE]
 > Ensure all models in your above config files are listed in [`./universal_model_names.py`](./universal_model_names.py). If you add a new model, you must also add the API inference endpoint in [`llm_inference/model_inference.py`](./llm_inference/model_inference.py).
 
-### Step 2.2: Generate Router's Prediction File
+### Step 2.2: Create Your Router Class and Generate Prediction File
 
-Generate a template prediction file:
+Create your own router class by inheriting from `BaseRouter` and implementing the `_get_prediction()` method. See [`router_inference/router/example_router.py`](./router_inference/router/example_router.py) for a complete example.
+
+Then, modify `router_inference/generate_prediction_file.py` to use your router class instead of `ExampleRouter` around line `150`:
+
+```python
+# Replace ExampleRouter with your router class
+from router_inference.router.my_router import MyRouter
+router = MyRouter(args.router_name)
+```
+
+Finally, generate the prediction file:
 
 ```bash
 uv run python ./router_inference/generate_prediction_file.py your-router [sub_10|full]
 ```
 
-**Important**: Replace the placeholder model choices of the `prediction` field in the generated prediction file with your router's actual selections. We will automate this process in a future version.
+**Important:**
+> - The `<your-router>` argument must match your config filename (without the `.json` extension). For example, if your config file is `router_inference/config/my-router.json`, use `my-router` as the argument.
+> - Your `_get_prediction()` method must return a model name that exists in your config file's `models` list. The base class will automatically validate this.
 
 ### Step 2.3: Validate Config and Prediction Files
 
