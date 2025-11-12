@@ -146,7 +146,7 @@ Finally, generate the prediction file:
 uv run python ./router_inference/generate_prediction_file.py your-router [sub_10|full]
 ```
 
-**Important:**
+> [!NOTE]
 > - The `<your-router>` argument must match your config filename (without the `.json` extension). For example, if your config file is `router_inference/config/my-router.json`, use `my-router` as the argument.
 > - Your `_get_prediction()` method must return a model name that exists in your config file's `models` list. The base class will automatically validate this.
 
