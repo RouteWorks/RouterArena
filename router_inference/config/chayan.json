@@ -1,0 +1,11 @@
+{
+    "pipeline_params": {
+        "router_name": "chayan",
+        "models": [
+            "openai/gpt-4o-mini",
+            "google/gemini-2.5-flash-lite",
+            "google/gemini-2.5-flash",
+            "openai/gpt-4o"
+        ]
+    }
+}
