@@ -82,7 +82,7 @@ uv run python ./scripts/process_datasets/prep_datasets.py
 
 ### Step 1.3: Set Up API Keys (Optional)
 
-Update the API keys in the `.env` file in the project root. This step is **required only if you use our pipeline for LLM inferences**.
+In the project root, copy `.env.example` as `.env` and update the API keys in `.env`. This step is **required only if you use our pipeline for LLM inferences**.
 
 ```bash
 # Example .env file
