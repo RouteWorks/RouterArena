@@ -18,6 +18,7 @@ logs/
 pr_evaluations/
 
 # Environment files
+.env
 .venv
 venv/
 
