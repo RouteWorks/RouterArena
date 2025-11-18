@@ -48,6 +48,7 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 | 12 | [RouteLLM](https://arxiv.org/abs/2406.18665)&nbsp;[[GH]](https://github.com/lm-sys/RouteLLM)&nbsp;[[HF]](https://huggingface.co/routellm) | 🎓&nbsp;Berkeley | 48.07 | 99.72 | 99.63 | 68.76 | 0.40 | 99.80 |
 | 13 | [RouterDC](https://arxiv.org/abs/2409.19886)&nbsp;[[GH]](https://github.com/shuhao02/RouterDC) | 🎓&nbsp;SUSTech | 33.75 | 39.84 | 73.00 | 49.05 | 10.75 | 97.60 |
 
+🎓 Academic  💼 Commercial 
 
 <!-- <p align="center">
   <img src="images/leaderboard.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
