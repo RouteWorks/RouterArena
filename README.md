@@ -32,8 +32,8 @@ RouterArena bridges this gap by providing an open evaluation platform and benchm
 
 For more details, please see our [website](https://routeworks.github.io/leaderboard) and [blog](https://huggingface.co/blog/JerryPotter/who-routes-the-routers).
 
-| Rank | Router | Affiliation | Arena | Opt.Sel | Opt.Cost | Opt.Acc | Lat | Robust |
-|------|--------------------|-----------------------------|--------|------------|-----------|----------|----------|-------------|
+| Rank | Router | Affiliation | Arena | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
+|------|--------------------|-----------------------------|--------|-----------------|--------------|----------------|---------|------------|
 | 🥇 | [MIRT-BERT](https://arxiv.org/pdf/2506.01048) [[GH]](https://github.com/Mercidaiha/IRT-Router) | 🎓 USTC | 66.89 | 3.44 | 19.62 | 78.18 | 27.03 | 94.50 |
 | 🥈 | [Azure-Router](https://ai.azure.com/catalog/models/model-router) [[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼 Microsoft | 66.66 | 22.52 | 46.32 | 81.96 | — | — |
 | 🥉 | [NIRT-BERT](https://arxiv.org/pdf/2506.01048) [[GH]](https://github.com/Mercidaiha/IRT-Router) | 🎓 USTC | 66.12 | 3.83 | 14.04 | 77.88 | 10.42 | 44.50 |
