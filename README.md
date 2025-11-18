@@ -32,6 +32,69 @@ RouterArena bridges this gap by providing an open evaluation platform and benchm
 
 For more details, please see our [website](https://routeworks.github.io/leaderboard) and [blog](https://huggingface.co/blog/JerryPotter/who-routes-the-routers).
 
+| Rank | Router | Affiliation | Arena | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
+|------|--------------------|-----------------------------|--------|-----------------|--------------|----------------|---------|------------|
+| 🥇 | [MIRT-BERT](https://arxiv.org/pdf/2506.01048) [[GH]](https://github.com/Mercidaiha/IRT-Router) | 🎓 USTC | 66.89 | 3.44 | 19.62 | 78.18 | 27.03 | 94.50 |
+| 🥈 | [Azure-Router](https://ai.azure.com/catalog/models/model-router) [[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼 Microsoft | 66.66 | 22.52 | 46.32 | 81.96 | — | — |
+| 🥉 | [NIRT-BERT](https://arxiv.org/pdf/2506.01048) [[GH]](https://github.com/Mercidaiha/IRT-Router) | 🎓 USTC | 66.12 | 3.83 | 14.04 | 77.88 | 10.42 | 44.50 |
+| 4 | [GPT-5](https://openai.com/index/introducing-gpt-5/)| 💼 OpenAI | 64.32 | — | — | — | — | — |
+| 5 | [vLLM-SR](https://vllm-semantic-router.com/) [[GH]](https://github.com/vllm-project/semantic-router) [[HF]](https://huggingface.co/llm-semantic-router) | 💼 vLLM | 64.32 | 4.79 | 12.54 | 79.33 | 0.19 | 100.00 |
+| 6 | [CARROT](https://arxiv.org/abs/2502.03261) [[GH]](https://github.com/somerstep/CARROT) [[HF]](https://huggingface.co/CARROT-LLM-Routing) | 🎓 UMich | 63.87 | 2.68 | 6.77 | 78.63 | 1.50 | 93.60 |
+| 7 | [Chayan](https://huggingface.co/adaptive-classifier/chayan) [[HF]](https://huggingface.co/adaptive-classifier/chayan) | 💼 Adaptive Classifier | 63.83 | 43.03 | 43.75 | 88.74 | — | — |
+| 8 | [NotDiamond](https://www.notdiamond.ai/) | 💼 NotDiamond | 63.00 | 1.55 | 2.14 | 76.81 | — | — |
+| 9 | [RouterBench-MLP](https://arxiv.org/pdf/2403.12031) [[GH]](https://github.com/withmartian/routerbench) [[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓 Academic | 57.56 | 13.39 | 24.45 | 83.32 | 90.91 | 96.90 |
+| 10 | [GraphRouter](https://arxiv.org/abs/2410.03834) [[GH]](https://github.com/ulab-uiuc/GraphRouter) | 🎓 UIUC | 57.22 | 4.73 | 38.33 | 74.25 | 2.70 | 97.50 |
+| 11 | [RouterBench-KNN](https://arxiv.org/pdf/2403.12031) [[GH]](https://github.com/withmartian/routerbench) [[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓 Academic | 55.48 | 13.09 | 25.49 | 78.77 | 1.33 | 51.30 |
+| 12 | [RouteLLM](https://arxiv.org/abs/2406.18665) [[GH]](https://github.com/lm-sys/RouteLLM) [[HF]](https://huggingface.co/routellm) | 🎓 Berkeley | 48.07 | 99.72 | 99.63 | 68.76 | 0.40 | 99.80 |
+| 13 | [RouterDC](https://arxiv.org/abs/2409.19886) [[GH]](https://github.com/shuhao02/RouterDC) | 🎓 SUSTech | 33.75 | 39.84 | 73.00 | 49.05 | 10.75 | 97.60 |
+
+🎓 Academic  💼 Commercial 
+
+
+<div style="overflow-x: auto; white-space: nowrap;">
+
+<table>
+  <thead>
+    <tr>
+      <th>Rankaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</th>
+      <th>Router</th>
+      <th>Affiliation</th>
+      <th>Arena</th>
+      <th>Opt.Sel</th>
+      <th>Opt.Cost</th>
+      <th>Opt.Acc</th>
+      <th>Lat</th>
+      <th>Robust</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🥇</td><td>[RouterDC](https://arxiv.org/abs/2409.19886) [[GH]](https://github.com/shuhao02/RouterDC)</td><td>🎓 USTC</td><td>66.89</td><td>3.44</td><td>19.62</td><td>78.18</td><td>27.03</td><td>94.50</td>
+    </tr>
+    <!-- add your other rows here -->
+  </tbody>
+</table>
+
+</div>
+
+
+| Rank | Router | Affiliation | Arena | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
+|------|--------------------|-----------------------------|--------|-----------------|--------------|----------------|---------|------------|
+| 🥇 | [MIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[GH]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.89 | 3.44 | 19.62 | 78.18 | 27.03 | 94.50 |
+| 🥈 | [Azure‑Router](https://ai.azure.com/catalog/models/model-router)&nbsp;[[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼&nbsp;Microsoft | 66.66 | 22.52 | 46.32 | 81.96 | — | — |
+| 🥉 | [NIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[GH]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.12 | 3.83 | 14.04 | 77.88 | 10.42 | 44.50 |
+| 4 | [GPT‑5](https://openai.com/index/introducing-gpt-5/)| 💼&nbsp;OpenAI | 64.32 | — | — | — | — | — |
+| 5 | [vLLM‑SR](https://vllm-semantic-router.com/)&nbsp;[[GH]](https://github.com/vllm-project/semantic-router)&nbsp;[[HF]](https://huggingface.co/llm-semantic-router) | 💼&nbsp;vLLM | 64.32 | 4.79 | 12.54 | 79.33 | 0.19 | 100.00 |
+| 6 | [CARROT](https://arxiv.org/abs/2502.03261)&nbsp;[[GH]](https://github.com/somerstep/CARROT)&nbsp;[[HF]](https://huggingface.co/CARROT-LLM-Routing) | 🎓&nbsp;UMich | 63.87 | 2.68 | 6.77 | 78.63 | 1.50 | 93.60 |
+| 7 | [Chayan](https://huggingface.co/adaptive-classifier/chayan)&nbsp;[[HF]](https://huggingface.co/adaptive-classifier/chayan) | 💼&nbsp;Adaptive&nbsp;Classifier | 63.83 | 43.03 | 43.75 | 88.74 | — | — |
+| 8 | [NotDiamond](https://www.notdiamond.ai/) | 💼&nbsp;NotDiamond | 63.00 | 1.55 | 2.14 | 76.81 | — | — |
+| 9 | [RouterBench‑MLP](https://arxiv.org/pdf/2403.12031)&nbsp;[[GH]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Academic | 57.56 | 13.39 | 24.45 | 83.32 | 90.91 | 96.90 |
+| 10 | [GraphRouter](https://arxiv.org/abs/2410.03834)&nbsp;[[GH]](https://github.com/ulab-uiuc/GraphRouter) | 🎓&nbsp;UIUC | 57.22 | 4.73 | 38.33 | 74.25 | 2.70 | 97.50 |
+| 11 | [RouterBench‑KNN](https://arxiv.org/pdf/2403.12031)&nbsp;[[GH]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Academic | 55.48 | 13.09 | 25.49 | 78.77 | 1.33 | 51.30 |
+| 12 | [RouteLLM](https://arxiv.org/abs/2406.18665)&nbsp;[[GH]](https://github.com/lm-sys/RouteLLM)&nbsp;[[HF]](https://huggingface.co/routellm) | 🎓&nbsp;Berkeley | 48.07 | 99.72 | 99.63 | 68.76 | 0.40 | 99.80 |
+| 13 | [RouterDC](https://arxiv.org/abs/2409.19886)&nbsp;[[GH]](https://github.com/shuhao02/RouterDC) | 🎓&nbsp;SUSTech | 33.75 | 39.84 | 73.00 | 49.05 | 10.75 | 97.60 |
+
+
 <div style="overflow-x: auto; white-space: nowrap;">
 
 <table>
@@ -211,7 +274,6 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 
 </div>
 
-🎓 Academic  💼 Commercial 
 
 <!-- <p align="center">
   <img src="images/leaderboard.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
