@@ -34,7 +34,7 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 
 | Rank | Router | Affiliation | Acc-Cost Arena | Accuracy | Cost/1K Queries | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
 |------|--------------------|-----------------------------|--------|----------|---------|-----------------|--------------|----------------|---------|------------|
-| 🥇 | [MIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[GH]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.89 | 60.88 | $0.15 | 3.44 | 19.62 | 78.18 | 27.03 | 94.50 |
+| 🥇 | [MIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[GH]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.89 | 66.88 | $0.15 | 3.44 | 19.62 | 78.18 | 27.03 | 94.50 |
 | 🥈 | [Azure‑Router](https://ai.azure.com/catalog/models/model-router)&nbsp;[[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼&nbsp;Microsoft | 66.66 | 68.09 | $0.54 | 22.52 | 46.32 | 81.96 | — | — |
 | 🥉 | [NIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[GH]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.12 | 66.34 | $0.21 | 3.83 | 14.04 | 77.88 | 10.42 | 44.50 |
 | 4 | [GPT‑5](https://openai.com/index/introducing-gpt-5/)| 💼&nbsp;OpenAI | 64.32 | 73.96 | $10.02 | — | — | — | — | — |
