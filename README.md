@@ -42,13 +42,13 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 | 6 | [CARROT](https://arxiv.org/abs/2502.03261)&nbsp;[[GH]](https://github.com/somerstep/CARROT)&nbsp;[[HF]](https://huggingface.co/CARROT-LLM-Routing) | 🎓&nbsp;UMich | 63.87 | 2.68 | 6.77 | 78.63 | 1.50 | 93.60 |
 | 7 | [Chayan](https://huggingface.co/adaptive-classifier/chayan)&nbsp;[[HF]](https://huggingface.co/adaptive-classifier/chayan) | 💼&nbsp;Adaptive&nbsp;Classifier | 63.83 | 43.03 | 43.75 | 88.74 | — | — |
 | 8 | [NotDiamond](https://www.notdiamond.ai/) | 💼&nbsp;NotDiamond | 63.00 | 1.55 | 2.14 | 76.81 | — | — |
-| 9 | [RouterBench‑MLP](https://arxiv.org/pdf/2403.12031)&nbsp;[[GH]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Academic | 57.56 | 13.39 | 24.45 | 83.32 | 90.91 | 96.90 |
+| 9 | [RouterBench‑MLP](https://arxiv.org/pdf/2403.12031)&nbsp;[[GH]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Martian | 57.56 | 13.39 | 24.45 | 83.32 | 90.91 | 96.90 |
 | 10 | [GraphRouter](https://arxiv.org/abs/2410.03834)&nbsp;[[GH]](https://github.com/ulab-uiuc/GraphRouter) | 🎓&nbsp;UIUC | 57.22 | 4.73 | 38.33 | 74.25 | 2.70 | 97.50 |
-| 11 | [RouterBench‑KNN](https://arxiv.org/pdf/2403.12031)&nbsp;[[GH]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Academic | 55.48 | 13.09 | 25.49 | 78.77 | 1.33 | 51.30 |
+| 11 | [RouterBench‑KNN](https://arxiv.org/pdf/2403.12031)&nbsp;[[GH]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Martian | 55.48 | 13.09 | 25.49 | 78.77 | 1.33 | 51.30 |
 | 12 | [RouteLLM](https://arxiv.org/abs/2406.18665)&nbsp;[[GH]](https://github.com/lm-sys/RouteLLM)&nbsp;[[HF]](https://huggingface.co/routellm) | 🎓&nbsp;Berkeley | 48.07 | 99.72 | 99.63 | 68.76 | 0.40 | 99.80 |
 | 13 | [RouterDC](https://arxiv.org/abs/2409.19886)&nbsp;[[GH]](https://github.com/shuhao02/RouterDC) | 🎓&nbsp;SUSTech | 33.75 | 39.84 | 73.00 | 49.05 | 10.75 | 97.60 |
 
-🎓 Academic  💼 Commercial 
+🎓 Open-source  💼 Closed-source 
 
 <!-- <p align="center">
   <img src="images/leaderboard.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
