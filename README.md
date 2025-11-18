@@ -40,7 +40,7 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 | 4 | [GPT‑5](https://openai.com/index/introducing-gpt-5/)| 💼&nbsp;OpenAI | 64.32 | — | — | — | — | — |
 | 5 | [vLLM‑SR](https://vllm-semantic-router.com/)&nbsp;[[GH]](https://github.com/vllm-project/semantic-router)&nbsp;[[HF]](https://huggingface.co/llm-semantic-router) | 💼&nbsp;vLLM | 64.32 | 4.79 | 12.54 | 79.33 | 0.19 | 100.00 |
 | 6 | [CARROT](https://arxiv.org/abs/2502.03261)&nbsp;[[GH]](https://github.com/somerstep/CARROT)&nbsp;[[HF]](https://huggingface.co/CARROT-LLM-Routing) | 🎓&nbsp;UMich | 63.87 | 2.68 | 6.77 | 78.63 | 1.50 | 93.60 |
-| 7 | [Chayan](https://huggingface.co/adaptive-classifier/chayan)&nbsp;[[HF]](https://huggingface.co/adaptive-classifier/chayan) | 💼&nbsp;Adaptive&nbsp;Classifier | 63.83 | 43.03 | 43.75 | 88.74 | — | — |
+| 7 | [Chayan](https://huggingface.co/adaptive-classifier/chayan)&nbsp;[[HF]](https://huggingface.co/adaptive-classifier/chayan) | 🎓&nbsp;Adaptive&nbsp;Classifier | 63.83 | 43.03 | 43.75 | 88.74 | — | — |
 | 8 | [NotDiamond](https://www.notdiamond.ai/) | 💼&nbsp;NotDiamond | 63.00 | 1.55 | 2.14 | 76.81 | — | — |
 | 9 | [RouterBench‑MLP](https://arxiv.org/pdf/2403.12031)&nbsp;[[GH]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Martian | 57.56 | 13.39 | 24.45 | 83.32 | 90.91 | 96.90 |
 | 10 | [GraphRouter](https://arxiv.org/abs/2410.03834)&nbsp;[[GH]](https://github.com/ulab-uiuc/GraphRouter) | 🎓&nbsp;UIUC | 57.22 | 4.73 | 38.33 | 74.25 | 2.70 | 97.50 |
