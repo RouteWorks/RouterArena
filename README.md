@@ -50,6 +50,231 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 
 🎓 Academic  💼 Commercial 
 
+
+<div style="overflow-x: auto; white-space: nowrap;">
+
+<table>
+  <thead>
+    <tr>
+      <th>Rankaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</th>
+      <th>Router</th>
+      <th>Affiliation</th>
+      <th>Arena</th>
+      <th>Opt.Sel</th>
+      <th>Opt.Cost</th>
+      <th>Opt.Acc</th>
+      <th>Lat</th>
+      <th>Robust</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🥇</td><td>[RouterDC](https://arxiv.org/abs/2409.19886) [[GH]](https://github.com/shuhao02/RouterDC)</td><td>🎓 USTC</td><td>66.89</td><td>3.44</td><td>19.62</td><td>78.18</td><td>27.03</td><td>94.50</td>
+    </tr>
+    <!-- add your other rows here -->
+  </tbody>
+</table>
+
+</div>
+
+
+| Rank | Router | Affiliation | Arena | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
+|------|--------------------|-----------------------------|--------|-----------------|--------------|----------------|---------|------------|
+| 🥇 | [MIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[GH]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.89 | 3.44 | 19.62 | 78.18 | 27.03 | 94.50 |
+| 🥈 | [Azure‑Router](https://ai.azure.com/catalog/models/model-router)&nbsp;[[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼&nbsp;Microsoft | 66.66 | 22.52 | 46.32 | 81.96 | — | — |
+| 🥉 | [NIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[GH]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.12 | 3.83 | 14.04 | 77.88 | 10.42 | 44.50 |
+| 4 | [GPT‑5](https://openai.com/index/introducing-gpt-5/)| 💼&nbsp;OpenAI | 64.32 | — | — | — | — | — |
+| 5 | [vLLM‑SR](https://vllm-semantic-router.com/)&nbsp;[[GH]](https://github.com/vllm-project/semantic-router)&nbsp;[[HF]](https://huggingface.co/llm-semantic-router) | 💼&nbsp;vLLM | 64.32 | 4.79 | 12.54 | 79.33 | 0.19 | 100.00 |
+| 6 | [CARROT](https://arxiv.org/abs/2502.03261)&nbsp;[[GH]](https://github.com/somerstep/CARROT)&nbsp;[[HF]](https://huggingface.co/CARROT-LLM-Routing) | 🎓&nbsp;UMich | 63.87 | 2.68 | 6.77 | 78.63 | 1.50 | 93.60 |
+| 7 | [Chayan](https://huggingface.co/adaptive-classifier/chayan)&nbsp;[[HF]](https://huggingface.co/adaptive-classifier/chayan) | 💼&nbsp;Adaptive&nbsp;Classifier | 63.83 | 43.03 | 43.75 | 88.74 | — | — |
+| 8 | [NotDiamond](https://www.notdiamond.ai/) | 💼&nbsp;NotDiamond | 63.00 | 1.55 | 2.14 | 76.81 | — | — |
+| 9 | [RouterBench‑MLP](https://arxiv.org/pdf/2403.12031)&nbsp;[[GH]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Academic | 57.56 | 13.39 | 24.45 | 83.32 | 90.91 | 96.90 |
+| 10 | [GraphRouter](https://arxiv.org/abs/2410.03834)&nbsp;[[GH]](https://github.com/ulab-uiuc/GraphRouter) | 🎓&nbsp;UIUC | 57.22 | 4.73 | 38.33 | 74.25 | 2.70 | 97.50 |
+| 11 | [RouterBench‑KNN](https://arxiv.org/pdf/2403.12031)&nbsp;[[GH]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Academic | 55.48 | 13.09 | 25.49 | 78.77 | 1.33 | 51.30 |
+| 12 | [RouteLLM](https://arxiv.org/abs/2406.18665)&nbsp;[[GH]](https://github.com/lm-sys/RouteLLM)&nbsp;[[HF]](https://huggingface.co/routellm) | 🎓&nbsp;Berkeley | 48.07 | 99.72 | 99.63 | 68.76 | 0.40 | 99.80 |
+| 13 | [RouterDC](https://arxiv.org/abs/2409.19886)&nbsp;[[GH]](https://github.com/shuhao02/RouterDC) | 🎓&nbsp;SUSTech | 33.75 | 39.84 | 73.00 | 49.05 | 10.75 | 97.60 |
+
+
+<div style="overflow-x: auto; white-space: nowrap;">
+
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Router</th>
+      <th>Affiliation</th>
+      <th>Arena</th>
+      <th>Optimal Selection</th>
+      <th>Optimal Cost</th>
+      <th>Optimal Accuracy</th>
+      <th>Latency</th>
+      <th>Robustness</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <tr>
+    <td>🥇</td>
+    <td><a href="https://arxiv.org/pdf/2506.01048">MIRT-BERT</a> <a href="https://github.com/Mercidaiha/IRT-Router">[GH]</a></td>
+    <td>🎓 USTC</td>
+    <td>66.89</td>
+    <td>3.44</td>
+    <td>19.62</td>
+    <td>78.18</td>
+    <td>27.03</td>
+    <td>94.50</td>
+  </tr>
+
+  <tr>
+    <td>🥈</td>
+    <td><a href="https://ai.azure.com/catalog/models/model-router">Azure-Router</a> <a href="https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router">[Web]</a></td>
+    <td>💼 Microsoft</td>
+    <td>66.66</td>
+    <td>22.52</td>
+    <td>46.32</td>
+    <td>81.96</td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td>🥉</td>
+    <td><a href="https://arxiv.org/pdf/2506.01048">NIRT-BERT</a> <a href="https://github.com/Mercidaiha/IRT-Router">[GH]</a></td>
+    <td>🎓 USTC</td>
+    <td>66.12</td>
+    <td>3.83</td>
+    <td>14.04</td>
+    <td>77.88</td>
+    <td>10.42</td>
+    <td>44.50</td>
+  </tr>
+
+  <tr>
+    <td>4</td>
+    <td><a href="https://openai.com/index/introducing-gpt-5/">GPT-5</a></td>
+    <td>💼 OpenAI</td>
+    <td>64.32</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td>5</td>
+    <td><a href="https://vllm-semantic-router.com/">vLLM-SR</a> <a href="https://github.com/vllm-project/semantic-router">[GH]</a> <a href="https://huggingface.co/llm-semantic-router">[HF]</a></td>
+    <td>💼 vLLM</td>
+    <td>64.32</td>
+    <td>4.79</td>
+    <td>12.54</td>
+    <td>79.33</td>
+    <td>0.19</td>
+    <td>100.00</td>
+  </tr>
+
+  <tr>
+    <td>6</td>
+    <td><a href="https://arxiv.org/abs/2502.03261">CARROT</a> <a href="https://github.com/somerstep/CARROT">[GH]</a> <a href="https://huggingface.co/CARROT-LLM-Routing">[HF]</a></td>
+    <td>🎓 UMich</td>
+    <td>63.87</td>
+    <td>2.68</td>
+    <td>6.77</td>
+    <td>78.63</td>
+    <td>1.50</td>
+    <td>93.60</td>
+  </tr>
+
+  <tr>
+    <td>7</td>
+    <td><a href="https://huggingface.co/adaptive-classifier/chayan">Chayan</a> <a href="https://huggingface.co/adaptive-classifier/chayan">[HF]</a></td>
+    <td>💼 Adaptive Classifier</td>
+    <td>63.83</td>
+    <td>43.03</td>
+    <td>43.75</td>
+    <td>88.74</td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td>8</td>
+    <td><a href="https://www.notdiamond.ai/">NotDiamond</a></td>
+    <td>💼 NotDiamond</td>
+    <td>63.00</td>
+    <td>1.55</td>
+    <td>2.14</td>
+    <td>76.81</td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td>9</td>
+    <td><a href="https://arxiv.org/pdf/2403.12031">RouterBench-MLP</a> <a href="https://github.com/withmartian/routerbench">[GH]</a> <a href="https://huggingface.co/datasets/withmartian/routerbench">[HF]</a></td>
+    <td>🎓 Academic</td>
+    <td>57.56</td>
+    <td>13.39</td>
+    <td>24.45</td>
+    <td>83.32</td>
+    <td>90.91</td>
+    <td>96.90</td>
+  </tr>
+
+  <tr>
+    <td>10</td>
+    <td><a href="https://arxiv.org/abs/2410.03834">GraphRouter</a> <a href="https://github.com/ulab-uiuc/GraphRouter">[GH]</a></td>
+    <td>🎓 UIUC</td>
+    <td>57.22</td>
+    <td>4.73</td>
+    <td>38.33</td>
+    <td>74.25</td>
+    <td>2.70</td>
+    <td>97.50</td>
+  </tr>
+
+  <tr>
+    <td>11</td>
+    <td><a href="https://arxiv.org/pdf/2403.12031">RouterBench-KNN</a> <a href="https://github.com/withmartian/routerbench">[GH]</a> <a href="https://huggingface.co/datasets/withmartian/routerbench">[HF]</a></td>
+    <td>🎓 Academic</td>
+    <td>55.48</td>
+    <td>13.09</td>
+    <td>25.49</td>
+    <td>78.77</td>
+    <td>1.33</td>
+    <td>51.30</td>
+  </tr>
+
+  <tr>
+    <td>12</td>
+    <td><a href="https://arxiv.org/abs/2406.18665">RouteLLM</a> <a href="https://github.com/lm-sys/RouteLLM">[GH]</a> <a href="https://huggingface.co/routellm">[HF]</a></td>
+    <td>🎓 Berkeley</td>
+    <td>48.07</td>
+    <td>99.72</td>
+    <td>99.63</td>
+    <td>68.76</td>
+    <td>0.40</td>
+    <td>99.80</td>
+  </tr>
+
+  <tr>
+    <td>13</td>
+    <td><a href="https://arxiv.org/abs/2409.19886">RouterDC</a> <a href="https://github.com/shuhao02/RouterDC">[GH]</a></td>
+    <td>🎓 SUSTech</td>
+    <td>33.75</td>
+    <td>39.84</td>
+    <td>73.00</td>
+    <td>49.05</td>
+    <td>10.75</td>
+    <td>97.60</td>
+  </tr>
+
+</tbody>
+</table>
+
+</div>
+
+
 <!-- <p align="center">
   <img src="images/leaderboard.png" alt="Make GPU Sharing Flexible and Easy" width="500" />
 </p> -->
