@@ -66,15 +66,9 @@ jobs:
 
       - name: Prepare dataset
         if: ${{ steps.detect.outputs.router != '' }}
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           set -euo pipefail
-          # Verify HF_TOKEN is set if needed for private datasets
-          if [[ -z "${HF_TOKEN:-}" ]]; then
-            echo "⚠ Warning: HF_TOKEN not set. This may fail if accessing private datasets."
-          fi
-          # Always prepare dataset to ensure it's available
+          # Prepare dataset from public repository
           echo "Preparing dataset..."
           mkdir -p "${{ github.workspace }}/dataset"
           uv run python scripts/process_datasets/prep_datasets.py
@@ -84,7 +78,6 @@ jobs:
         id: evaluate
         env:
           ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           set -euo pipefail
           uv run python automation/process_pr_submission.py \

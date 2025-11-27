@@ -25,6 +25,8 @@ import sys
 import logging
 import datetime
 import math
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, Any, List, Optional
 
 # Add parent directory to path for imports
@@ -143,10 +145,10 @@ def save_predictions_file(predictions: List[Dict[str, Any]], router_name: str) -
 
 def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
     """
-    Load ground truth dataset based on split from local disk or private repo.
+    Load ground truth dataset based on split from local disk.
 
-    For "full" split: If HF_TOKEN is available, loads from RouteWorks/RouterEvalBenchmark
-    (private repo with answers). Otherwise, loads from local disk (public dataset without answers).
+    The dataset is loaded from the public RouteWorks/RouterArena repository
+    and saved locally by prep_datasets.py.
 
     Args:
         split: Dataset split ("sub_10" for testing or "full" for submission)
@@ -160,65 +162,20 @@ def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
     if split not in ["sub_10", "full"]:
         raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
 
-    router_eval_bench_df = None
-    hf_token = os.getenv("HF_TOKEN") or os.getenv("HUGGING_FACE_HUB_TOKEN")
-
-    # For "full" split, try private repo first if token is available
-    if split == "full" and hf_token:
-        logger.info("Loading full dataset with answers from private repo...")
-        try:
-            router_arena_dataset = load_dataset(
-                "RouteWorks/RouterEvalBenchmark",
-                split="full",
-                token=hf_token,
-            )
-            router_eval_bench_df = pd.DataFrame(router_arena_dataset)
-            logger.info("Successfully loaded from private repo.")
-        except Exception as e:
-            logger.warning(
-                f"Could not load from private repo: {e}. Falling back to local dataset."
-            )
 
     # Load from local disk if not already loaded
-    if router_eval_bench_df is None:
-        dataset_path = (
-            "./dataset/routerarena_10" if split == "sub_10" else "./dataset/routerarena"
+    dataset_path = (
+        "./dataset/routerarena_10" if split == "sub_10" else "./dataset/routerarena"
+    )
+    if not os.path.exists(dataset_path):
+        raise FileNotFoundError(
+            f"Dataset not found at {dataset_path}. "
+            f"Please run: python scripts/process_datasets/prep_datasets.py"
         )
-        if not os.path.exists(dataset_path):
-            raise FileNotFoundError(
-                f"Dataset not found at {dataset_path}. "
-                f"Please run: python scripts/process_datasets/prep_datasets.py"
-            )
-        logger.info(f"Loading dataset from {dataset_path}...")
-        router_arena_dataset = load_from_disk(dataset_path)
-        router_eval_bench_df = pd.DataFrame(router_arena_dataset)
+    logger.info(f"Loading dataset from {dataset_path}...")
+    router_arena_dataset = load_from_disk(dataset_path)
+    router_eval_bench_df = pd.DataFrame(router_arena_dataset)
 
-    # Verify answers exist for "full" split
-    if split == "full":
-        sample_size = min(100, len(router_eval_bench_df))
-        sample_answers = router_eval_bench_df.head(sample_size)["Answer"]
-        has_answers = any(
-            answer and str(answer).strip() != "" for answer in sample_answers
-        )
-
-        if not has_answers:
-            logger.error("=" * 80)
-            logger.error(
-                "WARNING: The 'full' split does not contain ground truth answers."
-            )
-            logger.error("")
-            logger.error("To submit predictions for the full dataset evaluation:")
-            logger.error("1. Generate predictions for the full dataset")
-            logger.error("2. Create a pull request to the RouterArena repository")
-            logger.error("3. Include your predictions file in the PR")
-            logger.error(
-                "4. The official evaluation would be automatically conducted for you"
-            )
-            logger.error("=" * 80)
-            raise ValueError(
-                "The 'full' split does not have ground truth answers. "
-                "Use 'sub_10' for local testing, or submit your predictions via issue for full evaluation."
-            )
 
     # Convert to dictionary keyed by global_index
     ground_truth_map = {}
@@ -404,17 +361,20 @@ def evaluate_single_prediction(
 
 
 def process_router_predictions(
-    router_name: str, split: str, save_interval: int = 50
+    router_name: str, split: str, save_interval: int = 50, num_workers: int = 4
 ) -> None:
     """
     Process router predictions by evaluating generated results with incremental saving.
+    Uses multi-threading for parallel evaluation.
 
     Args:
         router_name: Name of the router
         split: Dataset split ("sub_10" or "full")
         save_interval: Number of entries to process before saving (default: 50)
+        num_workers: Number of worker threads for parallel processing (default: 4)
     """
     logger.info(f"Starting LLM evaluation for router: {router_name} (split: {split})")
+    logger.info(f"Using {num_workers} worker threads for parallel processing")
 
     # Load predictions
     predictions = load_predictions_file(router_name)
@@ -422,15 +382,21 @@ def process_router_predictions(
     # Load ground truth dataset
     ground_truth_map = load_ground_truth_dataset(split)
 
-    # Initialize model evaluator
+    # Initialize model evaluator (shared across threads - should be thread-safe for read operations)
     evaluator = ModelEvaluator(cached_results_dir="./cached_results")
 
+    # Thread-safe statistics tracking
+    stats_lock = threading.Lock()
+    save_lock = threading.Lock()
+    
     # Statistics
     total = len(predictions)
+    processed_count = 0  # Counter for progress reporting
     evaluated_count = 0
     skipped_count = 0
     failed_count = 0
     already_evaluated_count = 0
+    completed_seq_indices = set()  # Track which sequence indices have been completed
 
     start_time = datetime.datetime.now()
 
@@ -438,7 +404,9 @@ def process_router_predictions(
         "The dataset contains entries from LiveCodeBench, and it is common to wait for ~10 minutes to evaluate the sub_10 split of the dataset."
     )
 
-    # Process each prediction with incremental saving
+    # Prepare tasks: filter out already evaluated entries
+    # Note: This loop runs in the main thread before threading starts, so no lock needed
+    tasks = []
     for i, prediction in enumerate(predictions):
         # Check if already evaluated (has accuracy and cost)
         if (
@@ -447,28 +415,89 @@ def process_router_predictions(
         ):
             already_evaluated_count += 1
             evaluated_count += 1
+            processed_count += 1
             continue
+        
+        # Store (index, prediction) - index is the sequence number in the original list
+        tasks.append((i, prediction))
 
-        # Evaluate the prediction
-        success = evaluate_single_prediction(prediction, ground_truth_map, evaluator)
+    logger.info(f"Found {len(tasks)} entries to evaluate ({already_evaluated_count} already evaluated)")
 
-        if success:
-            evaluated_count += 1
-        else:
-            skipped_count += 1
+    def evaluate_task(seq_idx, prediction):
+        """
+        Evaluate a single prediction task.
+        
+        Args:
+            seq_idx: Sequence number (index) of this prediction in the original list
+            prediction: The prediction dictionary to evaluate (modifies in-place)
+        """
+        nonlocal processed_count, evaluated_count, skipped_count, failed_count
+        try:
+            # Evaluate the prediction (modifies prediction dict in-place)
+            success = evaluate_single_prediction(prediction, ground_truth_map, evaluator)
+            
+            # Update statistics
+            with stats_lock:
+                if success:
+                    evaluated_count += 1
+                else:
+                    skipped_count += 1
+                processed_count += 1
+                current_count = processed_count
+            
+            # Save and log if this seq_idx is a save milestone
+            # Save when seq_idx is a multiple of save_interval
+            if (
+                save_interval > 0 
+                and save_interval <= total 
+                and seq_idx % save_interval == 0
+            ):
+                with save_lock:
+                    # Save the entire predictions list
+                    # This is safe because each thread modifies a different index
+                    save_predictions_file(predictions, router_name)
+                    
+                    elapsed_time = (datetime.datetime.now() - start_time).total_seconds() / 60
+                    with stats_lock:
+                        logger.info(
+                            f"Progress: seq_idx={seq_idx} ({current_count}/{total} processed) | "
+                            f"Evaluated: {evaluated_count} | Skipped: {skipped_count} | "
+                            f"Elapsed: {elapsed_time:.1f}min | Saved checkpoint"
+                        )
+            
+            # Log completion with sequence number for tracking
+            if logger.isEnabledFor(logging.DEBUG):
+                logger.debug(f"Completed evaluation for sequence index {seq_idx}: {'success' if success else 'skipped'}")
+            
+            return success
+        except Exception as e:
+            logger.error(f"Error evaluating entry at sequence index {seq_idx}: {e}")
+            with stats_lock:
+                failed_count += 1
+                processed_count += 1
+            return False
 
-        # Incremental save every save_interval entries (if save_interval is reasonable)
-        if save_interval <= total and (i + 1) % save_interval == 0:
-            save_predictions_file(predictions, router_name)
-            elapsed_time = (datetime.datetime.now() - start_time).total_seconds() / 60
-            logger.info(
-                f"Progress: {i + 1}/{total} processed | "
-                f"Evaluated: {evaluated_count} | Skipped: {skipped_count} | "
-                f"Elapsed: {elapsed_time:.1f}min | Saved checkpoint"
-            )
+    # Process tasks in parallel using ThreadPoolExecutor
+    # Each task gets (seq_idx, prediction) and modifies prediction in-place
+    # This is safe because each thread modifies a different list element
+    with ThreadPoolExecutor(max_workers=num_workers) as executor:
+        # Submit all tasks - unpack the tuple directly
+        future_to_task = {
+            executor.submit(evaluate_task, seq_idx, prediction): (seq_idx, prediction)
+            for seq_idx, prediction in tasks
+        }
+        
+        # Process completed tasks
+        for future in as_completed(future_to_task):
+            try:
+                future.result()  # This will raise any exceptions that occurred
+            except Exception as e:
+                seq_idx, _ = future_to_task[future]
+                logger.error(f"Task at sequence index {seq_idx} failed with exception: {e}")
 
     # Final save
-    save_predictions_file(predictions, router_name)
+    with save_lock:
+        save_predictions_file(predictions, router_name)
 
     # Final summary
     end_time = datetime.datetime.now()
@@ -598,6 +627,12 @@ def main():
         choices=["DEBUG", "INFO", "WARNING", "ERROR"],
         help="Logging level (default: INFO)",
     )
+    parser.add_argument(
+        "--num-workers",
+        type=int,
+        default=8,
+        help="Number of worker threads for parallel processing (default: 4). Set to 1 for sequential processing.",
+    )
 
     args = parser.parse_args()
 
@@ -620,7 +655,9 @@ def main():
         save_interval = (
             args.save_interval if args.save_interval > 0 else len(predictions) + 1
         )
-        process_router_predictions(args.router_name, args.split, save_interval)
+        process_router_predictions(
+            args.router_name, args.split, save_interval, args.num_workers
+        )
     except KeyboardInterrupt:
         logger.info("\nInterrupted by user. Saving partial results...")
         try:
