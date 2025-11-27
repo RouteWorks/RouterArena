@@ -170,15 +170,27 @@ def build_formatted_prompts_from_router_eval_benchmark(
             global_index_parts = row["Global Index"].split("_")
             if global_index_parts[0] == "Ethics" and len(global_index_parts) >= 2:
                 dataset_name_full = f"{global_index_parts[0]}_{global_index_parts[1]}"
+            elif global_index_parts[0] == "ChessInstruct" and len(global_index_parts) >= 2:
+                dataset_name_full = f"{global_index_parts[0]}_{global_index_parts[1]}"
             else:
                 dataset_name_full = global_index_parts[0]
         else:
             dataset_name_full = row.get("Dataset name")
 
+        # Build options string if present (needed for ChessInstruct determination)
+        options_list = row.get("Options")
+        has_options = options_list is not None and len(options_list) > 0 if options_list else False
+
         if "Ethics" in dataset_name_full:
             base_dataset_name = dataset_name_full
-        elif "ChessInstruct_mcq" in dataset_name_full:
-            base_dataset_name = dataset_name_full
+        elif "ChessInstruct" in dataset_name_full:
+            # Determine ChessInstruct vs ChessInstruct_mcq based on whether entry has options
+            # Only use ChessInstruct_mcq if the entry actually has options
+            # Ignore the dataset name field as it may be incorrect in the source data
+            if has_options:
+                base_dataset_name = "ChessInstruct_mcq"
+            else:
+                base_dataset_name = "ChessInstruct"
         else:
             base_dataset_name = str(dataset_name_full).split("_", 1)[0]
 
@@ -187,8 +199,7 @@ def build_formatted_prompts_from_router_eval_benchmark(
         )
         eval_params = dataset_configs[base_dataset_name]
 
-        # Build options string if present
-        options_list = row.get("Options")
+        # Build options string if present (options_list already retrieved above)
         options_str = ""
         if options_list:
             letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -227,7 +238,7 @@ def build_formatted_prompts_from_router_eval_benchmark(
             prompt_formatted = safe_format_prompt(
                 eval_params.get("prompt", "{Question}"),
                 Question=question,
-                Answer=row.get("Answer", ""),
+                Answer="",
             )
         elif base_dataset_name == "SuperGLUE-Wic":
             prompt_formatted = safe_format_prompt(
