@@ -179,7 +179,7 @@ def build_formatted_prompts_from_router_eval_benchmark(
 
         # Build options string if present (needed for ChessInstruct determination)
         options_list = row.get("Options")
-        has_options = options_list is not None and len(options_list) > 0 if options_list else False
+        has_options = options_list is not None and len(options_list) > 0
 
         if "Ethics" in dataset_name_full:
             base_dataset_name = dataset_name_full
