@@ -396,7 +396,6 @@ def process_router_predictions(
     skipped_count = 0
     failed_count = 0
     already_evaluated_count = 0
-    completed_seq_indices = set()  # Track which sequence indices have been completed
 
     start_time = datetime.datetime.now()
 
@@ -423,13 +422,16 @@ def process_router_predictions(
 
     logger.info(f"Found {len(tasks)} entries to evaluate ({already_evaluated_count} already evaluated)")
 
-    def evaluate_task(seq_idx, prediction):
+    def evaluate_task(seq_idx: int, prediction: Dict[str, Any]) -> bool:
         """
         Evaluate a single prediction task.
         
         Args:
             seq_idx: Sequence number (index) of this prediction in the original list
             prediction: The prediction dictionary to evaluate (modifies in-place)
+        
+        Returns:
+            True if evaluation succeeded, False otherwise
         """
         nonlocal processed_count, evaluated_count, skipped_count, failed_count
         try:
