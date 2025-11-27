@@ -156,12 +156,11 @@ def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
     Returns:
         Dictionary mapping global_index to ground truth data
     """
-    from datasets import load_dataset, load_from_disk
+    from datasets import load_from_disk
     import pandas as pd
 
     if split not in ["sub_10", "full"]:
         raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
-
 
     # Load from local disk if not already loaded
     dataset_path = (
@@ -175,7 +174,6 @@ def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
     logger.info(f"Loading dataset from {dataset_path}...")
     router_arena_dataset = load_from_disk(dataset_path)
     router_eval_bench_df = pd.DataFrame(router_arena_dataset)
-
 
     # Convert to dictionary keyed by global_index
     ground_truth_map = {}
@@ -388,7 +386,7 @@ def process_router_predictions(
     # Thread-safe statistics tracking
     stats_lock = threading.Lock()
     save_lock = threading.Lock()
-    
+
     # Statistics
     total = len(predictions)
     processed_count = 0  # Counter for progress reporting
@@ -416,28 +414,32 @@ def process_router_predictions(
             evaluated_count += 1
             processed_count += 1
             continue
-        
+
         # Store (index, prediction) - index is the sequence number in the original list
         tasks.append((i, prediction))
 
-    logger.info(f"Found {len(tasks)} entries to evaluate ({already_evaluated_count} already evaluated)")
+    logger.info(
+        f"Found {len(tasks)} entries to evaluate ({already_evaluated_count} already evaluated)"
+    )
 
     def evaluate_task(seq_idx: int, prediction: Dict[str, Any]) -> bool:
         """
         Evaluate a single prediction task.
-        
+
         Args:
             seq_idx: Sequence number (index) of this prediction in the original list
             prediction: The prediction dictionary to evaluate (modifies in-place)
-        
+
         Returns:
             True if evaluation succeeded, False otherwise
         """
         nonlocal processed_count, evaluated_count, skipped_count, failed_count
         try:
             # Evaluate the prediction (modifies prediction dict in-place)
-            success = evaluate_single_prediction(prediction, ground_truth_map, evaluator)
-            
+            success = evaluate_single_prediction(
+                prediction, ground_truth_map, evaluator
+            )
+
             # Update statistics
             with stats_lock:
                 if success:
@@ -446,31 +448,35 @@ def process_router_predictions(
                     skipped_count += 1
                 processed_count += 1
                 current_count = processed_count
-            
+
             # Save and log if this seq_idx is a save milestone
             # Save when seq_idx is a multiple of save_interval
             if (
-                save_interval > 0 
-                and save_interval <= total 
+                save_interval > 0
+                and save_interval <= total
                 and seq_idx % save_interval == 0
             ):
                 with save_lock:
                     # Save the entire predictions list
                     # This is safe because each thread modifies a different index
                     save_predictions_file(predictions, router_name)
-                    
-                    elapsed_time = (datetime.datetime.now() - start_time).total_seconds() / 60
+
+                    elapsed_time = (
+                        datetime.datetime.now() - start_time
+                    ).total_seconds() / 60
                     with stats_lock:
                         logger.info(
                             f"Progress: seq_idx={seq_idx} ({current_count}/{total} processed) | "
                             f"Evaluated: {evaluated_count} | Skipped: {skipped_count} | "
                             f"Elapsed: {elapsed_time:.1f}min | Saved checkpoint"
                         )
-            
+
             # Log completion with sequence number for tracking
             if logger.isEnabledFor(logging.DEBUG):
-                logger.debug(f"Completed evaluation for sequence index {seq_idx}: {'success' if success else 'skipped'}")
-            
+                logger.debug(
+                    f"Completed evaluation for sequence index {seq_idx}: {'success' if success else 'skipped'}"
+                )
+
             return success
         except Exception as e:
             logger.error(f"Error evaluating entry at sequence index {seq_idx}: {e}")
@@ -488,14 +494,16 @@ def process_router_predictions(
             executor.submit(evaluate_task, seq_idx, prediction): (seq_idx, prediction)
             for seq_idx, prediction in tasks
         }
-        
+
         # Process completed tasks
         for future in as_completed(future_to_task):
             try:
                 future.result()  # This will raise any exceptions that occurred
             except Exception as e:
                 seq_idx, _ = future_to_task[future]
-                logger.error(f"Task at sequence index {seq_idx} failed with exception: {e}")
+                logger.error(
+                    f"Task at sequence index {seq_idx} failed with exception: {e}"
+                )
 
     # Final save
     with save_lock:

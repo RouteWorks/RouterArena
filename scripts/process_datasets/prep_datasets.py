@@ -22,7 +22,6 @@ router_benchmark = load_dataset("RouteWorks/RouterArena", split="full")
 router_benchmark.save_to_disk(os.path.join(save_dir, "routerarena"))
 
 
-
 def escape_format_braces(text):
     """
     Escape curly braces in input text to prevent them from being interpreted
