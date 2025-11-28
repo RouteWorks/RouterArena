@@ -170,7 +170,10 @@ def build_formatted_prompts_from_router_eval_benchmark(
             global_index_parts = row["Global Index"].split("_")
             if global_index_parts[0] == "Ethics" and len(global_index_parts) >= 2:
                 dataset_name_full = f"{global_index_parts[0]}_{global_index_parts[1]}"
-            elif global_index_parts[0] == "ChessInstruct" and len(global_index_parts) >= 2:
+            elif (
+                global_index_parts[0] == "ChessInstruct"
+                and len(global_index_parts) >= 2
+            ):
                 dataset_name_full = f"{global_index_parts[0]}_{global_index_parts[1]}"
             else:
                 dataset_name_full = global_index_parts[0]
