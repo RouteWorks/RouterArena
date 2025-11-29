@@ -58,12 +58,6 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 
 # Evaluating Your Router
 
-To use our framework to evaluate your router and get your router on the leaderboard, you can follow the steps below. The evaluation pipelines include two stages as shown in the diagram below. First, you need to generate a prediction file for your router. Then, you can open a Pull Request with your router's prediction file to trigger our automated evaluation workflow.
-
-<p align="center">
-  <img src="images/pipeline.png" alt="RouterArena Evaluation Pipeline" width="700" />
-</p>
-
 ## 1. Setup
 
 ### Step 1.1: Install uv and RouterArena
@@ -96,7 +90,7 @@ See the [`ModelInference`](./llm_inference/model_inference.py) class for the com
 
 ## 2. Get Routing Decisions
 
-Follow the steps below to obtain your router's model choices for each query. Start with the `sub_10` split (a 10% subset with ground-truth answers) for local testing. Once your setup works, you can evaluate on the `full` dataset (ground-truth answers are hidden) for official leaderboard submission.
+Follow the steps below to obtain your router's model choices for each query. Start with the `sub_10` split (a 10% subse) for local testing. Once your setup works, you can evaluate on the `full` dataset for full local evaluation and official leaderboard submission.
 
 ### Step 2.1: Prepare Config File
 
@@ -169,9 +163,17 @@ uv run python ./llm_inference/run.py your-router
 
 The script loads your prediction file, makes API calls using the models specified in the `prediction` field, and saves results incrementally. It uses cached results when available and saves progress after each query, so you can safely interrupt and resume. Results are saved to `./cached_results/` for reuse across routers.
 
-## 4. Leaderboard Evaluation via Pull Request
+## 4. Run Router Evaluation
 
-If you want to evaluate your router on the full dataset, you can submit a Pull Request with your prediction file:
+As the last step, run the evaluation script:
+
+```bash
+uv run python ./llm_evaluation/run.py your-router [sub_10|full]
+```
+
+# Submitting to the leaderboard
+
+To get your router on the leaderboard, you can open a Pull Request with your router's prediction file to trigger our automated evaluation workflow. Details are as follows:
 
 1. **Add your files**:
    - `router_inference/config/<router_name>.json` - Your router configuration
@@ -182,17 +184,13 @@ If you want to evaluate your router on the full dataset, you can submit a Pull R
    - Post results as a comment on your PR
    - Update the leaderboard upon approval
 
-## Local Evaluation (sub_10 split)
+The Figure below shows the evaluation pipeline.
 
-For local evaluation on the `sub_10` split, run the evaluation script:
+<p align="center">
+  <img src="images/pipeline.png" alt="RouterArena Evaluation Pipeline" width="700" />
+</p>
 
-```bash
-uv run python ./llm_evaluation/run.py your-router sub_10
-```
-
-The script evaluates generated answers against ground truth, calculates inference costs, and computes router-level metrics. It skips already-evaluated entries, making it safe to re-run or resume.
-
-## Contributing
+# Contributing
 
 We welcome and appreciate contributions and collaborations of any kind.
 
@@ -209,7 +207,7 @@ Before pushing your code, run the following and make sure your code passes all c
 pre-commit run --all-files
 ```
 
-## Contacts
+# Contacts
 
 Feel free to contact us for contributions and collaborations.
 
@@ -218,7 +216,7 @@ Yifan Lu (yifan.lu@rice.edu)
 Jiarong Xing (jxing@rice.edu)
 ```
 
-## Citation:
+# Citation:
 If you find our project helpful, please give us a star and cite us by:
 
 ```bibtax
