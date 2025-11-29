@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="images/routerarena_logo_8.jpeg" alt="RouterArena logo" height="96" />
+  <img src="images/routerarena_logo_v2.png" alt="RouterArena logo" height="96" />
 
   <br>
   <p>
