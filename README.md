@@ -90,7 +90,7 @@ See the [`ModelInference`](./llm_inference/model_inference.py) class for the com
 
 ## 2. Get Routing Decisions
 
-Follow the steps below to obtain your router's model choices for each query. Start with the `sub_10` split (a 10% subse) for local testing. Once your setup works, you can evaluate on the `full` dataset for full local evaluation and official leaderboard submission.
+Follow the steps below to obtain your router's model choices for each query. Start with the `sub_10` split (a 10% subset) for local testing. Once your setup works, you can evaluate on the `full` dataset for full local evaluation and official leaderboard submission.
 
 ### Step 2.1: Prepare Config File
 
