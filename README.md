@@ -58,12 +58,6 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 
 # Evaluating Your Router
 
-To use our framework to evaluate your router and get your router on the leaderboard, you can follow the steps below. The evaluation pipelines include two stages as shown in the diagram below. First, you need to generate a prediction file for your router. Then, you can open a Pull Request with your router's prediction file to trigger our automated evaluation workflow.
-
-<p align="center">
-  <img src="images/pipeline.png" alt="RouterArena Evaluation Pipeline" width="700" />
-</p>
-
 ## 1. Setup
 
 ### Step 1.1: Install uv and RouterArena
@@ -169,9 +163,17 @@ uv run python ./llm_inference/run.py your-router
 
 The script loads your prediction file, makes API calls using the models specified in the `prediction` field, and saves results incrementally. It uses cached results when available and saves progress after each query, so you can safely interrupt and resume. Results are saved to `./cached_results/` for reuse across routers.
 
-## 4. Leaderboard Evaluation via Pull Request
+## 4. Local Evaluation
 
-If you want to evaluate your router on the full dataset, you can submit a Pull Request with your prediction file:
+As the last step, run the evaluation script:
+
+```bash
+uv run python ./llm_evaluation/run.py your-router [sub_10|full]
+```
+
+## Submitting to the leaderboard
+
+To get your router on the leaderboard, you can open a Pull Request with your router's prediction file to trigger our automated evaluation workflow. Details are as follows:
 
 1. **Add your files**:
    - `router_inference/config/<router_name>.json` - Your router configuration
@@ -182,15 +184,11 @@ If you want to evaluate your router on the full dataset, you can submit a Pull R
    - Post results as a comment on your PR
    - Update the leaderboard upon approval
 
-## Local Evaluation
+The Figure below shows the evaluation pipeline.
 
-For local evaluation, run the evaluation script:
-
-```bash
-uv run python ./llm_evaluation/run.py your-router [sub_10|full]
-```
-
-The script evaluates generated answers against ground truth, calculates inference costs, and computes router-level metrics. It skips already-evaluated entries, making it safe to re-run or resume.
+<p align="center">
+  <img src="images/pipeline.png" alt="RouterArena Evaluation Pipeline" width="700" />
+</p>
 
 ## Contributing
 
