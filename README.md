@@ -163,7 +163,7 @@ uv run python ./llm_inference/run.py your-router
 
 The script loads your prediction file, makes API calls using the models specified in the `prediction` field, and saves results incrementally. It uses cached results when available and saves progress after each query, so you can safely interrupt and resume. Results are saved to `./cached_results/` for reuse across routers.
 
-## 4. Local Evaluation
+## 4. Run Router Evaluation
 
 As the last step, run the evaluation script:
 
