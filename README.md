@@ -171,7 +171,7 @@ As the last step, run the evaluation script:
 uv run python ./llm_evaluation/run.py your-router [sub_10|full]
 ```
 
-## Submitting to the leaderboard
+# Submitting to the leaderboard
 
 To get your router on the leaderboard, you can open a Pull Request with your router's prediction file to trigger our automated evaluation workflow. Details are as follows:
 
@@ -190,7 +190,7 @@ The Figure below shows the evaluation pipeline.
   <img src="images/pipeline.png" alt="RouterArena Evaluation Pipeline" width="700" />
 </p>
 
-## Contributing
+# Contributing
 
 We welcome and appreciate contributions and collaborations of any kind.
 
@@ -207,7 +207,7 @@ Before pushing your code, run the following and make sure your code passes all c
 pre-commit run --all-files
 ```
 
-## Contacts
+# Contacts
 
 Feel free to contact us for contributions and collaborations.
 
@@ -216,7 +216,7 @@ Yifan Lu (yifan.lu@rice.edu)
 Jiarong Xing (jxing@rice.edu)
 ```
 
-## Citation:
+# Citation:
 If you find our project helpful, please give us a star and cite us by:
 
 ```bibtax
