@@ -182,12 +182,12 @@ If you want to evaluate your router on the full dataset, you can submit a Pull R
    - Post results as a comment on your PR
    - Update the leaderboard upon approval
 
-## Local Evaluation (sub_10 split)
+## Local Evaluation
 
-For local evaluation on the `sub_10` split, run the evaluation script:
+For local evaluation, run the evaluation script:
 
 ```bash
-uv run python ./llm_evaluation/run.py your-router sub_10
+uv run python ./llm_evaluation/run.py your-router [sub_10|full]
 ```
 
 The script evaluates generated answers against ground truth, calculates inference costs, and computes router-level metrics. It skips already-evaluated entries, making it safe to re-run or resume.
