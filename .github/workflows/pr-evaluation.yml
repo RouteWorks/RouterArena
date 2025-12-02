@@ -114,7 +114,7 @@ jobs:
           mkdir -p base/router_inference/predictions
           cp "pr/router_inference/predictions/${ROUTER_NAME}.json" \
              "base/router_inference/predictions/${ROUTER_NAME}.json"
-          echo "✅ Copied prediction file from PR to base workspace"
+          echo "Copied prediction file from PR to base workspace"
 
       - name: Evaluate submission
         if: ${{ steps.detect.outputs.router != '' }}
@@ -145,7 +145,7 @@ jobs:
             const fs = require('fs');
             const path = require('path');
 
-            let comment = '## 📊 Router Evaluation Results\n\n';
+            let comment = '## Router Evaluation Results\n\n';
             comment += `**Router:** \`${{ steps.detect.outputs.router }}\`\n`;
             comment += `**Dataset Split:** \`${{ steps.detect.outputs.split }}\`\n\n`;
 
@@ -180,11 +180,11 @@ jobs:
                   comment += `| **Avg Cost per 1K Queries** | $${metrics.avg_cost_per_1000.toFixed(4)} |\n`;
                   comment += `| **Number of Queries** | ${metrics.num_queries} |\n`;
                 } else {
-                  comment += '⚠️ Could not parse evaluation metrics from output.\n';
+                  comment += 'Warning: Could not parse evaluation metrics from output.\n';
                 }
               }
             } catch (error) {
-              comment += `⚠️ Error reading metrics: ${error.message}\n`;
+              comment += `Warning: Error reading metrics: ${error.message}\n`;
             }
 
             comment += '\n---\n';
@@ -197,4 +197,4 @@ jobs:
               repo: context.repo.repo,
               body: comment
             });
-            console.log('✅ Successfully posted evaluation results as PR comment');
+            console.log('Successfully posted evaluation results as PR comment');
