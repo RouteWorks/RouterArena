@@ -22,7 +22,7 @@
     "prompt": "Please read the following multiple-choice questions and provide the most likely correct answer based on the options given.\n\nContext: None\n\nQuestion: The postings list should be sorted by: ( ).\n\nOptions: \nA. Document Frequency\nB. DoclD\nC. TermID\nD. Term frequency\n\n\nProvide the correct letter choice in \\boxed{X}, where X is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
     "prediction": "glm-4-air",
     "generated_result": {
-      "generated_answer": "\\boxed{D}",
+      "generated_answer": "\\boxed{Louielu}",
       "success": true,
       "token_usage": {
         "input_tokens": 94,
