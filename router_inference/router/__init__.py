@@ -5,6 +5,5 @@
 
 from router_inference.router.base_router import BaseRouter
 from router_inference.router.example_router import ExampleRouter
-from router_inference.router.test_glm4air_router import TestGLM4AirRouter
 
-__all__ = ["BaseRouter", "ExampleRouter", "TestGLM4AirRouter"]
+__all__ = ["BaseRouter", "ExampleRouter"]
