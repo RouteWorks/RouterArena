@@ -783,10 +783,12 @@ def compute_optimality_from_predictions(
             if not router_model:
                 continue
 
-            # Skip if accuracy or cost is None or 0
-            if router_accuracy is None or router_cost is None:
-                continue
-            if router_accuracy == 0 and router_cost == 0:
+            # Skip if accuracy or cost is None or both are 0
+            if (
+                router_accuracy is None
+                or router_cost is None
+                or (router_accuracy == 0 and router_cost == 0)
+            ):
                 continue
 
             # Get all model results for this query
@@ -961,15 +963,9 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
             )
             if optimality_scores:
                 logger.info(
-                    f"Opt.Sel (Optimal Selection): {optimality_scores['opt_sel']:.4f}"
-                )
-                logger.info(
-                    f"Opt.Cost (Optimal Cost Ratio): {optimality_scores['opt_cost']:.4f}"
-                )
-                logger.info(
-                    f"Opt.Acc (Optimal Accuracy Ratio): {optimality_scores['opt_acc']:.4f}"
-                )
-                logger.info(
+                    f"Opt.Sel (Optimal Selection): {optimality_scores['opt_sel']:.4f} | "
+                    f"Opt.Cost (Optimal Cost Ratio): {optimality_scores['opt_cost']:.4f} | "
+                    f"Opt.Acc (Optimal Accuracy Ratio): {optimality_scores['opt_acc']:.4f} | "
                     f"Queries Evaluated for Optimality: {optimality_scores['queries_with_optimal_data']}/{optimality_scores['num_sub10_queries']}"
                 )
 
