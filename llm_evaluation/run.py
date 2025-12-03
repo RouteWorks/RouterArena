@@ -27,7 +27,8 @@ import datetime
 import math
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any, List, Optional, Tuple, Set
+from universal_model_names import ModelNameManager
 
 # Add parent directory to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
@@ -41,7 +42,6 @@ except ImportError:
     # dotenv is optional
     pass
 
-from universal_model_names import ModelNameManager
 
 # Import model evaluator from current directory
 from evaluate_models import ModelEvaluator
@@ -552,6 +552,183 @@ def process_router_predictions(
     compute_router_metrics(predictions, router_name)
 
 
+def _prepare_optimality_data(
+    predictions: List[Dict[str, Any]],
+) -> Optional[Tuple[Set[str], Dict[str, Dict[str, Any]], List[Dict[str, Any]]]]:
+    """
+    Load sub_10 dataset and separate predictions into router selections and optimality entries.
+
+    Args:
+        predictions: List of all prediction dictionaries (regular + optimality)
+
+    Returns:
+        Tuple of (sub10_indices, router_selections, optimality_entries), or None if dataset not found
+    """
+    # Load sub_10 dataset to identify which entries are relevant
+    dataset_path = "./dataset/router_data_10.json"
+    if not os.path.exists(dataset_path):
+        logger.warning(f"Sub_10 dataset not found at {dataset_path}")
+        return None
+
+    with open(dataset_path, "r", encoding="utf-8") as f:
+        sub10_dataset = json.load(f)
+
+    sub10_indices: Set[str] = set()
+    for entry in sub10_dataset:
+        idx = entry.get("global index") or entry.get("global_index")
+        if idx is not None:
+            sub10_indices.add(str(idx))
+
+    # Separate predictions into router selections and optimality entries
+    router_selections: Dict[str, Dict[str, Any]] = {}  # {global_index: prediction_dict}
+    optimality_entries: List[Dict[str, Any]] = []  # List of optimality prediction dicts
+
+    for prediction in predictions:
+        global_index_raw = prediction.get("global index") or prediction.get(
+            "global_index"
+        )
+        if global_index_raw is None:
+            continue
+        global_index = str(global_index_raw)
+
+        # Only process sub_10 entries
+        if global_index not in sub10_indices:
+            continue
+
+        if prediction.get("for_optimality", False):
+            optimality_entries.append(prediction)
+        else:
+            router_selections[global_index] = prediction
+
+    if not router_selections:
+        logger.warning("No router selections found for sub_10 queries")
+        return None
+
+    return sub10_indices, router_selections, optimality_entries
+
+
+def _build_evaluation_dict(
+    router_selections: Dict[str, Dict[str, Any]],
+    optimality_entries: List[Dict[str, Any]],
+) -> Dict[str, Dict[str, Tuple[float, float]]]:
+    """
+    Build evaluation dictionary mapping global_index to model results.
+
+    Args:
+        router_selections: Dictionary mapping global_index to router prediction dict
+        optimality_entries: List of optimality prediction dicts
+
+    Returns:
+        Dictionary mapping global_index to model results: {global_index: {model: (accuracy, cost)}}
+    """
+    evaluation_dict: Dict[str, Dict[str, Tuple[float, float]]] = {}
+
+    # Add router selections
+    for global_index, pred in router_selections.items():
+        if not global_index:  # Skip if None
+            continue
+        model = pred.get("prediction")
+        accuracy = pred.get("accuracy")
+        cost = pred.get("cost")
+
+        if model and accuracy is not None and cost is not None:
+            if global_index not in evaluation_dict:
+                evaluation_dict[global_index] = {}
+            evaluation_dict[global_index][model] = (accuracy, cost)
+
+    # Add optimality entries (other models evaluated for same queries)
+    for pred in optimality_entries:
+        global_index_raw = pred.get("global index") or pred.get("global_index")
+        if global_index_raw is None:
+            continue
+        global_index = str(global_index_raw)
+        model = pred.get("prediction")
+        accuracy = pred.get("accuracy")
+        cost = pred.get("cost")
+
+        if model and accuracy is not None and cost is not None:
+            if global_index not in evaluation_dict:
+                evaluation_dict[global_index] = {}
+            evaluation_dict[global_index][model] = (accuracy, cost)
+
+    return evaluation_dict
+
+
+def _find_optimal_model(
+    model_results: Dict[str, Tuple[float, float]],
+) -> Optional[Tuple[str, float, float]]:
+    """
+    Find optimal model for a single query.
+
+    Optimal model is defined as the model with perfect accuracy (acc >= 1.0) and lowest cost.
+
+    Args:
+        model_results: Dictionary mapping model names to (accuracy, cost) tuples
+
+    Returns:
+        Tuple of (optimal_model_name, optimal_accuracy, optimal_cost), or None if no optimal model found
+    """
+    optimal_model_name: Optional[str] = None
+    optimal_accuracy: Optional[float] = None
+    optimal_cost = float("inf")
+
+    for model, (acc, cost) in model_results.items():
+        # Only consider models with perfect accuracy
+        if acc >= 1.0 and cost is not None and cost < optimal_cost:
+            optimal_accuracy = acc
+            optimal_cost = cost
+            optimal_model_name = model
+
+    if optimal_model_name is None or optimal_accuracy is None:
+        return None
+
+    return optimal_model_name, optimal_accuracy, optimal_cost
+
+
+def _calculate_optimality_metrics(
+    optimal_selections: int,
+    queries_with_optimal_data: int,
+    total_optimal_cost: float,
+    total_router_cost: float,
+    total_optimal_accuracy: float,
+    total_router_accuracy: float,
+) -> Dict[str, float]:
+    """
+    Calculate final optimality metrics from accumulated data.
+
+    Args:
+        optimal_selections: Number of queries where router selected optimal model
+        queries_with_optimal_data: Total number of queries with optimal data
+        total_optimal_cost: Sum of optimal costs
+        total_router_cost: Sum of router costs
+        total_optimal_accuracy: Sum of optimal accuracies
+        total_router_accuracy: Sum of router accuracies
+
+    Returns:
+        Dictionary with opt_sel, opt_cost, and opt_acc metrics
+    """
+    # Compute final metrics as decimals (0-1, not percentages)
+    opt_sel = (
+        (optimal_selections / queries_with_optimal_data)
+        if queries_with_optimal_data > 0
+        else 0.0
+    )
+    # Cost efficiency: total optimal cost / total router cost
+    opt_cost = total_optimal_cost / total_router_cost if total_router_cost > 0 else 0.0
+    # Accuracy efficiency: total router accuracy / total optimal accuracy
+    opt_acc = (
+        total_router_accuracy / total_optimal_accuracy
+        if total_optimal_accuracy > 0
+        else 0.0
+    )
+
+    return {
+        "opt_sel": opt_sel,
+        "opt_cost": opt_cost,
+        "opt_acc": opt_acc,
+    }
+
+
 def compute_optimality_from_predictions(
     predictions: List[Dict[str, Any]], router_name: str
 ) -> Optional[Dict[str, Any]]:
@@ -575,87 +752,25 @@ def compute_optimality_from_predictions(
         Dictionary with optimality metrics, or None if computation fails
     """
     try:
-        # 1. Load sub_10 dataset to identify which entries are relevant
-        dataset_path = "./dataset/router_data_10.json"
-        if not os.path.exists(dataset_path):
-            logger.warning(f"Sub_10 dataset not found at {dataset_path}")
+        # 1. Prepare data: load dataset and separate predictions
+        prepared_data = _prepare_optimality_data(predictions)
+        if prepared_data is None:
             return None
+        sub10_indices, router_selections, optimality_entries = prepared_data
 
-        with open(dataset_path, "r", encoding="utf-8") as f:
-            sub10_dataset = json.load(f)
-
-        sub10_indices = {
-            entry.get("global index") or entry.get("global_index")
-            for entry in sub10_dataset
-        }
-
-        # 2. Separate predictions into router selections and optimality entries
-        router_selections = {}  # {global_index: prediction_dict}
-        optimality_entries = []  # List of optimality prediction dicts
-
-        for prediction in predictions:
-            global_index = prediction.get("global index") or prediction.get(
-                "global_index"
-            )
-
-            # Only process sub_10 entries
-            if global_index not in sub10_indices:
-                continue
-
-            if prediction.get("for_optimality", False):
-                optimality_entries.append(prediction)
-            else:
-                router_selections[global_index] = prediction
-
-        if not router_selections:
-            logger.warning("No router selections found for sub_10 queries")
-            return None
-
-        # 3. Build evaluation dict: {global_index: {model: (accuracy, cost)}}
-        # This includes both router selections and optimality entries
-        evaluation_dict: Dict[str, Dict[str, Tuple[float, float]]] = {}
-
-        # Add router selections
-        for global_index, pred in router_selections.items():
-            if not global_index:  # Skip if None
-                continue
-            model = pred.get("prediction")
-            accuracy = pred.get("accuracy")
-            cost = pred.get("cost")
-
-            if model and accuracy is not None and cost is not None:
-                if global_index not in evaluation_dict:
-                    evaluation_dict[global_index] = {}
-                evaluation_dict[global_index][model] = (accuracy, cost)
-
-        # Add optimality entries (other models evaluated for same queries)
-        for pred in optimality_entries:
-            global_index = pred.get("global index") or pred.get("global_index")
-            if not global_index:  # Skip if None
-                continue
-            model = pred.get("prediction")
-            accuracy = pred.get("accuracy")
-            cost = pred.get("cost")
-
-            if model and accuracy is not None and cost is not None:
-                if global_index not in evaluation_dict:
-                    evaluation_dict[global_index] = {}
-                evaluation_dict[global_index][model] = (accuracy, cost)
-
+        # 2. Build evaluation dictionary
+        evaluation_dict = _build_evaluation_dict(router_selections, optimality_entries)
         if not evaluation_dict:
             logger.warning("No evaluated entries found for optimality computation")
             return None
 
-        # 4. For each query, find optimal model and compare with router selection
+        # 3. For each query, find optimal model and compare with router selection
         optimal_selections = 0
         total_optimal_cost = 0.0
         total_router_cost = 0.0
         total_optimal_accuracy = 0.0
         total_router_accuracy = 0.0
         queries_with_optimal_data = 0
-
-        # Initialize model name manager for converting model names (same as leaderboard)
-        from universal_model_names import ModelNameManager
 
         model_name_manager = ModelNameManager()
 
@@ -680,23 +795,15 @@ def compute_optimality_from_predictions(
 
             model_results = evaluation_dict[global_index]
 
-            # Find optimal model among models with perfect accuracy (acc >= 1.0)
-            # Optimal = perfect accuracy with lowest cost
-            optimal_model_name = None
-            optimal_accuracy = None
-            optimal_cost = float("inf")
+            # Find optimal model
+            optimal_result = _find_optimal_model(model_results)
+            if optimal_result is None:
+                continue
 
-            for model, (acc, cost) in model_results.items():
-                # Only consider models with perfect accuracy
-                if acc >= 1.0 and cost is not None and cost < optimal_cost:
-                    optimal_accuracy = acc
-                    optimal_cost = cost
-                    optimal_model_name = model
+            optimal_model_name, optimal_accuracy, optimal_cost = optimal_result
 
-            # Skip this query if:
-            # 1. No model achieved perfect accuracy, OR
-            # 2. Router didn't achieve perfect accuracy
-            if optimal_model_name is None or router_accuracy < 1.0:
+            # Skip if router didn't achieve perfect accuracy
+            if router_accuracy < 1.0:
                 continue
 
             queries_with_optimal_data += 1
@@ -732,21 +839,14 @@ def compute_optimality_from_predictions(
                 total_optimal_cost += optimal_cost
                 total_router_cost += router_cost
 
-        # 5. Compute final metrics as decimals (0-1, not percentages)
-        opt_sel = (
-            (optimal_selections / queries_with_optimal_data)
-            if queries_with_optimal_data > 0
-            else 0.0
-        )
-        # Cost efficiency: total optimal cost / total router cost
-        opt_cost = (
-            total_optimal_cost / total_router_cost if total_router_cost > 0 else 0.0
-        )
-        # Accuracy efficiency: total router accuracy / total optimal accuracy
-        opt_acc = (
-            total_router_accuracy / total_optimal_accuracy
-            if total_optimal_accuracy > 0
-            else 0.0
+        # 4. Calculate final metrics
+        metrics = _calculate_optimality_metrics(
+            optimal_selections,
+            queries_with_optimal_data,
+            total_optimal_cost,
+            total_router_cost,
+            total_optimal_accuracy,
+            total_router_accuracy,
         )
 
         logger.info(
@@ -759,9 +859,7 @@ def compute_optimality_from_predictions(
             "num_sub10_queries": len(sub10_indices),
             "queries_with_optimal_data": queries_with_optimal_data,
             "optimal_selections": optimal_selections,
-            "opt_sel": opt_sel,
-            "opt_cost": opt_cost,
-            "opt_acc": opt_acc,
+            **metrics,
         }
 
     except Exception as e:
@@ -851,7 +949,8 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
     logger.info(f"Average Cost per 1K Queries: ${avg_cost_per_1000:.4f}")
     logger.info(f"RouterArena Score: {arena_score:.4f}")
 
-    # Compute optimality scores if we have optimality entries
+    # Compute optimality scores if we have optimality entries (compute once, reuse for logging and metrics)
+    optimality_scores = None
     if optimality_predictions:
         logger.info("\n" + "-" * 80)
         logger.info("Computing Optimality Scores...")
@@ -910,24 +1009,15 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
         "num_queries": num_queries,
     }
 
-    # Add optimality scores if available
-    if optimality_predictions:
-        try:
-            optimality_scores = compute_optimality_from_predictions(
-                predictions, router_name
-            )
-            if optimality_scores:
-                metrics_dict["optimality"] = {
-                    "opt_sel": optimality_scores["opt_sel"],
-                    "opt_cost": optimality_scores["opt_cost"],
-                    "opt_acc": optimality_scores["opt_acc"],
-                    "queries_with_optimal_data": optimality_scores[
-                        "queries_with_optimal_data"
-                    ],
-                    "num_sub10_queries": optimality_scores["num_sub10_queries"],
-                }
-        except Exception as e:
-            logger.warning(f"Could not compute optimality scores for metrics.json: {e}")
+    # Add optimality scores if available (reuse previously computed result)
+    if optimality_scores:
+        metrics_dict["optimality"] = {
+            "opt_sel": optimality_scores["opt_sel"],
+            "opt_cost": optimality_scores["opt_cost"],
+            "opt_acc": optimality_scores["opt_acc"],
+            "queries_with_optimal_data": optimality_scores["queries_with_optimal_data"],
+            "num_sub10_queries": optimality_scores["num_sub10_queries"],
+        }
 
     # Save to metrics.json
     metrics_path = "./metrics.json"

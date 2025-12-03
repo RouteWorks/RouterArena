@@ -141,7 +141,7 @@ jobs:
             const fs = require('fs');
             const path = require('path');
 
-            let comment = '## 📊 Router Evaluation Results\n\n';
+            let comment = '## Router Evaluation Results\n\n';
             comment += `**Router:** \`${{ steps.detect.outputs.router }}\`\n`;
             comment += `**Dataset Split:** \`${{ steps.detect.outputs.split }}\`\n\n`;
 
