@@ -9,10 +9,11 @@ import pickle
 import zlib
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
-from datasets import load_dataset, load_from_disk
+from datasets import load_dataset, load_from_disk  # type: ignore[import]
 from typing import Dict, Any, List
 
 save_dir = "./dataset/"
+os.makedirs(save_dir, exist_ok=True)
 
 # Load public dataset (without answers for full split)
 router_benchmark = load_dataset("RouteWorks/RouterArena", split="sub_10")
@@ -20,6 +21,22 @@ router_benchmark.save_to_disk(os.path.join(save_dir, "routerarena_10"))
 
 router_benchmark = load_dataset("RouteWorks/RouterArena", split="full")
 router_benchmark.save_to_disk(os.path.join(save_dir, "routerarena"))
+
+router_benchmark_robustness = load_dataset("RouteWorks/RouterArena", split="robustness")
+robustness_records = []
+for row in router_benchmark_robustness:
+    robustness_records.append(
+        {
+            "prompt_formatted": row.get("Question", ""),
+            "global index": row.get("Global Index"),
+        }
+    )
+robustness_json_path = os.path.join(save_dir, "router_robustness.json")
+with open(robustness_json_path, "w", encoding="utf-8") as f:
+    json.dump(robustness_records, f, ensure_ascii=False, indent=2)
+print(
+    f"[prep] Wrote {len(robustness_records)} items to {os.path.join(save_dir, 'routerarena_robustness.json')}"
+)
 
 
 def escape_format_braces(text):
