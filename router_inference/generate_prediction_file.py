@@ -11,7 +11,7 @@ testing the RouterArena pipeline.
 Usage:
     python router_inference/generate_prediction_file.py <router_name> <split>
 
-    split: either "sub_10" for 10% split (809 entries) or "full" (8400 entries)
+    split: one of "sub_10", "full", or "robustness"
 """
 
 import argparse
@@ -29,6 +29,7 @@ from router_inference.router import ExampleRouter, BaseRouter
 DATASET_PATHS = {
     "sub_10": "./dataset/router_data_10.json",
     "full": "./dataset/router_data.json",
+    "robustness": "./dataset/router_robustness.json",
 }
 
 
@@ -37,7 +38,7 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
     Load dataset file.
 
     Args:
-        split: Either "sub_10" or "full"
+        split: One of the supported dataset splits (sub_10, full, robustness)
 
     Returns:
         List of dataset entries
@@ -45,7 +46,9 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
     dataset_path = DATASET_PATHS.get(split)
 
     if not dataset_path:
-        raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
+        raise ValueError(
+            f"Invalid split: {split}. Must be one of {list(DATASET_PATHS.keys())}"
+        )
 
     if not os.path.exists(dataset_path):
         raise FileNotFoundError(f"Dataset file not found: {dataset_path}")
@@ -64,23 +67,30 @@ def generate_predictions(
     include_optimality: bool = True,
 ) -> List[Dict[str, Any]]:
     """
-    Generate predictions using the router, including optimality entries for sub_10.
+    Generate predictions using the router, optionally including optimality entries.
 
-    For full split:
+    For the `full` split:
     - Generates 8400 regular entries
     - For sub_10 queries within the full split, generates optimality entries for other models
+
+    For `robustness`:
+    - Generates regular entries only (no optimality augmentation)
 
     Args:
         dataset: List of dataset entries
         router: Router instance to use for predictions
         model_pool: List of all models in the router's pool
-        split: Dataset split ("sub_10" or "full")
-        include_optimality: Whether to include optimality entries (default: True)
+        split: Dataset split ("sub_10", "full", or "robustness")
+        include_optimality: Whether to include optimality entries (default: True for supported splits)
 
     Returns:
-        List of prediction dictionaries including optimality entries
+        List of prediction dictionaries including optimality entries when applicable
     """
     predictions = []
+
+    # Only full/sub_10 support optimality augmentation
+    if split not in {"sub_10", "full"}:
+        include_optimality = False
 
     # Load sub_10 indices to identify which entries need optimality calculations
     sub10_indices = set()
@@ -159,7 +169,9 @@ def generate_predictions(
     return predictions
 
 
-def save_predictions(predictions: List[Dict[str, Any]], router_name: str) -> None:
+def save_predictions(
+    predictions: List[Dict[str, Any]], router_name: str, split: str
+) -> None:
     """
     Save predictions to file.
 
@@ -167,7 +179,10 @@ def save_predictions(predictions: List[Dict[str, Any]], router_name: str) -> Non
         predictions: List of prediction dictionaries
         router_name: Name of the router
     """
-    prediction_path = f"./router_inference/predictions/{router_name}.json"
+    filename = router_name
+    if split == "robustness":
+        filename = f"{router_name}-robustness"
+    prediction_path = f"./router_inference/predictions/{filename}.json"
 
     # Create directory if it doesn't exist
     os.makedirs(os.path.dirname(prediction_path), exist_ok=True)
@@ -191,8 +206,8 @@ def main():
     parser.add_argument(
         "split",
         type=str,
-        choices=["sub_10", "full"],
-        help="Dataset split: 'sub_10' for 10%% split or 'full'",
+        choices=list(DATASET_PATHS.keys()),
+        help="Dataset split: 'sub_10', 'full', or 'robustness'",
     )
     parser.add_argument(
         "--no-optimality",
@@ -238,12 +253,19 @@ def main():
     # Generate predictions
     print("\n[4] Generating predictions...")
     include_optimality = not args.no_optimality
-    if include_optimality:
+    optimality_reason = None
+    if args.no_optimality:
+        optimality_reason = "--no-optimality flag set"
+    elif args.split not in {"sub_10", "full"}:
+        optimality_reason = "not supported for robustness split"
+
+    if optimality_reason:
+        include_optimality = False
+        print(f"  Skipping optimality entries ({optimality_reason})")
+    else:
         print(
             "  Including optimality entries for automatic optimality score calculation"
         )
-    else:
-        print("  Skipping optimality entries (--no-optimality flag set)")
 
     predictions = generate_predictions(
         dataset, router, model_pool, args.split, include_optimality
@@ -252,7 +274,7 @@ def main():
 
     # Save predictions
     print("\n[5] Saving predictions...")
-    save_predictions(predictions, args.router_name)
+    save_predictions(predictions, args.router_name, args.split)
 
     print("\n" + "=" * 80)
     print("✓ Prediction file generation completed!")
