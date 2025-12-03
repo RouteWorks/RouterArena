@@ -15,30 +15,32 @@ This script validates:
 Usage:
     python router_inference/check_config_prediction_files.py <router_name> <split>
 
-    split: either "sub_10" for 10% split or "full" for full dataset
+    split: one of "sub_10", "full", or "robustness"
 """
 
 import argparse
 import json
 import os
 import sys
-from typing import Dict, Any, List, Set, Tuple
+from typing import Dict, Any, List, Set, Tuple, Optional
 
 # Add parent directory to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 
 from universal_model_names import ModelNameManager
 
-# Expected dataset sizes
+# Expected dataset sizes (robustness derived from dataset length)
 EXPECTED_SIZES = {
     "sub_10": 809,
     "full": 8400,
+    "robustness": 420,
 }
 
 # Dataset file paths
 DATASET_PATHS = {
     "sub_10": "./dataset/router_data_10.json",
     "full": "./dataset/router_data.json",
+    "robustness": "./dataset/router_robustness.json",
 }
 
 
@@ -63,7 +65,7 @@ def load_config(router_name: str) -> Dict[str, Any]:
     return config
 
 
-def load_predictions(router_name: str) -> List[Dict[str, Any]]:
+def load_predictions(router_name: str, split: str) -> List[Dict[str, Any]]:
     """
     Load router predictions file.
 
@@ -73,7 +75,10 @@ def load_predictions(router_name: str) -> List[Dict[str, Any]]:
     Returns:
         List of prediction dictionaries
     """
-    prediction_path = f"./router_inference/predictions/{router_name}.json"
+    filename = router_name
+    if split == "robustness":
+        filename = f"{router_name}-robustness"
+    prediction_path = f"./router_inference/predictions/{filename}.json"
 
     if not os.path.exists(prediction_path):
         raise FileNotFoundError(f"Prediction file not found: {prediction_path}")
@@ -89,7 +94,7 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
     Load dataset file.
 
     Args:
-        split: Either "sub_10" or "full"
+        split: One of the supported dataset splits (sub_10, full, robustness)
 
     Returns:
         List of dataset entries
@@ -97,7 +102,9 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
     dataset_path = DATASET_PATHS.get(split)
 
     if not dataset_path:
-        raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
+        raise ValueError(
+            f"Invalid split: {split}. Must be one of {list(DATASET_PATHS.keys())}"
+        )
 
     if not os.path.exists(dataset_path):
         raise FileNotFoundError(f"Dataset file not found: {dataset_path}")
@@ -242,22 +249,30 @@ def check_config_models(config: Dict[str, Any]) -> Tuple[bool, List[str]]:
 
 
 def check_prediction_size(
-    predictions: List[Dict[str, Any]], split: str
+    predictions: List[Dict[str, Any]],
+    split: str,
+    expected_size_override: Optional[int] = None,
 ) -> Tuple[bool, str]:
     """
     Check that predictions have the correct number of entries.
 
     Args:
         predictions: List of prediction dictionaries
-        split: Either "sub_10" or "full"
+        split: Dataset split identifier
+        expected_size_override: Expected size derived from dataset length (optional)
 
     Returns:
         Tuple of (is_valid, error_message)
     """
-    expected_size = EXPECTED_SIZES.get(split)
+    expected_size = (
+        expected_size_override
+        if expected_size_override is not None
+        else EXPECTED_SIZES.get(split)
+    )
 
     if expected_size is None:
-        return False, f"Invalid split: {split}. Must be 'sub_10' or 'full'"
+        # Unknown split size; skip strict validation
+        return True, ""
 
     # Count only regular entries (exclude optimality entries for size check)
     regular_predictions = [p for p in predictions if not p.get("for_optimality", False)]
@@ -453,8 +468,8 @@ def main():
     parser.add_argument(
         "split",
         type=str,
-        choices=["sub_10", "full"],
-        help="Dataset split: 'sub_10' for 10%% split (809 entries) or 'full' (8400 entries)",
+        choices=list(DATASET_PATHS.keys()),
+        help="Dataset split: 'sub_10', 'full', or 'robustness'",
     )
     parser.add_argument(
         "--check-generated-result",
@@ -510,19 +525,10 @@ def main():
     # Check 2: Load and validate predictions
     print("\n[2] Checking prediction file...")
     try:
-        predictions = load_predictions(args.router_name)
+        predictions = load_predictions(args.router_name, args.split)
         print(
             f"✓ Predictions loaded from ./router_inference/predictions/{args.router_name}.json"
         )
-
-        # Check size
-        size_valid, size_error = check_prediction_size(predictions, args.split)
-        if size_valid:
-            print(f"✓ Prediction file has correct size: {len(predictions)} entries")
-        else:
-            print(f"✗ {size_error}")
-            all_valid = False
-            errors_summary.append(size_error)
 
     except Exception as e:
         print(f"✗ Error loading predictions: {e}")
@@ -535,6 +541,17 @@ def main():
     try:
         dataset = load_dataset(args.split)
         print(f"✓ Dataset loaded: {len(dataset)} entries")
+
+        if predictions is not None:
+            size_valid, size_error = check_prediction_size(
+                predictions, args.split, len(dataset)
+            )
+            if size_valid:
+                print("✓ Prediction file has correct size")
+            else:
+                print(f"✗ {size_error}")
+                all_valid = False
+                errors_summary.append(size_error)
 
         if predictions is not None and valid_models:
             fields_valid, field_errors = check_prediction_fields(
