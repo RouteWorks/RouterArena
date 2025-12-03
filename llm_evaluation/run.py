@@ -963,9 +963,9 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
             )
             if optimality_scores:
                 logger.info(
-                    f"Opt.Sel (Optimal Selection): {optimality_scores['opt_sel']:.4f} | "
-                    f"Opt.Cost (Optimal Cost Ratio): {optimality_scores['opt_cost']:.4f} | "
-                    f"Opt.Acc (Optimal Accuracy Ratio): {optimality_scores['opt_acc']:.4f} | "
+                    f"Opt.Sel (Optimal Selection): {optimality_scores['opt_sel']:.4f}\n"
+                    f"Opt.Cost (Optimal Cost Ratio): {optimality_scores['opt_cost']:.4f}\n"
+                    f"Opt.Acc (Optimal Accuracy Ratio): {optimality_scores['opt_acc']:.4f}\n"
                     f"Queries Evaluated for Optimality: {optimality_scores['queries_with_optimal_data']}/{optimality_scores['num_sub10_queries']}"
                 )
 
