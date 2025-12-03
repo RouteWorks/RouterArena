@@ -35,7 +35,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 
 # Load environment variables from .env file if it exists
 try:
-    from dotenv import load_dotenv
+    from dotenv import load_dotenv  # type: ignore[import]
 
     load_dotenv()
 except ImportError:
@@ -124,6 +124,17 @@ def load_predictions_file(router_name: str) -> List[Dict[str, Any]]:
     return predictions
 
 
+def load_predictions_from_path(path: str) -> List[Dict[str, Any]]:
+    """
+    Load predictions directly from an absolute or relative file path.
+    """
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Prediction file not found: {path}")
+
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def save_predictions_file(predictions: List[Dict[str, Any]], router_name: str) -> None:
     """
     Save predictions back to file.
@@ -156,8 +167,8 @@ def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
     Returns:
         Dictionary mapping global_index to ground truth data
     """
-    from datasets import load_from_disk
-    import pandas as pd
+    from datasets import load_from_disk  # type: ignore[import]
+    import pandas as pd  # type: ignore[import]
 
     if split not in ["sub_10", "full"]:
         raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
@@ -208,7 +219,7 @@ def get_livecodebench_ground_truth(global_index: str) -> Optional[Dict[str, Any]
     """
     global _livecodebench_cache
     try:
-        from datasets import load_from_disk
+        from datasets import load_from_disk  # type: ignore[import]
 
         # Load LiveCodeBench dataset (cache it if needed)
         if _livecodebench_cache is None:
@@ -364,6 +375,7 @@ def process_router_predictions(
     save_interval: int = 50,
     num_workers: int = 4,
     force: bool = False,
+    robustness_predictions_path: Optional[str] = None,
 ) -> None:
     """
     Process router predictions by evaluating generated results with incremental saving.
@@ -379,6 +391,7 @@ def process_router_predictions(
         save_interval: Number of entries to process before saving (default: 50)
         num_workers: Number of worker threads for parallel processing (default: 4)
         force: If True, re-evaluate all entries even if already evaluated (default: False)
+        robustness_predictions_path: Optional path to the robustness predictions file
     """
     logger.info(f"Starting LLM evaluation for router: {router_name} (split: {split})")
     logger.info(f"Using {num_workers} worker threads for parallel processing")
@@ -548,8 +561,27 @@ def process_router_predictions(
     )
     logger.info("=" * 60)
 
+    # Load robustness predictions if requested
+    robustness_predictions = None
+    if robustness_predictions_path:
+        try:
+            robustness_predictions = load_predictions_from_path(
+                robustness_predictions_path
+            )
+            logger.info(
+                f"Loaded robustness predictions from {robustness_predictions_path}"
+            )
+        except FileNotFoundError:
+            logger.warning(
+                f"Robustness predictions not found at {robustness_predictions_path}"
+            )
+        except Exception as e:
+            logger.warning(
+                f"Could not load robustness predictions from {robustness_predictions_path}: {e}"
+            )
+
     # Compute and display router-level metrics
-    compute_router_metrics(predictions, router_name)
+    compute_router_metrics(predictions, router_name, robustness_predictions)
 
 
 def _prepare_optimality_data(
@@ -869,7 +901,130 @@ def compute_optimality_from_predictions(
         return None
 
 
-def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) -> None:
+def _normalize_model_name(model_name: str, name_manager: ModelNameManager) -> str:
+    """
+    Convert the model name to its universal form, falling back gracefully.
+    """
+    try:
+        return name_manager.get_universal_name(model_name)
+    except Exception:
+        return model_name
+
+
+def compute_robustness_score(
+    full_predictions: List[Dict[str, Any]],
+    robustness_predictions: List[Dict[str, Any]],
+) -> Optional[float]:
+    """
+    Align full split predictions using the robustness split and only count overlapping queries.
+    """
+    name_manager = ModelNameManager()
+
+    # Build a map for the full split keeping only router selections (skip optimality entries)
+    full_map: Dict[str, Dict[str, Any]] = {}
+    for pred in full_predictions:
+        if pred.get("for_optimality", False):
+            continue
+        global_index = pred.get("global index") or pred.get("global_index")
+        if global_index is None:
+            continue
+        key = str(global_index)
+        if key not in full_map:
+            full_map[key] = pred
+
+    if not full_map:
+        return None
+
+    matched = 0
+    flips = 0
+    for robust_pred in robustness_predictions:
+        global_index = robust_pred.get("global index") or robust_pred.get(
+            "global_index"
+        )
+        if global_index is None:
+            continue
+        key = str(global_index)
+        full_entry = full_map.get(key)
+        if not full_entry:
+            continue
+
+        full_model = full_entry.get("prediction")
+        robust_model = robust_pred.get("prediction")
+        if not full_model or not robust_model:
+            continue
+
+        matched += 1
+        full_model_norm = _normalize_model_name(full_model, name_manager)
+        robust_model_norm = _normalize_model_name(robust_model, name_manager)
+        if full_model_norm != robust_model_norm:
+            flips += 1
+
+    if matched == 0:
+        return None
+
+    logger.info("Matched: %d, Flips: %d", matched, flips)
+
+    return 1.0 - flips / matched
+
+
+def run_robustness_only(router_name: str, robustness_path: Optional[str]) -> None:
+    """
+    Compute robustness score without running full evaluation.
+
+    Args:
+        router_name: Name of the router whose full split predictions will be used.
+        robustness_path: Path to robustness predictions; if None, resolve to default.
+    """
+
+    default_path = os.path.join(
+        "./router_inference/predictions", f"{router_name}-robustness.json"
+    )
+    target_path = robustness_path or default_path
+
+    logger.info(
+        "Computing robustness score using %s (full) and %s (robustness)",
+        f"./router_inference/predictions/{router_name}.json",
+        target_path,
+    )
+
+    predictions = load_predictions_file(router_name)
+
+    try:
+        robustness_predictions = load_predictions_from_path(target_path)
+    except FileNotFoundError:
+        logger.error(
+            "Robustness predictions not found at %s. "
+            "Generate them with router_inference/generate_prediction_file.py <router> robustness.",
+            target_path,
+        )
+        sys.exit(1)
+    except Exception as exc:
+        logger.error(
+            "Unable to load robustness predictions from %s: %s", target_path, exc
+        )
+        sys.exit(1)
+
+    score = compute_robustness_score(predictions, robustness_predictions)
+    if score is None:
+        logger.error(
+            "Could not compute robustness score because no overlapping global indices were found."
+        )
+        sys.exit(1)
+
+    logger.info("Robustness score: %.4f", score)
+
+    metrics_path = "./metrics.json"
+    metrics_payload = {"robustness_score": score}
+    with open(metrics_path, "w", encoding="utf-8") as fp:
+        json.dump(metrics_payload, fp, indent=2)
+    logger.info("Robustness metrics saved to %s", metrics_path)
+
+
+def compute_router_metrics(
+    predictions: List[Dict[str, Any]],
+    router_name: str,
+    robustness_predictions: Optional[List[Dict[str, Any]]] = None,
+) -> None:
     """
     Compute router-level metrics (accuracy, cost, RouterArena score, etc.) and display them.
 
@@ -1015,6 +1170,23 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
             "num_sub10_queries": optimality_scores["num_sub10_queries"],
         }
 
+    robustness_score = None
+    if robustness_predictions:
+        logger.info("\n" + "-" * 80)
+        logger.info("Computing Robustness Score (model selection flip ratio)...")
+        logger.info("-" * 80)
+        robustness_score = compute_robustness_score(predictions, robustness_predictions)
+        if robustness_score is not None:
+            logger.info(
+                f"Robustness flip ratio: {robustness_score:.4f} "
+                f"({robustness_score * 100:.2f}% differing selections)"
+            )
+            metrics_dict["robustness_score"] = robustness_score
+        else:
+            logger.warning(
+                "Robustness score could not be computed because no overlapping entries were found."
+            )
+
     # Save to metrics.json
     metrics_path = "./metrics.json"
     with open(metrics_path, "w") as f:
@@ -1034,9 +1206,13 @@ def main():
     )
     parser.add_argument(
         "split",
+        nargs="?",
         type=str,
         choices=["sub_10", "full"],
-        help="Dataset split to use for evaluation ('sub_10' for testing with answers, 'full' for submission)",
+        help=(
+            "Dataset split to use for evaluation ('sub_10' for testing with answers, "
+            "'full' for submission). Optional when only computing robustness score."
+        ),
     )
     parser.add_argument(
         "--cached-results-dir",
@@ -1069,6 +1245,15 @@ def main():
         default=False,
         help="Force re-evaluation of all entries, even if already evaluated (default: False)",
     )
+    parser.add_argument(
+        "--calculate-robustness-score",
+        action="store_true",
+        default=False,
+        help=(
+            "Compute robustness score only (no split required). "
+            "Will compare full predictions with the robustness predictions."
+        ),
+    )
 
     args = parser.parse_args()
 
@@ -1084,6 +1269,20 @@ def main():
     base_dir = os.path.abspath(os.path.join(current_dir, "../"))
     os.chdir(base_dir)
 
+    robustness_path = None
+    if args.calculate_robustness_score:
+        robustness_path = os.path.join(
+            "./router_inference/predictions", f"{args.router_name}-robustness.json"
+        )
+
+    if args.split is None:
+        if not args.calculate_robustness_score:
+            parser.error(
+                "split is required unless --calculate-robustness-score is provided."
+            )
+        run_robustness_only(args.router_name, robustness_path)
+        return
+
     # Run evaluation
     try:
         # If save_interval is 0, only save at the end
@@ -1091,8 +1290,14 @@ def main():
         save_interval = (
             args.save_interval if args.save_interval > 0 else len(predictions) + 1
         )
+
         process_router_predictions(
-            args.router_name, args.split, save_interval, args.num_workers, args.force
+            args.router_name,
+            args.split,
+            save_interval,
+            args.num_workers,
+            args.force,
+            robustness_path,
         )
     except KeyboardInterrupt:
         logger.info("\nInterrupted by user. Saving partial results...")
