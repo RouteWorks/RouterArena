@@ -301,7 +301,7 @@ def compute_robustness_score_from_predictions(
             return None
         try:
             return manager.get_universal_name(name)
-        except Exception:
+        except ValueError:
             return name
 
     full_map: dict[str, dict[str, object]] = {}
