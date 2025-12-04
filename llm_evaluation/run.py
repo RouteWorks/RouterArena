@@ -29,6 +29,7 @@ import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, Any, List, Optional, Tuple, Set
 from universal_model_names import ModelNameManager
+from utils.robustness import compute_robustness_score
 
 # Add parent directory to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
@@ -899,72 +900,6 @@ def compute_optimality_from_predictions(
     except Exception as e:
         logger.error(f"Error computing optimality scores: {e}", exc_info=True)
         return None
-
-
-def _normalize_model_name(model_name: str, name_manager: ModelNameManager) -> str:
-    """
-    Convert the model name to its universal form, falling back gracefully.
-    """
-    try:
-        return name_manager.get_universal_name(model_name)
-    except ValueError:
-        return model_name
-
-
-def compute_robustness_score(
-    full_predictions: List[Dict[str, Any]],
-    robustness_predictions: List[Dict[str, Any]],
-) -> Optional[float]:
-    """
-    Align full split predictions using the robustness split and only count overlapping queries.
-    """
-    name_manager = ModelNameManager()
-
-    # Build a map for the full split keeping only router selections (skip optimality entries)
-    full_map: Dict[str, Dict[str, Any]] = {}
-    for pred in full_predictions:
-        if pred.get("for_optimality", False):
-            continue
-        global_index = pred.get("global index") or pred.get("global_index")
-        if global_index is None:
-            continue
-        key = str(global_index)
-        if key not in full_map:
-            full_map[key] = pred
-
-    if not full_map:
-        return None
-
-    matched = 0
-    flips = 0
-    for robust_pred in robustness_predictions:
-        global_index = robust_pred.get("global index") or robust_pred.get(
-            "global_index"
-        )
-        if global_index is None:
-            continue
-        key = str(global_index)
-        full_entry = full_map.get(key)
-        if not full_entry:
-            continue
-
-        full_model = full_entry.get("prediction")
-        robust_model = robust_pred.get("prediction")
-        if not full_model or not robust_model:
-            continue
-
-        matched += 1
-        full_model_norm = _normalize_model_name(full_model, name_manager)
-        robust_model_norm = _normalize_model_name(robust_model, name_manager)
-        if full_model_norm != robust_model_norm:
-            flips += 1
-
-    if matched == 0:
-        return None
-
-    logger.info("Matched: %d, Flips: %d", matched, flips)
-
-    return 1.0 - flips / matched
 
 
 def run_robustness_only(router_name: str, robustness_path: Optional[str]) -> None:

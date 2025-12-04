@@ -45,7 +45,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable, Optional
 
-from universal_model_names import ModelNameManager
+from utils.robustness import compute_robustness_score
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -284,8 +284,6 @@ def compute_robustness_score_from_predictions(
 ) -> Optional[float]:
     """Compute robustness flip ratio between full/sub_10 and robustness splits."""
 
-    manager = ModelNameManager()
-
     with full_prediction_file.open("r", encoding="utf-8") as full_handle:
         full_predictions = json.load(full_handle)
     with robustness_prediction_file.open("r", encoding="utf-8") as robustness_handle:
@@ -296,56 +294,7 @@ def compute_robustness_score_from_predictions(
     ):
         raise ValueError("Prediction payload must be a list of entries.")
 
-    def normalize(name: Optional[str]) -> Optional[str]:
-        if name is None:
-            return None
-        try:
-            return manager.get_universal_name(name)
-        except ValueError:
-            return name
-
-    full_map: dict[str, dict[str, object]] = {}
-    for entry in full_predictions:
-        if not isinstance(entry, dict):
-            continue
-        if entry.get("for_optimality", False):
-            continue
-        global_index = entry.get("global index") or entry.get("global_index")
-        if global_index is None:
-            continue
-        key = str(global_index)
-        if key not in full_map:
-            full_map[key] = entry
-
-    if not full_map:
-        return None
-
-    matched = 0
-    flips = 0
-    for entry in robustness_predictions:
-        if not isinstance(entry, dict):
-            continue
-        global_index = entry.get("global index") or entry.get("global_index")
-        if global_index is None:
-            continue
-        key = str(global_index)
-        full_entry = full_map.get(key)
-        if not full_entry:
-            continue
-
-        full_model = full_entry.get("prediction")
-        robust_model = entry.get("prediction")
-        if not full_model or not robust_model:
-            continue
-
-        matched += 1
-        if normalize(str(full_model)) != normalize(str(robust_model)):
-            flips += 1
-
-    if matched == 0:
-        return None
-
-    return 1.0 - flips / matched
+    return compute_robustness_score(full_predictions, robustness_predictions)
 
 
 def append_robustness_score_to_metrics(
