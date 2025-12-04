@@ -156,7 +156,7 @@ jobs:
         env:
           ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
         run: |
-          set -euo pipefail
+          set -euo pipefail; trap 'cat evaluation_output.txt' EXIT
           # Uses base repo's evaluation script (safe - not from PR)
           BASE_SHA="${{ github.event.pull_request.base.sha }}"
           uv run python automation/process_pr_submission.py \
