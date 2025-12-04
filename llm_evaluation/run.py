@@ -926,25 +926,22 @@ def run_robustness_only(router_name: str, robustness_path: Optional[str]) -> Non
 
     try:
         robustness_predictions = load_predictions_from_path(target_path)
-    except FileNotFoundError:
-        logger.error(
-            "Robustness predictions not found at %s. "
-            "Generate them with router_inference/generate_prediction_file.py <router> robustness.",
-            target_path,
-        )
-        sys.exit(1)
+    except FileNotFoundError as error:
+        raise FileNotFoundError(
+            "Robustness predictions not found at "
+            f"{target_path}. Generate them with "
+            "router_inference/generate_prediction_file.py <router> robustness."
+        ) from error
     except Exception as exc:
-        logger.error(
-            "Unable to load robustness predictions from %s: %s", target_path, exc
-        )
-        sys.exit(1)
+        raise RuntimeError(
+            f"Unable to load robustness predictions from {target_path}: {exc}"
+        ) from exc
 
     score = compute_robustness_score(predictions, robustness_predictions)
     if score is None:
-        logger.error(
+        raise ValueError(
             "Could not compute robustness score because no overlapping global indices were found."
         )
-        sys.exit(1)
 
     logger.info("Robustness score: %.4f", score)
 
