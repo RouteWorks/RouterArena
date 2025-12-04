@@ -45,6 +45,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable, Optional
 
+from universal_model_names import ModelNameManager
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 WORKTREES_DIR = REPO_ROOT / ".pr_worktrees"
@@ -149,11 +151,14 @@ def cleanup_worktree(worktree_path: Path, branch_name: str, *, keep: bool) -> No
 
 
 def ensure_prediction_file_added(
-    worktree_path: Path, base_ref: str, router_name: str
+    worktree_path: Path, base_ref: str, router_name: str, *, robustness: bool = False
 ) -> None:
     """Verify the PR adds or modifies a prediction file for the specified router."""
 
-    target_path = Path("router_inference") / "predictions" / f"{router_name}.json"
+    suffix = "-robustness" if robustness else ""
+    target_path = (
+        Path("router_inference") / "predictions" / f"{router_name}{suffix}.json"
+    )
 
     diff_cmd = [
         "git",
@@ -274,6 +279,110 @@ def compute_scores(prediction_file: Path) -> dict[str, float]:
     }
 
 
+def compute_robustness_score_from_predictions(
+    full_prediction_file: Path, robustness_prediction_file: Path
+) -> Optional[float]:
+    """Compute robustness flip ratio between full/sub_10 and robustness splits."""
+
+    manager = ModelNameManager()
+
+    with full_prediction_file.open("r", encoding="utf-8") as full_handle:
+        full_predictions = json.load(full_handle)
+    with robustness_prediction_file.open("r", encoding="utf-8") as robustness_handle:
+        robustness_predictions = json.load(robustness_handle)
+
+    if not isinstance(full_predictions, list) or not isinstance(
+        robustness_predictions, list
+    ):
+        raise ValueError("Prediction payload must be a list of entries.")
+
+    def normalize(name: Optional[str]) -> Optional[str]:
+        if name is None:
+            return None
+        try:
+            return manager.get_universal_name(name)
+        except Exception:
+            return name
+
+    full_map: dict[str, dict[str, object]] = {}
+    for entry in full_predictions:
+        if not isinstance(entry, dict):
+            continue
+        if entry.get("for_optimality", False):
+            continue
+        global_index = entry.get("global index") or entry.get("global_index")
+        if global_index is None:
+            continue
+        key = str(global_index)
+        if key not in full_map:
+            full_map[key] = entry
+
+    if not full_map:
+        return None
+
+    matched = 0
+    flips = 0
+    for entry in robustness_predictions:
+        if not isinstance(entry, dict):
+            continue
+        global_index = entry.get("global index") or entry.get("global_index")
+        if global_index is None:
+            continue
+        key = str(global_index)
+        full_entry = full_map.get(key)
+        if not full_entry:
+            continue
+
+        full_model = full_entry.get("prediction")
+        robust_model = entry.get("prediction")
+        if not full_model or not robust_model:
+            continue
+
+        matched += 1
+        if normalize(str(full_model)) != normalize(str(robust_model)):
+            flips += 1
+
+    if matched == 0:
+        return None
+
+    return 1.0 - flips / matched
+
+
+def append_robustness_score_to_metrics(
+    metrics: dict[str, object],
+    prediction_file: Path,
+    robustness_prediction_file: Path,
+    metrics_path: Path,
+) -> dict[str, object]:
+    """
+    Ensure robustness_score is present in metrics, computing it if necessary.
+    """
+
+    if "robustness_score" in metrics:
+        return metrics
+
+    if not robustness_prediction_file.exists():
+        print(
+            "⚠ Robustness prediction file not found; skipping robustness score computation."
+        )
+        return metrics
+
+    score = compute_robustness_score_from_predictions(
+        prediction_file, robustness_prediction_file
+    )
+    if score is None:
+        print(
+            "⚠ Could not compute robustness score because no overlapping entries were found."
+        )
+        return metrics
+
+    metrics["robustness_score"] = score
+    with metrics_path.open("w", encoding="utf-8") as handle:
+        json.dump(metrics, handle, indent=2)
+    print(f"✔ Appended robustness_score={score:.4f} to metrics.json")
+    return metrics
+
+
 def compute_arena_score(
     cost: float,
     accuracy: float,
@@ -387,6 +496,9 @@ def main(argv: Optional[list[str]] = None) -> int:
 
         if not args.allow_existing_prediction:
             ensure_prediction_file_added(worktree_path, base_ref, args.router)
+            ensure_prediction_file_added(
+                worktree_path, base_ref, args.router, robustness=True
+            )
 
         if not args.skip_sync:
             run_command(["uv", "sync", "--locked"], cwd=worktree_path, capture=True)
@@ -410,6 +522,7 @@ def main(argv: Optional[list[str]] = None) -> int:
             args.router,
             args.split,
             "--force",
+            "--calculate-robustness-score",
         ]
 
         evaluation_logs = ""
@@ -437,6 +550,19 @@ def main(argv: Optional[list[str]] = None) -> int:
                 ).strip()
             )
 
+        robustness_prediction_file = prediction_file.with_name(
+            f"{args.router}-robustness.json"
+        )
+        if not robustness_prediction_file.exists():
+            raise FileNotFoundError(
+                textwrap.dedent(
+                    f"""
+                    Robustness prediction file not found: {robustness_prediction_file}
+                    Ensure the pull request includes router_inference/predictions/{args.router}-robustness.json
+                    """
+                ).strip()
+            )
+
         # Read metrics from metrics.json (required - no fallback)
         # llm_evaluation/run.py writes metrics.json to the current working directory (worktree_path)
         metrics_path = worktree_path / "metrics.json"
@@ -454,6 +580,10 @@ def main(argv: Optional[list[str]] = None) -> int:
         print("\n✔ Reading metrics from metrics.json...")
         with open(metrics_path, "r") as f:
             metrics = json.load(f)
+
+        metrics = append_robustness_score_to_metrics(
+            metrics, prediction_file, robustness_prediction_file, metrics_path
+        )
 
         # Copy metrics.json to base directory (REPO_ROOT) for workflow to read
         base_metrics_path = REPO_ROOT / "metrics.json"
@@ -477,6 +607,8 @@ def main(argv: Optional[list[str]] = None) -> int:
 
         archived_prediction = run_dir / f"{args.router}.json"
         shutil.copy2(prediction_file, archived_prediction)
+        archived_robust_prediction = run_dir / f"{args.router}-robustness.json"
+        shutil.copy2(robustness_prediction_file, archived_robust_prediction)
 
         summary_payload: dict[str, object] = {
             "pr": args.pr,

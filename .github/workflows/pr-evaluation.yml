@@ -54,18 +54,49 @@ jobs:
 
           # Compare against base to show only changes in this PR
           # Use three-dot diff to show changes from merge-base to HEAD (only PR changes)
-          CHANGED_FILES=$(git diff --name-status "$BASE_SHA"...HEAD -- router_inference/predictions/*.json 2>&1 | awk '$1 == "A" || $1 == "M" {print $2}')
-          if [[ -z "$CHANGED_FILES" ]]; then
+          mapfile -t CHANGED_FILES < <(git diff --name-status "$BASE_SHA"...HEAD -- router_inference/predictions/*.json 2>/dev/null | awk '$1 == "A" || $1 == "M" {print $2}')
+
+          if [[ ${#CHANGED_FILES[@]} -eq 0 ]]; then
             echo "No changed prediction file detected; skipping evaluation."
             echo "router=" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          if [[ $(echo "$CHANGED_FILES" | wc -l) -ne 1 ]]; then
-            echo "Expected exactly one changed prediction file, found:" >&2
-            echo "$CHANGED_FILES" >&2
+
+          router_name=""
+          has_base=0
+          has_robustness=0
+
+          for file in "${CHANGED_FILES[@]}"; do
+            filename=$(basename "$file")
+            name="${filename%.json}"
+            if [[ "$name" == *-robustness ]]; then
+              has_robustness=1
+              name="${name%-robustness}"
+            else
+              has_base=1
+            fi
+
+            if [[ -z "$name" ]]; then
+              echo "Unable to determine router name from $file" >&2
+              exit 1
+            fi
+
+            if [[ -z "$router_name" ]]; then
+              router_name="$name"
+            elif [[ "$router_name" != "$name" ]]; then
+              echo "Prediction files belong to different routers:" >&2
+              printf '  %s\n' "${CHANGED_FILES[@]}" >&2
+              exit 1
+            fi
+          done
+
+          if [[ ${#CHANGED_FILES[@]} -ne 2 || $has_base -ne 1 || $has_robustness -ne 1 ]]; then
+            echo "Expected exactly two prediction files (router and router-robustness), found:" >&2
+            printf '  %s\n' "${CHANGED_FILES[@]}" >&2
             exit 1
           fi
-          ROUTER_NAME=$(basename "$CHANGED_FILES" .json)
+
+          ROUTER_NAME="$router_name"
           echo "router=$ROUTER_NAME" >> "$GITHUB_OUTPUT"
 
           # Detect split based on prediction file size (from PR branch)
@@ -114,6 +145,8 @@ jobs:
           mkdir -p base/router_inference/predictions
           cp "pr/router_inference/predictions/${ROUTER_NAME}.json" \
              "base/router_inference/predictions/${ROUTER_NAME}.json"
+          cp "pr/router_inference/predictions/${ROUTER_NAME}-robustness.json" \
+             "base/router_inference/predictions/${ROUTER_NAME}-robustness.json"
           echo "Copied prediction file from PR to base workspace"
 
       - name: Evaluate submission
@@ -161,6 +194,9 @@ jobs:
             comment += `| **Avg Cost per Query** | $${metrics.avg_cost_per_query.toFixed(6)} |\n`;
             comment += `| **Avg Cost per 1K Queries** | $${metrics.avg_cost_per_1000.toFixed(4)} |\n`;
             comment += `| **Number of Queries** | ${metrics.num_queries} |\n`;
+            const robustnessScore = metrics.robustness_score;
+            const robustnessCell = robustnessScore !== undefined ? robustnessScore.toFixed(4) : 'N/A';
+            comment += `| **Robustness Score** | ${robustnessCell} |\n`;
 
             // Add optimality scores if available
             if (metrics.optimality) {
