@@ -172,12 +172,12 @@ The script loads your prediction file, makes API calls using the models specifie
 As the last step, run the evaluation script:
 
 ```bash
-uv run python ./llm_evaluation/run.py your-router [sub_10|full|--calculate-robustness-score]
+uv run python ./llm_evaluation/run.py your-router [sub_10|full|robustness]
 ```
 
 > [!TIP]
-> - sub_10|full for evaluation on those datasets
-> - --calculate-robustness-score for robustness evaluation only
+> - Use `sub_10` or `full` to evaluate on those datasets.
+> - Use `robustness` to run robustness-only evaluation (expects `<router_name>-robustness.json`).
 
 # Submitting to the leaderboard
 

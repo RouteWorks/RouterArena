@@ -471,7 +471,6 @@ def main(argv: Optional[list[str]] = None) -> int:
             args.router,
             args.split,
             "--force",
-            "--calculate-robustness-score",
         ]
 
         evaluation_logs = ""

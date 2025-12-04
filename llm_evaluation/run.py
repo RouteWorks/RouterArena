@@ -1140,10 +1140,10 @@ def main():
         "split",
         nargs="?",
         type=str,
-        choices=["sub_10", "full"],
+        choices=["sub_10", "full", "robustness"],
         help=(
             "Dataset split to use for evaluation ('sub_10' for testing with answers, "
-            "'full' for submission). Optional when only computing robustness score."
+            "'full' for submission, 'robustness' to compute robustness score only)."
         ),
     )
     parser.add_argument(
@@ -1177,16 +1177,6 @@ def main():
         default=False,
         help="Force re-evaluation of all entries, even if already evaluated (default: False)",
     )
-    parser.add_argument(
-        "--calculate-robustness-score",
-        action="store_true",
-        default=False,
-        help=(
-            "Compute robustness score only (no split required). "
-            "Will compare full predictions with the robustness predictions."
-        ),
-    )
-
     args = parser.parse_args()
 
     # Set up logging
@@ -1201,18 +1191,15 @@ def main():
     base_dir = os.path.abspath(os.path.join(current_dir, "../"))
     os.chdir(base_dir)
 
-    robustness_path = None
-    if args.calculate_robustness_score:
-        robustness_path = os.path.join(
-            "./router_inference/predictions", f"{args.router_name}-robustness.json"
-        )
+    default_robustness_path = os.path.join(
+        "./router_inference/predictions", f"{args.router_name}-robustness.json"
+    )
 
     if args.split is None:
-        if not args.calculate_robustness_score:
-            parser.error(
-                "split is required unless --calculate-robustness-score is provided."
-            )
-        run_robustness_only(args.router_name, robustness_path)
+        parser.error("split is required (sub_10, full, or robustness).")
+
+    if args.split == "robustness":
+        run_robustness_only(args.router_name, default_robustness_path)
         return
 
     # Run evaluation
@@ -1229,7 +1216,9 @@ def main():
             save_interval,
             args.num_workers,
             args.force,
-            robustness_path,
+            default_robustness_path
+            if os.path.exists(default_robustness_path)
+            else None,
         )
     except KeyboardInterrupt:
         logger.info("\nInterrupted by user. Saving partial results...")
