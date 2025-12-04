@@ -90,7 +90,9 @@ See the [`ModelInference`](./llm_inference/model_inference.py) class for the com
 
 ## 2. Get Routing Decisions
 
-Follow the steps below to obtain your router's model choices for each query. Start with the `sub_10` split (a 10% subset) for local testing. Once your setup works, you can evaluate on the `full` dataset for full local evaluation and official leaderboard submission.
+Follow the steps below to obtain your router's model choices for each query. Start with the `sub_10` split (a 10% subset) for local testing. Once your setup works, you can evaluate:
+- on the `full` dataset for full local evaluation and official leaderboard submission.
+- on the `robustness` dataset for robustness evaluation.
 
 ### Step 2.1: Prepare Config File
 
@@ -138,7 +140,7 @@ router = MyRouter(args.router_name)
 Finally, generate the prediction file:
 
 ```bash
-uv run python ./router_inference/generate_prediction_file.py your-router [sub_10|full]
+uv run python ./router_inference/generate_prediction_file.py your-router [sub_10|full|robustness]
 ```
 
 > [!NOTE]
@@ -148,10 +150,10 @@ uv run python ./router_inference/generate_prediction_file.py your-router [sub_10
 ### Step 2.3: Validate Config and Prediction Files
 
 ```bash
-uv run python ./router_inference/check_config_prediction_files.py your-router [sub_10|full]
+uv run python ./router_inference/check_config_prediction_files.py your-router [sub_10|full|robustness]
 ```
 
-This script checks: (1) all model names are valid, (2) prediction file has correct size (809 for `sub_10`, 8400 for `full`), and (3) all entries have valid `global_index`, `prompt`, and `prediction` fields.
+This script checks: (1) all model names are valid, (2) prediction file has correct size (809 for `sub_10`, 8400 for `full`, 420 for `robustness`), and (3) all entries have valid `global_index`, `prompt`, and `prediction` fields.
 
 ## 3. Run LLM Inference
 
@@ -162,14 +164,20 @@ uv run python ./llm_inference/run.py your-router
 ```
 
 The script loads your prediction file, makes API calls using the models specified in the `prediction` field, and saves results incrementally. It uses cached results when available and saves progress after each query, so you can safely interrupt and resume. Results are saved to `./cached_results/` for reuse across routers.
+> [!NOTE]
+> - For robustness evaluation, we only measure the model-selection flip ratio after adding noise to the original prompt, so no additional LLM inference is required for this stage.
 
 ## 4. Run Router Evaluation
 
 As the last step, run the evaluation script:
 
 ```bash
-uv run python ./llm_evaluation/run.py your-router [sub_10|full]
+uv run python ./llm_evaluation/run.py your-router [sub_10|full|robustness]
 ```
+
+> [!TIP]
+> - Use `sub_10` or `full` to evaluate on those datasets.
+> - Use `robustness` to run robustness-only evaluation (expects `<router_name>-robustness.json`).
 
 # Submitting to the leaderboard
 
@@ -178,6 +186,7 @@ To get your router on the leaderboard, you can open a Pull Request with your rou
 1. **Add your files**:
    - `router_inference/config/<router_name>.json` - Your router configuration
    - `router_inference/predictions/<router_name>.json` - Your prediction file with `generated_result` fields populated
+   - `router_inference/predictions/<router_name>-robustness.json` - Your prediction file for robustness evaluation, no `generated_result` fields needed
 2. **Open a Pull Request to `main` branch** - The automated workflow will:
    - Validate your submission
    - Run evaluation on the full dataset
@@ -213,6 +222,7 @@ Feel free to contact us for contributions and collaborations.
 
 ```
 Yifan Lu (yifan.lu@rice.edu)
+Rixin Liu (rixin.liu@rice.edu)
 Jiarong Xing (jxing@rice.edu)
 ```
 

@@ -9,7 +9,7 @@ import pickle
 import zlib
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
-from datasets import load_dataset, load_from_disk  # type: ignore[import]
+from datasets import load_dataset, load_from_disk
 from typing import Dict, Any, List
 
 save_dir = "./dataset/"
@@ -34,9 +34,7 @@ for row in router_benchmark_robustness:
 robustness_json_path = os.path.join(save_dir, "router_robustness.json")
 with open(robustness_json_path, "w", encoding="utf-8") as f:
     json.dump(robustness_records, f, ensure_ascii=False, indent=2)
-print(
-    f"[prep] Wrote {len(robustness_records)} items to {os.path.join(save_dir, 'routerarena_robustness.json')}"
-)
+print(f"[prep] Wrote {len(robustness_records)} items to {robustness_json_path}")
 
 
 def escape_format_braces(text):
