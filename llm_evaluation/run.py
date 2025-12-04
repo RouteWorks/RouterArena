@@ -907,7 +907,7 @@ def _normalize_model_name(model_name: str, name_manager: ModelNameManager) -> st
     """
     try:
         return name_manager.get_universal_name(model_name)
-    except Exception:
+    except ValueError:
         return model_name
 
 
