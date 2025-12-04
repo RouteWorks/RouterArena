@@ -36,7 +36,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 
 # Load environment variables from .env file if it exists
 try:
-    from dotenv import load_dotenv  # type: ignore[import]
+    from dotenv import load_dotenv
 
     load_dotenv()
 except ImportError:
@@ -168,8 +168,8 @@ def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
     Returns:
         Dictionary mapping global_index to ground truth data
     """
-    from datasets import load_from_disk  # type: ignore[import]
-    import pandas as pd  # type: ignore[import]
+    from datasets import load_from_disk
+    import pandas as pd
 
     if split not in ["sub_10", "full"]:
         raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
@@ -220,7 +220,7 @@ def get_livecodebench_ground_truth(global_index: str) -> Optional[Dict[str, Any]
     """
     global _livecodebench_cache
     try:
-        from datasets import load_from_disk  # type: ignore[import]
+        from datasets import load_from_disk
 
         # Load LiveCodeBench dataset (cache it if needed)
         if _livecodebench_cache is None:
