@@ -29,7 +29,7 @@ import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, Any, List, Optional, Tuple, Set
 from universal_model_names import ModelNameManager
-from utils.robustness import compute_robustness_score
+from global_utils.robustness import compute_robustness_score
 
 # Add parent directory to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))

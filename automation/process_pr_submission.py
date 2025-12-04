@@ -45,7 +45,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable, Optional
 
-from utils.robustness import compute_robustness_score
+from global_utils.robustness import compute_robustness_score
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
