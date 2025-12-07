@@ -376,7 +376,6 @@ def process_router_predictions(
     save_interval: int = 50,
     num_workers: int = 4,
     force: bool = False,
-    robustness_predictions_path: Optional[str] = None,
 ) -> None:
     """
     Process router predictions by evaluating generated results with incremental saving.
@@ -392,7 +391,6 @@ def process_router_predictions(
         save_interval: Number of entries to process before saving (default: 50)
         num_workers: Number of worker threads for parallel processing (default: 4)
         force: If True, re-evaluate all entries even if already evaluated (default: False)
-        robustness_predictions_path: Optional path to the robustness predictions file
     """
     logger.info(f"Starting LLM evaluation for router: {router_name} (split: {split})")
     logger.info(f"Using {num_workers} worker threads for parallel processing")
@@ -562,27 +560,8 @@ def process_router_predictions(
     )
     logger.info("=" * 60)
 
-    # Load robustness predictions if requested
-    robustness_predictions = None
-    if robustness_predictions_path:
-        try:
-            robustness_predictions = load_predictions_from_path(
-                robustness_predictions_path
-            )
-            logger.info(
-                f"Loaded robustness predictions from {robustness_predictions_path}"
-            )
-        except FileNotFoundError:
-            logger.warning(
-                f"Robustness predictions not found at {robustness_predictions_path}"
-            )
-        except Exception as e:
-            logger.warning(
-                f"Could not load robustness predictions from {robustness_predictions_path}: {e}"
-            )
-
     # Compute and display router-level metrics
-    compute_router_metrics(predictions, router_name, robustness_predictions)
+    compute_router_metrics(predictions, router_name)
 
 
 def _prepare_optimality_data(
@@ -926,16 +905,14 @@ def run_robustness_only(router_name: str, robustness_path: Optional[str]) -> Non
 
     try:
         robustness_predictions = load_predictions_from_path(target_path)
-    except FileNotFoundError as error:
+    except FileNotFoundError:
         raise FileNotFoundError(
             "Robustness predictions not found at "
             f"{target_path}. Generate them with "
             "router_inference/generate_prediction_file.py <router> robustness."
-        ) from error
-    except Exception as exc:
-        raise RuntimeError(
-            f"Unable to load robustness predictions from {target_path}: {exc}"
-        ) from exc
+        )
+    except json.JSONDecodeError:
+        raise RuntimeError(f"Unable to load robustness predictions from {target_path}")
 
     score = compute_robustness_score(predictions, robustness_predictions)
     if score is None:
@@ -952,11 +929,7 @@ def run_robustness_only(router_name: str, robustness_path: Optional[str]) -> Non
     logger.info("Robustness metrics saved to %s", metrics_path)
 
 
-def compute_router_metrics(
-    predictions: List[Dict[str, Any]],
-    router_name: str,
-    robustness_predictions: Optional[List[Dict[str, Any]]] = None,
-) -> None:
+def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) -> None:
     """
     Compute router-level metrics (accuracy, cost, RouterArena score, etc.) and display them.
 
@@ -1102,23 +1075,6 @@ def compute_router_metrics(
             "num_sub10_queries": optimality_scores["num_sub10_queries"],
         }
 
-    robustness_score = None
-    if robustness_predictions:
-        logger.info("\n" + "-" * 80)
-        logger.info("Computing Robustness Score (model selection flip ratio)...")
-        logger.info("-" * 80)
-        robustness_score = compute_robustness_score(predictions, robustness_predictions)
-        if robustness_score is not None:
-            logger.info(
-                f"Robustness flip ratio: {robustness_score:.4f} "
-                f"({robustness_score * 100:.2f}% differing selections)"
-            )
-            metrics_dict["robustness_score"] = robustness_score
-        else:
-            logger.warning(
-                "Robustness score could not be computed because no overlapping entries were found."
-            )
-
     # Save to metrics.json
     metrics_path = "./metrics.json"
     with open(metrics_path, "w") as f:
@@ -1216,9 +1172,6 @@ def main():
             save_interval,
             args.num_workers,
             args.force,
-            default_robustness_path
-            if os.path.exists(default_robustness_path)
-            else None,
         )
     except KeyboardInterrupt:
         logger.info("\nInterrupted by user. Saving partial results...")

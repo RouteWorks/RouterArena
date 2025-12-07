@@ -20,7 +20,7 @@ def _normalize_model_name(
         return None
     try:
         return name_manager.get_universal_name(model_name)
-    except Exception:
+    except ValueError:
         return model_name
 
 
