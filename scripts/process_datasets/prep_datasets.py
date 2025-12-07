@@ -31,7 +31,7 @@ for row in router_benchmark_robustness:
             "global index": row.get("Global Index"),
         }
     )
-robustness_json_path = os.path.join(save_dir, "router_robustness.json")
+robustness_json_path = os.path.join(save_dir, "router_robustne-ss.json")
 with open(robustness_json_path, "w", encoding="utf-8") as f:
     json.dump(robustness_records, f, ensure_ascii=False, indent=2)
 print(f"[prep] Wrote {len(robustness_records)} items to {robustness_json_path}")
