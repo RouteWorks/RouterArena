@@ -16,7 +16,7 @@
       "provider": "placeholder",
       "error": null
     },
-    "cost": 2e-05,
+    "cost": 5e-05,
     "accuracy": null,
     "for_optimality": false
   },
