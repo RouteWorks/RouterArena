@@ -527,9 +527,7 @@ def main():
     try:
         predictions = load_predictions(args.router_name, args.split)
         filename = f"{args.router_name}{'-robustness' if args.split == 'robustness' else ''}.json"
-        print(
-            f"✓ Predictions loaded from ./router_inference/predictions/{filename}"
-        )
+        print(f"✓ Predictions loaded from ./router_inference/predictions/{filename}")
 
     except Exception as e:
         print(f"✗ Error loading predictions: {e}")
@@ -605,7 +603,7 @@ def main():
         print("✓ ALL CHECKS PASSED!")
         print(f"Router '{args.router_name}' is configured correctly.")
     else:
-        print("✗ VALIDATION FAILED")
+        print("✗ VALIDATION FAILED!")
         print(f"Found {len(errors_summary)} error(s). Please fix the issues above.")
     print("=" * 80)
 
