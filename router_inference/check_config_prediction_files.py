@@ -526,8 +526,9 @@ def main():
     print("\n[2] Checking prediction file...")
     try:
         predictions = load_predictions(args.router_name, args.split)
+        filename = f"{args.router_name}{'-robustness' if args.split == 'robustness' else ''}.json"
         print(
-            f"✓ Predictions loaded from ./router_inference/predictions/{args.router_name}.json"
+            f"✓ Predictions loaded from ./router_inference/predictions/{filename}"
         )
 
     except Exception as e:
