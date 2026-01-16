@@ -138,7 +138,9 @@ class ParallelInferenceManager:
                                             run_counts[global_index] = set()
                                         run_counts[global_index].add(run_number)
                                 except json.JSONDecodeError:
-                                    logger.warning(f"Failed to parse line in {cache_file}")
+                                    logger.warning(
+                                        f"Failed to parse line in {cache_file}"
+                                    )
                                     continue
                 except Exception as e:
                     logger.error(f"Error loading cached run counts: {e}")
@@ -237,7 +239,7 @@ class ParallelInferenceManager:
     def clear_failed_entries(self, model: str) -> int:
         """
         Remove all failed entries from the cache file, keeping only successful ones.
-        
+
         Note: This is a utility function that must be called explicitly if needed.
         It is NOT automatically called during the normal inference workflow.
         Use this function to clean up cache files by removing failed entries.
