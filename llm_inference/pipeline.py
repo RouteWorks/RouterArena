@@ -84,7 +84,9 @@ def convert_json_to_jsonl_if_needed(json_file_path: str, jsonl_file_path: str) -
         return False
 
 
-def inference_pipeline(config: Dict[str, Any], on_full=False):
+def inference_pipeline(
+    config: Dict[str, Any], on_full=False, num_workers: int = 1, num_runs: int = 1
+):
     """
     Run inference pipeline for a specific model on the dataset.
     Uses cached results and only processes missing entries (where success != true).
@@ -92,6 +94,9 @@ def inference_pipeline(config: Dict[str, Any], on_full=False):
     Args:
         config: Configuration dictionary containing model_name
         on_full: Whether to use full dataset or subset
+        num_workers: Number of parallel workers for query processing (default: 1, sequential)
+                     If > 1, uses ParallelInferenceManager for parallel processing
+        num_runs: Target number of successful inference runs per query (default: 1)
     """
     model_name = config["model_name"]
 
@@ -100,6 +105,45 @@ def inference_pipeline(config: Dict[str, Any], on_full=False):
 
     logger.info(f"Starting inference pipeline for model: {model_name}")
     logger.info(f"Universal model name: {universal_model_name}")
+
+    # Use parallel processing if num_workers > 1
+    if num_workers > 1:
+        logger.info(f"Using parallel processing with {num_workers} workers")
+        logger.info(f"Target runs per query: {num_runs}")
+        from parallel_inference import ParallelInferenceManager
+
+        # Initialize parallel manager
+        manager = ParallelInferenceManager(
+            cache_dir="./cached_results", workers=num_workers
+        )
+
+        data_path = "./llm_inference/datasets/router_data.json"
+        logger.info(f"Loading data from: {data_path}")
+        if not os.path.exists(data_path):
+            raise FileNotFoundError(
+                f"{data_path} not found. Run scripts/process_datasets/prep_datasets.py first to prepare the dataset."
+            )
+
+        # Load data
+        data = manager.load_input_data(data_path)
+
+        # Process with parallel workers
+        manager.process_single_model(
+            model=universal_model_name,
+            data=data,
+            num_workers=num_workers,
+            num_runs=num_runs,
+        )
+
+        # Return results in same format as sequential pipeline
+        output_file = f"./cached_results/{universal_model_name}.jsonl"
+        all_cached_results = manager.load_existing_cache(universal_model_name)
+        all_final_results = list(all_cached_results.values())
+
+        logger.info("Inference pipeline completed (parallel mode).")
+        logger.info(f"Results saved to: {output_file}")
+
+        return all_final_results
 
     # Initialize model inference
     model_inferencer = ModelInference()

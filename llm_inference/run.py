@@ -6,6 +6,8 @@ Run LLM inference for router predictions.
 
 This script processes router prediction files and makes LLM API calls
 for each prediction, using cached results when available.
+
+Uses parallel inference system for efficient processing with multiple workers.
 """
 
 import argparse
@@ -14,8 +16,8 @@ import os
 import sys
 import logging
 import datetime
-import time
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Tuple
+from collections import defaultdict
 
 # Add parent directory to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
@@ -29,9 +31,9 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv()
 
-from model_inference import ModelInference  # noqa: E402
 from universal_model_names import ModelNameManager  # noqa: E402
 from pipeline import load_jsonl_file  # noqa: E402
+from parallel_inference import ParallelInferenceManager  # noqa: E402
 
 logger = logging.getLogger(__name__)
 
@@ -61,73 +63,99 @@ def load_predictions_file(router_name: str) -> List[Dict[str, Any]]:
     return predictions
 
 
-def find_cached_result(
-    global_index: str, model_name: str, cached_results_dir: str = "./cached_results"
-) -> Optional[Dict[str, Any]]:
+def load_cached_results_for_predictions(
+    predictions: List[Dict[str, Any]], cached_results_dir: str = "./cached_results"
+) -> Dict[Tuple[str, str], Dict[str, Any]]:
     """
-    Check if a result already exists in cached results for the given global_index and model.
+    Load cached results for all model-query pairs in predictions.
+
+    When multiple runs exist for the same query (due to num_runs > 1), this function
+    selects one result per (model, global_index) pair using the following priority:
+    1. Prefer run_number=1 (first run)
+    2. If run_number=1 doesn't exist, prefer successful runs
+    3. Otherwise keep the first one encountered
+
+    Note: Each prediction entry will have one generated_result, even if multiple runs exist.
 
     Args:
-        global_index: Global index of the query
-        model_name: Universal model name
+        predictions: List of prediction dictionaries
         cached_results_dir: Directory containing cached results
 
     Returns:
-        Cached result dictionary if found and successful, None otherwise
+        Dictionary mapping (universal_model_name, global_index) to cached result
     """
-    cached_file = os.path.join(cached_results_dir, f"{model_name}.jsonl")
+    cached_results = {}
 
-    if not os.path.exists(cached_file):
-        return None
+    # Track statistics
+    queries_with_multiple_runs = defaultdict(list)  # {(model, gidx): [run_numbers]}
 
-    # Load cached results
-    cached_results = load_jsonl_file(cached_file)
+    # Group by model to load cache files efficiently
+    model_to_predictions = defaultdict(list)
+    for pred in predictions:
+        model_name = pred.get("prediction", "")
+        if model_name:
+            try:
+                universal_model_name = ModelNameManager.get_universal_name(model_name)
+                model_to_predictions[universal_model_name].append(pred)
+            except Exception:
+                continue
 
-    # Find matching entry by global_index
-    for result in cached_results:
-        if result.get("global_index") == global_index:
-            # Only return if successful
-            if result.get("success", False):
-                return result
+    # Load cache for each model
+    for universal_model_name, model_predictions in model_to_predictions.items():
+        cached_file = os.path.join(cached_results_dir, f"{universal_model_name}.jsonl")
 
-    return None
+        if not os.path.exists(cached_file):
+            continue
 
+        # Load all cached results for this model
+        model_cached_results = load_jsonl_file(cached_file)
 
-def save_to_cached_results(
-    result: Dict[str, Any],
-    model_name: str,
-    cached_results_dir: str = "./cached_results",
-) -> None:
-    """
-    Save or append a result to the cached results file.
+        # Create lookup by global_index
+        # When multiple runs exist for the same query, prefer run_number=1
+        # If run_number=1 doesn't exist, prefer successful runs, then the first one encountered
+        for result in model_cached_results:
+            global_index = result.get("global_index")
+            if not global_index:
+                continue
 
-    Args:
-        result: Result dictionary to save
-        model_name: Universal model name
-        cached_results_dir: Directory to save cached results
-    """
-    os.makedirs(cached_results_dir, exist_ok=True)
-    cached_file = os.path.join(cached_results_dir, f"{model_name}.jsonl")
+            key = (universal_model_name, global_index)
+            current_run_number = result.get("run_number", 1)
 
-    # Load existing results to avoid duplicates
-    existing_results = load_jsonl_file(cached_file)
+            if key not in cached_results:
+                cached_results[key] = result
+                queries_with_multiple_runs[key] = [current_run_number]
+            else:
+                existing = cached_results[key]
+                existing_run_number = existing.get("run_number", 1)
+                queries_with_multiple_runs[key].append(current_run_number)
 
-    # Only append if this global_index doesn't exist, or update if it does
-    updated = False
-    for i, existing in enumerate(existing_results):
-        if existing.get("global_index") == result.get("global_index"):
-            existing_results[i] = result
-            updated = True
-            break
+                # Prefer run_number=1
+                if current_run_number == 1 and existing_run_number != 1:
+                    cached_results[key] = result
+                elif existing_run_number == 1 and current_run_number != 1:
+                    # Keep existing (run_number=1)
+                    pass
+                # If neither is run_number=1, prefer successful runs
+                elif result.get("success", False) and not existing.get(
+                    "success", False
+                ):
+                    cached_results[key] = result
+                # Otherwise keep existing (first one encountered)
 
-    if not updated:
-        existing_results.append(result)
+    # Log statistics about multiple runs
+    queries_with_multiples = {
+        k: sorted(runs)
+        for k, runs in queries_with_multiple_runs.items()
+        if len(runs) > 1
+    }
+    if queries_with_multiples:
+        total_multiples = len(queries_with_multiples)
+        logger.debug(
+            f"Found {total_multiples} queries with multiple runs. "
+            f"Selected run_number=1 (or best available) for each."
+        )
 
-    # Write all results back
-    with open(cached_file, "w", encoding="utf-8") as f:
-        for res in existing_results:
-            json.dump(res, f, ensure_ascii=False)
-            f.write("\n")
+    return cached_results
 
 
 def save_predictions_file(
@@ -149,67 +177,48 @@ def save_predictions_file(
     logger.debug(f"Saved predictions to {prediction_path}")
 
 
-def process_router_predictions(router_name: str) -> None:
+def process_router_predictions(
+    router_name: str,
+    num_workers: int = 16,
+    num_runs: int = 1,
+    cached_results_dir: str = "./cached_results",
+) -> None:
     """
-    Process router predictions by making LLM calls for each entry.
+    Process router predictions using parallel inference system.
+
+    Groups predictions by model and processes each model's queries in parallel.
 
     Args:
         router_name: Name of the router
+        num_workers: Number of parallel workers per model (default: 16)
+        num_runs: Target number of successful runs per query (default: 1)
+        cached_results_dir: Directory containing cached results
     """
     logger.info(f"Starting LLM inference for router: {router_name}")
+    logger.info(f"Using parallel inference with {num_workers} workers per model")
+    logger.info(f"Target runs per query: {num_runs}")
 
     # Load predictions
     predictions = load_predictions_file(router_name)
+    logger.info(f"Loaded {len(predictions)} predictions")
 
     # Create backup of original predictions file
     save_predictions_file(predictions, router_name, create_backup=True)
 
-    # Initialize model inference
-    model_inferencer = ModelInference()
+    # Filter out entries without required fields and convert to universal model names
+    valid_predictions = []
+    model_to_queries = defaultdict(list)  # {universal_model_name: [query_entries]}
 
-    # Statistics
-    total = len(predictions)
-    skipped_count = 0
-    cached_count = 0
-    successful_count = 0
-    failed_count = 0
+    for pred in predictions:
+        global_index = pred.get("global index") or pred.get("global_index")
+        prompt = pred.get("prompt", "") or pred.get("prompt_formatted", "")
+        model_name = pred.get("prediction", "")
 
-    start_time = datetime.datetime.now()
-
-    # Process each prediction
-    for i, prediction in enumerate(predictions):
-        global_index = prediction.get("global index") or prediction.get("global_index")
-        prompt = prediction.get("prompt", "")
-        model_name = prediction.get("prediction", "")
-        existing_result = prediction.get("generated_result")
-
-        if not global_index:
-            logger.warning(f"Skipping entry {i + 1}: missing global_index")
+        if not global_index or not prompt or not model_name:
+            logger.warning("Skipping prediction: missing required fields")
             continue
 
-        if not prompt:
-            logger.warning(
-                f"Skipping entry {i + 1} (global_index: {global_index}): missing prompt"
-            )
-            continue
-
-        if not model_name:
-            logger.warning(
-                f"Skipping entry {i + 1} (global_index: {global_index}): missing prediction/model name"
-            )
-            continue
-
-        # Skip if already has a successful result
-        if existing_result and isinstance(existing_result, dict):
-            if existing_result.get("success", False):
-                logger.debug(
-                    f"⏭️  Skipping {global_index}: already has successful generated_result"
-                )
-                skipped_count += 1
-                continue
-
-        # Convert to universal model name for cache lookup and llm_selected field
-        # Note: We'll use original model_name for inference (like pipeline.py does)
+        # Convert to universal model name
         try:
             universal_model_name = ModelNameManager.get_universal_name(model_name)
         except Exception as e:
@@ -217,182 +226,135 @@ def process_router_predictions(router_name: str) -> None:
                 f"Error converting model name '{model_name}' to universal name: {e}\n"
                 f"Make sure the model is in universal_model_names.py"
             )
-            failed_count += 1
             continue
 
-        logger.info(
-            f"Processing {i + 1}/{total} | Global Index: {global_index} | "
-            f"Model: {universal_model_name}"
-        )
-
-        # Check for cached result
-        cached_result = find_cached_result(global_index, universal_model_name)
-
-        if cached_result:
-            logger.info(
-                f"✓ Using cached result for {global_index} (model: {universal_model_name})"
-            )
-            result_entry = cached_result
-            cached_count += 1
-        else:
-            # Make API call
-            logger.info(
-                f"🔄 Making API call for {global_index} (model: {universal_model_name})"
-            )
-            inference_start = datetime.datetime.now()
-
-            try:
-                # Use original model_name for inference (like pipeline.py does)
-                # The ModelInference class expects model names that match its provider mapping
-                # If model_name fails, try universal_model_name as fallback
-                try:
-                    inference_result = model_inferencer.infer(model_name, prompt)
-                except ValueError as ve:
-                    # If original name not recognized, try universal name
-                    if "not found in model_to_provider" in str(ve):
-                        logger.warning(
-                            f"Original model name '{model_name}' not recognized, "
-                            f"trying universal name '{universal_model_name}'"
-                        )
-                        inference_result = model_inferencer.infer(
-                            universal_model_name, prompt
-                        )
-                    else:
-                        raise
-                inference_duration = (
-                    datetime.datetime.now() - inference_start
-                ).total_seconds()
-
-                # Create result entry matching cached_results golden standard structure
-                # Use universal_model_name for llm_selected to match cache structure
-                result_entry = {
-                    "global_index": global_index,
-                    "question": prompt,
-                    "llm_selected": universal_model_name,  # Use universal for consistency
-                    "generated_answer": inference_result.get("response", ""),
-                    "token_usage": inference_result.get(
-                        "token_usage",
-                        {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
-                    ),
-                    "success": inference_result.get("success", False),
-                    "provider": inference_result.get("provider", "unknown"),
-                    "error": inference_result.get("error", None)
-                    if not inference_result.get("success", False)
-                    else None,
-                    "batch_size": None,  # Match pipeline.py structure
-                    "batch_number": None,
-                    "batch_index": None,
-                    "processing_mode": "individual",
-                    "evaluation_result": None,  # Will be filled by evaluation step
-                }
-
-                if result_entry["success"]:
-                    token_usage = result_entry["token_usage"]
-                    logger.info(
-                        f"✅ {global_index} | {result_entry['provider']} | "
-                        f"Duration: {inference_duration:.2f}s | "
-                        f"Tokens: {token_usage.get('input_tokens', 0)}/"
-                        f"{token_usage.get('output_tokens', 0)}/"
-                        f"{token_usage.get('total_tokens', 0)}"
-                    )
-                    successful_count += 1
-                else:
-                    error_msg = result_entry.get("error", "Unknown error")
-                    logger.error(
-                        f"❌ {global_index} | {result_entry['provider']} | "
-                        f"Duration: {inference_duration:.2f}s | Error: {error_msg}"
-                    )
-                    failed_count += 1
-
-                # Save to cached results
-                save_to_cached_results(result_entry, universal_model_name)
-
-            except Exception as e:
-                inference_duration = (
-                    datetime.datetime.now() - inference_start
-                ).total_seconds()
-                logger.error(
-                    f"💥 EXCEPTION | Global Index: {global_index} | "
-                    f"Duration: {inference_duration:.2f}s | Error: {str(e)}"
-                )
-                failed_count += 1
-
-                # Create failed result entry matching cached_results golden standard structure
-                result_entry = {
-                    "global_index": global_index,
-                    "question": prompt,
-                    "llm_selected": universal_model_name,  # Use universal for consistency
-                    "generated_answer": "",
-                    "token_usage": {
-                        "input_tokens": 0,
-                        "output_tokens": 0,
-                        "total_tokens": 0,
-                    },
-                    "success": False,
-                    "provider": "unknown",
-                    "error": str(e),
-                    "batch_size": None,  # Match pipeline.py structure
-                    "batch_number": None,
-                    "batch_index": None,
-                    "processing_mode": "individual",
-                    "evaluation_result": None,
-                }
-
-                # Save failed result to cache
-                save_to_cached_results(result_entry, universal_model_name)
-
-        # Update prediction entry with generated_result
-        # Store the generated_answer and success status
-        prediction["generated_result"] = {
-            "generated_answer": result_entry.get("generated_answer", ""),
-            "success": result_entry.get("success", False),
-            "token_usage": result_entry.get("token_usage", {}),
-            "provider": result_entry.get("provider", "unknown"),
-            "error": result_entry.get("error", None),
+        # Create data entry format for parallel inference
+        query_entry = {
+            "global_index": global_index,
+            "global index": global_index,  # Support both formats
+            "prompt": prompt,
+            "prompt_formatted": prompt,  # Support both formats
         }
 
-        # Save predictions incrementally after each query (no backup needed)
-        save_predictions_file(predictions, router_name, create_backup=False)
+        model_to_queries[universal_model_name].append(query_entry)
+        valid_predictions.append((pred, universal_model_name, global_index))
 
-        # Progress update every 10 items
-        if (i + 1) % 10 == 0:
-            elapsed_time = (datetime.datetime.now() - start_time).total_seconds() / 60
-            logger.info(
-                f"Progress: {i + 1}/{total} processed | "
-                f"Skipped: {skipped_count} | Cached: {cached_count} | "
-                f"Success: {successful_count} | Failed: {failed_count} | "
-                f"Elapsed: {elapsed_time:.1f}min"
-            )
+    logger.info(f"Grouped predictions into {len(model_to_queries)} models")
+    for model, queries in model_to_queries.items():
+        logger.info(f"  {model}: {len(queries)} queries")
 
-        # Small delay to avoid rate limiting
-        time.sleep(0.3)
+    # Initialize parallel inference manager
+    manager = ParallelInferenceManager(
+        cache_dir=cached_results_dir, workers=num_workers
+    )
+
+    start_time = datetime.datetime.now()
+    all_stats = {}
+
+    # Process each model with its assigned queries
+    for model_idx, (universal_model_name, queries) in enumerate(
+        model_to_queries.items(), 1
+    ):
+        logger.info(f"\n{'=' * 80}")
+        logger.info(
+            f"Processing model {model_idx}/{len(model_to_queries)}: {universal_model_name}"
+        )
+        logger.info(f"{'=' * 80}")
+
+        # Process this model's queries
+        stats = manager.process_single_model(
+            model=universal_model_name,
+            data=queries,
+            num_workers=num_workers,
+            num_runs=num_runs,
+        )
+        all_stats[universal_model_name] = stats
+
+    # Load all cached results to update predictions
+    logger.info("\nLoading cached results to update predictions...")
+    cached_results = load_cached_results_for_predictions(
+        predictions, cached_results_dir
+    )
+
+    # Update predictions with results from cache
+    updated_count = 0
+    for pred, universal_model_name, global_index in valid_predictions:
+        key = (universal_model_name, global_index)
+        if key in cached_results:
+            result_entry = cached_results[key]
+
+            # Update prediction entry with generated_result
+            pred["generated_result"] = {
+                "generated_answer": result_entry.get("generated_answer", ""),
+                "success": result_entry.get("success", False),
+                "token_usage": result_entry.get("token_usage", {}),
+                "provider": result_entry.get("provider", "unknown"),
+                "error": result_entry.get("error", None),
+            }
+            updated_count += 1
+
+    # Save updated predictions
+    save_predictions_file(predictions, router_name, create_backup=False)
 
     # Final summary
     end_time = datetime.datetime.now()
     total_duration = (end_time - start_time).total_seconds() / 60
 
-    logger.info("=" * 60)
+    logger.info("\n" + "=" * 80)
     logger.info("Processing completed!")
-    logger.info(
-        f"Total: {total} | Skipped: {skipped_count} | Cached: {cached_count} | "
-        f"New Success: {successful_count} | New Failed: {failed_count}"
-    )
+    logger.info("=" * 80)
+    logger.info(f"Total predictions: {len(predictions)}")
+    logger.info(f"Valid predictions: {len(valid_predictions)}")
+    logger.info(f"Predictions updated: {updated_count}")
     logger.info(f"Total duration: {total_duration:.1f} minutes")
+
+    # Model statistics
+    logger.info("\nModel Statistics:")
+    for model, stats in all_stats.items():
+        logger.info(f"  {model}:")
+        logger.info(f"    Processed: {stats['processed']}")
+        logger.info(f"    Successful: {stats['successful']}")
+        logger.info(f"    Failed: {stats['failed']}")
+
     logger.info(
-        f"Predictions saved to: ./router_inference/predictions/{router_name}.json"
+        f"\nPredictions saved to: ./router_inference/predictions/{router_name}.json"
     )
-    logger.info("=" * 60)
+    logger.info("=" * 80)
 
 
 def main():
     """Main function to handle command line arguments and run inference."""
     parser = argparse.ArgumentParser(
-        description="Run LLM inference for router predictions"
+        description="Run LLM inference for router predictions using parallel processing",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Process router predictions with default 16 workers
+  uv run python llm_inference/run.py my-router
+
+  # Process with 8 workers and 2 runs per query
+  uv run python llm_inference/run.py my-router --num-workers 8 --num-runs 2
+
+  # Process with custom cache directory
+  uv run python llm_inference/run.py my-router --cached-results-dir ./my_cache
+        """,
     )
     parser.add_argument(
         "router_name",
         type=str,
         help="Name of the router (corresponds to ./router_inference/predictions/<router_name>.json)",
+    )
+    parser.add_argument(
+        "--num-workers",
+        type=int,
+        default=16,
+        help="Number of parallel workers per model (default: 16)",
+    )
+    parser.add_argument(
+        "--num-runs",
+        type=int,
+        default=1,
+        help="Target number of successful inference runs per query (default: 1)",
     )
     parser.add_argument(
         "--cached-results-dir",
@@ -424,7 +386,12 @@ def main():
 
     # Run inference
     try:
-        process_router_predictions(args.router_name)
+        process_router_predictions(
+            router_name=args.router_name,
+            num_workers=args.num_workers,
+            num_runs=args.num_runs,
+            cached_results_dir=args.cached_results_dir,
+        )
     except KeyboardInterrupt:
         logger.info("\nInterrupted by user. Partial results have been saved.")
         sys.exit(1)

@@ -29,6 +29,18 @@ def main():
         action="store_true",
         help="Run in full mode (processes all available data)",
     )
+    parser.add_argument(
+        "--num-workers",
+        type=int,
+        default=1,
+        help="Number of parallel workers for query processing (default: 1, sequential)",
+    )
+    parser.add_argument(
+        "--num-runs",
+        type=int,
+        default=1,
+        help="Target number of successful inference runs per query (default: 1)",
+    )
 
     args = parser.parse_args()
 
@@ -54,7 +66,9 @@ def main():
     config = {"model_name": args.model_name, "run_full": args.run_full}
 
     # Run the inference pipeline
-    results = inference_pipeline(config, args.run_full)
+    results = inference_pipeline(
+        config, args.run_full, num_workers=args.num_workers, num_runs=args.num_runs
+    )
 
     # Log pipeline completion
     end_time = datetime.datetime.now(ct_timezone)
