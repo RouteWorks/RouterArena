@@ -97,7 +97,10 @@ def load_cached_results_for_predictions(
             try:
                 universal_model_name = ModelNameManager.get_universal_name(model_name)
                 model_to_predictions[universal_model_name].append(pred)
-            except Exception:
+            except Exception as e:
+                logger.warning(
+                    f"Could not get universal name for model '{model_name}': {e}"
+                )
                 continue
 
     # Load cache for each model

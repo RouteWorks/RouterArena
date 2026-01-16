@@ -32,18 +32,16 @@ from typing import List, Optional
 from parallel_inference import ParallelInferenceManager
 
 # Add parent directory to path for imports
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
-
-# Change to project root BEFORE loading .env file
 current_dir = os.path.dirname(os.path.abspath(__file__))
 base_dir = os.path.abspath(os.path.join(current_dir, "../"))
-os.chdir(base_dir)
+sys.path.append(base_dir)
 
-# Load environment variables from .env file (now in project root)
+# Load environment variables from .env file (use absolute path)
 try:
     from dotenv import load_dotenv
 
-    load_dotenv()
+    env_path = os.path.join(base_dir, ".env")
+    load_dotenv(env_path)
 except ImportError:
     # dotenv is optional
     pass
@@ -161,7 +159,14 @@ Examples:
     args = parser.parse_args()
 
     try:
-        # Note: Working directory already changed to project root at module load time
+        # Convert relative paths to absolute paths based on project root
+        if not os.path.isabs(args.model_cost_path):
+            args.model_cost_path = os.path.join(base_dir, args.model_cost_path)
+        if not os.path.isabs(args.input_file):
+            args.input_file = os.path.join(base_dir, args.input_file)
+        if not os.path.isabs(args.cache_dir):
+            args.cache_dir = os.path.join(base_dir, args.cache_dir)
+
         start_time = datetime.datetime.now()
 
         logger.info("\n" + "=" * 80)
