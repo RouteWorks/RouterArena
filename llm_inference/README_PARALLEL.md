@@ -11,7 +11,7 @@ This directory now supports parallel inference for processing models efficiently
 Process all 26 models from `model_cost/model_cost.json` with 16 workers per model:
 
 ```bash
-cd /home/yl231/routers/RouterArena
+cd <path_to_your_project_root>
 uv run python llm_inference/batch_inference.py --num-workers 16
 ```
 
