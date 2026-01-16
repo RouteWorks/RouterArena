@@ -239,10 +239,10 @@ class ParallelInferenceManager:
     def clear_failed_entries(self, model: str) -> int:
         """
         Remove all failed entries from the cache file, keeping only successful ones.
-
-        Note: This is a utility function that must be called explicitly if needed.
-        It is NOT automatically called during the normal inference workflow.
-        Use this function to clean up cache files by removing failed entries.
+        
+        This allows failed entries to be retried in subsequent runs.
+        Called automatically before processing each model to ensure failed entries
+        are retried.
 
         Args:
             model: Model name
@@ -570,8 +570,13 @@ class ParallelInferenceManager:
         logger.info(f"Target runs per query: {num_runs}")
         logger.info(f"{'=' * 80}")
 
-        # Note: We don't clear failed entries when using multiple runs,
-        # as we want to track all attempts
+        # Clear failed entries before processing to allow retries
+        # This ensures that failed entries can be retried in this run
+        failed_cleared = self.clear_failed_entries(model)
+        if failed_cleared > 0:
+            logger.info(
+                f"Cleared {failed_cleared} failed entries to allow retries"
+            )
 
         # Filter data to determine which queries need inference and which run number
         filtered_data = self.filter_uninferred_data(data, model, num_runs)
