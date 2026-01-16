@@ -109,6 +109,7 @@ uv run python llm_inference/main.py \
 After inference completes:
 
 1. **Run Evaluation**:
+
    ```bash
    uv run python llm_evaluation/batch_evaluate.py \
        --cached-results-dir ./cached_results \
@@ -116,7 +117,8 @@ After inference completes:
    ```
 
 2. **Compute Scores**:
-   ```bash
+
+```bash
    uv run python router_evaluation/compute_scores.py <router_name>
    ```
 
