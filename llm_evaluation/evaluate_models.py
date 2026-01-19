@@ -416,7 +416,12 @@ class ModelEvaluator:
                 }
                 return True
 
-            except Exception:
+            except Exception as e:
+                import logging
+
+                logging.error(
+                    f"Error evaluating entry {global_index_val}: {e}", exc_info=True
+                )
                 entry["evaluation_result"] = {
                     "extracted_answer": generated_answer,
                     "ground_truth": None,

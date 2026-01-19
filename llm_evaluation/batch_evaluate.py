@@ -70,8 +70,10 @@ def load_models_from_cost_config(
         models = list(cost_config.keys())
         print(f"Loaded {len(models)} models from {cost_config_path}")
         return models
-    except Exception as e:
-        print(f"Error: Could not load cost configuration from {cost_config_path}: {e}")
+    except (json.JSONDecodeError, IOError) as e:
+        print(
+            f"Error: Could not load or parse cost configuration from {cost_config_path}: {e}"
+        )
         return []
 
 
@@ -168,8 +170,8 @@ def run_evaluation(
                 stdout_lines.append(line)
 
             # Process will finish when readline returns None
-            # Wait to ensure it's fully terminated
-            process.wait()
+            # Wait to ensure it's fully terminated (12-hour timeout)
+            process.wait(timeout=43200)
 
         except (KeyboardInterrupt, Exception) as e:
             if process.poll() is None:
