@@ -14,16 +14,13 @@ Adapted from How2TrainARouter's sequential_inference.py.
 import json
 import os
 import logging
-from typing import List, Dict, Any, Set, Optional
+from typing import List, Dict, Any, Optional, Set
 from pathlib import Path
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from filelock import FileLock
+import fcntl
 
 from model_inference import ModelInference
-
-# Thread-local storage for ModelInference instances
-_thread_local = threading.local()
 
 logger = logging.getLogger(__name__)
 
@@ -113,35 +110,45 @@ class ParallelInferenceManager:
         if cache_file.exists():
             logger.info(f"Loading cached run counts from {cache_file}")
 
-            # Use cross-platform file lock to ensure consistent read (prevents reading while writing)
-            lock_file = FileLock(str(cache_file) + ".lock")
-            with self.file_lock:  # Thread-level lock for this process
+            # Use file lock to ensure consistent read (prevents reading while writing)
+            with self.file_lock:
                 try:
-                    with lock_file:  # Process-level lock across all processes
-                        with open(cache_file, "r", encoding="utf-8") as f:
-                            for line in f:
-                                line = line.strip()
-                                if not line:
-                                    continue
-                                try:
-                                    entry = json.loads(line)
-                                    global_index = entry.get("global_index")
-                                    if not global_index:
-                                        continue
+                    with open(cache_file, "r", encoding="utf-8") as f:
+                        # Acquire file lock for reading (Unix/Linux)
+                        try:
+                            fcntl.flock(
+                                f.fileno(), fcntl.LOCK_SH
+                            )  # Shared lock for reading
+                        except (AttributeError, OSError):
+                            # Windows or fcntl not available, rely on threading lock
+                            pass
 
-                                    # Get run_number (default to 1 for backward compatibility)
-                                    run_number = entry.get("run_number", 1)
-
-                                    # Only count successful entries
-                                    if entry.get("success", False):
-                                        if global_index not in run_counts:
-                                            run_counts[global_index] = set()
-                                        run_counts[global_index].add(run_number)
-                                except json.JSONDecodeError:
-                                    logger.warning(
-                                        f"Failed to parse line in {cache_file}"
-                                    )
+                        for line in f:
+                            line = line.strip()
+                            if not line:
+                                continue
+                            try:
+                                entry = json.loads(line)
+                                global_index = entry.get("global_index")
+                                if not global_index:
                                     continue
+
+                                # Get run_number (default to 1 for backward compatibility)
+                                run_number = entry.get("run_number", 1)
+
+                                # Only count successful entries
+                                if entry.get("success", False):
+                                    if global_index not in run_counts:
+                                        run_counts[global_index] = set()
+                                    run_counts[global_index].add(run_number)
+                            except json.JSONDecodeError:
+                                logger.warning(f"Failed to parse line in {cache_file}")
+                                continue
+
+                        try:
+                            fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+                        except (AttributeError, OSError):
+                            pass
                 except Exception as e:
                     logger.error(f"Error loading cached run counts: {e}")
 
@@ -239,10 +246,7 @@ class ParallelInferenceManager:
     def clear_failed_entries(self, model: str) -> int:
         """
         Remove all failed entries from the cache file, keeping only successful ones.
-
-        This allows failed entries to be retried in subsequent runs.
-        Called automatically before processing each model to ensure failed entries
-        are retried.
+        Called once at the beginning to clean up the cache.
 
         Args:
             model: Model name
@@ -278,15 +282,12 @@ class ParallelInferenceManager:
 
         # Write back only successful entries if any were removed
         if failed_count > 0:
-            # Use cross-platform file lock for process-safe file writing
-            lock_file = FileLock(str(cache_file) + ".lock")
-            with self.file_lock:  # Thread-level lock for this process
+            with self.file_lock:
                 try:
-                    with lock_file:  # Process-level lock across all processes
-                        with open(cache_file, "w", encoding="utf-8") as f:
-                            for entry in successful_entries:
-                                json.dump(entry, f, ensure_ascii=False)
-                                f.write("\n")
+                    with open(cache_file, "w", encoding="utf-8") as f:
+                        for entry in successful_entries:
+                            json.dump(entry, f, ensure_ascii=False)
+                            f.write("\n")
                     logger.info(
                         f"Cleared {failed_count} failed entries from {cache_file}"
                     )
@@ -358,14 +359,24 @@ class ParallelInferenceManager:
         model_filename = model.replace("/", "_")
         cache_file = self.cache_dir / f"{model_filename}.jsonl"
 
-        # Use cross-platform file lock to ensure process-safe file writing
-        lock_file = FileLock(str(cache_file) + ".lock")
-        with self.file_lock:  # Thread-level lock for this process
+        # Use lock to ensure thread-safe file writing
+        with self.file_lock:
             try:
-                with lock_file:  # Process-level lock across all processes
-                    with open(cache_file, "a", encoding="utf-8") as f:
-                        json.dump(result, f, ensure_ascii=False)
-                        f.write("\n")
+                with open(cache_file, "a", encoding="utf-8") as f:
+                    # Acquire file lock (Unix/Linux)
+                    try:
+                        fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+                    except (AttributeError, OSError):
+                        # Windows or fcntl not available, rely on threading lock
+                        pass
+
+                    json.dump(result, f, ensure_ascii=False)
+                    f.write("\n")
+
+                    try:
+                        fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+                    except (AttributeError, OSError):
+                        pass
             except Exception as e:
                 logger.error(f"Error saving single result: {e}")
 
@@ -423,16 +434,26 @@ class ParallelInferenceManager:
                 # Merge: new results override existing ones
                 merged_results = {**existing_results, **results}
 
-                # Write all results with cross-platform file lock
-                lock_file = FileLock(str(cache_file) + ".lock")
-                with lock_file:  # Process-level lock across all processes
-                    with open(cache_file, "w", encoding="utf-8") as f:
-                        for result in merged_results.values():
-                            # Ensure run_number is present before saving
-                            if "run_number" not in result:
-                                result["run_number"] = 1
-                            json.dump(result, f, ensure_ascii=False)
-                            f.write("\n")
+                # Write all results
+                with open(cache_file, "w", encoding="utf-8") as f:
+                    # Acquire file lock (Unix/Linux) if available
+                    try:
+                        fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+                    except (AttributeError, OSError):
+                        # Windows or fcntl not available, rely on threading lock
+                        pass
+
+                    for result in merged_results.values():
+                        # Ensure run_number is present before saving
+                        if "run_number" not in result:
+                            result["run_number"] = 1
+                        json.dump(result, f, ensure_ascii=False)
+                        f.write("\n")
+
+                    try:
+                        fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+                    except (AttributeError, OSError):
+                        pass
 
                 logger.info(f"Saved {len(merged_results)} results to {cache_file}")
             except Exception as e:
@@ -472,10 +493,8 @@ class ParallelInferenceManager:
             f"Processing {index + 1}/{total} | Global ID: {global_index} | Run: {run_number}"
         )
 
-        # Get or create model inferencer for this thread (reuse per thread to avoid overhead)
-        if not hasattr(_thread_local, "model_inferencer"):
-            _thread_local.model_inferencer = ModelInference()
-        model_inferencer = _thread_local.model_inferencer
+        # Create model inferencer for this thread
+        model_inferencer = ModelInference()
 
         try:
             inference_result = model_inferencer.infer(model.replace("_", "/"), prompt)
@@ -570,11 +589,8 @@ class ParallelInferenceManager:
         logger.info(f"Target runs per query: {num_runs}")
         logger.info(f"{'=' * 80}")
 
-        # Clear failed entries before processing to allow retries
-        # This ensures that failed entries can be retried in this run
-        failed_cleared = self.clear_failed_entries(model)
-        if failed_cleared > 0:
-            logger.info(f"Cleared {failed_cleared} failed entries to allow retries")
+        # Note: We don't clear failed entries when using multiple runs,
+        # as we want to track all attempts
 
         # Filter data to determine which queries need inference and which run number
         filtered_data = self.filter_uninferred_data(data, model, num_runs)
@@ -652,6 +668,14 @@ class ParallelInferenceManager:
                             f"Progress: {completed_count}/{len(filtered_data)} | "
                             f"Success: {successful_count} | Failed: {failed_count}"
                         )
+                        # Periodically consolidate results (reload and save all)
+                        with self.results_lock:
+                            # Reload cache to get any results saved by other threads
+                            current_cache = self.load_existing_cache(model)
+                            # Merge: existing cache + our in-memory updates
+                            merged_cache = {**current_cache, **cached_results}
+                            cached_results.update(merged_cache)
+                            self.save_all_results(cached_results, model)
 
                 except Exception as e:
                     logger.error(f"Error processing future: {e}")

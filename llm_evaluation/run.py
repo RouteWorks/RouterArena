@@ -23,13 +23,11 @@ import json
 import os
 import sys
 import logging
-import datetime
 import math
-import threading
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, Any, List, Optional, Tuple, Set
 from universal_model_names import ModelNameManager
 from global_utils.robustness import compute_robustness_score
+from parallel_evaluation import ParallelEvaluationManager
 
 # Add parent directory to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
@@ -415,28 +413,24 @@ def process_router_predictions(
     ground_truth_map = load_ground_truth_dataset(split)
 
     # Initialize model evaluator (shared across threads - should be thread-safe for read operations)
-    evaluator = ModelEvaluator(cached_results_dir="./cached_results")
+    try:
+        evaluator = ModelEvaluator(cached_results_dir="./cached_results")
+    except Exception as e:
+        logger.error(f"Failed to initialize ModelEvaluator: {e}")
+        raise RuntimeError(f"ModelEvaluator initialization failed: {e}")
 
-    # Thread-safe statistics tracking
-    stats_lock = threading.Lock()
-    save_lock = threading.Lock()
+    # Initialize parallel evaluation manager
+    manager = ParallelEvaluationManager(workers=num_workers)
 
     # Statistics
     total = len(predictions)
-    processed_count = 0  # Counter for progress reporting
-    evaluated_count = 0
-    skipped_count = 0
-    failed_count = 0
     already_evaluated_count = 0
-
-    start_time = datetime.datetime.now()
 
     logger.info(
         "The dataset contains entries from LiveCodeBench, and it is common to wait for ~10 minutes to evaluate the sub_10 split of the dataset."
     )
 
     # Prepare tasks: filter out already evaluated entries (unless force is True)
-    # Note: This loop runs in the main thread before threading starts, so no lock needed
     tasks = []
     for i, prediction in enumerate(predictions):
         # Check if already evaluated (has accuracy and cost)
@@ -446,107 +440,51 @@ def process_router_predictions(
             and prediction.get("cost") is not None
         ):
             already_evaluated_count += 1
-            evaluated_count += 1
-            processed_count += 1
             continue
 
         # Store (index, prediction) - index is the sequence number in the original list
         tasks.append((i, prediction))
 
+    # Set already evaluated count in manager
+    with manager.stats_lock:
+        manager.already_evaluated_count = already_evaluated_count
+
     logger.info(
         f"Found {len(tasks)} entries to evaluate ({already_evaluated_count} already evaluated)"
     )
 
-    def evaluate_task(seq_idx: int, prediction: Dict[str, Any]) -> bool:
+    def evaluate_task_wrapper(
+        seq_idx: int, prediction: Dict[str, Any], **kwargs: Any
+    ) -> bool:
         """
-        Evaluate a single prediction task.
-
-        Args:
-            seq_idx: Sequence number (index) of this prediction in the original list
-            prediction: The prediction dictionary to evaluate (modifies in-place)
-
-        Returns:
-            True if evaluation succeeded, False otherwise
+        Wrapper for evaluate_single_prediction to be used with ParallelEvaluationManager.
         """
-        nonlocal processed_count, evaluated_count, skipped_count, failed_count
-        try:
-            # Evaluate the prediction (modifies prediction dict in-place)
-            success = evaluate_single_prediction(
-                prediction, ground_truth_map, evaluator
-            )
+        gt_map: Dict[str, Dict[str, Any]] = kwargs.get("ground_truth_map", {})
+        eval_instance: ModelEvaluator = kwargs["evaluator"]
 
-            # Update statistics
-            with stats_lock:
-                if success:
-                    evaluated_count += 1
-                else:
-                    skipped_count += 1
-                processed_count += 1
-                current_count = processed_count
+        return evaluate_single_prediction(prediction, gt_map, eval_instance)
 
-            # Save and log if this seq_idx is a save milestone
-            # Save when seq_idx is a multiple of save_interval
-            if (
-                save_interval > 0
-                and save_interval <= total
-                and seq_idx % save_interval == 0
-            ):
-                with save_lock:
-                    # Save the entire predictions list
-                    # This is safe because each thread modifies a different index
-                    save_predictions_file(predictions, router_name)
-
-                    elapsed_time = (
-                        datetime.datetime.now() - start_time
-                    ).total_seconds() / 60
-                    with stats_lock:
-                        logger.info(
-                            f"Progress: seq_idx={seq_idx} ({current_count}/{total} processed) | "
-                            f"Evaluated: {evaluated_count} | Skipped: {skipped_count} | "
-                            f"Elapsed: {elapsed_time:.1f}min | Saved checkpoint"
-                        )
-
-            # Log completion with sequence number for tracking
-            if logger.isEnabledFor(logging.DEBUG):
-                logger.debug(
-                    f"Completed evaluation for sequence index {seq_idx}: {'success' if success else 'skipped'}"
-                )
-
-            return success
-        except Exception as e:
-            logger.error(f"Error evaluating entry at sequence index {seq_idx}: {e}")
-            with stats_lock:
-                failed_count += 1
-                processed_count += 1
-            return False
-
-    # Process tasks in parallel using ThreadPoolExecutor
-    # Each task gets (seq_idx, prediction) and modifies prediction in-place
-    # This is safe because each thread modifies a different list element
-    with ThreadPoolExecutor(max_workers=num_workers) as executor:
-        # Submit all tasks - unpack the tuple directly
-        future_to_task = {
-            executor.submit(evaluate_task, seq_idx, prediction): (seq_idx, prediction)
-            for seq_idx, prediction in tasks
-        }
-
-        # Process completed tasks
-        for future in as_completed(future_to_task):
-            try:
-                future.result()  # This will raise any exceptions that occurred
-            except Exception as e:
-                seq_idx, _ = future_to_task[future]
-                logger.error(
-                    f"Task at sequence index {seq_idx} failed with exception: {e}"
-                )
-
-    # Final save
-    with save_lock:
+    def save_callback():
+        """Callback to save predictions file."""
         save_predictions_file(predictions, router_name)
 
+    # Run parallel evaluation
+    manager.evaluate_entries_parallel(
+        tasks=tasks,
+        evaluation_func=evaluate_task_wrapper,
+        save_func=save_callback,
+        save_interval=save_interval,
+        total_count=total,
+        ground_truth_map=ground_truth_map,
+        evaluator=evaluator,
+    )
+
     # Final summary
-    end_time = datetime.datetime.now()
-    total_duration = (end_time - start_time).total_seconds() / 60
+    stats = manager.get_stats()
+    evaluated_count = stats["evaluated"]
+    skipped_count = stats["skipped"]
+    failed_count = stats["failed"]
+    total_duration = stats["total_duration_min"]
 
     logger.info("=" * 60)
     logger.info("Evaluation completed!")
