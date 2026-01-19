@@ -11,11 +11,11 @@ It centralizes the query-level parallelism logic used by both run.py and evaluat
 import logging
 import threading
 import datetime
-import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import List, Dict, Any, Callable, Optional
 
 logger = logging.getLogger(__name__)
+
 
 class ParallelEvaluationManager:
     """
@@ -32,7 +32,7 @@ class ParallelEvaluationManager:
         self.workers = workers
         self.stats_lock = threading.Lock()
         self.save_lock = threading.Lock()
-        
+
         # Statistics
         self.reset_stats()
 
@@ -55,7 +55,10 @@ class ParallelEvaluationManager:
                 "skipped": self.skipped_count,
                 "failed": self.failed_count,
                 "already_evaluated": self.already_evaluated_count,
-                "total_duration_min": (datetime.datetime.now() - self.start_time).total_seconds() / 60
+                "total_duration_min": (
+                    datetime.datetime.now() - self.start_time
+                ).total_seconds()
+                / 60,
             }
 
     def evaluate_entries_parallel(
@@ -65,7 +68,7 @@ class ParallelEvaluationManager:
         save_func: Optional[Callable] = None,
         save_interval: int = 50,
         total_count: int = 0,
-        **extra_kwargs
+        **extra_kwargs,
     ) -> Dict[str, Any]:
         """
         Process entries in parallel using ThreadPoolExecutor.
@@ -89,12 +92,12 @@ class ParallelEvaluationManager:
             total_count = len(tasks)
 
         logger.info(f"Starting parallel evaluation with {self.workers} workers")
-        
+
         def worker_task(idx: int, data: Any) -> bool:
             try:
                 # Execute evaluation
                 success = evaluation_func(idx, data, **extra_kwargs)
-                
+
                 # Update statistics
                 with self.stats_lock:
                     if success:
@@ -103,12 +106,16 @@ class ParallelEvaluationManager:
                         self.skipped_count += 1
                     self.processed_count += 1
                     current_processed = self.processed_count
-                
+
                 # Handle periodic saving
-                if save_func and save_interval > 0 and current_processed % save_interval == 0:
+                if (
+                    save_func
+                    and save_interval > 0
+                    and current_processed % save_interval == 0
+                ):
                     with self.save_lock:
                         save_func()
-                        
+
                         stats = self.get_stats()
                         logger.info(
                             f"Progress: {current_processed}/{total_count} | "
@@ -116,7 +123,7 @@ class ParallelEvaluationManager:
                             f"Skipped: {stats['skipped']} | "
                             f"Elapsed: {stats['total_duration_min']:.1f}min | Saved checkpoint"
                         )
-                
+
                 return success
             except Exception as e:
                 logger.error(f"Error in worker task (index {idx}): {e}", exc_info=True)
@@ -131,7 +138,7 @@ class ParallelEvaluationManager:
                 executor.submit(worker_task, idx, data): (idx, data)
                 for idx, data in tasks
             }
-            
+
             for future in as_completed(future_to_task):
                 try:
                     future.result()
