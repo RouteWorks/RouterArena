@@ -1,0 +1,30 @@
+{
+  "pipeline_params": {
+      "router_name": "vllm-sr",
+      "router_cls_name": "VLLMSR",
+      "models": [
+          "gpt-4o-mini",
+          "claude-3-haiku-20240307",
+          "gemini-2.0-flash-001"
+      ],
+      "router_endpoint": "http://localhost:8080",
+      "base_url": "http://localhost:8080",
+      "default_model": "gpt-4o-mini",
+      "category_model_mapping": {
+          "biology": "claude-3-haiku-20240307",
+          "business": "gemini-2.0-flash-001",
+          "chemistry": "gemini-2.0-flash-001",
+          "computer science": "gemini-2.0-flash-001",
+          "economics": "gemini-2.0-flash-001",
+          "engineering": "gemini-2.0-flash-001",
+          "health": "gpt-4o-mini",
+          "history": "gpt-4o-mini",
+          "law": "gemini-2.0-flash-001",
+          "math": "gemini-2.0-flash-001",
+          "other": "gemini-2.0-flash-001",
+          "philosophy": "gemini-2.0-flash-001",
+          "physics": "gemini-2.0-flash-001",
+          "psychology": "gemini-2.0-flash-001"
+      }
+  }
+}
