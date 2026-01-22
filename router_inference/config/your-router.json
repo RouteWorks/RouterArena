@@ -1,6 +1,7 @@
 {
     "pipeline_params": {
         "router_name": "your-router",
+        "router_cls_name": "your_router_class_name",
         "models": [
             "gpt-4o-mini",
             "claude-3-haiku-20240307",

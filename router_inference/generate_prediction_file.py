@@ -2,11 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 """
-Generate Prediction File using ExampleRouter.
+Generate Prediction File using configured router.
 
-This script generates a prediction file using the ExampleRouter class,
-which cycles through models in the config file. This is useful for
-testing the RouterArena pipeline.
+This script generates a prediction file using the router class specified
+in the config file's pipeline_params.router_cls_name field.
 
 Usage:
     python router_inference/generate_prediction_file.py <router_name> <split>
@@ -23,7 +22,7 @@ from typing import Dict, Any, List
 # Add parent directory to path for imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 
-from router_inference.router import ExampleRouter, BaseRouter
+from router_inference.router import BaseRouter
 
 # Dataset file paths
 DATASET_PATHS = {
@@ -196,7 +195,7 @@ def save_predictions(
 def main():
     """Main function to handle command line arguments and generate predictions."""
     parser = argparse.ArgumentParser(
-        description="Generate prediction file using ExampleRouter"
+        description="Generate prediction file using router specified in config"
     )
     parser.add_argument(
         "router_name",
@@ -226,24 +225,40 @@ def main():
     print(f"Dataset split: {args.split}")
     print("=" * 80)
 
-    # Initialize router
-    print("\n[1] Initializing router...")
-
-    ## You should replace ExampleRouter with your own router implementation.
-    router = ExampleRouter(args.router_name)
-
-    print(f"✓ Router initialized: {router.router_name}")
-    print(f"  Available models: {', '.join(router.models)}")
-
-    # Load router config to get model pool
-    print("\n[2] Loading router config...")
+    # Load router config first to get router_cls_name
+    print("\n[1] Loading router config...")
     config_path = f"./router_inference/config/{args.router_name}.json"
 
     with open(config_path, "r", encoding="utf-8") as f:
         config = json.load(f)
-    model_pool = config.get("pipeline_params", {}).get("models", [])
-    print(f"✓ Model pool loaded: {len(model_pool)} models")
+
+    pipeline_params = config.get("pipeline_params", {})
+    model_pool = pipeline_params.get("models", [])
+    router_cls_name = pipeline_params.get("router_cls_name", "ExampleRouter")
+
+    print(f"✓ Config loaded: {config_path}")
+    print(f"  Router class: {router_cls_name}")
+    print(f"  Model pool: {len(model_pool)} models")
     print(f"  Models: {', '.join(model_pool)}")
+
+    # Initialize router dynamically based on router_cls_name
+    print("\n[2] Initializing router...")
+
+    # Import the router module to access router classes
+    import router_inference.router as router_module
+
+    # Get the router class by name
+    if not hasattr(router_module, router_cls_name):
+        raise ValueError(
+            f"Router class '{router_cls_name}' not found in router_inference.router module. "
+            f"Available routers: {', '.join([name for name in dir(router_module) if not name.startswith('_')])}"
+        )
+
+    router_cls = getattr(router_module, router_cls_name)
+    router = router_cls(args.router_name)
+
+    print(f"✓ Router initialized: {router.router_name}")
+    print(f"  Available models: {', '.join(router.models)}")
 
     # Load dataset
     print("\n[3] Loading dataset...")

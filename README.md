@@ -102,6 +102,7 @@ Create a config file in `./router_inference/config/<router_name>.json`. An examp
 {
   "pipeline_params": {
       "router_name": "your-router",
+      "router_cls_name": "your_router_class_name",
       "models": [
           "gpt-4o-mini",
           "claude-3-haiku-20240307",
@@ -129,15 +130,7 @@ For each model in your config, add an entry with the pricing per million tokens 
 
 Create your own router class by inheriting from `BaseRouter` and implementing the `_get_prediction()` method. See [`router_inference/router/example_router.py`](./router_inference/router/example_router.py) for a complete example.
 
-Then, modify [`router_inference/generate_prediction_file.py`](./router_inference/generate_prediction_file.py#L150) to use your router class:
-
-```python
-# Replace ExampleRouter with your router class
-from router_inference.router.my_router import MyRouter
-router = MyRouter(args.router_name)
-```
-
-Finally, generate the prediction file:
+Then, generate the prediction file:
 
 ```bash
 uv run python ./router_inference/generate_prediction_file.py your-router [sub_10|full|robustness]
