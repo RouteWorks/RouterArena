@@ -41,7 +41,7 @@ class VLLMSR(BaseRouter):
                 f"{self.base_url}/api/v1/classify/intent",
                 data=data,
                 headers={"Content-Type": "application/json"},
-                method="POST"
+                method="POST",
             )
             with urllib.request.urlopen(req, timeout=10) as resp:
                 return json.loads(resp.read().decode("utf-8"))
@@ -59,4 +59,6 @@ class VLLMSR(BaseRouter):
             if model in self.models:
                 return model
 
-        return self.default_model if self.default_model in self.models else self.models[0]
+        return (
+            self.default_model if self.default_model in self.models else self.models[0]
+        )
