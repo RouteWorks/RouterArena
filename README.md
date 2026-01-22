@@ -130,7 +130,16 @@ For each model in your config, add an entry with the pricing per million tokens 
 
 Create your own router class by inheriting from `BaseRouter` and implementing the `_get_prediction()` method. See [`router_inference/router/example_router.py`](./router_inference/router/example_router.py) for a complete example.
 
-Then, generate the prediction file:
+Then, modify [`router_inference/router/__init__.py`](./router_inference/router/__init__.py) to include your router class:
+
+```python
+# Import your router class
+from router_inference.router.my_router import MyRouter
+
+__all__ = ["BaseRouter", "ExampleRouter", "MyRouter"]
+```
+
+Finally, generate the prediction file:
 
 ```bash
 uv run python ./router_inference/generate_prediction_file.py your-router [sub_10|full|robustness]
