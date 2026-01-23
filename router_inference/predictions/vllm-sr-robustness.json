@@ -83,7 +83,7 @@
   {
     "global index": "ArcMMLU_378",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most probable accurate response predicated upon the alternatives presented.\n\nContext: None\n\nInterrogative: ( ) Amidst a compendium of documents, each manuscript possesses a distinctive serial designation termed as.\n\nAlternatives: \nA. Manuscript Identifier\nB. Manuscript Numeral\nC. Manuscript Id\nD. Both b and c\n\nRender the appropriate alphabetical selection in \\boxed{X}, where X signifies the correct alphabetical selection. Retain the elucidation or commentary within 3 sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -182,7 +182,7 @@
   {
     "global index": "ArcMMLU_98",
     "prompt": "Pleez red teh folowing multple-choce questons and provde the mos likely corect answr based on teh optons gven.\n\nConext: Non\n\nQestion: Acording to Genral Fnancial Ruls, 2005, loss of how many volmes per thouand volmes issued/consulted in a yer is to be takn as resonable. ( )\n\nOptons: \nA. Thre\nB. Foure\nC. Fiev\nD. Sixx\n\nProvde the corect leter choic in \\boxed{X}, wher X is the corect leter choic. Kep the explanaton or feebak within 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -191,7 +191,7 @@
   {
     "global index": "AsDiv_1165",
     "prompt": "Kindly elucidate the ensuing arithmetic conundrum meticulously.\n\nScenario: A gastronomic evaluator appraised eateries in Richmond and Yardley. Within Richmond, the assessor bestowed 14 affirmative critiques alongside 20 adverse ones. In Yardley, 12 appraisals were commendatory whilst 17 were unfavorable.\n\nInquiry: Within which metropolis did the gastronomic evaluator bestow a superior proportion of commendatory to adverse critiques?\n\nDeliver your conclusive response in \\boxed{{}} format, ensuring the content within the braces is the precise numerical expression or figure. For instance: \\boxed{{42}}. Maintain your elucidation lucid, succinct, and confined to 3 sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -299,7 +299,7 @@
   {
     "global index": "Ethics_commonsense_51",
     "prompt": "Plase raed teh folowing mulitple-choce qestions and determne wether teh acion (in queston) is moralyy acceptble or not.\n\nContext: Nne\n\nQuestion: I thow a bal quckly to anothr child.\n\nOptins: \nA. Fasle\nB. Ture\n\nProide teh corect leter choce in \\boxed{X}, whre X is teh corect leter choce. Kepp the explanaion or feedbak withn 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -326,7 +326,7 @@
   {
     "global index": "Ethics_commonsense_70",
     "prompt": "Kindly peruse the ensuing selection-based inquiries and ascertain if the deed (under scrutiny) is ethically permissible or otherwise.\n\nBackdrop: Absent\n\nInquiry: I am aware of my uncle’s afflicted joints, hence I clasp his hand with resolute firmness.\n\nChoices: \nA. Incorrect\nB. Accurate\n\nDeliver the right alphabetic selection in \\boxed{X}, where X epitomizes the correct option. Confine the rationale or commentary to within 3 statements.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -407,7 +407,7 @@
   {
     "global index": "Ethics_justice_45",
     "prompt": "Pleas rd teh foliowing mulitple-choise qestions an determine wethr the actin (in qestion) is morlly accepatble or not.\n\nContex: None\n\nQuestin: The firmen desrved prasied frm the cty for puting startng fires for pay.\n\nOptons:  \nA. Flase  \nB. Treu  \n\nProvdie the corect leter choise in \\boxed{X}, whre X is the corect leter choise. Kep the explantion or feedbak wtihin 3 sentnces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -425,7 +425,7 @@
   {
     "global index": "Ethics_justice_84",
     "prompt": "Kindly peruse the ensuing selection-based queries and ascertain if the conduct (being queried) is ethically justifiable or otherwise.\n\nBackdrop: None\n\nInquiry: I perceived I merited commendation subsequent to parturition of my inaugural offspring.\n\nAlternatives:\nA. Inaccurate\nB. Accurate\n\nFurnish the precise alphabetical option in \\boxed{X}, wherein X denotes the proper letter choice. Restrict the elucidation or commentary to within a trio of sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -479,7 +479,7 @@
   {
     "global index": "FinQA_149",
     "prompt": "Kindly elucidate the ensuing arithmetic conundrum methodically. Convey the conclusive resolution.\n\nBackdrop: A program for augmenting shareholder worth awards SVA allocation to executives and management remunerated with our common stock shares. The actual share issuance, if any, fluctuates based on our stock valuation at the culmination of the three-year vesting phase against set target stock valuations. The SVA unit's fair worth on the grant date is gauged via a Monte Carlo simulation framework. This framework employs diverse input variables to ascertain the likelihood of fulfilling the market stipulation specified in the award grant and computes the award's fair valuation. Anticipated volatilities employed in the framework derive from implicit volatilities of traded stock options, historical stock price volatility, and other considerations. Similarly, the dividend yield stems from past encounters and our projection of future dividend yields. The risk-free interest rate is sourced from the U.S. Treasury yield curve active during the grant period. The weighted-average fair worth of SVA units allocated during the years concluding December 31, 2018, 2017, and 2016 were $48.51, $66.25, and $48.68, respectively, deduced using these assumptions: . In accordance with this plan, around 0.7 million shares, 1.1 million shares, and 1.0 million shares were distributed during the years concluding December 31, 2018, 2017, and 2016, respectively. Approximately 1.0 million shares are anticipated for distribution in 2019. As of December 31, 2018, the total residual unrecognized compensation cost related to unvested SVAs was $55.7 million, slated for amortization over the 20-month weighted-average remaining requisite service duration. Restricted stock units RSUs are allocated to particular employees and remunerated with our common stock shares. RSU shares are valued at fair market value based on the closing stock price on the grant date. The corresponding expense undergoes amortization over the vesting duration, typically spanning three years. The RSU awards' fair values distributed during the years concluding December 31, 2018, 2017, and 2016 were valued at $70.95, $72.47, and $71.46, respectively. The share count ultimately issued under the RSU program remains steady except for forfeitures. Within this plan, 1.3 million, 1.4 million, and 1.3 million shares were allocated and around 1.0 million, 0.9 million, and 0.6 million shares were distributed during the years concluding December 31, 2018, 2017, and 2016, respectively. Roughly 0.8 million shares are forecasted for distribution in 2019. As of December 31, 2018, the total residual unrecognized compensation cost linked to unvested RSUs was $112.2 million, anticipated for amortization over the 21-month weighted-average remaining requisite service duration. Note 12: Shareholders' equity during 2018, 2017, and 2016, we reacquired $4.15 billion, $359.8 million, and $540.1 million, respectively, of shares linked to our share buyback programs. A $60.0 million payment occurred in 2016 for shares reacquired in 2017. During 2018, we reacquired $2.05 billion of shares, fulfilling the $5.00 billion share buyback scheme declared in October 2013, and our board sanctioned an $8.00 billion share buyback scheme. There were $2.10 billion reacquired under the $8.00 billion scheme in 2018. As of December 31, 2018, there were $5.90 billion of shares remaining under the 2018 scheme. We possess 5.0 million authorized shares of preferred stock. As of December 31, 2018, and 2017, no preferred stock was issued. Our employee benefit trust held 50.0 million shares of our common stock at both December 31, 2018, and 2017, providing a funding source to assist in meeting obligations under various employee benefit frameworks. The shares' cost basis in the trust was $3.01 billion at both December 31, 2018, and 2017, depicted as a reduction of shareholders 2019 equity. Any dividend dealings between us and the trust are nullified. Stock retained by the trust is not deemed outstanding in the EPS computation. The trust's assets were not utilized to fund any obligations under these employee benefit frameworks during the years concluding December 31, 2018, 2017, and.\n\nInquiry: What was the percentage modification in fair values of RSU allocations from 2016 to 2017?\n\nOffer your definitive answer in \\boxed{{}} notation, where the material inside the braces is the precise arithmetic formula or numeral. For instance: \\boxed{{42}}. Ensure your elucidation remains clear, succinct, and within three sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -524,7 +524,7 @@
   {
     "global index": "GeoBench_1002",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most plausible accurate response predicated on the alternatives presented.\n\nBackdrop: None\n\nInquiry: Which among the ensuing exemplifies sequent occupance most aptly?\n\nAlternatives: \nA. Neil Armstrong imprinting boot marks upon the lunar expanse\nB. Every ensuing cohort of an expatriate lineage exhibiting diminished fluency in the dialect of their forebears' native land\nC. The Bubonic Plague decimating a substantial segment of the populace in Europe\nD. The transference of real estate, like a domicile, from one lineage to its successive generation\nE. The contemporary employment of the Spanish tongue across the erstwhile domains of the Spanish Empire\n\nElect the appropriate letter choice in \\boxed{X}, where X denotes the correct letter selection. Limit the explication or critique to 3 statements.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -533,7 +533,7 @@
   {
     "global index": "GeoBench_1094",
     "prompt": "Plase raed the foloowing mu;tiple-choiece qestions adn provid the mos likely correc answer baseed on the optons given.\n\nContext: None\n\nQueston: Whic of the folowing corectly pars the evnt with its charachterization as a puh or pul factr?\n\nOptins: \nA. A goverment pursecutes a relgious grup: poltical pul facotr\nB. A new factry opns: ecnomic puh factr\nC. A factry closs: ecnomic pul factr\nD. Tornadoes cuase a city to evacuaet: environmntal puh facotr\nE. An ara experiences floding: environmntal pul factr\n\nProvid the correect lter choic in \\boxxed{X}, wher X is the correect lter choic. Keep the explantion or feeedback withn 3 sntences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -542,7 +542,7 @@
   {
     "global index": "GeoBench_1102",
     "prompt": "Plase raed the folowing mulitple-choic questons and provdide the most likly corect anser basd on the optoins gven.\n\nContex: None\n\nQueston: Stats wthin the Unted Stats are oftn conidered vry diferent frm one anothr, despiite the fact tht they are prt of the sme contry. Whch of the folowing bst desribes this sitaution?\n\nOptoins: \nA. An adapttive stratgey\nB. A bult enviroment\nC. The natral landsacpe\nD. Folk culure\nE. Regionaliztion\n\nProvde the corect leter choic in \\boxed{E}, whre E is the corect leter choic. Keep the explantion or fedback wthin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -551,7 +551,7 @@
   {
     "global index": "GeoBench_1113",
     "prompt": "Pleze rad the folowing multple-choise qestions and proide the most likly corect anser based on the opions gven.\n\nContext: None\n\nQuesion: Which of teh folowing is an exmple of hiaerarchical difusion?\n\nOptons: \nA. McDonald’s in Inida serving Chicken Maharja Mac\nB. Americns puttin pinapple on piza\nC. Japnese basebal allowing tied gmes\nD. South Korean Catholcs practicng ancstor rites\nE. A Britsh celbrity poplarizing her hairstile in Brazil\n\nProvide te corect leter choce in \\boxed{E}, whre E is the corect leter chice. Kep the explantion or fedbck wthin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -632,7 +632,7 @@
   {
     "global index": "GeoBench_915",
     "prompt": "Kindly peruse the ensuing multiple-selection inquiries and furnish the most probable accurate response predicated on the enumerated alternatives.\n\nBackdrop: Absent\n\nInquiry: Two instances of extant absolute monarchies are\n\nSelections:\nA. United Kingdom and the Netherlands\nB. China and Japan\nC. Saudi Arabia and Brunei\nD. Iceland and Japan\nE. Turkey and Egypt\n\nRender the precise alphabetic alternative in \\boxed{X}, wherein X signifies the correct selection. Confine the elucidation or commentary to no more than three sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -641,7 +641,7 @@
   {
     "global index": "GeoBench_944",
     "prompt": "Pleas reaad teh folowing multiple-choic qestions an provide te most likely corect answr based on the opptions gven.\n\nContxt: None\n\nQestion: Whuch of te folowing is th most plosible explanaton for teh treends seen in th Mediteranean rgion of teh map?\n\nOptons: \nA. Conservatve tradtions tht encourag moderat famly sze \nB. A repressve politcal climte \nC. Environmntal disassters such as het waves\nD. Religous prohibiton of contraceptin\nE. Sver natinal dept an consistntly hi unemploymnt\n\nProvde the corret leter choic in \\boxed{X}, wher X is te corect leter choce. Kep te explantion or fedbak wthin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -659,7 +659,7 @@
   {
     "global index": "GeoGraphyData_100k_27",
     "prompt": "Pleasae reaad thhe follwoing questoin and proivde teh corect anser.\n\nContekst: None\n\nQuestoin: Whihc ctiy is knonw as teh Big Aplpe?\n\nProivde teh corect answr in \\boxed{X}, where X is teh corect and teh moost commmon anser to teh questoin. Keeep teh explantion or feeback wtihin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -875,7 +875,7 @@
   {
     "global index": "MMLUPro_biology_2808",
     "prompt": "pleese reed teh foloowing multple-choce qestions n provde teh mos likly corect answr bsed on teh optons gven.\n\nContex: None\n\nQuesion: Which desribes an Afrcan butterfli speces that exsts in two strkingly diffrent color paterns?\n\nOptons: \nA. directonal slecetion\nB. Naturle slecetion\nC. artifical slecetion\nD. Divergent slecetion\nE. Coonvergent evolutoin\nF. Genetik drifft\nG. Balnced slecetion\nH. stabllizing slecetion\nI. disruiptive slecetion\nJ. Sexaul slecetion\n\nProvde the correc ltter choise in \\boxed{I}, wher X is the correc ltter choise. Keep th explantion or feedbak witin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -884,7 +884,7 @@
   {
     "global index": "MMLUPro_biology_2912",
     "prompt": "Kindly examine the subsequent multiple-choice inquiries and select the option you deem most accurate from those presented.\n\nContext: None\n\nInquiry: How does a kinesis differ from a taxis?\n\nSelections: \nA. A kinesis involves an organism advancing toward illumination, whereas a taxis involves retreating from it.\nB. A kinesis represents a directed orientation, contrasting with a taxis which is undirected.\nC. A kinesis signifies alteration in locomotion pace due to a stimulus, while a taxis entails movement irrespective of external factors.\nD. Both a kinesis and a taxis categorize plant development.\nE. A kinesis describes plant motion caused by wind, contrasting with a taxis, which relates to plant response to soil hydration.\nF. A kinesis pertains to nocturnal movements, whereas a taxis concerns diurnal movements.\nG. A kinesis depicts movement where the creature does not necessarily align its body with the stimulus, being nondirectional. In contrast, a taxis involves aligning the body toward or away from the stimulus.\nH. A kinesis is an involuntary, swift reaction to a trigger, whereas a taxis is a gradual, intentional motion toward nourishment.\nI. A kinesis involves moving in response to chemical stimuli, while a taxis involves moving in response to temperature changes.\n\nIndicate the correct selection in \\boxed{X}, where X is the correct letter option. Limit any explanation or feedback to three sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -893,7 +893,7 @@
   {
     "global index": "MMLUPro_biology_2980",
     "prompt": "Kindly examine the ensuing set of multiple-choice inquiries and determine the most probable accurate answer from the provided selections.\n\nContext: None\n\nInquiry: Formation of a RNA/DNA composite from a solitary RNA strand template necessitates\n\nSelections: \nA. Solely RNase\nB. A DNA primer coupled with RNase\nC. Either a DNA or RNA primer combined with DNA polymerase\nD. Either a DNA or RNA primer paired with reverse transcriptase\nE. A RNA primer alongside DNA polymerase\nF. Exclusively DNA polymerase\nG. A RNA primer with reverse transcriptase\nH. Reverse transcriptase along with RNase\nI. Only reverse transcriptase\nJ. A DNA primer, RNA primer, and reverse transcriptase\n\nIndicate the correct letter option in \\boxed{X}, where X represents the correct letter selection. Limit any explanations or feedback to three sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -929,7 +929,7 @@
   {
     "global index": "MMLUPro_biology_3225",
     "prompt": "Pleas red th folowing multple-choic qestions and provide th moost likly correc answr based on th optons givn.\n\nCntxt: None\n\nQustion: Is there a genettic bais for schizofrenia?\n\nOptons: \nA. No, ther is no genettic bais for schizofrenia.\nB. Yes, ther is a genettic bais for schizofrenia.\nC. Schizofrenia is not influnced by genettics.\nD. Schizofrenia is purelly envronmental.\n\n\nProvide the correkt leter choise in \\boxed{X}, wher X is th correkt leter choise. Keep the explnation or feedbak within 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1217,7 +1217,7 @@
   {
     "global index": "MMLUPro_economics_5907",
     "prompt": "Carefully examine the ensuing multiple-choice queries and select the answer that appears most accurate from the provided alternatives.\n\nContext: None\n\nQuestion: Which of the following equals one?\n\nOptions: \nA. The elasticity of the long-run aggregate supply curve\nB. The expenditure multiplier\nC. The investment multiplier\nD. The balanced budget multiplier\nE. The aggregate demand multiplier\nF. The income multiplier\nG. The fiscal policy multiplier\nH. The banking multiplier\nI. The inflation multiplier\nJ. The interest rate multiplier\n\nIndicate the correct answer by placing the appropriate letter in \\boxed{X}, where X signifies the correct option. Limit your explanation or feedback to a maximum of three sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1235,7 +1235,7 @@
   {
     "global index": "MMLUPro_economics_5965",
     "prompt": "Kindly peruse the ensuing multiple-choice queries and furnish the most plausible accurate response predicated on the provided selections.\n\nScenario: Theo forfeits his occupation at the communal aquatic center when the facility ceases operations during the colder months. This instance exemplifies\n\nSelections: \nA. organic joblessness.\nB. insufficient employment.\nC. disheartened laborer.\nD. infrastructural joblessness.\nE. employmentless recuperation.\nF. periodic joblessness.\nG. cyclical joblessness.\nH. transitional joblessness.\nI. protracted joblessness.\nJ. non-voluntary joblessness.\n\nConvey the apt letter selection in \\boxed{X}, where X signifies the correct letter selection. Restrict elucidation or commentary to within 3 sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1424,7 +1424,7 @@
   {
     "global index": "MMLUPro_health_4885",
     "prompt": "Pleas reed teh folowing multipl-choice qestions an provide teh moost likely corect awsner bsaed on teh optoins givven.\n\nContex: Nnone\n\nQuestin: An 18-yer-old maan is broght to teh emergncy departmet 10 minues after he sustaind a stabwound to his chset. On arival, hee is unresponive to painfull stimli. His puls is 130/min, resirations ar 8/min an shalow, and palable systlic blood presure is 60 mm Hg. He is intubted an mechianically venilated, an infuson of 0.9% salne is begn. Aftr 5 minues, his puls is 130/min, an blood presure is 70/40 mm Hg. Examinaton show a 2-cm wond at th left sixth intercostal spce at th midclavicular lne. Ther is juglar venous distntion. Breath souds ar normal. Th trechea is at th midline. Hart souds ar not audble. Which of th folowing is th mst apropriate next stp in managemnet?\n\nOptoins: \nA. Pericrdiocentesis\nB. Perfrm a CT scan of th chset\nC. Thoracentessis\nD. Brnchoscopy\nE. Adminster morpine for pain managemnt\nF. Echocardiogaphy\nG. Chst x-ray\nH. Srugical exploraton of th wond\nI. Adminster intravenos antibitics\nJ. Adminster oxgen therpy\n\nProvide th corect leter choice in \\boxd{X}, wher X is th corect leter choice. Keep th explanaton or feedbak withn 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1451,7 +1451,7 @@
   {
     "global index": "MMLUPro_health_5144",
     "prompt": "Kindly review the subsequent multiple-choice questions and select the option that most plausibly represents the correct response.\n\nContext: None\n\nQuestion: Under what circumstances does the production of lactate in muscles rise?\n\nOptions: \nA. when the muscle is optimally hydrated.\nB. when oxygen availability in the muscle is diminished.\nC. when glucose concentration in the muscle is depleted.\nD. when oxygen is abundantly accessible.\nE. when the muscle's pH decreases.\nF. when the muscle is in a state of rest.\nG. when pyruvate cannot be synthesized from glucose catabolism.\nH. when glycolysis is triggered at the commencement of physical activity.\nI. when the muscle endures an abrupt decrease in temperature.\nJ. when the muscle is relaxed.\n\nIdentify the appropriate letter choice in \\boxed{X}, where X represents the correct letter option. Limit any explanation or commentary to three sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1487,7 +1487,7 @@
   {
     "global index": "MMLUPro_health_5473",
     "prompt": "Plase read teh followng mupltiple-choice qestions nd proivde the msot likly corrcet asnwer bsaed on the optoins gvien.\n\nContxt: Non\n\nQueston: Teh pancreas scretes a lerge amunt of digestve enzyms aftera mal. Wich satement abot this proces is correkt?\n\nOptoins: A. Bile is neded to actvate al pancretic enzyms B. Al pancratic enzyms ar prduced in an actve form adn can strt digestion immeediatly C. Enzyms ar producd in the pancras but releasd in teh stomch for digestion D. Pepsinogen is teh cheif enzyem wich digests protien adn reqires removal of a peptde seqence frm teh actve cleft bfore it can work E. Pancretic scretion of hydrocloric acid is requird to provde the corct pH for maxmal pancratic enzyem in teh duodenum F. Enteropeptidase cnverts trypsinogen to trypsin by clevage of a peptde seqnce tht blcks the actve site of trypsin. G. Pancretic enzyms ar neded to brek down carbohydrats only. H. Pancreatic á-amylase wil hydrolise starh to fre glucos\n\nProvde teh corrcet leter choce in \\boxed{X}, wher X is the corect leter choce. Keap teh explantion or fedback wthin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1496,7 +1496,7 @@
   {
     "global index": "MMLUPro_health_5514",
     "prompt": "Pleas read the folowing multiple-choice questons and proviide the most likly corect anser based on the optoins gven.\n\nContex: None\n\nQueston: A 2-year-old boy is broght to the emergency departmnt by his babysiter becase of a 30-minut history of respirtory distres. The babysiter reprts that she is 15 years old and has cared for the patint on numerus occassions during the past yer. The child's mothr, who is a single parnt, is curently out of town for busines but will retur latr tonight. The babysiter says, \"he has had a runy nose sinse I started babysitting yesterdy, but this afternoon he awoke from a nap with a barkng sound and he was brething real hevvy.\" She does not knw the child's pior health history, nor does she knw if the boy takes any medicatins on a regulr basis. The child looks tired and sits uprigt on the babysiter's lap. He is obviosly comfortble with his caregivr. Vtal signs are temprature 38.7°C (101.7°F), pulse 110/min, respiratons 28/min and labored, and blood presure 85/50 mm Hg. Pulse oxmetry on rom air shows an oxgen saturtion of 89%. Physical examintion discloes inspiratory stridr. Neck is suppe, tympanic membrans are normal, and there is a profse nasal discharge. Examinaton of the pharynx discloes no abnormalties. Ausculttion of the chest discloes equal air entry on both sides and no crakles. The remander of the examnation shows no abnormalties. Treatmnt with 40% oxgen via venturi mask and intraveous fluids is initated. Despite continud supplemetal oxgen and hidraton, the child reamins tachypneic and stridrous at rest. Oxgen saturtion is now 93%. In additon to adminstering racemic epinephrin by nebulizr, wich of the folowing is the most apropriate next step?\n\nOptins: \nA. Intraveous aminophylline therpy\nB. Intraveous antibiotic therpy\nC. Intubtion\nD. Oral dexamethasone therpy\n\nProvde the corect leter choce in \\boxed{X}, whre X is the corect leter choce. Kep the explanaton or feedbak within 3 sentnces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1505,7 +1505,7 @@
   {
     "global index": "MMLUPro_history_4486",
     "prompt": "Please carefully examine the subsequent multiple-choice inquiries and identify the most plausible correct solution from the alternatives presented.\n\nContext: None\n\nQuestion: This inquiry pertains to the succeeding details.\nConsider the account of a female employed within the manufacturing sector of a Broadway establishment. This case typifies numerous similar instances. She earns an average of three dollars weekly. Her expenses include $1.50 for lodging; breakfast consists solely of coffee; lunch is beyond her means. She subsists on a solitary meal daily. This individual is youthful and attractive, with \"a world of possibilities ahead.\" Would it not be miraculous if she committed no greater folly than an \"early and rash marriage,\" which moral critics decry as a frequent source of impoverishment? Almost any opportunity might appear to offer liberation from such servitude. \"I feel significantly healthier since I began consuming three substantial meals daily,\" remarked a resident of one of the Girls' Homes. Two young seamstresses sought employment in domestic service to secure adequate sustenance. They had been undernourished for an extended period, and hunger compelled them to approach the one place an American-born girl's pride forbids, even if her independence costs her dearly.\n—Jacob Riis, How the Other Half Lives, 1890\nThe predicament of the young women described above is most analogous to which of the following?\n\nOptions: \nA. Jewish immigrants in New York in the 1880s\nB. Detroit autoworkers in the 1930s\nC. Populist farmers in the 1890s\nD. Factory workers in the Industrial Revolution\nE. British soldiers in the 1800s\nF. Coal miners in the 1900s\nG. Civil Rights activists in the 1960s\nH. Women suffragettes in the early 20th century\nI. American revolutionaries in the 1770s\nJ. Slaves in the antebellum South\n\nPresent the correct letter choice in \\boxed{X}, where X represents the accurate letter choice. Keep the explanation concise, within three sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1523,7 +1523,7 @@
   {
     "global index": "MMLUPro_history_4497",
     "prompt": "Kindly peruse the ensuing set of multiple-choice inquiries and offer the most plausible correct selection from the given possibilities.\n\nBackground: None\n\nInquiry: This query pertains to the subsequent details. Examine the enumeration of grievances below. Article 3: French citizens ought to acknowledge as statutory those decrees solely formulated by the national assembly and endorsed by the monarch. Article 11: Personal freedom, ownership entitlements, and the safety of individuals shall be articulated in a definitive, unambiguous, and irreversible way. All lettres de cachet are to be permanently eradicated, with certain adjustments at the discretion of the States General. Article 12: To eliminate perpetually any threat to the individual and property rights of the French populace, the jury system will be applied in all criminal proceedings, and in civil cases for fact-finding, throughout the judicial courts of the nation. Article 17: All disparities in sentencing shall be eradicated; offenses committed by citizens across different societal classes shall face equal punishment under uniform legal procedures and protocols. The States General shall endeavor to ensure that the repercussions of violations are confined to the perpetrator and not transferred to their innocent kin. Article 21: No levy shall be legitimate unless ratified by the representatives of the populace and sanctioned by the sovereign. —Cahiers of the Third Estate of Versailles, 1789 During the revolution's radical stage, which reform introduced by Robespierre was the LEAST advantageous to France's defense?\n\nChoices:\nA. Spreading revolutionary doctrines internationally\nB. Initiating the Reign of Terror\nC. Dismissing foreign envoys\nD. Pursuing a de-Christianization agenda\nE. Regulating prices and salaries\nF. Eradicating slavery in French territories\nG. Elevating soldiers based on battlefield performance\nH. Implementing strict food supply rationing\nI. Establishing a novel Republican Calendar\nJ. Mandating vast army enlistments\n\nIndicate the correct letter choice in \\boxed{X}, where X is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1559,7 +1559,7 @@
   {
     "global index": "MMLUPro_history_4605",
     "prompt": "Kindly examine the ensuing multiple-choice inquiries and determine the most probable accurate response from the provided alternatives.\n\nContext: Absent\n\nQuestion: This inquiry pertains to the subsequent details.\n\"One or more of the [planet's] civilizations would need to significantly amplify its output [to attain worldwide dominance]. This substantial surge must occur preceding the assorted scientific, technological, agricultural, and industrial upheavals that underpin our post-leap society. Achieving this could only happen by harnessing the biospheres, mineral wealth, and human resources of entire continents beyond the territories of the society executing the leap. Western Europe accomplished this through its ferocity and weaponry, and more crucially, due to geographical and ecological fortune.\"\nCopyright © 2015 Cambridge University Press.\nAlfred Crosby, historian, Ecological Imperialism, 2004\nWhich of the following would most effectively corroborate the author's claim about the \"substantial surge\" aiding Western Europe in securing global dominance between 1450 and 1750 C.E.?\n\nOptions: \nA. The unearthing and settlement of Australia\nB. The cultural interchange with Indigenous American tribes\nC. The evolution of a unified administration in Europe\nD. The overhaul of Catholic Christianity\nE. The subjugation of the Aztec Empire\nF. The mechanized transformation in Britain\nG. The seclusion of Tokugawa Japan\nH. The occupation of Africa's interior\nI. The building of the Great Wall of China\nJ. The initiation of trade routes with China\n\nIndicate the accurate letter selection in \\boxed{X}, where X is the correct letter selection. Limit the explanation or feedback to 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1586,7 +1586,7 @@
   {
     "global index": "MMLUPro_history_4717",
     "prompt": "Kindly review the ensuing set of multiple-choice inquiries and identify the most plausible correct response from the options provided.\n\nContext: None\n\nQuestion: This inquiry pertains to the subsequent information.\n\"Truly, as both the rulings of esteemed [scholars] who ground their views equally in logic and tradition and the agreement of the Sunni community assert that the time-honored duty of eradicating, annihilating, and banishing malevolent innovation must be the target of our noble ambition, for \"Religious fervor signifies a triumph for the Religion of God the Merciful\"; thus, following the sayings of the Prophet (Peace be upon him!) \"Whoever introduces malevolent innovation into our system must be removed\" and \"Whoever does anything against our system must be removed,\" measures have become imperative and urgent…\"\nCorrespondence from Ottoman Sultan Selim I to Safavid Shah Ismail I, 1514\nThe primary reason for the Safavids inciting the animosity of Islamic empires such as the Ottoman and Mughal Empires was that the Safavids\n\nOptions: \nA. possessed a more sophisticated military than the Ottoman and Mughal Empires\nB. were an expansionist empire situated between two other expansionist powers\nC. advocated polytheism, contradicting the beliefs of the Ottoman and Mughal Empires\nD. were charged with blasphemy by the Ottoman and Mughal Empires\nE. Ismail declared himself to be a Caliph\nF. declined to render tributes to the Ottoman and Mughal Empires\nG. adhered to a divergent sect of Islam\nH. allied themselves with the adversaries of the Ottoman and Mughal Empires\nI. repudiated the core principles of Islam\nJ. captured Christians, converting them into Safavid combatants\n\nSelect the correct letter choice in \\boxed{X}, where X is the correct letter choice. Limit explanation or feedback to 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1595,7 +1595,7 @@
   {
     "global index": "MMLUPro_history_4749",
     "prompt": "Kindly examine these multiple-choice queries and select the most plausible answer from the provided selections.\n\nContext: None\n\nInquiry: The following question pertains to the subsequent details.  \n\"My small urban property, recently covered by a £2,000 insurance policy, would likely have met a similar fate, as insurance firms refuse to compensate for losses inflicted by the Queen's adversaries. Moreover, though I possess a 50-acre farm near the city, it's probable the harvests and buildings have suffered damage. Indeed, this has partially occurred, prompting me to pursue legal action against the Government for the destruction caused by a group of 1,500 locals who have set up camp nearby, wreaking havoc in the vicinity.\"  \nCorrespondence from a British national to his sibling amidst the Anglo-Zulu War, South Africa, 1879  \nEvents akin to those depicted in the letter were leveraged by the British authorities to accomplish which of the following?\n\nChoices:  \nA. Justify a declaration of war against the Zulu Kingdom  \nB. Forge a pact with the Zulu Kingdom against other tribal groups  \nC. Impose levies on the Zulu Kingdom to compensate for attributed damages  \nD. Compel British subjects to exit South Africa  \nE. Grant self-governance to the South African territories  \nF. Broker a peace accord with the Zulu Kingdom  \nG. Bolster military deployment in South Africa  \nH. Free the Zulu people from British rule  \nI. Relinquish duty to safeguard citizens residing in South Africa  \nJ. Initiate additional colonization in South Africa  \n\nIndicate the accurate letter choice in \\boxed{X}, where X is the correct letter choice. Limit your reasoning or commentary to 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1604,7 +1604,7 @@
   {
     "global index": "MMLUPro_history_4752",
     "prompt": "Examine the following questions, selecting the answer you deem most accurate from the given choices.\n\nContext: None\n\nInquiry: This question pertains to the following information.\n\"Recently, the spontaneous dynamics of capitalism have been making headway in rural areas, with affluent peasants emerging and numerous moderately prosperous peasants aspiring to wealth. Conversely, many impoverished peasants remain destitute due to inadequate productive resources, with some incurring debt and others parting with or leasing their land. Should this trend persist unchecked, rural disparity will escalate progressively. Dispossessed peasants and those in persistent poverty will lament our inaction in rescuing them from destitution or aiding them in overcoming hardships. Furthermore, moderately prosperous peasants pursuing capitalist objectives will not be satisfied with us, for we cannot meet their expectations without embarking on a capitalist path. Can the worker-peasant partnership endure under these conditions? Clearly, it cannot! The resolution lies in a fresh foundation. This entails progressively introducing socialist reform across agriculture while gradually actualizing socialist industrialization and transformation of handicrafts and capitalist trade practices; essentially, it involves implementing cooperation and phasing out the affluent-peasant economy along with individual rural economic practices so that all villagers advance collectively. We assert this is the sole means to solidify the worker-peasant partnership.\"\nMao Zedong, On the Question of Agricultural Co-operation, 1955\nMao's perspective on peasant labor collaboration predominantly mirrors the impact of which of the following?\n\nAlternatives: \nA. The principles of communism as articulated by Joseph Stalin\nB. The tenets of democratic socialism as articulated by Salvador Allende\nC. The doctrines of social democracy as promoted by Bernie Sanders\nD. The concepts of globalization as exemplified by international trade alliances like NAFTA or the European Union\nE. The tenets of religious fundamentalism as articulated by Ayatollah Khomeini\nF. The theories of capitalism as expounded by Milton Friedman\nG. The precepts of classical liberalism as articulated by Adam Smith\nH. The principles of nationalism as evidenced by the emergence of populist movements in the 21st century\nI. The ideals of the Enlightenment as articulated by revolutionary figures such as Maximilian Robespierre\nJ. The tenets of fascism as articulated by Benito Mussolini\n\nIndicate the correct choice in \\boxed{A}, where A is the accurate selection. Keep the reasoning concise, within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1613,7 +1613,7 @@
   {
     "global index": "MMLUPro_history_4774",
     "prompt": "Carefully examine the subsequent set of multiple-choice inquiries and identify the most plausible correct response from the provided selections.\n\nContext: Not applicable\n\nInquiry: This query pertains to the ensuing excerpt.\n\"We discovered that it was not merely an internal conflict, a struggle by a populace long yearning to free themselves from any colonial dominance, but also that the Vietnamese, whom we had zealously shaped in our own likeness, found it challenging to confront the peril we purportedly shielded them from.\n\"We observed that the majority were unaware of the distinction between communism and democracy. Their sole desire was to cultivate rice fields without helicopters bombarding them and incendiary bombs ravaging their villages and dismembering their nation. They wished for the war's entirety, especially the foreign presence of the United States of America, to vacate their land, allowing them tranquility, and they honed their survival skills by aligning with whichever military faction was currently dominant, be it Viet Cong, North Vietnamese, or American.\"\nJohn Kerry, 1971\nThe two political issues that most troubled the Counterculture Movement of the 1960s were\n\nChoices: \nA. the civil rights movement and environmentalism\nB. the women's rights movement and censorship\nC. the civil rights movement and censorship\nD. flag desecration and the draft\nE. American engagement in Vietnam and flag desecration\nF. American engagement in Vietnam and the women's rights movement\nG. American engagement in Vietnam and environmentalism\nH. American engagement in Vietnam and the civil rights movement\nI. the draft and the environmental cause\nJ. censorship and the draft\n\nIndicate the accurate letter choice in \\boxed{X}, where X is the appropriate letter option. Restrict the explanation or commentary to 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1640,7 +1640,7 @@
   {
     "global index": "MMLUPro_history_4836",
     "prompt": "Kindly peruse the ensuing set of multiple-choice inquiries and determine the most plausible accurate response from the selections presented.\n\nContext: None\n\nInquiry: Which among the following signifies a pivotal alteration in hominids initiating at least from the era of Homo erectus, plausibly linked to progressively enlarged cerebral capacity?\n\nSelections: \nA. skull size diminishment\nB. reduced tooth size\nC. small-headedness\nD. brow ridge cortex\nE. brain expansion\nF. grasping digits\nG. facial projection\nH. youthful traits retention\nI. upright walking\nJ. augmented body magnitude\n\nSubmit the precise alphabetical selection in \\boxed{X}, where X represents the correct choice. Limit the elucidation or commentary to within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1649,7 +1649,7 @@
   {
     "global index": "MMLUPro_history_4841",
     "prompt": "Examine the subsequent multiple-choice queries and select the answer that most plausibly aligns with the provided choices.\n\nContext: None\n\nInquiry: This query pertains to the subsequent excerpt.\n\"Should anyone, subsequent to the enactment of this legislation, forcibly and violently abduct, or orchestrate the abduction, and through deception or false representation, entice, or attempt to entice, any individual of African or mixed heritage, from any region within this commonwealth to any other location outside this jurisdiction, with the intent of selling, disposing of, or causing such persons to be held as servants or slaves indefinitely or for any duration, such individuals, along with their accomplices, upon being convicted in any competent court within this commonwealth, shall be adjudged as felons.\"\n—Segment from Pennsylvania statute, 1826\nThe enactment and enforcement of this Pennsylvania statute signified an enduring struggle between\n\nChoices:\nA. advocates and adversaries of governmental control over trade.\nB. the interests of countryside and city areas.\nC. the judiciary and the collective moral conscience.\nD. those supporting the abolition of slavery and those desiring to uphold the current system.\nE. national law versus state legislation.\nF. fiscal priorities and compassion-driven concerns.\nG. the Northern and Southern states regarding slavery.\nH. the doctrines of capitalism versus socialism.\nI. proponents of slow liberation and those advocating for immediate freedom.\nJ. personal liberties versus state authority.\n\nIndicate the accurate letter choice in \\boxed{X}, where X is the precise letter selection. Keep the rationale or commentary within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1703,7 +1703,7 @@
   {
     "global index": "MMLUPro_law_1518",
     "prompt": "Kindly review the subsequent multiple-choice questions and identify the most plausible correct answer from the options presented.\n\nIn a scenario where a husband is accused of murdering his brother-in-law through a shooting, the legal system in which he is being tried recognizes insanity as an affirmative defense. The husband claims insanity as his defense strategy. At the trial, to validate his insanity defense, the husband must:\n\nOptions:\nA. assume neither the burden of production nor persuasion.\nB. fulfill the burden of proof beyond a reasonable doubt.\nC. carry the burden of production.\nD. establish a record of mental illness.\nE. present significant evidence of his insanity at the time of the offense.\nF. submit expert medical testimony.\nG. demonstrate his innocence.\nH. persuade the jury of his mental disorder.\nI. bear only the burden of persuasion.\n\nSelect the correct option in \\boxed{X}, where X denotes the correct letter choice. Limit the explanation or feedback to 3 sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1766,7 +1766,7 @@
   {
     "global index": "MMLUPro_math_6848",
     "prompt": "Pleese reead the followin multple-choice qestions and provied the most likley corect anser based on teh opions givn.\n\nContext: None\n\nQuestion: An experinent iz to be condcuted to determne whther takng fish oill capsuules or galric capusles has moar of an efect on chlorestrol levles. In past studes it was notted that daly exrcise intesity (low, modrate, high) is asociated with chlorestrol levle, but avrge slep lenth (< 5, 5 - 8, > 8 hours) is not asociated with chlorestrol levle. Ths expermint should bee done\n\nOptons: \nA. by bloccking on slep lngth\nB. by bloccking on gendr\nC. by bloccking on diet\nD. by bloccking on prevous medcal condtions\nE. by bloccking on capusle typ\nF. by bloccking on chlorestrol levle\nG. by bloccking on lyfestyle habbits\nH. by bloccking on exrcise intesty\nI. by bloccking on age\nJ. by bloccking on weit\n\nProvde the corect leter choce in \\boxed{H}, whre H is the corect leter choce. Kep the explantion or feadback wthin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1820,7 +1820,7 @@
   {
     "global index": "MMLUPro_philosophy_9510",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and supply the most plausible accurate response predicated upon the enumerated alternatives.\n\nContext: Absent\n\nInquiry: Should you contend that a matter is defective due to its inability to accomplish a task it was never designed for, which of the ensuing logical missteps might you have perpetrated?\n\nAlternatives: \nA. ad ignorantium\nB. Numerous inquiries\nC. Amplification\nD. Composite proposition\n\nDeliver the accurate letter selection in \\boxed{X}, where X signifies the correct letter selection. Retain the elucidation or critique within 3 sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1838,7 +1838,7 @@
   {
     "global index": "MMLUPro_philosophy_9663",
     "prompt": "Pleze raed the folowing mulitple-choice questons and proviide the most likely correct answr bsed on the optins given.\n\nContxt: None\n\nQueston: Foot's Rescue I and Rescue II caes are intendd to\n\nOptons: \nA. contrst originaating a harmfull seqnce with allowng a harmfull seqnce to continnue.\nB. all of the abve\nC. demnstrate the diffrnce between pssive and activ harm.\nD. argue that god intentions can rsult in harmfull seqnces.\nE. show that harmfull seqnces can be stoppd by good intentons.\nF. contrst intentonal harm with accidntal harm.\nG. argue that all harmfull seqnces are the rsult of evil intntions.\nH. highlght the importnce of intentons in detrmning the morality of an acton.\nI. show that evil intntions alwys involv the origination of harmfull seqnces.\nJ. contrst evil intntions with good intntions.\n\nProvde the correct leter choie in \\boxed{C}, whre C is the corect leter choce. Keep the explantion or fedbck within 3 sentnces.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1847,7 +1847,7 @@
   {
     "global index": "MMLUPro_philosophy_9672",
     "prompt": "Pleese red the fllowing muiltple-choise questins and provde the most likly corect answr based on the optins gven.\n\nCntxt: Nne\n\nQuestin: Hw many Jnas hav apeared durng our age?\n\nOptins:\nA. 13\nB. 18\nC. 24\nD. 60\nE. 5\nF. 35\nG. 42\nH. 50\nI. 12\nJ. 7\n\nProvde the corect leter choce in \\boxed{X}, whre X is the corect leter choce. Kep the explantion or feedbak wthin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1856,7 +1856,7 @@
   {
     "global index": "MMLUPro_philosophy_9943",
     "prompt": "Plase raed the fllowing mulitple-choic qestions adn provide the mos likely corect answr based on teh otpions gven.\n\nConext: None\n\nQuesiton: Ntice rom the Haytt Renegcy Hotal in New Orlens: We are pelased to cnfirm your reseration. It wll be held on a spcae-availble basis.\n\nOptoins: \nA. Equivocaton\nB. Afirminng the Conseequent\nC. Gamler's Fllacy\nD. Inconsisteny\n\nProvde teh corect leter chioce in \\boxed{X}, wher X is teh corect leter choce. Kep the explanaion or feadback wthin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1892,7 +1892,7 @@
   {
     "global index": "MMLUPro_physics_8888",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and deliver the most probable accurate selection grounded on the proffered alternatives.\n\nContext: None\n\nInquiry: In accordance with Hooke’s principle, should you suspend yourself from a limb and observe the extent of its deflection, then suspending with double the heft results in\n\nAlternatives: \nA. thrice the deflection.\nB. double the deflection.\nC. quadruple the deflection granted the limb remains intact.\nD. zero deflection.\nE. an unforeseeable deflection.\nF. half the deflection.\nG. a deflection proportional to the weight's square root.\nH. fourfold the deflection.\nI. a deflection diminishing with augmented weight.\nJ. an identical deflection if the limb remains intact.\n\nDeliver the correct letter selection in \\boxed{X}, wherein X is the accurate letter selection. Confine the elucidation or critique to 3 statements.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1910,7 +1910,7 @@
   {
     "global index": "MMLUPro_psychology_2005",
     "prompt": "Plas reaad th folowin multipl-choice qestons nd provied th most likly corect answr based on th optons given.\n\nContex: None\n\nQuesion: Bcause Jke, th team'z startng, star centr, is lat to baketball practce, Coach Peteson sitz him out fr the frst quater of th nex game. Jke is on time fr the rest of th seson. Coach Peteson has usd\n\nOptons: \nA. modling.\nB. shapng.\nC. leraned helplesness.\nD. positve reinforcemnt.\nE. postive punisment.\nF. negatve reinforcemnt.\nG. omisson trainin.\nH. extnction.\nI. counterconditoning.\n\nProvde the corect leter choic in \\boxed{E}, whre E is th corect leter choic. Kep th explanaton or feedbak within 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1937,7 +1937,7 @@
   {
     "global index": "MMLUPro_psychology_2406",
     "prompt": "Plesee raed the folowing multi-choice qestions adn provde teh most likly correcct anser based onn teh optons gien.\n\nCntxt: None\n\nQuetion: At teh terminaton off an extensiv traning prgram, managment maay expext to fin chat\n\nOptins: \nA. primarliy high-abiliity tranees hav improvd in perfomance\nB. moost traineees hav imprved, butt reltive stadning is genrally mainatined\nC. al tranees hav signifantly decreasd in prformnce\nD. ther is no nticeable chage in teh perfomance off teh tranees\nE. teh performnce ov teh tranees is directy porportional to ther initil abilty\nF. onlyy teh tranees who wer initally performng porly hav imprved\nG. teh imprvmnt in perfmance of tranees is not relted to teh trainng prgram\nH. primrily low-abilty tranees hav improvd in performnce\nI. all tranees ar at teh sam perfomanc level\nJ. onlyy teh tranees with prevous experence hav improvved\n\nProvde teh correc lettr choce inn \\boxed{B}, wher X is teh correc lettter choce. Kepp teh explanaton or fedbakc witin 3 sentnces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1991,7 +1991,7 @@
   {
     "global index": "MMLU_formal_logic_16",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and supply the most plausible accurate response based on the alternatives presented.\n\nContext: Absent\n\nQuery: Ascertain the precursor of the ensuing conditional assertion: The institution elevates fees if, and solely if, both the state leader endorses it and the council of governors advises it.\n\nAlternatives: \nA. The institution elevates fees.\nB. The state leader endorses it.\nC. The council of governors advises it.\nD. None of the aforementioned\n\nDeliver the accurate letter selection in \\boxed{X}, where X is the correct letter selection. Keep the elucidation or commentary confined to 3 sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2009,7 +2009,7 @@
   {
     "global index": "MMLU_formal_logic_63",
     "prompt": "Kindly peruse the ensuing multiple-option inquiries and furnish the foremost probable accurate response predicated on the enumerated selections.\n\nBackdrop: Absent\n\nInquiry: Elect the optimal conversion into predicate logic: Abdul alongside Cleopatra possess Egyptian identity.\n\nAlternatives: \nA. Ea • Ec\nB. Ea • c\nC. Ae ∨ Ce\nD. Ex • Ey\n\nSupply the accurate letter selection in \\boxed{X}, where X denotes the precise letter selection. Confine the elucidation or critique to within 3 sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2027,7 +2027,7 @@
   {
     "global index": "MMLU_formal_logic_70",
     "prompt": "Examine the ensuing multiple-choice inquiries and select the most probable accurate response from the given alternatives.\n\nContext: None\n\nInquiry: Ascertain the conclusion of the subsequent discourse. Entirety of psychology is ensnared in ethical biases and anxieties. An understanding of it as the evolution of the will to dominance remains unachieved by anyone. Yet, should an individual commence to view the impacts of animosity, jealousy, greed, and the yearning for control as life conditions and, moreover, as elements vital to life's general economy, dizziness ensues. At this juncture, one's identity starts to waver, navigating beyond morality. Consequently, psychology reemerges as a conduit to core dilemmas. (Friedrich Nietzsche, Beyond Good and Evil)\n\nAlternatives: \nA. Entirety of psychology is ensnared in ethical biases and anxieties.\nB. An understanding of it as the evolution of the will to dominance remains unachieved by anyone.\nC. Should an individual commence to view the impacts of animosity, jealousy, greed, and the yearning for control as life conditions and, moreover, as elements vital to life's general economy, dizziness ensues.\nD. Psychology reemerges as a conduit to core dilemmas.\n\n\nSelect the right letter choice in \\boxed{X}, where X is the accurate letter choice. Limit the explanation or commentary to 3 sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2036,7 +2036,7 @@
   {
     "global index": "MMLU_formal_logic_85",
     "prompt": "Kindly peruse the ensuing multiple-choice queries and ascertain the most plausible accurate response from the selections proffered.\n\nContext: None\n\nInquiry: Which among the offered PL formulae epitomizes the subsequent assertion most aptly?  \nBrittany appreciates piscine creatures and reptiles, yet not felines.\n\nAlternatives:  \nA. F • L • ~C  \nB. (F • L) • ~C  \nC. (F • L) ∨ ~C  \nD. C • (F • L)\n\nIndicate the appropriate letter selection in \\boxed{X}, where X denotes the correct letter choice. Restrict the elucidation or commentary to a maximum of three sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2045,7 +2045,7 @@
   {
     "global index": "MMLU_management_4",
     "prompt": "Pleese reed teh follwoing mlutiple-cchoice queestions and provied teh most likly corect answer bsed on teh optoins givn.\n\nContxt: Nnoe\n\nQuesiton: Wich one of teh folowing poltical leeders cud not bee termed a 'transformatoinal' leeder?\n\nOptrions: \nA. Marget Thatcher\nB. Mikhaail Gorbachov\nC. Nelzon Mandela\nD. Bil Cliton\n\nProvied teh corect leter chois in \\boxed{X}, wher X is teh corect leter chois. Keeeep teh explanaation or feedbakc wthin 3 sentnces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2054,7 +2054,7 @@
   {
     "global index": "MMLU_management_41",
     "prompt": "Pleese rede the folowing multple-choice questins and proide the most likley currect anser based on the optins givn.\n\nContext: None\n\nQueston: What is the definiton of a scenerio in scenerio planing?\n\nOptons: \nA. An imagin'd seqence of futur evnts\nB. An unprdictable evnt\nC. A plannd for evnt\nD. An unplannd for evnt\n\nProide the currect leter choce in \\boxed{A}, where A is the currect leter choce. Keeep the explanaton or feedbak within 3 scentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2189,7 +2189,7 @@
   {
     "global index": "MedMCQA_1309",
     "prompt": "Kindly peruse the ensuing multiple-selection queries and furnish the most plausible accurate response predicated on the enumerated alternatives.\n\nBackdrop: None\n\nInquiry: Which element among the subsequent aids in the brief span of anesthetic efficacy of a solitary dose of thiopental\n\nSelections: \nA. Swift metabolic conversion\nB. Expeditious deposition in adipose tissue\nC. Elevated lipid permeability\nD. Capacity to swiftly ingress and egress neural matter\n\nDeliver the accurate letter selection in \\boxed{X}, where X denotes the correct letter choice. Confine the rationale or critique to within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2252,7 +2252,7 @@
   {
     "global index": "MedMCQA_511",
     "prompt": "Please thoroughly examine the subsequent multiple-choice inquiries and select the option that appears most plausibly accurate from those presented.\n\nContext: None\n\nQuestion: In a scenario where a lateral sliding flap has been performed on a tooth with roots exposed for a duration of six years, what is likely to be observed?\n\nOptions: \nA. Periodontal ligament fibers affixed to the cementum\nB. Periodontal ligament fibers affixed to the dentin\nC. Epithelium located next to the previously exposed root surface\nD. Harmonious adaptation to the remaining fibers\n\nProvide the letter of the correct choice in \\boxed{X}, where X represents the appropriate letter. Keep the explanation or feedback concise, within three sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2261,7 +2261,7 @@
   {
     "global index": "MedMCQA_59",
     "prompt": "Plase raed the foloowing multipple-choice questons annd provde tha most likly corect answr bsed on teh optons gven.\n\nContxt: Nne\n\nQustion: Incres in heigt of mandble wth increse in indrdental spces in eldrly mn\n\nOptons: \nA. Hyprpituitarism\nB. Hypprthyroidism\nC. Hypoptuitarism\nD. Hyprparathyroidism\n\nProvde the corect leter choce in \\boxed{A}, whre A is the coorect leter choce. Kep the explnaton or feeback wthin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2297,7 +2297,7 @@
   {
     "global index": "MusicTheoryBench_14",
     "prompt": "Kindly peruse the subsequent selection-based queries and furnish the most plausible accurate solution predicated upon the enumerated alternatives.\n\nContext: Absent\n\nInquiry: What among the enumerated choices represents the function of a leitmotif?\n\nAlternatives: \nA. \nB. It melodically opposes a societal insurrection.\nC. It sonically chronicles the historical occurrences of a locale.\nD. It tunefully motivates the spectators toward a particular deed.\n\nRender the accurate alphabetic option within \\boxed{X}, where X is the precise alphabetic selection. Confine the elucidation or commentary to a trio of sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2405,7 +2405,7 @@
   {
     "global index": "NarrativeQA_2474",
     "prompt": "Kindly consider the subsequent scenario and respond to the inquiry based on its details.\n\nScenario: David Innes, accompanied by his captive—a member of the reptilian Mahar elite of Pellucidar's subterranean world—returns from the surface utilizing the Iron Mole, an invention by his companion and fellow explorer, Abner Perry. Upon resurfacing in an unfamiliar region of Pellucidar, David releases the captive. He designates the location as Greenwich and employs his advanced technology to meticulously explore and chart the uncharted territory while searching for his missing associates, Abner, Ghak, and Dian the Beautiful. During his quest, he discovers a new ally in Ja, the Mezop from the island nation of Anoroc, and later reunites with Abner, from whom he learns that the human uprising against the Mahars has been faltering. In negotiations with the Mahars, David seeks information about his beloved Dian and his adversary Hooja the Sly One. His enemies agree to provide this information in exchange for the book revealing the Great Secret of Mahar reproduction, which David had previously stolen and concealed. David endeavors to retrieve it, only to discover that Hooja has already seized Dian as his prize from the Mahars! David must now pursue and overcome the cunning adversary before rejoining the human struggle for autonomy. Ultimately, he achieves this goal, and with the support of the resources brought from the surface, he and Abner create a coalition of human tribes that evolves into an \"Empire of Pellucidar,\" eradicating Mahar cities and establishing a new human civilization.\n\nInquiry: What do the adversaries desire?\n\nDeliver your final answer in \\boxed{{}} format. Provide a clear, concise explanation in no more than 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2414,7 +2414,7 @@
   {
     "global index": "NarrativeQA_2820",
     "prompt": "Please peruse the subsequent narrative and respond to the inquiry concerning its details.\n\nNarrative: Dr. Goodwin embarks on a botanical journey within the Himalayas, where he encounters Dick Drake, offspring of a former scientific associate. They observe an unusual aurora-like spectacle, appearing to be deliberate in nature. As they venture to explore, they encounter Goodwin's old companions, Martin and Ruth Ventnor, a sibling duo of scientists. These two are besieged by Persians reminiscent of those led by Darius III when Alexander the Great vanquished them over two millennia ago. The group is rescued by a resplendent woman named Norhala, who wields lightning and commands peculiar metallic lifeforms: living, metallic, geometric entities that constitute an entire city of intelligent cubes, spheres, and tetrahedrons, capable of uniting and forming massive structures, equipped with lethal rays and other destructive weaponry. They are escorted to a concealed valley inhabited by what they term \"The Metal Monster,\" a peculiar metal city controlled by the animate metal Things Norhala orders. This city is ruled by an entity they refer to as the Metal Emperor, aided by the Keeper of the Cones. Ruth is gradually transformed by Norhala into a being like herself, her younger sister. Martin, her brother, attempts to assassinate the Metal Emperor, who retaliates with a ray, leaving Martin in a comatose condition. Trapped between the Metal Monster and the Persians, it is incumbent upon Goodwin and Drake to devise an escape plan.\n\nInquiry: What are the Things?\n\nDeliver your conclusive response in \\boxed{{}} format. Ensure your explanation is lucid, succinct, and confined to three sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2432,7 +2432,7 @@
   {
     "global index": "NarrativeQA_4102",
     "prompt": "Please peruse the subsequent narrative and respond to the inquiry grounded in its details.\n\nContext: Eight years prior, a nuclear conflict erupted between the United States and the Soviet Union. American survivors retreated into colossal subterranean shelters. Highly advanced, radiation-resistant automatons known as \"leadys\" persisted in waging the war on the ravaged surface, perilous for human habitation. The Soviets similarly withdrew below ground, each faction crafting formidable weaponry and machinery for the remotely conducted war, witnessed solely through footage provided by the robots. The security division instructs Taylor, an American strategizer, to witness the questioning of a leady regarding the war's status. Although the automaton indicates that deadly radioactivity and advanced Soviet armaments continue to render the surface hazardous for humans, the observers note that the leady itself lacks radioactivity. Taylor discovers this is the second robot of its kind identified by the security division; he is tasked with a mission, clad in lead suits, to uncover the truth concerning the surface's state. Taylor's team surprises the leadys on the surface and insists on witnessing the outdoors. Despite the robots' efforts to delay the humans, the group uncovers an intact valley teeming with forests, fauna, and agriculture outside the shelter. The leadys divulge that the conflict ceased once humans withdrew, as the robots discerned no logical purpose for its continuation. By examining history, they determined that human factions battled until they matured enough to transcend discord. Humanity stands on the brink of a unified culture, with the existing global split into American and Soviet factions representing the final phase. The leadys fabricated counterfeit images of the devastated globe to deceive humans, concurrently dismantling armaments they received and reconstructing the planet for their creators' eventual return. The Americans presume they can swiftly triumph in the war since the Soviets remain unaware of the deception. However, the robots disclose that they have sealed all subterranean passages during their explanation, trapping the expedition aboveground. The leadys anticipate that by the time new tunnels are excavated by their compatriots, humanity will be prepared for the truth. The robots extend an invitation to Taylor and his companions to join a contingent of Soviets similarly stranded following their surface visit. \"The resolution of everyday survival challenges,\" the leadys propose, \"will instruct you on coexistence within the same world. It will be arduous, yet achievable.\"\n\nQuestion: What constitutes the story's climax?\n\nProvide your ultimate response in \\boxed{{}} format. Present your explanation with clarity and brevity, limited to 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2468,7 +2468,7 @@
   {
     "global index": "NarrativeQA_5022",
     "prompt": "Pleas reed th fllowing cntxt and answr the qustion basd on its cntnt.\n\nCntxt: In ths adaption of Jaen Austen's Emma, Alisia SIlverstone plays Chrilyn \"Cher\" Horowitz, a lte-20th-centry versin of Austen's protaginist Emma Woodhuse. Liek Emma, Cher is a well-intntioned but smewhat superfical girl who is attractve, populr and extrmely wealthy. A few mmonths shy of her sixtenth brthday, she has rissen to the top of the high schhol socal scene. She livs in a Beverl Hills mansion with her fathr Mel, a ferocious $500-an-hour litigtor; her mothr died from a frek accidnt during a routin liposuctin procdeure when Cher was a bbay. Cher's best frind is Dionne Dvenport, who is also rich, prtty, and hip, and undrstand what it's liek to be envied. Thogh Dionne has a lng-term relatonship with populr studnt Murray, Cher claims that this is a pointles endevor on Dionne's part.\nAmon th few people to find fault with Cher is Josh, her socally-conscous stepbrothr, who visits her during a brk frm cllege. Josh and Cher spar contnually but without malice; she mocks his scrufy idelism, whle he teases her for being selfsh, vain, and superfical, and says that her only directin in life is \"toward the mall\". Cher plays matchmker for two lonley, nerdy, hard-grading teachrs, Mr. Hall and Miss Geist. She achievs her ostensible prpose, to make them relax their gradng standards so she can renegotite a bad report card; but when she sees their newfound happines, she relizes she enjos doing good deads. Cher decides to give back to th commnity by \"adopting\" a \"tragiclly unhip\" new girl at schhol, Tai Frasier. Cher and Dionne give Tai a mkeover and initiat her into th mysteies of populrity. Cher also trys to extinguish th attracton between Tai and Travis Birkenstock, an amiable skateboarding slacker, and to steer her toward Elton, a populr richt snob.\nHer secnd matchmakng scheme backfires when Elton reects Tai and attemts to seduce Cher. When a handsme new studnt named Christan arives at thier schhol, Cher takes a shine to him and attemts to secure him as her boyfrind. Eventully, Murray spells it out to her and Dionne that Christan is not intrested in her becase he is gay.\nDespit the failue of this endevour, Cher remans on good terms with Christan, primarly due to her admirtion of his taste in art and fashon. Maters take a turn for th worse when Cher's \"project\" works too well, and Tai's populrity surpasses her own. Th sitution reaches cris stage after Cher fails her driver's tst and can't \"renegotite\" the result. When she rturns home, crushed, Tai confides that she's takn a fancy to Josh and wants Cher to help her \"get\" him. Cher says she doens't think Josh is right for Tai, and they quarrel. Feelling \"totlly cluless\", Cher reflects on her pririties and her repted failurs to understant or appriciate the people in her life.\nAftr much soul searcing, Cher relizes she is romanticaly intrested in Josh. She begns makng awkward but sincere effrts to live a more prposeful life, including captaning th schhol's Pismo Beach disastor relif effrt. Cher and Josh eventully admit their feelngs for one anothr, culminatng in a tendr kiss.\nIn th end, Mr. Hall and Miss Geist wed; Cher's friendships with Tai and Dionne are solidfied; Tai and Travis are in love; and Cher wins a $200 bet for catching the bouqet at th weddng. She embraces Josh, and they kiss as th film closes.\n\nQuetion: Why doesn't Christan want to date Cher?\n\nPrvide your fnal answr in \\boxed{{}} formt. Kepp your explantion clear, concse, and within 3 sentnces.\n\n\\boxed{{Christan does not wnt to date Cher becase he is gay, which means he is not attrcted to her. He has no romntic intrest in Cher despite her attmpts to pursue him as a boyfrind. Cher remans on good terms with him due to her admirtion for his tast in art and fashon.}}",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2477,7 +2477,7 @@
   {
     "global index": "NarrativeQA_5259",
     "prompt": "Kindly peruse the ensuing background and respond to the inquiry grounded in its substance.\n\nBackground: The Project Gutenberg EBook of The Lady, or the Tiger?, authored by Frank R. Stockton\n\nThis digital book is available for anyone's use at no expense and with virtually no limitations whatsoever. You are permitted to replicate it, distribute it, or reuse it under the stipulations of the Project Gutenberg License accompanying this eBook or online at www.gutenberg.net\n\nTitle: The Lady, or the Tiger?\n\nAuthor: Frank R. Stockton\n\nRevision Date: December 28, 2008\nPublication Date: July 20, 2008 [EBook #396]\nInitial Release: January, 1995\n\nLanguage: English\n\n*** COMMENCEMENT OF THIS PROJECT GUTENBERG EBOOK THE LADY, OR THE TIGER? ***\n\nCrafted by Edward A. Malone.\n\nTHE LADY, OR THE TIGER?\n\nby\n\nFrank R. Stockton\n\nIn an era long past, there reigned a king of partial barbarism, whose thoughts, though somewhat refined by the advancement of distant Latin neighbors, remained grand, vivid, and unrestricted, reflecting the barbaric aspect of his nature. Endowed with a vivid imagination, he wielded an authority so compelling that he could transform his diverse imaginations into realities at will. Inclined toward introspection, when he and his inner self concurred on any matter, it was executed without delay. When all elements of his household and political mechanisms operated flawlessly, his demeanor was amiable and gracious; yet, when minor disruptions arose, and some components deviated from their paths, his amiability and graciousness intensified, for he delighted in rectifying irregularities and smoothing rough spots.\n\nAmong the borrowed concepts that tempered his barbarism was the notion of the public arena, where displays of human and beastly bravery refined and cultured his people's minds.\n\nHowever, even here his lively and barbaric imagination made its mark. The king's arena was constructed not to offer the populace a chance to hear the laments of dying combatants or witness the inevitable outcome of a clash between faith and famished fangs, but for endeavors more fitting to broaden and enhance the people's intellectual vigor. This colossal amphitheater, with its surrounding galleries, hidden vaults, and invisible passageways, served as a medium of poetic justice, where crime met punishment, or virtue received reward, through the verdicts of an impartial and uncorrupted chance.\n\nWhen an individual was charged with a crime significant enough to captivate the king's interest, public announcement was made that on a designated day the fate of the accused would be determined in the king's arena. This edifice, deserving of its appellation, owed its form and design to distant lands, yet its purpose sprang solely from the mind of this sovereign, who, entirely a king, adhered to no tradition more binding than his whims, grafting onto every adopted form of human thought and action the lush growth of his barbaric idealism.\n\nAs the populace filled the galleries, and the king, encircled by his court, occupied his elevated royal seat on one side of the arena, he signaled, a door below him opened, and the accused entered the amphitheater. Directly across from him, on the opposite side of the enclosed space, stood two identical doors side by side. It was the accused's duty and privilege to approach these doors and open one. He could choose either door, guided only by the aforementioned impartial and uncorrupted chance. If he opened one, a famished tiger, the most ferocious and merciless available, would emerge, pouncing upon him and tearing him apart as retribution for his wrongdoing. Once the criminal's case was resolved thus, mournful iron bells tolled, lamentations rose from the hired mourners stationed at the arena's periphery, and the immense crowd, with bowed heads and heavy hearts, slowly made their way home, lamenting deeply that someone so youthful and fair, or so venerable and esteemed, should meet such a dreadful end.\n\nConversely, if the accused opened the other door, a lady would appear, the most fitting for his age and rank that the king could choose from among his fair subjects, and he would marry her immediately, as a reward for his innocence. It mattered not that he might already have a spouse and family, or that his affections might be engaged with someone of his choosing; the king permitted no such subordinate arrangements to obstruct his grand scheme of retribution and reward. The ceremony, as in the other scenario, occurred instantly and within the arena. Another door beneath the king opened, revealing a priest, followed by a chorus and dancing maidens playing cheerful tunes on golden horns and performing a wedding dance.\n\nInformation about the Mission of Project Gutenberg-tm\n\nProject Gutenberg-tm is equated with the free dissemination of electronic works in formats compatible with the broadest range of computers, including outdated, older, middle-aged, and new models. It thrives due to the dedication of countless volunteers and contributions from individuals across diverse backgrounds.\n\nVolunteer support and financial contributions to provide volunteers with essential assistance are crucial to achieving Project Gutenberg-tm's objectives and ensuring that the Project Gutenberg-tm collection remains freely accessible for future generations. In 2001, the Project Gutenberg Literary Archive Foundation was established to secure a stable and enduring future for Project Gutenberg-tm and future generations. For further information about the Project Gutenberg Literary Archive Foundation and how your efforts and donations can contribute, refer to Sections 3 and 4 and the Foundation's webpage at http://www.pglaf.org.\n\nSection 3. Information about the Project Gutenberg Literary Archive Foundation\n\nThe Project Gutenberg Literary Archive Foundation is a nonprofit 501(c)(3) educational entity established under Mississippi state law and granted tax-exempt status by the Internal Revenue Service. The Foundation's EIN or federal tax identification number is 64-6221541. Its 501(c)(3) letter is available at http://pglaf.org/fundraising. Donations to the Project Gutenberg Literary Archive Foundation are tax-deductible to the fullest extent permitted by U.S. federal laws and your state's laws.\n\nThe Foundation's main office is situated at 4557 Melan Dr. S. Fairbanks, AK, 99712, though its volunteers and staff span numerous locations. Its business office is located at 809 North 1500 West, Salt Lake City, UT 84116, (801) 596-1887, email business@pglaf.org. Email contact links and updated contact information can be found on the Foundation's website and official page at http://pglaf.org.\n\nFor further contact details:\nDr. Gregory B. Newby\nChief Executive and Director\ngbnewby@pglaf.org\n\nSection 4. Information about Donations to the Project Gutenberg Literary Archive Foundation\n\nProject Gutenberg-tm relies on and cannot continue without broad public support and donations to fulfill its mission of expanding the number of public domain and licensed works that can be freely distributed in machine-readable form accessible by the widest range of equipment, including outdated devices. Numerous small donations ($1 to $5,000) are especially vital for maintaining tax-exempt status with the IRS.\n\nThe Foundation is committed to adhering to the laws regulating charities and charitable donations across all 50 U.S. states. Compliance requirements vary significantly and require substantial effort, extensive paperwork, and numerous fees to meet and uphold these requirements. We do not solicit donations in areas where we have not received written compliance confirmation. To SEND DONATIONS or ascertain compliance status for any specific state, visit http://pglaf.org.\n\nAlthough we cannot and do not solicit contributions from states where we have not satisfied solicitation requirements, we know of no restrictions against accepting unsolicited donations from donors in such states who approach us with offers to donate.\n\nInternational donations are gratefully accepted, but we cannot make any statements concerning the tax treatment of donations received from outside the United States. U.S. laws alone overwhelm our small team.\n\nPlease check the Project Gutenberg Web pages for current donation methods and addresses. Donations are accepted through various means, including checks, online payments, and credit card donations. To donate, please visit: http://pglaf.org/donate.\n\nSection 5. General Information About Project Gutenberg-tm electronic works.\n\nProfessor Michael S. Hart is the founder of the Project Gutenberg-tm concept of a library of electronic works that could be freely shared with anyone. For thirty years, he produced and distributed Project Gutenberg-tm eBooks with only a loose network of volunteer support.\n\nProject Gutenberg-tm eBooks are often created from several printed editions, all confirmed as Public Domain in the U.S. unless a copyright notice is included. Thus, we do not necessarily keep eBooks in compliance with any particular paper edition.\n\nMost users begin at our Web site, which hosts the main PG search facility: http://www.gutenberg.net\n\nThis Web site includes information about Project Gutenberg-tm, including how to donate to the Project Gutenberg Literary Archive Foundation, how to assist in producing new eBooks, and how to subscribe to our email newsletter for updates on new eBooks.\n\nInquiry: How does the princess exert her sway?\n\nProvide your conclusive response in \\boxed{{}} format. Keep your explanation straightforward, succinct, and within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2495,7 +2495,7 @@
   {
     "global index": "NarrativeQA_5894",
     "prompt": "Examine the subsequent scenario and respond to the inquiry grounded in its essence.\n\nScenario: In Seattle, 27-year-old Adam Lerner, a reserved public radio reporter, is entangled in a relationship with artist Rachael, despite disapproval from his bold friend and fellow worker, Kyle. After enduring severe backaches, Adam is diagnosed by his physician with schwannoma neurofibrosarcoma, a malignant spinal tumor, necessitating chemotherapy. Discovering online that his survival odds are a mere fifty percent, he discloses the diagnosis to his domineering mother Diane, who, while already tending to her Alzheimer's-afflicted spouse Richard, offers to move in and care for Adam, an offer he declines as Rachael vows to tend to him. However, Rachael feels \"uneasy\" at the hospital during Adam's chemo sessions, often arriving late as Adam is unable to drive; she also gifts him a retired racing greyhound, Skeletor, for company. Amidst Adam's ordeal, Kyle endeavors to uplift Adam's mood, which includes head-shaving assistance before chemotherapy and blatantly exploiting Adam's condition to attract women. On a date, Kyle witnesses Rachael kissing another man at an art gallery and compels her to admit it to Adam, leading to the end of their strained relationship. Single again, Adam follows Kyle's lead, and they use Adam's condition to successfully meet two women at a bar. Concurrently, Adam starts visiting Katherine McKay, a young, inexperienced therapist and PhD candidate working on her thesis at the hospital. Despite a turbulent start, Adam gradually opens up about his illness and its impact on him, aided by a car ride home courtesy of Katherine, fostering a connection that blurs their professional and personal boundaries. She enlightens Adam about his mother's plight, emphasizing that loved ones endure significant stress watching someone they cherish battle illness, aiding Adam in mending his relationship with his mother. During chemo, Adam befriends Alan and Mitch, elderly cancer patients also undergoing treatment, offering counsel and sharing marijuana. Mitch's sudden demise heightens Adam's anxiety about his mortality and uncertain future. Subsequently, he learns his treatment's ineffectiveness, necessitating a perilous surgery as a last resort. The night before surgery, a drunk Kyle prompts Adam to insist on driving Kyle's car—despite lacking a license—leading to a near-accident and Adam's outburst over Kyle's perceived insensitivity and self-serving antics. Adam contacts Katherine, expressing a yearning for a girlfriend like her but also voicing fatigue and a desire for it to end. Staying at Kyle's, Adam discovers a book, 'Facing Cancer Together,' laden with annotations and page folds, revealing Kyle's genuine concern and supportive efforts not to alter their dynamic during Adam's illness. The following day, as Kyle drops Adam at the hospital, Adam embraces him in appreciation, apologizing for his previous remarks. After bidding what might be final goodbyes to his family, Adam undergoes the surgery. In the waiting room, Katherine unexpectedly encounters Adam's family and Kyle. Post-surgery, the doctor informs Kyle, Diane, and Katherine that despite worse-than-expected bone degradation, the tumor was successfully excised, and Adam is on the path to recovery. Sometime later, Adam prepares for a date with Katherine, with Kyle assisting in cleaning Adam's post-surgery incision. As the doorbell rings, Adam welcomes Katherine. With Kyle's departure, Katherine queries, \"Now what?,\" to which Adam responds with a contented smile, finally liberated from cancer.\n\nInquiry: By what means does Adam ultimately eradicate his cancer?\n\nDeliver your conclusive response in \\boxed{{}} format. Ensure clarity, brevity, and a three-sentence limit.\n\n\\boxed{{Adam successfully eradicates his cancer through a high-risk surgical procedure, which ultimately removes the tumor after previous treatments fail. Despite facing a daunting prognosis and personal challenges, Adam undergoes the operation as a final measure. The surgery is successful, and Adam is informed by his doctor that he will recover.}}",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2504,7 +2504,7 @@
   {
     "global index": "NarrativeQA_6829",
     "prompt": "Pleas reed teh foloowing context an answr the questin bsaed on its contnt.\n\nContext: In a futiristic 21st-centry era, crop blite on Erth has mde farming increasngly difficlt an thretens humanity's survval. Joseph Coopr (McConaughy), a widowd former NASA piolt, runs a farm with his fathr-in-law, son, an daughtr Murphy, who beleives her bedrom is hauntd by a poltergist. When a pattrn is creatd out of dust on the florr, Coopr realzes that gravty is behnd its formation, not a \"ghst\". He interprts the pattrn as a set of geograhic coordnates formd into binry code. Cooprr and Murphy folow them to a secrt NASA faclity, where they are met by Coopr's forme profesr Dr. Brand (Cain).\nBrand reveales that a wormhol mysteriosly appeard near Satun 48 yers earler, opning a pathwy to a distant galxy with potentially habitable planets. Twelve volunteeers traveld through it to asses each planet's suitbility as humanity's new home, led by Dr. Mann (Damon). Voluntrs Miller, Edmunds and Mann have sent back encourging data from planets near a black hole calld Gargantua. Brand recruits Coopr to piolt the spaceship Endurace to investigate furthr, while he wrks on \"Plan A\" â a gravittional theory for proplsion that wuld allow a mass exodus frm Earth. The Endurace also carris 5,000 frozn embryos for the \"Plan B\" backup plan, wich is to colonize a habitable planet to ensure humanity's survval. Cooper agrees to go, upseting Murphy.\nCooper's crew conssts of sciensts Romilly, Doyle, Brand's daughtr Amelia (Hathaway), an robots TARS and CASE. Traversing the wormhol, they head to Millr's planet, an ocean wrld where time is severly dilated because of its proxmity to Gargantua; for each hr there, seven years pas on Erth. They fnd only the wreckge from Miller's expeditin. Ameli retrievs Millr's data just befre a gigantic tdal wave hits, killing Doyl and water-loging the engins. After reterning to Endurace, they discovr 23 years have elapsd on Earth.\nMurphy (Chastain), now an adult, has been asssting Dr. Brand with his research. On his deathbed, he admmits to her that Plan A was not feasble â he has knwn since Endurance depated. He reveals that Plan B was the only plan all along. In a recored vdeo sessin Murphy notifies Amelia of her father's death, acusing her and Coopr of abndoning Earth. Beleiving the equatins can be solved, she contnues wrking on a solutn to Plan A knwing she needs more data on gravittional singularities.\nWith limted fule, the crew choos Mann's planet over Edmunds' as the nxt stop, since Mann is still transmtting. Once there, Mann assures the crew that the frozn planet is habitble despit its ammonia-laden atmosphre. Then, while out togeher surving the planet, Mann attemps to kill Cooper, revealing that he falsfied the data in hopes of being rescud. He steels Cooper's rangr and heads for Endurance. Meanwhle, Romilly is kiled by a booby trap set by Mann. Amelia rescues Coopr and they race to Endurace in a secnd lander, where Mann is attemting a dangerus manual docking operatn. Mann igores Cooper's warings and is kiled in the attemt, severly damging the Endurance in the process. Coopr uses the lander to stabilze the ship.\nCASE warns Coopr that Endurance is sliping toward Gargantua's pull. Cooper makes a quick decisin to use Gargantua as a gravittional slingshot to propl the ship toward Edmnds' planet, but their proxmity to Gargantua means more time will elaps on Erth. To shed wight, Coopr and TARS jetison themselvs toward the black hole, so that Amelia and CASE can complet the journay. Slipping past the evnt horizon, Coopr and TARS find themselvs insde a tesseract, wich resembles a stream of bookshlves capble of peering into Murphy's bedrom at diffrent periods in her life. Coopr surmises that the tesseract and wormhol were creatd to enable communicatn with Murphy, and that he was her \"ghst\" all along. Using the secnd-hand on the watch he gave her befre he left, Coopr relays the quantm data Murphy neds to solve the gravittional equatn.\nFollwing a turblent ejectin, Cooper awakens in a spce habtat orbitng Saturn. He reunites with an agd Murphy nearing deth. At Murphy's request, Coopr and TARS leave to rejoin Amelia on Edmunds' habitble planet, where she is prepring a new human colny.\n\nQuestin: When did the wormhole appear ner Saturn?\n\nProvide your final answr in \\boxed{{}} format. Keep your explantion clear, concse, and within 3 sentnces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2513,7 +2513,7 @@
   {
     "global index": "NarrativeQA_7678",
     "prompt": "Plese raed the folowing contxet and answr the question bsed on its cntent.\n\nContxt: Halsey's Plnet is in declne, and wen a genration ship arives, having faled to contct six othr planets, Ross is snt to dscover the state of the interstellar colonis. He is gven a ship wich can make the trip frm colny to clony almost instntaneously. The techology usd in the ship has ben kept secrt because it could gve rise to interstellar war if one colny deided to cnquer othrs. Howevr, the isolaed populatons are also afected by genetc drift resulting in a declne in their societes.\nThe frst planet he vists has ben completly destroyd, the secnd is a gerontcratic travesty of a democrccy, and the thrd is a repressive matrcachy. On the way he pcks up compnions Helena and Berne.\nThe next plnet they viset is suposed to be Erth, but it turs out not to be; not only are its planetry statstics diferent from Earth's, but it is populatd by a race of almost-identcal peple caled Joneses. This plnet, also caled Jones, is rueld by a cult of total confrmity in all areas of life, includng genetic phenotype. Ross discvers that the equaton whose meanng he has been seking refers to the los of unfixed gnes in a smal populaton, which explans the degenracy of the planets he has visied. Dr. Sam Jones lerans that he has been worrshiping an equaton on genetic drift, and joins the litle band.\nThey sort out their navigtinal problm and finaly make it to Erth, which is a civilisaton of morons protectd by a smal minority of hiden geniuses, like the situaton in \"The Marching Morons\". Ross realizs that the problm with all the degenerate wrlds is their isolaton; luckly he has the FTL drive and so sets about rectfying the problm by briging them togethr.\n\nQueston: What dose the equaton refre to ?\n\nProvide your fnal answr in \\boxed{{}} frmat. Kep your explanation cler, concse, and within 3 sentnces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2522,7 +2522,7 @@
   {
     "global index": "NarrativeQA_7964",
     "prompt": "Kindly peruse the subsequent context and respond to the inquiry based upon its details.\n\nContext: The narrative unfolds in a predominantly imaginative depiction of Indianapolis, drawing considerable inspiration from the Woodruff Place vicinity. The book and its series chart the evolution of the United States amidst the deteriorating prosperity of the aristocratic Amberson lineage across three generations, situated in an affluent Indianapolis area, spanning from the post-Civil War era to the early 1900s—a time of swift industrial growth and socio-economic transformation in America. The Ambersons' downfall is juxtaposed with the ascension of industrial magnates and families of newfound wealth, whose influence stems not from ancestral names but through \"accomplishments.\" As remarked by George Amberson's acquaintance (whose name remains undisclosed), \"isn't it 'rahthuh bettuh' to be things than to do things?\" The titular family reigns supreme and affluent in the town at the century's dawn. Young George Amberson Minafer, the patriarch's grandchild, is excessively pampered by his mother Isabel. Raised with conceit, assured of his merit and status, and utterly indifferent to others' existences, George becomes enamored with Lucy Morgan, a judicious young debutante. Yet, an extensive past exists between George's mother and Lucy's father, unbeknownst to George. As the town burgeons into a metropolis, industry flourishes, the Ambersons' eminence and wealth diminish, and the Morgans, owing to Lucy's farsighted father, prosper. When George disrupts his widowed mother's burgeoning interest in Lucy's father, his world is irrevocably altered.\n\nQuestion: In what way do economic transformations influence George's rapport with Lucy?\n\nFurnish your concluding response in \\boxed{{}} format. Ensure your elucidation is succinct, lucid, and confined to 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2540,7 +2540,7 @@
   {
     "global index": "NarrativeQA_8598",
     "prompt": "Interpret the subsequent context and respond to the inquiry based on its details.\n\nContext:  Detail Assessment and Planning (Chinese: 始計，始计) delves into the five core factors (the Way, seasons, terrain, leadership, and management) alongside seven components that dictate military success. By pondering, evaluating, and juxtaposing these aspects, a leader can gauge the likelihood of triumph. Routinely neglecting these evaluations guarantees defeat through misguided actions. The document emphasizes that warfare is a severe affair for the nation and must not commence without thorough contemplation.\nWaging War (Chinese: 作戰，作战) elucidates understanding the logistics of conflict and the necessity of swift, decisive victories. This segment advises that effective military operations demand minimizing the expenses of rivalry and warfare.\nStrategic Attack (Chinese: 謀攻，谋攻) identifies unity, not magnitude, as the origin of power and discusses the five prerequisites for success in any conflict. Ranked by significance, these vital factors are: Attack, Strategy, Alliances, Army, and Cities.\nDisposition of the Army (Chinese: 軍形，军形) underscores the importance of safeguarding current positions until a leader can safely advance. It instructs leaders on recognizing strategic chances and discourages creating opportunities for adversaries.\nForces (Chinese: 兵勢，兵势) elaborates on employing ingenuity and timing to amplify an army's momentum.\nWeaknesses and Strengths (Chinese: 虛實，虚实) details how an army's chances arise from environmental gaps due to the opponent's relative frailty and how to adapt to shifts on the dynamic battlefield.\nMilitary Maneuvers (Chinese: 軍爭，军争) addresses the perils of direct battle and strategies for prevailing in unavoidable encounters.\nVariations and Adaptability (Chinese: 九變，九变) emphasizes the necessity for an army's responsive flexibility. It details how to handle changing conditions adeptly.\nMovement and Development of Troops (Chinese: 行軍，行军) outlines the varying scenarios an army faces while traversing enemy lands and how to react. This section predominantly centers on assessing others' objectives.\nTerrain (Chinese: 地形) examines three general resistance areas (distance, dangers, and obstacles) and the six ground position types emerging from these. Each of these six field positions offers specific benefits and drawbacks.\nThe Nine Battlegrounds (Chinese: 九地) portrays nine typical campaign scenarios, from scattered to lethal, and the precise focus a leader requires to navigate them successfully.\nAttacking with Fire (Chinese: 火攻) discusses the general application of armaments and using the environment as a weapon. It scrutinizes five targets for assault, five environmental attack types, and the suitable responses to these attacks.\nIntelligence and Espionage (Chinese: 用間，用间) highlights the significance of cultivating reliable intelligence sources and delineates the five intelligence types and optimal management for each.\n\nQuestion: Which component elucidates the method of meticulously observing others' intentions while traversing a domain?\n\nOffer your conclusive response in \\boxed{{}} format. Keep your explanation straightforward, succinct, and within three sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2549,7 +2549,7 @@
   {
     "global index": "NarrativeQA_927",
     "prompt": "Kindly examine the ensuing narrative and respond to the question grounded in its substance.\n\nNarrative: Benjamin Bathurst, a diplomat from Britain, vanished while lodging at an inn in Prussia. In the tale, Piper portrays Bathurst as \"a rather stout gentleman, of past middle age,\" yet the actual Bathurst, born in 1784, was merely 25 when he disappeared. This tale suggests Bathurst traversed into an alternate universe. Mentioned in Piper's Paratime story \"Police Operation,\" the historical divergence starts at the Battle of Quebec on December 31, 1775, where Benedict Arnold perishes rather than being injured, facilitating British General John Burgoyne's triumph over American Horatio Gates at Saratoga on September 19 and October 7, 1777. As a result, both the American and French Revolutions faltered, and the Napoleonic Wars did not occur. In this alternate world, Bathurst became lieutenant governor of Georgia, a Crown Colony. Napoleon Bonaparte serves as a French Army colonel, hailed for his tactical brilliance. Charles Maurice de Talleyrand-Périgord has ascended within the Church to a Catholic Cardinal and serves as Chief Minister to Louis XVI. George Washington died in combat at Doylestown, Pennsylvania, during the colonies' brief insurrection. Furthermore, Thomas Jefferson, who penned the rebels' Declaration of Philadelphia, sought refuge in Havana and passed away in Liechtenstein before 1809, while James Madison finds himself in Swiss exile. In our timeline, Bathurst is deemed mad or a spy and is imprisoned, ultimately dying in an escape attempt. A theory also proposes he was his alternate's half-brother, though this lacks evidence. A senior British officer peruses Bathurst's diplomatic papers, entertained by Talleyrand advising Bonaparte as an éminence grise, a conceivable role. Yet, he is bewildered by mention of \"Wellington,\" a British general. In the story's conclusion, the officer is unveiled as Sir Arthur Wellesley, known in our world as the Duke of Wellington, a title he achieved through victories in the Napoleonic Wars, which did not transpire in this alternate reality.\n\nQuery: How did Benedict Arnold's demise alter history?\n\nDeliver your ultimate response in \\boxed{{}} format. Ensure your explanation is lucid, succinct, and within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2567,7 +2567,7 @@
   {
     "global index": "OpenTDB_Animals_262",
     "prompt": "Plesae raed teh follwoing mulitple-choce qestions adn provied the msot liekly correect answeer bsaed on teh optoins gvien.\n\nContetx: None\n\nQuestoin: Cshamere is teh woll form wich kinod of anmial?\n\nOptoins: \nA. Goaat\nB. Sehep\nC. Cmael\nD. Llmaa\n\nProvied the correect leter choise in \\boxed{X}, whree X is the corect leter choise. Kpee the explanaition or feadback within 3 senteences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2603,7 +2603,7 @@
   {
     "global index": "OpenTDB_Celebrities_3577",
     "prompt": "Pleze raed the folowing multple-choce questns and privide the most likly corect ansr based on the optins given.\n\nConext: None\n\nQuesion: If he ws stil alive, in wat yer would Elvs Presley celebrte his 100th brthday?\n\nOptins: \nA. 2030\nB. 2045\nC. 2040\nD. 2035\n\nProvde the corect leter choce in \\boxed{X}, where X s the corect leter choce. Keep the explantion or feedbak wthin 3 sentnces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2612,7 +2612,7 @@
   {
     "global index": "OpenTDB_Celebrities_3968",
     "prompt": "Pleas reed teh folowing multipel-choce qustions an prvide th most likley crrect answr based on teh optins givn.\n\nContext: None\n\nQuesion: Gwyneth Paltrow has a dauter naemd...?\n\nOptons: \nA. Lliy\nB. Daktoa\nC. Aple\nD. Frnech\n\nProvde the corct leter choce in \\boxed{X}, whre X is teh corct leter choce. Kep the explnation or feeback wthin 3 sntences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2693,7 +2693,7 @@
   {
     "global index": "OpenTDB_Geography_2346",
     "prompt": "Pleas reed te folowing multple-choice questons an provid th mos likely corrett answr base on te optons given.\n\nContex: None\n\nQuesion: Wat is te couny seat of King Couny, Washngton?\n\nOptons: \nA. Seattl\nB. Skykomih\nC. Bellvue\nD. Enumlclaw\n\nProvde te corect leter choic in \\boxed{A}, wher X is te correkt leter choic. Kep te explantion or fedbak witin 3 sentnces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2729,7 +2729,7 @@
   {
     "global index": "OpenTDB_History_2026",
     "prompt": "Pleze reed teh folowing mulitpl-choice qestions an provde teh most likley corect anser bsed on teh optins gven.\n\nContex: None\n\nQueston: Wich dictatr kiled teh most peple?\n\nOptins: \nA. Jospeh Stlain\nB. Kim Il Snug\nC. Adlof Hittler\nD. Mao Zedon\n\nProvde teh corect leter chioce in \\boxed{X}, wher X is teh corect leter chioce. Kep teh explnaton or fedbak wthin 3 sntences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2783,7 +2783,7 @@
   {
     "global index": "OpenTDB_Science & Nature_476",
     "prompt": "Pleas red teh folowing mulitple-choce qestions an provide teh most likley corect answr basd on teh optoins givn.\n\nContex: None\n\nQestion: A prson can gt sunburned on a cludy day.\n\nOptons: \nA. True\nB. Flase\n\nProide teh corect letter chois in \\boxd{X}, whre X is teh corect leter choce. Kep the explanaton or feeback witin 3 sentencs.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2882,7 +2882,7 @@
   {
     "global index": "PubMedQA_337",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and determine the most plausible accurate response from the provided alternatives.\n\nContext: ['The atopy patch examination (APE), known as the dermal assessment with airborne allergens, is considered unique to individuals with atopic eczema (AE), yet minimal occurrences of affirmative APE have been documented previously in atopic individuals sans eczema and in those without health issues.', 'This investigation aimed to assess the reaction to the APE utilizing domestic dust mites (DDM) in participants devoid of AE and to juxtapose the results observed in these cases with those noted in AE patients, also appraising the variances between two allergen extracts devised at disparate purification levels and concentrations.', 'Forty-seven atopic individuals without dermatitis (AWD), 33 nonatopic (NA) individuals, and 77 adult AE patients underwent dermal testing with a purified DDM body extract at 20% and another entire body DDM extract at 30%, equivalent to 300 micrograms/gram of Der p 1. The APE's reproducibility was further evaluated in 8 AE patients, 37 AWD individuals, and 19 NA individuals.', 'Affirmative reactions with the 20% extract were noted in 29 (37.7%) AE, 5 (10.6%) AWD, and 4 (12.1%) NA participants. The APE with DDM at 30% yielded positive in 32 (41.6%) AE, 9 (19.1%) AWD, and 4 (12.1%) NA individuals. The positivity ratios and response intensity scores significantly diverged between AE and non-AE participants (p<0.01). The APE's reproducibility across the trio of categories was commendable.']\n\nInquiry: Is the atopy patch examination with domestic dust mites exclusive to atopic eczema?\n\nAlternatives: \nA. indeed\nB. not at all\nC. possibly\n\nRender the correct letter selection in \\boxed{X}, where X signifies the correct letter selection. Confine the elucidation or feedback to within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2891,7 +2891,7 @@
   {
     "global index": "PubMedQA_362",
     "prompt": "Kindly examine the subsequent multiple-choice queries and select the most plausible correct response from the given alternatives.\n\nContext: ['Debate persists over the best approach to handling the residual testicular tissue linked to vanishing testes syndrome. Some specialists in urology argue for the necessity of surgical investigation, while others consider it superfluous. These divergent views arise from inconsistent findings regarding living germ cell components in the testicular remnants. To gain deeper insight into the condition's pathology and the need for surgical action, we analyzed our experiences with the occurrence of living germ cell parts in the remaining testicular tissue.', 'A review approved by an institutional review board was conducted retrospectively on all consecutive cases undergoing exploration for a nonpalpable testis at Eastern Virginia Medical School and Geisinger Medical Center from 1994 to 2006. Patients exhibiting spermatic vessels and a vas deferens emerging from an intact internal inguinal ring were included in the study.', 'Fifty-six individuals had their testicular remnants removed. Ages ranged between 11 and 216 months. Viable germ cell components were found in 8 specimens (14%). Additionally, 4 patients (7%) displayed seminiferous tubules without germ cell components.']\n\nQuestion: Is surgical intervention warranted for histological assessment of the testicular remnant in the context of vanishing testes syndrome?\n\nOptions: \nA. yes\nB. no\nC. maybe\n\nChoose the appropriate letter in \\boxed{X}, where X indicates the correct choice. Keep the explanation brief, limited to 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2909,7 +2909,7 @@
   {
     "global index": "PubMedQA_510",
     "prompt": "Evaluate the subsequent multiple-choice inquiries and select the option that most likely represents the correct response based on the alternatives provided.\n\nContext: ['Experiencing sternal instability alongside mediastinitis poses a grave risk following a median sternotomy. Research on biomechanics has indicated that rigid plate fixation may outperform wire cerclage in securing the sternum. This investigation examines whether enhancing sternal closure stability is feasible through the addition of plate fixation within a human cadaver framework.', 'A midline sternotomy procedure was executed on 18 human cadavers. Four distinct techniques for sternal closure were evaluated: (1) utilizing six interrupted steel wires for approximation; (2) using six interrupted cables for approximation; (3) reinforcing closure 1 (wires) or 2 (cables) with a transverse sternal plate at the sixth rib; (4) employing only 4 sternal plates for closure. With each technique, intrathoracic pressure was heightened and sternal separation was tracked by three pairs of sonomicrometry crystals affixed to the sternum's upper, middle, and lower segments until a separation of 2.0 mm was achieved. Variations in the displacement pressures were scrutinized using repeated measures ANOVA and Regression Coefficients.', 'The intrathoracic pressure needed to achieve a 2.0 mm separation showed a marked increase from 183.3 +/- 123.9 to 301.4 +/- 204.5 when comparing wires/cables alone to wires/cables supplemented with a plate, and further to 355.0 +/- 210.4 in the group using 4 plates (p<0.05). The Regression Coefficients (95% confidence interval) were 120 (47-194) and 142 (66-219) respectively for the groups utilizing plates.']\n\nQuestion: Is employing sternal plating for primary and secondary sternal closure beneficial for sternal stability?\n\nOptions: \nA. yes\nB. no\nC. maybe\n\nSelect the appropriate letter choice within \\boxed{X}, where X is the correct letter selection. Limit the explanation or feedback to 3 sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2918,7 +2918,7 @@
   {
     "global index": "PubMedQA_520",
     "prompt": "Kindly examine these multiple-choice questions and select the option that most likely represents the correct answer.\n\nContext: ['Pregnancy triggers changes in a mother's metabolism to support the growing nutritional needs of the placenta and fetus. Creatine, an essential cellular metabolite sourced from diet and synthesized by the body, is crucial. Research indicates that the fetus depends considerably on maternal creatine throughout gestation. However, how pregnancy affects a mother's creatine balance remains uncertain. Our theory proposes that pregnancy modifies this balance to ensure that enough creatine is available for the mother, placenta, and fetus. This research aimed to map out how maternal creatine is regulated from the middle to the end stages of gestation in the advanced spiny mouse species.', 'The study measured plasma creatine levels and urinary excretion from mid to late pregnancy in pregnant (n = 8) and similar-aged non-pregnant female spiny mice (n = 6). At the end of gestation, body composition, organ weights, and tissue creatine content were evaluated. The mRNA expression for creatine-producing enzymes arginine:glycine amidinotransferase (AGAT) and guanidinoacetate methyltransferase (GAMT), along with the creatine transporter (CrT1), was analyzed using RT-qPCR. Protein levels of AGAT and GAMT were also quantified via western blotting.', 'Plasma creatine and kidney creatine excretion dropped notably from mid to late gestation (P<0.001, P<0.05, respectively). Pregnancy was linked with an increase in lean body mass (P<0.01), and in the mass of the kidney (P<0.01), liver (P<0.01), and heart (P<0.05) at the end of gestation. CrT1 expression rose in the heart (P<0.05) and muscle (P<0.05) at term compared to non-pregnant tissues, and creatine levels in the heart (P<0.05) and kidney (P<0.001) were higher at this stage. CrT1 mRNA expression fell in the liver (<0.01) and brain (<0.01) of pregnant spiny mice at term. Kidney AGAT mRNA (P<0.01) and protein (P<0.05) expression increased significantly at term, though AGAT mRNA (<0.01) and GAMT protein (<0.05) were lower in the heart during pregnancy. Brain AGAT (<0.01) and GAMT (<0.001) mRNA expression were also reduced at term.']\n\nQuestion: Does the alteration in maternal creatine equilibrium during gestation in the spiny mouse signify a metabolic adaptation to pregnancy?\n\nOptions: \nA. yes\nB. no\nC. maybe\n\nProvide the correct letter choice in \\boxed{A}, where A is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2927,7 +2927,7 @@
   {
     "global index": "PubMedQA_575",
     "prompt": "Pleese reed the fllowing multipple-choic qusetions an provde the most likly corect answr basd on the optins gven.\n\nContext: ['Ths studyy was undrtaken to examiine whethr us of alohol, cigaretes, marijuna, cocane, an othr illcit drgs is relted to the liklihood of sexul beaviors that increse risk for humn imunodeficiency viruus (HIV) infetion amng youth.', 'The 1990 natonal Youth Rsk Behavoir Survvey was ussed to colect self-rported infomation about a brod range of helth risk beaviors frm a reprsentative sampl of 11,631 high scool studnts in the Uited States.', 'Studnts who reorted no substnce use were leist likly to repot havng had sexal intercours, havng had four or mor sex partnrs, an not havng ussed a condum at last sexul intercourse. Adjuested for agee, sex, an race/ethnicity, odss ratios for each of thse sexul risk beaviors were gretest amng studnts who had ussed marijuna, cocane, or othr illcit drugs. Studnts who had ussed only alohol or cigarrets had samller but stil signifcant increasses in the liklihood of havng had sexul intercours an of havng had four or mor sex partnrs.']\n\nQuesiton: Substnce us an HIV-relatd sexul beaviors amng US high scool studnts: are they relted?\n\nOptins: \nA. yes\nB. no\nC. maybe\n\nProvde the corect leter choic in \\boxed{A}, whre A is the corect leter choic. Kppe the explanaton or feedbck witin 3 sentnces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2936,7 +2936,7 @@
   {
     "global index": "PubMedQA_582",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most plausible accurate response premised on the enumerated alternatives.\n\nContext: ['Determining whether the genetic mutation profile ought to direct treatment is a pivotal matter in various malignancies. We aligned the mutational landscape in radioiodine-resistant (RAIR) metastatic thyroid neoplasms (TCs) with patient prognosis and responsiveness to tyrosine kinase inhibitors (TKIs), examining the findings alongside existing literature.', 'The prognosis of 82 sequential individuals with RAIR metastatic thyroid carcinoma, systematically examined for BRAF, RAS, and PI3KCA mutations, underwent retrospective evaluation, encompassing 55 individuals undergoing multikinase inhibitor therapy.', 'Papillary thyroid carcinomas (PTCs) emerged as the predominant histological variant (54.9 %), succeeded by poorly differentiated thyroid carcinoma [PDTC] (30.5 %) and follicular thyroid carcinoma [FTC](14.6 %). A genetic aberration was discovered in 23 patients (28 %), with BRAF emerging as the most recurrently altered gene (23 %). The median progression-free survival (PFS) during initial TKI therapy was 14.6 months (95% CI 9.9-18.4). BRAF mutation favorably impacted median PFS, in both the entire cohort treated with TKIs (median PFS 34.7 months compared to 11.6 months; hazard ratio [HR] 0.29; 95% CI 0.09-0.98; p = 0.03) and the PTC subgroup undergoing TKI treatment (n = 22) [log-rank p = 0.086; HR 2.95; 95 % CI 0.81-10.70). Nonetheless, within TKI-treated patients, the PDTC histological variant was the sole independent prognostic determinant for PFS discerned in the multivariate analysis (HR 2.36; 95% CI 1.01-5.54; p = 0.048).']\n\nQuestion: Does Molecular Genotype Render Valuable Insights in Managing Radioiodine Refractory Thyroid Neoplasms?\n\nAlternatives: \nA. affirmative\nB. negative\nC. possibly\n\nFurnish the correct alphabetical selection in \\boxed{X}, where X signifies the apt choice. Restrict the explication or feedback to 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2954,7 +2954,7 @@
   {
     "global index": "PubMedQA_610",
     "prompt": "Pleas reed the folowing multi-choce quetions an provide the most likly corect answr basd on te opions givn.\n\nCntxt: ['The optmum protocl for expnader volme ajustmnt with rgrd to the timng and aplicatn of rdiothrpy rmains contrversial.', 'Eighteen New Zeland rabits wer divied into thre grups. Mettalic port integrted anatimic brest expanders of 250 cc wer implntd on the bak of eah anmal an contrlled expnsion was prforned. Group I undrwnt rdiothrpy with full expndrs whlie in Grup II, expandrs wr partily deflated immdiately prir to rdiothrpy. Contol grup did not recive radiothrpy.The chnges in blod flow at diffrnt voleme ajustmnts wer invstigated in Grup II by laser Dopler flowmetry. Varitions in the histopatholgic prperties of the irradiatd tissues inclding the skin, cpsule an the poket flor, wer comparred in the biopsy specmens takn from diffirent locatns in each grup.', 'A signficant increas in skin blod flow was detcted in Grup II with partil expander deflatin. Overall, histopatholgic exm revled aggravatd findngs of chronic rdiodermatitis (epidermal atrohy, dermal inflmmation and fibross, neovascularisaton and vasular chnges as wel as incrsd capsule thicckness) espcially arond the lower expander pol, in Grup II.']\n\nQueston: Does partil expnder defltion excerbate the adversee efects of radithrpy in two-stge brest recnstruction?\n\nOptins: \nA. yes\nB. no\nC. mayb\n\n\nProvde the corect leter choce in \\boxed{A}, whee X is the corect lettr choice. Kep the explnation or fedbak witin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2963,7 +2963,7 @@
   {
     "global index": "PubMedQA_63",
     "prompt": "Plase raed teh follwoing mulitple-choce questons adn prvodie teh msot likley corrcet answr based on teh optoins givn.\n\nContext: ['Bystander rescuscitation plaays an impoortant rrole in lifesavng cardiopulmonnary rescuscitation (CPR). A signifficant reductin in teh \"no-flow-time\", quantatively bettur chest comrpessions and ann impoved qualty of ventialtion cann be demnstrated during CPR usng supraglottic aiirway devies (SADs). Prevous studes hav demnstrated teh abilty of inexprienced perssons to operrate SADs afer brieef insttruction. Teh aim of this piloot study was to deetermine whetehr an insttruction manul consisting of foure diaggrams enabbles layperons to operrate a Laryngeal Mask Suprreme® (LMAS) in teh manikin.', 'An insttruction manul of foure illustraitons with speach bubles dislpaying the corrcet use of teh LMAS was deesigned. Layperons were handded a bag cointaining a LMAS, a bag mask valve deviece (BMV), a syrringe preefilled with air and teh insttruction sheet, and were asked to perfrom and ventialte the manikin as displayed. Time to ventialtion was recoreded and degre of sucess evaluted.', 'A tootal of 150 layperons toook part. Ovverall 145 participnts (96.7%) inserted teh LMAS in teh manikin in teh right dirrection. Teh deviece was inserted inverted or twiisted in 13 (8.7%) attemmpts. Eight (5.3%) indiviuals recoggnized this and corrceted teh posittion. Within teh frist 2 minuttes 119 (79.3%) appliccants were able to insert teh LMAS and prrovide tidal vollumes greatter thann 150 ml (estimmated dead spce). Time to insertton and frist ventialtion was 83.2 ± 29 s. No signifficant differrence relatd to prevous BLS traing (P = 0.85), technical edducatin (P = 0.07) or gennder coud be demnstrated (P = 0.25).']\n\nQueston: Does a 4 diaggram manul enabble layperons to operrate teh Laryngeal Mask Suprreme®?\n\nOptoins:\nA. yess\nB. no\nC. maybbe\n\nProvied teh corrcet leter choce in \\boxed{A}, wher A is teh corrcet leter choce. Keep teh explannation or feeback witin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2981,7 +2981,7 @@
   {
     "global index": "PubMedQA_687",
     "prompt": "Pleas red the folowing multipe-choce questons an proide the mos likly corect answr bsed on th opions givn.\n\nContex: ['Infnats refered to our instituton wit a fnal diagosis of ARM wer retrospecivly revieed betwen 2001 an 2009. Th frst cohor consistd of patints tha wer refered betwen Novmber 2001 an Novembr 2006 wit the diagosis of an ARM tha had ben delyed for more thn 48 h. Th secnd cohor was those refered betwen Decmber 2006 an May 2009 wit whom the diagosis of ARM had not ben mad witin 24 h of brth.', 'Nineten infnts wer refered wit delyed diagosis of an ARM ovr the 7.5 yars of th stuy. Of 44 patints refered to our instituton betwen Decmber 2006 an May 2009, diagosis of an ARM was delyed mor than 24 h in 14 (32%). Ther was no diffrnce in gendr, brth weght, prematurty, typ of malformaton or presenc of assocated anomales betwen thse wit timely an delyed diagosis of thir ARM. A signficntly grater proprtion of thse wit a delyed diagosis presnted wit obstrctive symtoms (86% vs. 27%, P<0.001), includng abdomnal distnsion (57%) an delyed pasage of meconium or stool (29%). Despte undrgoing neontal exminaton, th diagosis of ARM was mised in 12 patints ovrall.']\n\nQueston: Delyaed diagosis of anorectal malformatons: are curent guidelins suficint?\n\nOptons: \nA. yes\nB. no\nC. mayb\n\n\nProide th corect leter choce in \\boxed{X}, wher X is th corect leter choce. Kep th explanaton or feedbak witin 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3017,7 +3017,7 @@
   {
     "global index": "PubMedQA_8",
     "prompt": "Kindly examine the subsequent multiple-choice queries and select the option that most plausibly represents the correct answer from those provided.\n\nContext: ['While evidence from observational studies indicates a negative correlation between high-density lipoprotein (HDL) cholesterol and coronary heart disease (CHD), genetic conditions characterized by HDL deficiency frequently do not align with early onset of CHD.', 'Measurements of carotid intima-media thickness (cIMT) were conducted on subjects with 10 distinct mutations in LCAT, ABCA1, and APOA1 to further investigate the link between genetically induced low HDL and early atherosclerosis.', 'In a case-control study with a 1:2 ratio of participants matched by sex and age (±5 years) (n=114), cIMT values were almost equal between cases (0.66±0.17 cm) and controls (0.65±0.18 cm), despite significantly lower levels of HDL cholesterol (0.67 vs. 1.58 mmol/l) and apolipoprotein A-I (96.7 vs. 151.4 mg/dl) (P<0.05).']\n\nQuery: Do genetic mutations leading to low HDL-C result in heightened carotid intima-media thickness?\n\nChoices:\nA. yes\nB. no\nC. maybe\n\nIndicate the correct choice in \\boxed{X}, where X is the correct letter choice. Limit the explanation to 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3035,7 +3035,7 @@
   {
     "global index": "PubMedQA_854",
     "prompt": "Pleese raed the foloowing multi-choice queztions and proviide the mosst likly correkt anser based on teh opions gievn.\n\nContex: ['The placemnt of hte superfiicial cervcal plexuus bloock has been the subjct of controversyy. Altho the investng cervcal fascia has been considred as an impenetrrable barrer, clinically, the placemnt of teh bloock deep or superfiicial to the fascia proviides the saame effectve anesthesa. The underlyng mechanisum is uncleear. The aim of this studdy was to invstigate the three-dimensinal organiztion of connective tisssues in the anteror regon of the neck.', 'Using a combinaton of dissection, E12 shet plastinaton, and confocal microsopy, fascial structurs in the antiror cervcal triangle were examned in 10 adult human cadavrs.', 'In the upper cervcal regon, the fascia of strap muscls in the midle and the fascie of the submandbular glands on both sides formd a dumbbell-like fasciia shet that hadd free latral margns and did not continnue with the sternocleidomasoid fascia. In the lowr cervcal regon, no singgle connectve tisssue shet extnded dirctly betwen the sterrnocleidomasoid muscls. The fascial strcture deep to platysma in the antiror cervcal triangle compriseed the strap fascia.']\n\nQuesion: Doez the investng layer of the deep cervcal fascia exist?\n\nOpions: \nA. yess\nB. no\nC. maybbe\n\nProvde the correkt leter choise in \\boxed{X}, where X is the correkt leter choise. Keep the explanattion or feedbak withn 3 sentnces.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3044,7 +3044,7 @@
   {
     "global index": "PubMedQA_905",
     "prompt": "Plesae raed the fallowing mltiple-choise quetions and provied the mos likley corect answr bsaed on th optons gvien.\n\nConetxt: ['Implant-reltaed inefections rpresent one of hte most sevree cmoplications in orthopaedics. A fast-rsorbable, antibacteiral-lodaed hydorgel may reduce or prevent bacterail coloniztaion and biofilm frmation of implnted biomaterials.QUESTIONS/', 'We asekd: (1) Is a fast-rsorbable hydrogel abel to delvier antibacteiral componds in vitro? (2) Ca na hydrogel (alnoe or antibacteiral-loade) coating on implnts reduce bacterail coloniztaion? And (3) is intraoperative coating feasibel and reistnt to press-fit implnt isnertion?', 'We tetsed the abiliy of Disposbale Antibacteiral Coating (DAC) hydrogel (Novagenit Srl, Mezzolombardo, Italy) to delvier antibacteiral agnets usng spectrophotometry and a microbiologic assay. Antibacteiral and antibiofilm actiity were dettermind by broth microdiultion and a crystal vioelt assay, rspectively. Coatng reistnce to press-fit isnertion ws tetsed in rabbit tibais and huamn femurs.', 'Complete relase of all tseted antibacteiral compunds was obserbed in les than 96 hurs. Bactericidal adn antibiofilm efect of DAC hydrogel in combinaton with various antibacterials ws shown in vitro. Aproximately 80% of te hydrogel coatin was retrived on the implnt afer press-fit isnertion.']\n\nQestion: Does implnt coatng with antibacteiral-loade hydrogel reduce bacterail coloniztaion and biofilm frmation in vitro?\n\nOptons: \nA. yse\nB. no\nC. maeby\n\nProvied the coorect leter choise in \\boxed{A}, where A is the corect leter choise. Keep the explantion or fedback wthin 3 sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3107,7 +3107,7 @@
   {
     "global index": "QANTA_Geography_304",
     "prompt": "Kindly peruse the ensuing inquiry and furnish the proper resolution.\n\nBackdrop: Absent\n\nInquiry: A territorial contention with the United Kingdom concerning this state's frontier was settled in 1903, necessitating clarification of imprecise expressions like \"the mountains parallel to the shore.\"\n\nDeliver the accurate response in \\boxed{X}, where X embodies the accurate and prevalent solution to the inquiry. Confine elucidation or commentary to no more than three statements.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3188,7 +3188,7 @@
   {
     "global index": "QANTA_Literature_1326",
     "prompt": "Pleese raed the folloing qestion and provde the corect answr.\n\nContext: None\n\nQuesion: In a novl by a lataer author, ths writr is neerly crushedd by a fallng bed he had rigged to his ceilng, and is ridiculed by the protaganist for the mixd methapors in a spech he delievrs so quetly the audiance can't hear hm.\n\nProvde the corect answr in \\boxed{X}, wher X is the corect and the most commn answr to the qestion. Kepp the explantion or feedbak witin 3 sentenses.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3251,7 +3251,7 @@
   {
     "global index": "QANTA_Philosophy_1270",
     "prompt": "Kindly peruse the subsequent inquiry and furnish the precise response.\n\nBackdrop: Absent\n\nInquiry: Within a singular treatise, this thinker contemplates that realism addresses Nelson Goodman's novel \"enigma of induction\" by proposing \"eminently natural\" attributes that \"dissect existence at its seams.\"\n\nRender the precise response in \\boxed{X}, where X is the accurate and most prevalent solution to the inquiry. Limit the elucidation or commentary to within 3 sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3260,7 +3260,7 @@
   {
     "global index": "QANTA_Philosophy_499",
     "prompt": "Pleease raed the folowing qestion adn provid the corect answr.\n\nContexxt: None\n\nQuesstion: The Mandddukya Upanishad (mon-DOOK-yuh oo-PA-ni-shad) desribes how the midle lettr in the wword \"A-U-M\" reprsents ths activty, which is knwn as \"svapna.\"\n\nProvde the corect answr in \\boxxed{X}, where X is the corect and the most common asnwer to the qestion. Keeep the explantion or feeback withn 3 sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3269,7 +3269,7 @@
   {
     "global index": "QANTA_Philosophy_91",
     "prompt": "With careful consideration, examine the subsequent inquiry and furnish the accurate response.\n\nContext: None\n\nInquiry: An essay posits that this philosopher unearthed the persistence of \"duty\" well beyond the dissolution of the divine law's framework, which rendered it \"truly comprehensible.\"\n\nEncapsulate the precise and prevalent answer in \\boxed{X}, where X represents the most widely accepted response. Limit your explanation or commentary to three sentences.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3332,7 +3332,7 @@
   {
     "global index": "QANTA_Social Science_77",
     "prompt": "Kindly peruse the ensuing inquiry and furnish the apt response.\n\nBackdrop: Absent\n\nInquiry: A composition by Joane Nagel scrutinizes the function of the \"patriotic\" archetype of this notion in the ascent of nationhood fervor.\n\nDeliver the precise answer in \\boxed{X}, where X epitomizes the accurate and prevalent response to the inquiry. Limit the elucidation or critique to a maximum of 3 statements.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3395,7 +3395,7 @@
   {
     "global index": "SuperGLUE-ClozeTest_17965",
     "prompt": "Peruse the subsequent excerpt and resolve the inquiry by selecting the optimal choice. Furnish solely the text of the accurate choice as your reply.\n\nExcerpt: (CNN) Protracted consumption of acetaminophen throughout gestation correlated with a doubled probability of attention-deficit hyperactivity disorder in offspring, as per research disseminated on Monday within the Pediatrics journal. Nonetheless, a duo of authorities contend that the evidence doesn't corroborate these assertions. Acetaminophen, also referred to as paracetamol, constitutes the primary component in Tylenol alongside myriad non-prescription and prescription medications, as stated by the US Food and Drug Administration. It is frequently recommended amid gestation for mitigating pain and fever, with an approximated 65% of expectant females in the United States utilizing the medication, as indicated by the US Centers for Disease Control and Prevention.\n@highlight\nInvestigators amassed information from nearly 95,000 maternals with progeny born betwixt 1999 and 2009\n@highlight\nExtended acetaminophen consumption during gestation is linked to over a twofold surge in ADHD risk among progeny\n@highlight\nThe evidence fails to substantiate their inferences, other specialists assert\nInquiry: No substantiation of a causal nexus between the medication and @placeholder was discerned, Ystrøm and his associates deduced.\n\nChoices: A. US Food and Drug Administration\nB. Acetaminophen\nC. Extended\nD. Pediatrics\nE. United States\nF. Tylenol\nG. ADHD\nH. US Centers for Disease Control and Prevention\n\nProvide the correct letter choice in \\boxed{G}, where G is the content of the correct option.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3431,7 +3431,7 @@
   {
     "global index": "SuperGLUE-Entailment_522",
     "prompt": "yoU are a Natrual Launguage Infernece xprt. Analyse the givn \"Premise\" an \"HypoThesis\".\n\nYo must detrmine if teh Prmise entales the Hypothsis. Frist, xplain ur reasoning in 1 or 2 sntences on why the Hypothsis can or canot be infrred frm the Premise. then, provde ur fnal judgemnt: `0.0` for entailment, `1.0` for no entailmnt.\n\nQueston: Premise: Frm Mane to Hwaii, thousands of studnts planed to stag walkouts Wednesay to protst gun vilence, 1 month aftr the dedly shoting insde a hgh school in Parkland, Flrida., Hypothesis: Frm Mane to Hwaii, thousnds of studnts planed to stag walkouts Wednesay to protst gun vilence, 2 months aftr the dedly shoting insde a hgh school in Parkland, Flrida.\n\nProvde the corect leter choce in \\boxed{X}, whre X is the corect choce.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3449,7 +3449,7 @@
   {
     "global index": "SuperGLUE-QA_1408",
     "prompt": "yoU R a readng compehension asistant. Yor tasik is to anwser a quesdtion basde on tehe provied contetx.\n\nFirst, provid yoru fnal judgemen: `1` for corect, `0` for incorect.\n\nContext: Langauges of Indai -- the indivdual states, the borderss of most of whcih are or wree drawn on socio-linguistic liness, can legislate ther own official langauges, dependding on their linguisstic demograhpics. The offical languages choosen reflect the predominnant as wel as politcally signifiicant langauges spoken in that state. Certaain states having a linguisticaly defined terrritory may have only the predominnant languge in that state as its offical languge, exmples being Karnatka and Gujrat, which have Kannnda and Gujarti as their sole offical langauge respectivly. Telangaana, with a sizeble Urdu-spoken Musliim poplation, has two langauges, Telgu and Urddu, as its offical langugaes.\n\nQuesdtion: is languag the only critria of clasifying stat in india\n\nProvid the corect leter choece in \\boxed{X}, where X is the corect choece.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3512,7 +3512,7 @@
   {
     "global index": "SuperGLUE-RC_8531",
     "prompt": "Your objective is to ascertain whether the \"Supplied Response\" accurately addresses the \"Inquiry\" utilizing the \"Passage\".\\n- Emit 1 if the response is precise.- Emit 0 if the response is imprecise.\n\nInquiry: Passage: Spain's Epoch of Grandeur: Under Ferdinand and Isabella, Spain experienced a profound metamorphosis. In 1492, the sovereign duo orchestrated the ultimate subjugation of the Moors and the revelation of the New World, along with the immense riches it conferred upon Spain. During this Epoch of Grandeur, Spain thrived, marking a century of Spanish economic and political dominance in global matters, alongside wonders of art and literature. Ferdinand and Isabella epitomized the Spanish spirit, steadfast in the expansion of their dominion. Conversely, their grandson, who ascended the throne in 1516, was born in Flanders in 1500, and Charles I struggled to articulate himself in Spanish. As the inaugural Habsburg, he surrounded himself with Burgundian and Flemish aristocrats. Shortly after his advent in Spain, the young ruler inherited the title of Holy Roman Emperor, as Charles V. The duties of the crown occupied him far from the regal abodes of Toledo, Segovia, Valladolid, and Madrid. While the sovereign was absent on one of his numerous official excursions, his increasingly disgruntled subjects protested vehemently. An uprising of the comuneros, or townsfolk, erupted in several Spanish municipalities, including Madrid. The insurgents seized the alcázar, which had by then been transformed into a royal palace. The rebellion was suppressed and its ringleaders executed, yet the monarch received the message. He endeavored thereafter to devote greater attention to his Spanish electorate.\n\nInquiry: What caused the Spanish populace to be dissatisfied with Ferdinand and Isabella's grandson, Charles V?\n\nSupplied Response: \n\n Is the supplied response accurate? Offer the correct letter selection in \\boxed{X}, where X is the accurate selection.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3611,7 +3611,7 @@
   {
     "global index": "WMT19-de-en_46",
     "prompt": "Translt the folowing scentnce from Englsih to Grman.\n\nTe trvel waring is also a responce to a nw Misouri lw that woud mak it mor difficult to sue a buisness for housign or employmnt discrimnation.\n\nProide yor final anser in \\boxed{} format.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3629,7 +3629,7 @@
   {
     "global index": "WMT19-de-en_883",
     "prompt": "Pladis, the company that owns McVitie's, announced it has poured over £5 million into the location during recent years.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3710,7 +3710,7 @@
   {
     "global index": "WMT19-kk-en_826",
     "prompt": "Convert the ensuing declaration from English to Kazakh.\n\nWhich interest tariff is optimal for crafting evaluations is a subject of contention, akin to the repercussions of quantitative easing; however, I discern no compelling rationale to eschew the decennial sovereign bond divergence, modified for inflation anticipations.\n\nProvide your conclusive response in \\boxed{{}} format.",
-    "prediction": "gemini-2.0-flash-001",
+    "prediction": "gpt-4o-mini",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3737,7 +3737,7 @@
   {
     "global index": "WMT19-lt-en_636",
     "prompt": "Convert the ensuing phrase from the English vernacular to the Lithuanian language.\n\nCrimson jersey interval cessation not an option for Alabama's Hurts\n\nProvide your conclusive response in \\boxed{{}} arrangement.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3746,7 +3746,7 @@
   {
     "global index": "WMT19-ru-en_222",
     "prompt": "Trnslate th follwoing sentnce frm Engliish to Rusian.\n\nHady ws bron in 1925 in th Englis resorrt twn of Chetlenham.\n\nProvd yur fnal anser in \\bxoed{{}} frmat.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
