@@ -171,13 +171,9 @@ class ModelEvaluator:
         # Try multiple possible paths for cost file
         possible_paths = [
             os.path.join(project_root, "model_cost", "model_cost.json"),
-            os.path.join(project_root, "model_cost", "cost.json"),
             "./model_cost/model_cost.json",
-            "./model_cost/cost.json",
             "../model_cost/model_cost.json",
-            "../model_cost/cost.json",
             "model_cost/model_cost.json",
-            "model_cost/cost.json",
         ]
 
         cost_file = None

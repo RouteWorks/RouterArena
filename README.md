@@ -111,7 +111,7 @@ Create a config file in `./router_inference/config/<router_name>.json`. An examp
 }
 ```
 
-For each model in your config, add an entry with the pricing per million tokens in this format at [`model_cost/cost.json`](./model_cost/cost.json):
+For each model in your config, add an entry with the pricing per million tokens in this format at [`model_cost/model_cost.json`](./model_cost/model_cost.json):
 
 ```json
 {

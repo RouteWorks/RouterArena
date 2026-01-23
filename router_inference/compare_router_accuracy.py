@@ -8,7 +8,7 @@ from collections import defaultdict
 from universal_model_names import ModelNameManager
 
 
-def load_cost_data(cost_file: str = "./model_cost/cost.json") -> Dict:
+def load_cost_data(cost_file: str = "./model_cost/model_cost.json") -> Dict:
     """Load model cost information from JSON file."""
     with open(cost_file, "r") as f:
         return json.load(f)
