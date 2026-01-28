@@ -30,6 +30,7 @@ DATASET_PATHS = {
     "sub_10": "./dataset/router_data_10.json",
     "full": "./dataset/router_data.json",
     "robustness": "./dataset/router_robustness.json",
+    "gpqa": "./dataset/gpqa_data.json",
 }
 
 
@@ -38,8 +39,7 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
     Load dataset file.
 
     Args:
-        split: One of the supported dataset splits (sub_10, full, robustness)
-
+        split: One of the supported dataset splits (sub_10, full, robustness, gpqa)
     Returns:
         List of dataset entries
     """
@@ -182,6 +182,8 @@ def save_predictions(
     filename = router_name
     if split == "robustness":
         filename = f"{router_name}-robustness"
+    elif split == "gpqa":
+        filename = f"{router_name}-gpqa"
     prediction_path = f"./router_inference/predictions/{filename}.json"
 
     # Create directory if it doesn't exist
@@ -207,7 +209,7 @@ def main():
         "split",
         type=str,
         choices=list(DATASET_PATHS.keys()),
-        help="Dataset split: 'sub_10', 'full', or 'robustness'",
+        help="Dataset split: 'sub_10', 'full', 'robustness', or 'gpqa'",
     )
     parser.add_argument(
         "--no-optimality",

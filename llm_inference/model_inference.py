@@ -172,6 +172,7 @@ class ModelInference:
             "qwen/qwen3-vl-235b-a22b-instruct": "openrouter",
             "qwen/qwen3-coder": "openrouter",
             "x-ai/grok-code-fast-1": "openrouter",
+            "xiaomi/mimo-v2-flash": "openrouter",
             "xiaomi/mimo-v2-flash:free": "openrouter",
             "openai/gpt-oss-120b": "openrouter",
             "qwen/qwen3-235b-a22b-2507": "openrouter",

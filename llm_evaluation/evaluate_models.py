@@ -144,10 +144,15 @@ class ModelEvaluator:
     def load_cost_config(self):
         """Load cost configuration from model_cost/cost.json"""
         # Try multiple possible paths for cost file
+        # Get the directory of this file and construct paths relative to project root
+        current_file_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(current_file_dir)  # Go up from llm_evaluation/ to project root
+        
         possible_paths = [
-            "./model_cost/cost.json",
-            "../model_cost/cost.json",
-            "model_cost/cost.json",
+            os.path.join(project_root, "model_cost", "cost.json"),  # From project root
+            "./model_cost/cost.json",  # Current working directory
+            "../model_cost/cost.json",  # Parent directory
+            "model_cost/cost.json",  # Relative to current dir
         ]
 
         cost_file = None
@@ -160,6 +165,7 @@ class ModelEvaluator:
             print(
                 f"Warning: Could not find cost configuration file. Tried: {possible_paths}"
             )
+            print(f"Current working directory: {os.getcwd()}")
             self.cost_config = {}
             return
 
@@ -177,7 +183,11 @@ class ModelEvaluator:
         self, model_name: str, token_usage: Dict[str, int]
     ) -> float:
         """Calculate inference cost based on token usage and model pricing."""
-        if not token_usage or not self.cost_config:
+        if not token_usage:
+            return 0.0
+        
+        if not self.cost_config:
+            print("Warning: Cost config is empty!")
             return 0.0
 
         # Remove _batch suffix if present for cost lookup
@@ -185,27 +195,33 @@ class ModelEvaluator:
         if model_name.endswith("_batch"):
             cost_lookup_name = model_name[:-6]  # Remove '_batch' suffix
 
-        # Normalize model name to match cost config
-        if model_name_manager:
-            normalized_name = model_name_manager.get_universal_name(cost_lookup_name)
+        # Try exact match first (cost config uses original model names)
+        if cost_lookup_name in self.cost_config:
+            cost_info = self.cost_config[cost_lookup_name]
         else:
-            normalized_name = cost_lookup_name
+            # Normalize model name to match cost config
+            if model_name_manager:
+                normalized_name = model_name_manager.get_universal_name(cost_lookup_name)
+            else:
+                normalized_name = cost_lookup_name
 
-        # Try to find exact match first
-        if normalized_name in self.cost_config:
-            cost_info = self.cost_config[normalized_name]
-        else:
-            # Try to find partial matches
-            cost_info = None
-            for config_name in self.cost_config.keys():
-                if config_name in normalized_name or normalized_name in config_name:
-                    cost_info = self.cost_config[config_name]
-                    break
+            # Try to find exact match with normalized name
+            if normalized_name in self.cost_config:
+                cost_info = self.cost_config[normalized_name]
+            else:
+                # Try to find partial matches
+                cost_info = None
+                for config_name in self.cost_config.keys():
+                    if config_name in normalized_name or normalized_name in config_name:
+                        cost_info = self.cost_config[config_name]
+                        break
 
         if not cost_info:
             print(
-                f"Warning: No cost configuration found for model {model_name} (lookup: {cost_lookup_name}, normalized: {normalized_name})"
+                f"Warning: No cost configuration found for model {model_name} (lookup: {cost_lookup_name})"
             )
+            if len(self.cost_config) > 0:
+                print(f"Available cost config keys (first 10): {list(self.cost_config.keys())[:10]}")
             return 0.0
 
         # Calculate cost
@@ -239,6 +255,7 @@ class ModelEvaluator:
             "FinQA": "FinQA",
             "GeoBench": "GeoBench",
             "GeoGraphyData": "GeoGraphyData_100k",  # Fix the dataset name
+            "GPQA": "GPQA",
             "GSM8K": "GSM8K",
             "LiveCodeBench": "LiveCodeBench",
             "MATH": "MATH",
@@ -468,7 +485,18 @@ class ModelEvaluator:
             except Exception as e:
                 print(f"Error loading LiveCodeBench dataset: {e}")
                 return None
-
+        elif dataset_name == "GPQA":
+            gpqa_gt_path = "./dataset/gpqa_ground_truth.json"
+            if os.path.exists(gpqa_gt_path):
+                try:
+                    with open(gpqa_gt_path, "r", encoding="utf-8") as f:
+                        gpqa_data = json.load(f)
+                    for item in gpqa_data:
+                        if item.get("global_index") == global_index:
+                            return item["answer"]
+                except Exception as e:
+                    print(f"Error loading GPQA ground truth: {e}")
+            return None
         # For other datasets, find the entry with matching global_index
         if self.all_data is None:
             return None

@@ -1,0 +1,9 @@
+{
+    "pipeline_params": {
+        "router_name": "openrouter-router",
+        "models": [
+            "xiaomi/mimo-v2-flash",
+            "mistralai/devstral-2512:free"
+        ]
+    }
+}
