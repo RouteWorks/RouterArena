@@ -38,17 +38,22 @@ from parallel_inference import ParallelInferenceManager  # noqa: E402
 logger = logging.getLogger(__name__)
 
 
-def load_predictions_file(router_name: str) -> List[Dict[str, Any]]:
+def load_predictions_file(router_name: str, split: str | None = None) -> List[Dict[str, Any]]:
     """
     Load router predictions from JSON file.
 
     Args:
         router_name: Name of the router
-
+        split: Dataset split ("sub_10", "full", "robustness", "gpqa")
     Returns:
         List of prediction dictionaries
     """
-    prediction_path = f"./router_inference/predictions/{router_name}.json"
+    # Construct prediction path based on split
+    if split and split in ["gpqa", "robustness"]:
+        filename = f"{router_name}-{split}"
+    else:
+        filename = router_name
+    prediction_path = f"./router_inference/predictions/{filename}.json"
 
     if not os.path.exists(prediction_path):
         raise FileNotFoundError(
@@ -105,7 +110,9 @@ def load_cached_results_for_predictions(
 
     # Load cache for each model
     for universal_model_name, model_predictions in model_to_predictions.items():
-        cached_file = os.path.join(cached_results_dir, f"{universal_model_name}.jsonl")
+        # Sanitize model name for filename (replace / with _)
+        model_filename = universal_model_name.replace("/", "_")
+        cached_file = os.path.join(cached_results_dir, f"{model_filename}.jsonl")
 
         if not os.path.exists(cached_file):
             continue
@@ -162,7 +169,7 @@ def load_cached_results_for_predictions(
 
 
 def save_predictions_file(
-    predictions: List[Dict[str, Any]], router_name: str, create_backup: bool = False
+    predictions: List[Dict[str, Any]], router_name: str, create_backup: bool = False, split: str | None = None
 ) -> None:
     """
     Save predictions back to file.
@@ -171,8 +178,14 @@ def save_predictions_file(
         predictions: List of prediction dictionaries
         router_name: Name of the router
         create_backup: Whether to create a backup before saving (only needed once)
+        split: Dataset split (optional). Used to determine prediction file name.
     """
-    prediction_path = f"./router_inference/predictions/{router_name}.json"
+    # Construct filename based on split (same logic as load_predictions_file)
+    if split and split in ["gpqa", "robustness"]:
+        filename = f"{router_name}-{split}"
+    else:
+        filename = router_name
+    prediction_path = f"./router_inference/predictions/{filename}.json"
 
     with open(prediction_path, "w", encoding="utf-8") as f:
         json.dump(predictions, f, ensure_ascii=False, indent=2)
@@ -185,6 +198,7 @@ def process_router_predictions(
     num_workers: int = 16,
     num_runs: int = 1,
     cached_results_dir: str = "./cached_results",
+    split: str | None = None,
 ) -> None:
     """
     Process router predictions using parallel inference system.
@@ -202,11 +216,11 @@ def process_router_predictions(
     logger.info(f"Target runs per query: {num_runs}")
 
     # Load predictions
-    predictions = load_predictions_file(router_name)
+    predictions = load_predictions_file(router_name, split)
     logger.info(f"Loaded {len(predictions)} predictions")
 
     # Create backup of original predictions file
-    save_predictions_file(predictions, router_name, create_backup=True)
+    save_predictions_file(predictions, router_name, create_backup=True, split=split)
 
     # Filter out entries without required fields and convert to universal model names
     valid_predictions = []
@@ -297,7 +311,7 @@ def process_router_predictions(
             updated_count += 1
 
     # Save updated predictions
-    save_predictions_file(predictions, router_name, create_backup=False)
+    save_predictions_file(predictions, router_name, create_backup=False, split=split)
 
     # Final summary
     end_time = datetime.datetime.now()
@@ -319,8 +333,13 @@ def process_router_predictions(
         logger.info(f"    Successful: {stats['successful']}")
         logger.info(f"    Failed: {stats['failed']}")
 
+    # Construct filename for log message
+    if split and split in ["gpqa", "robustness"]:
+        filename = f"{router_name}-{split}"
+    else:
+        filename = router_name
     logger.info(
-        f"\nPredictions saved to: ./router_inference/predictions/{router_name}.json"
+        f"\nPredictions saved to: ./router_inference/predictions/{filename}.json"
     )
     logger.info("=" * 80)
 
@@ -346,6 +365,12 @@ Examples:
         "router_name",
         type=str,
         help="Name of the router (corresponds to ./router_inference/predictions/<router_name>.json)",
+    )
+    parser.add_argument(
+        "--split",
+        type=str,
+        choices=["sub_10", "full", "robustness", "gpqa"],
+        help="Dataset split (optional). Used to determine prediction file name."
     )
     parser.add_argument(
         "--num-workers",
@@ -394,6 +419,7 @@ Examples:
             num_workers=args.num_workers,
             num_runs=args.num_runs,
             cached_results_dir=args.cached_results_dir,
+            split=args.split,
         )
     except KeyboardInterrupt:
         logger.info("\nInterrupted by user. Partial results have been saved.")

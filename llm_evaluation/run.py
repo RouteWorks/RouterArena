@@ -100,17 +100,23 @@ def compute_arena_score(cost, accuracy, beta=0.1, c_max=200, c_min=0.0044):
     return S
 
 
-def load_predictions_file(router_name: str) -> List[Dict[str, Any]]:
+def load_predictions_file(router_name: str, split: str | None = None) -> List[Dict[str, Any]]:
     """
     Load router predictions from JSON file.
 
     Args:
         router_name: Name of the router
+        split: Dataset split (optional). Used to determine prediction file name.
 
     Returns:
         List of prediction dictionaries
     """
-    prediction_path = f"./router_inference/predictions/{router_name}.json"
+    # Construct prediction path based on split (same logic as llm_inference/run.py)
+    if split and split in ["gpqa", "robustness"]:
+        filename = f"{router_name}-{split}"
+    else:
+        filename = router_name
+    prediction_path = f"./router_inference/predictions/{filename}.json"
 
     if not os.path.exists(prediction_path):
         raise FileNotFoundError(
@@ -136,15 +142,21 @@ def load_predictions_from_path(path: str) -> List[Dict[str, Any]]:
         return json.load(f)
 
 
-def save_predictions_file(predictions: List[Dict[str, Any]], router_name: str) -> None:
+def save_predictions_file(predictions: List[Dict[str, Any]], router_name: str, split: str | None = None) -> None:
     """
     Save predictions back to file.
 
     Args:
         predictions: List of prediction dictionaries
         router_name: Name of the router
+        split: Dataset split (optional). Used to determine prediction file name.
     """
-    prediction_path = f"./router_inference/predictions/{router_name}.json"
+    # Construct filename based on split (same logic as load_predictions_file)
+    if split and split in ["gpqa", "robustness"]:
+        filename = f"{router_name}-{split}"
+    else:
+        filename = router_name
+    prediction_path = f"./router_inference/predictions/{filename}.json"
 
     # Create directory if it doesn't exist
     os.makedirs(os.path.dirname(prediction_path), exist_ok=True)
@@ -170,7 +182,33 @@ def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
     """
     from datasets import load_from_disk
     import pandas as pd
-
+    ground_truth_map = {}
+    
+    # Handle GPQA split
+    if split == "gpqa":
+        gpqa_gt_path = "./dataset/gpqa_ground_truth.json"
+        if not os.path.exists(gpqa_gt_path):
+            raise FileNotFoundError(
+                f"GPQA ground truth not found at {gpqa_gt_path}. "
+                f"Please create it using the preparation script."
+            )
+        logger.info(f"Loading GPQA ground truth from {gpqa_gt_path}...")
+        with open(gpqa_gt_path, "r", encoding="utf-8") as f:
+            gpqa_data = json.load(f)
+        
+        for item in gpqa_data:
+            global_index = item["global_index"]
+            ground_truth_map[global_index] = {
+                "question": item.get("question", ""),
+                "global_index": global_index,
+                "context": item.get("context", ""),
+                "answer": item["answer"],
+                "options": item.get("options", []),
+                "metadata": item.get("metadata", {}),
+            }
+        
+        logger.info(f"Loaded {len(ground_truth_map)} GPQA ground truth samples")
+        return ground_truth_map
     if split not in ["sub_10", "full"]:
         raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
 
@@ -354,9 +392,10 @@ def evaluate_single_prediction(
             )
 
         # Calculate inference cost
+        # Use original model name for cost lookup since cost config uses original names
         token_usage = generated_result.get("token_usage", {})
         inference_cost = evaluator.calculate_inference_cost(
-            universal_model_name, token_usage
+            model_name, token_usage  # Use original model_name instead of universal_model_name
         )
 
         # Update the prediction with evaluation results
@@ -396,7 +435,7 @@ def process_router_predictions(
     logger.info(f"Using {num_workers} worker threads for parallel processing")
 
     # Load predictions
-    predictions = load_predictions_file(router_name)
+    predictions = load_predictions_file(router_name, split=split)
 
     # Separate regular and optimality entries
     regular_predictions = [p for p in predictions if not p.get("for_optimality", False)]
@@ -439,11 +478,13 @@ def process_router_predictions(
     # Note: This loop runs in the main thread before threading starts, so no lock needed
     tasks = []
     for i, prediction in enumerate(predictions):
-        # Check if already evaluated (has accuracy and cost)
+        # Check if already evaluated (has accuracy and cost > 0)
         # Skip if already evaluated AND force is False
+        # Note: cost > 0 check ensures costs were actually calculated (0.0 means not calculated)
         if not force and (
             prediction.get("accuracy") is not None
             and prediction.get("cost") is not None
+            and prediction.get("cost", 0) > 0  # Cost must be > 0 to be considered evaluated
         ):
             already_evaluated_count += 1
             evaluated_count += 1
@@ -494,7 +535,7 @@ def process_router_predictions(
                 with save_lock:
                     # Save the entire predictions list
                     # This is safe because each thread modifies a different index
-                    save_predictions_file(predictions, router_name)
+                    save_predictions_file(predictions, router_name, split=split)
 
                     elapsed_time = (
                         datetime.datetime.now() - start_time
@@ -542,7 +583,7 @@ def process_router_predictions(
 
     # Final save
     with save_lock:
-        save_predictions_file(predictions, router_name)
+        save_predictions_file(predictions, router_name, split=split)
 
     # Final summary
     end_time = datetime.datetime.now()
@@ -901,7 +942,7 @@ def run_robustness_only(router_name: str, robustness_path: Optional[str]) -> Non
         target_path,
     )
 
-    predictions = load_predictions_file(router_name)
+    predictions = load_predictions_file(router_name, split=None)  # Load base file for robustness
 
     try:
         robustness_predictions = load_predictions_from_path(target_path)
@@ -1096,10 +1137,10 @@ def main():
         "split",
         nargs="?",
         type=str,
-        choices=["sub_10", "full", "robustness"],
+        choices=["sub_10", "full", "robustness", "gpqa"],
         help=(
             "Dataset split to use for evaluation ('sub_10' for testing with answers, "
-            "'full' for submission, 'robustness' to compute robustness score only)."
+            "'full' for submission, 'robustness' to compute robustness score only, 'gpqa' for GPQA dataset)."
         ),
     )
     parser.add_argument(
@@ -1161,7 +1202,7 @@ def main():
     # Run evaluation
     try:
         # If save_interval is 0, only save at the end
-        predictions = load_predictions_file(args.router_name)
+        predictions = load_predictions_file(args.router_name, split=args.split)
         save_interval = (
             args.save_interval if args.save_interval > 0 else len(predictions) + 1
         )
@@ -1177,8 +1218,8 @@ def main():
         logger.info("\nInterrupted by user. Saving partial results...")
         try:
             # Try to save current state if possible
-            predictions = load_predictions_file(args.router_name)
-            save_predictions_file(predictions, args.router_name)
+            predictions = load_predictions_file(args.router_name, split=args.split)
+            save_predictions_file(predictions, args.router_name, split=args.split)
             logger.info("Partial results saved successfully.")
         except Exception as e:
             logger.warning(f"Could not save partial results: {e}")

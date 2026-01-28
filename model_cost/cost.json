@@ -178,5 +178,14 @@
   "glm-4-plus": {
     "input_token_price_per_million": 0.7,
     "output_token_price_per_million": 0.7
+  },
+  "xiaomi/mimo-v2-flash": {
+    "input_token_price_per_million": 0.09,
+    "output_token_price_per_million": 0.29
+  },
+
+  "mistralai/devstral-2512:free": {
+    "input_token_price_per_million": 0.0001,
+    "output_token_price_per_million": 0.0001
   }
 }

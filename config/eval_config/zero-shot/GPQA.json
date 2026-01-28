@@ -1,0 +1,18 @@
+{
+    "eval_params": {
+        "dataset": "GPQA",
+        "eval_metrics": [
+            "mcq_accuracy"
+        ],
+        "setting": "zero-shot",
+        "prompt": "Please read the following multiple-choice questions and provide the most likely correct answer based on the options given.\n\nContext: {Context}\n\nQuestion: {Question}\n\nOptions: \n{Options}\n\nProvide the correct letter choice in \\boxed{{X}}, where X is the correct letter choice. Keep the explanation or feedback within 3 sentences."
+    },
+    "management": {
+        "sub_dir": {
+            "input_config": "input_config/",
+            "raw_results": "raw_results.json",
+            "result_vis": "result_vis.png",
+            "output_config": "output_config.json"
+        }
+    }
+}

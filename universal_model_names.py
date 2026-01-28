@@ -51,6 +51,8 @@ universal_names = [
     "meta-llama/llama-3-8b-instruct",
     "anthropic/claude-3.5-sonnet",
     "Qwen/QwQ-32B",
+    "xiaomi/mimo-v2-flash",
+    "mistralai/devstral-2512:free",
     # Replicate
     "meta/codellama-34b-instruct",
     # AWS Bedrock
