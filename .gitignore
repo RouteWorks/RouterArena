@@ -35,3 +35,9 @@ Thumbs.db
 
 tools/.addlicense.lock
 tools/addlicense
+
+# Ignore all Markdown files
+*.md
+
+# Except for this one specific file
+!README.md
