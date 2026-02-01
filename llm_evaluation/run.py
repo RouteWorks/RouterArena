@@ -100,7 +100,7 @@ def compute_arena_score(cost, accuracy, beta=0.1, c_max=200, c_min=0.0044):
     return S
 
 
-def load_predictions_file(router_name: str, split: str | None = None) -> List[Dict[str, Any]]:
+def load_predictions_file(router_name: str, split: Optional[str] = None) -> List[Dict[str, Any]]:
     """
     Load router predictions from JSON file.
 
@@ -392,10 +392,10 @@ def evaluate_single_prediction(
             )
 
         # Calculate inference cost
-        # Use original model name for cost lookup since cost config uses original names
+        # Use universal model name for cost lookup to respect user-defined mappings
         token_usage = generated_result.get("token_usage", {})
         inference_cost = evaluator.calculate_inference_cost(
-            model_name, token_usage  # Use original model_name instead of universal_model_name
+            universal_model_name, token_usage  # Use universal_model_name to respect mapping in universal_model_names.py
         )
 
         # Update the prediction with evaluation results
