@@ -34,11 +34,11 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 
 | Rank | Router | Affiliation | Acc-Cost Arena | Accuracy | Cost/1K Queries | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
 |------|--------------------|-----------------------------|--------|----------|---------|-----------------|--------------|----------------|---------|------------|
-| 🥇 | [MIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[Code]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.89 | 66.88 | $0.15 | 3.44 | 19.62 | 78.18 | 27.03 | 61.19 |
-| 🥈 | [Azure‑Router](https://ai.azure.com/catalog/models/model-router)&nbsp;[[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼&nbsp;Microsoft | 66.66 | 68.09 | $0.54 | 22.52 | 46.32 | 81.96 | — | 54.07 |
-| 🥉 | [NIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[Code]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.12 | 66.34 | $0.21 | 3.83 | 14.04 | 77.88 | 10.42 | 49.29 |
-| 4 | [GPT‑5](https://openai.com/index/introducing-gpt-5/)| 💼&nbsp;OpenAI | 64.32 | 73.96 | $10.02 | — | — | — | — | — |
-| 5 | [vLLM‑SR](https://vllm-semantic-router.com/)&nbsp;[[Code]](https://github.com/vllm-project/semantic-router)&nbsp;[[HF]](https://huggingface.co/llm-semantic-router) | 🎓&nbsp;vLLM SR Team | 64.32 | 67.28 | $1.67 | 4.79 | 12.54 | 79.33 | 0.19 | 35.00 |
+| 🥇 | [vLLM‑SR](https://vllm-semantic-router.com/)&nbsp;[[Code]](https://github.com/vllm-project/semantic-router)&nbsp;[[HF]](https://huggingface.co/llm-semantic-router) | 🎓&nbsp;vLLM SR Team | 67.23 | 66.53 | $0.06 | 94.10 | 90.12 | 100.00 | — | 90.95 |
+| 🥈 | [MIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[Code]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.89 | 66.88 | $0.15 | 3.44 | 19.62 | 78.18 | 27.03 | 61.19 |
+| 🥉 | [Azure‑Router](https://ai.azure.com/catalog/models/model-router)&nbsp;[[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼&nbsp;Microsoft | 66.66 | 68.09 | $0.54 | 22.52 | 46.32 | 81.96 | — | 54.07 |
+| 4 | [NIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[Code]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.12 | 66.34 | $0.21 | 3.83 | 14.04 | 77.88 | 10.42 | 49.29 |
+| 5 | [GPT‑5](https://openai.com/index/introducing-gpt-5/)| 💼&nbsp;OpenAI | 64.32 | 73.96 | $10.02 | — | — | — | — | — |
 | 6 | [CARROT](https://arxiv.org/abs/2502.03261)&nbsp;[[Code]](https://github.com/somerstep/CARROT)&nbsp;[[HF]](https://huggingface.co/CARROT-LLM-Routing) | 🎓&nbsp;UMich | 63.87 | 67.21 | $2.06 | 2.68 | 6.77 | 78.63 | 1.50 | 89.05 |
 | 7 | [Chayan](https://huggingface.co/adaptive-classifier/chayan)&nbsp;[[HF]](https://huggingface.co/adaptive-classifier/chayan) | 🎓&nbsp;Adaptive&nbsp;Classifier | 63.83 | 64.89 | $0.56 | 43.03 | 43.75 | 88.74 | — | — |
 | 8 | [RouterBench‑MLP](https://arxiv.org/pdf/2403.12031)&nbsp;[[Code]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Martian | 57.56 | 61.62 | $4.83 | 13.39 | 24.45 | 83.32 | 90.91 | 80.00 |
@@ -102,6 +102,7 @@ Create a config file in `./router_inference/config/<router_name>.json`. An examp
 {
   "pipeline_params": {
       "router_name": "your-router",
+      "router_cls_name": "your_router_class_name",
       "models": [
           "gpt-4o-mini",
           "claude-3-haiku-20240307",
@@ -111,7 +112,7 @@ Create a config file in `./router_inference/config/<router_name>.json`. An examp
 }
 ```
 
-For each model in your config, add an entry with the pricing per million tokens in this format at [`model_cost/cost.json`](./model_cost/cost.json):
+For each model in your config, add an entry with the pricing per million tokens in this format at [`model_cost/model_cost.json`](./model_cost/model_cost.json):
 
 ```json
 {
@@ -129,12 +130,13 @@ For each model in your config, add an entry with the pricing per million tokens 
 
 Create your own router class by inheriting from `BaseRouter` and implementing the `_get_prediction()` method. See [`router_inference/router/example_router.py`](./router_inference/router/example_router.py) for a complete example.
 
-Then, modify [`router_inference/generate_prediction_file.py`](./router_inference/generate_prediction_file.py#L150) to use your router class:
+Then, modify [`router_inference/router/__init__.py`](./router_inference/router/__init__.py) to include your router class:
 
 ```python
-# Replace ExampleRouter with your router class
+# Import your router class
 from router_inference.router.my_router import MyRouter
-router = MyRouter(args.router_name)
+
+__all__ = ["BaseRouter", "ExampleRouter", "MyRouter"]
 ```
 
 Finally, generate the prediction file:

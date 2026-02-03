@@ -38,7 +38,9 @@ from parallel_inference import ParallelInferenceManager  # noqa: E402
 logger = logging.getLogger(__name__)
 
 
-def load_predictions_file(router_name: str, split: str | None = None) -> List[Dict[str, Any]]:
+def load_predictions_file(
+    router_name: str, split: str | None = None
+) -> List[Dict[str, Any]]:
     """
     Load router predictions from JSON file.
 
@@ -169,7 +171,10 @@ def load_cached_results_for_predictions(
 
 
 def save_predictions_file(
-    predictions: List[Dict[str, Any]], router_name: str, create_backup: bool = False, split: str | None = None
+    predictions: List[Dict[str, Any]],
+    router_name: str,
+    create_backup: bool = False,
+    split: str | None = None,
 ) -> None:
     """
     Save predictions back to file.
@@ -370,7 +375,7 @@ Examples:
         "--split",
         type=str,
         choices=["sub_10", "full", "robustness", "gpqa"],
-        help="Dataset split (optional). Used to determine prediction file name."
+        help="Dataset split (optional). Used to determine prediction file name.",
     )
     parser.add_argument(
         "--num-workers",

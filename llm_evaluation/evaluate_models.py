@@ -18,7 +18,6 @@ import argparse
 import glob
 from typing import Dict, List, Any, Optional
 import sys
-from tqdm import tqdm
 
 # Add the current directory to Python path to import eval modules
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -26,6 +25,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from eval_reasoning import get_scorers_for_dataset
+from parallel_evaluation import ParallelEvaluationManager
 
 # Import ModelNameManager for model name validation and conversion
 try:
@@ -54,7 +54,6 @@ def load_eval_config_for_dataset(dataset_name: str) -> List[str]:
     config_paths = [
         f"../config/eval_config/zero-shot/{dataset_name}.json",
         f"config/eval_config/zero-shot/{dataset_name}.json",
-        f"/home/jy101/yifan/RouterArena/config/eval_config/zero-shot/{dataset_name}.json",
     ]
 
     for config_path in config_paths:
@@ -78,7 +77,9 @@ def load_eval_config_for_dataset(dataset_name: str) -> List[str]:
 class ModelEvaluator:
     """Handles evaluation of model outputs using the existing evaluation framework."""
 
-    def __init__(self, cached_results_dir: str = "../cached_results/"):
+    def __init__(
+        self, cached_results_dir: str = "../cached_results/", num_workers: int = 16
+    ):
         self.cached_results_dir = cached_results_dir
         self.all_data: Optional[List[Dict[str, Any]]] = None
         self.dataset_configs: Dict[str, Dict[str, Any]] = {}
@@ -86,6 +87,7 @@ class ModelEvaluator:
             str, Any
         ] = {}  # Store existing results for incremental evaluation
         self.cost_config: Dict[str, Any] = {}  # Store cost configuration
+        self.num_workers = num_workers
 
         # Load dataset configurations
         self.load_dataset_configs()
@@ -101,8 +103,27 @@ class ModelEvaluator:
             from datasets import load_from_disk
             import pandas as pd
 
-            # Load the router eval benchmark dataset
-            router_eval_bench = load_from_disk("./dataset/routerarena")
+            # Get project root (parent of llm_evaluation/)
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            project_root = os.path.dirname(script_dir)
+
+            # Try multiple possible paths for dataset
+            dataset_paths = [
+                os.path.join(project_root, "dataset", "routerarena"),
+                "./dataset/routerarena",
+                "../dataset/routerarena",
+                "dataset/routerarena",
+            ]
+
+            router_eval_bench = None
+            for dataset_path in dataset_paths:
+                if os.path.exists(dataset_path):
+                    router_eval_bench = load_from_disk(dataset_path)
+                    break
+
+            if router_eval_bench is None:
+                raise FileNotFoundError(f"Dataset not found. Tried: {dataset_paths}")
+
             router_eval_bench_df = pd.DataFrame(router_eval_bench)
 
             # Convert to the expected format
@@ -142,17 +163,23 @@ class ModelEvaluator:
                 print(f"Warning: Could not load config {config_file}: {e}")
 
     def load_cost_config(self):
-        """Load cost configuration from model_cost/cost.json"""
+        """Load cost configuration from model_cost/model_cost.json"""
+        # Get project root (parent of llm_evaluation/)
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(script_dir)
+
         # Try multiple possible paths for cost file
         # Get the directory of this file and construct paths relative to project root
         current_file_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(current_file_dir)  # Go up from llm_evaluation/ to project root
-        
+        project_root = os.path.dirname(
+            current_file_dir
+        )  # Go up from llm_evaluation/ to project root
+
         possible_paths = [
-            os.path.join(project_root, "model_cost", "cost.json"),  # From project root
-            "./model_cost/cost.json",  # Current working directory
-            "../model_cost/cost.json",  # Parent directory
-            "model_cost/cost.json",  # Relative to current dir
+            os.path.join(project_root, "model_cost", "model_cost.json"),
+            "./model_cost/model_cost.json",
+            "../model_cost/model_cost.json",
+            "model_cost/model_cost.json",
         ]
 
         cost_file = None
@@ -163,14 +190,14 @@ class ModelEvaluator:
 
         if not cost_file:
             print(
-                f"Warning: Could not find cost configuration file. Tried: {possible_paths}"
+                f"Warning: Could not find cost configuration file. Tried: {possible_paths[:3]}..."
             )
             print(f"Current working directory: {os.getcwd()}")
             self.cost_config = {}
             return
 
         try:
-            with open(cost_file, "r") as f:
+            with open(cost_file, "r", encoding="utf-8") as f:
                 self.cost_config = json.load(f)
             print(
                 f"Loaded cost configuration for {len(self.cost_config)} models from {cost_file}"
@@ -185,7 +212,7 @@ class ModelEvaluator:
         """Calculate inference cost based on token usage and model pricing."""
         if not token_usage:
             return 0.0
-        
+
         if not self.cost_config:
             print("Warning: Cost config is empty!")
             return 0.0
@@ -195,33 +222,26 @@ class ModelEvaluator:
         if model_name.endswith("_batch"):
             cost_lookup_name = model_name[:-6]  # Remove '_batch' suffix
 
-        # Try exact match first (cost config uses original model names)
+        # Use model name directly - assume model_cost.json keys match model names exactly
+        # Try to find exact match first
         if cost_lookup_name in self.cost_config:
             cost_info = self.cost_config[cost_lookup_name]
         else:
-            # Normalize model name to match cost config
-            if model_name_manager:
-                normalized_name = model_name_manager.get_universal_name(cost_lookup_name)
-            else:
-                normalized_name = cost_lookup_name
-
-            # Try to find exact match with normalized name
-            if normalized_name in self.cost_config:
-                cost_info = self.cost_config[normalized_name]
-            else:
-                # Try to find partial matches
-                cost_info = None
-                for config_name in self.cost_config.keys():
-                    if config_name in normalized_name or normalized_name in config_name:
-                        cost_info = self.cost_config[config_name]
-                        break
+            # Try to find partial matches as fallback
+            cost_info = None
+            for config_name in self.cost_config.keys():
+                if config_name in cost_lookup_name or cost_lookup_name in config_name:
+                    cost_info = self.cost_config[config_name]
+                    break
 
         if not cost_info:
             print(
                 f"Warning: No cost configuration found for model {model_name} (lookup: {cost_lookup_name})"
             )
             if len(self.cost_config) > 0:
-                print(f"Available cost config keys (first 10): {list(self.cost_config.keys())[:10]}")
+                print(
+                    f"Available cost config keys (first 10): {list(self.cost_config.keys())[:10]}"
+                )
             return 0.0
 
         # Calculate cost
@@ -294,12 +314,9 @@ class ModelEvaluator:
     def evaluate_model(self, model_name: str, rerun=False) -> Dict[str, Any]:
         """Evaluate a single model's outputs from cached_results with incremental evaluation support."""
 
-        # Convert input model name to universal name using ModelNameManager
-        if model_name_manager:
-            universal_model_name = model_name_manager.get_universal_name(model_name)
-            print(f"\nEvaluating model: {model_name} -> {universal_model_name}")
-        else:
-            universal_model_name = model_name
+        # Use model name directly - assume model_cost.json keys match cached_results filenames
+        # Skip model name manager conversion since we're using model_cost.json as source of truth
+        universal_model_name = model_name
         print(f"\nEvaluating model: {model_name}")
 
         self.load_cost_config()
@@ -351,109 +368,103 @@ class ModelEvaluator:
             # Still return existing results structure
             return self._compile_final_results(universal_model_name, cached_results)
 
-        # Group entries by dataset for evaluation
-        dataset_groups = self.group_cached_results_by_dataset(entries_to_evaluate)
-        print(
-            f"Found {len(dataset_groups)} datasets with new samples: {list(dataset_groups.keys())}"
+        # Pre-load ground truth data for parallel evaluation
+        if self.all_data is None:
+            self.load_all_data()
+
+        # Initialize parallel evaluation manager
+        manager = ParallelEvaluationManager(workers=self.num_workers)
+
+        # Prepare tasks for parallel evaluation
+        tasks = []
+        for i, entry in enumerate(entries_to_evaluate):
+            tasks.append((i, entry))
+
+        def _evaluate_worker(idx: int, entry: Dict[str, Any], **kwargs: Any) -> bool:
+            model_name_for_cost: str = kwargs.get("universal_model_name", "")
+
+            global_index_val: str = entry.get("global_index", "")
+            generated_answer = entry.get("generated_answer", "")
+
+            if not global_index_val:
+                return False
+
+            dataset_name = self.determine_dataset_from_global_index(global_index_val)
+
+            try:
+                # Get eval metrics and scorers for this dataset
+                eval_metrics = load_eval_config_for_dataset(dataset_name)
+                scorers = get_scorers_for_dataset(dataset_name, eval_metrics)
+
+                if not scorers:
+                    return False
+
+                # Get ground truth
+                ground_truth = self._get_ground_truth(global_index_val, dataset_name)
+                if ground_truth is None:
+                    return False
+
+                # Evaluate using the first scorer
+                scorer_func, metric_name = scorers[0]
+                score, metric_name = self._evaluate_single_entry(
+                    generated_answer, ground_truth, scorer_func, dataset_name
+                )
+
+                # Calculate inference cost
+                token_usage = entry.get("token_usage", {})
+                inference_cost = self.calculate_inference_cost(
+                    model_name_for_cost, token_usage
+                )
+
+                # Update the entry with evaluation result
+                entry["evaluation_result"] = {
+                    "extracted_answer": generated_answer,
+                    "ground_truth": ground_truth
+                    if dataset_name != "LiveCodeBench"
+                    else "See dataset for testcases",
+                    "score": score,
+                    "metric": metric_name,
+                    "inference_cost": inference_cost,
+                }
+                return True
+
+            except Exception as e:
+                import logging
+
+                logging.error(
+                    f"Error evaluating entry {global_index_val}: {e}", exc_info=True
+                )
+                entry["evaluation_result"] = {
+                    "extracted_answer": generated_answer,
+                    "ground_truth": None,
+                    "score": 0.0,
+                    "metric": "error",
+                    "inference_cost": 0.0,
+                }
+                return False
+
+        # Run parallel evaluation
+        def save_callback():
+            """Callback to save cached results incrementally."""
+            with open(cached_file, "w", encoding="utf-8") as f:
+                for entry in cached_results:
+                    json.dump(entry, f, ensure_ascii=False)
+                    f.write("\n")
+
+        manager.evaluate_entries_parallel(
+            tasks=tasks,
+            evaluation_func=_evaluate_worker,
+            save_func=save_callback,
+            save_interval=50,  # Save every 50 entries
+            total_count=len(entries_to_evaluate),
+            universal_model_name=universal_model_name,
         )
 
-        # Evaluate each dataset group
-        evaluated_count = 0
-        dataset_scores: Dict[str, int] = {}
+        # Final save is handled by the manager if save_func is provided,
+        # but we'll do it here too for clarity and to ensure the very last results are saved
+        print("\nSaving final evaluated entries to cached results...")
+        save_callback()
 
-        # Create progress bar for datasets
-        dataset_progress = tqdm(
-            dataset_groups.items(), desc="Evaluating new samples", leave=False
-        )
-
-        for dataset_name, dataset_entries in dataset_progress:
-            # if dataset_name == "LiveCodeBench":
-            #     continue
-            dataset_progress.set_description(
-                f"Evaluating {dataset_name} ({len(dataset_entries)} samples)"
-            )
-            print(f"\nEvaluating {len(dataset_entries)} samples from {dataset_name}")
-
-            # Get eval metrics from config for this dataset
-            eval_metrics = load_eval_config_for_dataset(dataset_name)
-
-            # Get scorers for this dataset
-            scorers = get_scorers_for_dataset(dataset_name, eval_metrics)
-            if not scorers:
-                print(f"Warning: No scorers found for dataset {dataset_name}, skipping")
-                continue
-
-            # Evaluate each entry in this dataset
-            for entry in dataset_entries:
-                global_index_val = entry.get("global_index")
-                generated_answer = entry.get("generated_answer", "")
-
-                try:
-                    # Get ground truth for this entry
-                    if not isinstance(global_index_val, str):
-                        print(
-                            f"Warning: Invalid global_index {global_index_val} for dataset {dataset_name}"
-                        )
-                        continue
-                    ground_truth = self._get_ground_truth(
-                        global_index_val, dataset_name
-                    )
-                    if ground_truth is None:
-                        print(f"Warning: No ground truth found for {global_index_val}")
-                        continue
-
-                    # Evaluate using the appropriate scorer
-                    scorer_func, metric_name = scorers[
-                        0
-                    ]  # Use first scorer for the dataset
-                    score, metric_name = self._evaluate_single_entry(
-                        generated_answer, ground_truth, scorer_func, dataset_name
-                    )
-
-                    # Calculate inference cost
-                    token_usage = entry.get("token_usage", {})
-                    inference_cost = self.calculate_inference_cost(
-                        universal_model_name, token_usage
-                    )
-
-                    # Create evaluation result matching the expected format
-                    evaluation_result = {
-                        "extracted_answer": generated_answer,  # For now, use full answer
-                        "ground_truth": ground_truth
-                        if dataset_name != "LiveCodeBench"
-                        else "See dataset for testcases",
-                        "score": score,
-                        "metric": metric_name,
-                        "inference_cost": inference_cost,
-                    }
-
-                    # Update the entry with evaluation result
-                    entry["evaluation_result"] = evaluation_result
-                    evaluated_count += 1
-
-                except Exception as e:
-                    entry["evaluation_result"] = {
-                        "extracted_answer": generated_answer,
-                        "ground_truth": ground_truth,
-                        "score": 0.0,
-                        "metric": "error",
-                        "inference_cost": 0.0,
-                    }
-                    print(f"Error evaluating {global_index_val}: {e}")
-                    continue
-
-            dataset_scores[dataset_name] = len(dataset_entries)
-
-        # Save updated cached results back to file
-        print(
-            f"\nSaving {evaluated_count} newly evaluated entries to cached results..."
-        )
-        with open(cached_file, "w", encoding="utf-8") as f:
-            for entry in cached_results:
-                json.dump(entry, f, ensure_ascii=False)
-                f.write("\n")
-
-        print(f"Evaluation completed. Evaluated {evaluated_count} new entries.")
         return self._compile_final_results(universal_model_name, cached_results)
 
     def _get_ground_truth(self, global_index: str, dataset_name: str) -> Optional[Any]:
@@ -469,7 +480,7 @@ class ModelEvaluator:
                 from datasets import load_from_disk
 
                 livecodebench_dataset = load_from_disk(
-                    "./RouterArena/dataset/livecodebench"
+                    "./dataset/livecodebench"
                 ).to_list()
 
                 # Find the entry with matching global_idx
@@ -625,13 +636,20 @@ def main():
         action="store_true",
         help="Force re-evaluation of all entries, even if already evaluated",
     )
+    parser.add_argument(
+        "--num-workers",
+        type=int,
+        default=16,
+        help="Number of worker threads for parallel evaluation (default: 16)",
+    )
 
     args = parser.parse_args()
 
-    if model_name_manager is not None:
-        universal_name = model_name_manager.get_universal_name(args.model_name)
-    else:
-        universal_name = args.model_name
+    # if model_name_manager is not None:
+    #     universal_name = model_name_manager.get_universal_name(args.model_name)
+    # else:
+    #     universal_name = args.model_name
+    universal_name = args.model_name
     print(f"Input model name: {args.model_name}")
     print(f"Universal model name: {universal_name}")
 
@@ -643,7 +661,7 @@ def main():
         return
 
     # Initialize evaluator
-    evaluator = ModelEvaluator(args.cached_results_dir)
+    evaluator = ModelEvaluator(args.cached_results_dir, num_workers=args.num_workers)
 
     # Evaluate the model
     try:

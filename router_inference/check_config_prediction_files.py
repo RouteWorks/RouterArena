@@ -117,7 +117,7 @@ def load_dataset(split: str) -> List[Dict[str, Any]]:
 
 def load_cost_config() -> Dict[str, Any]:
     """
-    Load cost configuration from model_cost/cost.json.
+    Load cost configuration from model_cost/model_cost.json.
     Uses a canonical path relative to the project root.
 
     Returns:
@@ -126,7 +126,7 @@ def load_cost_config() -> Dict[str, Any]:
     # Get the project root directory (parent of router_inference/)
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
-    cost_file_path = os.path.join(project_root, "model_cost", "cost.json")
+    cost_file_path = os.path.join(project_root, "model_cost", "model_cost.json")
 
     if not os.path.exists(cost_file_path):
         return {}
@@ -157,7 +157,7 @@ def check_model_costs(
 
     if not cost_config:
         errors.append(
-            "Cost configuration file (model_cost/cost.json) not found. "
+            "Cost configuration file (model_cost/model_cost.json) not found. "
             "Cannot validate model costs."
         )
         return False, errors
@@ -214,7 +214,7 @@ def check_model_costs(
         for model in missing_costs:
             errors.append(f"  - {model}")
         errors.append(
-            "\nPlease add cost configuration to model_cost/cost.json or update "
+            "\nPlease add cost configuration to model_cost/model_cost.json or update "
             "your router config to use models with existing cost configurations."
         )
 
