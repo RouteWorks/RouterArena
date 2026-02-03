@@ -28,7 +28,7 @@ def compute_robustness_score(
     full_predictions: list[dict[str, Any]],
     robustness_predictions: list[dict[str, Any]],
     *,
-    name_manager: ModelNameManager | None = None,
+    name_manager: Optional[ModelNameManager] = None,
 ) -> Optional[float]:
     """
     Compute the robustness flip ratio between full and robustness prediction sets.

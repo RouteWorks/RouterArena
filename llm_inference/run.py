@@ -16,7 +16,7 @@ import os
 import sys
 import logging
 import datetime
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any, List, Tuple, Optional
 from collections import defaultdict
 
 # Add parent directory to path for imports
@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 def load_predictions_file(
-    router_name: str, split: str | None = None
+    router_name: str, split: Optional[str] = None
 ) -> List[Dict[str, Any]]:
     """
     Load router predictions from JSON file.
@@ -174,7 +174,7 @@ def save_predictions_file(
     predictions: List[Dict[str, Any]],
     router_name: str,
     create_backup: bool = False,
-    split: str | None = None,
+    split: Optional[str] = None,
 ) -> None:
     """
     Save predictions back to file.
@@ -203,7 +203,7 @@ def process_router_predictions(
     num_workers: int = 16,
     num_runs: int = 1,
     cached_results_dir: str = "./cached_results",
-    split: str | None = None,
+    split: Optional[str] = None,
 ) -> None:
     """
     Process router predictions using parallel inference system.

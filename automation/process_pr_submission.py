@@ -57,7 +57,7 @@ class CommandError(RuntimeError):
     """Raised when a subprocess fails and we want a cleaner error message."""
 
     def __init__(
-        self, message: str, *, stdout: str | None = None, stderr: str | None = None
+        self, message: str, *, stdout: Optional[str] = None, stderr: Optional[str] = None
     ):
         super().__init__(message)
         self.stdout = stdout
