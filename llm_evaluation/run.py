@@ -143,7 +143,7 @@ def load_predictions_from_path(path: str) -> List[Dict[str, Any]]:
 
 
 def save_predictions_file(
-    predictions: List[Dict[str, Any]], router_name: str, split: str | None = None
+    predictions: List[Dict[str, Any]], router_name: str, split: Optional[str] = None
 ) -> None:
     """
     Save predictions back to file.
