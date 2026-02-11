@@ -5,8 +5,8 @@
     "models": [
       "qwen/qwen3-235b-a22b-2507",
       "qwen/qwen3-next-80b-a3b-instruct",
-      "gemini-2.5-flash",
-      "claude-3-haiku-20240307"
+      "gemini-2.0-flash-001",
+      "claude-haiku-4.5"
     ],
     "description": "R2-Router: Category-aware Ridge regression predicts per-query quality scores for 4 LLMs × 9 token budgets. Routes via risk = (1-λ)×quality - λ×cost with shrinkage toward category means.",
     "lambda": 0.999

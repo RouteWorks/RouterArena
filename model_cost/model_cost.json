@@ -123,6 +123,10 @@
       "input_token_price_per_million": 0.09,
       "output_token_price_per_million": 1.10
     },
+    "claude-haiku-4.5": {
+      "input_token_price_per_million": 1.0,
+      "output_token_price_per_million": 5.0
+    },
     "x-ai_grok-4.1-fast": {
       "input_token_price_per_million": 0.2,
       "output_token_price_per_million": 0.5

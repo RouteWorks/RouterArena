@@ -212,7 +212,7 @@
   {
     "global index": "ArcMMLU_443",
     "prompt": "Kindly review the following multiple-choice questions and determine the most probable correct answer from the options presented.\n\nContext: None\n\nQuestion: 2. What is the number of dimension types present in the Cloud Cube Model? ( )\n\nOptions:\nA. One\nB. Three\nC. Two\nD. Four\n\nIndicate the correct option by placing it in \\boxed{X}, where X represents the accurate letter choice. Limit your explanation or feedback to within three sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "\\boxed{D}\n\nThe Cloud Cube Model, also known as the 3D cloud computing model, consists of 4 types of dimensions: deployment models, service models, and organizational factors, along with security/privacy considerations. This framework helps categorize different aspects of cloud computing architecture and characteristics.",
       "success": true,
@@ -359,7 +359,7 @@
   {
     "global index": "ArcMMLU_689",
     "prompt": "Kindly examine the subsequent multiple-choice inquiries and furnish the most probable accurate response predicated on the supplied alternatives.\n\nContext: Absent\n\nInquiry: Which exploration procedure employs an unoccupied queue operating on a first-come, first-served basis? ( )\n\nAlternatives: \nA. Depth-first exploration\nB. Breadth-first exploration\nC. Dual-directional exploration\nD. None of the cited\n\nDeliver the correct letter alternative in \\boxed{X}, where X signifies the precise letter selection. Contain the elucidation or commentary within 3 sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "\\boxed{B}\n\nBreadth-first search (BFS) uses a FIFO (first-in-first-out) queue as its data structure. Nodes are added to the back of the queue and removed from the front, allowing exploration of nodes level by level. Depth-first search, by contrast, uses a stack (LIFO structure).",
       "success": true,
@@ -821,7 +821,7 @@
   {
     "global index": "Ethics_deontology_0",
     "prompt": "Kindly examine the subsequent questions with multiple-choice options and deliberate on which choice aligns most closely with deontological ethics.\n\nScenario: Absent\n\nInquiry: Might you hand over your permission form for the European excursion so that I may endorse it?\n\nChoices: \nA. Yet, I have already approved a different permission form earlier today, intended for your sibling.\nB. However, I misplaced my singular writing instrument on the metro while returning from my occupation.\nC. Although the journey spans a continuous three-day period.\nD. Nevertheless, I've resolved not to participate and will attend classes instead.\n\nSpecify the accurate option as \\boxed{X}, where X represents the correct choice. Limit your rationale or commentary to a maximum of three sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "\\boxed{D}\n\nFrom a deontological perspective, the focus is on duties and rules rather than consequences. Option D acknowledges the duty to be honest about one's actual intentions regarding the trip, fulfilling the moral obligation to tell the truth rather than seeking a signature under false pretenses. The other options attempt to justify non-compliance through external circumstances, which deontology would view as irrelevant to the fundamental duty of honesty.",
       "success": true,
@@ -842,7 +842,7 @@
   {
     "global index": "Ethics_deontology_2",
     "prompt": "Kindly examine the subsequent set of multiple-choice inquiries and determine which selection most closely aligns with deontological ethical principles.\n\nContext: None\n\nInquiry: I am attempting to regrow my hair to its former length.\n\nChoices:\nA. Therefore, I ought to have regular trims.\nB. Thus, I should refrain from washing my hair more than once every two weeks.\nC. It is advisable to use soap rather than shampoo during hair washing.\nD. Consequently, I must address my split ends.\n\nProvide the correct letter choice in \\boxed{X}, where X is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "\\boxed{D}\n\nSplit ends damage hair and prevent healthy growth. Deontological ethics emphasizes duty and moral obligations—here, the duty to care properly for your hair by addressing problems that hinder your stated goal. Fixing split ends is the action that fulfills your responsibility to maintain your hair's health for growth.",
       "success": true,
@@ -1346,7 +1346,7 @@
   {
     "global index": "GeoBench_30",
     "prompt": "Kindly examine the subsequent set of multiple-choice inquiries and identify the most probable accurate response from the provided alternatives.\n\nContext: None\n\nQuestion: Referring to the accompanying table asdf, if the wind velocity reaches 30 km/h and the ambient temperature is 15°C, what is the calculated wind chill index in Celsius?\n\nOptions: \nA. 8°C\nB. 10°C\nC. 12°C\nD. 14°C\nE. 15°C\n\nIndicate the correct letter choice in \\boxed{X}, where X corresponds to the correct letter. Keep the explanation or justification concise, limited to three sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "I cannot see the table referenced in the question (\"table below asdf\"). Without the actual wind chill table or formula, I cannot calculate the accurate wind chill factor for 30 km/h wind and 15°C temperature.\n\nBased on typical wind chill calculations, a wind speed of 30 km/h with 15°C temperature would result in a wind chill of approximately 10-12°C.\n\n\\boxed{B}",
       "success": true,
@@ -1787,7 +1787,7 @@
   {
     "global index": "LiveCodeBench_405",
     "prompt": "Genrate an execuutable Pythn fnction genrated from the gven promt. The fnction shuld take stdn as inpt and prnt the ouptut. Simpy cal the fnction aftr the definiton. Quesiton:\nTher is a grid of H rows and W colums, each cel havng a side lngth of 1, and we hv N tiles.\nThe i-th tile (1\\leq i\\leq N) is a rectnagle of sze A_i\\times B_i.\nDetrmine whethr it is posssible to plc the tiles on the grid so tht all of the folowing condtions are satified:\n\n- Evry cel is covred by exatly one tile.\n- It is fine to hav unusd tiles.\n- The tiles may be rotatd or flippd when plced. Howevr, each tile mst be alinged with the edgs of the cels without extendng otside the grid.\n\nInpt\n\nThe inpt is gven from Standrd Inpt in the folowing format:\nN H W\nA_1 B_1\nA_2 B_2\n\\ldots\nA_N B_N\n\nOupt\n\nIf it is posssible to plc the tiles on the grid so tht all of the condtions in the problm statemnt are satified, prnt Yes; othrwise, prnt No.\n\nConstrants\n\n- 1\\leq N\\leq 7\n- 1 \\leq H,W \\leq 10\n- 1\\leq A_i,B_i\\leq 10\n- All inpt valus are integres.\n\nSampl Inpt 1\n\n5 5 5\n1 1\n3 3\n4 4\n2 3\n2 5\n\nSampl Oupt 1\n\nYes\n\nPlcing the 2-nd, 4-th, and 5-th tiles as shwn belw covrs evry cel of the grid by exatly one tile.\n\nHnce, prnt Yes.\n\nSampl Inpt 2\n\n1 1 2\n2 3\n\nSampl Oupt 2\n\nNo\n\nIt is impssible to plc the tile without leting it extend otside the grid.\nHnce, prnt No.\n\nSampl Inpt 3\n\n1 2 2\n1 1\n\nSampl Oupt 3\n\nNo\n\nIt is impssible to covr all cels with the tile.\nHnce, prnt No.\n\nSampl Inpt 4\n\n5 3 3\n1 1\n2 2\n2 2\n2 2\n2 2\n\nSampl Oupt 4\n\nNo\n\nNote tht each cel mst be covred by exatly one tile.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "```python\ndef solve():\n    N, H, W = map(int, input().split())\n    tiles = []\n    for _ in range(N):\n        a, b = map(int, input().split())\n        tiles.append((a, b))\n    \n    target_area = H * W\n    \n    def can_place(grid, tile_idx, tiles_used):\n        # Find first uncovered cell\n        uncovered = None\n        for i in range(H):\n            for j in range(W):\n                if grid[i][j] == -1:\n                    uncovered = (i, j)\n                    break\n            if uncovered:\n                break\n        \n        # All cells covered\n        if uncovered is None:\n            return True\n        \n        r, c = uncovered\n        \n        # Try each unused tile\n        for idx in range(N):\n            if idx in tiles_used:\n                continue\n            \n            a, b = tiles[idx]\n            \n            # Try both orientations\n            for h, w in [(a, b), (b, a)]:\n                # Try to place at (r, c)\n                if r + h <= H and c + w <= W:\n                    # Check if all cells in rectangle are uncovered\n                    valid = True\n                    for i in range(r, r + h):\n                        for j in range(c, c + w):\n                            if grid[i][j] != -1:\n                                valid = False\n                                break\n                        if not valid:\n                            break\n                    \n                    if valid:\n                        # Place tile\n                        for i in range(r, r + h):\n                            for j in range(c, c + w):\n                                grid[i][j] = idx\n                        \n                        tiles_used.add(idx)\n                        \n                        if can_place(grid, tile_idx + 1, tiles_used):\n                            return True\n                        \n                        # Remove tile\n                        tiles_used.remove(idx)\n                        for i in range(r, r + h):\n                            for j in range(c, c + w):\n                                grid[i][j] = -1\n        \n        return False\n    \n    grid = [[-1] * W for _ in range(H)]\n    if can_place(grid, 0, set()):\n        print(\"Yes\")\n    else:\n        print(\"No\")\n\nsolve()\n```",
       "success": true,
@@ -3089,7 +3089,7 @@
   {
     "global index": "MMLUPro_engineering_10199",
     "prompt": "Kindly examine the ensuing set of multiple-choice queries and ascertain the most plausible accurate response from the selections provided.\n\nContext: Absent\n\nQuery: What is the feedback ratio for a Wien bridge oscillator incorporating an operational amplifier?\n\nOptions: \nA. 3/2\nB. 1/4\nC. 0\nD. 1/5\nE. 1/3\nF. 2\nG. 1/2\nH. 1\nI. 5/4\nJ. 4/3\n\nIdentify the correct letter option in \\boxed{X}, where X denotes the accurate letter choice. Limit your explanation or commentary to 3 sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "\\boxed{E}\n\nThe feedback factor of a Wien bridge oscillator using Op-Amp is 1/3. This occurs at the oscillation frequency where the bridge is balanced. The feedback network is designed such that the Op-Amp provides the necessary gain and phase shift for sustained oscillations.",
       "success": true,
@@ -3740,7 +3740,7 @@
   {
     "global index": "MMLUPro_history_4752",
     "prompt": "Examine the following questions, selecting the answer you deem most accurate from the given choices.\n\nContext: None\n\nInquiry: This question pertains to the following information.\n\"Recently, the spontaneous dynamics of capitalism have been making headway in rural areas, with affluent peasants emerging and numerous moderately prosperous peasants aspiring to wealth. Conversely, many impoverished peasants remain destitute due to inadequate productive resources, with some incurring debt and others parting with or leasing their land. Should this trend persist unchecked, rural disparity will escalate progressively. Dispossessed peasants and those in persistent poverty will lament our inaction in rescuing them from destitution or aiding them in overcoming hardships. Furthermore, moderately prosperous peasants pursuing capitalist objectives will not be satisfied with us, for we cannot meet their expectations without embarking on a capitalist path. Can the worker-peasant partnership endure under these conditions? Clearly, it cannot! The resolution lies in a fresh foundation. This entails progressively introducing socialist reform across agriculture while gradually actualizing socialist industrialization and transformation of handicrafts and capitalist trade practices; essentially, it involves implementing cooperation and phasing out the affluent-peasant economy along with individual rural economic practices so that all villagers advance collectively. We assert this is the sole means to solidify the worker-peasant partnership.\"\nMao Zedong, On the Question of Agricultural Co-operation, 1955\nMao's perspective on peasant labor collaboration predominantly mirrors the impact of which of the following?\n\nAlternatives: \nA. The principles of communism as articulated by Joseph Stalin\nB. The tenets of democratic socialism as articulated by Salvador Allende\nC. The doctrines of social democracy as promoted by Bernie Sanders\nD. The concepts of globalization as exemplified by international trade alliances like NAFTA or the European Union\nE. The tenets of religious fundamentalism as articulated by Ayatollah Khomeini\nF. The theories of capitalism as expounded by Milton Friedman\nG. The precepts of classical liberalism as articulated by Adam Smith\nH. The principles of nationalism as evidenced by the emergence of populist movements in the 21st century\nI. The ideals of the Enlightenment as articulated by revolutionary figures such as Maximilian Robespierre\nJ. The tenets of fascism as articulated by Benito Mussolini\n\nIndicate the correct choice in \\boxed{A}, where A is the accurate selection. Keep the reasoning concise, within 3 sentences.",
-    "prediction": "gemini-2.5-flash",
+    "prediction": "gemini-2.0-flash-001",
     "generated_result": {
       "generated_answer": "\\boxed{A}\n",
       "success": true,
@@ -5966,7 +5966,7 @@
   {
     "global index": "OpenTDB_Animals_2545",
     "prompt": "Kindly examine the subsequent set of multiple-choice queries and select the most probable accurate response from the provided alternatives.\n\nContext: None\n\nInquiry: Which entity among these is identified as a colony of polyps rather than being classified as a jellyfish?\n\nOptions: \nA. Irukandji\nB. Sea Nettle\nC. Sea Wasp\nD. Portuguese Man-of-War\n\nPresent the appropriate letter selection in \\boxed{X}, where X signifies the accurate letter choice. The justification or feedback should remain concise, limited to three sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "\\boxed{D}\n\nThe Portuguese Man-of-War is a colonial organism composed of specialized polyps working together, not a true jellyfish. The other options (Irukandji, Sea Nettle, and Sea Wasp) are all true jellyfish (medusae), not colonies of polyps.",
       "success": true,
@@ -6155,7 +6155,7 @@
   {
     "global index": "OpenTDB_General Knowledge_1957",
     "prompt": "Kindly examine the subsequent multiple-choice inquiries and determine the answer most likely to be correct from the provided options.\n\nContext: None\n\nInquiry: When an individual is described as \"envious,\" what hue are they traditionally associated with?\n\nSelections: \nA. Yellow\nB. Green\nC. Red\nD. Blue\n\nIndicate the correct letter selection in \\boxed{X}, where X represents the appropriate letter choice. Limit the explanation or rationale to within 3 sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "\\boxed{B}\n\nThe phrase \"green with envy\" is a common idiom that describes someone who is envious or jealous. This expression has been used in English literature for centuries to represent the color associated with envy.",
       "success": true,
@@ -6218,7 +6218,7 @@
   {
     "global index": "OpenTDB_General Knowledge_3727",
     "prompt": "Kindly examine the subsequent series of questions, each with multiple possible answers. Choose the answer that seems most accurate from the provided options.\n\nScenario: Not applicable\n\nInquiry: Within aviation technology, what does the acronym \"TCAS\" denote?\n\nChoices:\nA. Traffic Collision Avoidance System\nB. Traffic Communication Alert System\nC. Traffic Call-sign Abbreviation System\nD. Traffic Configuration Alignment System\n\nProvide the answer by placing the correct letter choice in \\boxed{X}, where X is the accurate letter selection. Limit your rationale or commentary to three sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "\\boxed{A}\n\nTCAS stands for Traffic Collision Avoidance System, which is an aircraft safety system designed to prevent mid-air collisions by alerting pilots to nearby aircraft. This is the standard terminology used in aviation worldwide.",
       "success": true,
@@ -6722,7 +6722,7 @@
   {
     "global index": "PubMedQA_337",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and determine the most plausible accurate response from the provided alternatives.\n\nContext: ['The atopy patch examination (APE), known as the dermal assessment with airborne allergens, is considered unique to individuals with atopic eczema (AE), yet minimal occurrences of affirmative APE have been documented previously in atopic individuals sans eczema and in those without health issues.', 'This investigation aimed to assess the reaction to the APE utilizing domestic dust mites (DDM) in participants devoid of AE and to juxtapose the results observed in these cases with those noted in AE patients, also appraising the variances between two allergen extracts devised at disparate purification levels and concentrations.', 'Forty-seven atopic individuals without dermatitis (AWD), 33 nonatopic (NA) individuals, and 77 adult AE patients underwent dermal testing with a purified DDM body extract at 20% and another entire body DDM extract at 30%, equivalent to 300 micrograms/gram of Der p 1. The APE's reproducibility was further evaluated in 8 AE patients, 37 AWD individuals, and 19 NA individuals.', 'Affirmative reactions with the 20% extract were noted in 29 (37.7%) AE, 5 (10.6%) AWD, and 4 (12.1%) NA participants. The APE with DDM at 30% yielded positive in 32 (41.6%) AE, 9 (19.1%) AWD, and 4 (12.1%) NA individuals. The positivity ratios and response intensity scores significantly diverged between AE and non-AE participants (p<0.01). The APE's reproducibility across the trio of categories was commendable.']\n\nInquiry: Is the atopy patch examination with domestic dust mites exclusive to atopic eczema?\n\nAlternatives: \nA. indeed\nB. not at all\nC. possibly\n\nRender the correct letter selection in \\boxed{X}, where X signifies the correct letter selection. Confine the elucidation or feedback to within 3 sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "\\boxed{B}\n\nThe study demonstrates that positive APT responses to HDM were observed not only in AD patients (37.7-41.6%) but also in atopic subjects without eczema (10.6-19.1%) and nonatopic subjects (12.1%). While the rates were significantly higher in AD patients, the test is not specific for AD since positive responses occur in non-AD subjects as well.",
       "success": true,
@@ -7751,7 +7751,7 @@
   {
     "global index": "QANTA_Social Science_2",
     "prompt": "Kindly examine the subsequent inquiry and deliver the accurate response.\n\nContext: None\n\nInquiry: An injunctive communication has the potential to prevent an adverse consequence of this phenomenon via the \"boomerang effect.\"\n\nSubmit the right answer in \\boxed{X}, where X represents the accurate and most frequent solution to the inquiry. Retain the explanation or commentary within 3 sentences.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "claude-haiku-4.5",
     "generated_result": {
       "generated_answer": "\\boxed{psychological reactance}\n\nThe boomerang effect occurs when an injunctive message (one that tells people what they should or shouldn't do) backfires, causing the opposite of the intended outcome through psychological reactance. This happens when people feel their freedom is threatened and resist the message by doing the forbidden behavior anyway.",
       "success": true,

@@ -65,9 +65,10 @@ universal_names = [
     "glm-4-air",
     "glm-4-flash",
     "glm-4-plus",
-    # R2-Router (Qwen3 vLLM local)
+    # R2-Router
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-next-80b-a3b-instruct",
+    "claude-haiku-4.5",
 ]
 
 
