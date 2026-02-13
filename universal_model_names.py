@@ -68,6 +68,13 @@ universal_names = [
     # R2-Router
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-next-80b-a3b-instruct",
+    "qwen/qwen3-30b-a3b-instruct-2507",
+    "Qwen/Qwen3-Coder-Next",
+    "qwen/qwen3-coder-30b-a3b-instruct",
+    "mistralai/ministral-3-3b-2512",
+    "mistralai/ministral-3-8b-2512",
+    "mistralai/ministral-3-14b-2512",
+    "google/gemma-3n-e4b-it",
     "claude-haiku-4.5",
 ]
 
