@@ -18,17 +18,30 @@ jobs:
     runs-on: self-hosted
     permissions:
       issues: write
+      pull-requests: write
+      checks: write
+      contents: read
     steps:
       - name: Acknowledge /evaluate command
         uses: actions/github-script@v7
         with:
           script: |
-            await github.rest.reactions.createForIssueComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              comment_id: context.payload.comment.id,
-              content: 'eyes'
-            });
+            try {
+              await github.rest.reactions.createForIssueComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: context.payload.comment.id,
+                content: 'eyes'
+              });
+            } catch (error) {
+              // Some org/repo token policies disallow reactions for GITHUB_TOKEN.
+              // Do not block evaluation trigger on this cosmetic action.
+              if (error.status === 403) {
+                core.warning(`Skipping reaction due to permission restriction: ${error.message}`);
+              } else {
+                throw error;
+              }
+            }
 
       - name: Add evaluation label to PR
         uses: actions/github-script@v7
