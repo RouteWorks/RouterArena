@@ -1,35 +1,46 @@
 name: Router Submission Evaluation
 
 on:
-  pull_request_target:
-    types: [labeled, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Pull request number to evaluate
+        required: true
+        type: string
+      base_ref:
+        description: Base branch ref for evaluation scripts checkout
+        required: true
+        type: string
+      base_sha:
+        description: Base commit SHA for PR diff/evaluation
+        required: true
+        type: string
 
 jobs:
   evaluate-router:
-    if: >-
-      contains(github.event.pull_request.labels.*.name, 'evaluate-requested') &&
-      (
-        github.event.action != 'labeled' ||
-        github.event.label.name == 'evaluate-requested'
-      )
     runs-on: self-hosted
     permissions:
       contents: read
       issues: write
       checks: write
       pull-requests: write
+    env:
+      PR_NUMBER: ${{ inputs.pr_number }}
+      BASE_REF: ${{ inputs.base_ref }}
+      BASE_SHA: ${{ inputs.base_sha }}
+      PR_CHECKOUT_REF: ${{ format('refs/pull/{0}/head', inputs.pr_number) }}
     steps:
       - name: Checkout base repository (for evaluation scripts)
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.base.ref }}
+          ref: ${{ env.BASE_REF }}
           path: base
           fetch-depth: 0
 
       - name: Checkout PR branch (for prediction file only)
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ env.PR_CHECKOUT_REF }}
           path: pr
           fetch-depth: 0
 
@@ -39,8 +50,8 @@ jobs:
         working-directory: pr
         run: |
           set -euo pipefail
-          BASE_REF="${{ github.event.pull_request.base.ref }}"
-          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          BASE_REF="${{ env.BASE_REF }}"
+          BASE_SHA="${{ env.BASE_SHA }}"
 
           if [[ -z "$BASE_SHA" ]]; then
             echo "Error: Could not determine PR base SHA" >&2
@@ -154,9 +165,9 @@ jobs:
           ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
         run: |
           set -euo pipefail; trap 'cat evaluation_output.txt' EXIT
-          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          BASE_SHA="${{ env.BASE_SHA }}"
           uv run python automation/process_pr_submission.py \
-            --pr "${{ github.event.pull_request.number }}" \
+            --pr "${{ env.PR_NUMBER }}" \
             --router "${{ steps.detect.outputs.router }}" \
             --split "${{ steps.detect.outputs.split }}" \
             --base-ref "$BASE_SHA" > evaluation_output.txt 2>&1
@@ -206,28 +217,9 @@ jobs:
             comment += '*Evaluation completed by RouterArena automated workflow*';
 
             await github.rest.issues.createComment({
-              issue_number: context.payload.pull_request.number,
+              issue_number: Number('${{ env.PR_NUMBER }}'),
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: comment
             });
             console.log('Successfully posted evaluation results as PR comment');
-
-      - name: Remove evaluation label
-        if: ${{ always() }}
-        uses: actions/github-script@v7
-        with:
-          script: |
-            try {
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.pull_request.number,
-                name: 'evaluate-requested'
-              });
-            } catch (error) {
-              // Ignore if label is already removed/missing.
-              if (error.status !== 404) {
-                throw error;
-              }
-            }

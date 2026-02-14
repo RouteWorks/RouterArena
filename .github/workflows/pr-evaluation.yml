@@ -17,6 +17,7 @@ jobs:
       )
     runs-on: self-hosted
     permissions:
+      actions: write
       issues: write
       pull-requests: write
       checks: write
@@ -43,42 +44,32 @@ jobs:
               }
             }
 
-      - name: Add evaluation label to PR
+      - name: Fetch PR details
+        id: pr
         uses: actions/github-script@v7
-        env:
-          HAS_ROUTER_EVAL_BOT_TOKEN: ${{ secrets.ROUTER_EVAL_BOT_TOKEN != '' }}
         with:
-          github-token: ${{ secrets.ROUTER_EVAL_BOT_TOKEN || github.token }}
           script: |
-            const labelName = 'evaluate-requested';
-            const issue_number = context.payload.issue.number;
-            if (process.env.HAS_ROUTER_EVAL_BOT_TOKEN !== 'true') {
-              core.warning('ROUTER_EVAL_BOT_TOKEN is not configured. Labeling may not trigger the evaluation workflow due to GITHUB_TOKEN recursion guard.');
-            }
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.issue.number
+            });
+            core.setOutput('number', String(pr.data.number));
+            core.setOutput('base_ref', pr.data.base.ref);
+            core.setOutput('base_sha', pr.data.base.sha);
 
-            try {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number,
-                labels: [labelName]
-              });
-            } catch (error) {
-              // If the label does not exist yet, create it once then retry.
-              if (error.status !== 422) {
-                throw error;
+      - name: Dispatch evaluation workflow
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'pr-evaluation-run.yml',
+              ref: '${{ steps.pr.outputs.base_ref }}',
+              inputs: {
+                pr_number: '${{ steps.pr.outputs.number }}',
+                base_ref: '${{ steps.pr.outputs.base_ref }}',
+                base_sha: '${{ steps.pr.outputs.base_sha }}'
               }
-              await github.rest.issues.createLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: labelName,
-                color: '0e8a16',
-                description: 'Triggers Router Submission Evaluation workflow'
-              });
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number,
-                labels: [labelName]
-              });
-            }
+            });
