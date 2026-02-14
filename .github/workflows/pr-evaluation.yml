@@ -45,10 +45,16 @@ jobs:
 
       - name: Add evaluation label to PR
         uses: actions/github-script@v7
+        env:
+          HAS_ROUTER_EVAL_BOT_TOKEN: ${{ secrets.ROUTER_EVAL_BOT_TOKEN != '' }}
         with:
+          github-token: ${{ secrets.ROUTER_EVAL_BOT_TOKEN || github.token }}
           script: |
             const labelName = 'evaluate-requested';
             const issue_number = context.payload.issue.number;
+            if (process.env.HAS_ROUTER_EVAL_BOT_TOKEN !== 'true') {
+              core.warning('ROUTER_EVAL_BOT_TOKEN is not configured. Labeling may not trigger the evaluation workflow due to GITHUB_TOKEN recursion guard.');
+            }
 
             try {
               await github.rest.issues.addLabels({
