@@ -1,0 +1,232 @@
+name: Router Submission Evaluation
+
+on:
+  pull_request_target:
+    types: [labeled, synchronize, reopened]
+
+jobs:
+  evaluate-router:
+    if: >-
+      contains(github.event.pull_request.labels.*.name, 'evaluate-requested') &&
+      (
+        github.event.action != 'labeled' ||
+        github.event.label.name == 'evaluate-requested'
+      )
+    runs-on: self-hosted
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout base repository (for evaluation scripts)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          path: base
+          fetch-depth: 0
+
+      - name: Checkout PR branch (for prediction file only)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          fetch-depth: 0
+
+      - name: Detect changed prediction file
+        id: detect
+        shell: bash
+        working-directory: pr
+        run: |
+          set -euo pipefail
+          BASE_REF="${{ github.event.pull_request.base.ref }}"
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+
+          if [[ -z "$BASE_SHA" ]]; then
+            echo "Error: Could not determine PR base SHA" >&2
+            exit 1
+          fi
+
+          git fetch origin "$BASE_REF" || true
+
+          if ! git cat-file -e "$BASE_SHA" 2>/dev/null; then
+            echo "Base SHA $BASE_SHA not found locally, attempting to fetch..."
+            git fetch origin "$BASE_SHA" || git fetch origin "$BASE_REF" || true
+          fi
+
+          mapfile -t CHANGED_FILES < <(git diff --name-status "$BASE_SHA"...HEAD -- router_inference/predictions/*.json 2>/dev/null | awk '$1 == "A" || $1 == "M" {print $2}')
+
+          if [[ ${#CHANGED_FILES[@]} -eq 0 ]]; then
+            echo "No changed prediction file detected; skipping evaluation."
+            echo "router=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          router_name=""
+          has_base=0
+          has_robustness=0
+
+          for file in "${CHANGED_FILES[@]}"; do
+            filename=$(basename "$file")
+            name="${filename%.json}"
+            if [[ "$name" == *-robustness ]]; then
+              has_robustness=1
+              name="${name%-robustness}"
+            else
+              has_base=1
+            fi
+
+            if [[ -z "$name" ]]; then
+              echo "Unable to determine router name from $file" >&2
+              exit 1
+            fi
+
+            if [[ -z "$router_name" ]]; then
+              router_name="$name"
+            elif [[ "$router_name" != "$name" ]]; then
+              echo "Prediction files belong to different routers:" >&2
+              printf '  %s\n' "${CHANGED_FILES[@]}" >&2
+              exit 1
+            fi
+          done
+
+          if [[ ${#CHANGED_FILES[@]} -ne 2 || $has_base -ne 1 || $has_robustness -ne 1 ]]; then
+            echo "Expected exactly two prediction files (router and router-robustness), found:" >&2
+            printf '  %s\n' "${CHANGED_FILES[@]}" >&2
+            exit 1
+          fi
+
+          ROUTER_NAME="$router_name"
+          echo "router=$ROUTER_NAME" >> "$GITHUB_OUTPUT"
+
+          PREDICTION_FILE="router_inference/predictions/${ROUTER_NAME}.json"
+          if [[ ! -f "$PREDICTION_FILE" ]]; then
+            echo "Error: Prediction file not found at $PREDICTION_FILE" >&2
+            exit 1
+          fi
+
+          ENTRY_COUNT=$(python3 -c "import json; print(len(json.load(open('$PREDICTION_FILE'))))")
+          echo "Prediction file contains $ENTRY_COUNT entries"
+
+          if [[ "$ENTRY_COUNT" -eq 8400 ]]; then
+            SPLIT="full"
+          elif [[ "$ENTRY_COUNT" -eq 809 ]]; then
+            SPLIT="sub_10"
+          else
+            echo "Warning: Unexpected prediction file size ($ENTRY_COUNT entries). Defaulting to full." >&2
+            SPLIT="full"
+          fi
+          echo "split=$SPLIT" >> "$GITHUB_OUTPUT"
+
+      - name: Show detected router
+        if: ${{ steps.detect.outputs.router != '' }}
+        run: |
+          set -euo pipefail
+          echo "Detected router submission: ${{ steps.detect.outputs.router }}"
+          echo "Detected split: ${{ steps.detect.outputs.split }}"
+
+      - name: Prepare dataset
+        if: ${{ steps.detect.outputs.router != '' }}
+        working-directory: base
+        run: |
+          set -euo pipefail
+          echo "Preparing dataset..."
+          mkdir -p "${{ github.workspace }}/dataset"
+          uv run python scripts/process_datasets/prep_datasets.py
+
+      - name: Copy PR prediction file to base workspace
+        if: ${{ steps.detect.outputs.router != '' }}
+        run: |
+          set -euo pipefail
+          ROUTER_NAME="${{ steps.detect.outputs.router }}"
+          mkdir -p base/router_inference/predictions
+          cp "pr/router_inference/predictions/${ROUTER_NAME}.json" \
+             "base/router_inference/predictions/${ROUTER_NAME}.json"
+          cp "pr/router_inference/predictions/${ROUTER_NAME}-robustness.json" \
+             "base/router_inference/predictions/${ROUTER_NAME}-robustness.json"
+          echo "Copied prediction files from PR to base workspace"
+
+      - name: Evaluate submission
+        if: ${{ steps.detect.outputs.router != '' }}
+        id: evaluate
+        working-directory: base
+        env:
+          ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
+        run: |
+          set -euo pipefail; trap 'cat evaluation_output.txt' EXIT
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          uv run python automation/process_pr_submission.py \
+            --pr "${{ github.event.pull_request.number }}" \
+            --router "${{ steps.detect.outputs.router }}" \
+            --split "${{ steps.detect.outputs.split }}" \
+            --base-ref "$BASE_SHA" > evaluation_output.txt 2>&1
+          cat evaluation_output.txt
+
+      - name: Post evaluation results as PR comment
+        if: ${{ steps.detect.outputs.router != '' && steps.evaluate.outcome == 'success' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            let comment = '## Router Evaluation Results\n\n';
+            comment += `**Router:** \`${{ steps.detect.outputs.router }}\`\n`;
+            comment += `**Dataset Split:** \`${{ steps.detect.outputs.split }}\`\n\n`;
+
+            const metricsPath = path.join('base', 'metrics.json');
+            if (!fs.existsSync(metricsPath)) {
+              throw new Error(`metrics.json not found at ${metricsPath}. Evaluation must produce metrics.json file.`);
+            }
+
+            const metrics = JSON.parse(fs.readFileSync(metricsPath, 'utf8'));
+            comment += '### RouterArena Metrics\n\n';
+            comment += '| Metric | Value |\n';
+            comment += '|--------|-------|\n';
+            comment += `| **RouterArena Score** | ${metrics.arena_score.toFixed(4)} |\n`;
+            comment += `| **Accuracy** | ${(metrics.accuracy * 100).toFixed(2)}% |\n`;
+            comment += `| **Total Cost** | $${metrics.total_cost.toFixed(6)} |\n`;
+            comment += `| **Avg Cost per Query** | $${metrics.avg_cost_per_query.toFixed(6)} |\n`;
+            comment += `| **Avg Cost per 1K Queries** | $${metrics.avg_cost_per_1000.toFixed(4)} |\n`;
+            comment += `| **Number of Queries** | ${metrics.num_queries} |\n`;
+            const robustnessScore = metrics.robustness_score;
+            const robustnessCell = robustnessScore !== undefined ? robustnessScore.toFixed(4) : 'N/A';
+            comment += `| **Robustness Score** | ${robustnessCell} |\n`;
+
+            if (metrics.optimality) {
+              comment += '\n### Optimality Metrics\n\n';
+              comment += '| Metric | Value |\n';
+              comment += '|--------|-------|\n';
+              comment += `| **Opt.Sel** (Optimal Selection) | ${metrics.optimality.opt_sel.toFixed(4)} |\n`;
+              comment += `| **Opt.Cost** (Cost Efficiency) | ${metrics.optimality.opt_cost.toFixed(4)} |\n`;
+              comment += `| **Opt.Acc** (Accuracy vs Optimal) | ${metrics.optimality.opt_acc.toFixed(4)} |\n`;
+            }
+
+            comment += '\n---\n';
+            comment += '*Evaluation completed by RouterArena automated workflow*';
+
+            await github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+            console.log('Successfully posted evaluation results as PR comment');
+
+      - name: Remove evaluation label
+        if: ${{ always() }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                name: 'evaluate-requested'
+              });
+            } catch (error) {
+              // Ignore if label is already removed/missing.
+              if (error.status !== 404) {
+                throw error;
+              }
+            }
