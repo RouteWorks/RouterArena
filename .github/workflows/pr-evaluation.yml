@@ -20,6 +20,8 @@ jobs:
       checks: write
       contents: read
       pull-requests: write
+    env:
+      UV_PROJECT_ENVIRONMENT: ${{ github.workspace }}/.venv
     steps:
       - name: Acknowledge /evaluate command
         uses: actions/github-script@v7
@@ -72,6 +74,7 @@ jobs:
         with:
           ref: ${{ steps.pr.outputs.base_ref }}
           path: base
+          clean: false
           fetch-depth: 0
 
       - name: Checkout PR branch (for prediction file only)
@@ -79,6 +82,7 @@ jobs:
         with:
           ref: ${{ steps.pr.outputs.head_sha }}
           path: pr
+          clean: false
           fetch-depth: 0
 
       - name: Detect changed prediction file
@@ -320,3 +324,8 @@ jobs:
               completed_at: new Date().toISOString(),
               output: { title, summary }
             });
+
+      - name: Cleanup workspace
+        if: always()
+        run: |
+          rm -rf base/ pr/
