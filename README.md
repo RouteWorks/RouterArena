@@ -34,7 +34,7 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 
 | Rank | Router | Affiliation | Acc-Cost Arena | Accuracy | Cost/1K Queries | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
 |------|--------------------|-----------------------------|--------|----------|---------|-----------------|--------------|----------------|---------|------------|
-| 🥇 | [R2-Router](https://arxiv.org/abs/2602.02823/) | 🎓&nbsp;University of Central Florida | 71.60 | 71.23 | $0.06 | 32.38 | 74.16 | 100.00 | — | 45.71 |
+| 🥇 | [R2-Router](https://arxiv.org/abs/2602.02823/) | 🎓&nbsp;UCF | 71.60 | 71.23 | $0.06 | 32.38 | 74.16 | 100.00 | — | 45.71 |
 | 🥈 | [vLLM‑SR](https://vllm-semantic-router.com/)&nbsp;[[Code]](https://github.com/vllm-project/semantic-router)&nbsp;[[HF]](https://huggingface.co/llm-semantic-router) | 🎓&nbsp;vLLM SR Team | 67.23 | 66.53 | $0.06 | 94.10 | 90.12 | 100.00 | — | 90.95 |
 | 🥉 | [MIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[Code]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.89 | 66.88 | $0.15 | 3.44 | 19.62 | 78.18 | 27.03 | 61.19 |
 | 4 | [Azure‑Router](https://ai.azure.com/catalog/models/model-router)&nbsp;[[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼&nbsp;Microsoft | 66.66 | 68.09 | $0.54 | 22.52 | 46.32 | 81.96 | — | 54.07 |
