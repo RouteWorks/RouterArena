@@ -193,10 +193,10 @@ To get your router on the leaderboard, you can open a Pull Request with your rou
 2. **Open a Pull Request to `main` branch and call `/evaluate` in the PR comment**
    - When the PR is ready for evaluation, call `/evaluate` in the PR comment to trigger the evaluation workflow. See an example [here](https://github.com/RouteWorks/RouterArena/pull/71#issuecomment-3904936480).
    - The automated workflow will:
-   - Validate your submission
-   - Run evaluation on the full dataset
-   - Post results as a comment on your PR
-   - Update the leaderboard upon approval
+     - Validate your submission
+     - Run evaluation on the full dataset
+     - Post results as a comment on your PR
+     - Update the leaderboard upon approval
 
 The Figure below shows the evaluation pipeline.
 
