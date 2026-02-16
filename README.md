@@ -190,7 +190,7 @@ To get your router on the leaderboard, you can open a Pull Request with your rou
    - `router_inference/config/<router_name>.json` - Your router configuration
    - `router_inference/predictions/<router_name>.json` - Your prediction file with `generated_result` fields populated
    - `router_inference/predictions/<router_name>-robustness.json` - Your prediction file for robustness evaluation, no `generated_result` fields needed
-2. **Open a Pull Request to `main` branch and call `/evaluate` in the comments** - The automated workflow will:
+2. **Open a Pull Request to `main` branch and call `/evaluate` in the PR comment** - The automated workflow will:
    - Validate your submission
    - Run evaluation on the full dataset
    - Post results as a comment on your PR
