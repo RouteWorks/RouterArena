@@ -33,6 +33,7 @@ DATASET_PATHS = {
     "arc": "./dataset/arc_data.json",
     "hellaswag": "./dataset/hellaswag_data.json",
     "winogrande": "./dataset/winogrande_data.json",
+    "triviaqa": "./dataset/triviaqa_data.json",
 }
 
 
@@ -192,6 +193,8 @@ def save_predictions(
         filename = f"{router_name}-hellaswag"
     elif split == "winogrande":
         filename = f"{router_name}-winogrande"
+    elif split == "triviaqa":
+        filename = f"{router_name}-triviaqa"
     prediction_path = f"./router_inference/predictions/{filename}.json"
 
     # Create directory if it doesn't exist

@@ -51,7 +51,7 @@ def load_predictions_file(
         List of prediction dictionaries
     """
     # Construct prediction path based on split
-    if split and split in ["gpqa", "robustness", "arc", "hellaswag", "winogrande"]:
+    if split and split in ["gpqa", "robustness", "arc", "hellaswag", "winogrande", "triviaqa"]:
         filename = f"{router_name}-{split}"
     else:
         filename = router_name
@@ -374,7 +374,7 @@ Examples:
     parser.add_argument(
         "--split",
         type=str,
-        choices=["sub_10", "full", "robustness", "gpqa", "arc", "hellaswag", "winogrande"],
+        choices=["sub_10", "full", "robustness", "gpqa", "arc", "hellaswag", "winogrande", "triviaqa"],
         help="Dataset split (optional). Used to determine prediction file name.",
     )
     parser.add_argument(
