@@ -197,8 +197,7 @@ try:
     gt_indices = {e.get("global_index") for e in gt}
     if data_indices == gt_indices:
         print(
-            f"✓ All {len(data_indices)} indices match between "
-            f"dataset and ground truth"
+            f"✓ All {len(data_indices)} indices match between dataset and ground truth"
         )
     else:
         missing_in_data = gt_indices - data_indices

@@ -790,7 +790,7 @@ def triviaqa_exact_match(predictions, ground_truths, **kwargs):
             "extracted_answer": normalized_pred,
             "ground_truth": gt_aliases,
             "correct": is_correct,
-            "matched_alias": matched_alias if is_correct else None
+            "matched_alias": matched_alias if is_correct else None,
         }
 
         raw_results.append(result_dict)

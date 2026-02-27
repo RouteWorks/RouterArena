@@ -65,7 +65,7 @@ def process_hle():
     entry_index = 0
     skipped_image = 0
     skipped_no_answer = 0
-    type_counts = {}
+    type_counts: dict[str, int] = {}
 
     for split_name in ds.keys():
         split_ds = ds[split_name]
@@ -178,7 +178,7 @@ try:
         print(f"  First entry keys: {list(gt[0].keys())}")
         print(f"  First answer: {gt[0].get('answer')}")
         # Show answer type distribution
-        type_dist = {}
+        type_dist: dict[str, int] = {}
         for e in gt:
             at = e.get("metadata", {}).get("answer_type", "unknown")
             type_dist[at] = type_dist.get(at, 0) + 1
