@@ -51,7 +51,7 @@ def load_predictions_file(
         List of prediction dictionaries
     """
     # Construct prediction path based on split
-    if split and split in ["gpqa", "robustness"]:
+    if split and split in ["gpqa", "robustness", "arc", "hellaswag"]:
         filename = f"{router_name}-{split}"
     else:
         filename = router_name
@@ -186,7 +186,7 @@ def save_predictions_file(
         split: Dataset split (optional). Used to determine prediction file name.
     """
     # Construct filename based on split (same logic as load_predictions_file)
-    if split and split in ["gpqa", "robustness"]:
+    if split and split in ["gpqa", "robustness", "arc"]:
         filename = f"{router_name}-{split}"
     else:
         filename = router_name
@@ -339,7 +339,7 @@ def process_router_predictions(
         logger.info(f"    Failed: {stats['failed']}")
 
     # Construct filename for log message
-    if split and split in ["gpqa", "robustness"]:
+    if split and split in ["gpqa", "robustness", "arc"]:
         filename = f"{router_name}-{split}"
     else:
         filename = router_name
@@ -374,7 +374,7 @@ Examples:
     parser.add_argument(
         "--split",
         type=str,
-        choices=["sub_10", "full", "robustness", "gpqa"],
+        choices=["sub_10", "full", "robustness", "gpqa", "arc", "hellaswag"],
         help="Dataset split (optional). Used to determine prediction file name.",
     )
     parser.add_argument(

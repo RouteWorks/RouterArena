@@ -30,6 +30,8 @@ DATASET_PATHS = {
     "full": "./dataset/router_data.json",
     "robustness": "./dataset/router_robustness.json",
     "gpqa": "./dataset/gpqa_data.json",
+    "arc": "./dataset/arc_data.json",
+    "hellaswag": "./dataset/hellaswag_data.json",
 }
 
 
@@ -183,6 +185,10 @@ def save_predictions(
         filename = f"{router_name}-robustness"
     elif split == "gpqa":
         filename = f"{router_name}-gpqa"
+    elif split == "arc":
+        filename = f"{router_name}-arc"
+    elif split == "hellaswag":
+        filename = f"{router_name}-hellaswag"
     prediction_path = f"./router_inference/predictions/{filename}.json"
 
     # Create directory if it doesn't exist

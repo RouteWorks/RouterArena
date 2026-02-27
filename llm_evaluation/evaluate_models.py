@@ -276,6 +276,9 @@ class ModelEvaluator:
             "GeoBench": "GeoBench",
             "GeoGraphyData": "GeoGraphyData_100k",  # Fix the dataset name
             "GPQA": "GPQA",
+            "ARC-Challenge": "ARC-Challenge",
+            "ARC-Easy": "ARC-Easy",
+            "HellaSwag": "HellaSwag",
             "GSM8K": "GSM8K",
             "LiveCodeBench": "LiveCodeBench",
             "MATH": "MATH",
@@ -507,6 +510,30 @@ class ModelEvaluator:
                             return item["answer"]
                 except Exception as e:
                     print(f"Error loading GPQA ground truth: {e}")
+            return None
+        elif dataset_name in ("ARC-Challenge", "ARC-Easy"):
+            arc_gt_path = "./dataset/arc_ground_truth.json"
+            if os.path.exists(arc_gt_path):
+                try:
+                    with open(arc_gt_path, "r", encoding="utf-8") as f:
+                        arc_data = json.load(f)
+                    for item in arc_data:
+                        if item.get("global_index") == global_index:
+                            return item["answer"]
+                except Exception as e:
+                    print(f"Error loading ARC ground truth: {e}")
+            return None
+        elif dataset_name == "HellaSwag":
+            hellaswag_gt_path = "./dataset/hellaswag_ground_truth.json"
+            if os.path.exists(hellaswag_gt_path):
+                try:
+                    with open(hellaswag_gt_path, "r", encoding="utf-8") as f:
+                        hellaswag_data = json.load(f)
+                    for item in hellaswag_data:
+                        if item.get("global_index") == global_index:
+                            return item["answer"]
+                except Exception as e:
+                    print(f"Error loading HellaSwag ground truth: {e}")
             return None
         # For other datasets, find the entry with matching global_index
         if self.all_data is None:
