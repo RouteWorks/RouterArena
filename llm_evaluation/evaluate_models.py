@@ -279,6 +279,12 @@ class ModelEvaluator:
             "ARC-Challenge": "ARC-Challenge",
             "ARC-Easy": "ARC-Easy",
             "HellaSwag": "HellaSwag",
+            "WinoGrande-debiased": "WinoGrande",
+            "WinoGrande-l": "WinoGrande",
+            "WinoGrande-m": "WinoGrande",
+            "WinoGrande-s": "WinoGrande",
+            "WinoGrande-xl": "WinoGrande",
+            "WinoGrande-xs": "WinoGrande",
             "GSM8K": "GSM8K",
             "LiveCodeBench": "LiveCodeBench",
             "MATH": "MATH",
@@ -534,6 +540,18 @@ class ModelEvaluator:
                             return item["answer"]
                 except Exception as e:
                     print(f"Error loading HellaSwag ground truth: {e}")
+            return None
+        elif dataset_name == "WinoGrande":
+            wg_gt_path = "./dataset/winogrande_ground_truth.json"
+            if os.path.exists(wg_gt_path):
+                try:
+                    with open(wg_gt_path, "r", encoding="utf-8") as f:
+                        wg_data = json.load(f)
+                    for item in wg_data:
+                        if item.get("global_index") == global_index:
+                            return item["answer"]
+                except Exception as e:
+                    print(f"Error loading WinoGrande ground truth: {e}")
             return None
         # For other datasets, find the entry with matching global_index
         if self.all_data is None:

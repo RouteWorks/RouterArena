@@ -112,7 +112,7 @@ def load_predictions_file(
         List of prediction dictionaries
     """
     # Construct prediction path based on split (same logic as llm_inference/run.py)
-    if split and split in ["gpqa", "robustness", "arc", "hellaswag"]:
+    if split and split in ["gpqa", "robustness", "arc", "hellaswag", "winogrande"]:
         filename = f"{router_name}-{split}"
     else:
         filename = router_name
@@ -1137,7 +1137,7 @@ def main():
         "split",
         nargs="?",
         type=str,
-        choices=["sub_10", "full", "robustness", "gpqa", "arc", "hellaswag"],
+        choices=["sub_10", "full", "robustness", "gpqa", "arc", "hellaswag", "winogrande"],
         help=(
             "Dataset split to use for evaluation ('sub_10' for testing with answers, "
             "'full' for submission, 'robustness' to compute robustness score only, 'gpqa' for GPQA dataset)."
