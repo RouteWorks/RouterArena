@@ -280,6 +280,7 @@ class ModelEvaluator:
             "ARC-Easy": "ARC-Easy",
             "HellaSwag": "HellaSwag",
             "TriviaQA": "TriviaQA",
+            "HLE": "HLE",
             "WinoGrande-debiased": "WinoGrande",
             "WinoGrande-l": "WinoGrande",
             "WinoGrande-m": "WinoGrande",
@@ -565,6 +566,18 @@ class ModelEvaluator:
                             return item["answer"]  # list of aliases
                 except Exception as e:
                     print(f"Error loading TriviaQA ground truth: {e}")
+            return None
+        elif dataset_name == "HLE":
+            hle_gt_path = "./dataset/hle_ground_truth.json"
+            if os.path.exists(hle_gt_path):
+                try:
+                    with open(hle_gt_path, "r", encoding="utf-8") as f:
+                        hle_data = json.load(f)
+                    for item in hle_data:
+                        if item.get("global_index") == global_index:
+                            return item["answer"]
+                except Exception as e:
+                    print(f"Error loading HLE ground truth: {e}")
             return None
         # For other datasets, find the entry with matching global_index
         if self.all_data is None:

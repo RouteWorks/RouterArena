@@ -112,7 +112,15 @@ def load_predictions_file(
         List of prediction dictionaries
     """
     # Construct prediction path based on split (same logic as llm_inference/run.py)
-    if split and split in ["gpqa", "robustness", "arc", "hellaswag", "winogrande", "triviaqa"]:
+    if split and split in [
+        "gpqa",
+        "robustness",
+        "arc",
+        "hellaswag",
+        "winogrande",
+        "triviaqa",
+        "hle",
+    ]:
         filename = f"{router_name}-{split}"
     else:
         filename = router_name
@@ -288,9 +296,7 @@ def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
                 "metadata": item.get("metadata", {}),
             }
 
-        logger.info(
-            f"Loaded {len(ground_truth_map)} WinoGrande ground truth samples"
-        )
+        logger.info(f"Loaded {len(ground_truth_map)} WinoGrande ground truth samples")
         return ground_truth_map
 
     # Handle TriviaQA split
@@ -310,13 +316,35 @@ def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
             ground_truth_map[global_index] = {
                 "question": item.get("question", ""),
                 "global_index": global_index,
-                "answer": item["answer"], # list of aliases
+                "answer": item["answer"],  # list of aliases
                 "metadata": item.get("metadata", {}),
             }
 
-        logger.info(
-            f"Loaded {len(ground_truth_map)} TriviaQA ground truth samples"
-        )
+        logger.info(f"Loaded {len(ground_truth_map)} TriviaQA ground truth samples")
+        return ground_truth_map
+
+    # Handle HLE split
+    if split == "hle":
+        hle_gt_path = "./dataset/hle_ground_truth.json"
+        if not os.path.exists(hle_gt_path):
+            raise FileNotFoundError(
+                f"HLE ground truth not found at {hle_gt_path}. "
+                f"Please run: python scripts/prepare_hle_data.py"
+            )
+        logger.info(f"Loading HLE ground truth from {hle_gt_path}...")
+        with open(hle_gt_path, "r", encoding="utf-8") as f:
+            hle_data = json.load(f)
+
+        for item in hle_data:
+            global_index = item["global_index"]
+            ground_truth_map[global_index] = {
+                "question": item.get("question", ""),
+                "global_index": global_index,
+                "answer": item["answer"],
+                "metadata": item.get("metadata", {}),
+            }
+
+        logger.info(f"Loaded {len(ground_truth_map)} HLE ground truth samples")
         return ground_truth_map
 
     if split not in ["sub_10", "full"]:
@@ -1191,7 +1219,17 @@ def main():
         "split",
         nargs="?",
         type=str,
-        choices=["sub_10", "full", "robustness", "gpqa", "arc", "hellaswag", "winogrande", "triviaqa"],
+        choices=[
+            "sub_10",
+            "full",
+            "robustness",
+            "gpqa",
+            "arc",
+            "hellaswag",
+            "winogrande",
+            "triviaqa",
+            "hle",
+        ],
         help=(
             "Dataset split to use for evaluation ('sub_10' for testing with answers, "
             "'full' for submission, 'robustness' to compute robustness score only, 'gpqa' for GPQA dataset)."
