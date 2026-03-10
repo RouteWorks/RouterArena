@@ -1,0 +1,12 @@
+{
+  "pipeline_params": {
+    "router_name": "random-router",
+    "router_cls_name": "RandomRouter",
+    "models": [
+      "gpt-4o-mini",
+      "claude-3-haiku-20240307",
+      "gemini-2.0-flash-001"
+    ],
+    "seed": 42
+  }
+}

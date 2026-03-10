@@ -738,67 +738,6 @@ def exact_match(predictions, ground_truths, **kwargs):
     return accuracy, raw_results
 
 
-def triviaqa_exact_match(predictions, ground_truths, **kwargs):
-    """
-    Calculate exact match accuracy for TriviaQA dataset by extracting answers from boxed format
-    and normalizing strings for comparison against a list of valid aliases.
-    Handles both single prediction-answer pairs and lists.
-    """
-    if not isinstance(predictions, list):
-        predictions = [predictions]
-    if not isinstance(ground_truths, list):
-        ground_truths = [ground_truths]
-
-    if len(predictions) != len(ground_truths):
-        raise ValueError(
-            f"Number of predictions ({len(predictions)}) must match number of ground truths ({len(ground_truths)})"
-        )
-
-    correct = 0
-    total = len(predictions)
-    raw_results = []
-
-    for i, (pred, gt_aliases) in enumerate(zip(predictions, ground_truths)):
-        # Extract answer from boxed format
-        if ENHANCED_EXTRACTION_AVAILABLE:
-            extracted_pred = enhanced_extract_boxed_answer(pred, "TriviaQA")
-        else:
-            extracted_pred = extract_boxed_answer(pred)
-
-        # Normalize prediction
-        normalized_pred = normalize_qanta_answer(extracted_pred)
-
-        # Ensure gt_aliases is a list
-        if not isinstance(gt_aliases, list):
-            gt_aliases = [gt_aliases]
-
-        # Check against all normalized aliases
-        is_correct = False
-        matched_alias = None
-        for alias in gt_aliases:
-            normalized_alias = normalize_qanta_answer(alias)
-            if normalized_pred == normalized_alias:
-                is_correct = True
-                matched_alias = normalized_alias
-                break
-
-        correct += int(is_correct)
-
-        # Create base result dict
-        result_dict = {
-            "prediction": pred,
-            "extracted_answer": normalized_pred,
-            "ground_truth": gt_aliases,
-            "correct": is_correct,
-            "matched_alias": matched_alias if is_correct else None,
-        }
-
-        raw_results.append(result_dict)
-
-    accuracy = correct / total if total > 0 else 0.0
-    return accuracy, raw_results
-
-
 def normalize_qanta_answer(answer):
     """
     Normalize QANTA answer for exact match comparison.

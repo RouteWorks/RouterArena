@@ -57,8 +57,6 @@ def load_predictions_file(
         "arc",
         "hellaswag",
         "winogrande",
-        "triviaqa",
-        "hle",
     ]:
         filename = f"{router_name}-{split}"
     else:
@@ -194,7 +192,13 @@ def save_predictions_file(
         split: Dataset split (optional). Used to determine prediction file name.
     """
     # Construct filename based on split (same logic as load_predictions_file)
-    if split and split in ["gpqa", "robustness", "arc"]:
+    if split and split in [
+        "gpqa",
+        "robustness",
+        "arc",
+        "hellaswag",
+        "winogrande",
+    ]:
         filename = f"{router_name}-{split}"
     else:
         filename = router_name
@@ -347,7 +351,13 @@ def process_router_predictions(
         logger.info(f"    Failed: {stats['failed']}")
 
     # Construct filename for log message
-    if split and split in ["gpqa", "robustness", "arc"]:
+    if split and split in [
+        "gpqa",
+        "robustness",
+        "arc",
+        "hellaswag",
+        "winogrande",
+    ]:
         filename = f"{router_name}-{split}"
     else:
         filename = router_name
@@ -390,8 +400,6 @@ Examples:
             "arc",
             "hellaswag",
             "winogrande",
-            "triviaqa",
-            "hle",
         ],
         help="Dataset split (optional). Used to determine prediction file name.",
     )
