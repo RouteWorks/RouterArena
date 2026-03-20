@@ -1,0 +1,14 @@
+{
+    "pipeline_params": {
+        "router_name": "auto_router",
+        "router_cls_name": "auto_router",
+        "models": [
+            "deepseek/deepseek-chat-v3.1",
+            "qwen/qwen3-235b-a22b-2507",
+            "qwen/qwen3-14b",
+            "qwen/qwen-2.5-7b-instruct",
+            "deepseek/deepseek-r1-distill-qwen-32b"
+
+        ]
+    }
+  }
