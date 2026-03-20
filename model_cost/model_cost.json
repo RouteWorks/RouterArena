@@ -175,10 +175,6 @@
     "input_token_price_per_million": 0.07,
     "output_token_price_per_million": 0.27
   },
-  "qwen/qwen3-235b-a22b-2507": {
-    "input_token_price_per_million": 0.071,
-    "output_token_price_per_million": 0.463
-  },
   "moonshotai/kimi-k2.5": {
     "input_token_price_per_million": 0.60,
     "output_token_price_per_million": 3.00
@@ -186,5 +182,31 @@
   "z-ai/glm-5": {
     "input_token_price_per_million": 1.00,
     "output_token_price_per_million": 3.20
+  },
+
+  "qwen/qwen3-8b": {
+    "input_token_price_per_million": 0.07,
+    "output_token_price_per_million": 0.7
+  },
+  "deepseek/deepseek-chat-v3.1": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.75
+  },
+  "qwen/qwen3-235b-a22b-2507": {
+    "input_token_price_per_million": 0.071,
+    "output_token_price_per_million": 0.1
+  },
+  "qwen/qwen3-14b": {
+    "input_token_price_per_million": 0.06,
+    "output_token_price_per_million": 0.24
+  },
+  "qwen/qwen-2.5-7b-instruct": {
+    "input_token_price_per_million": 0.07,
+    "output_token_price_per_million": 0.14
+  },
+  "deepseek/deepseek-r1-distill-qwen-32b": {
+    "input_token_price_per_million": 0.29,
+    "output_token_price_per_million": 0.29
   }
+
 }
