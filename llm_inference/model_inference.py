@@ -175,11 +175,15 @@ class ModelInference:
             "xiaomi/mimo-v2-flash": "openrouter",
             "xiaomi/mimo-v2-flash:free": "openrouter",
             "openai/gpt-oss-120b": "openrouter",
-            "qwen/qwen3-235b-a22b-2507": "openrouter",
             "x-ai/grok-4.1-fast": "openrouter",
             "mistralai/devstral-2512:free": "openrouter",
             "meta-llama/llama-3.3-70b-instruct": "openrouter",
             "meta-llama/llama-3.1-405b-instruct": "openrouter",
+            "qwen/qwen-2.5-7b-instruct": "openrouter",
+            "deepseek/deepseek-chat-v3.1": "openrouter",
+            "qwen/qwen3-235b-a22b-2507": "openrouter",
+            "qwen/qwen3-14b": "openrouter",
+            "deepseek/deepseek-r1-distill-qwen-32b": "openrouter",
             # Replicate
             "meta/codellama-34b-instruct": "replicate",
             # AWS Bedrock
