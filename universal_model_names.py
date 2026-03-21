@@ -58,8 +58,10 @@ universal_names = [
     "deepseek/deepseek-chat-v3.1",
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-14b",
-    "openai/gpt-4o",
+    "qwen/qwen-2.5-7b-instruct",
     "deepseek/deepseek-r1-distill-qwen-32b",
+    "openai/gpt-4o-mini-2024-07-18",
+    "openai/gpt-4o",
     # Replicate
     "meta/codellama-34b-instruct",
     # AWS Bedrock

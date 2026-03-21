@@ -11,8 +11,6 @@ for all queries.
 
 from router_inference.router.base_router import BaseRouter
 import httpx
-import os
-import codecs
 
 
 class auto_router(BaseRouter):
@@ -29,49 +27,48 @@ class auto_router(BaseRouter):
         self.counter = 0
         self.length = len(self.models)
 
+        self.id_list = [865, 866, 287, 305, 321]
         self.id_to_modelname = {
             865: "deepseek/deepseek-chat-v3.1",
             866: "qwen/qwen3-235b-a22b-2507",
             287: "qwen/qwen3-14b",
-            305: "openai/gpt-4o",
+            305: "qwen/qwen-2.5-7b-instruct",
             321: "deepseek/deepseek-r1-distill-qwen-32b",
         }
-        self.id_list = list(self.id_to_modelname.keys())
-
-        CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
-        self.auto_router_res_file = os.path.join(CURRENT_PATH, "auto_router_res.txt")
-        self.auto_rourter_res = []
-        if os.path.exists(self.auto_router_res_file):
-            # read this cache file
-            with codecs.open(self.auto_router_res_file, "r", encoding="utf-8") as fp:
-                lines = fp.readlines()
-                for line in lines:
-                    self.auto_rourter_res.append(line.strip())
 
     def get_routing_result(self, query):
         """Test the routing API with the specified request"""
-        url = "http://10.109.4.26:8501/api/v1/routing"
-
-        headers = {"Content-Type": "application/json"}
+        url = 'http://10.109.4.26:8501/api/v1/routing'
+        
+        headers = {
+            'Content-Type': 'application/json'
+        }
 
         data = {
-            "default": 866,
+            "default": 287,
             "models": self.id_list,
-            "messages": [{"role": "user", "content": query}],
+            "messages": [
+                {
+                "role": "user",
+                "content": query
+                }
+            ],
             "strategy": 1,
             "qualityPercentage": 60,
             "option": {
                 "multiRoundJudgeMode": 0,
                 "enableRagWebJudge": False,
                 "enableDomainJudge": False,
-            },
-        }
+            }
 
+            }
+        
         # Send POST request
         response = httpx.post(url, headers=headers, json=data)
+        
 
-        model_name = self.id_to_modelname[response.json()["data"]["id"]]
-
+        model_name = self.id_to_modelname[response.json()['data']['id']]
+        
         return model_name
 
     def _get_prediction(self, query: str) -> str:
@@ -88,17 +85,9 @@ class auto_router(BaseRouter):
         Returns:
             Name of the selected model
         """
-
-        if self.counter < len(self.auto_rourter_res):
-            model_name = self.auto_rourter_res[self.counter]
-        else:
-            # Simple example: cycle through models
-            print("------------------start------------")
-            model_name = self.get_routing_result(query)
-            # write this cache file
-            with open(self.auto_router_res_file, "a", encoding="utf-8") as fp:
-                fp.write(model_name + "\n")
-
-            print(f"--------{self.counter}--------model_name: {model_name}")
+        
+        # Simple example: cycle through models
+        model_name = self.get_routing_result(query)
+        print('----------------model_name:',model_name)
         self.counter += 1
         return model_name
