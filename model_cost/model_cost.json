@@ -207,6 +207,14 @@
   "deepseek/deepseek-r1-distill-qwen-32b": {
     "input_token_price_per_million": 0.29,
     "output_token_price_per_million": 0.29
+  },
+  "openai/gpt-4o-mini-2024-07-18": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.60
+  },
+  "openai/gpt-4o": {
+    "input_token_price_per_million": 2.5,
+    "output_token_price_per_million": 10.0
   }
 
 }

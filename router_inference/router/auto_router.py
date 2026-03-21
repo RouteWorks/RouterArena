@@ -32,7 +32,7 @@ class auto_router(BaseRouter):
             865: "deepseek/deepseek-chat-v3.1",
             866: "qwen/qwen3-235b-a22b-2507",
             287: "qwen/qwen3-14b",
-            305: "qwen/qwen-2.5-7b-instruct",
+            305: "openai/gpt-4o",
             321: "deepseek/deepseek-r1-distill-qwen-32b",
         }
 
