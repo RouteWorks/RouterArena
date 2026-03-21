@@ -53,6 +53,13 @@ universal_names = [
     "Qwen/QwQ-32B",
     "xiaomi/mimo-v2-flash",
     "mistralai/devstral-2512:free",
+    "qwen/qwen3-8b",
+    "qwen/qwen-2.5-7b-instruct",
+    "deepseek/deepseek-chat-v3.1",
+    "qwen/qwen3-235b-a22b-2507",
+    "qwen/qwen3-14b",
+    "qwen/qwen-2.5-7b-instruct",
+    "deepseek/deepseek-r1-distill-qwen-32b",
     # Replicate
     "meta/codellama-34b-instruct",
     # AWS Bedrock
