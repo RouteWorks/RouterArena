@@ -38,37 +38,28 @@ class auto_router(BaseRouter):
 
     def get_routing_result(self, query):
         """Test the routing API with the specified request"""
-        url = 'http://10.109.4.26:8501/api/v1/routing'
-        
-        headers = {
-            'Content-Type': 'application/json'
-        }
+        url = "http://10.109.4.26:8501/api/v1/routing"
+
+        headers = {"Content-Type": "application/json"}
 
         data = {
             "default": 287,
             "models": self.id_list,
-            "messages": [
-                {
-                "role": "user",
-                "content": query
-                }
-            ],
+            "messages": [{"role": "user", "content": query}],
             "strategy": 1,
             "qualityPercentage": 60,
             "option": {
                 "multiRoundJudgeMode": 0,
                 "enableRagWebJudge": False,
                 "enableDomainJudge": False,
-            }
+            },
+        }
 
-            }
-        
         # Send POST request
         response = httpx.post(url, headers=headers, json=data)
-        
 
-        model_name = self.id_to_modelname[response.json()['data']['id']]
-        
+        model_name = self.id_to_modelname[response.json()["data"]["id"]]
+
         return model_name
 
     def _get_prediction(self, query: str) -> str:
@@ -85,9 +76,9 @@ class auto_router(BaseRouter):
         Returns:
             Name of the selected model
         """
-        
+
         # Simple example: cycle through models
         model_name = self.get_routing_result(query)
-        print('----------------model_name:',model_name)
+        print("----------------model_name:", model_name)
         self.counter += 1
         return model_name
