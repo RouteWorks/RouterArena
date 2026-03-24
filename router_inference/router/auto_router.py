@@ -29,11 +29,10 @@ class auto_router(BaseRouter):
 
         self.id_list = [865, 866, 287, 305, 321]
         self.id_to_modelname = {
-            865: "deepseek/deepseek-chat-v3.1",
+            865: "deepseek/deepseek-v3.2",
             866: "qwen/qwen3-235b-a22b-2507",
-            287: "qwen/qwen3-14b",
+            287: "qwen/qwen3.5-9b",
             305: "openai/gpt-4o",
-            321: "deepseek/deepseek-r1-distill-qwen-32b",
         }
 
     def get_routing_result(self, query):
