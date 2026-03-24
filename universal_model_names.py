@@ -53,7 +53,6 @@ universal_names = [
     "Qwen/QwQ-32B",
     "xiaomi/mimo-v2-flash",
     "mistralai/devstral-2512:free",
-    "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3.5-9b",
     "deepseek/deepseek-v3.2",
     "openai/gpt-4o",
