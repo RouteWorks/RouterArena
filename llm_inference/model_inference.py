@@ -180,6 +180,9 @@ class ModelInference:
             "mistralai/devstral-2512:free": "openrouter",
             "meta-llama/llama-3.3-70b-instruct": "openrouter",
             "meta-llama/llama-3.1-405b-instruct": "openrouter",
+            "deepseek/deepseek-v3.2": "openrouter",
+            "openai/gpt-4o": "openrouter",
+            "qwen/qwen3.5-9b": "openrouter",
             # Replicate
             "meta/codellama-34b-instruct": "replicate",
             # AWS Bedrock
