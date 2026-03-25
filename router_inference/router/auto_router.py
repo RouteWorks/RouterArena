@@ -27,7 +27,7 @@ class auto_router(BaseRouter):
         self.counter = 0
         self.length = len(self.models)
 
-        self.id_list = [865, 866, 287, 305, 321]
+        self.id_list = [865, 866, 287, 305]
         self.id_to_modelname = {
             865: "deepseek/deepseek-v3.2",
             866: "qwen/qwen3-235b-a22b-2507",
