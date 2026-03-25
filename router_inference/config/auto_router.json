@@ -1,0 +1,12 @@
+{
+    "pipeline_params": {
+        "router_name": "auto_router",
+        "router_cls_name": "auto_router",
+        "models": [
+            "deepseek/deepseek-v3.2",
+            "qwen/qwen3-235b-a22b-2507",
+            "qwen/qwen3.5-9b",
+            "openai/gpt-4o"
+        ]
+    }
+  }
