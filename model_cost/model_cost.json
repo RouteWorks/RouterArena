@@ -191,10 +191,6 @@
     "input_token_price_per_million": 15.00,
     "output_token_price_per_million": 75.00
   },
-  "claude-sonnet-4-5": {
-    "input_token_price_per_million": 3.00,
-    "output_token_price_per_million": 15.00
-  },
   "claude-haiku-4-5": {
     "input_token_price_per_million": 0.80,
     "output_token_price_per_million": 4.00
