@@ -186,5 +186,49 @@
   "z-ai/glm-5": {
     "input_token_price_per_million": 1.00,
     "output_token_price_per_million": 3.20
+  },
+  "claude-opus-4-7": {
+    "input_token_price_per_million": 15.00,
+    "output_token_price_per_million": 75.00
+  },
+  "claude-sonnet-4-5": {
+    "input_token_price_per_million": 3.00,
+    "output_token_price_per_million": 15.00
+  },
+  "claude-haiku-4-5": {
+    "input_token_price_per_million": 0.80,
+    "output_token_price_per_million": 4.00
+  },
+  "gpt-5.5": {
+    "input_token_price_per_million": 5.00,
+    "output_token_price_per_million": 30.00
+  },
+  "gpt-5.4-mini": {
+    "input_token_price_per_million": 0.40,
+    "output_token_price_per_million": 1.60
+  },
+  "gpt-4.1": {
+    "input_token_price_per_million": 2.00,
+    "output_token_price_per_million": 8.00
+  },
+  "gemini-3.1-pro-preview": {
+    "input_token_price_per_million": 2.00,
+    "output_token_price_per_million": 12.00
+  },
+  "gemini-3.1-flash-lite-preview": {
+    "input_token_price_per_million": 0.10,
+    "output_token_price_per_million": 0.40
+  },
+  "deepseek/deepseek-v4-pro": {
+    "input_token_price_per_million": 0.435,
+    "output_token_price_per_million": 0.870
+  },
+  "qwen/qwen3.5-flash-02-23": {
+    "input_token_price_per_million": 0.065,
+    "output_token_price_per_million": 0.260
+  },
+  "deepseek/deepseek-v4-flash": {
+    "input_token_price_per_million": 0.140,
+    "output_token_price_per_million": 0.280
   }
 }
