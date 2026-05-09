@@ -112,7 +112,13 @@ def load_predictions_file(
         List of prediction dictionaries
     """
     # Construct prediction path based on split (same logic as llm_inference/run.py)
-    if split and split in ["gpqa", "robustness"]:
+    if split and split in [
+        "gpqa",
+        "robustness",
+        "arc",
+        "hellaswag",
+        "winogrande",
+    ]:
         filename = f"{router_name}-{split}"
     else:
         filename = router_name
@@ -154,7 +160,7 @@ def save_predictions_file(
         split: Dataset split (optional). Used to determine prediction file name.
     """
     # Construct filename based on split (same logic as load_predictions_file)
-    if split and split in ["gpqa", "robustness"]:
+    if split and split in ["gpqa", "robustness", "arc"]:
         filename = f"{router_name}-{split}"
     else:
         filename = router_name
@@ -212,6 +218,85 @@ def load_ground_truth_dataset(split: str) -> Dict[str, Dict[str, Any]]:
 
         logger.info(f"Loaded {len(ground_truth_map)} GPQA ground truth samples")
         return ground_truth_map
+
+    # Handle ARC split
+    if split == "arc":
+        arc_gt_path = "./dataset/arc_ground_truth.json"
+        if not os.path.exists(arc_gt_path):
+            raise FileNotFoundError(
+                f"ARC ground truth not found at {arc_gt_path}. "
+                f"Please run: python scripts/prepare_arc_data.py"
+            )
+        logger.info(f"Loading ARC ground truth from {arc_gt_path}...")
+        with open(arc_gt_path, "r", encoding="utf-8") as f:
+            arc_data = json.load(f)
+
+        for item in arc_data:
+            global_index = item["global_index"]
+            ground_truth_map[global_index] = {
+                "question": item.get("question", ""),
+                "global_index": global_index,
+                "context": item.get("context", ""),
+                "answer": item["answer"],
+                "options": item.get("options", []),
+                "metadata": item.get("metadata", {}),
+            }
+
+        logger.info(f"Loaded {len(ground_truth_map)} ARC ground truth samples")
+        return ground_truth_map
+
+    # Handle HellaSwag split
+    if split == "hellaswag":
+        hellaswag_gt_path = "./dataset/hellaswag_ground_truth.json"
+        if not os.path.exists(hellaswag_gt_path):
+            raise FileNotFoundError(
+                f"HellaSwag ground truth not found at {hellaswag_gt_path}. "
+                f"Please run: python scripts/prepare_hellaswag_data.py"
+            )
+        logger.info(f"Loading HellaSwag ground truth from {hellaswag_gt_path}...")
+        with open(hellaswag_gt_path, "r", encoding="utf-8") as f:
+            hellaswag_data = json.load(f)
+
+        for item in hellaswag_data:
+            global_index = item["global_index"]
+            ground_truth_map[global_index] = {
+                "question": item.get("question", ""),
+                "global_index": global_index,
+                "context": item.get("context", ""),
+                "answer": item["answer"],
+                "options": item.get("options", []),
+                "metadata": item.get("metadata", {}),
+            }
+
+        logger.info(f"Loaded {len(ground_truth_map)} HellaSwag ground truth samples")
+        return ground_truth_map
+
+    # Handle WinoGrande split
+    if split == "winogrande":
+        wg_gt_path = "./dataset/winogrande_ground_truth.json"
+        if not os.path.exists(wg_gt_path):
+            raise FileNotFoundError(
+                f"WinoGrande ground truth not found at {wg_gt_path}. "
+                f"Please run: python scripts/prepare_winogrande_data.py"
+            )
+        logger.info(f"Loading WinoGrande ground truth from {wg_gt_path}...")
+        with open(wg_gt_path, "r", encoding="utf-8") as f:
+            wg_data = json.load(f)
+
+        for item in wg_data:
+            global_index = item["global_index"]
+            ground_truth_map[global_index] = {
+                "question": item.get("question", ""),
+                "global_index": global_index,
+                "context": item.get("context", ""),
+                "answer": item["answer"],
+                "options": item.get("options", []),
+                "metadata": item.get("metadata", {}),
+            }
+
+        logger.info(f"Loaded {len(ground_truth_map)} WinoGrande ground truth samples")
+        return ground_truth_map
+
     if split not in ["sub_10", "full"]:
         raise ValueError(f"Invalid split: {split}. Must be 'sub_10' or 'full'")
 
@@ -1084,7 +1169,15 @@ def main():
         "split",
         nargs="?",
         type=str,
-        choices=["sub_10", "full", "robustness", "gpqa"],
+        choices=[
+            "sub_10",
+            "full",
+            "robustness",
+            "gpqa",
+            "arc",
+            "hellaswag",
+            "winogrande",
+        ],
         help=(
             "Dataset split to use for evaluation ('sub_10' for testing with answers, "
             "'full' for submission, 'robustness' to compute robustness score only, 'gpqa' for GPQA dataset)."

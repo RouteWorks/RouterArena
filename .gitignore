@@ -10,6 +10,9 @@ results/
 # datasets
 dataset/
 
+# Generated evaluation outputs
+metrics.json
+
 # Logs
 *.log
 logs/

@@ -5,6 +5,7 @@
 
 from router_inference.router.base_router import BaseRouter
 from router_inference.router.example_router import ExampleRouter
+from router_inference.router.random_router import RandomRouter
 from router_inference.router.vllm_sr import VLLMSR
 
-__all__ = ["BaseRouter", "ExampleRouter", "VLLMSR"]
+__all__ = ["BaseRouter", "ExampleRouter", "RandomRouter", "VLLMSR"]
