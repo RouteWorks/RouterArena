@@ -1,0 +1,18 @@
+{
+  "pipeline_params": {
+    "router_name": "sqwish-router-v1",
+    "router_cls_name": "R2Router",
+    "models": [
+      "qwen/qwen3-235b-a22b-2507",
+      "qwen/qwen3-next-80b-a3b-instruct",
+      "qwen/qwen3-30b-a3b-instruct-2507",
+      "Qwen/Qwen3-Coder-Next",
+      "gemini-2.5-flash",
+      "claude-3-haiku-20240307"
+    ],
+    "description": "Sqwish Router v1 submission with full and robustness prediction files."
+  },
+  "router": "sqwish-router-v1",
+  "router_name": "sqwish-router-v1",
+  "description": "Sqwish Router v1 submission."
+}
