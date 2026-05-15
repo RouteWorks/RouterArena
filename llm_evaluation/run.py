@@ -802,10 +802,6 @@ def compute_optimality_from_predictions(
 
             optimal_model_name, optimal_accuracy, optimal_cost = optimal_result
 
-            # Skip if router didn't achieve perfect accuracy
-            if router_accuracy < 1.0:
-                continue
-
             queries_with_optimal_data += 1
 
             # Convert router model name to universal name for comparison (same as leaderboard)
@@ -825,17 +821,20 @@ def compute_optimality_from_predictions(
             except Exception:
                 optimal_model_universal = optimal_model_name
 
-            # Check if router selected the optimal model
-            if router_model_universal == optimal_model_universal:
+            # Opt.Sel: router answered correctly AND picked the cheapest-correct model
+            if (
+                router_accuracy >= 1.0
+                and router_model_universal == optimal_model_universal
+            ):
                 optimal_selections += 1
 
-            # Accumulate accuracies (both should be >= 1.0 at this point)
-            if optimal_accuracy is not None:
-                total_optimal_accuracy += optimal_accuracy
-                total_router_accuracy += router_accuracy
+            # Opt.Acc: router accuracy / oracle accuracy, summed over the conditioned set
+            total_optimal_accuracy += optimal_accuracy
+            total_router_accuracy += router_accuracy
 
-            # Accumulate costs (only for queries where both achieved perfect accuracy)
-            if optimal_cost != float("inf") and router_cost > 0:
+            # Opt.Cost: restrict to queries where the router answered correctly,
+            # so cheap-but-wrong selections can't push the ratio above 1.0.
+            if router_accuracy >= 1.0:
                 total_optimal_cost += optimal_cost
                 total_router_cost += router_cost
 
