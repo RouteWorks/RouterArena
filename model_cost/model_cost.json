@@ -222,6 +222,7 @@
   "deepseek/deepseek-v4-flash": {
     "input_token_price_per_million": 0.140,
     "output_token_price_per_million": 0.280
+  },
   "qwen/qwen3-235b-a22b-2507": {
     "input_token_price_per_million": 0.071,
     "output_token_price_per_million": 0.1
