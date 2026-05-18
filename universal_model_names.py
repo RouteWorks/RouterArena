@@ -30,6 +30,7 @@ universal_names = [
     "gemini-2.0-flash-001",
     "gemini-2.5-flash",
     "gemini-2.5-pro",
+    "google/gemini-3.1-flash-lite",
     # Mistral models
     "mistral-medium",
     "codestral-latest",
@@ -41,6 +42,7 @@ universal_names = [
     "open-mistral-nemo",
     # DeepSeek models
     "deepseek-coder",
+    "deepseek/deepseek-v4-flash",
     # Together AI models
     "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
     "meta-llama/Meta-Llama-3-70B-Instruct-Turbo",

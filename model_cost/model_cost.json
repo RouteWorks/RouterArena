@@ -186,5 +186,13 @@
   "z-ai/glm-5": {
     "input_token_price_per_million": 1.00,
     "output_token_price_per_million": 3.20
+  },
+  "google/gemini-3.1-flash-lite": {
+    "input_token_price_per_million": 0.25,
+    "output_token_price_per_million": 1.5
+  },
+  "deepseek/deepseek-v4-flash": {
+    "input_token_price_per_million": 0.112,
+    "output_token_price_per_million": 0.224
   }
 }
