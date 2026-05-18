@@ -175,10 +175,6 @@
     "input_token_price_per_million": 0.07,
     "output_token_price_per_million": 0.27
   },
-  "qwen/qwen3-235b-a22b-2507": {
-    "input_token_price_per_million": 0.071,
-    "output_token_price_per_million": 0.463
-  },
   "moonshotai/kimi-k2.5": {
     "input_token_price_per_million": 0.60,
     "output_token_price_per_million": 3.00
@@ -191,8 +187,61 @@
     "input_token_price_per_million": 0.25,
     "output_token_price_per_million": 1.5
   },
+  "claude-opus-4-7": {
+    "input_token_price_per_million": 15.00,
+    "output_token_price_per_million": 75.00
+  },
+  "claude-haiku-4-5": {
+    "input_token_price_per_million": 0.80,
+    "output_token_price_per_million": 4.00
+  },
+  "gpt-5.5": {
+    "input_token_price_per_million": 5.00,
+    "output_token_price_per_million": 30.00
+  },
+  "gpt-5.4-mini": {
+    "input_token_price_per_million": 0.40,
+    "output_token_price_per_million": 1.60
+  },
+  "gpt-4.1": {
+    "input_token_price_per_million": 2.00,
+    "output_token_price_per_million": 8.00
+  },
+  "gemini-3.1-pro-preview": {
+    "input_token_price_per_million": 2.00,
+    "output_token_price_per_million": 12.00
+  },
+  "gemini-3.1-flash-lite-preview": {
+    "input_token_price_per_million": 0.10,
+    "output_token_price_per_million": 0.40
+  },
+  "deepseek/deepseek-v4-pro": {
+    "input_token_price_per_million": 0.435,
+    "output_token_price_per_million": 0.870
+  },
+  "qwen/qwen3.5-flash-02-23": {
+    "input_token_price_per_million": 0.065,
+    "output_token_price_per_million": 0.260
+  },
   "deepseek/deepseek-v4-flash": {
-    "input_token_price_per_million": 0.112,
-    "output_token_price_per_million": 0.224
+    "input_token_price_per_million": 0.140,
+    "output_token_price_per_million": 0.280
+  },
+  "qwen/qwen3-235b-a22b-2507": {
+    "input_token_price_per_million": 0.071,
+    "output_token_price_per_million": 0.1
+  },
+  "qwen/qwen3.5-9b": {
+    "input_token_price_per_million": 0.05,
+    "output_token_price_per_million": 0.15
+  },
+  "deepseek/deepseek-v3.2": {
+    "input_token_price_per_million": 0.26,
+    "output_token_price_per_million": 0.38
+  },
+  "openai/gpt-4o": {
+    "input_token_price_per_million": 2.5,
+    "output_token_price_per_million": 10.0
   }
+
 }

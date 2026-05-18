@@ -55,6 +55,10 @@ universal_names = [
     "Qwen/QwQ-32B",
     "xiaomi/mimo-v2-flash",
     "mistralai/devstral-2512:free",
+    "qwen/qwen3.5-9b",
+    "deepseek/deepseek-v3.2",
+    "openai/gpt-4o",
+    "qwen/qwen3-235b-a22b-2507",
     # Replicate
     "meta/codellama-34b-instruct",
     # AWS Bedrock
@@ -78,6 +82,18 @@ universal_names = [
     "mistralai/ministral-3-14b-2512",
     "google/gemma-3n-e4b-it",
     "claude-haiku-4.5",
+    # Weave Router (v0.27)
+    "claude-opus-4-7",
+    "claude-sonnet-4-5",
+    "claude-haiku-4-5",
+    "gpt-5.5",
+    "gpt-5.4-mini",
+    "gemini-3.1-pro-preview",
+    "gemini-3.1-flash-lite-preview",
+    "deepseek/deepseek-v4-pro",
+    "qwen/qwen3.5-flash-02-23",
+    "deepseek/deepseek-v4-flash",
+    "moonshotai/kimi-k2.5",
 ]
 
 
