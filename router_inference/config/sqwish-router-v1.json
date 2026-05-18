@@ -1,7 +1,7 @@
 {
   "pipeline_params": {
-    "router_name": "sqwish-router-v1",
-    "router_cls_name": "R2Router",
+    "router_name": "sqwish-router",
+    "router_cls_name": "sqwish-router",
     "models": [
       "qwen/qwen3-235b-a22b-2507",
       "qwen/qwen3-next-80b-a3b-instruct",
@@ -9,10 +9,9 @@
       "google/gemini-3.1-flash-lite",
       "deepseek/deepseek-v4-flash"
     ],
-    "description": "Sqwish Router v1 final submission with full and robustness prediction files.",
-    "lambda": 500.0
+    "description": "Sqwish Router final submission with full and robustness prediction files.",
   },
-  "router": "sqwish-router-v1",
-  "router_name": "sqwish-router-v1",
-  "description": "Sqwish Router v1 final submission."
+  "router": "sqwish-router",
+  "router_name": "sqwish-router",
+  "description": "Sqwish Router final submission."
 }
