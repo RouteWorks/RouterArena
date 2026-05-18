@@ -1,7 +1,7 @@
 {
   "pipeline_params": {
     "router_name": "sqwish-router",
-    "router_cls_name": "sqwish-router",
+    "router_cls_name": "ExampleRouter",
     "models": [
       "qwen/qwen3-235b-a22b-2507",
       "qwen/qwen3-next-80b-a3b-instruct",
@@ -10,6 +10,7 @@
       "deepseek/deepseek-v4-flash"
     ],
     "description": "Sqwish Router final submission with full and robustness prediction files.",
+    "lambda": 500.0
   },
   "router": "sqwish-router",
   "router_name": "sqwish-router",
