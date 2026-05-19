@@ -187,6 +187,21 @@ jobs:
           echo "Detected router submission: ${{ steps.detect.outputs.router }}"
           echo "Detected split: ${{ steps.detect.outputs.split }}"
 
+      - name: Free up disk space on the runner
+        if: ${{ steps.detect.outputs.router != '' }}
+        uses: jlumbroso/free-disk-space@main
+        with:
+          # Reclaims ~20GB by removing preinstalled tools the eval doesn't use.
+          # Keep tool-cache so actions/setup-python below stays fast.
+          # Leave swap-storage alone — the Enable Swap Space step manages it.
+          tool-cache: false
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: false
+
       - name: Set up Python
         if: ${{ steps.detect.outputs.router != '' }}
         uses: actions/setup-python@v5
