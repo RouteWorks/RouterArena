@@ -1,0 +1,30 @@
+{
+  "pipeline_params": {
+    "router_name": "orcarouter-adaptive",
+    "router_cls_name": "OrcaRouter",
+    "models": [
+      "claude-haiku-4-5-20251001",
+      "claude-sonnet-4",
+      "deepseek-chat",
+      "deepseek-reasoner",
+      "gemini-2.5-flash",
+      "gemini-2.5-flash-lite",
+      "gpt-4o-mini",
+      "gpt-5-mini",
+      "qwen3-235b-a22b-instruct-2507",
+      "qwen3-30b-a3b-instruct-2507"
+    ],
+    "upstream_router": "arena-linucb-embed",
+    "group": "arena-eval",
+    "endpoint": "http://localhost:3000/api/eval/router/decide",
+    "timeout": 10,
+    "description": "OrcaRouter Adaptive: embedding-augmented LinUCB on a 10-model pool. 424-d feature vector = 40-d hand-crafted (lexical n-grams + budget + LSH) + 384-d sentence-transformer embedding (all-MiniLM-L6-v2). Per-arm ridge λ=10, alpha=0.1, Sherman-Morrison rank-1 updates. Pick priors: expensive_penalty=0.1, quality_bonus=0.1, softmax_temperature=0.05.",
+    "alpha": 0.1,
+    "feature_dim": 424,
+    "ridge_lambda": 10,
+    "pick_overrides": {
+      "expensive_penalty": 0.1,
+      "quality_bonus": 0.1
+    }
+  }
+}

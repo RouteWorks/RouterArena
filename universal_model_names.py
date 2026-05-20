@@ -92,11 +92,30 @@ universal_names = [
     "qwen/qwen3.5-flash-02-23",
     "deepseek/deepseek-v4-flash",
     "moonshotai/kimi-k2.5",
+    # OrcaRouter pool additions
+    "claude-sonnet-4",
+    "claude-haiku-4-5-20251001",
+    "deepseek-chat",
+    "deepseek-reasoner",
+    "gemini-2.5-flash-lite",
+    "qwen3-235b-a22b-instruct-2507",
+    "qwen3-30b-a3b-instruct-2507",
 ]
 
 
 mapping: dict[str, str] = {
     # this mapping is for the model names in your config file to be converted to universal model names that is supported in our pipeline.
+    # OrcaRouter provider-prefixed → bare forms (used by arena-eval pipeline)
+    "anthropic/claude-sonnet-4": "claude-sonnet-4",
+    "anthropic/claude-haiku-4-5-20251001": "claude-haiku-4-5-20251001",
+    "deepseek/deepseek-chat": "deepseek-chat",
+    "deepseek/deepseek-reasoner": "deepseek-reasoner",
+    "google/gemini-2.5-flash": "gemini-2.5-flash",
+    "google/gemini-2.5-flash-lite": "gemini-2.5-flash-lite",
+    "openai/gpt-4o-mini": "gpt-4o-mini",
+    "openai/gpt-5-mini": "gpt-5-mini",
+    "alibaba/qwen3-235b-a22b-instruct-2507": "qwen3-235b-a22b-instruct-2507",
+    "alibaba/qwen3-30b-a3b-instruct-2507": "qwen3-30b-a3b-instruct-2507",
 }
 
 
