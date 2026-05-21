@@ -238,6 +238,26 @@
   "openai/gpt-4o": {
     "input_token_price_per_million": 2.5,
     "output_token_price_per_million": 10.0
+  },
+  "claude-haiku-4-5-20251001": {
+    "input_token_price_per_million": 1.0,
+    "output_token_price_per_million": 5.0
+  },
+  "claude-sonnet-4": {
+    "input_token_price_per_million": 3.0,
+    "output_token_price_per_million": 15.0
+  },
+  "deepseek-chat": {
+    "input_token_price_per_million": 0.27,
+    "output_token_price_per_million": 1.10
+  },
+  "qwen3-235b-a22b-instruct-2507": {
+    "input_token_price_per_million": 0.50,
+    "output_token_price_per_million": 2.00
+  },
+  "qwen3-30b-a3b-instruct-2507": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.60
   }
 
 }
