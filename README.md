@@ -28,6 +28,9 @@ RouterArena bridges this gap by providing an open evaluation platform and benchm
 
 *We aim for RouterArena to serve as a foundation for the community to evaluate, understand, and advance LLM routing systems.*
 
+> [!IMPORTANT]
+> **RouterArena is an evaluation-only dataset.** Submissions that train, fit, or tune any router component on RouterArena data (including the label files) will be rejected, and any accepted submission found in violation will be withdrawn.
+
 # Current Leaderboard
 
 For more details, please see our [website](https://routeworks.github.io/leaderboard) and [blog](https://huggingface.co/blog/JerryPotter/who-routes-the-routers).
