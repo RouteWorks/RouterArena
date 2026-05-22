@@ -23,9 +23,19 @@ universal_names = [
     "gpt-5-chat-latest",
     "gpt-5-mini",
     "gpt-5-nano",
+    "gpt-5",
+    "gpt-5-chat",
+    "gpt-5.2",
+    "gpt-5.2-chat",
+    "gpt-5.3-chat",
+    "gpt-5.4-nano",
+    "gpt-5.4",
+    "gpt-oss-120b",
     # Anthropic models
     "claude-3-haiku-20240307",
     "claude-3-7-sonnet-20250219",
+    "claude-opus-4-1",
+    "claude-opus-4-6",
     # Google models
     "gemini-2.0-flash-001",
     "gemini-2.5-flash",
@@ -41,6 +51,8 @@ universal_names = [
     "open-mistral-nemo",
     # DeepSeek models
     "deepseek-coder",
+    "deepseek-v3.1",
+    "deepseek-v3.2",
     # Together AI models
     "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
     "meta-llama/Meta-Llama-3-70B-Instruct-Turbo",
@@ -69,6 +81,11 @@ universal_names = [
     "glm-4-air",
     "glm-4-flash",
     "glm-4-plus",
+    # meta models
+    "llama-4-maverick-17b-128e-instruct-fp8",
+    # xAI models
+    "grok-4",
+    "grok-4-1-fast-reasoning",
     # R2-Router
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-next-80b-a3b-instruct",
