@@ -258,6 +258,7 @@
   "qwen3-30b-a3b-instruct-2507": {
     "input_token_price_per_million": 0.15,
     "output_token_price_per_million": 0.60
+  },
   "gpt-4.1-mini": {
     "input_token_price_per_million": 0.4,
     "output_token_price_per_million": 1.6
