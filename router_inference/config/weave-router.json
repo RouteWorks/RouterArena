@@ -7,7 +7,7 @@
       "deepseek/deepseek-v4-pro",
       "gemini-3.1-flash-lite-preview",
       "gemini-3.1-pro-preview",
-      "qwen/qwen3-coder-next",
+      "Qwen/Qwen3-Coder-Next",
       "qwen/qwen3-next-80b-a3b-instruct"
     ],
     "description": "Weave Router (v0.54): 6-model cluster routing trained only on OpenRouterBench labels + Artificial Analysis quality priors. No RouterArena prompts in any training signal.",
