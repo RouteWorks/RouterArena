@@ -38,7 +38,7 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 | Rank | Router | Affiliation | Acc-Cost Arena | Accuracy | Cost/1K Queries | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
 |------|--------------------|-----------------------------|--------|----------|---------|-----------------|--------------|----------------|---------|------------|
 | 🥇 | [Sqwish Router]() |  | 75.27 | 76.40 | $0.18 | 7.41 | 25.10 | 90.47 | — | 100.00 |
-| 🥈 | [OrcaRouter-Adaptive]() |  | 72.08 | 75.54 | $1.00 | — | — | — | — | 22.62 |
+| 🥈 | [OrcaRouter-Adaptive](https://www.orcarouter.ai/) |  | 72.08 | 75.54 | $1.00 | — | — | — | — | 22.62 |
 | 🥉 | [Azure-Model-Router](https://ai.azure.com/catalog/models/model-router)&nbsp;[[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼&nbsp;Microsoft | 71.87 | 72.82 | $0.22 | — | — | — | — | 71.43 |
 | 4 | [R2-Router](https://arxiv.org/abs/2602.02823/) | 🎓&nbsp;UCF | 71.60 | 71.23 | $0.06 | 24.51 | 48.70 | 99.85 | — | 45.71 |
 | 5 | [Auto Router]() |  | 70.05 | 70.17 | $0.12 | 37.58 | 40.02 | 86.04 | — | 49.52 |
