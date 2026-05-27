@@ -1,0 +1,23 @@
+{
+  "name": "nadir",
+  "version": "wide_deep_asym_v3",
+  "contact_email": "amirdor@gmail.com",
+  "base_url": "https://cgmuqcg2di.us-east-1.awsapprunner.com",
+  "endpoint": "/v1/route_only",
+  "expected_latency_p95_ms": 250,
+  "supported_models": [
+    "claude-haiku-4-5",
+    "claude-sonnet-4-6",
+    "claude-opus-4-6"
+  ],
+  "schema_fingerprint": "7a1538f6cc8bf7960d564dc00b58f2e336b685af50bd123a01e2dc569731efb4",
+  "pipeline_params": {
+    "router_name": "nadir",
+    "router_cls_name": "NadirRouter",
+    "models": [
+      "claude-haiku-4-5",
+      "claude-sonnet-4-6",
+      "claude-opus-4-6"
+    ]
+  }
+}

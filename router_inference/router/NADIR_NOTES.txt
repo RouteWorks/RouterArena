@@ -1,0 +1,108 @@
+# Nadir submission notes
+
+Two router entries are submitted to RouterArena:
+
+| Submission | Adapter file | Config | Predictions |
+|---|---|---|---|
+| `nadir-cascade-v3-verifier` | `nadir_adapter.py` (`NadirRouter`) | `config/nadir-cascade-v3-verifier.json` | `predictions/nadir-cascade-v3-verifier{,-robustness}.json` |
+| `nadir-cheapest-strategy-E` | `nadir_cheapest_adapter.py` (`NadirCheapestRouter`) | `config/nadir-cheapest-strategy-E.json` | `predictions/nadir-cheapest-strategy-E{,-robustness}.json` |
+
+## What each one is
+
+### `nadir-cascade-v3-verifier` — the real Nadir architecture
+
+Wide-deep-asymmetric classifier (trained on production traffic) feeds a tier in `{simple, medium, complex}`. A cross-encoder verifier (cheap response generated, then scored) gates the simple-tier picks: if `verifier_score >= 0.70` the cheap answer is accepted, otherwise the prompt escalates to mid. Tier is mapped to a fixed three-model Claude pool:
+
+- `simple` -> `claude-haiku-4-5`
+- `medium` -> `claude-sonnet-4-6`
+- `complex` -> `claude-opus-4-6`
+
+Reported scores (offline, against RouterArena's cached results via the same scorer the leaderboard uses):
+
+- Arena score: **0.7118**
+- Accuracy: **0.7371**
+- Cost / 1K queries: **$0.6841**
+- Verifier-escalation rate: **0.967** (over the 7,061 simple-tier prompts the verifier actually scored)
+- Calibrated threshold tau: **0.70** (best of a 14-point sweep from 0.30 to 0.90)
+
+### `nadir-cheapest-strategy-E` — the cost-minimization baseline
+
+Not a smart router. For each prompt we examine the cached model set in RouterArena and pick the cheapest by output `$/M`, alphabetical tie-break. Strategy E adds a length-budget `max_tokens` cap (R2-Router playbook):
+
+- prompt len < 500 chars -> 256 tokens
+- 500-2000 chars -> 512
+- > 2000 chars -> 1024
+
+Reported scores: arena ≈ 0.7043, accuracy ≈ 0.6996, cost / 1K ≈ $0.5180. Submitted as a deliberate baseline so reviewers can see what pure cost arbitrage scores against the cascade.
+
+## Reproducing
+
+Source repo: https://github.com/doramirdor/getnadir.dev
+
+- `MODEL_CARD.md` and `METHODOLOGY_NOTE.md` (in that repo) cover the classifier training, verifier, and rule engine.
+- The decision CSVs used to build these prediction files live at
+  `eval/routerarena/rescoring/full_decisions_v3_verifier_FIXED_20260527T161854Z.csv`
+  and
+  `eval/routerarena/rescoring/cheapest_decisions_E_20260527T153854Z.csv`.
+- Contamination audit:
+  `eval/routerarena/reports/routerarena_contamination_20260527T173502.json`.
+
+## Heads-up: `claude-sonnet-4-6` not yet in `universal_model_names.py`
+
+The cascade submission uses `claude-sonnet-4-6` as the mid-tier model. It is in `model_cost.json` at $3/$15 per million, but not in `universal_names` or in the `mapping` dict.
+
+**Draft addition** (one-line PR to `universal_model_names.py`):
+
+```python
+# Anthropic models
+"claude-3-haiku-20240307",
+"claude-3-7-sonnet-20250219",
+"claude-opus-4-1",
+"claude-opus-4-6",
+"claude-sonnet-4-6",   # <-- add this
+```
+
+and in `model_cost/model_cost.json`:
+
+```json
+"claude-sonnet-4-6": {
+  "input_token_price_per_million": 3.0,
+  "output_token_price_per_million": 15.0
+}
+```
+
+If the maintainers prefer a single edit, the `claude-sonnet-4-5` entry already in the file is cost-identical and would let `nadir-cascade-v3-verifier` validate without code changes; we just remap the mid-tier in the config to `claude-sonnet-4-5`. We have left the canonical name in the submission because the goal is for the leaderboard to reflect the production pool exactly. Either resolution is fine — open to whichever the maintainers prefer.
+
+## Prediction file shape
+
+All four prediction files follow the schema in `router_inference/generate_prediction_file.py`:
+
+```json
+{
+  "global index": "ArcMMLU_655",
+  "prompt": "<full prompt text from dataset>",
+  "prediction": "<model name from pool>",
+  "generated_result": null,
+  "cost": null,
+  "accuracy": null,
+  "for_optimality": false
+}
+```
+
+Counts:
+
+| File | Entries | Regular | Optimality |
+|---|---|---|---|
+| `nadir-cascade-v3-verifier.json` | 10,018 | 8,400 | 1,618 (809 sub_10 prompts × 2 other Claude models) |
+| `nadir-cheapest-strategy-E.json` | 10,018 | 8,400 | 1,618 (2nd- and 3rd-cheapest cached models per sub_10 prompt) |
+| `nadir-cascade-v3-verifier-robustness.json` | 420 | 420 | 0 (robustness has no optimality augmentation) |
+| `nadir-cheapest-strategy-E-robustness.json` | 420 | 420 | 0 |
+
+## Validation status (against `check_config_prediction_files.py`)
+
+| Submission | Split | Status |
+|---|---|---|
+| `nadir-cascade-v3-verifier` | full | passes structural + size + dataset checks; **blocked on `claude-sonnet-4-6` not being in `ModelNameManager`** |
+| `nadir-cascade-v3-verifier` | robustness | same |
+| `nadir-cheapest-strategy-E` | full | **PASS** |
+| `nadir-cheapest-strategy-E` | robustness | **PASS** |
