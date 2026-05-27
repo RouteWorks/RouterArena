@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
+
 """RouterArena adapter for the Nadir /v1/route_only endpoint.
 
 This module is the Nadir side of the RouterArena integration. RouterArena's
@@ -22,6 +25,7 @@ Environment variables:
 Schema fingerprint is locked at adapter build time. The backend emits the
 same constant in every response; a mismatch is treated as untrusted data.
 """
+
 from __future__ import annotations
 
 import json
@@ -79,9 +83,7 @@ def flag_smoke_run(histogram: Dict[str, int]) -> Dict[str, Any]:
     total = sum(histogram.values()) or 1
     low = histogram.get("<0.4", 0)
     ratio = low / total
-    verdict = (
-        "NEEDS_FOUNDER_REVIEW" if ratio > LOW_CONFIDENCE_FLAG_RATIO else "PASS"
-    )
+    verdict = "NEEDS_FOUNDER_REVIEW" if ratio > LOW_CONFIDENCE_FLAG_RATIO else "PASS"
     return {
         "verdict": verdict,
         "low_confidence_ratio": ratio,
@@ -186,9 +188,7 @@ class NadirRouter(BaseRouter):
             api_key if api_key is not None else os.environ.get("NADIR_API_KEY", "")
         )
         self._timeout = timeout
-        self._client = (
-            client if client is not None else httpx.Client(timeout=timeout)
-        )
+        self._client = client if client is not None else httpx.Client(timeout=timeout)
         self._owns_client = client is None
         self._confidence_histogram: Dict[str, int] = confidence_histogram()
         # First-seen header values, for cross-call consistency checks in the
@@ -242,8 +242,7 @@ class NadirRouter(BaseRouter):
 
         if resp.status_code < 200 or resp.status_code >= 300:
             raise NadirRouterError(
-                f"HTTP {resp.status_code} from /v1/route_only: "
-                f"{resp.text[:300]}"
+                f"HTTP {resp.status_code} from /v1/route_only: {resp.text[:300]}"
             )
 
         try:

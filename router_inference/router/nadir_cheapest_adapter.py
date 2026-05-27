@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
+
 """RouterArena adapter for the `nadir-cheapest` cost-minimization baseline.
 
 NOT a smart router. NOT the production Nadir stack. This adapter exists
@@ -60,6 +63,7 @@ Determinism guarantees:
   - When the cached set is empty, falls back to `FALLBACK_MODEL` and
     logs to stderr.
 """
+
 from __future__ import annotations
 
 import json
