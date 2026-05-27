@@ -1,0 +1,11 @@
+{
+  "pipeline_params": {
+    "router_name": "agentforge-router",
+    "router_cls_name": "AgentForgeOfflineRouter",
+    "models": [
+      "claude-3-haiku-20240307",
+      "gemini-2.0-flash-001",
+      "gpt-4o-mini"
+    ]
+  }
+}
