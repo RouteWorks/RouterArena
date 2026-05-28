@@ -1,0 +1,21 @@
+{
+  "pipeline_params": {
+    "router_name": "nadir-cascade-v2",
+    "router_cls_name": "NadirRouter",
+    "models": [
+      "qwen/qwen3-235b-a22b-2507",
+      "gpt-4o-mini",
+      "deepseek/deepseek-v3.2",
+      "claude-3-haiku-20240307",
+      "openai/gpt-5-mini",
+      "deepseek/deepseek-reasoner",
+      "deepseek/deepseek-v4-flash",
+      "grok-4-1-fast-reasoning",
+      "anthropic/claude-sonnet-4",
+      "anthropic/claude-sonnet-4-5"
+    ],
+    "router_version": "v2_N2_per_tier_cheapest_cached_verifier_cascade_tau080",
+    "verifier_threshold": 0.8,
+    "contact_email": "info@getnadir.com"
+  }
+}

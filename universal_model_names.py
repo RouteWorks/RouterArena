@@ -124,6 +124,7 @@ mapping: dict[str, str] = {
     # this mapping is for the model names in your config file to be converted to universal model names that is supported in our pipeline.
     # OrcaRouter provider-prefixed → bare forms (used by arena-eval pipeline)
     "anthropic/claude-sonnet-4": "claude-sonnet-4",
+    "anthropic/claude-sonnet-4-5": "claude-sonnet-4-5",
     "anthropic/claude-haiku-4-5-20251001": "claude-haiku-4-5-20251001",
     "deepseek/deepseek-chat": "deepseek-chat",
     "deepseek/deepseek-reasoner": "deepseek-reasoner",
