@@ -4,21 +4,16 @@
     "router_cls_name": "WeaveRouter",
     "models": [
       "claude-opus-4-7",
-      "claude-sonnet-4-5",
-      "claude-haiku-4-5",
       "gpt-5.5",
-      "gpt-5.4-mini",
-      "gpt-4.1",
       "gemini-3.1-pro-preview",
       "gemini-3.1-flash-lite-preview",
       "deepseek/deepseek-v4-pro",
-      "qwen/qwen3.5-flash-02-23",
       "deepseek/deepseek-v4-flash",
-      "moonshotai/kimi-k2.5"
+      "qwen/qwen3-235b-a22b-2507"
     ],
-    "description": "Weave Router (v0.27): cluster-routing over a 12-model BYOK pool spanning Anthropic, OpenAI, Google, and OpenRouter providers. Embeds each prompt, scores against per-cluster model rankings trained on RouterArena's full split, and selects the cost-quality optimum via an alpha-blended score (alpha=0.40). The pool is intentionally multi-provider so a customer who only brings an OpenAI key still gets a 3-tier choice.",
-    "alpha": 0.40,
-    "router_version": "v0.27",
+    "description": "Weave Router (v0.62): cluster-routing over a 7-model BYOK pool spanning Anthropic, OpenAI, Google, and OpenRouter providers. Embeds each prompt with Jina v2 INT8 ONNX (768-dim), runs top-p=4 cluster sum against per-cluster rankings trained on the RouterArena full split with k=160 clusters, then selects the cost-quality optimum via an alpha-blended score (alpha=0.25, output_cost_ratio=4.0). The pool is intentionally multi-provider so a customer who only brings an OpenAI key still gets a 3-tier choice.",
+    "alpha": 0.25,
+    "router_version": "v0.62",
     "router_homepage": "https://workweave.ai"
   }
 }

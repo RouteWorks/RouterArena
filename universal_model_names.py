@@ -23,9 +23,19 @@ universal_names = [
     "gpt-5-chat-latest",
     "gpt-5-mini",
     "gpt-5-nano",
+    "gpt-5",
+    "gpt-5-chat",
+    "gpt-5.2",
+    "gpt-5.2-chat",
+    "gpt-5.3-chat",
+    "gpt-5.4-nano",
+    "gpt-5.4",
+    "gpt-oss-120b",
     # Anthropic models
     "claude-3-haiku-20240307",
     "claude-3-7-sonnet-20250219",
+    "claude-opus-4-1",
+    "claude-opus-4-6",
     # Google models
     "gemini-2.0-flash-001",
     "gemini-2.5-flash",
@@ -43,6 +53,8 @@ universal_names = [
     # DeepSeek models
     "deepseek-coder",
     "deepseek/deepseek-v4-flash",
+    "deepseek-v3.1",
+    "deepseek-v3.2",
     # Together AI models
     "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
     "meta-llama/Meta-Llama-3-70B-Instruct-Turbo",
@@ -71,6 +83,11 @@ universal_names = [
     "glm-4-air",
     "glm-4-flash",
     "glm-4-plus",
+    # meta models
+    "llama-4-maverick-17b-128e-instruct-fp8",
+    # xAI models
+    "grok-4",
+    "grok-4-1-fast-reasoning",
     # R2-Router
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-next-80b-a3b-instruct",
@@ -94,11 +111,30 @@ universal_names = [
     "qwen/qwen3.5-flash-02-23",
     "deepseek/deepseek-v4-flash",
     "moonshotai/kimi-k2.5",
+    # OrcaRouter pool additions
+    "claude-sonnet-4",
+    "claude-haiku-4-5-20251001",
+    "deepseek-chat",
+    "deepseek-reasoner",
+    "gemini-2.5-flash-lite",
+    "qwen3-235b-a22b-instruct-2507",
+    "qwen3-30b-a3b-instruct-2507",
 ]
 
 
 mapping: dict[str, str] = {
     # this mapping is for the model names in your config file to be converted to universal model names that is supported in our pipeline.
+    # OrcaRouter provider-prefixed → bare forms (used by arena-eval pipeline)
+    "anthropic/claude-sonnet-4": "claude-sonnet-4",
+    "anthropic/claude-haiku-4-5-20251001": "claude-haiku-4-5-20251001",
+    "deepseek/deepseek-chat": "deepseek-chat",
+    "deepseek/deepseek-reasoner": "deepseek-reasoner",
+    "google/gemini-2.5-flash": "gemini-2.5-flash",
+    "google/gemini-2.5-flash-lite": "gemini-2.5-flash-lite",
+    "openai/gpt-4o-mini": "gpt-4o-mini",
+    "openai/gpt-5-mini": "gpt-5-mini",
+    "alibaba/qwen3-235b-a22b-instruct-2507": "qwen3-235b-a22b-instruct-2507",
+    "alibaba/qwen3-30b-a3b-instruct-2507": "qwen3-30b-a3b-instruct-2507",
 }
 
 

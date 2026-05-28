@@ -1,0 +1,9 @@
+{
+  "pipeline_params": {
+    "router_name": "agentforge-router",
+    "router_cls_name": "AgentForgeOfflineRouter",
+    "models": [
+      "gpt-4o-mini"
+    ]
+  }
+}
