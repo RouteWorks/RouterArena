@@ -947,13 +947,21 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
 
     for prediction in regular_predictions:
         generated_result = prediction.get("generated_result")
-        has_valid_generation = isinstance(generated_result, dict) and generated_result.get(
-            "success", False
+        # Prediction files are untrusted contributor input. Require success to be
+        # exactly True (a truthy string like "False" must not pass).
+        has_valid_generation = (
+            isinstance(generated_result, dict)
+            and generated_result.get("success") is True
         )
         accuracy = prediction.get("accuracy")
+        # Accept accuracy only if it is a real number (reject bool, since
+        # isinstance(True, int) is True, and strings that would break sum()).
+        valid_accuracy = isinstance(accuracy, (int, float)) and not isinstance(
+            accuracy, bool
+        )
 
-        if not has_valid_generation or accuracy is None:
-            # No successful generation (or somehow unscored): count as wrong.
+        if not has_valid_generation or not valid_accuracy:
+            # No successful generation (or missing/invalid score): count as wrong.
             accuracy = 0.0
             abnormal_count += 1
 

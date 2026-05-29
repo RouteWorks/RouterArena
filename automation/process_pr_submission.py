@@ -261,11 +261,19 @@ def compute_scores(prediction_file: Path) -> dict[str, float]:
     abnormal_count = 0
     for entry in regular_predictions:
         generated_result = entry.get("generated_result")
-        has_valid_generation = isinstance(
-            generated_result, dict
-        ) and generated_result.get("success", False)
+        # Untrusted contributor input: require success to be exactly True (a
+        # truthy string like "False" must not pass).
+        has_valid_generation = (
+            isinstance(generated_result, dict)
+            and generated_result.get("success") is True
+        )
         accuracy = entry.get("accuracy")
-        if not has_valid_generation or accuracy is None:
+        # Accept accuracy only if it is a real number (reject bool, since
+        # isinstance(True, int) is True, and strings that would break sum()).
+        valid_accuracy = isinstance(accuracy, (int, float)) and not isinstance(
+            accuracy, bool
+        )
+        if not has_valid_generation or not valid_accuracy:
             accuracy = 0.0
             abnormal_count += 1
         accuracies.append(accuracy)
