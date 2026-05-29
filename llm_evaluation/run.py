@@ -956,16 +956,16 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
         accuracy = prediction.get("accuracy")
         # Accept accuracy only if it is a real number (reject bool, since
         # isinstance(True, int) is True, and strings that would break sum()).
-        valid_accuracy = isinstance(accuracy, (int, float)) and not isinstance(
-            accuracy, bool
-        )
-
-        if not has_valid_generation or not valid_accuracy:
+        if (
+            has_valid_generation
+            and isinstance(accuracy, (int, float))
+            and not isinstance(accuracy, bool)
+        ):
+            accuracies.append(float(accuracy))
+        else:
             # No successful generation (or missing/invalid score): count as wrong.
-            accuracy = 0.0
+            accuracies.append(0.0)
             abnormal_count += 1
-
-        accuracies.append(accuracy)
 
         cost = prediction.get("cost")
         if cost is not None and cost > 0:

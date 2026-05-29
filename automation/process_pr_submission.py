@@ -270,13 +270,16 @@ def compute_scores(prediction_file: Path) -> dict[str, float]:
         accuracy = entry.get("accuracy")
         # Accept accuracy only if it is a real number (reject bool, since
         # isinstance(True, int) is True, and strings that would break sum()).
-        valid_accuracy = isinstance(accuracy, (int, float)) and not isinstance(
-            accuracy, bool
-        )
-        if not has_valid_generation or not valid_accuracy:
+        if (
+            has_valid_generation
+            and isinstance(accuracy, (int, float))
+            and not isinstance(accuracy, bool)
+        ):
+            accuracies.append(float(accuracy))
+        else:
             accuracy = 0.0
             abnormal_count += 1
-        accuracies.append(accuracy)
+            accuracies.append(0.0)
 
     costs = [
         entry["cost"]
