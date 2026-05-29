@@ -254,11 +254,22 @@ def compute_scores(prediction_file: Path) -> dict[str, float]:
     # Filter to regular predictions only (exclude optimality entries)
     regular_predictions = [p for p in predictions if not p.get("for_optimality", False)]
 
-    accuracies = [
-        entry["accuracy"]
-        for entry in regular_predictions
-        if entry.get("accuracy") is not None
-    ]
+    # Every regular query contributes to the accuracy denominator. Entries with no
+    # valid generation (success=False / missing / empty) are scored as 0, not dropped,
+    # so accuracy cannot be inflated over a self-selected answered subset.
+    accuracies = []
+    abnormal_count = 0
+    for entry in regular_predictions:
+        generated_result = entry.get("generated_result")
+        has_valid_generation = isinstance(
+            generated_result, dict
+        ) and generated_result.get("success", False)
+        accuracy = entry.get("accuracy")
+        if not has_valid_generation or accuracy is None:
+            accuracy = 0.0
+            abnormal_count += 1
+        accuracies.append(accuracy)
+
     costs = [
         entry["cost"]
         for entry in regular_predictions
@@ -280,6 +291,7 @@ def compute_scores(prediction_file: Path) -> dict[str, float]:
         "avg_cost_per_query": avg_cost_per_query,
         "avg_cost_per_1000": avg_cost_per_1000,
         "arena_score": arena_score,
+        "abnormal_count": abnormal_count,
     }
 
 
