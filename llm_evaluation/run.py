@@ -932,15 +932,40 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
     regular_predictions = [p for p in predictions if not p.get("for_optimality", False)]
     optimality_predictions = [p for p in predictions if p.get("for_optimality", False)]
 
-    # Extract accuracy and cost ONLY from regular predictions for RouterArena score
+    # Extract accuracy and cost ONLY from regular predictions for RouterArena score.
+    #
+    # IMPORTANT: every regular query must contribute to the accuracy denominator.
+    # Entries with no valid generation (inference failed / success=False / empty
+    # generated_answer) are NOT dropped — they are scored as 0 (wrong) and counted
+    # via ``abnormal_count``. Silently dropping them would let a submission inflate
+    # accuracy (averaged over a self-selected subset) and dilute cost (summed over
+    # the answered subset but divided by the full query count).
     accuracies = []
     costs = []
     valid_cost_count = 0
+    abnormal_count = 0
 
     for prediction in regular_predictions:
+        generated_result = prediction.get("generated_result")
+        # Prediction files are untrusted contributor input. Require success to be
+        # exactly True (a truthy string like "False" must not pass).
+        has_valid_generation = (
+            isinstance(generated_result, dict)
+            and generated_result.get("success") is True
+        )
         accuracy = prediction.get("accuracy")
-        if accuracy is not None:
-            accuracies.append(accuracy)
+        # Accept accuracy only if it is a real number (reject bool, since
+        # isinstance(True, int) is True, and strings that would break sum()).
+        if (
+            has_valid_generation
+            and isinstance(accuracy, (int, float))
+            and not isinstance(accuracy, bool)
+        ):
+            accuracies.append(float(accuracy))
+        else:
+            # No successful generation (or missing/invalid score): count as wrong.
+            accuracies.append(0.0)
+            abnormal_count += 1
 
         cost = prediction.get("cost")
         if cost is not None and cost > 0:
@@ -948,15 +973,10 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
             valid_cost_count += 1
 
     # Check if any entries were evaluated
-    if not accuracies and not costs:
+    if not regular_predictions:
         raise ValueError(
-            "No entries were evaluated. All prediction entries are missing 'generated_result' fields. "
+            "No regular (non-optimality) entries found. "
             "Please run llm_inference/run.py first to generate model outputs before evaluation."
-        )
-
-    if not accuracies:
-        raise ValueError(
-            "No entries have accuracy values. Cannot compute RouterArena score without accuracy data."
         )
 
     if not costs:
@@ -964,7 +984,7 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
             "No entries have valid cost values. Cannot compute RouterArena score without cost data."
         )
 
-    # Compute average accuracy
+    # Compute average accuracy over ALL regular queries (abnormal entries count as 0)
     avg_accuracy = sum(accuracies) / len(accuracies) if accuracies else 0.0
 
     # Compute total cost (sum of all costs)
@@ -989,6 +1009,9 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
         )
     logger.info(f"Queries with Accuracy: {len(accuracies)}")
     logger.info(f"Queries with Valid Cost: {valid_cost_count}")
+    logger.info(
+        f"Abnormal Entries (no valid generation, scored as 0): {abnormal_count}"
+    )
     logger.info(f"Average Accuracy: {avg_accuracy:.4f}")
     logger.info(f"Total Cost: ${total_cost:.6f}")
     if num_queries > 0:
@@ -1050,6 +1073,7 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
         "avg_cost_per_query": total_cost / num_queries if num_queries > 0 else 0.0,
         "avg_cost_per_1000": avg_cost_per_1000,
         "num_queries": num_queries,
+        "abnormal_count": abnormal_count,
     }
 
     # Add optimality scores if available (reuse previously computed result)

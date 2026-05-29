@@ -293,9 +293,22 @@ jobs:
             comment += `| **Avg Cost per Query** | $${metrics.avg_cost_per_query.toFixed(6)} |\n`;
             comment += `| **Avg Cost per 1K Queries** | $${metrics.avg_cost_per_1000.toFixed(4)} |\n`;
             comment += `| **Number of Queries** | ${metrics.num_queries} |\n`;
+            const abnormalCount = metrics.abnormal_count;
+            if (abnormalCount !== undefined) {
+              comment += `| **Abnormal Entries** | ${abnormalCount} |\n`;
+            }
             const robustnessScore = metrics.robustness_score;
             const robustnessCell = robustnessScore !== undefined ? robustnessScore.toFixed(4) : 'N/A';
             comment += `| **Robustness Score** | ${robustnessCell} |\n`;
+
+            // Warn the author if some queries had no valid generation (scored as 0)
+            if (abnormalCount && abnormalCount > 0) {
+              const pct = ((abnormalCount / metrics.num_queries) * 100).toFixed(1);
+              comment += `\n> ⚠️ **${abnormalCount} of ${metrics.num_queries} queries (${pct}%) had no valid generation** `;
+              comment += `(inference failed / empty answer) and were scored as **incorrect (0)**. `;
+              comment += `These queries still count toward the denominator, so accuracy and cost reflect the full query set. `;
+              comment += `Please regenerate predictions for these queries and resubmit for a complete evaluation.\n`;
+            }
 
             // Add optimality scores if available
             if (metrics.optimality) {
