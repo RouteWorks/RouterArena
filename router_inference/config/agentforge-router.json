@@ -4,16 +4,10 @@
     "router_cls_name": "AgentForgeOfflineRouter",
     "models": [
       "qwen/qwen3-235b-a22b-2507",
-      "qwen/qwen3-30b-a3b-instruct-2507",
-      "Qwen/Qwen3-Coder-Next",
-      "gemini-2.5-flash",
-      "deepseek/deepseek-v3.2"
+      "deepseek/deepseek-v3.2",
+      "gemini-2.0-flash-001",
+      "gpt-4o-mini",
+      "claude-3-haiku-20240307"
     ]
-  },
-  "router_params": {
-    "artifact_path": "./models/agentforge_router/router.pt",
-    "embedding_model_path": "./models/embedding/all-MiniLM-L6-v2",
-    "embedding_max_length": 256,
-    "lambda": 0.5
   }
 }
