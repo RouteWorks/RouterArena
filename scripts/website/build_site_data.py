@@ -119,13 +119,24 @@ def load_predictions(
         return json.load(handle)
 
 
-def load_difficulty_map() -> dict[str, str]:
-    """Map global index -> difficulty (easy/medium/hard) from the dataset."""
+def load_dataset_maps() -> tuple[dict[str, str], dict[str, str], dict[str, str]]:
+    """Return (difficulty, domain, category) maps keyed by global index.
+
+    Domain/category keys are stripped of the leading ``"<n> "`` index to match
+    the website's ``categories``/``subcategories`` keys
+    (e.g. ``"5 Science"`` -> ``"Science"``).
+    """
     from datasets import load_from_disk
 
     dataset_dir = os.environ.get("ROUTERARENA_DATASET_DIR", str(REPO_ROOT / "dataset"))
     ds = load_from_disk(str(Path(dataset_dir) / "routerarena"))
-    return {row["Global Index"]: str(row["Difficulty"]).lower() for row in ds}
+    difficulty, domain, category = {}, {}, {}
+    for row in ds:
+        gi = row["Global Index"]
+        difficulty[gi] = str(row["Difficulty"]).lower()
+        domain[gi] = re.sub(r"^\d+\s+", "", str(row["Domain"])).strip()
+        category[gi] = re.sub(r"^\d+\s+", "", str(row["Category"])).strip()
+    return difficulty, domain, category
 
 
 def _regular(predictions: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -161,19 +172,18 @@ def compute_headline_metrics(
     }
 
 
-def compute_category_scores(
-    predictions: list[dict[str, Any]],
-    flip_labels: list[dict[str, Any]],
+def _difficulty_metrics(
+    entries: list[dict[str, Any]],
+    flip_map: dict[str, int],
     difficulty: dict[str, str],
 ) -> dict[str, dict[str, Any]]:
-    """Per-difficulty (easy/medium/hard/all) accuracy, cost, robustness."""
-    flip_map = {item["global index"]: item["flip"] for item in flip_labels}
+    """{easy/medium/hard/all: {accuracy, cost, robustness}} over the given entries."""
     buckets: dict[str, dict[str, list[float]]] = {
         b: {"acc": [], "cost": []} for b in (*DIFFICULTY_BUCKETS, "all")
     }
     flip_buckets: dict[str, list[int]] = {b: [] for b in (*DIFFICULTY_BUCKETS, "all")}
 
-    for p in _regular(predictions):
+    for p in entries:
         gi = p.get("global index")
         acc = _numeric(p.get("accuracy")) or 0.0
         cost = _numeric(p.get("cost")) or 0.0
@@ -182,23 +192,66 @@ def compute_category_scores(
         for t in targets:
             buckets[t]["acc"].append(acc)
             buckets[t]["cost"].append(cost)
-        if gi in flip_map:
+        if isinstance(gi, str) and gi in flip_map:
             for t in targets:
                 flip_buckets[t].append(flip_map[gi])
 
     out: dict[str, dict[str, Any]] = {}
     for b in (*DIFFICULTY_BUCKETS, "all"):
-        accs = buckets[b]["acc"]
-        costs = buckets[b]["cost"]
-        flips = flip_buckets[b]
+        accs, costs, flips = buckets[b]["acc"], buckets[b]["cost"], flip_buckets[b]
+        # Empty buckets are reported as 0 (matches the website's convention).
         out[b] = {
-            "accuracy": round(sum(accs) / len(accs) * 100, 1) if accs else None,
-            "cost": round(sum(costs) / len(costs), 4) if costs else None,
-            "robustness": round((1 - sum(flips) / len(flips)) * 100, 1)
-            if flips
-            else None,
+            "accuracy": round(sum(accs) / len(accs) * 100, 1) if accs else 0,
+            "cost": round(sum(costs) / len(costs), 4) if costs else 0,
+            "robustness": round((1 - sum(flips) / len(flips)) * 100, 1) if flips else 0,
         }
     return out
+
+
+def compute_category_scores(
+    predictions: list[dict[str, Any]],
+    flip_labels: list[dict[str, Any]],
+    difficulty: dict[str, str],
+    domain: dict[str, str],
+    category: dict[str, str],
+) -> dict[str, Any]:
+    """Website per-router entry: overall + per-domain + per-subcategory metrics.
+
+    Mirrors the website schema:
+        {"metrics": {<difficulty>},
+         "categories": {<domain>: {"metrics": {<difficulty>},
+                                   "subcategories": {<category>: {"metrics": {<difficulty>}}}}}}
+    """
+    flip_map = {item["global index"]: item["flip"] for item in flip_labels}
+    regular = _regular(predictions)
+
+    by_domain: dict[str, list[dict[str, Any]]] = {}
+    for p in regular:
+        gi = p.get("global index")
+        dom = domain.get(gi) if isinstance(gi, str) else None
+        if dom:
+            by_domain.setdefault(dom, []).append(p)
+
+    categories: dict[str, Any] = {}
+    for dom, dom_entries in sorted(by_domain.items()):
+        by_cat: dict[str, list[dict[str, Any]]] = {}
+        for p in dom_entries:
+            gi = p.get("global index")
+            cat = category.get(gi) if isinstance(gi, str) else None
+            if cat:
+                by_cat.setdefault(cat, []).append(p)
+        categories[dom] = {
+            "metrics": _difficulty_metrics(dom_entries, flip_map, difficulty),
+            "subcategories": {
+                cat: {"metrics": _difficulty_metrics(entries, flip_map, difficulty)}
+                for cat, entries in sorted(by_cat.items())
+            },
+        }
+
+    return {
+        "metrics": _difficulty_metrics(regular, flip_map, difficulty),
+        "categories": categories,
+    }
 
 
 def main(argv: Optional[list[str]] = None) -> int:
@@ -233,7 +286,9 @@ def main(argv: Optional[list[str]] = None) -> int:
         json.loads(cs_path.read_text(encoding="utf-8")) if cs_path.exists() else {}
     )
 
-    difficulty = {} if args.skip_category else load_difficulty_map()
+    difficulty, domain, category = (
+        ({}, {}, {}) if args.skip_category else load_dataset_maps()
+    )
     updated, regenerated, missing = [], [], []
 
     for meta in routers:
@@ -286,9 +341,9 @@ def main(argv: Optional[list[str]] = None) -> int:
             and cat_key
             and any(_numeric(p.get("accuracy")) is not None for p in _regular(preds))
         ):
-            category_scores[cat_key] = {
-                "metrics": compute_category_scores(preds, flips, difficulty)
-            }
+            category_scores[cat_key] = compute_category_scores(
+                preds, flips, difficulty, domain, category
+            )
             regenerated.append(prediction)
 
     leaderboard.sort(
