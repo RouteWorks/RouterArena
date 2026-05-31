@@ -4,8 +4,10 @@
     "router_cls_name": "AgentForgeOfflineRouter",
     "models": [
       "qwen/qwen3-235b-a22b-2507",
-      "deepseek/deepseek-v3.2",
-      "gemini-2.0-flash-001",
+      "google/gemini-3.1-flash-lite",
+      "deepseek/deepseek-v4-flash",
+      "qwen/qwen3-next-80b-a3b-instruct",
+      "Qwen/Qwen3-Coder-Next",
       "gpt-4o-mini",
       "claude-3-haiku-20240307"
     ]
