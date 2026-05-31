@@ -43,11 +43,6 @@ jobs:
           ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
         run: uv run python scripts/process_datasets/prep_datasets.py
 
-      - name: Build website data
-        env:
-          ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
-        run: uv run python scripts/website/build_site_data.py --out "$RUNNER_TEMP/site_data"
-
       - name: Checkout website repo
         uses: actions/checkout@v4
         with:
@@ -55,12 +50,12 @@ jobs:
           token: ${{ secrets.WEBSITE_SYNC_TOKEN }}
           path: website
 
-      - name: Copy generated data into website
-        run: |
-          set -euo pipefail
-          rm -rf website/src/data/flip_labels
-          cp -r "$RUNNER_TEMP/site_data/routerMetrics/." website/src/data/routerMetrics/
-          cp -r "$RUNNER_TEMP/site_data/flip_labels" website/src/data/flip_labels
+      - name: Build website data (merge in place)
+        # Runs against the website's existing src/data so externally pre-computed
+        # baselines are preserved; only routers in the manifest are updated.
+        env:
+          ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
+        run: uv run python scripts/website/build_site_data.py --out website/src/data
 
       - name: Open PR on website repo
         uses: peter-evans/create-pull-request@v6

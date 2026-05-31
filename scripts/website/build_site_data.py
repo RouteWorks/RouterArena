@@ -214,34 +214,40 @@ def main(argv: Optional[list[str]] = None) -> int:
     args = parser.parse_args(argv)
 
     manifest = yaml.safe_load(MANIFEST.read_text(encoding="utf-8"))
-    routers = {
-        k: v for k, v in manifest["routers"].items() if v.get("on_leaderboard", True)
-    }
+    routers = [r for r in manifest["routers"] if r.get("on_leaderboard", True)]
     official = parse_readme_leaderboard()
 
     out = Path(args.out)
+    lb_path = out / "routerMetrics" / "leaderboard.json"
+    cs_path = out / "routerMetrics" / "category_scores.json"
     (out / "routerMetrics").mkdir(parents=True, exist_ok=True)
     (out / "flip_labels").mkdir(parents=True, exist_ok=True)
 
+    # MERGE into existing website data: start from whatever is already there so
+    # externally pre-computed baselines are preserved, then update/insert ours.
+    leaderboard = (
+        json.loads(lb_path.read_text(encoding="utf-8")) if lb_path.exists() else []
+    )
+    by_name = {_norm_name(r.get("Router Name", "")): r for r in leaderboard}
+    category_scores = (
+        json.loads(cs_path.read_text(encoding="utf-8")) if cs_path.exists() else {}
+    )
+
     difficulty = {} if args.skip_category else load_difficulty_map()
+    updated, regenerated, missing = [], [], []
 
-    leaderboard: list[dict[str, Any]] = []
-    category_scores: dict[str, Any] = {}
-
-    for router, meta in routers.items():
-        display = meta["display_name"]
-        # Headline metrics come from the README (authoritative, already evaluated).
-        metrics = official.get(_norm_name(display))
+    for meta in routers:
+        readme_name = meta["readme_name"]
+        website_name = meta["website_name"]
+        metrics = official.get(_norm_name(readme_name))
         if metrics is None:
-            print(
-                f"WARNING: '{display}' not found in README leaderboard, skipping",
-                file=sys.stderr,
-            )
+            missing.append(readme_name)
             continue
-        key = meta.get("website_key", router)
-        leaderboard.append(
+        # Update/insert the leaderboard row, matched by website name.
+        row = by_name.get(_norm_name(website_name), {"Router Name": website_name})
+        row.update(
             {
-                "Router Name": display,
+                "Router Name": website_name,
                 "Arena Score": metrics["arena"],
                 "Optimal Selection Score": metrics["opt_sel"],
                 "Optimal Cost Score": metrics["opt_cost"],
@@ -252,41 +258,53 @@ def main(argv: Optional[list[str]] = None) -> int:
                 "Cost per 1k": metrics["cost_per_1k"],
             }
         )
+        if _norm_name(website_name) not in by_name:
+            leaderboard.append(row)
+            by_name[_norm_name(website_name)] = row
+        updated.append(website_name)
 
-        # Derived data (the "additional computation") needs the prediction files.
-        preds = load_predictions(router)
-        if preds is None:
-            print(
-                f"NOTE: no prediction file for '{router}'; headline only",
-                file=sys.stderr,
-            )
+        # Derived data: regenerate only when RouterArena has the inputs.
+        prediction = meta.get("prediction")
+        if not prediction:
             continue
-        rob = load_predictions(router, robustness=True)
-        flips = compute_flip_labels(preds, rob) if rob else []
-        if flips:
-            (out / "flip_labels" / f"flip_labels_{key}.json").write_text(
-                json.dumps(flips, indent=2), encoding="utf-8"
-            )
-        if not args.skip_category and any(
-            _numeric(p.get("accuracy")) is not None for p in _regular(preds)
+        preds = load_predictions(prediction)
+        if preds is None:
+            continue
+        rob = load_predictions(prediction, robustness=True)
+        flip_key = meta.get("flip_key")
+        if rob and flip_key:
+            flips = compute_flip_labels(preds, rob)
+            if flips:
+                (out / "flip_labels" / f"flip_labels_{flip_key}.json").write_text(
+                    json.dumps(flips, indent=2), encoding="utf-8"
+                )
+        else:
+            flips = []
+        cat_key = meta.get("category_key")
+        if (
+            not args.skip_category
+            and cat_key
+            and any(_numeric(p.get("accuracy")) is not None for p in _regular(preds))
         ):
-            category_scores[key] = {
+            category_scores[cat_key] = {
                 "metrics": compute_category_scores(preds, flips, difficulty)
             }
+            regenerated.append(prediction)
 
     leaderboard.sort(
-        key=lambda r: (r["Arena Score"] is not None, r["Arena Score"] or 0),
+        key=lambda r: (r.get("Arena Score") is not None, r.get("Arena Score") or 0),
         reverse=True,
     )
-    (out / "routerMetrics" / "leaderboard.json").write_text(
-        json.dumps(leaderboard, indent=2), encoding="utf-8"
-    )
+    lb_path.write_text(json.dumps(leaderboard, indent=2), encoding="utf-8")
     if not args.skip_category:
-        (out / "routerMetrics" / "category_scores.json").write_text(
-            json.dumps(category_scores, indent=2), encoding="utf-8"
-        )
+        cs_path.write_text(json.dumps(category_scores, indent=2), encoding="utf-8")
 
-    print(f"Wrote {len(leaderboard)} routers to {out}")
+    print(
+        f"Leaderboard rows: {len(leaderboard)} | updated/inserted: {len(updated)} | "
+        f"derived regenerated: {len(regenerated)}"
+    )
+    if missing:
+        print(f"WARNING: not found in README: {missing}", file=sys.stderr)
     return 0
 
 

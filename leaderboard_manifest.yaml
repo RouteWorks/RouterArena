@@ -1,103 +1,105 @@
 # SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
 # SPDX-License-Identifier: Apache-2.0
 #
-# Single source of truth for the RouterArena leaderboard.
+# Single source of truth mapping each leaderboard router to the website's data.
 #
-# Each entry keys off the prediction-file basename in
-# router_inference/predictions/<router>.json. `scripts/website/build_site_data.py`
-# reads this together with the evaluated prediction files to regenerate both the
-# README leaderboard table and the website's src/data JSONs.
+# `scripts/website/build_site_data.py` reads this together with the README
+# (authoritative headline metrics) and the evaluated prediction files to
+# regenerate the website's src/data, MERGING into the existing website data:
+#   * every router here updates/inserts its row in routerMetrics/leaderboard.json
+#     (matched by `website_name`);
+#   * routers with a `prediction` file additionally have their per-difficulty
+#     category_scores (key `category_key`) and per-query flip_labels
+#     (file flip_labels_<flip_key>.json) regenerated;
+#   * anything already on the website that is NOT listed here (externally
+#     pre-computed baselines) is left untouched.
 #
-# Headline metrics (arena / accuracy / cost / robustness, and the per-query flip
-# labels) are computed from the prediction files. Fields that the pipeline does
-# not yet compute automatically (optimality, latency) are curated here until the
-# build script computes them too.
-#
-# website_key  -> flip_labels_<website_key>.json + category_scores key
-# on_leaderboard: false hides a router without deleting its data.
+# `readme_name` matches the README leaderboard row (dash/case-insensitive).
+# `website_name` is the exact "Router Name" string the website's leaderboard.json
+# uses. `category_key` / `flip_key` are the website's existing (inconsistent) keys.
+# Omit `prediction` for baselines that have no prediction file in RouterArena.
 
 routers:
-  sqwish-router:
-    display_name: "Sqwish Router"
-    website_key: "sqwish-router"
-    affiliation: ""
-    links: { home: "https://www.sqwish.ai/" }
-    on_leaderboard: true
-    opt_sel: 7.41
-    opt_cost: 25.10
-    opt_acc: 90.47
+  # --- Routers submitted to RouterArena (derived data regenerated) ---
+  - readme_name: "Sqwish Router"
+    website_name: "Sqwish Router"
+    prediction: "sqwish-router"
+    category_key: "sqwish-router"
+    flip_key: "sqwish-router"
 
-  agentforge-router:
-    display_name: "AgentForge Router"
-    website_key: "agentforge"
-    affiliation: ""
-    links: {}
-    on_leaderboard: true
-    opt_sel: 17.84
-    opt_cost: 52.47
-    opt_acc: 98.68
+  - readme_name: "AgentForge Router"
+    website_name: "AgentForge Router"
+    prediction: "agentforge-router"
+    category_key: "agentforge"
+    flip_key: "agentforge"
 
-  nadir-cascade-v2:
-    display_name: "Nadir Router"
-    website_key: "nadir"
-    affiliation: ""
-    links: {}
-    on_leaderboard: true
-    # Optimality intentionally omitted: submission's optimality candidate set was
-    # not representative (see review notes), so the computed 1.0 is not shown.
+  - readme_name: "Nadir Router"
+    website_name: "Nadir Router"
+    prediction: "nadir-cascade-v2"
+    category_key: "nadir"
+    flip_key: "nadir"
 
-  weave-router:
-    display_name: "Weave Router"
-    website_key: "weave"
-    affiliation: "🎓&nbsp;Weave"
-    links: { home: "https://workweave.ai" }
-    on_leaderboard: true
+  - readme_name: "Weave Router"
+    website_name: "Weave Router"
+    prediction: "weave-router"
+    category_key: "weave"
+    flip_key: "weave-router"
 
-  orcarouter-adaptive:
-    display_name: "OrcaRouter-Adaptive"
-    website_key: "orcarouter"
-    affiliation: ""
-    links: { home: "https://www.orcarouter.ai/" }
-    on_leaderboard: true
+  - readme_name: "OrcaRouter-Adaptive"
+    website_name: "OrcaRouter-Adaptive"
+    prediction: "orcarouter-adaptive"
+    category_key: "orcarouter"
+    flip_key: "orcarouter"
 
-  azure-model-router:
-    display_name: "Azure-Model-Router"
-    website_key: "azure"
-    affiliation: "💼&nbsp;Microsoft"
-    links:
-      home: "https://ai.azure.com/catalog/models/model-router"
-      web: "https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router"
-    on_leaderboard: true
+  - readme_name: "Azure-Model-Router"
+    website_name: "azure"
+    prediction: "azure-model-router"
+    category_key: "azure"
+    flip_key: "azure"
 
-  r2-router:
-    display_name: "R2-Router"
-    website_key: "r2-router"
-    affiliation: "🎓&nbsp;UCF"
-    links: { home: "https://arxiv.org/abs/2602.02823/" }
-    on_leaderboard: true
-    opt_sel: 24.51
-    opt_cost: 48.70
-    opt_acc: 99.85
+  - readme_name: "R2-Router"
+    website_name: "R2-Router"
+    prediction: "r2-router"
+    category_key: "r2-router"
+    flip_key: "r2-router"
 
-  auto_router:
-    display_name: "Auto Router"
-    website_key: "auto_router"
-    affiliation: ""
-    links: {}
-    on_leaderboard: true
-    opt_sel: 37.58
-    opt_cost: 40.02
-    opt_acc: 86.04
+  - readme_name: "Auto Router"
+    website_name: "Auto Router"
+    prediction: "auto_router"
+    category_key: "auto_router"
+    flip_key: "auto_router"
 
-  vllm-sr:
-    display_name: "vLLM-SR"
-    website_key: "vllm-sr"
-    affiliation: "🎓&nbsp;vLLM SR Team"
-    links:
-      home: "https://vllm-semantic-router.com/"
-      code: "https://github.com/vllm-project/semantic-router"
-      hf: "https://huggingface.co/llm-semantic-router"
-    on_leaderboard: true
-    opt_sel: 84.66
-    opt_cost: 90.71
-    opt_acc: 89.24
+  - readme_name: "vLLM-SR"
+    website_name: "vllm"
+    prediction: "vllm-sr"
+    category_key: "vllm"
+    flip_key: "vllm-sr"
+
+  - readme_name: "Chayan"
+    website_name: "chayan"
+    prediction: "chayan"
+    category_key: "chayan"
+    # no robustness file -> no flip_key
+
+  # --- Externally-evaluated baselines (headline from README; derived data on
+  #     the website is preserved as-is) ---
+  - readme_name: "MIRT-BERT"
+    website_name: "mirt_bert"
+  - readme_name: "NIRT-BERT"
+    website_name: "nirt_bert"
+  - readme_name: "GPT-5"
+    website_name: "gpt5"
+  - readme_name: "CARROT"
+    website_name: "carrot"
+  - readme_name: "RouterBench-MLP"
+    website_name: "routerbench_mlp"
+  - readme_name: "NotDiamond"
+    website_name: "notdiamond"
+  - readme_name: "GraphRouter"
+    website_name: "graphrouter"
+  - readme_name: "RouterBench-KNN"
+    website_name: "routerbench_knn"
+  - readme_name: "RouteLLM"
+    website_name: "routellm"
+  - readme_name: "RouterDC"
+    website_name: "RouterDC"
