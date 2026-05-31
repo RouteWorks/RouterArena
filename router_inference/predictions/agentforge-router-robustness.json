@@ -40,19 +40,19 @@
   {
     "global index": "ArcMMLU_12",
     "prompt": "Carefully examine the subsequent multiple-choice queries and select the option that most plausibly represents the accurate response from those provided.\n\nContext: None\n\nInquiry: Which data transmission protocol ensures dependable communication despite errors in bits and lost packets? \n\nSelections: \nA. rdt1.0\nB. rdt2.0\nC. rdt3.0\nD. rdt2.1\n\nIndicate the right letter selection in \\boxed{X}, with X being the appropriate letter. Limit any clarification or feedback to three sentences.",
-    "prediction": "Qwen/Qwen3-Coder-Next",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "C. rdt3.0\n\nrdt3.0 uses both checksums for error detection and a timeout-retransmission mechanism to handle packet losses, making it capable of reliable data transfer over unreliable channels with bit errors and losses. Earlier versions like rdt1.0 (no error handling), rdt2.0 (ACK/NAK but no timeout), and rdt2.1 (stop-and-wait with bit errors but no loss handling) lack full reliability under both issues simultaneously.\n\n\\boxed{C}",
+      "generated_answer": "\\boxed{C}\n\nThe rdt3.0 protocol introduces timers and sequence numbers to handle both bit errors and packet losses, making it the first in the series capable of reliable transfer over a lossy channel.",
       "success": true,
       "token_usage": {
-        "input_tokens": 156,
-        "output_tokens": 108,
-        "total_tokens": 264
+        "input_tokens": 143,
+        "output_tokens": 44,
+        "total_tokens": 187
       },
-      "provider": "local-vllm",
+      "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00013691999999999998,
+    "cost": 0.00010175,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -272,39 +272,39 @@
   {
     "global index": "ArcMMLU_659",
     "prompt": "Kindly examine the subsequent set of multiple-choice queries and elect the option that appears to be the most accurate response from those provided.\n\nScenario: None\n\nInquiry: Which of the following options is best suited for scenarios involving varied locations yet simultaneous timing in the context of knowledge dissemination? ( )\n\nChoices: \nA. In-person gathering\nB. Direct computer link between individuals\nC. Electronic mail\nD. Video call\n\nDisplay the correct letter selection in \\boxed{X}, where X signifies the accurate letter choice. Limit your rationale or commentary to a maximum of three sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "The most suitable option for different places and the same time conditions in the knowledge-sharing process is D. Video conferencing. This method allows participants in various locations to interact in real-time, facilitating better communication and collaboration compared to the other options. Face-to-face meetings, while effective, require physical presence, and options like email and peer-to-peer sharing do not support real-time interaction. \n\nThus, the answer is \\boxed{D}.",
+      "generated_answer": "\\boxed{C}  \nE-mail is most suitable for different place, same time conditions because it allows asynchronous communication across locations without requiring real-time presence. Unlike video conferencing or face-to-face meetings, it doesn’t demand simultaneous availability.",
       "success": true,
       "token_usage": {
-        "input_tokens": 112,
-        "output_tokens": 86,
-        "total_tokens": 198
+        "input_tokens": 133,
+        "output_tokens": 49,
+        "total_tokens": 182
       },
-      "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "local-vllm",
+      "error": null
     },
-    "cost": 6.84e-05,
-    "accuracy": 1.0,
+    "cost": 6.587e-05,
+    "accuracy": 0.0,
     "for_optimality": false
   },
   {
     "global index": "ArcMMLU_676",
     "prompt": "Please review the following set of multiple-choice questions and determine the most probable correct answer from the available options.\n\nContext: None\n\nQuestion: The future success of knowledge management does not rely on: ( ).\n\nOptions: \nA. Immediate benefits\nB. Enhancement of personnel\nC. Advancement of processes\nD. Improvement of the organization\n\nProvide the correct letter choice in \\boxed{X}, where X is the correct letter choice. Limit the explanation or feedback to no more than three sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "gpt-4o-mini",
     "generated_result": {
-      "generated_answer": "Knowledge management success requires sustainable, long-term strategies rather than focusing on immediate benefits. Short-term gains often do not contribute to lasting knowledge management effectiveness. In contrast, improvements in people, processes, and organization are foundational for success.\n\n\\boxed{A}",
+      "generated_answer": "The most likely correct answer is \\boxed{A}. Short term gains do not contribute to the long-term success of knowledge management, as effective knowledge management relies on continuous improvement in people, processes, and the organization as a whole. Focusing solely on short-term results can undermine the foundational changes necessary for sustainable knowledge management success.",
       "success": true,
       "token_usage": {
-        "input_tokens": 95,
-        "output_tokens": 162,
-        "total_tokens": 257
+        "input_tokens": 98,
+        "output_tokens": 65,
+        "total_tokens": 163
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "openai",
+      "model_used": "gpt-4o-mini"
     },
-    "cost": 4.6928e-05,
+    "cost": 5.369999999999999e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -330,38 +330,39 @@
   {
     "global index": "ArcMMLU_689",
     "prompt": "Kindly examine the subsequent multiple-choice inquiries and furnish the most probable accurate response predicated on the supplied alternatives.\n\nContext: Absent\n\nInquiry: Which exploration procedure employs an unoccupied queue operating on a first-come, first-served basis? ( )\n\nAlternatives: \nA. Depth-first exploration\nB. Breadth-first exploration\nC. Dual-directional exploration\nD. None of the cited\n\nDeliver the correct letter alternative in \\boxed{X}, where X signifies the precise letter selection. Contain the elucidation or commentary within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "Breadth-first search uses a first-in-first-out (FIFO) queue to explore nodes level by level. This ensures that all nodes at a given depth are explored before moving to deeper levels. The other options do not use a FIFO queue in their standard implementations.\n\n\\boxed{B}",
+      "generated_answer": "Breadth-first search uses a queue to explore nodes level by level, and a first-in-first-out (FIFO) queue is essential for this behavior. An empty FIFO queue initially ensures the search starts correctly from the root node.  \n\n\\boxed{B}",
       "success": true,
       "token_usage": {
-        "input_tokens": 148,
-        "output_tokens": 60,
-        "total_tokens": 208
+        "input_tokens": 140,
+        "output_tokens": 54,
+        "total_tokens": 194
       },
       "provider": "local-vllm",
       "error": null
     },
-    "cost": 3.796e-05,
+    "cost": 8.209999999999999e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
   {
     "global index": "ArcMMLU_702",
     "prompt": "Examine the subsequent multiple-choice inquiries and determine the option that is most plausibly accurate. \n\nScenario: N/A\n\nQuery: A particular interpretation of artificial intelligence emphasizes techniques for resolving issues that manipulate: ( ).\n\nSelections:\nA. Olfactory signals\nB. Iconic representations\nC. Tactile sensations\nD. Procedural instructions\n\nIndicate the correct selection by encasing the appropriate letter in \\boxed{X}. Limit the rationale or commentary to a maximum of three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gpt-4o-mini",
     "generated_result": {
-      "generated_answer": "The correct answer is B. Symbols.\n\nOne definition of artificial intelligence involves the use of symbolic representation to model knowledge and perform problem-solving. AI systems that use symbolic AI manipulate symbols to represent facts, rules, and logic.\n\n\\boxed{B}",
+      "generated_answer": "The correct answer is \\boxed{B}. Symbols are central to many definitions of artificial intelligence because AI systems often manipulate and process symbolic representations to solve problems or perform tasks. While algorithms (option D) are important for executing these processes, the focus in the context of problem-solving methods typically emphasizes symbolic processing.",
       "success": true,
       "token_usage": {
-        "input_tokens": 97,
-        "output_tokens": 49,
-        "total_tokens": 146
+        "input_tokens": 96,
+        "output_tokens": 61,
+        "total_tokens": 157
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "openai",
+      "model_used": "gpt-4o-mini"
     },
-    "cost": 1.1787e-05,
+    "cost": 5.099999999999999e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -487,19 +488,19 @@
   {
     "global index": "ChessInstruct_0",
     "prompt": "Presented with a query concerning chess maneuvers, scrutinize the scenario meticulously to ascertain the optimal move.\n\nScenario:\nFrom a given sequence of chess maneuvers, determine which player, white or black, holds a superior position.\n\nInquiry:\n{{\"moves\": [\"d2d4\", \"d7d5\", \"c2c4\", \"c7c6\", \"b1c3\", \"e7e6\", \"e2e3\", \"f7f5\", \"d1c2\", \"f8d6\", \"c4c5\", \"d6c7\", \"b2b4\", \"g8f6\", \"f2f4\", \"b7b6\", \"g1f3\", \"f6e4\", \"f1d3\", \"c8a6\"]}}\n\nGuidelines:\n- Articulate the appropriate chess move unambiguously.\n- Present your conclusive answer in the format \\boxed{X}, where X represents the move using standard algebraic notation (e.g., a2a3).\n- Limit your justification to 2–3 sentences.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "\\boxed{A}",
+      "generated_answer": "White has better control of the center, more active pieces, and a safer king position after 20 moves. Black’s pawn structure is weakened and pieces are less coordinated.  \n\\boxed{A}",
       "success": true,
       "token_usage": {
-        "input_tokens": 221,
-        "output_tokens": 5,
-        "total_tokens": 226
+        "input_tokens": 227,
+        "output_tokens": 42,
+        "total_tokens": 269
       },
-      "provider": "openrouter",
+      "provider": "local-vllm",
       "error": null
     },
-    "cost": 6.275e-05,
+    "cost": 6.662999999999999e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -563,19 +564,19 @@
   {
     "global index": "ChessInstruct_58",
     "prompt": "You're tasked with evaluating a chess query. Scrutinize the scenario with precision and determine the optimal move.\n\nScenario:\nTaking into account all provided chess maneuvers, declare the conclusive outcome of the match.\n\nInput Structure: Moves are presented in a sequence, separated by commas.\n\nInquiry:\n{{\"moves\": [\"e2e4\", \"d7d6\", \"d2d4\", \"f7f5\", \"f2f3\", \"e7e5\", \"d4e5\", \"f5e4\", \"b1c3\", \"b8c6\", \"f1b5\", \"d6e5\", \"d1d8\", \"e8d8\", \"c1g5\", \"g8f6\", \"e1c1\", \"d8e8\", \"c3e4\", \"f8e7\", \"b5c6\", \"b7c6\", \"e4f2\", \"h7h6\", \"g5d2\", \"e8f7\", \"g1e2\", \"h8e8\", \"e2g3\", \"e7c5\", \"f2d3\", \"c5d6\", \"d1e1\", \"c8a6\", \"d3f2\", \"a6b5\", \"b2b3\", \"d6a3\", \"c1b1\", \"a8d8\", \"e1d1\", \"b5a6\", \"g3e4\", \"a3e7\", \"d2e3\", \"f6d7\", \"c2c4\", \"a6b7\", \"d1d2\", \"a7a6\", \"h1d1\", \"d7f6\", \"e3c5\", \"d8d2\", \"d1d2\", \"e7d8\", \"b1b2\", \"b7c8\", \"b2a3\", \"f6h5\", \"f2d3\", \"f7g6\", \"d3e5\", \"e8e5\", \"d2d8\", \"c8f5\", \"c5d4\", \"e5a5\", \"a3b4\", \"a5a2\", \"g2g4\", \"f5g4\", \"f3g4\", \"h5f4\", \"d4e3\", \"f4e6\", \"d8d2\", \"a2a1\", \"e4c5\", \"a1e1\", \"e3f2\", \"e1e5\", \"c5e6\", \"e5e6\", \"b4a5\", \"e6e8\", \"h2h4\", \"e8b8\", \"a5a4\", \"b8f8\", \"f2g3\", \"f8f3\", \"g3c7\", \"h6h5\", \"d2g2\", \"a6a5\", \"g4h5\", \"g6h5\", \"g2g7\", \"h5h4\", \"g7g8\", \"h4h5\", \"g8g2\", \"f3c3\", \"c7f4\", \"h5h4\", \"f4c7\", \"c3c1\", \"g2a2\", \"h4g4\", \"c7d6\", \"g4f5\", \"a4a5\", \"f5e4\", \"a5b6\", \"e4d3\", \"b6c6\", \"c1b1\", \"c4c5\", \"d3c3\", \"a2a4\", \"b1g1\", \"c6b6\", \"g1g6\", \"c5c6\", \"c3b3\", \"a4d4\", \"b3c2\", \"d6e5\", \"g6g1\", \"b6c5\", \"g1g5\", \"c5b6\", \"g5g1\", \"c6c7\", \"g1g5\", \"d4d2\", \"c2b3\", \"b6b7\", \"g5f5\", \"d2d3\", \"b3a4\", \"c7c8q\", \"f5f7\", \"b7b6\", \"f7f6\", \"e5f6\", \"a4b4\", \"c8g4\"]}}\n\nGuidance:\n- Clearly state the chess move that is accurate.\n- Present your conclusive answer as \\boxed{X}, where X adheres to standard coordinate notation (e.g., a2a3).\n- Restrict your rationale to a concise 2–3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "The game ends with the move \"c8g4\", which is a queen move from c8 to g4. This move delivers checkmate to the black king, as black has no legal moves to escape the attack. Therefore, White wins the game.\n\n\\boxed{A}",
+      "generated_answer": "The game ends with Black promoting a pawn to queen on c8, followed by a series of exchanges leading to a position where White has a queen and rook against Black's queen and rook, but Black is checkmated after c8q and subsequent moves. The final sequence shows Black cannot avoid mate, so White wins.\n\n\\boxed{A}",
       "success": true,
       "token_usage": {
-        "input_tokens": 998,
-        "output_tokens": 58,
-        "total_tokens": 1056
+        "input_tokens": 1017,
+        "output_tokens": 73,
+        "total_tokens": 1090
       },
-      "provider": "openrouter",
+      "provider": "local-vllm",
       "error": null
     },
-    "cost": 7.6658e-05,
+    "cost": 0.00017183,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -697,21 +698,21 @@
   {
     "global index": "Ethics_commonsense_70",
     "prompt": "Kindly peruse the ensuing selection-based inquiries and ascertain if the deed (under scrutiny) is ethically permissible or otherwise.\n\nBackdrop: Absent\n\nInquiry: I am aware of my uncle’s afflicted joints, hence I clasp his hand with resolute firmness.\n\nChoices: \nA. Incorrect\nB. Accurate\n\nDeliver the right alphabetic selection in \\boxed{X}, where X epitomizes the correct option. Confine the rationale or commentary to within 3 statements.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The correct letter choice is \\(\\boxed{A}\\). Taking someone's hand in a firm grasp, especially knowing they have arthritis, can be considered morally unacceptable as it may cause them pain or discomfort. It is important to be considerate of others' physical conditions and to act with sensitivity.",
+      "generated_answer": "\\boxed{B}\n\nExplanation: The action of taking your uncle's hand in a firm grasp is morally acceptable, as it is done out of consideration for his arthritic condition and is likely intended to provide comfort or support.",
       "success": true,
       "token_usage": {
-        "input_tokens": 95,
-        "output_tokens": 57,
-        "total_tokens": 152
+        "input_tokens": 105,
+        "output_tokens": 54,
+        "total_tokens": 159
       },
       "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 4.845e-05,
-    "accuracy": 1.0,
+    "cost": 9.375e-05,
+    "accuracy": 0.0,
     "for_optimality": false
   },
   {
@@ -852,19 +853,20 @@
   {
     "global index": "Ethics_justice_1",
     "prompt": "Pleaase reaad thhe folloowing mulitple-choice questioons annd dettermine whetther the actionn (in qustion) is moraally accepatable or nott.\n\nContext: Nnoe\n\nQuesstion: I ussually starat up a conversatoin wtih my neigbor whn I pass him on the streeet, but I ddidn't today bcaus he was weraing a bsaeball caap. \n\nOptoins: \nA. Falsse\nB. Truu\n\nPrvodie the corect ltter choice in \\boxed{X}, whre X is the coorect leter coice. Keeep the explaanation or feeback wthin 3 sententces.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The action implies avoiding someone based on their clothing, which may reflect unfair judgment. This behavior lacks moral justification and can be seen as disrespectful. The statement is likely false because it suggests an unreasonable change in conduct.\n\n\\boxed{A}",
+      "generated_answer": "\\boxed{A}\n\nExplanation: The action of not starting a conversation with a neighbor simply because they are wearing a baseball cap is not morally unacceptable. The decision to engage in a conversation should not be based on superficial factors such as the neighbor's attire.",
       "success": true,
       "token_usage": {
-        "input_tokens": 147,
-        "output_tokens": 48,
-        "total_tokens": 195
+        "input_tokens": 113,
+        "output_tokens": 63,
+        "total_tokens": 176
       },
-      "provider": "local-vllm",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 3.2370000000000003e-05,
+    "cost": 0.000107,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -930,39 +932,39 @@
   {
     "global index": "Ethics_virtue_14",
     "prompt": "Kindly examine the subsequent multiple-choice inquiries and ascertain which attribute, either virtuous or vice-like, most aptly characterizes the conduct depicted in the situation.\n\nScenario: Erica and Tom mutually consented to remain united without departing, yet Tom chose to leave.\n\nChoices:\nA. disloyal\nB. temperate\nC. loyal\nD. reserved\nE. prim\n\nEnclose the appropriate letter selection in \\boxed{X}, where X signifies the correct letter. Limit your explanation or feedback to no more than three sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "The correct answer is \\(\\boxed{A}\\). Tom's action of leaving after agreeing to stick together with Erica is a betrayal of their commitment, making it traitorous behavior. This reflects a lack of loyalty and faithfulness to their agreement.",
+      "generated_answer": "Tom broke a mutual agreement, demonstrating disloyalty.  \nThe best descriptor for this action is \"traitorous.\"  \n\\boxed{A}",
       "success": true,
       "token_usage": {
-        "input_tokens": 104,
-        "output_tokens": 49,
-        "total_tokens": 153
+        "input_tokens": 125,
+        "output_tokens": 30,
+        "total_tokens": 155
       },
-      "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "local-vllm",
+      "error": null
     },
-    "cost": 4.4999999999999996e-05,
+    "cost": 4.425e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
   {
     "global index": "Ethics_virtue_26",
     "prompt": "Examine the ensuing set of multiple-choice queries and decide which character trait, positive or negative, most aptly characterizes the behavior within the context.\n\nSituation: Non-specific\n\nQuery: After dispatching an email to the attorney, I received an automated reply from him.\n\nChoices: \nA. amicable\nB. affable\nC. undependable\nD. detached\nE. explosive\n\nSelect the appropriate letter in \\boxed{X}, indicating the right answer. Confine any rationale or commentary to three sentences or fewer.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "\\boxed{D}",
+      "generated_answer": "\\boxed{D}\n\nThe correct answer is D. impersonal. The scenario describes an automated response from the lawyer, which lacks the personal touch of a direct response, making the interaction impersonal.",
       "success": true,
       "token_usage": {
-        "input_tokens": 137,
-        "output_tokens": 6,
-        "total_tokens": 143
+        "input_tokens": 114,
+        "output_tokens": 47,
+        "total_tokens": 161
       },
-      "provider": "local-vllm",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 1.2350000000000002e-05,
+    "cost": 8.725e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -1008,19 +1010,20 @@
   {
     "global index": "Ethics_virtue_51",
     "prompt": "Carefully consider the subsequent multiple-choice inquiries and ascertain which quality or flaw most aptly characterizes the behavior depicted in the situation.  \n\nScenario: Absent  \n\nQuery: Renowned Russian mixed martial artist Khabib Nurmagomedov is consistently perceived by his admirers as an individual who maintains a grounded demeanor.  \n\nSelections:  \nA. voracious  \nB. undependable  \nC. jittery  \nD. conceited  \nE. modest  \n\nProvide the accurate letter selection in \\boxed{X}, where X represents the correct choice. Offer a brief explanation or commentary in no more than three sentences.",
-    "prediction": "Qwen/Qwen3-Coder-Next",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The scenario describes Khabib Nurmagomedov as “down to earth,” a phrase commonly associated with modesty, simplicity, and lack of pretension. Among the options, “humble” directly aligns with this characterization, whereas the others—gluttonous, unreliable, skittish, and arrogant—Contradict it. Therefore, the virtue best describing his demeanor is humility.\n\n\\boxed{E}",
+      "generated_answer": "\\boxed{E}\n\nExplanation: The scenario describes Khabib Nurmagomedov as someone who is down to earth and humble, which suggests that the virtue of humility best describes his action.",
       "success": true,
       "token_usage": {
-        "input_tokens": 157,
-        "output_tokens": 86,
-        "total_tokens": 243
+        "input_tokens": 129,
+        "output_tokens": 49,
+        "total_tokens": 178
       },
-      "provider": "local-vllm",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 0.00011624000000000001,
+    "cost": 9.35e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -1065,19 +1068,19 @@
   {
     "global index": "FinQA_56",
     "prompt": "Please resolve the subsequent mathematical question methodically. Deliver the conclusive solution.\n\nIn the context of MarketAxess Holdings Inc.'s table of contents, consolidated financial statements from 2014 (continued), with figures in thousands (excluding share and per share amounts), the total redemption obligations for senior preferred shares were specified. Series B convertible preferred stock could be exchanged for common stock at a 3.33-to-one ratio, solely linked to an initial public offering of the company's stock. Dividends on Series B convertible preferred stock accrued annually at an 8% rate and were secondary to senior preferred shares' dividends. These shares had a liquidation preference matching the original price plus any accumulated unpaid dividends, which was subordinate to the senior preferred shares. Upon conversion of Series B convertible shares to common stock, all accumulated unpaid dividends were forfeited. Therefore, the company did not record dividends, as liquidation of Series B convertible preferred stock was not foreseen. As of December 31, 2004, the company held authorization for 110,000,000 shares of common stock and 10,000,000 shares of non-voting common stock. By December 31, 2003, there were 120,000,000 authorized shares of common stock and 450,060 of non-voting shares. Common stock grants holders one vote per share. Non-voting stock can be converted on a one-to-one basis into common stock, subject to a limit preventing a stockholder and affiliates from owning over 9.99% of outstanding shares. On March 30, 2004, the board sanctioned, and by November 1, 2004, the company executed a one-for-three reverse stock split of common and non-voting stock, effective before the initial public offering. All references to share counts and per-share amounts in these statements have been adjusted for the stock split. In 2004 and 2003, the company issued 1,939,734 and 1,937,141 common shares, respectively, to employees. Within these, in 2001, the company awarded 64,001 and 289,581 shares at $0.003 and $3.60 per share, respectively. These subscribed shares were issued in 2001 for three-year (64,001 shares) and eleven-year promissory notes (289,581 shares), accruing interest at the federal rate, secured by the shares. The 2004 note was settled on January 15, 2005. Compensation for the award value exceeding the amount paid is recognized over the vesting period of either one and a half or three years, with transfer restrictions per the vesting schedule. The eleven-year notes (289,581 shares) were tied to $1,042 loans to the CEO in 2001, before the Sarbanes-Oxley Act of 2002. Convertible Preferred Stock and Stockholders' Equity (Deficit), Common Stock, Restricted Common Stock, and Subscribed Common Stock.\n\nQuery: How many shares were awarded to employees in 2001?\n\nYour final answer should be in the format \\boxed{{}}, where the content inside the braces is the precise numerical figure or expression. For instance: \\boxed{{42}}. Keep your explanation succinct, within three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "In 2001, the company awarded 64,001 shares at $0.003 per share and 289,581 shares at $3.60 per share to employees. The total shares awarded is the sum of these two amounts.  \n64,001 + 289,581 = 353,582.\n\n\\boxed{353582}",
+      "generated_answer": "To determine the total number of shares awarded to employees in 2001, we look at the provided text: \"in 2001, the company awarded 64001 shares and 289581 shares to employees\". Adding these two amounts together (64,001 + 289,581) results in a total of 353,582 shares.\n\n\\boxed{353582}",
       "success": true,
       "token_usage": {
-        "input_tokens": 1024,
-        "output_tokens": 97,
-        "total_tokens": 1121
+        "input_tokens": 990,
+        "output_tokens": 102,
+        "total_tokens": 1092
       },
-      "provider": "local-vllm",
+      "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00011630000000000001,
+    "cost": 0.00040050000000000003,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -1122,19 +1125,19 @@
   {
     "global index": "GeoBench_1002",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most plausible accurate response predicated on the alternatives presented.\n\nBackdrop: None\n\nInquiry: Which among the ensuing exemplifies sequent occupance most aptly?\n\nAlternatives: \nA. Neil Armstrong imprinting boot marks upon the lunar expanse\nB. Every ensuing cohort of an expatriate lineage exhibiting diminished fluency in the dialect of their forebears' native land\nC. The Bubonic Plague decimating a substantial segment of the populace in Europe\nD. The transference of real estate, like a domicile, from one lineage to its successive generation\nE. The contemporary employment of the Spanish tongue across the erstwhile domains of the Spanish Empire\n\nElect the appropriate letter choice in \\boxed{X}, where X denotes the correct letter selection. Limit the explication or critique to 3 statements.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": {
-      "generated_answer": "The concept of sequent occupance refers to the idea that different cultures or groups leave their mark on a landscape over time, shaping its cultural geography through successive occupation. Option E reflects this concept well, as it shows how the Spanish Empire's historical presence has left a lasting linguistic imprint across its former territories. This layering of cultural influence over time is the essence of sequent occupance.\n\n\\boxed{E}",
+      "generated_answer": "\\boxed{E}  \n\nSequent occupance refers to the successive cultural imprints of different groups on a landscape. Option E illustrates the lasting linguistic influence of Spanish colonial occupation, reflecting a prior culture's enduring mark on a region.",
       "success": true,
       "token_usage": {
-        "input_tokens": 212,
-        "output_tokens": 84,
-        "total_tokens": 296
+        "input_tokens": 195,
+        "output_tokens": 540,
+        "total_tokens": 735
       },
-      "provider": "local-vllm",
+      "provider": "openrouter",
       "error": null
     },
-    "cost": 5.348e-05,
+    "cost": 0.0001428,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -1200,20 +1203,20 @@
   {
     "global index": "GeoBench_124",
     "prompt": "Kindly scrutinize the ensuing multiple-choice inquiries and determine the most plausible accurate response predicated on the enumerated alternatives.\n\nScenario: Absent\n\nInquiry: Organisms conveyed from equatorial zones of the Atlantic to the Pacific\n\nSelections: \nA. exert no influence on the novel habitat\nB. exert amplified influence on the novel habitat\nC. exert constrained influence on the novel habitat\nD. are infrequently relocated to a divergent habitat\nE. fail to endure in a novel habitat\n\nDeliver the accurate alphabetical selection in \\boxed{X}, where X signifies the accurate alphabetical selection. Maintain the elucidation or appraisal within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The most likely correct answer is \\boxed{B}. When species are transported from tropical regions of the Atlantic to the Pacific, they can become invasive and may have a greater impact on the new environment due to the disruption of local ecosystems and competition with native species. This phenomenon is often observed with introduced species that adapt well to their new surroundings.",
+      "generated_answer": "\\boxed{B}\n\nThe correct answer is B. Tropical species transported to a new environment in the Pacific Ocean are likely to have a greater impact on the new environment compared to the original environment. This is because the new environment may lack the natural predators or competitors that kept the species in check in its native habitat, allowing it to thrive and potentially disrupt the local ecosystem.",
       "success": true,
       "token_usage": {
-        "input_tokens": 125,
-        "output_tokens": 68,
-        "total_tokens": 193
+        "input_tokens": 133,
+        "output_tokens": 83,
+        "total_tokens": 216
       },
       "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 5.955e-05,
+    "cost": 0.000137,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -1278,19 +1281,19 @@
   {
     "global index": "GeoBench_526",
     "prompt": "Kindly examine the multiple-choice inquiries below and identify the most plausible answer from the options provided.\n\nContext: None\n\nQuestion: Referring to the table beneath asdf, water typically remains for approximately 8-10 days in\n\nOptions: \nA. swamps and marshes  \nB. the atmosphere  \nC. oceans  \nD. freshwater lakes  \nE. aquifers  \n\nRender the correct letter selection in \\boxed{X}, where X represents the accurate letter choice. Ensure the explanation or feedback is concise, limited to three sentences.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "qwen/qwen3-235b-a22b-2507",
     "generated_result": {
-      "generated_answer": "\\boxed{B}",
+      "generated_answer": "Water typically resides in freshwater lakes for about 8-10 days on average before cycling out through evaporation or outflow. The residence time in swamps and marshes can be longer, while oceans and aquifers have much longer storage times. The atmosphere holds water for roughly 9 days on average.\n\n\\boxed{B}",
       "success": true,
       "token_usage": {
-        "input_tokens": 138,
-        "output_tokens": 5,
-        "total_tokens": 143
+        "input_tokens": 154,
+        "output_tokens": 68,
+        "total_tokens": 222
       },
-      "provider": "openrouter",
+      "provider": "local-vllm",
       "error": null
     },
-    "cost": 4.2e-05,
+    "cost": 4.206e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -1317,19 +1320,20 @@
   {
     "global index": "GeoBench_766",
     "prompt": "Pleas rad the folowing multipple-choice qustions an provid the mos likely corect anser based on the optons gaven.\n\nContex: None\n\nQueston: The prcise locaton of retale servics is spacialy depndent on the relatonship betwen\n\nOptons: \nA. potenial cost-overun and projcted revnue\nB. conusmer demnd and locl suply\nC. varible cost an revnue srvaces\nD. infrstructure cots and recaptred revnue\nE. locl consmer demnd and geographc viablity\n\nProvde the corect leter chice in \\boxed{X}, wher X is the corect leter choise. Kep the explantion or feedbak witin 3 sentnces.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The precise location of retail services depends heavily on where consumers are and their ability and willingness to access the service, which is influenced by geographic factors such as accessibility and population density. While cost and revenue factors are important, the spatial decision primarily revolves around matching consumer demand with viable locations. Thus, the best answer is:\n\n\\boxed{E}",
+      "generated_answer": "The most likely correct answer is \\boxed{B}. Consumer demand and local supply are the key factors that determine the precise location of retail services. The spatial distribution of retail services depends on the balance between the demand from consumers and the availability of goods and services in the local area.",
       "success": true,
       "token_usage": {
-        "input_tokens": 125,
-        "output_tokens": 68,
-        "total_tokens": 193
+        "input_tokens": 134,
+        "output_tokens": 61,
+        "total_tokens": 195
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 1.5674999999999998e-05,
+    "cost": 0.00010975,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -1395,19 +1399,20 @@
   {
     "global index": "GeoBench_968",
     "prompt": "Kindly examine the subsequent set of multiple-choice inquiries and select the answer that appears most probable, considering the available choices.\n\nScenario: Not specified\n\nInquiry: A modest, family-operated farm in a less economically developed country cultivating a range of produce such as maize, garden vegetables, poultry eggs, and dairy is most probably an illustration of\n\nSelections: \nA. rotational cropping \nB. sustenance agriculture\nC. trade-oriented farming\nD. single-crop farming\nE. estate agriculture\n\nIdentify the accurate letter choice in \\boxed{B}, where B signifies the correct letter option. Provide explanation or commentary within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gpt-4o-mini",
     "generated_result": {
-      "generated_answer": "The farm produces a variety of crops and animal products primarily for family use rather than large-scale commercial sale. This aligns with the characteristics of subsistence farming, which is common in less developed countries (LDCs). The diversity of output rules out monoculture and plantation farming, while there's no indication of export focus.\n\n\\boxed{B}",
+      "generated_answer": "The correct answer is \\boxed{B}. Subsistence farming refers to a system where the farm produces just enough food for the family and perhaps a little more for sale, which fits the description of a small family-run farm producing a variety of crops and livestock. The focus on diverse crops and animal products suggests that they are primarily meeting their family's needs rather than producing for export.",
       "success": true,
       "token_usage": {
-        "input_tokens": 166,
-        "output_tokens": 71,
-        "total_tokens": 237
+        "input_tokens": 124,
+        "output_tokens": 75,
+        "total_tokens": 199
       },
-      "provider": "local-vllm",
-      "error": null
+      "error": null,
+      "provider": "openai",
+      "model_used": "gpt-4o-mini"
     },
-    "cost": 4.428e-05,
+    "cost": 6.36e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -2159,41 +2164,39 @@
   {
     "global index": "MMLUPro_chemistry_3796",
     "prompt": "Pleaze reed tha folowing multple-choyce questons adn provde the msot likley corect anser bsaed on teh optoins gvien.\n\nContxt: Nne\n\nQestion: Under whcih conditions wlil a reel gaas mosst cloesly bhave as an idel gas?\n\nOptoins: \nA. Lwo temprature adn lw presure\nB. Lwo temprature adn hih presure\nC. Hih volum adn hih presure\nD. Hih temprature adn hih presure\nE. Hih volum adn lw presure\nF. Hih volum adn hih temprature\nG. Lwo volum adn hih presure\nH. Hih temprature adn lw presure\nI. Lwo volum adn lwo temprature\n\nProvde teh corret leter choyce in \\boxed{H}, wheer H is the corret leter choyce. Keap the explantion or feadback wthin 3 sentneces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "The correct answer is \\(\\boxed{H}\\). A real gas behaves most like an ideal gas under conditions of high temperature and low pressure because at high temperatures the gas particles have enough kinetic energy to overcome intermolecular forces, and at low pressures, the gas particles are far apart, minimizing interactions. Therefore, ideal gas behavior is approximated better under these conditions.",
+      "generated_answer": "Real gases behave most ideally when intermolecular forces and molecular volume are negligible, which occurs at high temperatures (reducing intermolecular attractions) and low pressures (increasing volume, making molecular volume insignificant).  \nOption H (High temperature and low pressure) best satisfies these conditions.  \n\n\\boxed{H}",
       "success": true,
       "token_usage": {
-        "input_tokens": 152,
-        "output_tokens": 73,
-        "total_tokens": 225
+        "input_tokens": 186,
+        "output_tokens": 65,
+        "total_tokens": 251
       },
-      "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "local-vllm",
+      "error": null
     },
-    "cost": 6.66e-05,
+    "cost": 0.00010267,
     "accuracy": 1.0,
     "for_optimality": false
   },
   {
     "global index": "MMLUPro_chemistry_3837",
     "prompt": "I'm sorry, but I can't assist with that request.",
-    "prediction": "claude-3-haiku-20240307",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": {
-      "generated_answer": "\\boxed{E}\n\nThe correct answer is E. The constants a' and b' in the Dieterici equation of state can be expressed in terms of the critical constants P_c, V_c, and T_c as a' = RT_cV_c / P_c and b' = V_c / P_c. This is derived from the fact that the Dieterici equation reduces to the critical point conditions at the critical point.",
+      "generated_answer": "\\boxed{A} The Dieterici equation constants derived from critical conditions are a' = 2RT_cV_c and b' = V_c/2, matching option A.",
       "success": true,
       "token_usage": {
-        "input_tokens": 388,
-        "output_tokens": 103,
-        "total_tokens": 491
+        "input_tokens": 361,
+        "output_tokens": 355,
+        "total_tokens": 716
       },
-      "error": null,
-      "provider": "anthropic",
-      "model_used": "claude-3-haiku-20240307"
+      "provider": "openrouter",
+      "error": null
     },
-    "cost": 0.00022574999999999998,
-    "accuracy": 0.0,
+    "cost": 0.00011995199999999999,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -2295,19 +2298,19 @@
   {
     "global index": "MMLUPro_computer science_9136",
     "prompt": "Kindly examine the subsequent multiple-selection inquiries and deliver the most plausible accurate resolution based on the proposed alternatives.\n\nScenario: Absent\n\nInquiry: Suppose the occurrence of malady D is nearly 5 occurrences per 100 individuals (i.e., P(D) = 0.05). Designate Boolean stochastic variable D as a patient “possesses malady D” and Boolean stochastic variable TP as \"yields a positive result.\" Assessments for malady D are reputed to be exceedingly precise such that the likelihood of obtaining a positive result when afflicted with the malady is 0.99, and the likelihood of acquiring a negative result when uninfected is 0.97. What is P(D | TP), the resultant probability that one possesses malady D when the result is affirmative?\n\nChoices: \nA. 0.0495\nB. 0.02\nC. 0.05\nD. 0.1\nE. 0.99\nF. 0.635\nG. 0.078\nH. 0.25\nI. 0.97\n\nIndicate the accurate letter selection in \\boxed{X}, where X epitomizes the precise letter selection. Constrain the elucidation or commentary to within 3 statements.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "Using Bayes' theorem:  \nP(D | TP) = P(TP | D) * P(D) / [P(TP | D) * P(D) + P(TP | ¬D) * P(¬D)]  \n= (0.99 * 0.05) / [(0.99 * 0.05) + (0.03 * 0.95)] ≈ 0.0495 / (0.0495 + 0.0285) ≈ 0.635  \n\nThus, the posterior probability P(D | TP) is approximately 0.635.\n\n\\boxed{F}",
+      "generated_answer": "\\boxed{F}",
       "success": true,
       "token_usage": {
-        "input_tokens": 311,
-        "output_tokens": 149,
-        "total_tokens": 460
+        "input_tokens": 286,
+        "output_tokens": 5,
+        "total_tokens": 291
       },
-      "provider": "local-vllm",
+      "provider": "openrouter",
       "error": null
     },
-    "cost": 9.031000000000001e-05,
+    "cost": 7.9e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -2449,19 +2452,19 @@
   {
     "global index": "MMLUPro_computer science_9289",
     "prompt": "Kindly peruse the subsequent multiple-choice inquiries and select the most probable accurate solution from the furnished alternatives.\n\nContext: None\n\nInquiry: When crafting a fundamental assembler language script, the paramount priority is that of organizational management. What constitutes organizational management, and why is it indispensable?\n\nAlternatives: \nA. Organizational management directives solely initialize the foundational register for the script\nB. Organizational management denotes annotating each line of the script to augment comprehensibility\nC. Organizational management entails the eradication of transient files fabricated during the script's compilation\nD. Organizational management directives serve to allocate storage space for variables and constants utilized in the script\nE. Organizational management entails configuring the editor's color palette for enhanced code visibility\nF. Organizational management guarantees that the assembler language script is encoded for protection purposes\nG. Organizational management directives are discretionary within a script\nH. Organizational management directives furnish standard connections between the script and the operating system, load and recognize the foundational register for the script, and arrange the units and materials requisite for the principal processing section of the script.\nI. Organizational management is the methodology of refining the script to execute more swiftly on the apparatus\nJ. Organizational management is solely concerned with the arrangement of units and materials\n\nSelect the precise letter option in \\boxed{H}, where H is the precise letter option. Retain the elucidation or commentary within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "Housekeeping in assembler language programming involves essential setup tasks such as establishing the base register, setting up program linkage with the operating system, and preparing required resources for the main program logic. These steps are crucial for the program to run correctly within the system environment. \n\nThe most comprehensive and accurate description is provided in option H.\n\n\\boxed{H}",
+      "generated_answer": "\\boxed{H}  \nHousekeeping in assembler programming involves setting up the runtime environment, including loading the base register, allocating memory, and establishing linkage with the OS. It is essential for proper program execution and resource management.",
       "success": true,
       "token_usage": {
-        "input_tokens": 285,
-        "output_tokens": 70,
-        "total_tokens": 355
+        "input_tokens": 304,
+        "output_tokens": 46,
+        "total_tokens": 350
       },
-      "provider": "openrouter",
+      "provider": "local-vllm",
       "error": null
     },
-    "cost": 2.7235e-05,
+    "cost": 7.796e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -2640,20 +2643,20 @@
   {
     "global index": "MMLUPro_economics_5965",
     "prompt": "Kindly peruse the ensuing multiple-choice queries and furnish the most plausible accurate response predicated on the provided selections.\n\nScenario: Theo forfeits his occupation at the communal aquatic center when the facility ceases operations during the colder months. This instance exemplifies\n\nSelections: \nA. organic joblessness.\nB. insufficient employment.\nC. disheartened laborer.\nD. infrastructural joblessness.\nE. employmentless recuperation.\nF. periodic joblessness.\nG. cyclical joblessness.\nH. transitional joblessness.\nI. protracted joblessness.\nJ. non-voluntary joblessness.\n\nConvey the apt letter selection in \\boxed{X}, where X signifies the correct letter selection. Restrict elucidation or commentary to within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The correct answer is \\boxed{G}. This situation is an example of seasonal unemployment because Theo loses his job due to the seasonal closure of the swimming pool, which is a common occurrence in jobs that depend on certain times of the year. Seasonal unemployment is characterized by temporary job loss that recurs regularly due to seasonal changes in demand.",
+      "generated_answer": "The correct answer is \\boxed{G}. Seasonal unemployment occurs when jobs are lost due to changes in seasonal demand, such as the closing of a public swimming pool during the winter months.",
       "success": true,
       "token_usage": {
-        "input_tokens": 143,
-        "output_tokens": 67,
-        "total_tokens": 210
+        "input_tokens": 165,
+        "output_tokens": 43,
+        "total_tokens": 208
       },
       "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 6.165000000000001e-05,
+    "cost": 9.5e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -2775,19 +2778,19 @@
   {
     "global index": "MMLUPro_engineering_10125",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and ascertain the most probable accurate response predicated on the supplied selections.\n\nContext: None\n\nQuery: Determine the variability of a stochastic variable X uniformly allocated across the interval [0, 3].\n\nSelections: \nA. 1/3\nB. 9/4\nC. (3/4)\nD. 3/2\nE. 1/4\nF. 2/3\nG. 6\nH. 1/12\nI. 1\nJ. 1/2\n\nPresent the right letter selection in \\boxed{X}, with X representing the valid letter selection. Retain the elucidation or commentary to within 3 sentences.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "\\boxed{C}",
+      "generated_answer": "For a uniform distribution on $[a, b]$, the variance is $\\frac{(b-a)^2}{12}$. Here, $a = 0$, $b = 3$, so variance = $\\frac{(3-0)^2}{12} = \\frac{9}{12} = \\frac{3}{4}$. The correct option is C.\n\n\\boxed{C}",
       "success": true,
       "token_usage": {
-        "input_tokens": 168,
-        "output_tokens": 5,
-        "total_tokens": 173
+        "input_tokens": 187,
+        "output_tokens": 86,
+        "total_tokens": 273
       },
-      "provider": "openrouter",
+      "provider": "local-vllm",
       "error": null
     },
-    "cost": 4.95e-05,
+    "cost": 0.00012284,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -2832,19 +2835,19 @@
   {
     "global index": "MMLUPro_engineering_10199",
     "prompt": "Kindly examine the ensuing set of multiple-choice queries and ascertain the most plausible accurate response from the selections provided.\n\nContext: Absent\n\nQuery: What is the feedback ratio for a Wien bridge oscillator incorporating an operational amplifier?\n\nOptions: \nA. 3/2\nB. 1/4\nC. 0\nD. 1/5\nE. 1/3\nF. 2\nG. 1/2\nH. 1\nI. 5/4\nJ. 4/3\n\nIdentify the correct letter option in \\boxed{X}, where X denotes the accurate letter choice. Limit your explanation or commentary to 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "The feedback factor of a Wien bridge oscillator using an Op-Amp is determined by the ratio of resistors and capacitors in the lead-lag network. At resonance, the feedback factor β is 1/3. This ensures the loop gain is unity when combined with the non-inverting amplifier gain of 3.\n\n\\boxed{E}",
+      "generated_answer": "The feedback factor of a Wien bridge oscillator using an Op-Amp is $ \\frac{1}{3} $. This value arises from the voltage divider formed by the RC network in the feedback path at resonance.  \n\\boxed{E}",
       "success": true,
       "token_usage": {
-        "input_tokens": 185,
-        "output_tokens": 70,
-        "total_tokens": 255
+        "input_tokens": 177,
+        "output_tokens": 49,
+        "total_tokens": 226
       },
       "provider": "local-vllm",
       "error": null
     },
-    "cost": 4.5150000000000006e-05,
+    "cost": 8.549e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -3046,59 +3049,59 @@
   {
     "global index": "MMLUPro_health_4885",
     "prompt": "Pleas reed teh folowing multipl-choice qestions an provide teh moost likely corect awsner bsaed on teh optoins givven.\n\nContex: Nnone\n\nQuestin: An 18-yer-old maan is broght to teh emergncy departmet 10 minues after he sustaind a stabwound to his chset. On arival, hee is unresponive to painfull stimli. His puls is 130/min, resirations ar 8/min an shalow, and palable systlic blood presure is 60 mm Hg. He is intubted an mechianically venilated, an infuson of 0.9% salne is begn. Aftr 5 minues, his puls is 130/min, an blood presure is 70/40 mm Hg. Examinaton show a 2-cm wond at th left sixth intercostal spce at th midclavicular lne. Ther is juglar venous distntion. Breath souds ar normal. Th trechea is at th midline. Hart souds ar not audble. Which of th folowing is th mst apropriate next stp in managemnet?\n\nOptoins: \nA. Pericrdiocentesis\nB. Perfrm a CT scan of th chset\nC. Thoracentessis\nD. Brnchoscopy\nE. Adminster morpine for pain managemnt\nF. Echocardiogaphy\nG. Chst x-ray\nH. Srugical exploraton of th wond\nI. Adminster intravenos antibitics\nJ. Adminster oxgen therpy\n\nProvide th corect leter choice in \\boxd{X}, wher X is th corect leter choice. Keep th explanaton or feedbak withn 3 sentnces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The most appropriate next step in this scenario is A. Pericardiocentesis. The patient exhibits signs of a possible cardiac tamponade, including hypotension, jugular venous distention, and an unresponsive state, suggesting that urgent intervention is required to relieve pressure on the heart.",
+      "generated_answer": "The most appropriate next step in management for this patient is \\boxed{H} - Surgical exploration of the wound.\n\nThe patient's presentation of hypotension, jugular venous distension, and inability to hear heart sounds suggests the possibility of a cardiac tamponade, which requires immediate surgical intervention to relieve the pressure and stop the bleeding.",
       "success": true,
       "token_usage": {
-        "input_tokens": 318,
-        "output_tokens": 59,
-        "total_tokens": 377
+        "input_tokens": 368,
+        "output_tokens": 76,
+        "total_tokens": 444
       },
       "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 8.309999999999999e-05,
-    "accuracy": 1.0,
+    "cost": 0.000187,
+    "accuracy": 0.0,
     "for_optimality": false
   },
   {
     "global index": "MMLUPro_health_4973",
     "prompt": "Kindly examine the ensuing multiple-choice queries and determine the most probable accurate response from the selections presented.\n\nContext: None\n\nInquiry: Within the Latino population, which group faces the highest threat of HIV contraction?\n\nChoices:\nA. Medical practitioners\nB. Expectant mothers\nC. Substance users via injection\nD. Straight men\nE. Senior citizens\nF. People abstaining from sexual relations\nG. Plant-based diet followers\nH. Women\nI. Youths below 12 years\nJ. Men who engage in same-sex relations\n\nIndicate the correct option by inscribing \\boxed{X}, where X signifies the right choice. Restrict the rationale or commentary to a maximum of three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "The major risk group for HIV infection among Latinos is injection drug users, as this population has historically shown higher rates of transmission due to shared needle use and limited access to prevention resources. While homosexual males are also significantly affected, among Latinos, injection drug use remains a leading risk factor. \n\n\\boxed{C}",
+      "generated_answer": "\\boxed{J}  \nHomosexual males are the major risk group for HIV infection among Latinos, as they have the highest rates of transmission in this population. While other groups may be affected, men who have sex with men (MSM) consistently account for the majority of new HIV cases among Latinos in the U.S.",
       "success": true,
       "token_usage": {
-        "input_tokens": 183,
-        "output_tokens": 63,
-        "total_tokens": 246
+        "input_tokens": 161,
+        "output_tokens": 66,
+        "total_tokens": 227
       },
       "provider": "local-vllm",
       "error": null
     },
-    "cost": 4.179e-05,
-    "accuracy": 0.0,
+    "cost": 8.709000000000001e-05,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
     "global index": "MMLUPro_health_5093",
     "prompt": "Carefully analyze the subsequent set of multiple-choice queries and select the option that most plausibly represents the correct answer from those provided.\n\nScenario: Not Applicable\n\nInquiry: Which research methodology offers the strongest evidence for the link between sugar consumption and the likelihood of developing dental cavities?\n\nSelections:  \nA. Case-control examination  \nB. Longitudinal analysis  \nC. Unrandomized controlled trial  \nD. Cross-sectional observational study  \nE. Experimental research  \nF. Comprehensive review  \nG. Descriptive study  \nH. Randomized controlled trial  \nI. Prospective cohort study  \nJ. Population-level analysis  \n\nReveal the justified letter selection in \\boxed{X}, specifying the accurate letter. Limit your rationale or commentary to a maximum of three sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The best available evidence for an association between the amount of sugars and the risk of dental caries typically comes from a Longitudinal study, as it allows for the observation of the effects of sugar intake over time on the development of dental caries. Longitudinal studies track the same individuals, making it easier to establish causation rather than mere correlation. Therefore, the correct answer is \\boxed{B}.",
+      "generated_answer": "\\boxed{B}\n\nThe best available evidence for an association between amount of sugars and risk of dental caries comes from longitudinal studies, which follow individuals over time and can establish the temporal relationship between sugar intake and the development of dental caries.",
       "success": true,
       "token_usage": {
-        "input_tokens": 150,
-        "output_tokens": 82,
-        "total_tokens": 232
+        "input_tokens": 166,
+        "output_tokens": 56,
+        "total_tokens": 222
       },
       "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 7.17e-05,
+    "cost": 0.0001115,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -3182,19 +3185,19 @@
   {
     "global index": "MMLUPro_health_5473",
     "prompt": "Plase read teh followng mupltiple-choice qestions nd proivde the msot likly corrcet asnwer bsaed on the optoins gvien.\n\nContxt: Non\n\nQueston: Teh pancreas scretes a lerge amunt of digestve enzyms aftera mal. Wich satement abot this proces is correkt?\n\nOptoins: A. Bile is neded to actvate al pancretic enzyms B. Al pancratic enzyms ar prduced in an actve form adn can strt digestion immeediatly C. Enzyms ar producd in the pancras but releasd in teh stomch for digestion D. Pepsinogen is teh cheif enzyem wich digests protien adn reqires removal of a peptde seqence frm teh actve cleft bfore it can work E. Pancretic scretion of hydrocloric acid is requird to provde the corct pH for maxmal pancratic enzyem in teh duodenum F. Enteropeptidase cnverts trypsinogen to trypsin by clevage of a peptde seqnce tht blcks the actve site of trypsin. G. Pancretic enzyms ar neded to brek down carbohydrats only. H. Pancreatic á-amylase wil hydrolise starh to fre glucos\n\nProvde teh corrcet leter choce in \\boxed{X}, wher X is the corect leter choce. Keap teh explantion or fedback wthin 3 sentnces.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "\\boxed{F}",
+      "generated_answer": "\\boxed{F}  \nEnteropeptidase activates trypsinogen to trypsin by cleaving an inhibitory peptide, enabling proteolytic cascade initiation. Other options contain factual errors, such as bile not activating enzymes (it emulsifies fats), pepsinogen being gastric (not pancreatic), and no HCl secretion by the pancreas.",
       "success": true,
       "token_usage": {
-        "input_tokens": 251,
-        "output_tokens": 5,
-        "total_tokens": 256
+        "input_tokens": 281,
+        "output_tokens": 76,
+        "total_tokens": 357
       },
-      "provider": "openrouter",
+      "provider": "local-vllm",
       "error": null
     },
-    "cost": 7.025e-05,
+    "cost": 0.00010889000000000001,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -3241,19 +3244,19 @@
   {
     "global index": "MMLUPro_history_4490",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most plausible accurate response predicated on the enumerated selections.\n\nContext: Absent\n\nInquiry: This query pertains to the subsequent data.\n\"The inquiry, hence, warrants rapid resolution, whether liberated individuals of color, both native-born and naturalized within this nation, are indeed recognized as American nationals, and rightfully merit the entire spectrum of rights, advantages, and protections accorded to citizens across the various states; and whether the United States Constitution institutes or sanctions any unjust differentiation regarding the hue or status of liberated residents.\n\"Personally, I harbor not even the faintest uncertainty on the matter. My conviction is that the entitlements of liberated individuals of color merely require advocacy before the U.S. Supreme Court to be secured; that neither bias nor deceit . . . can obstruct their recognition . . . and that the extant statutes impacting your circumstances are patently unconstitutional. The reality that you have been regarded, by widespread consensus and routine practice, as outsiders and savages, does not validate such conduct as lawful, but merely illustrates the potency, acrimony, and ignorance of bias.\"\n—William Lloyd Garrison, \"To the Free People of Color of the United States,\" The Liberator, January 15, 1831\nThe proposition advanced by William Lloyd Garrison in the excerpt was subsequently refuted in which of the ensuing Supreme Court rulings?\n\nChoices: \nA. United States v. Nixon (1974)\nB. Miranda v. Arizona (1966)\nC. Gideon v. Wainwright (1963)\nD. Marbury v. Madison (1803)\nE. Brown v. Board of Education of Topeka (1954)\nF. Ex parte Milligan (1866)\nG. Roe v. Wade (1973)\nH. Plessy v. Ferguson (1896)\nI. McCulloch v. Maryland (1819)\nJ. Dred Scott v. Sanford (1857)\n\nRender the correct alphabetic selection in \\boxed{X}, where X denotes the correct choice. Limit the elucidation or commentary to 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "\\boxed{J}\n\nThe argument by William Lloyd Garrison asserts that free Black people are entitled to full citizenship rights under the U.S. Constitution. This view was directly contradicted by the Supreme Court in *Dred Scott v. Sanford* (1857), which ruled that African Americans, even if free, were not and could not be citizens of the United States. The decision denied them constitutional rights and invalidated the possibility of equal protection under the law at that time.",
+      "generated_answer": "\\boxed{J}  \nGarrison's argument that free Black people were citizens entitled to constitutional rights was directly contradicted by the *Dred Scott v. Sandford* (1857) decision, which declared that African Americans, whether enslaved or free, could not be U.S. citizens. This ruling explicitly rejected the notion that free people of color held citizenship rights under the Constitution.",
       "success": true,
       "token_usage": {
-        "input_tokens": 501,
-        "output_tokens": 97,
-        "total_tokens": 598
+        "input_tokens": 493,
+        "output_tokens": 81,
+        "total_tokens": 574
       },
       "provider": "local-vllm",
       "error": null
     },
-    "cost": 7.969e-05,
+    "cost": 0.00018541,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -3451,19 +3454,19 @@
   {
     "global index": "MMLUPro_history_4774",
     "prompt": "Carefully examine the subsequent set of multiple-choice inquiries and identify the most plausible correct response from the provided selections.\n\nContext: Not applicable\n\nInquiry: This query pertains to the ensuing excerpt.\n\"We discovered that it was not merely an internal conflict, a struggle by a populace long yearning to free themselves from any colonial dominance, but also that the Vietnamese, whom we had zealously shaped in our own likeness, found it challenging to confront the peril we purportedly shielded them from.\n\"We observed that the majority were unaware of the distinction between communism and democracy. Their sole desire was to cultivate rice fields without helicopters bombarding them and incendiary bombs ravaging their villages and dismembering their nation. They wished for the war's entirety, especially the foreign presence of the United States of America, to vacate their land, allowing them tranquility, and they honed their survival skills by aligning with whichever military faction was currently dominant, be it Viet Cong, North Vietnamese, or American.\"\nJohn Kerry, 1971\nThe two political issues that most troubled the Counterculture Movement of the 1960s were\n\nChoices: \nA. the civil rights movement and environmentalism\nB. the women's rights movement and censorship\nC. the civil rights movement and censorship\nD. flag desecration and the draft\nE. American engagement in Vietnam and flag desecration\nF. American engagement in Vietnam and the women's rights movement\nG. American engagement in Vietnam and environmentalism\nH. American engagement in Vietnam and the civil rights movement\nI. the draft and the environmental cause\nJ. censorship and the draft\n\nIndicate the accurate letter choice in \\boxed{X}, where X is the appropriate letter option. Restrict the explanation or commentary to 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "The passage highlights opposition to U.S. involvement in Vietnam and emphasizes the civilian desire to be free from foreign intervention and war-related destruction. The Counterculture Movement of the 1960s was primarily concerned with ending the Vietnam War and advancing civil rights. These two issues were central to youth protests, anti-war demonstrations, and broader social activism during the era.\n\n\\boxed{H}",
+      "generated_answer": "The passage由 John Kerry reflects opposition to U.S. involvement in Vietnam. The Counterculture Movement of the 1960s was most prominently focused on anti-war sentiment (especially regarding Vietnam) and civil rights activism. Thus, the two most concerning political issues were **U.S. involvement in Vietnam and the civil rights movement**.\n\n\\boxed{H}",
       "success": true,
       "token_usage": {
-        "input_tokens": 418,
-        "output_tokens": 80,
-        "total_tokens": 498
+        "input_tokens": 410,
+        "output_tokens": 75,
+        "total_tokens": 485
       },
       "provider": "local-vllm",
       "error": null
     },
-    "cost": 6.606e-05,
+    "cost": 0.00016145,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -3566,19 +3569,19 @@
   {
     "global index": "MMLUPro_law_1031",
     "prompt": "Kindly peruse the ensuing multiple-choice queries and determine the most plausible accurate answer from the presented selections.\n\nContext: None\n\nInquiry: Which among the statements listed is untrue?\n\nSelections: \nA. During the 1990s, it became evident that the European Court of Human Rights required reform due to a decline in member state numbers.\nB. During the 1990s, it became evident that the European Court of Human Rights required reform as it was not effectively enforcing its rulings.\nC. During the 1990s, it became evident that the European Court of Human Rights required reform for its failure to assess a sufficient volume of cases.\nD. During the 1990s, it became evident that the European Court of Human Rights required reform owing to the increased number of individuals able to access the Court following a rise in member states.\nE. During the 1990s, it became evident that the European Court of Human Rights required reform as it struggled to keep pace with swift changes in international law.\nF. During the 1990s, it became evident that the European Court of Human Rights required reform because of a surge in workload.\nG. During the 1990s, it became evident that the European Court of Human Rights required reform due to substantial political pressure.\nH. During the 1990s, it became evident that the European Court of Human Rights required reform because it operated on a part-time basis, unable to manage the increasing volume of complaints.\nI. During the 1990s, it became evident that the European Court of Human Rights required reform due to insufficient diversity among its judiciary.\nJ. During the 1990s, it became evident that the European Court of Human Rights required reform owing to financial limitations.\n\nIndicate the correct letter choice in \\boxed{X}, where X represents the accurate letter option. Keep the explanation or feedback within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "The false statement is that the European Court of Human Rights needed reform due to a decrease in the number of member states, as the opposite occurred—the number of member states increased significantly in the 1990s, contributing to a surge in applications. This expansion, along with the Court's structural limitations, led to delays and backlogs, prompting reform discussions. Therefore, option A is false.\n\n\\boxed{A}",
+      "generated_answer": "\\boxed{A}\n\nThe European Court of Human Rights required reform in the 1990s specifically because the number of member states was rapidly increasing following the collapse of the Soviet bloc, not decreasing.",
       "success": true,
       "token_usage": {
-        "input_tokens": 430,
-        "output_tokens": 86,
-        "total_tokens": 516
+        "input_tokens": 458,
+        "output_tokens": 43,
+        "total_tokens": 501
       },
       "provider": "openrouter",
       "error": null
     },
-    "cost": 3.912999999999999e-05,
+    "cost": 0.00017900000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -3909,19 +3912,20 @@
   {
     "global index": "MMLUPro_philosophy_9536",
     "prompt": "Kindly peruse the ensuing array of multiple-choice inquiries and furnish the most plausible accurate response derived from the enumerated selections.\n\nContext: None\n\nInquiry: Which assertion among the following would Leopold undoubtedly endorse?\n\nSelections: \nA. The dilemmas linked to the utilization of our natural surroundings fundamentally involve the manner in which humans ought to interact with one another.\nB. We ought to contemplate in terms of \"nature's equilibrium\" to duly esteem the worth of the natural surroundings.\nC. The quandaries concerning the employment of our natural environment transcend mere economic issues.\nD. Economic incentives should be disregarded entirely when deliberating about land utilization.\n\nIndicate the accurate letter choice in \\boxed{X}, where X is the correct letter choice. Keep the explanation or feedback concise, within three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "Leopold's land ethic emphasizes that ethical responsibilities extend to the natural environment and that ecological considerations must go beyond mere economics. He argues that land use decisions involve moral and ecological dimensions, not just economic ones. Therefore, he would clearly accept that these problems are not merely economic problems.\n\n\\boxed{C}",
+      "generated_answer": "\\boxed{C}\n\nThe most likely correct answer is C. Leopold's land ethic emphasizes the ecological and intrinsic value of the natural environment, going beyond merely economic considerations. He believed that the problems associated with how we use the natural environment are not just economic in nature, but involve broader ethical and ecological concerns.",
       "success": true,
       "token_usage": {
-        "input_tokens": 160,
-        "output_tokens": 63,
-        "total_tokens": 223
+        "input_tokens": 169,
+        "output_tokens": 71,
+        "total_tokens": 240
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 1.766e-05,
+    "cost": 0.00013099999999999999,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -3966,19 +3970,19 @@
   {
     "global index": "MMLUPro_philosophy_9943",
     "prompt": "Plase raed the fllowing mulitple-choic qestions adn provide the mos likely corect answr based on teh otpions gven.\n\nConext: None\n\nQuesiton: Ntice rom the Haytt Renegcy Hotal in New Orlens: We are pelased to cnfirm your reseration. It wll be held on a spcae-availble basis.\n\nOptoins: \nA. Equivocaton\nB. Afirminng the Conseequent\nC. Gamler's Fllacy\nD. Inconsisteny\n\nProvde teh corect leter chioce in \\boxed{X}, wher X is teh corect leter choce. Kep the explanaion or feadback wthin 3 sentnces.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "The notice uses vague language by confirming a reservation \"on a space-available basis,\" which contradicts the idea of a guaranteed reservation. This is an example of equivocation, as it ambiguously shifts the meaning of \"confirmed reservation.\"  \n\n\\boxed{A}",
+      "generated_answer": "\\boxed{A}  \nThe notice uses vague language (\"space-available basis\") to avoid making a firm commitment, which is a form of equivocation—using ambiguous terms to mislead or evade responsibility. This is not a logical fallacy in reasoning but a rhetorical tactic.",
       "success": true,
       "token_usage": {
-        "input_tokens": 166,
-        "output_tokens": 53,
-        "total_tokens": 219
+        "input_tokens": 144,
+        "output_tokens": 56,
+        "total_tokens": 200
       },
       "provider": "local-vllm",
       "error": null
     },
-    "cost": 3.6e-05,
+    "cost": 7.456e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -4177,20 +4181,19 @@
   {
     "global index": "MMLUPro_psychology_2450",
     "prompt": "Plesae raed the folowing multple-choce quetsions adn prvodie teh msot likley corrcet answr bsaed on teh otpions gievn.\n\nConetxt: Nnoe\n\nQuetsion: The primray advnatage of te frced-choise distrobutin of rated attrbiutes in performnace aprpaisal is thta it\n\nOtpions: \nA. alows fro more felxibility in ratnig emplyoees\nB. rdeuces teh bais in ratngs as it is bsaed on diret obsvration\nC. is lsess time-consumng, scine it deos not rqequire in-dpeth anlaysis\nD. is mroe accuarte as it focses on measurble attrbiutes\nE. is mroe objctive, snice it deos not dael with the strngths and weakneses of teh emplyoee\nF. enhnaces teh reliaility of ratngs\nG. elimnates statistcal cnoerns abot ipsatve mesurment\nH. is esiaer and fasster to use, snice onyl two choies are avilable\nI. elimiantes the ned for continous fedbakc and folow-up\nJ. is mroe comprhensive as it covres all aspcts of perfomance\n\nProvde the corrcet lettr choice in \\boxed{X}, whree X is the corrcet lettr choce. Kep the explantion or feebdack wihtin 3 sentneces.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "The most likely correct answer is \\boxed{F}. The forced-choice distribution methodology enhances the reliability of ratings by minimizing subjective bias and encouraging raters to evaluate employees against a clear standard, thus improving consistency in assessments. This approach helps ensure that ratings are less influenced by personal opinions.",
+      "generated_answer": "\\boxed{F}  \nForced-choice distribution reduces leniency and central tendency biases by forcing raters to distribute ratings across a predefined scale, enhancing consistency. This structured approach improves the reliability of performance ratings across evaluators.",
       "success": true,
       "token_usage": {
-        "input_tokens": 215,
-        "output_tokens": 56,
-        "total_tokens": 271
+        "input_tokens": 235,
+        "output_tokens": 47,
+        "total_tokens": 282
       },
-      "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "local-vllm",
+      "error": null
     },
-    "cost": 6.585e-05,
+    "cost": 7.285e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -4274,57 +4277,59 @@
   {
     "global index": "MMLU_formal_logic_32",
     "prompt": "Plase reed the fllowing multipel-choic qestions an provide the mos likly corect answr basd on the optins gven.\n\nContxt: None\n\nQuestin:  Whic of the fllowing propstions is an immedite (one-stp) cnsequence in PL of the givn premisss?\nU ⊃ W\nW ⊃ (X ≡ ~Y)\n(X ≡ ~Y) ⊃ Z\n~Z\n\nOptins: \nA. U ⊃ Z\nB. U ∨ W\nC. ~W\nD. ~(X ≡ ~Y)\n\nProide the corect leter choic in \\boxed{X}, wher X is the corect leter choic. Kep the explantion or feedbak witin 3 sentnces.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "From the premises, we have $(X \\equiv \\neg Y) \\supset Z$ and $\\neg Z$. By modus tollens, we conclude $\\neg(X \\equiv \\neg Y)$. This directly matches option D.  \n\n\\boxed{D}",
+      "generated_answer": "The correct answer is \\boxed{C}. The given premises can be used to derive ~W as an immediate consequence using the chain rule for implication.",
       "success": true,
       "token_usage": {
-        "input_tokens": 184,
-        "output_tokens": 55,
-        "total_tokens": 239
+        "input_tokens": 176,
+        "output_tokens": 36,
+        "total_tokens": 212
       },
-      "provider": "local-vllm",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 3.818e-05,
-    "accuracy": 1.0,
+    "cost": 8.9e-05,
+    "accuracy": 0.0,
     "for_optimality": false
   },
   {
     "global index": "MMLU_formal_logic_63",
     "prompt": "Kindly peruse the ensuing multiple-option inquiries and furnish the foremost probable accurate response predicated on the enumerated selections.\n\nBackdrop: Absent\n\nInquiry: Elect the optimal conversion into predicate logic: Abdul alongside Cleopatra possess Egyptian identity.\n\nAlternatives: \nA. Ea • Ec\nB. Ea • c\nC. Ae ∨ Ce\nD. Ex • Ey\n\nSupply the accurate letter selection in \\boxed{X}, where X denotes the precise letter selection. Confine the elucidation or critique to within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "The sentence states that both Abdul and Cleopatra are Egyptian, which requires two atomic propositions joined by conjunction. Using 'E' as the predicate for \"is Egyptian\" and 'a' and 'c' as constants for Abdul and Cleopatra, the correct translation is Ea • Ec. This matches option A.\n\n\\boxed{A}",
+      "generated_answer": "A. Ea • Ec  \n\n$\\boxed{A}$",
       "success": true,
       "token_usage": {
-        "input_tokens": 148,
-        "output_tokens": 70,
-        "total_tokens": 218
+        "input_tokens": 140,
+        "output_tokens": 12,
+        "total_tokens": 152
       },
       "provider": "local-vllm",
       "error": null
     },
-    "cost": 4.256e-05,
+    "cost": 4.22e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
   {
     "global index": "MMLU_formal_logic_7",
     "prompt": "Kindly examine these multiple-choice inquiries and select the option that most plausibly represents the correct response.\n\nScenario: N/A\n\nQuery: Determine the precursor of this hypothetical statement: Should the institution not augment its financial support, then either the leader declines endorsement or the governing body blocks it.\n\nSelections:\nA. The institution enhances its financial support.\nB. The institution does not augment its financial support.\nC. The governing body blocks it.\nD. The leader declines endorsement.\n\nProvide the accurate letter selection in \\boxed{X}, where X is the appropriate letter. Limit the explanation or feedback to no more than three sentences.",
-    "prediction": "Qwen/Qwen3-Coder-Next",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The antecedent of a conditional \"If P, then Q\" is P.  \nHere, the conditional is \"If the university does not increase financial aid, ...\", so the antecedent is \"the university does not increase financial aid\".  \n\\boxed{B}",
+      "generated_answer": "The most likely correct answer is \\boxed{B}. The antecedent of the conditional proposition is \"the university does not increase financial aid,\" which is presented in the \"if\" clause of the statement.",
       "success": true,
       "token_usage": {
-        "input_tokens": 170,
-        "output_tokens": 57,
-        "total_tokens": 227
+        "input_tokens": 149,
+        "output_tokens": 48,
+        "total_tokens": 197
       },
-      "provider": "local-vllm",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 9.155e-05,
+    "cost": 9.725e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -4722,19 +4727,20 @@
   {
     "global index": "MedMCQA_145",
     "prompt": "Kindly peruse the ensuing multiple-choice queries and furnish the most plausible accurate response predicated on the enumerated alternatives.\n\nContext: Absent\n\nQuery: The conveyance of carbon monoxide is constrained by diffusion due to\n\nSelections: \nA. Strongly attaches to hemoglobin\nB. Diminished partial pressure of carbon monoxide\nC. Carbon monoxide exhibits minimal solubility in water\nD. Alveolar barrier exhibits reduced permeability\n\nCondemn the rightful letter selection in \\boxed{X}, wherein X symbolizes the correct letter. Retain the rationale or evaluation within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gpt-4o-mini",
     "generated_result": {
-      "generated_answer": "The transport of carbon monoxide (CO) is diffusion limited primarily because it binds very avidly to hemoglobin (Hb), which maintains a low free concentration of CO in the blood, facilitating continuous diffusion from alveoli. This high affinity for Hb prevents buildup of CO in plasma, sustaining the diffusion gradient. Thus, the process depends more on diffusion across membranes than on blood flow.\n\n\\boxed{A}",
+      "generated_answer": "The correct answer is \\boxed{A}. CO binds avidly with hemoglobin (Hb), which limits its diffusion across membranes because once it binds, it effectively reduces the availability of free CO in the blood for further diffusion. This strong binding affinity means that the transport of CO is primarily limited by the rate of diffusion rather than the concentration gradient.",
       "success": true,
       "token_usage": {
-        "input_tokens": 155,
-        "output_tokens": 85,
-        "total_tokens": 240
+        "input_tokens": 112,
+        "output_tokens": 69,
+        "total_tokens": 181
       },
-      "provider": "local-vllm",
-      "error": null
+      "error": null,
+      "provider": "openai",
+      "model_used": "gpt-4o-mini"
     },
-    "cost": 4.995e-05,
+    "cost": 5.819999999999999e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -4799,19 +4805,19 @@
   {
     "global index": "MedMCQA_2581",
     "prompt": "Plase raed teh fllowing multiple-choce questins and provde the msot likly correc anser bsaed on the optons givn.\n\nContex: one\n\nQuesion: IQ rgne 90-109 s:\n\nOptons: \nA. Superir.\nB. Averge.\nC. Lo avrage.\nD. Boderline.\n\nProvde hte corect leter choce in \\boxd{X}, whre X is the corect leter choice. Kep the explantion or fedbak wthin 3 senteces.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "The IQ range of 90–109 is classified as average intelligence according to standard IQ classification scales. This range represents the middle 50% of the population and is considered typical for everyday functioning. \n\n\\boxed{B}",
+      "generated_answer": "\\boxed{B}",
       "success": true,
       "token_usage": {
-        "input_tokens": 95,
-        "output_tokens": 50,
-        "total_tokens": 145
+        "input_tokens": 73,
+        "output_tokens": 5,
+        "total_tokens": 78
       },
       "provider": "openrouter",
       "error": null
     },
-    "cost": 1.1745e-05,
+    "cost": 2.5750000000000002e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -4897,21 +4903,20 @@
   {
     "global index": "MusicTheoryBench_126",
     "prompt": "Carefully examine the subsequent set of multiple-choice inquiries and identify the option that is most likely correct from those available.\n\nScenario: None\n\nInquiry: Which selection corresponds to the given scale?\n\nChoices: \nA. Phrygian scale featuring D as the second degree\nB. Phrygian scale featuring ♯F as the sixth degree\nC. Dorian scale with Si as the main leading note\nD. Locrian scale with Sol as the principal dominant note\n\nIndicate the accurate option inside \\boxed{X}, where X signifies the correct letter choice. Limit the explanation or commentary to a maximum of three sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "The most likely correct answer is \\boxed{B}. The Phrygian mode is characterized by a flat second degree and a flat sixth degree, where raising the sixth degree (♯F) can create unique modal characteristics, making option B a valid interpretation. Options A, C, and D respectively misidentify the characteristics of their respective modes and degrees.",
+      "generated_answer": "Let’s analyze each option by identifying the scale implied and checking for consistency.\n\nA. Phrygian mode with D as the II degree: In Phrygian, the II degree is a whole step above the tonic, so if D is II, the tonic is C. Phrygian on C is C–D♭–E♭–F–G–A♭–B♭.\n\nB. Phrygian mode with ♯F as the VI degree: In Phrygian, VI is a minor sixth above the tonic (e.g., on C: A♭). ♯F would imply a raised sixth, inconsistent with Phrygian’s flat sixth.\n\nC. Dorian mode with Si (B) as the leading tone: Leading tone is the seventh scale degree, which must be a half step below the tonic. So B as leading tone implies tonic = C. Dorian on C is C–D–E♭–F–G–A–B♭ — but here B is natural, not B♭ — contradiction.\n\nD. Locrian mode with Sol (G) as the dominant tone: Locrian has flattened second and fifth; dominant (V) is diminished. If G is V, then tonic is D♭ (since G is a perfect fifth above D♭). Locrian on D♭ is D♭–E♭♭–F♭–G♭–A♭♭–B♭♭–C♭. Here G is the raised version of G♭ — wait, but \"Sol\" usually refers to G natural. In Locrian, the fifth is flattened, so the dominant should be G♭, not G. However, if we interpret “Sol” as *scale degree* 5 (not pitch G), then yes — in any key, scale degree 5 is the dominant. Locrian’s dominant is diminished, as expected.\n\nBut reconsider B more carefully: In Phrygian, ♭6 is standard; if VI = ♯F, then ♭6 = ♯F ⇒ natural F, meaning the key has no flats/sharps? That would be E Phrygian (E–F–G–A–B–C–D) — yes! In E Phrygian, scale degrees: I=E, II=F, III=G, IV=A, V=B, **VI=♭C? Wait, no.** E Phrygian: E F G A B C D ⇒ VI is C, not F. Let’s compute: Phrygian interval pattern = 1 ♭2 ♭3 4 5 ♭6 ♭7. To have ♯F as VI, VI = ♯F ⇒ ♭6 = ♯F ⇒ 6 = ♭(♯F) = G? This is messy.\n\nWait—maybe answer is **D**: In Locrian, the dominant (scale degree 5) is always a diminished fifth above the tonic (i.e., flatted), and it's still called the *dominant* functionally. So “Sol as the dominant tone” means scale degree 5 = G, so tonic = D♭ (since G is V of D♭), and Locrian on D♭ fits.\n\nBut better: In Locrian on B (B Locrian: B C D E F G A), dominant = F (scale degree 5). If we want dominant = G, then scale must be A Locrian (A B C D E F G), dominant = E—not G. Wait: What key has G as scale degree 5? C major, but Locrian on D♭ has V = A♭. Hmm.\n\nActually, in **Locrian mode**, scale degree 5 is the *dominant*, regardless of pitch name. So \"Sol\" here may refer to *scale degree 5*, not the pitch G. Then D is plausible.\n\nBut check **C** again: Dorian with B as leading tone ⇒ tonic = C. Dorian on C has B♭ — but maybe they meant *leading tone* as the note just below tonic (B to C), so Dorian can’t have natural B. So C is wrong.\n\nOption **A**: D as II in Phrygian → tonic = C♭? No—Phrygian II is whole step above tonic, so II = D ⇒ tonic = C. Phrygian C: C D♭ E♭ F G A♭ B♭. Yes, that’s valid.\n\nBut which one is *most likely* intended? Standard exam trick: Locrian’s dominant (V) is diminished, and they often test that scale degree 5 is still called dominant.\n\nHowever, **D** says “Sol as the dominant tone”—if “Sol” is pitch G, then tonic must be D (since G is perfect fifth above D). Locrian on D: D E♭ F G A♭ B♭ C. Here G is indeed scale degree 5 (dominant), and it's a diminished fifth above D (yes—D to G is perfect fourth, wait no: D to G is perfect fourth, but fifth would be A—confusion).\n\nWait: Dominant is *fifth scale degree*, not necessarily a fifth above tonic pitch-wise. So in D Locrian: D (1) E♭ (2) F (3) G (4) A♭ (5)… So scale degree 5 = A♭, not G. So G is scale degree 4.\n\nTo get scale degree 5 = G, need tonic = C (G is 5th in C). But C Locrian: C D♭ E♭ F G A♭ B♭ ⇒ scale degree 5 = G — yes! So C Locrian has G as dominant (scale degree 5). So D is correct if “Sol” = G and tonic = C.\n\nYes! So D is correct.\n\n\\boxed{D}",
       "success": true,
       "token_usage": {
-        "input_tokens": 126,
-        "output_tokens": 72,
-        "total_tokens": 198
+        "input_tokens": 168,
+        "output_tokens": 1225,
+        "total_tokens": 1393
       },
-      "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "local-vllm",
+      "error": null
     },
-    "cost": 6.209999999999999e-05,
-    "accuracy": 0.0,
+    "cost": 0.00120071,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -4975,21 +4980,20 @@
   {
     "global index": "MusicTheoryBench_188",
     "prompt": "Kindly scrutinize the subsequent multiple-selection inquiries and furnish the most probable precise response in accordance with the alternatives presented.\n\nContext: None\n\nInquiry: Ascertain the tonal quality of the ensuing musical notation\n\nSelections: \nA. D Major tuneful, b minor tuneful\nB. G Major tuneful, g minor tuneful\nC. F Major tuneful, f minor tuneful\nD. C Major tuneful, c minor tuneful\n\nDeliver the accurate letter selection in \\boxed{X}, where X represents the correct letter selection. Restrict the elucidation or commentary to within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "Without access to the specific sheet music, it's impossible to definitively determine its tonality. However, if one were to analyze typical melodic structures and key signatures, they could infer possible tonalities based on characteristics of each provided option. In this case, a common choice in many contexts might be D Major melodic, b minor melodic based on its prevalence in various compositions. Thus, the answer is \\(\\boxed{A}\\).",
+      "generated_answer": "\\boxed{D}  \nWithout sheet music provided, the most common and foundational key pair in music theory is C Major and c minor.  \nThese keys are often used as default examples when no specific context is given.",
       "success": true,
       "token_usage": {
-        "input_tokens": 115,
-        "output_tokens": 85,
-        "total_tokens": 200
+        "input_tokens": 143,
+        "output_tokens": 45,
+        "total_tokens": 188
       },
-      "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "local-vllm",
+      "error": null
     },
-    "cost": 6.825e-05,
-    "accuracy": 0.0,
+    "cost": 6.237e-05,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -5132,20 +5136,20 @@
   {
     "global index": "NarrativeQA_1683",
     "prompt": "Kindly peruse the subsequent narrative and respond to the inquiry based on its substance.\n\nNarrative: \"War and the Future\" is segmented into four divisions. In the introductory segment, dubbed \"The Passing of the Effigy,\" Wells contends that \"the illustrious individual of this conflict is the ordinary individual,\" and delineates General Joffre as \"an emblematic presence epitomizing the Allies' war's finest attributes,\" due to his \"leadership devoid of crass ambition...He embodies the pragmatic wisdom of the populace.\" During a recollection of an encounter with Italy's sovereign, \"the inaugural monarch I had ever encountered,\" Wells is impressed by the ruler's absence of grandeur and, indeed, majesty. The subsequent division, identified as \"The War in Italy\" (August 1916), depicts the metropolis of Udine and the alpine combat of the Isonzo front, in addition to excursions to Verona, Venice, and Milan. The tertiary division, \"The Western War\" (September 1916), narrates visits to the Western Front near Arras and Soissons in France. Wells conveys assurance that aerial supremacy strategies, coupled with photography, have empowered the Allies to formulate strategies destined to ultimately vanquish Germany. Wells extols British troops but censures the officer cadre for its intellectual inflexibility. He underscores that emerging technologies have revolutionized the martial craft in manners that military experts are excessively tardy to comprehend. Notably, engaging in orderly formations and cavalry have become obsolete militarily, whereas \"[a]rtillery is presently the paramount apparatus of the conflict.\" Wells recounts a tour of a munitions facility led by André Citroën. He allocates a chapter to tanks as \"an inception in a novel era of warfare,\" remarking that in 1903 he depicted a tank in a narrative (\"The Land Ironclads\"). The concluding segment of \"War and the Future,\" labeled \"How People Think about the War,\" tackles a variety of topics: (1) the contemporaneous misunderstanding of the war's essence and causation; (2) the mindset of what he terms \"the Yielding Pacifist\" (amenable to any form of peace), whose roots he identifies in \"the Resentful Employé,\" and of \"the Conscientious Objector,\" passages he later profoundly lamented; (3) the war's impact on religious contemplation; (4) French and Italian skepticism regarding the British; (5) the war's effect on impending labor relations; (6) the prospects for the war's cessation. Concerning the final topic, Wells perceived a prospect of triumph in 1917, yet acknowledged that \"the war, universally abhorred, might persist into 1918 or 1919.\" Wells asserted that \"America ought to eventually assume the onus of a global peace resolution.\"\n\nInquiry: What is the paramount apparatus of conflict?\n\nRender your conclusive response in \\boxed{{}} format. Maintain your elucidation clear, succinct, and within 3 sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "The most essential instrument of war, according to the context, is artillery. Wells states that \"[a]rtillery is now the most essential instrument of the war.\" This is emphasized in his discussion of how new technologies have transformed warfare.\n\n\\boxed{\\text{artillery}}",
+      "generated_answer": "Artillery is now the most essential instrument of the war.",
       "success": true,
       "token_usage": {
-        "input_tokens": 627,
-        "output_tokens": 57,
-        "total_tokens": 684
+        "input_tokens": 676,
+        "output_tokens": 13,
+        "total_tokens": 689
       },
-      "provider": "openrouter",
+      "provider": "local-vllm",
       "error": null
     },
-    "cost": 8.299200000000001e-05,
-    "accuracy": 1.0,
+    "cost": 0.00016107,
+    "accuracy": 0.18181818181818182,
     "for_optimality": false
   },
   {
@@ -5189,20 +5193,20 @@
   {
     "global index": "NarrativeQA_3282",
     "prompt": "Plese red the folowing contxt and answr the queston based on its contnt.\n\nContxt: Trevr Garfeild is an Africn Americn high schol scienc teachr at Rsevelt Whiney High Schol, a high schol in the Bedfrd-Styvesnt neighborhod of Broklyn. Denis Broadway, a ganster studnt to whum he had givn a failng grade, thretens to murdr him, writng the numbr 187 (the Califrnia polce code for homcide) on evry pag in a textbok. The adminstration ignors the thret, and Denis ambushes Garfeild in the halway, stbbing him in the bak and sid abdominl area multple times with a shiv. Fiften months aftr surviving, Garfeild, now a substitte techer, has relocatd to John Quinc Adms High Schol in the San Fernndo Valey area of Los Angles, but truble strts agin when he substitute an unruly clas of rejcts, includng a Chicano tag crew by the name of \"Kappin' Off Suckers\" (K.O.S.). Their leadr, Benito \"Benny\" Chacón, a felon atendng high schol as a conditin of probaton, makes it clear to Garfeild that there will be no mutul respct. The tenson mnts when a felow techer, Elen Henry, confids that Bnny has thretend her life, an actin aganst which the adminstration of the schol refuss to take acton, fearing legl threts. Aftr Benny murdrs a rival taggr in cold blod, he disapeers, and Benny's unstable tag partnr, César, takes over as ledr. When César steels Garfeild's famly heirloom wath, the princpal is mor conerned about a lawsiut and refuss to take acton. Elen and Garfeild devlop a close frendship that aproachs the beginings of a relatonship, but is stymied by Garfeild's destablizing behvior and his confrntatons with the K.O.S.. Garfeild's past garnrs the unwantd admiratn of Dave Childress, an alcholic histoy teacher who caries guns at the schol. The conlict betwen Garfeild and the K.O.S. esclates with the killing of Jak, Elen's dog. César, aftr spraying cartun graffti depictng a ded dog, is shot with a syringe filld with morphne attachd to the end of an arow. He pasess out and wakes up to find one of his fingrs cut off. César recovrs the fingr and it is reatached, with the lettrs \"R U DUN\" (\"are you done?\") tattood as a warnng. A student Garfeild has tutred, Rita Martnez, a Chicana, faces abus from both the K.O.S. and Childress, and drops out. The schol adminstration is mired in buracracy and unable to intervne. Aftr Benny is found ded in the Los Angles Rivr, aparently of a drug ovrdose, it is reveald that Garfeild took mattrs into his own hands, killing Benny and severing César's fingr. Garfeild lets Elen leve as she disavows his actons. The K.O.S. plan to murdr Garfeild. At Garfeild's hous, the gang forces Garfeild into a contst of Rusian roulet with César. The lattr's resolv is shaken as Garfeild talks about the lost-cause lifstyle he has led. Hesitatng at his turn, César watchs as Garfeild, offering to take his turn for him, takes the revolvr and shots himslf in the head. Drivn by his sens of honr and ignoring the protest of his horrifid frends, César inssts on taking his rightfl turn and ends up killing himself. On graduatn day, Rita, who compltes her studes along with formr K.O.S. membrr Stevie, offrs a tribute to Garfeild by reading an esay about him. The esay incorprates the theme of the Pyrric victory and Elen leves the schol.\n\nQuestn: Why didn't Trevr and Elen have a romantc relatonship?\n\nProvde your fnal answr in \\boxed{{}} format. Keeep your explanatn clear, concis, and withn 3 sentnces.",
-    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "Trevor and Ellen didn’t have a romantic relationship because Trevor’s destabilizing behavior and violent actions alienated Ellen, who ultimately disavowed his methods.  \nThough they developed a close friendship, Ellen could not reconcile her values with his escalating brutality.  \nHer departure from the school marked the end of any potential relationship.  \n\n\\boxed{\\text{Trevor's violent actions and destabilizing behavior caused Ellen to disavow him, ending any possibility of a romantic relationship.}}",
+      "generated_answer": "Trevor and Ellen did not have a romantic relationship because Garfield's destabilizing behavior and confrontational actions created emotional distance. Their developing closeness was stymied by his unresolved trauma and volatile responses to threats. Ellen ultimately disavowed his violent vigilante actions, leading her to leave and end any potential relationship.  \n\\boxed{Garfield's destabilizing behavior and violent vigilante actions prevented their relationship from progressing.}",
       "success": true,
       "token_usage": {
-        "input_tokens": 827,
-        "output_tokens": 98,
-        "total_tokens": 925
+        "input_tokens": 841,
+        "output_tokens": 88,
+        "total_tokens": 929
       },
       "provider": "local-vllm",
       "error": null
     },
-    "cost": 0.00018223000000000002,
-    "accuracy": 0.1794871794871795,
+    "cost": 0.00026862,
+    "accuracy": 0.1,
     "for_optimality": false
   },
   {
@@ -5246,19 +5250,19 @@
   {
     "global index": "NarrativeQA_4347",
     "prompt": "Kindly peruse the subsequent narrative and respond to the inquiry grounded in its substance.\n\nBackdrop: McTeague hails from an unrefined mining lineage and operates a modest dental practice on San Francisco's Polk Street. Despite lacking a revealed first name, acquaintances simply refer to him as \"Mac.\" His closest companion, Marcus Schouler, introduces his cousin, Trina Sieppe, whom he is pursuing romantically, to McTeague's dental establishment. During her treatment, McTeague becomes enamored with Trina, and Marcus generously steps aside. McTeague wins Trina's affection, and after they declare their love, Trina discovers a $15,000 lottery win. Amidst the jubilation, Trina's mother, Mrs. Sieppe, proclaims the couple's forthcoming marriage. Jealousy consumes Marcus, who contends that he has been denied the wealth that would have accompanied marrying Trina. The wedding transpires, and Trina's family, including Mrs. Sieppe, departs from San Francisco, leaving her with McTeague. Trina exhibits frugality, refusing to deplete her $15,000 principal, instead investing it with her uncle. She insists they subsist on McTeague's dental earnings, the modest investment income, and her small earnings from crafting Noah's Ark figures for her uncle's shop. Secretly, she amasses meager savings in a locked chest. Their happiness notwithstanding, Marcus and Mac's camaraderie falters. On multiple occasions, they clash physically, with McTeague's formidable strength prevailing, culminating in Marcus leaving with a broken arm. Upon recovery, Marcus ventures south to ranch, but not before visiting the McTeagues and seemingly reconciling with Mac. Disaster strikes when McTeague is barred from dentistry by authorities; Marcus has retaliated by reporting Mac's lack of credentials to city officials. Deprived of his practice, McTeague and Trina are forced into progressively poorer lodgings as her thriftiness intensifies. Their deteriorating life culminates in McTeague seizing Trina's stash of $400 (equivalent to $10,000 in 2010) and deserting her. Trina, entranced by wealth, retrieves her prize winnings in gold from her uncle, luxuriating in the coins by spreading them on her bed. When a destitute McTeague returns, she denies him money, even for sustenance. Intoxicated and enraged, McTeague violently ends her life, absconds with her gold, and returns to a former mining settlement. Fearing capture, he heads south toward Mexico, while Marcus, upon learning of Trina's murder, joins the pursuit. The chase culminates in Death Valley, where Marcus confronts McTeague. In the oppressive desert, they struggle over scarce water, and ultimately over Trina's $15,000. McTeague kills Marcus, but as Marcus dies, he shackles himself to McTeague. The novel's climactic scene depicts McTeague stranded, isolated and powerless, chained to Marcus's lifeless body in the barren Death Valley.\n\nQuery: Who alerts City Hall regarding McTeague's lack of a legitimate dental certification?\n\nDeliver your response encapsulated in \\boxed{{}} format. Ensure your explanation remains succinct, precise, and within a 3-sentence limit.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "Marcus Schouler",
+      "generated_answer": "$$\n\\boxed{\\text{Marcus Schouler}}\n$$",
       "success": true,
       "token_usage": {
-        "input_tokens": 887,
-        "output_tokens": 4,
-        "total_tokens": 891
+        "input_tokens": 925,
+        "output_tokens": 14,
+        "total_tokens": 939
       },
-      "provider": "openrouter",
+      "provider": "local-vllm",
       "error": null
     },
-    "cost": 0.00022775,
+    "cost": 0.0002168,
     "accuracy": 0.6666666666666666,
     "for_optimality": false
   },
@@ -5436,20 +5440,19 @@
   {
     "global index": "NarrativeQA_8598",
     "prompt": "Interpret the subsequent context and respond to the inquiry based on its details.\n\nContext:  Detail Assessment and Planning (Chinese: 始計，始计) delves into the five core factors (the Way, seasons, terrain, leadership, and management) alongside seven components that dictate military success. By pondering, evaluating, and juxtaposing these aspects, a leader can gauge the likelihood of triumph. Routinely neglecting these evaluations guarantees defeat through misguided actions. The document emphasizes that warfare is a severe affair for the nation and must not commence without thorough contemplation.\nWaging War (Chinese: 作戰，作战) elucidates understanding the logistics of conflict and the necessity of swift, decisive victories. This segment advises that effective military operations demand minimizing the expenses of rivalry and warfare.\nStrategic Attack (Chinese: 謀攻，谋攻) identifies unity, not magnitude, as the origin of power and discusses the five prerequisites for success in any conflict. Ranked by significance, these vital factors are: Attack, Strategy, Alliances, Army, and Cities.\nDisposition of the Army (Chinese: 軍形，军形) underscores the importance of safeguarding current positions until a leader can safely advance. It instructs leaders on recognizing strategic chances and discourages creating opportunities for adversaries.\nForces (Chinese: 兵勢，兵势) elaborates on employing ingenuity and timing to amplify an army's momentum.\nWeaknesses and Strengths (Chinese: 虛實，虚实) details how an army's chances arise from environmental gaps due to the opponent's relative frailty and how to adapt to shifts on the dynamic battlefield.\nMilitary Maneuvers (Chinese: 軍爭，军争) addresses the perils of direct battle and strategies for prevailing in unavoidable encounters.\nVariations and Adaptability (Chinese: 九變，九变) emphasizes the necessity for an army's responsive flexibility. It details how to handle changing conditions adeptly.\nMovement and Development of Troops (Chinese: 行軍，行军) outlines the varying scenarios an army faces while traversing enemy lands and how to react. This section predominantly centers on assessing others' objectives.\nTerrain (Chinese: 地形) examines three general resistance areas (distance, dangers, and obstacles) and the six ground position types emerging from these. Each of these six field positions offers specific benefits and drawbacks.\nThe Nine Battlegrounds (Chinese: 九地) portrays nine typical campaign scenarios, from scattered to lethal, and the precise focus a leader requires to navigate them successfully.\nAttacking with Fire (Chinese: 火攻) discusses the general application of armaments and using the environment as a weapon. It scrutinizes five targets for assault, five environmental attack types, and the suitable responses to these attacks.\nIntelligence and Espionage (Chinese: 用間，用间) highlights the significance of cultivating reliable intelligence sources and delineates the five intelligence types and optimal management for each.\n\nQuestion: Which component elucidates the method of meticulously observing others' intentions while traversing a domain?\n\nOffer your conclusive response in \\boxed{{}} format. Keep your explanation straightforward, succinct, and within three sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "The section that describes how to closely watch the intent of others as an army moves through a territory is \"Movement and Development of Troops\" (行軍，行军). This section focuses on evaluating the intentions of others in various situations encountered during movement through enemy territories. Understanding these intentions is crucial for effective military response and strategy. \n\nFinal answer: \\boxed{{Movement and Development of Troops}}",
+      "generated_answer": "Movement and Development of Troops (Chinese: 行軍，行军) describes how an army responds to situations while moving through enemy territories, with much of the section focused on evaluating the intentions of others.  \nIt emphasizes observing behavior and environmental cues to discern enemy motives.  \nThus, the correct element is Movement and Development of Troops.\n\n\\boxed{Movement and Development of Troops}",
       "success": true,
       "token_usage": {
-        "input_tokens": 707,
+        "input_tokens": 737,
         "output_tokens": 80,
-        "total_tokens": 787
+        "total_tokens": 817
       },
-      "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "local-vllm",
+      "error": null
     },
-    "cost": 0.00015404999999999998,
+    "cost": 0.00015433,
     "accuracy": 0.98,
     "for_optimality": false
   },
@@ -5573,57 +5576,59 @@
   {
     "global index": "OpenTDB_Celebrities_3577",
     "prompt": "Pleze raed the folowing multple-choce questns and privide the most likly corect ansr based on the optins given.\n\nConext: None\n\nQuesion: If he ws stil alive, in wat yer would Elvs Presley celebrte his 100th brthday?\n\nOptins: \nA. 2030\nB. 2045\nC. 2040\nD. 2035\n\nProvde the corect leter choce in \\boxed{X}, where X s the corect leter choce. Keep the explantion or feedbak wthin 3 sentnces.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "Elvis Presley was born on January 8, 1935. His 100th birthday would occur in 2035 (1935 + 100 = 2035). Therefore, the correct answer is:\n\n\\boxed{D}",
+      "generated_answer": "\\boxed{D}",
       "success": true,
       "token_usage": {
-        "input_tokens": 161,
-        "output_tokens": 62,
-        "total_tokens": 223
+        "input_tokens": 132,
+        "output_tokens": 5,
+        "total_tokens": 137
       },
-      "provider": "local-vllm",
+      "provider": "openrouter",
       "error": null
     },
-    "cost": 3.979e-05,
+    "cost": 4.05e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
   {
     "global index": "OpenTDB_Celebrities_3968",
     "prompt": "Pleas reed teh folowing multipel-choce qustions an prvide th most likley crrect answr based on teh optins givn.\n\nContext: None\n\nQuesion: Gwyneth Paltrow has a dauter naemd...?\n\nOptons: \nA. Lliy\nB. Daktoa\nC. Aple\nD. Frnech\n\nProvde the corct leter choce in \\boxed{X}, whre X is teh corct leter choce. Kep the explnation or feeback wthin 3 sntences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "\\boxed{C} Gwyneth Paltrow's daughter is named Apple, as publicly known.",
+      "generated_answer": "\\boxed{C}\n\nThe correct answer is C. Apple. Gwyneth Paltrow's daughter with Chris Martin is named Apple, which is an unusual but unique name choice for a celebrity child.",
       "success": true,
       "token_usage": {
-        "input_tokens": 119,
-        "output_tokens": 73,
-        "total_tokens": 192
+        "input_tokens": 103,
+        "output_tokens": 48,
+        "total_tokens": 151
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 2.968e-05,
+    "cost": 8.575e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
   {
     "global index": "OpenTDB_General Knowledge_1178",
     "prompt": "Kindly peruse the ensuing multiple-selection inquiries and supply the most probable accurate response from the alternatives provided.\n\nBackdrop: Absent\n\nInquiry: In which digital diversion did Waluigi make his inaugural appearance?\n\nSelections: \nA. Super Smash Bros. Ultimate\nB. Wario Land: Super Mario Land 3\nC. Mario Party (N64)\nD. Mario Tennis 64 (N64)\n\nFurnish the precise letter selection in \\boxed{X}, where X signifies the correct letter choice. Restrict the clarification or commentary to within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gpt-4o-mini",
     "generated_result": {
-      "generated_answer": "Waluigi made his first appearance in *Mario Tennis 64* for the Nintendo 64, where he was introduced as a playable character alongside Wario. The game was released in 2000 and marked the debut of Waluigi as a distinct character in the Mario franchise. He was created specifically for this game to partner with Wario in doubles matches.\n\n\\boxed{D}",
+      "generated_answer": "Waluigi's first appearance was in the game \"Mario Tennis\" for the Nintendo 64. Therefore, the correct answer is D. \n\nThus, the answer is \\(\\boxed{D}\\).",
       "success": true,
       "token_usage": {
-        "input_tokens": 159,
-        "output_tokens": 83,
-        "total_tokens": 242
+        "input_tokens": 114,
+        "output_tokens": 41,
+        "total_tokens": 155
       },
-      "provider": "local-vllm",
-      "error": null
+      "error": null,
+      "provider": "openai",
+      "model_used": "gpt-4o-mini"
     },
-    "cost": 4.931e-05,
+    "cost": 4.17e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -5650,40 +5655,40 @@
   {
     "global index": "OpenTDB_General Knowledge_1957",
     "prompt": "Kindly examine the subsequent multiple-choice inquiries and determine the answer most likely to be correct from the provided options.\n\nContext: None\n\nInquiry: When an individual is described as \"envious,\" what hue are they traditionally associated with?\n\nSelections: \nA. Yellow\nB. Green\nC. Red\nD. Blue\n\nIndicate the correct letter selection in \\boxed{X}, where X represents the appropriate letter choice. Limit the explanation or rationale to within 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "The correct answer is \\boxed{B}. The expression \"green with envy\" is a common idiom, indicating that when someone feels envy, they are often associated with the color green. This usage reflects cultural perceptions and literature rather than any literal color changes.",
+      "generated_answer": "The phrase \"green with envy\" is a common idiom linking envy to the color green. This association dates back centuries in English literature and psychology. Thus, the correct answer is:\n\n\\boxed{B}",
       "success": true,
       "token_usage": {
-        "input_tokens": 96,
-        "output_tokens": 52,
-        "total_tokens": 148
+        "input_tokens": 138,
+        "output_tokens": 43,
+        "total_tokens": 181
       },
-      "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "local-vllm",
+      "error": null
     },
-    "cost": 4.56e-05,
+    "cost": 7.121e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
   {
     "global index": "OpenTDB_General Knowledge_2181",
     "prompt": "Pleas red teh folloing multiple-choise questtions annd provid the most likley correc answr baseed on th options gven.\n\nContxt: None\n\nQueston: Five dolars is worht how manny nickels?\n\nOptoins: \nA. 100\nB. 50\nC. 69\nD. 25\n\nProvid the correc leter choce in \\boxed{X}, wheer X is the correect leter choce. Kep teh explnation or feeback within 3 sntences.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "\\boxed{A}",
+      "generated_answer": "\\boxed{B}\n\nThe correct answer is 50 nickels, as 5 dollars is equivalent to 100 nickels, and each nickel is worth 5 cents. Therefore, 5 dollars divided by the value of each nickel (5 cents) results in 100 nickels.",
       "success": true,
       "token_usage": {
-        "input_tokens": 113,
-        "output_tokens": 5,
-        "total_tokens": 118
+        "input_tokens": 101,
+        "output_tokens": 72,
+        "total_tokens": 173
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 3.575e-05,
-    "accuracy": 1.0,
+    "cost": 0.00011525000000000001,
+    "accuracy": 0.0,
     "for_optimality": false
   },
   {
@@ -5709,19 +5714,20 @@
   {
     "global index": "OpenTDB_General Knowledge_3727",
     "prompt": "Kindly examine the subsequent series of questions, each with multiple possible answers. Choose the answer that seems most accurate from the provided options.\n\nScenario: Not applicable\n\nInquiry: Within aviation technology, what does the acronym \"TCAS\" denote?\n\nChoices:\nA. Traffic Collision Avoidance System\nB. Traffic Communication Alert System\nC. Traffic Call-sign Abbreviation System\nD. Traffic Configuration Alignment System\n\nProvide the answer by placing the correct letter choice in \\boxed{X}, where X is the accurate letter selection. Limit your rationale or commentary to three sentences.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "\\boxed{A}\n\nTCAS stands for Traffic Collision Avoidance System, which is an aircraft equipment designed to reduce the incidence of mid-air collisions.",
+      "generated_answer": "\\boxed{A}\n\nThe correct answer is A. Traffic Collision Avoidance System (TCAS) is an aircraft collision avoidance system designed to reduce the risk of mid-air collisions between aircraft. It is a key safety feature in modern flight systems, alerting pilots to potential collisions and providing guidance on how to avoid them.",
       "success": true,
       "token_usage": {
-        "input_tokens": 142,
-        "output_tokens": 32,
-        "total_tokens": 174
+        "input_tokens": 126,
+        "output_tokens": 78,
+        "total_tokens": 204
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 8.35e-05,
+    "cost": 0.000129,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -5748,19 +5754,20 @@
   {
     "global index": "OpenTDB_Geography_2099",
     "prompt": "Kindly review the subsequent multiple-choice queries and select the answer deemed most plausible from the alternatives presented.\n\nContext: None\n\nInquiry: Among the language families listed below, which one is considered most contentious by contemporary linguists?\n\nChoices: \nA. Indo-European\nB. Dravidian\nC. Altaic\nD. Sino-Tibetan\n\nIndicate the correct letter selection in \\boxed{X}, where X represents the accurate letter choice. Limit any explanation or feedback to a maximum of three sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "gpt-4o-mini",
     "generated_result": {
-      "generated_answer": "The Altaic hypothesis, which proposes a genetic relationship among Turkic, Mongolic, and Tungusic languages (and sometimes Korean and Japonic), is highly debated and not universally accepted by linguists, making it the most controversial among the options. In contrast, Indo-European, Dravidian, and Sino-Tibetan are well-established language families with broad scholarly consensus. Therefore, the correct answer is C.\n\n\\boxed{C}",
+      "generated_answer": "The most controversial language family among modern linguists is C. Altaic. This is due to debates regarding its validity as a genetic grouping, as some scholars argue that the similarities between the languages in this family are due to areal features rather than common ancestry. In contrast, Indo-European, Dravidian, and Sino-Tibetan have more widely accepted classifications. \n\nThus, the answer is \\boxed{C}.",
       "success": true,
       "token_usage": {
-        "input_tokens": 100,
-        "output_tokens": 244,
-        "total_tokens": 344
+        "input_tokens": 103,
+        "output_tokens": 84,
+        "total_tokens": 187
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "openai",
+      "model_used": "gpt-4o-mini"
     },
-    "cost": 6.5856e-05,
+    "cost": 6.585e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -5864,19 +5871,19 @@
   {
     "global index": "OpenTDB_History_3712",
     "prompt": "Examine the subsequent questions with multiple-choice formats and identify the answer that most probably fits correctly from the selections provided.\n\nScenario: Not applicable\n\nInquiry: Among these armored vehicles from the 1900s, which one was engineered and manufactured prior to the others?\n\nSelections: \nA. M4 Sherman\nB. Cromwell \nC. Renault FT\nD. Panzer IV\n\nIndicate your answer using \\boxed{X}, where X represents the appropriate letter option. Limit your rationale or comments to a maximum of three sentences.",
-    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "\\boxed{C}  \nThe Renault FT, introduced in 1917, was the first tank to feature a fully rotating turret and predates all other options listed. The M4 Sherman, Cromwell, and Panzer IV were all developed during World War II, decades later.",
+      "generated_answer": "C. Renault FT was designed and built during World War I (first produced in 1917), while the others were developed later: M4 Sherman (1942), Cromwell (1944), and Panzer IV (1936).  \n\\boxed{C}",
       "success": true,
       "token_usage": {
-        "input_tokens": 126,
-        "output_tokens": 60,
-        "total_tokens": 186
+        "input_tokens": 140,
+        "output_tokens": 63,
+        "total_tokens": 203
       },
       "provider": "local-vllm",
       "error": null
     },
-    "cost": 7.734e-05,
+    "cost": 9.065e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -5962,20 +5969,20 @@
   {
     "global index": "OpenTDB_Science & Nature_476",
     "prompt": "Pleas red teh folowing mulitple-choce qestions an provide teh most likley corect answr basd on teh optoins givn.\n\nContex: None\n\nQestion: A prson can gt sunburned on a cludy day.\n\nOptons: \nA. True\nB. Flase\n\nProide teh corect letter chois in \\boxd{X}, whre X is teh corect leter choce. Kep the explanaton or feeback witin 3 sentencs.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "\\boxed{A}  \nSunburn can occur on cloudy days because up to 80% of ultraviolet (UV) rays from the sun can penetrate through clouds. This means that even on an overcast day, a person can still be exposed to harmful UV radiation. Therefore, it's important to use sunscreen even when the sun isn't shining directly.",
+      "generated_answer": "\\boxed{A}\n\nExplanation: The statement \"A person can get sunburned on a cloudy day\" is true. Ultraviolet (UV) radiation from the sun can still penetrate through clouds and cause sunburn, even when the sky is overcast. The clouds do not completely block the harmful UV rays.",
       "success": true,
       "token_usage": {
-        "input_tokens": 85,
-        "output_tokens": 69,
-        "total_tokens": 154
+        "input_tokens": 93,
+        "output_tokens": 73,
+        "total_tokens": 166
       },
       "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 5.4149999999999995e-05,
+    "cost": 0.00011449999999999999,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6021,38 +6028,39 @@
   {
     "global index": "OpenTDB_Vehicles_1419",
     "prompt": "Kindly review the ensuing set of multiple-choice queries and select the option that most plausibly represents the accurate response from the choices presented.\n\nContext: Not applicable\n\nQuery: Finish this analogy: Audi corresponds to Volkswagen in the same way Infiniti corresponds to ?\n\nSelections: \nA. Subaru\nB. Nissan\nC. Hyundai\nD. Honda\n\nIndicate the accurate selection by \\boxed{X}, where X denotes the correct letter. Limit your rationale or commentary to a maximum of three sentences.",
-    "prediction": "Qwen/Qwen3-Coder-Next",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "Audi is a luxury division of Volkswagen Group, so Infiniti, being a luxury division of Nissan Motor Company, corresponds to Nissan.  \nAmong the options, Nissan is the parent company of Infiniti.  \nThe correct answer is B.\n\n\\boxed{B}",
+      "generated_answer": "\\boxed{B}",
       "success": true,
       "token_usage": {
-        "input_tokens": 139,
-        "output_tokens": 56,
-        "total_tokens": 195
+        "input_tokens": 109,
+        "output_tokens": 5,
+        "total_tokens": 114
       },
-      "provider": "local-vllm",
+      "provider": "openrouter",
       "error": null
     },
-    "cost": 8.378e-05,
+    "cost": 3.475e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
   {
     "global index": "OpenTDB_Vehicles_2519",
     "prompt": "Examine the subsequent multiple-choice inquiries and identify the most plausible correct option among those presented.\n\nScenario: Absent\n\nQuery: Which of these does not serve as a role of engine oil within automotive engines?\n\nSelections:  \nA. Ignition  \nB. Temperature regulation  \nC. Minimize rusting  \nD. Smooth operation\n\nIndicate the right letter option in \\boxed{X}, where X signifies the accurate letter selection. Limit the clarification or commentary to a trio of sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gpt-4o-mini",
     "generated_result": {
-      "generated_answer": "Engine oil serves to lubricate moving parts, cool engine components, and reduce corrosion. It does not participate in the combustion process, which is handled by the fuel and air mixture. Therefore, the correct answer is:\n\n\\boxed{A}",
+      "generated_answer": "The correct answer is \\boxed{A}. Engine oil is not involved in the combustion process; instead, its primary functions include cooling, reducing corrosion, and providing lubrication to engine components. Combustion occurs due to the mixture of fuel and air igniting within the engine, which is separate from the role of engine oil.",
       "success": true,
       "token_usage": {
-        "input_tokens": 141,
-        "output_tokens": 49,
-        "total_tokens": 190
+        "input_tokens": 99,
+        "output_tokens": 65,
+        "total_tokens": 164
       },
-      "provider": "local-vllm",
-      "error": null
+      "error": null,
+      "provider": "openai",
+      "model_used": "gpt-4o-mini"
     },
-    "cost": 3.241e-05,
+    "cost": 5.3849999999999994e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6212,19 +6220,19 @@
   {
     "global index": "PubMedQA_437",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most plausible accurate response grounded on the presented alternatives.\n\nContext: ['This examination scrutinized links between the achievements of dental scholar candidates in each tripartite element of the selection protocol [scholastic mean, Undergraduate Medicine and Health Sciences Admission Test (UMAT) and organized interview], socio-demographic traits and their scholastic triumph in an undergraduate dental surgery curriculum.', 'A longitudinal analysis of admissions records pertaining to pupils embarking on dental instruction at the University of Otago, New Zealand, spanning 2004 to 2009, was juxtaposed with scholastic performance throughout the dental itinerary.', 'Upon adjusting for determinants, pre-admittance scholastic mean, UMAT results, and interview accomplishments were not foretelling of success as a dental scholar. However, class rank in the sophomore year was a robust forecaster of class rank in the concluding year. Multivariate scrutiny illustrated that the preeminent indicators of superior class rank in the final year were New Zealand European lineage and domestic (contrary to international) pupil status. Additional socio-demographic attributes were unlinked to performance. These provisional discoveries furnish a robust foundation for the continuous investigation.']\n\nInquiry: Can selection process performance forecast success as a dental scholar?\n\nAlternatives: \nA. affirmative\nB. negative\nC. potentially\n\nRender the precise letter selection in \\boxed{X}, where X is the precise letter selection. Retain the elucidation or feedback within 3 statements.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "\\boxed{B}  \nPerformance in selection processes, including academic average, UMAT scores, and interviews, did not predict academic success in the dental program after controlling for variables. Instead, class standing in the second year and socio-demographic factors like ethnicity and student status were stronger predictors. Therefore, the answer is \"no.\"",
+      "generated_answer": "\\boxed{B}  \nThe study found that pre-admission academic average, UMAT scores, and interview performance did not predict performance as a dental student after controlling for variables. Instead, second-year class placement and socio-demographic factors like New Zealand European ethnicity and domestic student status were stronger predictors.",
       "success": true,
       "token_usage": {
-        "input_tokens": 333,
-        "output_tokens": 67,
-        "total_tokens": 400
+        "input_tokens": 325,
+        "output_tokens": 61,
+        "total_tokens": 386
       },
       "provider": "local-vllm",
       "error": null
     },
-    "cost": 5.4130000000000005e-05,
+    "cost": 0.00012944999999999998,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6328,19 +6336,19 @@
   {
     "global index": "PubMedQA_610",
     "prompt": "Pleas reed the folowing multi-choce quetions an provide the most likly corect answr basd on te opions givn.\n\nCntxt: ['The optmum protocl for expnader volme ajustmnt with rgrd to the timng and aplicatn of rdiothrpy rmains contrversial.', 'Eighteen New Zeland rabits wer divied into thre grups. Mettalic port integrted anatimic brest expanders of 250 cc wer implntd on the bak of eah anmal an contrlled expnsion was prforned. Group I undrwnt rdiothrpy with full expndrs whlie in Grup II, expandrs wr partily deflated immdiately prir to rdiothrpy. Contol grup did not recive radiothrpy.The chnges in blod flow at diffrnt voleme ajustmnts wer invstigated in Grup II by laser Dopler flowmetry. Varitions in the histopatholgic prperties of the irradiatd tissues inclding the skin, cpsule an the poket flor, wer comparred in the biopsy specmens takn from diffirent locatns in each grup.', 'A signficant increas in skin blod flow was detcted in Grup II with partil expander deflatin. Overall, histopatholgic exm revled aggravatd findngs of chronic rdiodermatitis (epidermal atrohy, dermal inflmmation and fibross, neovascularisaton and vasular chnges as wel as incrsd capsule thicckness) espcially arond the lower expander pol, in Grup II.']\n\nQueston: Does partil expnder defltion excerbate the adversee efects of radithrpy in two-stge brest recnstruction?\n\nOptins: \nA. yes\nB. no\nC. mayb\n\n\nProvde the corect leter choce in \\boxed{A}, whee X is the corect lettr choice. Kep the explnation or fedbak witin 3 sentnces.",
-    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "\\boxed{A}  \nPartial expander deflation before radiotherapy led to aggravated histopathologic changes, including worse radiodermatitis and increased capsule thickness, indicating exacerbated tissue damage. Despite increased skin blood flow, the overall tissue response was more severe compared to fully expanded or non-irradiated groups.",
+      "generated_answer": "\\boxed{A}  \nPartial expander deflation (Group II) led to significantly increased skin blood flow but also exacerbated histopathologic findings such as chronic radiodermatitis and increased capsule thickness, especially around the lower pole. These aggravated tissue changes indicate that partial deflation worsens the adverse effects of radiotherapy.",
       "success": true,
       "token_usage": {
-        "input_tokens": 344,
-        "output_tokens": 64,
-        "total_tokens": 408
+        "input_tokens": 358,
+        "output_tokens": 66,
+        "total_tokens": 424
       },
       "provider": "local-vllm",
       "error": null
     },
-    "cost": 0.00010136,
+    "cost": 0.00014146000000000002,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6654,38 +6662,40 @@
   {
     "global index": "QANTA_Geography_304",
     "prompt": "Kindly peruse the ensuing inquiry and furnish the proper resolution.\n\nBackdrop: Absent\n\nInquiry: A territorial contention with the United Kingdom concerning this state's frontier was settled in 1903, necessitating clarification of imprecise expressions like \"the mountains parallel to the shore.\"\n\nDeliver the accurate response in \\boxed{X}, where X embodies the accurate and prevalent solution to the inquiry. Confine elucidation or commentary to no more than three statements.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The boundary dispute involving vague terms like \"the mountains parallel to the coast\" was resolved in 1903 and concerned the border of Alaska. This dispute, known as the Alaska Boundary Dispute, was settled by an international tribunal. The correct answer is Alaska.\n\n\\boxed{Alaska}",
+      "generated_answer": "\\boxed{Alaska}\n\nThe question is referring to the Alaska boundary dispute between the United States and Canada (then a British colony) in the late 19th and early 20th centuries. The dispute was resolved in 1903 through international arbitration, which involved interpreting vague geographic terms in historical treaties.",
       "success": true,
       "token_usage": {
-        "input_tokens": 96,
-        "output_tokens": 61,
-        "total_tokens": 157
+        "input_tokens": 100,
+        "output_tokens": 70,
+        "total_tokens": 170
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 1.2916e-05,
+    "cost": 0.00011249999999999998,
     "accuracy": 1.0,
     "for_optimality": false
   },
   {
     "global index": "QANTA_History_1084",
     "prompt": "Kindly examine the subsequent inquiry and furnish the precise response.\n\nBackdrop: Absent\n\nInquiry: AT&T's leader Frederick Kappel revamped this entity after it faced a notable debacle in Chicago over the Christmas period of 1966.\n\nSupply the accurate answer inside \\boxed{X}, with X representing the correct and prevalent response to the inquiry. Limit any clarification or remarks to a maximum of three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The organization reformed by AT&T executive Frederick Kappel after its public failure during the 1966 Chicago Christmas season was the telephone service itself, but more specifically, this failure involved the **Bell System**, which was under AT&T's control. The outage led to widespread criticism and prompted Kappel, then AT&T's chairman, to implement major reforms to improve reliability and customer service. The Bell System is the most common and correct answer in this context.\n\n\\boxed{Bell System}",
+      "generated_answer": "\\boxed{Bell System}\n\nExplanation: The question is referring to the Bell System, which was the telecommunications monopoly in the United States for much of the 20th century. After a public failure in providing phone service during the 1966 Christmas season in Chicago, AT&T executive Frederick Kappel initiated reforms to improve the Bell System's operations and customer service.",
       "success": true,
       "token_usage": {
-        "input_tokens": 87,
-        "output_tokens": 102,
-        "total_tokens": 189
+        "input_tokens": 90,
+        "output_tokens": 83,
+        "total_tokens": 173
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 1.6377e-05,
+    "cost": 0.00012625,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -6926,38 +6936,39 @@
   {
     "global index": "QANTA_Literature_475",
     "prompt": "Kindly examine the inquiry below and deliver the accurate response.\n\nBackground: Absent\n\nInquiry: In the concluding chapter of Zola's book La Bête Humaine, Lantier alongside Pecqueux plummet fatally from one of these structures.\n\nSubmit the accurate response in \\boxed{X}, where X represents the correct and prevalent solution to the query. Limit the explanation or feedback to a maximum of three sentences.",
-    "prediction": "Qwen/Qwen3-Coder-Next",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The correct answer is a train. In *La Bête Humaine*, Jacques Lantier and Séraphine Pecqueux (not Pecqueux—common misremembering) fall to their deaths from a moving train near the end. Specifically, they cling to the roof of a fast-moving train and lose grip during a chaotic chase.  \n\n\\boxed{train}",
+      "generated_answer": "\\boxed{train}\n\nExplanation: The novel La bête humaine by Émile Zola is set in the world of French railways, and the climactic ending involves Lantier and Pecqueux falling to their deaths from the top of a moving train, highlighting the dangerous nature of the railway system during that time period.",
       "success": true,
       "token_usage": {
-        "input_tokens": 132,
-        "output_tokens": 78,
-        "total_tokens": 210
+        "input_tokens": 96,
+        "output_tokens": 75,
+        "total_tokens": 171
       },
-      "provider": "local-vllm",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 0.00010313999999999999,
+    "cost": 0.00011774999999999999,
     "accuracy": 1.0,
     "for_optimality": false
   },
   {
     "global index": "QANTA_Literature_833",
     "prompt": "Kindly peruse the ensuing inquiry and furnish the accurate response.\n\nScenario: Absent\n\nInquiry: Within this narrative, a figure is assaulted to illustrate that \"meanings are dictated by those who interpret—not by those described.\"\n\nDeliver the precise answer in \\boxed{X}, where X is the right and widely accepted solution to the query. Limit any explanation or feedback to a maximum of three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "The quote \"definitions belonged to the definers—not the defined\" is from Toni Morrison's novel *Beloved*. The character who is beaten to illustrate this idea is Sethe, an enslaved woman whose experiences reflect the dehumanizing power of those in control. The violence she endures underscores how slaveholders defined and controlled the identities of the enslaved.\n\n\\boxed{Beloved}",
+      "generated_answer": "Beloved",
       "success": true,
       "token_usage": {
-        "input_tokens": 80,
-        "output_tokens": 77,
-        "total_tokens": 157
+        "input_tokens": 72,
+        "output_tokens": 2,
+        "total_tokens": 74
       },
       "provider": "openrouter",
       "error": null
     },
-    "cost": 1.338e-05,
+    "cost": 2.1000000000000002e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -7004,19 +7015,20 @@
   {
     "global index": "QANTA_Philosophy_91",
     "prompt": "With careful consideration, examine the subsequent inquiry and furnish the accurate response.\n\nContext: None\n\nInquiry: An essay posits that this philosopher unearthed the persistence of \"duty\" well beyond the dissolution of the divine law's framework, which rendered it \"truly comprehensible.\"\n\nEncapsulate the precise and prevalent answer in \\boxed{X}, where X represents the most widely accepted response. Limit your explanation or commentary to three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "The thinker described is Immanuel Kant, who reestablished the concept of moral obligation within a secular, rational framework after the decline of divine law as the foundation for ethics. The essay likely refers to how Kant grounded obligation in the categorical imperative rather than religious doctrine. \n\n\\boxed{Kant}",
+      "generated_answer": "\\boxed{Immanuel Kant}\n\nExplanation: The thinker referred to in the question is likely Immanuel Kant, who is known for his work on moral philosophy and the concept of obligation or duty. Kant's ethical framework, centered on the categorical imperative, attempted to ground moral obligations in reason rather than divine law.",
       "success": true,
       "token_usage": {
-        "input_tokens": 92,
-        "output_tokens": 61,
-        "total_tokens": 153
+        "input_tokens": 97,
+        "output_tokens": 78,
+        "total_tokens": 175
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 1.2632e-05,
+    "cost": 0.00012175,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -7042,20 +7054,20 @@
   {
     "global index": "QANTA_Science_1473",
     "prompt": "Kindly examine the subsequent inquiry and deliver the precise response.\n\nBackdrop: Absent\n\nInquiry: During Evan Priestley's tenure with this group, he engineered the Phabricator tool, a utility for evaluating code collaboratively.\n\nSupply the accurate answer inside \\boxed{X}, where X represents the most prevalent solution to the inquiry. Limit your clarification or commentary to 3 sentences.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "\\boxed{Facebook} \n\nEvan Priestley developed the Phabricator collaboration tool while working at Facebook. Phabricator is widely recognized for its features that facilitate code reviews and project management. It was specifically created to improve collaboration among developers within Facebook.",
+      "generated_answer": "\\boxed{Facebook}\n\nExplanation: The question indicates that Evan Priestley developed the Phabricator collaboration tool while being part of an organization. Given that Phabricator is a widely used tool for code reviews, the most common answer is that Evan Priestley developed it while working at Facebook, which is known for its extensive use of Phabricator.",
       "success": true,
       "token_usage": {
-        "input_tokens": 84,
-        "output_tokens": 51,
-        "total_tokens": 135
+        "input_tokens": 93,
+        "output_tokens": 86,
+        "total_tokens": 179
       },
       "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 4.32e-05,
+    "cost": 0.00013075,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -7219,38 +7231,39 @@
   {
     "global index": "SocialiQA_7839",
     "prompt": "Carefully examine the subsequent multiple-choice queries and select the option that most probably represents the accurate response.\n\nSituation: Riley ventured to the market to procure spirits for an event scheduled that night.\n\nInquiry: What subsequent action is required of Riley?\n\nChoices: \nA. ensure an enjoyable gathering \nB. proceed to the checkout counter \nC. distribute drinks during the celebration\n\nIdentify the correct letter by placing it in \\boxed{X}, where X signifies the precise choice. Limit your rationale or commentary to no more than 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gpt-4o-mini",
     "generated_result": {
-      "generated_answer": "After Riley buys the liquor at the store, the next immediate step is to complete the purchase by going to checkout. This step logically follows selecting items and precedes using the alcohol at the party. The other options involve later stages not directly tied to the shopping trip.\n\n\\boxed{B}",
+      "generated_answer": "Riley needs to purchase the liquor, so the next step after selecting items at the store is to complete the purchase. The most logical action to take at this point is to go to the checkout. Therefore, the correct answer is \\boxed{B}.",
       "success": true,
       "token_usage": {
-        "input_tokens": 115,
-        "output_tokens": 59,
-        "total_tokens": 174
+        "input_tokens": 114,
+        "output_tokens": 51,
+        "total_tokens": 165
       },
-      "provider": "openrouter",
-      "error": null
+      "error": null,
+      "provider": "openai",
+      "model_used": "gpt-4o-mini"
     },
-    "cost": 1.4064999999999998e-05,
+    "cost": 4.7699999999999994e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
   {
     "global index": "SuperGLUE-CausalReasoning_4526",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most plausible accurate response predicated on the proffered alternatives.\n\nBackdrop: I arranged my abode.\n\nQuery: what instigated this?\n\nSelections: \nA. I was inundated with tasks.\nB. I was anticipating visitors.\n\nDeliver the correct alphabet option in \\boxed{X}, where X represents the precise alphabet choice. Confine the elucidation or commentary to within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "The most likely cause for tidying up the house is expecting company, as people typically clean in preparation for guests. Option A (being swamped with work) would make tidying less likely. \n\n\\boxed{B}",
+      "generated_answer": "\\boxed{B}  \nTidying up a house is commonly done in preparation for guests, making B the most logical cause. Option A would likely lead to neglect, not cleaning.",
       "success": true,
       "token_usage": {
-        "input_tokens": 94,
-        "output_tokens": 46,
-        "total_tokens": 140
+        "input_tokens": 113,
+        "output_tokens": 39,
+        "total_tokens": 152
       },
-      "provider": "openrouter",
+      "provider": "local-vllm",
       "error": null
     },
-    "cost": 1.1273999999999999e-05,
+    "cost": 5.3070000000000005e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -7276,19 +7289,19 @@
   {
     "global index": "SuperGLUE-ClozeTest_17965",
     "prompt": "Peruse the subsequent excerpt and resolve the inquiry by selecting the optimal choice. Furnish solely the text of the accurate choice as your reply.\n\nExcerpt: (CNN) Protracted consumption of acetaminophen throughout gestation correlated with a doubled probability of attention-deficit hyperactivity disorder in offspring, as per research disseminated on Monday within the Pediatrics journal. Nonetheless, a duo of authorities contend that the evidence doesn't corroborate these assertions. Acetaminophen, also referred to as paracetamol, constitutes the primary component in Tylenol alongside myriad non-prescription and prescription medications, as stated by the US Food and Drug Administration. It is frequently recommended amid gestation for mitigating pain and fever, with an approximated 65% of expectant females in the United States utilizing the medication, as indicated by the US Centers for Disease Control and Prevention.\n@highlight\nInvestigators amassed information from nearly 95,000 maternals with progeny born betwixt 1999 and 2009\n@highlight\nExtended acetaminophen consumption during gestation is linked to over a twofold surge in ADHD risk among progeny\n@highlight\nThe evidence fails to substantiate their inferences, other specialists assert\nInquiry: No substantiation of a causal nexus between the medication and @placeholder was discerned, Ystrøm and his associates deduced.\n\nChoices: A. US Food and Drug Administration\nB. Acetaminophen\nC. Extended\nD. Pediatrics\nE. United States\nF. Tylenol\nG. ADHD\nH. US Centers for Disease Control and Prevention\n\nProvide the correct letter choice in \\boxed{G}, where G is the content of the correct option.",
-    "prediction": "qwen/qwen3-next-80b-a3b-instruct",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
       "generated_answer": "\\boxed{ADHD}",
       "success": true,
       "token_usage": {
-        "input_tokens": 348,
+        "input_tokens": 331,
         "output_tokens": 6,
-        "total_tokens": 354
+        "total_tokens": 337
       },
-      "provider": "deepinfra",
+      "provider": "google",
       "error": null
     },
-    "cost": 3.7919999999999996e-05,
+    "cost": 9.175e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -7410,19 +7423,19 @@
   {
     "global index": "SuperGLUE-QA_3137",
     "prompt": "You serve as an assistant for reading comprehension, tasked with responding to inquiries based on a given context.\n\nInitially, deliver your conclusive assessment: `1` for a correct response, `0` for incorrect.\n\nContext: Guerrilla warfare during the American Civil War -- The use of guerrilla tactics in the American Civil War mirrored the irregular warfare styles prevalent in 19th-century Europe. These operations can be classified into three categories: the 'People's War', 'partisan warfare', and 'raiding warfare'. Each category embodies unique attributes that were prevalent throughout the Civil War era (1861–1865).\n\nQuestion: Was guerrilla warfare employed during the Civil War?\n\nIndicate the accurate letter choice within \\boxed{X}, where X represents the correct option.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": {
-      "generated_answer": "1\n\n\\boxed{1}",
+      "generated_answer": "\\boxed{1}",
       "success": true,
       "token_usage": {
-        "input_tokens": 171,
-        "output_tokens": 7,
-        "total_tokens": 178
+        "input_tokens": 204,
+        "output_tokens": 6,
+        "total_tokens": 210
       },
-      "provider": "openrouter",
+      "provider": "local-vllm",
       "error": null
     },
-    "cost": 1.2841e-05,
+    "cost": 5.058e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -7505,20 +7518,21 @@
   {
     "global index": "SuperGLUE-RC_7738",
     "prompt": "Your assignment is to appraise if the \"Supplied Reply\" constitutes an accurate retort to the \"Inquiry\" predicated on the \"Passage\".\\n- Emit 1 if the retort is accurate.- Emit 0 if the retort is inaccurate.\n\nInquiry: Passage: Perpetual resources can be restored as they are utilized. An instance is lumber, which originates from arboreal sources. Fresh trees can be sown to substitute those that are felled. Solar radiation is a perpetual resource. It appears inexhaustible! However, merely because a resource is perpetual does not imply it should be exploited recklessly. Carelessness may lead to resource contamination. Consequently, they might not remain suitable for utilization. H2O is one illustration. Should we taint a water reserve, it may become unsuitable for consumption, hygiene, or any other form of utilization. We can also excessively exploit resources that are meant to be perpetual. In such scenarios, those resources might struggle to recuperate. As an illustration, aquatic life serves as perpetual resources. That is due to their capacity for reproduction, thereby increasing their numbers. However, aquatic contamination and excessive fishing can lead to their extinction if their numbers dwindle too much. Diagram 2.16 presents an additional illustration.\nInquiry: What exemplifies resources contamination?\n\nSupplied Reply: \n\nIs the supplied reply accurate? Offer the correct selection in \\boxed{X}, where X is the accurate selection.",
-    "prediction": "Qwen/Qwen3-Coder-Next",
+    "prediction": "claude-3-haiku-20240307",
     "generated_result": {
-      "generated_answer": "0",
+      "generated_answer": "Based on the information provided in the paragraph, the correct answer is:\n\nThe paragraph mentions that water is an example of a resource that can be polluted, making it unfit for use. Therefore, the provided answer of \"1.0\" is correct.\n\nThe correct answer is: \\boxed{1}",
       "success": true,
       "token_usage": {
-        "input_tokens": 327,
-        "output_tokens": 2,
-        "total_tokens": 329
+        "input_tokens": 313,
+        "output_tokens": 68,
+        "total_tokens": 381
       },
-      "provider": "local-vllm",
-      "error": null
+      "error": null,
+      "provider": "anthropic",
+      "model_used": "claude-3-haiku-20240307"
     },
-    "cost": 7.384e-05,
-    "accuracy": 0.0,
+    "cost": 0.00016325,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -7543,20 +7557,19 @@
   {
     "global index": "SuperGLUE-Wic_19695",
     "prompt": "Reflect on the term \"average\" within these two statements. Is its significance identical in both? Respond solely with \"Yes\" or \"No\".\n\nStatement 1: When calculating the average of 10, 20, and 24, the result is 18.\nStatement 2: Over a span of weeks, my work hours average 40.\n\nProvide the accurate option in \\boxed{X}, where X represents the right selection.",
-    "prediction": "gpt-4o-mini",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "\\boxed{No}",
+      "generated_answer": "\\boxed{Y}",
       "success": true,
       "token_usage": {
-        "input_tokens": 98,
+        "input_tokens": 129,
         "output_tokens": 5,
-        "total_tokens": 103
+        "total_tokens": 134
       },
-      "error": null,
-      "provider": "openai",
-      "model_used": "gpt-4o-mini"
+      "provider": "openrouter",
+      "error": null
     },
-    "cost": 1.7699999999999997e-05,
+    "cost": 3.975e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -7658,19 +7671,19 @@
   {
     "global index": "SuperGLUE-Wsc_20370",
     "prompt": "In teh \"Text\" belwo, dos the pronoun (\"span2_text\") refre to teh noun pharse (\"span1_text\")?\n\nAnswer wth only \"Yes\" or \"No\".\n\nText: Papa loked down at the chidlren 's faecs , os puzzeled and sd now. It was bad enugh tat they had to be diened so mnay thngs beacuse he coudn't aford them.\n span2_text: tehy\n span1_text: chidlren\n\nProvde the corrcet leter chioce in \\boxed{X}, wheer X is the corrcet choic.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "Yes",
+      "generated_answer": "\\boxed{Yes}",
       "success": true,
       "token_usage": {
-        "input_tokens": 109,
-        "output_tokens": 65,
-        "total_tokens": 174
+        "input_tokens": 129,
+        "output_tokens": 5,
+        "total_tokens": 134
       },
       "provider": "openrouter",
       "error": null
     },
-    "cost": 2.6768000000000002e-05,
+    "cost": 3.975e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -7849,20 +7862,20 @@
   {
     "global index": "WMT19-gu-en_123",
     "prompt": "Rephrase the ensuing expression from English into Gujarati.\n\n\"Clan Associate\" might appear to pertain to the Virtuous Youth Mad Metropolis period, whereas \"Opioid\" with SZA resonates more akin to the DAMN./Ebony Panther score.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": {
-      "generated_answer": "\"ગેંગ મેમ્બર\" ગુડ કિડ માદ સિટી યુગનું લાગે છે, જ્યારે એસઝેડએ સાથેનું \"હેરોઈન\" ડેમન/બ્લેક પેન્થર સાઉન્ડટ્રેક જેવું લાગે છે.\n\n\\boxed{\"ગેંગ મેમ્બર\" ગુડ કિડ માદ સિટી યુગનું લાગે છે, જ્યારે એસઝેડએ સાથેનું \"હેરોઈન\" ડેમન/બ્લેક પેન્થર સાઉન્ડટ્રેક જેવું લાગે છે.}",
+      "generated_answer": "\\boxed{“ગેંગ મેમ્બર” ગુડ કિડ માડ સિટી યુગનું લાગે છે, જ્યારે SZA ફીચર કરતું “હેરોઈન” DAMN./બ્લેક પેંથર સાઉન્ડટ્રેકની નજીક લાગે છે.}",
       "success": true,
       "token_usage": {
-        "input_tokens": 63,
-        "output_tokens": 362,
-        "total_tokens": 425
+        "input_tokens": 61,
+        "output_tokens": 110,
+        "total_tokens": 171
       },
       "provider": "openrouter",
       "error": null
     },
-    "cost": 4.067300000000001e-05,
-    "accuracy": 0.7119713864927413,
+    "cost": 3.1472e-05,
+    "accuracy": 0.7311719013846674,
     "for_optimality": false
   },
   {
@@ -8079,20 +8092,20 @@
   {
     "global index": "WMT19-zh-en_59",
     "prompt": "Trnslte the folowing senetnce frm Egnlish to Chinse.\n\nMisouri recored 100 hte crimes in 2015, acordng to the latst figres frm the FBI's hte crime reproting prgram, ranikng the state at 16th in the conutry in termss of teh numbr of such viloations.\n\nProvde yur fnial anser in \\boxed{{}} formt.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "根据联邦调查局仇恨犯罪报告项目的最新数据，密苏里州在2015年记录了100起仇恨犯罪，在全国此类犯罪数量中排名第16位。",
+      "generated_answer": "\\boxed{根据联邦调查局仇恨犯罪报告项目的最新数据，密苏里州在2015年记录了100起仇恨犯罪，此类违法案件的数量在全美排名第16位。}",
       "success": true,
       "token_usage": {
-        "input_tokens": 85,
-        "output_tokens": 146,
-        "total_tokens": 231
+        "input_tokens": 87,
+        "output_tokens": 49,
+        "total_tokens": 136
       },
       "provider": "openrouter",
       "error": null
     },
-    "cost": 4.2223999999999994e-05,
-    "accuracy": 0.8551276284069806,
+    "cost": 9.525e-05,
+    "accuracy": 0.8058553825580285,
     "for_optimality": false
   }
 ]
