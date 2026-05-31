@@ -9,7 +9,7 @@ from typing import Any, Optional
 
 from universal_model_names import ModelNameManager
 
-__all__ = ["compute_robustness_score"]
+__all__ = ["compute_robustness_score", "compute_flip_labels"]
 
 
 def _normalize_model_name(
@@ -24,14 +24,17 @@ def _normalize_model_name(
         return model_name
 
 
-def compute_robustness_score(
+def compute_flip_labels(
     full_predictions: list[dict[str, Any]],
     robustness_predictions: list[dict[str, Any]],
     *,
     name_manager: Optional[ModelNameManager] = None,
-) -> Optional[float]:
+) -> list[dict[str, Any]]:
     """
-    Compute the robustness flip ratio between full and robustness prediction sets.
+    Compute per-query robustness flip labels.
+
+    A query "flips" when the router selects a different model for the perturbed
+    (robustness) prompt than it did for the original prompt.
 
     Args:
         full_predictions: Router predictions for the full/sub_10 split.
@@ -39,8 +42,8 @@ def compute_robustness_score(
         name_manager: Optional shared instance to reuse universal name cache.
 
     Returns:
-        A float in [0, 1] representing stability (1 - flip ratio),
-        or ``None`` if no overlapping entries were found.
+        A list of ``{"global index": <id>, "flip": 0|1}`` for every robustness
+        query that has a matching full-split selection, sorted by global index.
     """
 
     manager = name_manager or ModelNameManager()
@@ -65,26 +68,48 @@ def compute_robustness_score(
         and (key := get_index(entry)) is not None
     }
 
-    if not full_map:
-        return None
+    labels: list[dict[str, Any]] = []
+    for entry in robustness_predictions:
+        if not isinstance(entry, dict):
+            continue
+        key = get_index(entry)
+        if key is None or key not in full_map:
+            continue
+        full_model = full_map[key].get("prediction")
+        robust_model = entry.get("prediction")
+        if not full_model or not robust_model:
+            continue
+        flipped = normalize(full_model) != normalize(robust_model)
+        labels.append({"global index": key, "flip": 1 if flipped else 0})
 
-    matches = [
-        (full_map[key].get("prediction"), entry.get("prediction"))
-        for entry in robustness_predictions
-        if isinstance(entry, dict)
-        and (key := get_index(entry)) is not None
-        and key in full_map
-        and full_map[key].get("prediction")
-        and entry.get("prediction")
-    ]
+    labels.sort(key=lambda item: str(item["global index"]))
+    return labels
 
-    if not matches:
-        return None
 
-    flips = sum(
-        1
-        for full_model, robust_model in matches
-        if normalize(full_model) != normalize(robust_model)
+def compute_robustness_score(
+    full_predictions: list[dict[str, Any]],
+    robustness_predictions: list[dict[str, Any]],
+    *,
+    name_manager: Optional[ModelNameManager] = None,
+) -> Optional[float]:
+    """
+    Compute the robustness flip ratio between full and robustness prediction sets.
+
+    Args:
+        full_predictions: Router predictions for the full/sub_10 split.
+        robustness_predictions: Predictions collected from the robustness split.
+        name_manager: Optional shared instance to reuse universal name cache.
+
+    Returns:
+        A float in [0, 1] representing stability (1 - flip ratio),
+        or ``None`` if no overlapping entries were found.
+    """
+
+    labels = compute_flip_labels(
+        full_predictions, robustness_predictions, name_manager=name_manager
     )
+    if not labels:
+        return None
 
-    return 1.0 - flips / len(matches)
+    flips = sum(label["flip"] for label in labels)
+    return 1.0 - flips / len(labels)
