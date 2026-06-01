@@ -26,18 +26,29 @@ routers:
     prediction: "sqwish-router"
     category_key: "sqwish-router"
     flip_key: "sqwish-router"
+    website:
+      affiliation: "@namitha-sqwish"
+      github_url: "https://github.com/namitha-sqwish"
 
   - readme_name: "AgentForge Router"
     website_name: "AgentForge Router"
     prediction: "agentforge-router"
     category_key: "agentforge"
     flip_key: "agentforge"
+    website:
+      affiliation: "@YangY-Z"
+      github_url: "https://github.com/YangY-Z"
+      type: "open-source"
 
   - readme_name: "Nadir Router"
     website_name: "Nadir Router"
     prediction: "nadir-cascade-v2"
     category_key: "nadir"
     flip_key: "nadir"
+    website:
+      affiliation: "NadirRouter"
+      github_url: "https://github.com/NadirRouter/NadirClaw"
+      type: "open-source"
 
   - readme_name: "Weave Router"
     website_name: "Weave Router"
@@ -50,6 +61,10 @@ routers:
     prediction: "orcarouter-adaptive"
     category_key: "orcarouter"
     flip_key: "orcarouter"
+    website:
+      affiliation: "@ZhenghuaBao"
+      github_url: "https://github.com/ZhenghuaBao"
+      type: "open-source"
 
   - readme_name: "Azure-Model-Router"
     website_name: "azure"
@@ -68,6 +83,9 @@ routers:
     prediction: "auto_router"
     category_key: "auto_router"
     flip_key: "auto_router"
+    website:
+      affiliation: "@cxf2015"
+      github_url: "https://github.com/cxf2015"
 
   - readme_name: "vLLM-SR"
     website_name: "vllm"

@@ -119,6 +119,17 @@ def load_predictions(
         return json.load(handle)
 
 
+def load_config_models(router: str) -> Optional[list[str]]:
+    """Read a router's model pool from its config (for routers.json metadata)."""
+    path = REPO_ROOT / "router_inference" / "config" / f"{router}.json"
+    if not path.exists():
+        return None
+    cfg = json.loads(path.read_text(encoding="utf-8"))
+    params = cfg.get("pipeline_params", cfg)
+    models = params.get("models")
+    return models if isinstance(models, list) else None
+
+
 def load_dataset_maps() -> tuple[dict[str, str], dict[str, str], dict[str, str]]:
     """Return (difficulty, domain, category) maps keyed by global index.
 
@@ -285,6 +296,12 @@ def main(argv: Optional[list[str]] = None) -> int:
     category_scores = (
         json.loads(cs_path.read_text(encoding="utf-8")) if cs_path.exists() else {}
     )
+    # routers.json holds hand-curated router metadata (affiliation, type, model
+    # pool). Merge our manifest `website` fields in, preserving everything else.
+    rj_path = out / "routers.json"
+    routers_meta = (
+        json.loads(rj_path.read_text(encoding="utf-8")) if rj_path.exists() else {}
+    )
 
     difficulty, domain, category = (
         ({}, {}, {}) if args.skip_category else load_dataset_maps()
@@ -317,6 +334,27 @@ def main(argv: Optional[list[str]] = None) -> int:
             leaderboard.append(row)
             by_name[_norm_name(website_name)] = row
         updated.append(website_name)
+
+        # Router metadata (affiliation / github / type) for the website.
+        web = meta.get("website")
+        if web:
+            entry = routers_meta.get(website_name, {})
+            entry.setdefault("name", website_name)
+            if "affiliation" in web:
+                entry["affiliation"] = web["affiliation"]
+            if "github_url" in web:
+                entry["githubUrl"] = web["github_url"]
+            if "type" in web:
+                entry["type"] = web["type"]
+            entry.setdefault("type", "open-source")
+            entry.setdefault(
+                "description", f"Submitted by {web.get('affiliation', website_name)}."
+            )
+            if "modelPool" not in entry and meta.get("prediction"):
+                models = load_config_models(meta["prediction"])
+                if models:
+                    entry["modelPool"] = models
+            routers_meta[website_name] = entry
 
         # Derived data: regenerate only when RouterArena has the inputs.
         prediction = meta.get("prediction")
@@ -355,6 +393,8 @@ def main(argv: Optional[list[str]] = None) -> int:
         cs_path.write_text(
             json.dumps(category_scores, indent=2) + "\n", encoding="utf-8"
         )
+    if rj_path.exists() or routers_meta:
+        rj_path.write_text(json.dumps(routers_meta, indent=2) + "\n", encoding="utf-8")
 
     print(
         f"Leaderboard rows: {len(leaderboard)} | updated/inserted: {len(updated)} | "

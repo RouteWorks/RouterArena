@@ -39,7 +39,7 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 |------|--------------------|-----------------------------|--------|----------|---------|-----------------|--------------|----------------|---------|------------|
 | 🥇 | [Sqwish Router](https://www.sqwish.ai/) | 👤&nbsp;[@namitha-sqwish](https://github.com/namitha-sqwish) | 75.27 | 76.40 | $0.18 | 7.41 | 25.10 | 90.47 | — | 100.00 |
 | 🥈 | [AgentForge Router]() | 👤&nbsp;[@YangY-Z](https://github.com/YangY-Z) | 74.13 | 74.72 | $0.13 | 17.84 | 52.47 | 98.68 | — | 40.48 |
-| 🥉 | [Nadir Router](https://github.com/NadirRouter/NadirClaw) |  | 73.33 | 74.87 | $0.29 | — | — | — | — | 25.48 |
+| 🥉 | [Nadir Router](https://github.com/NadirRouter/NadirClaw) | 🎓&nbsp;NadirRouter | 73.33 | 74.87 | $0.29 | — | — | — | — | 25.48 |
 | 4 | [Weave Router](https://workweave.ai) | 🎓&nbsp;Weave | 72.82 | 76.32 | $0.94 | — | — | — | — | 100.00 |
 | 5 | [OrcaRouter-Adaptive](https://www.orcarouter.ai/) | 👤&nbsp;[@ZhenghuaBao](https://github.com/ZhenghuaBao) | 72.08 | 75.54 | $1.00 | — | — | — | — | 22.62 |
 | 6 | [Azure-Model-Router](https://ai.azure.com/catalog/models/model-router)&nbsp;[[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼&nbsp;Microsoft | 71.87 | 72.82 | $0.22 | — | — | — | — | 71.43 |
