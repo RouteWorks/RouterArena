@@ -331,7 +331,7 @@ def main(argv: Optional[list[str]] = None) -> int:
             flips = compute_flip_labels(preds, rob)
             if flips:
                 (out / "flip_labels" / f"flip_labels_{flip_key}.json").write_text(
-                    json.dumps(flips, indent=2), encoding="utf-8"
+                    json.dumps(flips, indent=2) + "\n", encoding="utf-8"
                 )
         else:
             flips = []
@@ -350,9 +350,11 @@ def main(argv: Optional[list[str]] = None) -> int:
         key=lambda r: (r.get("Arena Score") is not None, r.get("Arena Score") or 0),
         reverse=True,
     )
-    lb_path.write_text(json.dumps(leaderboard, indent=2), encoding="utf-8")
+    lb_path.write_text(json.dumps(leaderboard, indent=2) + "\n", encoding="utf-8")
     if not args.skip_category:
-        cs_path.write_text(json.dumps(category_scores, indent=2), encoding="utf-8")
+        cs_path.write_text(
+            json.dumps(category_scores, indent=2) + "\n", encoding="utf-8"
+        )
 
     print(
         f"Leaderboard rows: {len(leaderboard)} | updated/inserted: {len(updated)} | "
