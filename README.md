@@ -37,14 +37,14 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 
 | Rank | Router | Affiliation | Acc-Cost Arena | Accuracy | Cost/1K Queries | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
 |------|--------------------|-----------------------------|--------|----------|---------|-----------------|--------------|----------------|---------|------------|
-| 🥇 | [Sqwish Router](https://www.sqwish.ai/) |  | 75.27 | 76.40 | $0.18 | 7.41 | 25.10 | 90.47 | — | 100.00 |
-| 🥈 | [AgentForge Router]() |  | 74.13 | 74.72 | $0.13 | 17.84 | 52.47 | 98.68 | — | 40.48 |
+| 🥇 | [Sqwish Router](https://www.sqwish.ai/) | 👤&nbsp;[@namitha-sqwish](https://github.com/namitha-sqwish) | 75.27 | 76.40 | $0.18 | 7.41 | 25.10 | 90.47 | — | 100.00 |
+| 🥈 | [AgentForge Router]() | 👤&nbsp;[@YangY-Z](https://github.com/YangY-Z) | 74.13 | 74.72 | $0.13 | 17.84 | 52.47 | 98.68 | — | 40.48 |
 | 🥉 | [Nadir Router](https://github.com/NadirRouter/NadirClaw) |  | 73.33 | 74.87 | $0.29 | — | — | — | — | 25.48 |
 | 4 | [Weave Router](https://workweave.ai) | 🎓&nbsp;Weave | 72.82 | 76.32 | $0.94 | — | — | — | — | 100.00 |
-| 5 | [OrcaRouter-Adaptive](https://www.orcarouter.ai/) |  | 72.08 | 75.54 | $1.00 | — | — | — | — | 22.62 |
+| 5 | [OrcaRouter-Adaptive](https://www.orcarouter.ai/) | 👤&nbsp;[@ZhenghuaBao](https://github.com/ZhenghuaBao) | 72.08 | 75.54 | $1.00 | — | — | — | — | 22.62 |
 | 6 | [Azure-Model-Router](https://ai.azure.com/catalog/models/model-router)&nbsp;[[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼&nbsp;Microsoft | 71.87 | 72.82 | $0.22 | — | — | — | — | 71.43 |
 | 7 | [R2-Router](https://arxiv.org/abs/2602.02823/) | 🎓&nbsp;UCF | 71.60 | 71.23 | $0.06 | 24.51 | 48.70 | 99.85 | — | 45.71 |
-| 8 | [Auto Router]() |  | 70.05 | 70.17 | $0.12 | 37.58 | 40.02 | 86.04 | — | 49.52 |
+| 8 | [Auto Router]() | 👤&nbsp;[@cxf2015](https://github.com/cxf2015) | 70.05 | 70.17 | $0.12 | 37.58 | 40.02 | 86.04 | — | 49.52 |
 | 9 | [vLLM‑SR](https://vllm-semantic-router.com/)&nbsp;[[Code]](https://github.com/vllm-project/semantic-router)&nbsp;[[HF]](https://huggingface.co/llm-semantic-router) | 🎓&nbsp;vLLM SR Team | 67.23 | 66.53 | $0.06 | 84.66 | 90.71 | 89.24 | — | 90.95 |
 | 10 | [MIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[Code]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.89 | 66.88 | $0.15 | 3.44 | 19.62 | 78.18 | 27.03 | 61.19 |
 | 11 | [NIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[Code]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.12 | 66.34 | $0.21 | 3.83 | 14.04 | 77.88 | 10.42 | 49.29 |
