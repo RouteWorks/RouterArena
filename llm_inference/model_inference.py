@@ -180,6 +180,18 @@ class ModelInference:
             "mistralai/devstral-2512:free": "openrouter",
             "meta-llama/llama-3.3-70b-instruct": "openrouter",
             "meta-llama/llama-3.1-405b-instruct": "openrouter",
+            # Local patch for llm-router Phase B submission — these models
+            # are in universal_names + model_cost.json but were missing from
+            # provider mapping. Routed through OpenRouter's generic wrapper.
+            "Qwen/Qwen3-Coder-Next": "openrouter",
+            "google/gemini-3.1-flash-lite": "openrouter",
+            "deepseek/deepseek-v4-flash": "openrouter",
+            "deepseek/deepseek-v3.2": "openrouter",
+            "qwen/qwen3-next-80b-a3b-instruct": "openrouter",
+            "qwen/qwen3-coder-30b-a3b-instruct": "openrouter",
+            "qwen/qwen3-30b-a3b-instruct-2507": "openrouter",
+            "anthropic/claude-sonnet-4": "openrouter",
+            "claude-sonnet-4": "openrouter",  # post universal-name resolution
             # Replicate
             "meta/codellama-34b-instruct": "replicate",
             # AWS Bedrock
@@ -295,9 +307,20 @@ class ModelInference:
             base_url="https://openrouter.ai/api/v1",
             api_key=openrouter_api_key,
         )
+        # Restore provider-slash prefix for bare Anthropic model names that
+        # come through universal-name resolution (mapping strips "anthropic/").
+        # OpenRouter requires the slashed form.
+        if model_name.startswith("claude-") and "/" not in model_name:
+            model_name = "anthropic/" + model_name
 
+        # Cap output to 2048 tokens — matches what other providers in this
+        # module use, and prevents OpenRouter from rejecting calls whose
+        # default context max exceeds the per-call credit ceiling
+        # (HTTP 402 "requires more credits, or fewer max_tokens").
         response = client.chat.completions.create(
-            model=model_name, messages=[{"role": "user", "content": prompt}]
+            model=model_name,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=2048,
         )
 
         usage = getattr(response, "usage", None)
