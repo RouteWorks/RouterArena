@@ -187,14 +187,14 @@ _SUBJECT_TO_MODEL: Final[dict[str, str]] = {}  # filled below — depends on MOD
 # (Qwen3, DeepSeek), Gemini Flash Lite for moderate, premium escape via
 # Claude 3.5 Sonnet for the hardest 5% of prompts.
 MODEL_CHEAPEST: Final = "qwen/qwen3-235b-a22b-2507"      # $0.019/1K — workhorse
+MODEL_NEXT: Final = "qwen/qwen3-next-80b-a3b-instruct"   # $0.102/1K — Sqwish's secret on LCB/ClozeTest
 MODEL_CODE: Final = "Qwen/Qwen3-Coder-Next"               # $0.034/1K — code
 MODEL_FAST: Final = "google/gemini-3.1-flash-lite"        # $0.158/1K — fast mid
 MODEL_REASONING: Final = "deepseek/deepseek-v4-flash"     # $0.043/1K — reasoning
-# Real premium tier (Phase C+): claude-3.5-sonnet as the escape hatch for
-# datasets where the pool's accuracy ceiling is low. Routed selectively
-# to NarrativeQA, QANTA, ChessInstruct, MusicTheoryBench — the 4 datasets
-# whose best-in-pool accuracy was <55% in the Phase C sub_10 run.
-MODEL_PREMIUM: Final = "anthropic/claude-sonnet-4"
+# Premium dropped — claude bled $5 of OpenRouter credits for <1% accuracy
+# gain. Sqwish (#1) and AgentForge (#2) both use 0% premium escape.
+# MODEL_PREMIUM aliased to REASONING for backward-compat with adapter code.
+MODEL_PREMIUM: Final = "deepseek/deepseek-v4-flash"
 
 # Now populate the subject→model mapping. Subjects come from
 # precompute_subjects.py; routing reflects the per-dataset winner tables.
@@ -373,6 +373,9 @@ _PFX_ETHICS_CMS: Final = "Please read the following multiple-choice questions an
 _PFX_MC_GENERIC: Final = "Please read the following multiple-choice questions and provide the most likely correct answer"
 _PFX_QANTA: Final = "Please read the following question and provide the correct answer"
 _PFX_CHESS: Final = "You are given a question about chess moves"
+# SuperGLUE-ClozeTest: "Read the following passage and answer the question by
+# choosing the best option. Provide only the text of the correct option as your answer."
+_PFX_CLOZE: Final = "Read the following passage and answer the question by choosing the best option"
 
 # Subject keywords for MC questions (used after _PFX_MC_GENERIC matches).
 # Order matters — earlier patterns win when multiple match.
@@ -489,6 +492,10 @@ def _dataset_override(text: str) -> str | None:
     """
     stripped = text.lstrip()
 
+    # SuperGLUE-ClozeTest — Sqwish picks qwen3-next-80b for 33/36 wins. Use it.
+    if stripped.startswith(_PFX_CLOZE):
+        return MODEL_NEXT
+
     # Code generation (LiveCodeBench) — full-dataset analysis vs Sqwish shows
     # cheap qwen3-235b actually wins on LCB at scale (counter to sub_10 result).
     if stripped.startswith(_PFX_LCB):
@@ -516,10 +523,11 @@ def _dataset_override(text: str) -> str | None:
     if stripped.startswith(_PFX_CHESS):
         return MODEL_FAST
 
-    # QANTA — best-in-pool accuracy was 20-40% on most subcategories.
-    # Pool failure pattern → escalate to premium.
+    # QANTA — pool ceiling is low (20-40%). Originally escalated to claude
+    # for sub_10, but on full dataset claude only gained ~1% accuracy at
+    # 100× cost. Demoted to deepseek-v4-flash (now aliased as PREMIUM).
     if stripped.startswith(_PFX_QANTA):
-        return MODEL_PREMIUM
+        return MODEL_REASONING
 
     # Generic MC-question wrapper — flip default to qwen3-235b (cheapest)
     # and only escalate to gemini/deepseek for subjects where they actually win.
@@ -594,6 +602,7 @@ class LLMRouter(BaseRouter):
         # surface mid-run. Phase B 5-slot pool with no aliasing.
         required = {
             MODEL_CHEAPEST,
+            MODEL_NEXT,
             MODEL_CODE,
             MODEL_FAST,
             MODEL_REASONING,

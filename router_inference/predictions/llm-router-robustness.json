@@ -1145,7 +1145,7 @@
   {
     "global index": "MMLUPro_computer science_9289",
     "prompt": "Kindly peruse the subsequent multiple-choice inquiries and select the most probable accurate solution from the furnished alternatives.\n\nContext: None\n\nInquiry: When crafting a fundamental assembler language script, the paramount priority is that of organizational management. What constitutes organizational management, and why is it indispensable?\n\nAlternatives: \nA. Organizational management directives solely initialize the foundational register for the script\nB. Organizational management denotes annotating each line of the script to augment comprehensibility\nC. Organizational management entails the eradication of transient files fabricated during the script's compilation\nD. Organizational management directives serve to allocate storage space for variables and constants utilized in the script\nE. Organizational management entails configuring the editor's color palette for enhanced code visibility\nF. Organizational management guarantees that the assembler language script is encoded for protection purposes\nG. Organizational management directives are discretionary within a script\nH. Organizational management directives furnish standard connections between the script and the operating system, load and recognize the foundational register for the script, and arrange the units and materials requisite for the principal processing section of the script.\nI. Organizational management is the methodology of refining the script to execute more swiftly on the apparatus\nJ. Organizational management is solely concerned with the arrangement of units and materials\n\nSelect the precise letter option in \\boxed{H}, where H is the precise letter option. Retain the elucidation or commentary within 3 sentences.",
-    "prediction": "anthropic/claude-sonnet-4",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3251,7 +3251,7 @@
   {
     "global index": "QANTA_Philosophy_1270",
     "prompt": "Kindly peruse the subsequent inquiry and furnish the precise response.\n\nBackdrop: Absent\n\nInquiry: Within a singular treatise, this thinker contemplates that realism addresses Nelson Goodman's novel \"enigma of induction\" by proposing \"eminently natural\" attributes that \"dissect existence at its seams.\"\n\nRender the precise response in \\boxed{X}, where X is the accurate and most prevalent solution to the inquiry. Limit the elucidation or commentary to within 3 sentences.",
-    "prediction": "anthropic/claude-sonnet-4",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
