@@ -334,8 +334,17 @@ class ModelInference:
             else input_tokens + completion_tokens
         )
 
+        # Some "thinking" models (qwen3.x, deepseek-r1, etc) emit content into
+        # `message.reasoning` when the visible `.content` is empty/None.
+        # Fall back so the answer isn't lost. RouterArena's CI validator
+        # rejects null `generated_answer`, so we coerce None → "" as well.
+        msg = response.choices[0].message
+        content = msg.content
+        if not content:
+            content = getattr(msg, "reasoning", None) or ""
+
         return {
-            "response": response.choices[0].message.content,
+            "response": content,
             "success": True,
             "token_usage": {
                 "input_tokens": input_tokens,
