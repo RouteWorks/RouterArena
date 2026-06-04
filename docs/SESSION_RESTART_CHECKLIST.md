@@ -6,6 +6,47 @@
 
 ## 1. Pre-flight (run outside Claude Code)
 
+### 1.0 Reap leaked subprocesses from prior sessions
+
+Cancelled MCP tool calls and aborted background tasks leave orphan
+processes that drain RAM and GPU. After hours of work, these accumulate
+and make Ollama calls take 30-90s instead of 1-2s, which then makes
+new MCP `llm_*` calls in Claude Code appear stuck.
+
+**Symptoms of the leak**:
+- Other Claude Code sessions hang on `Calling llm-router...`
+- `vm_stat` shows `Pages free: <10000` (very low free memory)
+- `ps aux | grep -c "pytest tests/"` returns more than 0
+- `ps aux | grep "codex exec"` shows processes older than 1 hour
+
+**Cleanup commands** (run before starting a new session):
+
+```bash
+# Kill leaked background pytest runs from prior sessions
+pkill -f "pytest tests/"
+
+# Kill stuck Codex CLI subprocesses (cancelled llm_query/llm_code calls
+# leave these — Codex CLI doesn't auto-die on tool-call cancellation)
+pkill -f "codex exec"
+
+# Unload competing Ollama models — keep only the fast one (qwen2.5:7b).
+# Loading both qwen3.5 (8.5GB) and qwen2.5 (4.8GB) creates GPU
+# contention and slows inference dramatically on M1/M2.
+curl -s -X POST http://localhost:11434/api/generate \
+  -d '{"model":"qwen3.5:latest","keep_alive":0}' > /dev/null
+
+# Verify Ollama is now fast (should respond in ~1s)
+curl -s --max-time 10 http://localhost:11434/api/generate \
+  -d '{"model":"qwen2.5:7b","prompt":"hi","stream":false}' \
+  | python3 -c 'import json,sys; d=json.load(sys.stdin); print(f"Ollama latency: {d[\"total_duration\"]/1e9:.2f}s")'
+
+# Confirm free memory is healthy (Pages free > 100000 ≈ 1.5GB+)
+vm_stat | head -3
+```
+
+If `Pages free` is still very low after this, close other heavy apps
+(Cursor, large browser tabs, IDE plugins) before starting the session.
+
 ### 1.1 Restart the llm-router MCP server with new config
 
 The currently-running MCP server (PID was 2100 in the cleanup session) was
