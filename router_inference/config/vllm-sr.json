@@ -1,30 +1,18 @@
 {
   "pipeline_params": {
-      "router_name": "vllm-sr",
-      "router_cls_name": "VLLMSR",
-      "models": [
-          "gpt-4o-mini",
-          "claude-3-haiku-20240307",
-          "gemini-2.0-flash-001"
-      ],
-      "router_endpoint": "http://localhost:8080",
-      "base_url": "http://localhost:8080",
-      "default_model": "gpt-4o-mini",
-      "category_model_mapping": {
-          "biology_decision": "claude-3-haiku-20240307",
-          "business_decision": "gemini-2.0-flash-001",
-          "chemistry_decision": "gemini-2.0-flash-001",
-          "economics_decision": "gpt-4o-mini",
-          "engineering_decision": "gemini-2.0-flash-001",
-          "general_decision": "claude-3-haiku-20240307",
-          "health_decision": "claude-3-haiku-20240307",
-          "history_decision": "gpt-4o-mini",
-          "law_decision": "gemini-2.0-flash-001",
-          "math_decision": "gemini-2.0-flash-001",
-          "other": "gemini-2.0-flash-001",
-          "philosophy_decision": "gpt-4o-mini",
-          "physics_decision": "gemini-2.0-flash-001",
-          "psychology_decision": "gemini-2.0-flash-001"
-      }
+    "router_name": "vllm-sr",
+    "router_cls_name": "VLLMSR",
+    "models": [
+      "google/gemini-3.1-flash-lite",
+      "gemini-2.5-flash",
+      "deepseek/deepseek-v4-flash",
+      "grok-4-1-fast-reasoning",
+      "qwen/qwen3-235b-a22b-2507",
+      "qwen/qwen3-next-80b-a3b-instruct",
+      "Qwen/Qwen3-Coder-Next",
+      "deepseek-reasoner"
+    ],
+    "default_model": "google/gemini-3.1-flash-lite",
+    "description": "vLLM Semantic Router submission using deterministic semantic, structural, domain-aware, and cost-aware routing over a compact model pool."
   }
 }
