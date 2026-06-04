@@ -91,6 +91,7 @@ curl -s --max-time 10 http://localhost:11434/api/generate \
 ### 1.3 Pull the latest llm-router improvements
 
 If llm-router PR #21 is merged:
+
 ```bash
 cd /Users/yali.pollak/Projects/llm-router
 git checkout main
@@ -98,6 +99,7 @@ git pull
 ```
 
 If still open, work off the PR branch:
+
 ```bash
 cd /Users/yali.pollak/Projects/llm-router
 git checkout fix/dashboard-and-enforce-route

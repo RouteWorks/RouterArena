@@ -58,8 +58,11 @@ class TestIsMultipleChoice:
     def test_mc_signature_only_in_head(self):
         # We only look at the first 300 chars to keep detection cheap;
         # an MC signature buried deep in a non-MC prompt does NOT count.
-        prompt = "Please solve this math problem step by step." + "x" * 500 \
-                 + " multiple-choice question"
+        prompt = (
+            "Please solve this math problem step by step."
+            + "x" * 500
+            + " multiple-choice question"
+        )
         assert is_multiple_choice(prompt) is False
 
 
@@ -289,7 +292,8 @@ class TestSystemPromptFor:
         # behave: it WILL match reasoning if keywords are present anywhere).
         prompt = (
             "Please read the following multiple-choice questions and provide "
-            "the most likely correct answer.\n\nContext: " + "x" * 800
+            "the most likely correct answer.\n\nContext: "
+            + "x" * 800
             + "\n\nQuestion: Who wrote Hamlet?\n\nA. Dickens\nB. Shakespeare"
         )
         sp = system_prompt_for(prompt)

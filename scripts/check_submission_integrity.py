@@ -42,7 +42,6 @@ import argparse
 import ast
 import json
 import sys
-from collections import Counter
 from pathlib import Path
 from typing import Iterable
 
@@ -74,7 +73,9 @@ def check_reassignments_vs_prior_accuracy(
 
     current = json.loads(predictions_path.read_text())
     baseline = json.loads(baseline_path.read_text())
-    base_map = {p["global index"]: p for p in baseline if not p.get("for_optimality", False)}
+    base_map = {
+        p["global index"]: p for p in baseline if not p.get("for_optimality", False)
+    }
 
     reassigned = []
     for p in current:
@@ -85,7 +86,9 @@ def check_reassignments_vs_prior_accuracy(
         if b is None:
             continue
         if p.get("prediction") != b.get("prediction"):
-            reassigned.append((gi, b.get("accuracy"), p.get("prediction"), b.get("prediction")))
+            reassigned.append(
+                (gi, b.get("accuracy"), p.get("prediction"), b.get("prediction"))
+            )
 
     if not reassigned:
         return []
@@ -101,16 +104,12 @@ def check_reassignments_vs_prior_accuracy(
             f"with baseline accuracy=0. Threshold is {correlation_threshold:.0%}."
         )
         errors.append(
-            f"   This is the Lever #3 pattern — the routing decision was made "
-            f"using the prior evaluation's correctness labels."
+            "   This is the Lever #3 pattern — the routing decision was made "
+            "using the prior evaluation's correctness labels."
         )
-        errors.append(
-            f"   Sample reassignments (first 5):"
-        )
+        errors.append("   Sample reassignments (first 5):")
         for gi, acc, new_m, old_m in reassigned[:5]:
-            errors.append(
-                f"     {gi}: acc={acc} | {old_m or '?'} → {new_m or '?'}"
-            )
+            errors.append(f"     {gi}: acc={acc} | {old_m or '?'} → {new_m or '?'}")
 
     return errors
 
@@ -242,7 +241,9 @@ def check_reassignment_plans(plan_paths: Iterable[Path]) -> list[str]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="RouterArena submission integrity check")
+    parser = argparse.ArgumentParser(
+        description="RouterArena submission integrity check"
+    )
     parser.add_argument(
         "--predictions",
         type=Path,
@@ -276,7 +277,10 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    scripts_dirs = args.scripts_dir or [Path("scripts"), Path("router_inference/router")]
+    scripts_dirs = args.scripts_dir or [
+        Path("scripts"),
+        Path("router_inference/router"),
+    ]
     plan_paths = args.plan or [
         Path("/tmp/reassignment_plan.json"),
     ]
@@ -305,7 +309,9 @@ def main() -> int:
         for e in code_errors:
             print(f"  {e}")
     else:
-        print(f"  ✓ No leakage pattern in {len(list(scripts_dirs))} scanned directories.")
+        print(
+            f"  ✓ No leakage pattern in {len(list(scripts_dirs))} scanned directories."
+        )
 
     print("\n[3] Reassignment plan scan…")
     plan_errors = check_reassignment_plans(plan_paths)

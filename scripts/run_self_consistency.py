@@ -165,7 +165,9 @@ def _format_vote_as_generated_result(letter: str) -> str:
     ``\\boxed{X}`` payload so ``EnhancedExtractor._extract_standard_boxed``
     finds it.
     """
-    return json.dumps({"generated_answer": f"The correct answer is \\boxed{{{letter}}}."})
+    return json.dumps(
+        {"generated_answer": f"The correct answer is \\boxed{{{letter}}}."}
+    )
 
 
 def _load_cache(cache_path: Path | None) -> dict[str, list[str]]:
@@ -314,17 +316,13 @@ def main() -> int:
         if not model:
             continue
 
-        system_prompt = (
-            system_prompt_for(prompt) if args.use_system_prompts else None
-        )
+        system_prompt = system_prompt_for(prompt) if args.use_system_prompts else None
         # Cache key fingerprints the system prompt version + whether one was
         # used at all. Bumping SYSTEM_PROMPT_VERSION invalidates cached
         # samples drawn from older prompts; the "SP0" tag preserves samples
         # from --no-system-prompts runs separately from v1.
         sp_tag = f"SP{SYSTEM_PROMPT_VERSION}" if system_prompt else "SP0"
-        cache_key = (
-            f"{gi}::{model}::T{args.temperature}::N{args.n_samples}::{sp_tag}"
-        )
+        cache_key = f"{gi}::{model}::T{args.temperature}::N{args.n_samples}::{sp_tag}"
         samples = cache.get(cache_key)
         if samples is None:
             if args.dry_run:
@@ -355,8 +353,7 @@ def main() -> int:
         mc_processed += 1
         if mc_processed % 25 == 0:
             print(
-                f"  processed {mc_processed} MC entries "
-                f"(cache size {len(cache)})",
+                f"  processed {mc_processed} MC entries (cache size {len(cache)})",
                 file=sys.stderr,
             )
         if mc_processed % OUTPUT_CHECKPOINT_EVERY == 0:
