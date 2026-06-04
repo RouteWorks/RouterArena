@@ -46,9 +46,11 @@ from openai import OpenAI
 # Make scripts/ importable so we get the canonical self_consistency module
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from self_consistency import (  # noqa: E402
+    SYSTEM_PROMPT_VERSION,
     extract_mc_letter,
     is_multiple_choice,
     majority_vote,
+    system_prompt_for,
 )
 
 
@@ -61,6 +63,31 @@ BASELINE_PATH = Path("router_inference/predictions/llm-router.json.bak.honest")
 DEFAULT_TIMEOUT_SECONDS = 60.0
 DEFAULT_MAX_TOKENS = 2048
 DEFAULT_RETRY_BACKOFF_SECONDS = (1.0, 3.0, 10.0)
+
+# Substrings in an OpenRouter error response that indicate a hard cap —
+# retries are pointless. The runner exits immediately when these appear
+# so we don't burn 30 minutes hammering a dead key (as we did the first
+# time around).
+HARD_FAIL_ERROR_MARKERS = (
+    "Key limit exceeded",
+    "credit limit",
+    "insufficient_quota",
+    "402",
+)
+
+# Incremental checkpoint cadence. Output is rewritten every N MC entries
+# so a mid-run abort leaves a usable partial submission rather than only
+# the cache file.
+OUTPUT_CHECKPOINT_EVERY = 100
+
+
+class QuotaExhausted(SystemExit):
+    """Raised when OpenRouter signals the key is over its limit."""
+
+
+def _is_hard_quota_error(err: Exception) -> bool:
+    message = str(err)
+    return any(marker in message for marker in HARD_FAIL_ERROR_MARKERS)
 
 
 def _get_client() -> OpenAI:
@@ -79,15 +106,30 @@ def _get_client() -> OpenAI:
 
 
 def _complete_once(
-    client: OpenAI, model: str, prompt: str, temperature: float
+    client: OpenAI,
+    model: str,
+    prompt: str,
+    temperature: float,
+    system_prompt: str | None = None,
 ) -> str:
-    """Single OpenRouter completion with bounded retries on transient failures."""
+    """Single OpenRouter completion with bounded retries on transient failures.
+
+    If ``system_prompt`` is provided it is sent as the first message in the
+    chat. Otherwise we send just the user turn (matching the legacy
+    behaviour, important so callers that omit the parameter get identical
+    samples to the v0 runs).
+    """
+    messages: list[dict[str, str]] = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": prompt})
+
     last_err: Exception | None = None
     for backoff in DEFAULT_RETRY_BACKOFF_SECONDS:
         try:
             resp = client.chat.completions.create(
                 model=model,
-                messages=[{"role": "user", "content": prompt}],
+                messages=messages,
                 temperature=temperature,
                 max_tokens=DEFAULT_MAX_TOKENS,
             )
@@ -96,6 +138,16 @@ def _complete_once(
                 return choice.message.content
             return ""
         except Exception as err:  # OpenAI/OpenRouter exceptions are heterogeneous
+            # Hard-cap errors (key limit exceeded, credit exhausted) are not
+            # transient — retries cannot recover. Surface immediately so the
+            # outer loop can abort, preserving the partial cache and any
+            # checkpointed output.
+            if _is_hard_quota_error(err):
+                raise QuotaExhausted(
+                    f"OpenRouter quota exhausted: {err}. Top up the key or "
+                    f"rotate OPENROUTER_API_KEY and resume — the cache will "
+                    f"skip already-completed entries."
+                ) from err
             last_err = err
             time.sleep(backoff)
     # All retries failed — return empty so extract_mc_letter yields None
@@ -181,6 +233,16 @@ def main() -> int:
         action="store_true",
         help="Skip API calls; just count MC entries and exit.",
     )
+    parser.add_argument(
+        "--no-system-prompts",
+        dest="use_system_prompts",
+        action="store_false",
+        help=(
+            "Disable Tier 1B task-family system prompts (debug only). "
+            "Default is to send a tailored system prompt for each MC family."
+        ),
+    )
+    parser.set_defaults(use_system_prompts=True)
     args = parser.parse_args()
 
     if not args.input.exists():
@@ -202,8 +264,13 @@ def main() -> int:
     else:
         client = _get_client()
 
+    # Pre-build the output list in baseline order so every incremental
+    # checkpoint is a complete, valid submission rather than a partial
+    # prefix. MC rows are marked for processing; everything else is
+    # already-final passthrough.
     mc_total = mc_processed = passthrough_count = 0
     output: list[dict] = []
+    pending_indices: list[int] = []  # positions in `output` we still need to process
 
     for entry in baseline:
         gi = entry.get("global index", "")
@@ -221,16 +288,43 @@ def main() -> int:
             continue
 
         mc_total += 1
-        if args.limit is not None and mc_processed >= args.limit:
-            output.append(entry)
-            continue
+        # MC entry: append the baseline row as a starting point, record
+        # its position for later mutation.
+        output.append(entry)
+        pending_indices.append(len(output) - 1)
 
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+
+    def _checkpoint() -> None:
+        """Write the current `output` to disk so a kill leaves a usable file."""
+        args.output.write_text(json.dumps(output, ensure_ascii=False, indent=2))
+
+    # Initial checkpoint = baseline-shape file (so even a 0-sample abort
+    # produces a valid submission).
+    _checkpoint()
+
+    for output_idx in pending_indices:
+        if args.limit is not None and mc_processed >= args.limit:
+            break
+
+        entry = output[output_idx]
+        gi = entry.get("global index", "")
+        prompt = entry.get("prompt", "") or ""
         model = entry.get("prediction") or ""
         if not model:
-            output.append(entry)
             continue
 
-        cache_key = f"{gi}::{model}::T{args.temperature}::N{args.n_samples}"
+        system_prompt = (
+            system_prompt_for(prompt) if args.use_system_prompts else None
+        )
+        # Cache key fingerprints the system prompt version + whether one was
+        # used at all. Bumping SYSTEM_PROMPT_VERSION invalidates cached
+        # samples drawn from older prompts; the "SP0" tag preserves samples
+        # from --no-system-prompts runs separately from v1.
+        sp_tag = f"SP{SYSTEM_PROMPT_VERSION}" if system_prompt else "SP0"
+        cache_key = (
+            f"{gi}::{model}::T{args.temperature}::N{args.n_samples}::{sp_tag}"
+        )
         samples = cache.get(cache_key)
         if samples is None:
             if args.dry_run:
@@ -238,7 +332,9 @@ def main() -> int:
             else:
                 assert client is not None
                 samples = [
-                    _complete_once(client, model, prompt, args.temperature)
+                    _complete_once(
+                        client, model, prompt, args.temperature, system_prompt
+                    )
                     for _ in range(args.n_samples)
                 ]
                 cache[cache_key] = samples
@@ -252,11 +348,9 @@ def main() -> int:
             new_generated = _format_vote_as_generated_result(vote)
             new_entry = dict(entry)
             new_entry["generated_result"] = new_generated
-            output.append(new_entry)
-        else:
-            # No consensus — keep the baseline's generated_result so we
-            # don't downgrade the answer with a random sample.
-            output.append(entry)
+            output[output_idx] = new_entry
+        # else: leave the baseline entry untouched — no consensus means no
+        # downgrade.
 
         mc_processed += 1
         if mc_processed % 25 == 0:
@@ -265,9 +359,10 @@ def main() -> int:
                 f"(cache size {len(cache)})",
                 file=sys.stderr,
             )
+        if mc_processed % OUTPUT_CHECKPOINT_EVERY == 0:
+            _checkpoint()
 
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(output, ensure_ascii=False, indent=2))
+    _checkpoint()
 
     print()
     print(f"split:           {args.split}")
@@ -276,6 +371,9 @@ def main() -> int:
     print(f"MC total seen:   {mc_total}")
     print(f"MC processed:    {mc_processed}")
     print(f"passthrough:     {passthrough_count}")
+    print(
+        f"system prompts:  {'on (' + SYSTEM_PROMPT_VERSION + ')' if args.use_system_prompts else 'off'}"
+    )
     print(f"output path:     {args.output}")
     if args.cache:
         print(f"cache path:      {args.cache}")

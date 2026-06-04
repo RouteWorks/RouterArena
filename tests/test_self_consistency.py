@@ -18,10 +18,12 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from self_consistency import (  # noqa: E402
+    SYSTEM_PROMPT_VERSION,
     extract_boxed_answer,
     extract_mc_letter,
     is_multiple_choice,
     majority_vote,
+    system_prompt_for,
 )
 
 
@@ -196,3 +198,109 @@ class TestSelfConsistencyPipeline:
         letters = [extract_mc_letter(s) for s in samples]
         assert letters == [None, None, None]
         assert majority_vote(letters) is None
+
+
+# ── system_prompt_for ─────────────────────────────────────────────────────────
+
+
+class TestSystemPromptFor:
+    """Tier 1B task-family system prompt selector."""
+
+    def test_version_is_set(self):
+        assert SYSTEM_PROMPT_VERSION  # truthy, non-empty string
+
+    def test_empty_prompt_returns_none(self):
+        assert system_prompt_for("") is None
+        assert system_prompt_for(None) is None  # type: ignore[arg-type]
+
+    def test_code_generation_prompt(self):
+        prompt = (
+            "Generate an executable Python function from the given prompt. "
+            "Return the function body."
+        )
+        sp = system_prompt_for(prompt)
+        assert sp is not None
+        assert "code" in sp.lower()
+        # Should not be the MC general prompt
+        assert "multiple-choice" not in sp.lower()
+
+    def test_open_math_prompt(self):
+        prompt = (
+            "Solve the following mathematical problem step by step. "
+            "Provide the final answer in \\boxed{value}."
+        )
+        sp = system_prompt_for(prompt)
+        assert sp is not None
+        assert "math" in sp.lower()
+
+    def test_general_mc_prompt(self):
+        # Non-quantitative MC — a trivia-style question.
+        prompt = (
+            "Please read the following multiple-choice questions and provide "
+            "the most likely correct answer based on the options given.\n\n"
+            "Question: Who wrote Hamlet?\n\nA. Dickens\nB. Shakespeare\n"
+            "C. Twain\nD. Austen\n\nProvide the correct letter choice in "
+            "\\boxed{X}."
+        )
+        sp = system_prompt_for(prompt)
+        assert sp is not None
+        assert "multiple-choice" in sp.lower()
+        # General MC should not push "step by step" specifically
+        assert "\\boxed{x}" in sp.lower() or "\\boxed" in sp.lower()
+
+    def test_quantitative_mc_prompt(self):
+        # MC question with physics keywords → reasoning variant
+        prompt = (
+            "Please read the following multiple-choice questions and provide "
+            "the most likely correct answer.\n\nQuestion: A particle moves "
+            "with constant acceleration of 2 m/s^2. What is its velocity "
+            "after 5 seconds, starting from rest?\n\nA. 5\nB. 10\nC. 15\n"
+            "D. 20\n\nProvide the correct letter choice in \\boxed{X}."
+        )
+        sp = system_prompt_for(prompt)
+        assert sp is not None
+        # Reasoning prompt instructs step-by-step thinking
+        assert "step by step" in sp.lower()
+
+    def test_quantitative_mc_does_not_override_open_math(self):
+        # If the prompt looks like open-ended math, return the math prompt
+        # even if quantitative keywords are present.
+        prompt = (
+            "Solve the following math problem step by step. "
+            "A particle's velocity is 10 m/s. Find its kinetic energy. "
+            "Final answer in \\boxed{value}."
+        )
+        sp = system_prompt_for(prompt)
+        assert sp is not None
+        # Math prompt mentions "numerical answer" not "multiple-choice"
+        assert "math" in sp.lower()
+        assert "multiple-choice" not in sp.lower()
+
+    def test_non_mc_non_math_prompt_returns_none(self):
+        # Free-form translation prompt that isn't math/code/MC.
+        prompt = "Translate the following sentence to French: 'Good morning.'"
+        sp = system_prompt_for(prompt)
+        assert sp is None
+
+    def test_long_context_does_not_misfire_reasoning(self):
+        # A general MC prompt with quantitative keywords buried deep in the
+        # context body should still get the general MC prompt (we scan the
+        # whole prompt for MC reasoning, so this verifies the priority rules
+        # behave: it WILL match reasoning if keywords are present anywhere).
+        prompt = (
+            "Please read the following multiple-choice questions and provide "
+            "the most likely correct answer.\n\nContext: " + "x" * 800
+            + "\n\nQuestion: Who wrote Hamlet?\n\nA. Dickens\nB. Shakespeare"
+        )
+        sp = system_prompt_for(prompt)
+        # No quantitative keywords anywhere → general MC
+        assert sp is not None
+        assert "multiple-choice" in sp.lower()
+
+    def test_returns_same_string_for_repeat_calls(self):
+        # Same prompt → same system prompt (deterministic, pure function)
+        prompt = (
+            "Please read the following multiple-choice questions and provide "
+            "the most likely correct answer.\n\nQuestion: What is 2+2?"
+        )
+        assert system_prompt_for(prompt) == system_prompt_for(prompt)
