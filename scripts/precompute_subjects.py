@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
+
 """Phase C: pre-classify MC prompts via local Ollama (qwen3.5).
 
 Runs once per dataset split. Produces a `subject_cache.json` mapping
@@ -115,6 +118,7 @@ async def classify_one(
 
     if backend == "openrouter":
         import os
+
         api_key = os.environ.get("OPENROUTER_API_KEY", "")
         url = "https://openrouter.ai/api/v1/chat/completions"
         headers = {
@@ -242,8 +246,7 @@ async def run(
             rate = completed[0] / elapsed if elapsed > 0 else 0
             eta = (n - completed[0]) / rate if rate > 0 else float("inf")
             print(
-                f"  {completed[0]}/{n} classified  "
-                f"(rate {rate:.1f}/s  eta {eta:.0f}s)",
+                f"  {completed[0]}/{n} classified  (rate {rate:.1f}/s  eta {eta:.0f}s)",
                 file=sys.stderr,
             )
         return r
@@ -264,8 +267,7 @@ async def run(
     with open(cache_path, "w") as f:
         json.dump(cache, f, indent=2)
     print(
-        f"\nWrote {new_cnt} new classifications to {cache_path} "
-        f"(total {len(cache)})",
+        f"\nWrote {new_cnt} new classifications to {cache_path} (total {len(cache)})",
         file=sys.stderr,
     )
 

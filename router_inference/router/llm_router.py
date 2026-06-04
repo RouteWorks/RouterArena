@@ -33,7 +33,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import os
 import re
 from pathlib import Path
 from typing import Final
@@ -186,11 +185,13 @@ _SUBJECT_TO_MODEL: Final[dict[str, str]] = {}  # filled below — depends on MOD
 # Sqwish / AgentForge / Nadir strategy — cheap open-weight workhorses
 # (Qwen3, DeepSeek), Gemini Flash Lite for moderate, premium escape via
 # Claude 3.5 Sonnet for the hardest 5% of prompts.
-MODEL_CHEAPEST: Final = "qwen/qwen3-235b-a22b-2507"      # $0.019/1K — workhorse
-MODEL_NEXT: Final = "qwen/qwen3-next-80b-a3b-instruct"   # $0.102/1K — Sqwish's secret on LCB/ClozeTest
-MODEL_CODE: Final = "Qwen/Qwen3-Coder-Next"               # $0.034/1K — code
-MODEL_FAST: Final = "google/gemini-3.1-flash-lite"        # $0.158/1K — fast mid
-MODEL_REASONING: Final = "deepseek/deepseek-v4-flash"     # $0.043/1K — reasoning
+MODEL_CHEAPEST: Final = "qwen/qwen3-235b-a22b-2507"  # $0.019/1K — workhorse
+MODEL_NEXT: Final = (
+    "qwen/qwen3-next-80b-a3b-instruct"  # $0.102/1K — Sqwish's secret on LCB/ClozeTest
+)
+MODEL_CODE: Final = "Qwen/Qwen3-Coder-Next"  # $0.034/1K — code
+MODEL_FAST: Final = "google/gemini-3.1-flash-lite"  # $0.158/1K — fast mid
+MODEL_REASONING: Final = "deepseek/deepseek-v4-flash"  # $0.043/1K — reasoning
 # Premium dropped — claude bled $5 of OpenRouter credits for <1% accuracy
 # gain. Sqwish (#1) and AgentForge (#2) both use 0% premium escape.
 # MODEL_PREMIUM aliased to REASONING for backward-compat with adapter code.
@@ -198,34 +199,36 @@ MODEL_PREMIUM: Final = "deepseek/deepseek-v4-flash"
 
 # Now populate the subject→model mapping. Subjects come from
 # precompute_subjects.py; routing reflects the per-dataset winner tables.
-_SUBJECT_TO_MODEL.update({
-    # Sqwish-aligned per-subject mapping derived from comparing routing on
-    # full-dataset prompts where Sqwish beats us. The categories below switched
-    # away from MODEL_CHEAPEST because empirically a stronger model wins on
-    # the full dataset (sub_10 had less data to detect the gap).
-    "medical": MODEL_FAST,
-    "computer_science": MODEL_FAST,
-    "history": MODEL_FAST,
-    "biology": MODEL_FAST,
-    "geography": MODEL_FAST,
-    "physics": MODEL_REASONING,
-    "public_health": MODEL_REASONING,
-    "business": MODEL_CODE,
-    # CHANGES from earlier mapping:
-    "mathematics": MODEL_REASONING,  # was CHEAPEST — Sqwish picks deepseek on math
-    "engineering": MODEL_REASONING,  # was CHEAPEST — deepseek wins MMLUPro_engineering
-    "law": MODEL_FAST,               # was CHEAPEST — gemini wins MMLUPro_law
-    "ethics": MODEL_REASONING,       # was CHEAPEST — deepseek wins Ethics_justice
-    "music_theory": MODEL_REASONING, # was CHEAPEST — deepseek wins MusicTheoryBench
-    # Unchanged (data showed qwen ties or wins):
-    "psychology": MODEL_CHEAPEST,
-    "economics": MODEL_CHEAPEST,
-    "chemistry": MODEL_CHEAPEST,
-    "philosophy": MODEL_CHEAPEST,
-    "literature": MODEL_CHEAPEST,
-    "trivia": MODEL_CHEAPEST,
-    "other": MODEL_CHEAPEST,
-})
+_SUBJECT_TO_MODEL.update(
+    {
+        # Sqwish-aligned per-subject mapping derived from comparing routing on
+        # full-dataset prompts where Sqwish beats us. The categories below switched
+        # away from MODEL_CHEAPEST because empirically a stronger model wins on
+        # the full dataset (sub_10 had less data to detect the gap).
+        "medical": MODEL_FAST,
+        "computer_science": MODEL_FAST,
+        "history": MODEL_FAST,
+        "biology": MODEL_FAST,
+        "geography": MODEL_FAST,
+        "physics": MODEL_REASONING,
+        "public_health": MODEL_REASONING,
+        "business": MODEL_CODE,
+        # CHANGES from earlier mapping:
+        "mathematics": MODEL_REASONING,  # was CHEAPEST — Sqwish picks deepseek on math
+        "engineering": MODEL_REASONING,  # was CHEAPEST — deepseek wins MMLUPro_engineering
+        "law": MODEL_FAST,  # was CHEAPEST — gemini wins MMLUPro_law
+        "ethics": MODEL_REASONING,  # was CHEAPEST — deepseek wins Ethics_justice
+        "music_theory": MODEL_REASONING,  # was CHEAPEST — deepseek wins MusicTheoryBench
+        # Unchanged (data showed qwen ties or wins):
+        "psychology": MODEL_CHEAPEST,
+        "economics": MODEL_CHEAPEST,
+        "chemistry": MODEL_CHEAPEST,
+        "philosophy": MODEL_CHEAPEST,
+        "literature": MODEL_CHEAPEST,
+        "trivia": MODEL_CHEAPEST,
+        "other": MODEL_CHEAPEST,
+    }
+)
 
 
 def _prompt_hash(text: str) -> str:
@@ -375,7 +378,9 @@ _PFX_QANTA: Final = "Please read the following question and provide the correct 
 _PFX_CHESS: Final = "You are given a question about chess moves"
 # SuperGLUE-ClozeTest: "Read the following passage and answer the question by
 # choosing the best option. Provide only the text of the correct option as your answer."
-_PFX_CLOZE: Final = "Read the following passage and answer the question by choosing the best option"
+_PFX_CLOZE: Final = (
+    "Read the following passage and answer the question by choosing the best option"
+)
 
 # Subject keywords for MC questions (used after _PFX_MC_GENERIC matches).
 # Order matters — earlier patterns win when multiple match.
@@ -627,8 +632,6 @@ class LLMRouter(BaseRouter):
                 return override
             task_type = _classify_task_type(text)
             complexity = _classify_complexity(text, task_type)
-            return _SELECTION_MATRIX.get(
-                (task_type, complexity), self.DEFAULT_FALLBACK
-            )
+            return _SELECTION_MATRIX.get((task_type, complexity), self.DEFAULT_FALLBACK)
         except Exception:
             return self.DEFAULT_FALLBACK
