@@ -93,7 +93,15 @@
     "global index": "ArcMMLU_443",
     "prompt": "Kindly review the following multiple-choice questions and determine the most probable correct answer from the options presented.\n\nContext: None\n\nQuestion: 2. What is the number of dimension types present in the Cloud Cube Model? ( )\n\nOptions:\nA. One\nB. Three\nC. Two\nD. Four\n\nIndicate the correct option by placing it in \\boxed{X}, where X represents the accurate letter choice. Limit your explanation or feedback to within three sentences.",
     "prediction": "qwen/qwen3-235b-a22b-2507",
-    "generated_result": "{\"generated_answer\": \"The correct answer is \\\\boxed{D}.\"}",
+    "generated_result": {
+      "generated_answer": "The correct answer is \\boxed{D}.",
+      "success": true,
+      "token_usage": {
+        "input_tokens": 327,
+        "output_tokens": 213,
+        "total_tokens": 540
+      }
+    },
     "cost": null,
     "accuracy": null,
     "for_optimality": false
@@ -138,7 +146,15 @@
     "global index": "ArcMMLU_676",
     "prompt": "Please review the following set of multiple-choice questions and determine the most probable correct answer from the available options.\n\nContext: None\n\nQuestion: The future success of knowledge management does not rely on: ( ).\n\nOptions: \nA. Immediate benefits\nB. Enhancement of personnel\nC. Advancement of processes\nD. Improvement of the organization\n\nProvide the correct letter choice in \\boxed{X}, where X is the correct letter choice. Limit the explanation or feedback to no more than three sentences.",
     "prediction": "qwen/qwen3-235b-a22b-2507",
-    "generated_result": "{\"generated_answer\": \"The correct answer is \\\\boxed{A}.\"}",
+    "generated_result": {
+      "generated_answer": "The correct answer is \\boxed{A}.",
+      "success": true,
+      "token_usage": {
+        "input_tokens": 378,
+        "output_tokens": 233,
+        "total_tokens": 611
+      }
+    },
     "cost": null,
     "accuracy": null,
     "for_optimality": false
@@ -1452,7 +1468,15 @@
     "global index": "MMLUPro_health_5144",
     "prompt": "Kindly review the subsequent multiple-choice questions and select the option that most plausibly represents the correct response.\n\nContext: None\n\nQuestion: Under what circumstances does the production of lactate in muscles rise?\n\nOptions: \nA. when the muscle is optimally hydrated.\nB. when oxygen availability in the muscle is diminished.\nC. when glucose concentration in the muscle is depleted.\nD. when oxygen is abundantly accessible.\nE. when the muscle's pH decreases.\nF. when the muscle is in a state of rest.\nG. when pyruvate cannot be synthesized from glucose catabolism.\nH. when glycolysis is triggered at the commencement of physical activity.\nI. when the muscle endures an abrupt decrease in temperature.\nJ. when the muscle is relaxed.\n\nIdentify the appropriate letter choice in \\boxed{X}, where X represents the correct letter option. Limit any explanation or commentary to three sentences.",
     "prediction": "google/gemini-3.1-flash-lite",
-    "generated_result": "{\"generated_answer\": \"The correct answer is \\\\boxed{B}.\"}",
+    "generated_result": {
+      "generated_answer": "The correct answer is \\boxed{B}.",
+      "success": true,
+      "token_usage": {
+        "input_tokens": 675,
+        "output_tokens": 298,
+        "total_tokens": 973
+      }
+    },
     "cost": null,
     "accuracy": null,
     "for_optimality": false
@@ -1704,7 +1728,15 @@
     "global index": "MMLUPro_law_1518",
     "prompt": "Kindly review the subsequent multiple-choice questions and identify the most plausible correct answer from the options presented.\n\nIn a scenario where a husband is accused of murdering his brother-in-law through a shooting, the legal system in which he is being tried recognizes insanity as an affirmative defense. The husband claims insanity as his defense strategy. At the trial, to validate his insanity defense, the husband must:\n\nOptions:\nA. assume neither the burden of production nor persuasion.\nB. fulfill the burden of proof beyond a reasonable doubt.\nC. carry the burden of production.\nD. establish a record of mental illness.\nE. present significant evidence of his insanity at the time of the offense.\nF. submit expert medical testimony.\nG. demonstrate his innocence.\nH. persuade the jury of his mental disorder.\nI. bear only the burden of persuasion.\n\nSelect the correct option in \\boxed{X}, where X denotes the correct letter choice. Limit the explanation or feedback to 3 sentences.",
     "prediction": "google/gemini-3.1-flash-lite",
-    "generated_result": "{\"generated_answer\": \"The correct answer is \\\\boxed{C}.\"}",
+    "generated_result": {
+      "generated_answer": "The correct answer is \\boxed{C}.",
+      "success": true,
+      "token_usage": {
+        "input_tokens": 747,
+        "output_tokens": 417,
+        "total_tokens": 1164
+      }
+    },
     "cost": null,
     "accuracy": null,
     "for_optimality": false
@@ -2586,7 +2618,15 @@
     "global index": "OpenTDB_Celebrities_1078",
     "prompt": "Kindly examine the subsequent multiple-choice questions and determine the most probable correct response from the options presented.\n\nContext: None\n\nQuestion: What led Jake Lloyd, the actor who portrayed Anakin Skywalker in The Phantom Menace, to abandon his acting career?\n\nOptions: \nA. Harassment\nB. Discrimination\nC. Legal Troubles\nD. Negative Award Nomination\n\nSelect the accurate letter choice in \\boxed{X}, where X is the accurate letter choice. Limit the explanation or commentary to 3 sentences.",
     "prediction": "qwen/qwen3-235b-a22b-2507",
-    "generated_result": "{\"generated_answer\": \"The correct answer is \\\\boxed{A}.\"}",
+    "generated_result": {
+      "generated_answer": "The correct answer is \\boxed{A}.",
+      "success": true,
+      "token_usage": {
+        "input_tokens": 375,
+        "output_tokens": 236,
+        "total_tokens": 611
+      }
+    },
     "cost": null,
     "accuracy": null,
     "for_optimality": false
@@ -2919,7 +2959,15 @@
     "global index": "PubMedQA_520",
     "prompt": "Kindly examine these multiple-choice questions and select the option that most likely represents the correct answer.\n\nContext: ['Pregnancy triggers changes in a mother's metabolism to support the growing nutritional needs of the placenta and fetus. Creatine, an essential cellular metabolite sourced from diet and synthesized by the body, is crucial. Research indicates that the fetus depends considerably on maternal creatine throughout gestation. However, how pregnancy affects a mother's creatine balance remains uncertain. Our theory proposes that pregnancy modifies this balance to ensure that enough creatine is available for the mother, placenta, and fetus. This research aimed to map out how maternal creatine is regulated from the middle to the end stages of gestation in the advanced spiny mouse species.', 'The study measured plasma creatine levels and urinary excretion from mid to late pregnancy in pregnant (n = 8) and similar-aged non-pregnant female spiny mice (n = 6). At the end of gestation, body composition, organ weights, and tissue creatine content were evaluated. The mRNA expression for creatine-producing enzymes arginine:glycine amidinotransferase (AGAT) and guanidinoacetate methyltransferase (GAMT), along with the creatine transporter (CrT1), was analyzed using RT-qPCR. Protein levels of AGAT and GAMT were also quantified via western blotting.', 'Plasma creatine and kidney creatine excretion dropped notably from mid to late gestation (P<0.001, P<0.05, respectively). Pregnancy was linked with an increase in lean body mass (P<0.01), and in the mass of the kidney (P<0.01), liver (P<0.01), and heart (P<0.05) at the end of gestation. CrT1 expression rose in the heart (P<0.05) and muscle (P<0.05) at term compared to non-pregnant tissues, and creatine levels in the heart (P<0.05) and kidney (P<0.001) were higher at this stage. CrT1 mRNA expression fell in the liver (<0.01) and brain (<0.01) of pregnant spiny mice at term. Kidney AGAT mRNA (P<0.01) and protein (P<0.05) expression increased significantly at term, though AGAT mRNA (<0.01) and GAMT protein (<0.05) were lower in the heart during pregnancy. Brain AGAT (<0.01) and GAMT (<0.001) mRNA expression were also reduced at term.']\n\nQuestion: Does the alteration in maternal creatine equilibrium during gestation in the spiny mouse signify a metabolic adaptation to pregnancy?\n\nOptions: \nA. yes\nB. no\nC. maybe\n\nProvide the correct letter choice in \\boxed{A}, where A is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
     "prediction": "qwen/qwen3-235b-a22b-2507",
-    "generated_result": "{\"generated_answer\": \"The correct answer is \\\\boxed{A}.\"}",
+    "generated_result": {
+      "generated_answer": "The correct answer is \\boxed{A}.",
+      "success": true,
+      "token_usage": {
+        "input_tokens": 1905,
+        "output_tokens": 403,
+        "total_tokens": 2308
+      }
+    },
     "cost": null,
     "accuracy": null,
     "for_optimality": false

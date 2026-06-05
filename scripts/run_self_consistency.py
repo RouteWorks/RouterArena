@@ -157,17 +157,30 @@ def _complete_once(
     return ""
 
 
-def _format_vote_as_generated_result(letter: str) -> str:
+def _format_vote_as_generated_result(
+    letter: str, prompt: str, samples: list[str]
+) -> dict:
     """Match the canonical ``generated_result`` shape so the evaluator parses it.
 
-    The eval pipeline reads ``generated_result`` as a JSON-serialized dict
-    with a ``generated_answer`` field. We bake the voted letter into a
-    ``\\boxed{X}`` payload so ``EnhancedExtractor._extract_standard_boxed``
-    finds it.
+    The evaluator's pre-check (``router_inference/check_config_prediction_files.py``)
+    requires a dict with ``generated_answer: str``, ``success: bool``, and
+    ``token_usage``. Token usage is estimated from prompt + observed sample
+    texts (1 token ≈ 4 chars) so the multi-sample cost of self-consistency
+    is honestly attributed — under-counting would artificially deflate cost
+    and inflate Arena Score.
     """
-    return json.dumps(
-        {"generated_answer": f"The correct answer is \\boxed{{{letter}}}."}
-    )
+    answer = f"The correct answer is \\boxed{{{letter}}}."
+    input_tokens = len(samples) * max(1, len(prompt) // 4)
+    output_tokens = sum(max(1, len(s) // 4) for s in samples) if samples else 0
+    return {
+        "generated_answer": answer,
+        "success": True,
+        "token_usage": {
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens,
+            "total_tokens": input_tokens + output_tokens,
+        },
+    }
 
 
 def _load_cache(cache_path: Path | None) -> dict[str, list[str]]:
@@ -343,7 +356,7 @@ def main() -> int:
         vote = majority_vote(letters)
 
         if vote is not None:
-            new_generated = _format_vote_as_generated_result(vote)
+            new_generated = _format_vote_as_generated_result(vote, prompt, samples)
             new_entry = dict(entry)
             new_entry["generated_result"] = new_generated
             output[output_idx] = new_entry
