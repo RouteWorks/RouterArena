@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.egg-info/
 
 # Model outputs and cached results - don't track these
 outputs/
@@ -35,6 +36,12 @@ Thumbs.db
 
 tools/.addlicense.lock
 tools/addlicense
+
+# Hybrid Router
+data/
+checkpoints/
+router_inference/predictions/
+cache/
 
 # Ignore all Markdown files
 *.md

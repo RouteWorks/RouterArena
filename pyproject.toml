@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "routerarena"
 version = "0.1.0"
 description = "RouterArena - LLM Router Evaluation Framework"
-requires-python = ">3.10,<3.13"
+requires-python = ">=3.11,<3.12"
 dependencies = [
     # Core LLM API Clients
     "openai>=1.69.0",
@@ -46,6 +46,10 @@ dependencies = [
     "accelerate>=1.10.1",
     "safetensors>=0.6.2",
     "peft>=0.17.1",
+    "sentence-transformers>=2.7.0",
+    "scipy>=1.13.0",
+    "scikit-learn>=1.5.0",
+    "nltk>=3.8",
     # Math and Symbolic Computation
     "sympy>=1.13.1",
     "latex2sympy2>=1.9.1",
