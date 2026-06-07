@@ -1,6 +1,16 @@
-from datasets import load_dataset
+from huggingface_hub import snapshot_download
+import os
 
+os.makedirs("./data/r2bench", exist_ok=True)
 
-ds = load_dataset("UCF-ML-Research/R2-Bench", trust_remote_code=True)
-ds.save_to_disk("./data/r2bench")
-print(f"Downloaded R2-Bench: {ds}.")
+path = snapshot_download(
+    repo_id="JiaqiXue/R2-Bench-RouterArena",
+    repo_type="dataset",
+    local_dir="./data/r2bench"
+)
+print(f"Downloaded to {path}")
+
+for root, dirs, files in os.walk("./data/r2bench/data"):
+    for f in files[:3]:
+        print(os.path.join(root, f))
+    break
