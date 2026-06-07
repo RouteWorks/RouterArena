@@ -91,7 +91,9 @@ dependencies = [
 packages = ["."]
 
 [tool.uv]
-dev-dependencies = []
+dev-dependencies = [
+    "pytest>=9.0.3",
+]
 
 [tool.mypy]
 plugins = ['pydantic.mypy']
