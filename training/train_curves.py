@@ -29,3 +29,16 @@ def fit_budget_curves(records, anchor_budgets=None) -> BudgetCurves:
         anchors[model] = anchor_array
     
     return BudgetCurves(anchors)
+
+if __name__ == "__main__":
+    import os
+    from training.dataset import load_r2bench, MODEL_NAME_MAP
+
+    records = load_r2bench("./data/r2bench", MODEL_NAME_MAP)
+    curves = fit_budget_curves(records)
+
+    os.makedirs("./checkpoints/hybrid-router", exist_ok=True)
+    curves.save("./checkpoints/hybrid-router/curves.npz")
+    print("Saved curves.npz")
+    for model, arr in curves.anchors.items():
+        print(f"  {model}: {[round(v, 3) for v in arr.tolist()]}")

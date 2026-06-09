@@ -45,3 +45,29 @@ def calibrate(records, encoder, collection) -> TemperatureScaler:
         temperatures[model] = float(result.x)
 
     return TemperatureScaler(temperatures)
+
+if __name__ == "__main__":
+    import os, torch
+    from training.dataset import load_r2bench, MODEL_NAME_MAP
+    from hybrid_router.encoder import HybridRouterEncoder
+    from hybrid_router.model_heads import ModelHead, ModelHeadCollection
+
+    records = load_r2bench("./data/r2bench", MODEL_NAME_MAP)
+    encoder = HybridRouterEncoder()
+    model_names = list(MODEL_NAME_MAP.values())
+
+    # Load trained heads from checkpoint
+    collection = ModelHeadCollection(model_names)
+    heads_dir = "./checkpoints/hybrid-router/heads"
+    for name in model_names:
+        filename = name.replace("/", "_") + ".pt"
+        state = torch.load(os.path.join(heads_dir, filename), map_location="cpu", weights_only=True)
+        collection.heads[name].load_state_dict(state)
+        collection.heads[name].eval()
+
+    scaler = calibrate(records, encoder, collection)
+
+    scaler.save("./checkpoints/hybrid-router/temperatures.json")
+    print("Saved temperatures.json")
+    for model, T in scaler.temperatures.items():
+        print(f"  {model}: T={T:.4f}")

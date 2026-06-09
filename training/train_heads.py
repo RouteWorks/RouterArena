@@ -50,3 +50,24 @@ def train_heads(records, encoder, model_names, epochs=20, lr=1e-3) -> ModelHeadC
         head.eval()
     
     return collection
+
+if __name__ == "__main__":
+    import os, torch
+    from training.dataset import load_r2bench, MODEL_NAME_MAP
+    from training.augmentation import augment_records
+    from hybrid_router.encoder import HybridRouterEncoder
+
+    records = load_r2bench("./data/r2bench", MODEL_NAME_MAP)
+    augmented = augment_records(records, n_paraphrases=1)
+    records = records + augmented
+
+    encoder = HybridRouterEncoder()
+    model_names = list(MODEL_NAME_MAP.values())
+    collection = train_heads(records, encoder, model_names, epochs=20, lr=1e-3)
+
+    heads_dir = "./checkpoints/hybrid-router/heads"
+    os.makedirs(heads_dir, exist_ok=True)
+    for name in model_names:
+        filename = name.replace("/", "_") + ".pt"
+        torch.save(collection.heads[name].state_dict(), os.path.join(heads_dir, filename))
+        print(f"Saved {filename}")

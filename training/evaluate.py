@@ -96,3 +96,39 @@ def evaluate(records, encoder, collection, scaler, curves, cost_model) -> dict:
         "accuracy_at_budget": accuracy_at_budget,
         "model_distribution": model_distribution,
     }
+
+if __name__ == "__main__":
+    import os, torch
+    from training.dataset import load_r2bench, MODEL_NAME_MAP
+    from hybrid_router.encoder import HybridRouterEncoder
+    from hybrid_router.model_heads import ModelHeadCollection
+    from hybrid_router.budget_curves import BudgetCurves
+    from hybrid_router.calibration import TemperatureScaler
+    from hybrid_router.cost_model import CostModel
+
+    records = load_r2bench("./data/r2bench", MODEL_NAME_MAP)
+    encoder = HybridRouterEncoder()
+    model_names = list(MODEL_NAME_MAP.values())
+    ckpt = "./checkpoints/hybrid-router"
+
+    collection = ModelHeadCollection(model_names)
+    heads_dir = os.path.join(ckpt, "heads")
+    for name in model_names:
+        filename = name.replace("/", "_") + ".pt"
+        state = torch.load(os.path.join(heads_dir, filename), map_location="cpu", weights_only=True)
+        collection.heads[name].load_state_dict(state)
+        collection.heads[name].eval()
+
+    curves = BudgetCurves.load(os.path.join(ckpt, "curves.npz"))
+    scaler = TemperatureScaler.load(os.path.join(ckpt, "temperatures.json"))
+    cost_model = CostModel.from_json("./model_cost/model_cost.json")
+
+    metrics = evaluate(records, encoder, collection, scaler, curves, cost_model)
+    print(f"mean_accuracy : {metrics['mean_accuracy']:.4f}")
+    print(f"mean_cost     : {metrics['mean_cost']:.8f}")
+    print("model_distribution:")
+    for m, frac in metrics["model_distribution"].items():
+        print(f"  {m}: {frac:.2%}")
+    print("accuracy_at_budget:")
+    for b, acc in sorted(metrics["accuracy_at_budget"].items()):
+        print(f"  budget={b}: {acc:.4f}")

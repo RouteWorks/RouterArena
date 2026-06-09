@@ -39,7 +39,7 @@ def load_r2bench(data_dir, model_name_map) -> list[dict]:
                 data = json.load(file)
             for entry in data:
                 records.append({
-                    "global_index": entry["global_index"],
+                    "global_index": entry["global index"],
                     "prompt": entry["prompt"],
                     "model": canonical_name,
                     "budget": budget,
@@ -56,7 +56,7 @@ def load_r2bench(data_dir, model_name_map) -> list[dict]:
                 data = json.load(file)
             for entry in data:
                 records.append({
-                    "global_index": entry["global_index"],
+                    "global_index": entry["global index"],
                     "prompt": entry["prompt"],
                     "model": canonical_name,
                     "budget": None,

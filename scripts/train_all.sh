@@ -1,20 +1,16 @@
 #!/usr/bin/env bash
 set -e
 
-echo "==> Downloading datasets..."
-uv run python training/scripts/download_routerbench.py
-uv run python training/scripts/download_r2bench.py
+echo "==> Fitting budget curves..."
+uv run python -m training.train_curves
 
 echo "==> Training MLP heads..."
-uv run python training/train_heads.py --all --epochs 30
-
-echo "==> Fitting budget curves..."
-uv run python training/train_curves.py
+uv run python -m training.train_heads
 
 echo "==> Calibrating temperatures..."
-uv run python training/calibrate.py
+uv run python -m training.calibrate
 
-echo "==> Offline evaluation (val)..."
-uv run python training/evaluate.py --split val
+echo "==> Offline evaluation..."
+uv run python -m training.evaluate
 
-echno "Done. Checkpoints in ./checkpoints/"
+echo "Done. Checkpoints in ./checkpoints/hybrid-router/"
