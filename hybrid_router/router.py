@@ -2,7 +2,7 @@ class HybridRouter:
     def __init__(self, encoder, heads, scaler, curves, cost_model, budget_candidates=None):
         """
         Takes the parameters encoder, heads, scaler, curves, cost_model, and budget_candidates in order.
-        Budget candidates is set to be [50, 100, 200, 400, 800, 1600] by default.
+        Budget candidates is set to be [80, 150, 200, 400, 800, 1500] by default.
         Stores them all as instance attributes.
         """
         self.encoder = encoder
@@ -10,7 +10,7 @@ class HybridRouter:
         self.scaler = scaler
         self.curves = curves
         self.cost_model = cost_model
-        self.budget_candidates = budget_candidates or [50, 100, 200, 400, 800, 1600]
+        self.budget_candidates = budget_candidates or [80, 150, 200, 400, 800, 1500]
 
     def route(self, query: str) -> tuple[str, int]:
         """

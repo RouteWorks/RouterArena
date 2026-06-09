@@ -6,10 +6,10 @@ class BudgetCurves:
         """
         Takes anchors: dict[str, np.ndarray]. Each value is a numpy array of shape (6,) 
         representing the mean quality at each of the 6 anchor budgets. Stores it as self.anchors, 
-        and stores the fixed budget list as self.budgets = np.array([50, 100, 200, 400, 800, 1600]).
+        and stores the fixed budget list as self.budgets = np.array([80, 150, 200, 400, 800, 1500]).
         """
         self.anchors = anchors
-        self.budgets = np.array([50, 100, 200, 400, 800, 1600])
+        self.budgets = np.array([80, 150, 200, 400, 800, 1500])
 
     def quality_at_budget(self, model_name: str, budget: float) -> float:
         """
