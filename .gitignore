@@ -41,6 +41,8 @@ tools/addlicense
 data/
 checkpoints/
 router_inference/predictions/
+!router_inference/predictions/hybrid-router.json
+!rotuer_inference/predictions/hybrid-router-robustness.json
 cache/
 
 # Ignore all Markdown files
