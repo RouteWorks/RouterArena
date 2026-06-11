@@ -11,8 +11,8 @@ Expected checkpoint layout (relative to project root):
     checkpoints/hybrid-router/
         heads/
             qwen_qwen3-235b-a22b-2507.pt
-            Qwen_Qwen3-Coder-Next.pt
-            gemini-2.0-flash-001.py
+            qwen_qwen3-30b-a3b-instruct-2507.pt
+            mistralai_ministral-3-3b-2512.pt
         curves.npz
         temperatures.json
 """
@@ -65,7 +65,7 @@ class HybridRouterAdapter(BaseRouter):
             collection.heads[name].eval()
 
         # Load temperature calibration
-        scaler = TemperatureScaler.load(os.path.join(ckpt_dir, "curves.npz"))
+        scaler = TemperatureScaler.load(os.path.join(ckpt_dir, "temperatures.json"))
 
         # Load PCHIP budget curves
         curves = BudgetCurves.load(os.path.join(ckpt_dir, "curves.npz"))

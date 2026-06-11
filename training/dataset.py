@@ -5,9 +5,22 @@ import numpy as np
 
 MODEL_NAME_MAP = {
     "235b": "qwen/qwen3-235b-a22b-2507",
-    "Qwen3-Coder-Next": "Qwen/Qwen3-Coder-Next",
-    "gemini-flash": "gemini-2.0-flash-001",
+    "30b": "qwen/qwen3-30b-a3b-instruct-2507",
+    "ministral-3b": "mistralai/ministral-3-3b-2512",
 }
+
+SKIP_FOLDERS = {
+    "gemma-3n-e4b", # wrong schema — no accuracy/cost fields
+    "glm-5", # concise only, wrong schema
+    "gemini-3-pro", # concise only, wrong schema
+    "gpt-5.2", # concise only, wrong schema
+    "gpt4o", # concise only, wrong schema
+    "haiku", # concise only, no budget sweep
+    "gemini-flash", # concise only, no budget sweep
+}
+
+def _get_global_index(entry: dict) -> str:
+    return entry.get("global_index") or entry.get("global index", "")
 
 def load_r2bench(data_dir, model_name_map) -> list[dict]:
     """
@@ -27,6 +40,8 @@ def load_r2bench(data_dir, model_name_map) -> list[dict]:
         folder_name = subfolder.name
         if folder_name not in model_name_map:
             continue
+        if folder_name in SKIP_FOLDERS:
+            continue
         canonical_name = model_name_map[folder_name]
 
         for json_file in sorted(subfolder.glob("budget_*.json")):
@@ -38,13 +53,16 @@ def load_r2bench(data_dir, model_name_map) -> list[dict]:
             with open(json_file) as file:
                 data = json.load(file)
             for entry in data:
+                accuracy = entry.get("accuracy")
+                if accuracy is None:
+                    continue
                 records.append({
-                    "global_index": entry["global index"],
+                    "global_index": _get_global_index(entry),
                     "prompt": entry["prompt"],
                     "model": canonical_name,
                     "budget": budget,
-                    "accuracy": entry["accuracy"],
-                    "cost": entry["cost"],
+                    "accuracy": float(accuracy),
+                    "cost": float(entry.get("cost", 0.0)),
                 })
         
         unlimited_file = subfolder / "budget_unlimited.json"
@@ -55,13 +73,16 @@ def load_r2bench(data_dir, model_name_map) -> list[dict]:
             with open(source_file) as file:
                 data = json.load(file)
             for entry in data:
+                accuracy = entry.get("accuracy")
+                if accuracy is None:
+                    continue
                 records.append({
-                    "global_index": entry["global index"],
+                    "global_index": _get_global_index(entry),
                     "prompt": entry["prompt"],
                     "model": canonical_name,
                     "budget": None,
-                    "accuracy": entry["accuracy"],
-                    "cost": entry["cost"],
+                    "accuracy": float(accuracy),
+                    "cost": float(entry.get("cost", 0.0)),
                 })
         
     return records

@@ -7,6 +7,11 @@ class HybridRouterEncoder:
         The model is set to eval mode and has gradients disabled.
         """
         self.model = SentenceTransformer("sentence-transformers/all-mpnet-base-v2")
+
+        self.model.eval()
+        # Gradient disabling is handled by sentence_transformers internally, but we make it explicit here.
+        for param in self.model.parameters():
+            param.requires_grad = False
     
     def encode(self, text: str | list[str]):
         """

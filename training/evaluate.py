@@ -124,11 +124,15 @@ if __name__ == "__main__":
     cost_model = CostModel.from_json("./model_cost/model_cost.json")
 
     metrics = evaluate(records, encoder, collection, scaler, curves, cost_model)
-    print(f"mean_accuracy : {metrics['mean_accuracy']:.4f}")
-    print(f"mean_cost     : {metrics['mean_cost']:.8f}")
-    print("model_distribution:")
-    for m, frac in metrics["model_distribution"].items():
-        print(f"  {m}: {frac:.2%}")
-    print("accuracy_at_budget:")
-    for b, acc in sorted(metrics["accuracy_at_budget"].items()):
-        print(f"  budget={b}: {acc:.4f}")
+    if not metrics:
+        print("No unlimited-budget records found for evaluation.")
+        print("Check that MODEL_NAME_MAP folders have budget_unlimited.json or concise.json")
+    else:
+        print(f"mean_accuracy : {metrics['mean_accuracy']:.4f}")
+        print(f"mean_cost : {metrics['mean_cost']:.8f}")
+        print("model_distribution:")
+        for m, frac in metrics["model_distribution"].items():
+            print(f"  {m}: {frac:.2%}")
+        print("accuracy_at_budget:")
+        for b, acc in sorted(metrics["accuracy_at_budget"].items()):
+            print(f"  budget={b}: {acc:.4f}")

@@ -14,6 +14,7 @@ def test_route_returns_tuple():
     heads.predict.return_value = 0.7
 
     scaler = MagicMock()
+    scaler.apply.return_value = 0.65
     curves = MagicMock()
     curves.quality_at_budget.return_value = 0.6
 
@@ -36,6 +37,7 @@ def test_route_returns_valid_model():
     heads.predict.return_value = 0.7
 
     scaler = MagicMock()
+    scaler.apply.return_value = 0.65
     curves = MagicMock()
     curves.quality_at_budget.return_value = 0.6
 
@@ -58,6 +60,7 @@ def test_route_returns_valid_budget():
     heads.predict.return_value = 0.7
 
     scaler = MagicMock()
+    scaler.apply.return_value = 0.65
     curves = MagicMock()
     curves.quality_at_budget.return_value = 0.6
 

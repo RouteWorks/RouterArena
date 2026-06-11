@@ -50,7 +50,7 @@ if __name__ == "__main__":
     import os, torch
     from training.dataset import load_r2bench, MODEL_NAME_MAP
     from hybrid_router.encoder import HybridRouterEncoder
-    from hybrid_router.model_heads import ModelHead, ModelHeadCollection
+    from hybrid_router.model_heads import ModelHeadCollection
 
     records = load_r2bench("./data/r2bench", MODEL_NAME_MAP)
     encoder = HybridRouterEncoder()

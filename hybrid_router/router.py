@@ -1,3 +1,5 @@
+import math
+
 class HybridRouter:
     def __init__(self, encoder, heads, scaler, curves, cost_model, budget_candidates=None):
         """
@@ -31,17 +33,16 @@ class HybridRouter:
 
         results = {}
         for model in self.heads.heads:
+            sigmoid_out = self.heads.predict(model, encoded_query)
+            raw_logit = math.log(max(sigmoid_out, 1e-9) / max(1 - sigmoid_out, 1e-9))
+            calibrated = self.scaler.apply(model, raw_logit)
+
             for budget in self.budget_candidates:
-                base_quality = self.heads.predict(model, encoded_query)
                 curve_quality = self.curves.quality_at_budget(model, budget)
-
-                blended = 0.5 * base_quality + 0.5 * curve_quality
-
+                blended = 0.5 * calibrated + 0.5 * curve_quality
                 cost = self.cost_model.estimate(model, len(query.split()), budget)
-
                 score = blended / (cost + 1e-9)
-
                 results[(model, budget)] = score
-            
+
         max_key = max(results, key=results.get)
         return max_key

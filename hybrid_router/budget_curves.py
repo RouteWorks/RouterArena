@@ -25,8 +25,8 @@ class BudgetCurves:
     
     def save(self, path: str):
         """
-        Saves self.anchros to an .npz file using np.savez. The keyword arguments to np.savez should be the 
-        model names as keys and the arrays as values (but model names contain hyphens which aren't vlaid Python keyword arguments). 
+        Saves self.anchors to an .npz file using np.savez. The keyword arguments to np.savez should be the 
+        model names as keys and the arrays as values (but model names contain hyphens which aren't valid Python keyword arguments). 
         Thus, we'll need to use np.savez(path, **self.anchors) to unpack the dict.
         """
         np.savez(path, **self.anchors)
@@ -40,5 +40,3 @@ class BudgetCurves:
         
         anchors = {k: v for k, v in data.items()}
         return cls(anchors)
-
-

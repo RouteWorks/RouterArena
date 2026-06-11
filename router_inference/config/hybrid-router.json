@@ -4,8 +4,8 @@
         "router_cls_name": "HybridRouterAdapter",
         "models": [
             "qwen/qwen3-235b-a22b-2507",
-            "Qwen/Qwen3-Coder-Next",
-            "gemini-2.0-flash-001"
+            "qwen/qwen3-30b-a3b-instruct-2507",
+            "mistralai/ministral-3-3b-2512"
         ]
     }
 }
