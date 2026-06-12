@@ -452,6 +452,36 @@ def check_prediction_fields(
                         f"generated_result.success must be a boolean"
                     )
 
+                # A successful, non-empty generation must report usable token usage
+                # (a token_usage dict with output_tokens > 0). Without it the cost
+                # cannot be computed and the row would otherwise ride for free; the
+                # evaluator now treats such rows as failed inference. Flag them here
+                # so submissions are caught up front. See issue #135.
+                if (
+                    isinstance(generated_result.get("success"), bool)
+                    and generated_result.get("success") is True
+                    and isinstance(generated_result.get("generated_answer"), str)
+                    and generated_result.get("generated_answer", "").strip()
+                ):
+                    token_usage = generated_result.get("token_usage")
+                    output_tokens = (
+                        token_usage.get("output_tokens")
+                        if isinstance(token_usage, dict)
+                        else None
+                    )
+                    if not (
+                        isinstance(output_tokens, (int, float))
+                        and not isinstance(output_tokens, bool)
+                        and output_tokens > 0
+                    ):
+                        errors.append(
+                            f"Entry {i} (global_index: {pred_global_index}): "
+                            f"success is True with a non-empty generated_answer but "
+                            f"token_usage has no usable output_tokens (got "
+                            f"{output_tokens!r}). Successful generations must report "
+                            f"output_tokens > 0 so cost can be computed."
+                        )
+
     return len(errors) == 0, errors
 
 
