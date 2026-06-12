@@ -111,7 +111,8 @@ def build_complete_evaluation_dictionary() -> Dict[str, Dict[str, Tuple[float, f
                         inference_cost = (
                             (input_tokens / 1_000_000) * input_cost_per_million
                             + (output_tokens / 1_000_000) * output_cost_per_million
-                            + (reasoning_tokens / 1_000_000) * reasoning_cost_per_million
+                            + (reasoning_tokens / 1_000_000)
+                            * reasoning_cost_per_million
                         )
 
                 # Get accuracy (score)

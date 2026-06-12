@@ -72,22 +72,22 @@ def audit_file(path: str) -> Dict[str, Any]:
         model = r.get("prediction")
 
         if isinstance(token_usage, dict):
-            it = token_usage.get("input_tokens") or 0
-            ot = token_usage.get("output_tokens") or 0
-            tt = token_usage.get("total_tokens") or 0
-            if tt > it + ot:
+            n_in = token_usage.get("input_tokens") or 0
+            n_out = token_usage.get("output_tokens") or 0
+            n_total = token_usage.get("total_tokens") or 0
+            if n_total > n_in + n_out:
                 reasoning_rows += 1
-                reasoning_extra_tokens += tt - it - ot
+                reasoning_extra_tokens += n_total - n_in - n_out
 
         non_empty = bool(answer) and str(answer).strip() != ""
-        if gen.get("success") is True and non_empty and not _has_usable_token_usage(
-            token_usage
+        if (
+            gen.get("success") is True
+            and non_empty
+            and not _has_usable_token_usage(token_usage)
         ):
             failed_rows += 1
             failed_by_model[model] += 1
-            failed_indices.append(
-                str(r.get("global index") or r.get("global_index"))
-            )
+            failed_indices.append(str(r.get("global index") or r.get("global_index")))
 
     return {
         "router": os.path.basename(path).replace(".json", ""),
@@ -151,7 +151,9 @@ def main() -> None:
 
     failed = [s for s in summaries if s["failed_rows"]]
     if failed:
-        print("\nFailed-inference rows by model (forward these counts to the router authors):")
+        print(
+            "\nFailed-inference rows by model (forward these counts to the router authors):"
+        )
         for s in failed:
             print(f"  {s['router']}: {s['failed_by_model']}")
             if args.show_indices:
