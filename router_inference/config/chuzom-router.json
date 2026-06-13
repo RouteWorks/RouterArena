@@ -1,0 +1,22 @@
+{
+  "pipeline_params": {
+    "router_name": "chuzom-router",
+    "router_cls_name": "ChuzomRouter",
+    "models": [
+      "qwen/qwen3-235b-a22b-2507",
+      "google/gemini-3.1-flash-lite",
+      "deepseek/deepseek-v4-flash",
+      "deepseek/deepseek-v3.2",
+      "qwen/qwen3-next-80b-a3b-instruct",
+      "Qwen/Qwen3-Coder-Next",
+      "gemini-2.5-flash",
+      "qwen/qwen3-30b-a3b-instruct-2507",
+      "gpt-4o-mini",
+      "claude-3-haiku-20240307"
+    ],
+    "description": "Chuzom: heuristic + classifier-driven routing with a three-axis taxonomy (complexity × task_type × subject). Local-first cascade in production; routing decisions for this submission come from chuzom.classifier.classify_complexity at quality_mode=balanced, mapped onto the model pool via a tier + subject override table (see scripts/routerarena_submit.py)."
+  },
+  "router": "chuzom-router",
+  "router_name": "chuzom-router",
+  "description": "Chuzom Router submission (v0.1.0)."
+}
