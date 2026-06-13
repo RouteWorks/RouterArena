@@ -389,7 +389,7 @@ class ChuzomRouter(BaseRouter):
         # ── STEP 3: weighted signal scoring ──────────────────────────────────
 
         scores = _score_categories(query)
-        best_category = max(scores, key=scores.get)
+        best_category = max(scores, key=lambda k: scores.get(k, 0))
         best_score = scores[best_category]
 
         if best_score >= _CONFIDENCE_THRESHOLD:
