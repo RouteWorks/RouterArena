@@ -12,4 +12,11 @@ from router_inference.router.llm_router import LLMRouter
 __all__ = ["BaseRouter", "ExampleRouter", "VLLMSR", "auto_router", "LLMRouter"]
 from router_inference.router.chuzom_router import ChuzomRouter
 
-__all__ = ["BaseRouter", "ExampleRouter", "VLLMSR", "auto_router", "LLMRouter", "ChuzomRouter"]
+__all__ = [
+    "BaseRouter",
+    "ExampleRouter",
+    "VLLMSR",
+    "auto_router",
+    "LLMRouter",
+    "ChuzomRouter",
+]
