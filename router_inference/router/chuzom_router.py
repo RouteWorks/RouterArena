@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
 # SPDX-License-Identifier: MIT
-"""Chuzom router for RouterArena — v0.4.1.
+"""Chuzom router for RouterArena — v0.5.0.
 
 Self-contained heuristic classifier + model-tier selector.
 RouterArena's evaluation environment only needs this file and the JSON
@@ -14,10 +14,10 @@ STEP 1 — Format / benchmark fast-path (deterministic, zero false-positives):
   Narrative: reading-comprehension wrapper phrases → gemini-flash-lite
   QANTA    : "This is the clue:" prefix → gemini-flash-lite
 
-STEP 2 — Benchmark template fast-path (v0.4.1 benchmark_fast_path):
+STEP 2 — Benchmark template fast-path (v0.4.2 benchmark_fast_path):
   Matches stable prefixes used by RouterArena / MMLU / HELM harnesses.
 
-STEP 3 — Weighted signal scoring (v0.4.1 SIGNALS engine):
+STEP 3 — Weighted signal scoring (v0.4.2 SIGNALS engine):
   intent × 3  +  topic × 2  +  format × 1  → best category.
   Categories: code · analyze · query · research · generate · coordination.
 
@@ -32,7 +32,7 @@ STEP 4 — Tier mapping (category × complexity → model):
 
 ═══ Reference ══════════════════════════════════════════════════════════════
   RouterArena  : github.com/RouteWorks/RouterArena
-  Chuzom       : github.com/ypollak2/chuzom  (v0.4.1)
+  Chuzom       : github.com/ypollak2/chuzom  (v0.4.2)
   Arena formula: S = ((1+β)·acc·C) / (β·acc + C), β=0.1
 """
 
@@ -73,8 +73,19 @@ _NARRATIVE_QA = re.compile(
 # QANTA quiz-bowl format.
 _QANTA = re.compile(r"^\s*this is the clue:", re.IGNORECASE | re.MULTILINE)
 
+# AsDiv / FinQA / AIME harness prefix.  The benchmark harness injects
+# "Please solve the following mathematical problem step by step" as an
+# *instruction*, which collides with the "step by step" deep_reasoning
+# trigger.  Stripping this prefix before classification restores the
+# original routing: long FinQA/AIME → complex (qwen3-235b), short
+# AsDiv → moderate/simple (gpt-4o-mini / gemini-flash-lite).
+_MATH_PROBLEM_PREFIX = re.compile(
+    r"^Please solve the following mathematical problem step by step[.,]?\s*",
+    re.IGNORECASE,
+)
 
-# ── STEP 2 — Benchmark template fast-path (v0.4.1) ───────────────────────────
+
+# ── STEP 2 — Benchmark template fast-path (v0.4.2) ───────────────────────────
 
 # Known benchmark harness prefixes → classification dict.  Matched before the
 # scoring engine so these prompts never mis-fire on ambiguous keywords.
@@ -118,9 +129,9 @@ def _benchmark_fast_path(prompt: str) -> dict | None:
     return None
 
 
-# ── STEP 3 — Weighted signal scoring (v0.4.1 SIGNALS engine) ─────────────────
+# ── STEP 3 — Weighted signal scoring (v0.4.2 SIGNALS engine) ─────────────────
 
-# Weights mirror v0.4.1 production constants.
+# Weights mirror v0.4.2 production constants.
 _INTENT_W = 3
 _TOPIC_W = 2
 _FORMAT_W = 1
@@ -186,7 +197,7 @@ _SIGNALS: dict[str, dict[str, re.Pattern]] = {
             r"\b(?:analyze|evaluate|assess|review (?:the |this |my )|"
             r"critique|debug|diagnose|"
             r"explain why|root cause|investigate|audit|"
-            r"compare (?:and contrast |.+ (?:to|with|vs|versus) |.+ and .+)|"
+            r"compare (?:and contrast|\w[^.]{0,80}? (?:to|with|vs|versus)|\w[^.]{0,60}? and [^.]{0,60})|"
             r"pros and cons|trade-?offs?|advantages|disadvantages|"
             r"deep dive|what do you think|what(?:'s| is) (?:your |the )?(?:opinion|take|assessment)|"
             r"help me understand|break down|walk me through|"
@@ -199,7 +210,7 @@ _SIGNALS: dict[str, dict[str, re.Pattern]] = {
         "topic": re.compile(
             r"\b(?:performance|bottleneck|latency|throughput|efficiency|"
             r"security|vulnerability|risk|threat|exposure|"
-            r"architecture|system design|design pattern|approach|strategy|"
+            r"architecture|system design|design pattern|strategy|"
             r"cost-benefit|roi|impact|outcome|"
             r"quality|reliability|scalability|maintainability|"
             r"trade-?off|decision|choice|option|alternative|"
@@ -287,17 +298,11 @@ def _score_categories(text: str) -> dict[str, int]:
     scores: dict[str, int] = {}
     for category, layers in _SIGNALS.items():
         total = 0
-        for layer_name, weight in [
-            ("intent", _INTENT_W),
-            ("topic", _TOPIC_W),
-            ("format", _FORMAT_W),
-        ]:
+        for layer_name, weight in [("intent", _INTENT_W), ("topic", _TOPIC_W), ("format", _FORMAT_W)]:
             pattern = layers.get(layer_name)
             if pattern:
                 matches = pattern.findall(text)
-                unique = len(
-                    {m.lower() if isinstance(m, str) else m[0].lower() for m in matches}
-                )
+                unique = len({m.lower() if isinstance(m, str) else m[0].lower() for m in matches})
                 total += unique * weight
         scores[category] = total
     return scores
@@ -306,17 +311,28 @@ def _score_categories(text: str) -> dict[str, int]:
 # ── Complexity ────────────────────────────────────────────────────────────────
 
 _COMPLEXITY_DEEP_REASONING = re.compile(
+    # Formal academic / mathematical triggers
     r"\b(?:prove (?:that|mathematically|formally)|"
     r"mathematical(?:ly)? (?:prove|derive|show)|"
     r"formal proof|theorem|lemma|axiom|corollary|"
-    r"derive from first principles?|first[- ]principles? (?:derivation|analysis|explanation)|"
+    r"derive from first principles?|first[- ]principles?\b|"
     r"from (?:the )?fundamentals?|foundational(?:ly)?|"
-    r"philosophical(?:ly)? (?:analyze|examine|argue|discuss)|"
+    r"philosophical(?:ly)? (?:analyze|examine|argue|discuss|analysis)|"
     r"what does it mean (?:fundamentally|philosophically|at its core)|"
     r"synthesize (?:the )?research|comprehensive literature review|"
-    r"rigorous(?:ly)? (?:analyze|prove|derive|examine)|"
+    r"rigorous(?:ly)? (?:analyze|prove|derive|examine|analysis)|"
     r"formal(?:ly)? (?:specify|verify|prove)|"
-    r"induction|deduction|proof by contradiction|reductio ad absurdum)\b",
+    r"mathematical induction|(?:proof |by )(?:induction|deduction|contradiction)|reductio ad absurdum|"
+    # Natural-language chain-of-thought triggers
+    r"step[- ]by[- ]step|think (?:this )?through|reason (?:through|about|carefully)|"
+    r"chain[- ]of[- ]thought|think (?:carefully|deeply|step[- ]by[- ]step)|"
+    r"walk me through (?:the )?(?:reasoning|logic|steps|derivation)|"
+    r"explain (?:your )?reasoning|show (?:your )?work|"
+    r"think (?:out )?loud|reason (?:out )?loud|"
+    r"deep[- ]dive|root[- ]cause analysis|"
+    r"understand (?:why|how exactly)|exactly (?:why|how)|"
+    r"what is (?:the )?(?:root cause|underlying reason)|"
+    r"trace (?:through|the (?:logic|reasoning|chain)))\b",
     re.IGNORECASE,
 )
 
@@ -325,19 +341,21 @@ _COMPLEXITY_COMPLEX = re.compile(
     r"novel approach|research paper|synthesis|multi-step|workflow|pipeline|"
     r"in-depth|thorough|detailed plan|full implementation|production|"
     r"scalable|distributed|microservice|security audit|"
-    r"compare multiple|across all|entire|complete)\b",
+    r"compare multiple|across all|entire|complete|failure modes?)\b",
     re.IGNORECASE,
 )
 
+# "brief" is deliberately excluded: "Keep it brief" is a format instruction,
+# not a complexity signal. Length-based classification handles the rest.
 _COMPLEXITY_SIMPLE = re.compile(
-    r"\b(?:quick|simple|short|one-liner|brief|"
+    r"\b(?:quick|simple|short|one-liner|"
     r"summarize|tldr|eli5|just|only|small|tiny|minor)\b",
     re.IGNORECASE,
 )
 
 
 def _classify_complexity(text: str, task_type: str) -> str:
-    """v0.4.1 thresholds: >500 chars → complex, >150 → moderate."""
+    """v0.4.2 thresholds: >500 chars → complex, >150 → moderate."""
     if _COMPLEXITY_DEEP_REASONING.search(text):
         return "deep_reasoning"
     if _COMPLEXITY_COMPLEX.search(text):
@@ -355,13 +373,18 @@ def _classify_complexity(text: str, task_type: str) -> str:
 
 
 class ChuzomRouter(BaseRouter):
-    """v0.4.1 weighted-signal heuristic router with MCQ/benchmark fast-paths.
+    """v0.4.2 weighted-signal heuristic router with MCQ/benchmark fast-paths.
 
     Deterministic — no API calls. Each decision is a pure function of
     the prompt text and the model pool in the JSON config.
     """
 
     def _get_prediction(self, query: str) -> str:
+        # Strip AsDiv / FinQA / AIME harness prefix before any classification
+        # so the embedded "step by step" instruction does not trigger the
+        # deep_reasoning path.  All subsequent logic runs on the stripped text.
+        query = _MATH_PROBLEM_PREFIX.sub("", query.lstrip())
+
         # ── STEP 1: format fast-path ─────────────────────────────────────────
 
         # MCQ: \\boxed{X} is injected by RouterArena into prompt_formatted for
@@ -389,9 +412,7 @@ class ChuzomRouter(BaseRouter):
         bench = _benchmark_fast_path(query)
         if bench is not None:
             task_type = bench["task_type"]
-            complexity = bench.get("complexity") or _classify_complexity(
-                query, task_type
-            )
+            complexity = bench.get("complexity") or _classify_complexity(query, task_type)
             return self._tier(task_type, complexity)
 
         # ── STEP 3: weighted signal scoring ──────────────────────────────────
@@ -410,7 +431,14 @@ class ChuzomRouter(BaseRouter):
         return self._tier(task_type, complexity)
 
     def _tier(self, task_type: str, complexity: str) -> str:
-        """Map (task_type, complexity) → model from self.models pool."""
+        """Map (task_type, complexity) → model from self.models pool.
+
+        Complexity tiers (v0.4.2+):
+          simple        → gemini-flash-lite (cheapest)
+          moderate      → gpt-4o-mini
+          complex       → qwen3-235b (frontier general)
+          deep_reasoning → REASONING profile: R1 first, then o3, then frontier
+        """
 
         # Code specialist for all coding tasks.
         if task_type == "code":
@@ -424,8 +452,19 @@ class ChuzomRouter(BaseRouter):
             if "google/gemini-3.1-flash-lite" in self.models:
                 return "google/gemini-3.1-flash-lite"
 
-        # Deep analysis → frontier model.
-        if complexity in {"deep_reasoning", "complex"} and task_type == "analyze":
+        # REASONING profile — dedicated chain for deep_reasoning complexity.
+        # Prefer native reasoning models (R1, o3) over frontier general models.
+        if complexity == "deep_reasoning":
+            for reasoning_model in (
+                "deepseek/deepseek-reasoner",  # R1 — cheapest, $0.0014/1K
+                "openai/o3",                   # frontier reasoning
+                "qwen/qwen3-235b-a22b-2507",   # frontier general fallback
+            ):
+                if reasoning_model in self.models:
+                    return reasoning_model
+
+        # Complex analysis → frontier general model.
+        if complexity == "complex" and task_type == "analyze":
             if "qwen/qwen3-235b-a22b-2507" in self.models:
                 return "qwen/qwen3-235b-a22b-2507"
 
@@ -439,7 +478,7 @@ class ChuzomRouter(BaseRouter):
             "simple": "google/gemini-3.1-flash-lite",
             "moderate": "gpt-4o-mini",
             "complex": "qwen/qwen3-235b-a22b-2507",
-            "deep_reasoning": "qwen/qwen3-235b-a22b-2507",
+            "deep_reasoning": "deepseek/deepseek-reasoner",  # REASONING profile head
         }
         model = tier.get(complexity, "gpt-4o-mini")
         if model in self.models:
