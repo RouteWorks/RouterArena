@@ -298,7 +298,11 @@ def _score_categories(text: str) -> dict[str, int]:
     scores: dict[str, int] = {}
     for category, layers in _SIGNALS.items():
         total = 0
-        for layer_name, weight in [("intent", _INTENT_W), ("topic", _TOPIC_W), ("format", _FORMAT_W)]:
+        for layer_name, weight in [
+            ("intent", _INTENT_W),
+            ("topic", _TOPIC_W),
+            ("format", _FORMAT_W),
+        ]:
             pattern = layers.get(layer_name)
             if pattern:
                 matches = pattern.findall(text)
@@ -457,8 +461,8 @@ class ChuzomRouter(BaseRouter):
         if complexity == "deep_reasoning":
             for reasoning_model in (
                 "deepseek/deepseek-reasoner",  # R1 — cheapest, $0.0014/1K
-                "openai/o3",                   # frontier reasoning
-                "qwen/qwen3-235b-a22b-2507",   # frontier general fallback
+                "openai/o3",  # frontier reasoning
+                "qwen/qwen3-235b-a22b-2507",  # frontier general fallback
             ):
                 if reasoning_model in self.models:
                     return reasoning_model
