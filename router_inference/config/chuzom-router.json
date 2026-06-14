@@ -14,9 +14,9 @@
       "gpt-4o-mini",
       "claude-3-haiku-20240307"
     ],
-    "description": "Chuzom v0.5.0: weighted signal scoring (intent×3 + topic×2 + format×1) across six task categories, MCQ fast-path (\\boxed{X}), LiveCodeBench fast-path, benchmark template matching, math benchmark prefix stripping (AsDiv/FinQA/AIME), and dedicated deep_reasoning tier (DeepSeek-R1 / o3). Self-contained heuristic — no LLM calls during routing."
+    "description": "Chuzom v0.5.3: weighted signal scoring (intent×3 + topic×2 + format×1) across six task categories, MCQ fast-path (\\boxed{X}), LiveCodeBench fast-path, benchmark template matching, math benchmark prefix stripping (AsDiv/FinQA/AIME), and dedicated deep_reasoning tier (DeepSeek-R1 / o3). Self-contained heuristic — no LLM calls during routing."
   },
   "router": "chuzom-router",
   "router_name": "chuzom-router",
-  "description": "Chuzom Router submission (v0.5.0)."
+  "description": "Chuzom Router submission (v0.5.3)."
 }

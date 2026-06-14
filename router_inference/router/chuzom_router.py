@@ -1,10 +1,16 @@
 # SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
 # SPDX-License-Identifier: MIT
-"""Chuzom router for RouterArena — v0.5.0.
+"""Chuzom router for RouterArena — v0.5.3.
 
 Self-contained heuristic classifier + model-tier selector.
 RouterArena's evaluation environment only needs this file and the JSON
 config; the full ``chuzom-router`` PyPI package is NOT required.
+
+v0.5.3 changelog vs v0.5.0:
+  - v0.5.1: savings panel inline format + honest active-day forecast
+  - v0.5.2: ruff lint fixes (ambiguous variable, unused imports)
+  - v0.5.3: openai_compat provider (llama.cpp, vLLM, TGI, LM Studio)
+  The router heuristics (SIGNALS, tier mapping, fast-paths) are unchanged.
 
 ═══ Routing strategy ═══════════════════════════════════════════════════════
 
@@ -34,6 +40,7 @@ STEP 4 — Tier mapping (category × complexity → model):
   RouterArena  : github.com/RouteWorks/RouterArena
   Chuzom       : github.com/ypollak2/chuzom  (v0.4.2)
   Arena formula: S = ((1+β)·acc·C) / (β·acc + C), β=0.1
+  Chuzom v0.5.3: github.com/ypollak2/chuzom
 """
 
 from __future__ import annotations
@@ -379,7 +386,7 @@ def _classify_complexity(text: str, task_type: str) -> str:
 
 
 class ChuzomRouter(BaseRouter):
-    """v0.4.2 weighted-signal heuristic router with MCQ/benchmark fast-paths.
+    """v0.5.3 weighted-signal heuristic router with MCQ/benchmark fast-paths.
 
     Deterministic — no API calls. Each decision is a pure function of
     the prompt text and the model pool in the JSON config.
