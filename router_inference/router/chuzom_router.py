@@ -102,8 +102,10 @@ _BENCHMARK_PREFIXES: list[tuple[re.Pattern, dict]] = [
         {"task_type": "code", "complexity": "moderate"},
     ),
     (
+        # NarrativeQA reading-comp: passage + targeted question — cheap task,
+        # gemini-flash-lite handles these well and is far cheaper than gpt-4o-mini.
         re.compile(r"^Please read the following context and answer the question"),
-        {"task_type": "query", "complexity": "moderate"},
+        {"task_type": "query", "complexity": "simple"},
     ),
     (
         re.compile(r"^Please read the following multiple-choice questions"),
@@ -408,11 +410,13 @@ class ChuzomRouter(BaseRouter):
                 return "google/gemini-3.1-flash-lite"
 
         # LiveCodeBench: unambiguous template header → code specialist.
+        # deepseek-v4-flash preferred: better accuracy than Qwen3-Coder-Next
+        # at lower cost ($0.27/M vs $0.50/M est).
         if _LIVECODE.search(query):
-            if "Qwen/Qwen3-Coder-Next" in self.models:
-                return "Qwen/Qwen3-Coder-Next"
             if "deepseek/deepseek-v4-flash" in self.models:
                 return "deepseek/deepseek-v4-flash"
+            if "Qwen/Qwen3-Coder-Next" in self.models:
+                return "Qwen/Qwen3-Coder-Next"
 
         # NarrativeQA / reading-comp: passage length inflates complexity score
         # but these are cheap query tasks.
@@ -456,11 +460,12 @@ class ChuzomRouter(BaseRouter):
         """
 
         # Code specialist for all coding tasks.
+        # deepseek-v4-flash preferred: stronger accuracy on LiveCodeBench at lower cost.
         if task_type == "code":
-            if "Qwen/Qwen3-Coder-Next" in self.models:
-                return "Qwen/Qwen3-Coder-Next"
             if "deepseek/deepseek-v4-flash" in self.models:
                 return "deepseek/deepseek-v4-flash"
+            if "Qwen/Qwen3-Coder-Next" in self.models:
+                return "Qwen/Qwen3-Coder-Next"
 
         # Simple queries and low-signal fallbacks → cheapest model.
         if task_type in {"query", "research", "generate"} and complexity == "simple":
