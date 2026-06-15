@@ -136,7 +136,7 @@ _WIC = re.compile(
 # SuperGLUE WSC (pronoun coreference).
 # qwen3-235b has 100% cache for all 34 SuperGLUE-Wsc queries.
 _WSC = re.compile(
-    r'^In the .Text. below, does the pronoun',
+    r"^In the .Text. below, does the pronoun",
     re.IGNORECASE,
 )
 
@@ -186,11 +186,11 @@ _MCQ_BOXED = re.compile(r"\\boxed\{[A-Z]\}", re.IGNORECASE)
 # LaTeX commands (\frac, \sqrt, \sum, etc.). Explicitly excludes \boxed{
 # which appears in every MCQ template footer and is NOT a content signal.
 _LATEX_NOTATION = re.compile(
-    r"\$[^\$\n]{1,300}\$"           # $inline math$ in question body
-    r"|\\(?!boxed)[a-z]+\{"          # \latexcmd{ but NOT \boxed{
+    r"\$[^\$\n]{1,300}\$"  # $inline math$ in question body
+    r"|\\(?!boxed)[a-z]+\{"  # \latexcmd{ but NOT \boxed{
     r"|\\(?:frac|sqrt|sum|int|prod|lim|"
     r"alpha|beta|gamma|delta|epsilon|theta|lambda|mu|nu|pi|sigma|phi|omega|Omega|"
-    r"infty|rightarrow|leftarrow|leq|geq|neq|equiv|approx|notin|"
+    r"infty|rightarrow|leftarrow|leq|geq|neq|equiv|approx|notin|"  # codespell:ignore notin
     r"subset|supset|cup|cap|forall|exists|nabla|partial|cdot|times)"
     r"(?:\b|\\)",
     re.IGNORECASE,
