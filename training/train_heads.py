@@ -4,10 +4,13 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-def train_heads(records, encoder, model_names, epochs=20, lr=1e-3) -> ModelHeadCollection:
+
+def train_heads(
+    records, encoder, model_names, epochs=20, lr=1e-3
+) -> ModelHeadCollection:
     """
     Filter records to only those with numeric budget (exclude budget=None).
-    For each model in model_names, filter to that model's records, embed all prompts in one batch using 
+    For each model in model_names, filter to that model's records, embed all prompts in one batch using
     encoder.encode(list_of_prompts), the train the head with MSE loss between prediction and accuracy.
     Return the fitted ModelHeadCollection.
     """
@@ -38,21 +41,23 @@ def train_heads(records, encoder, model_names, epochs=20, lr=1e-3) -> ModelHeadC
             x, y = x[perm], y[perm]
 
             for i in range(0, len(x), 64):
-                x_batch = x[i: i + 64]
-                y_batch = y[i: i + 64]
+                x_batch = x[i : i + 64]
+                y_batch = y[i : i + 64]
 
                 optimizer.zero_grad()
                 predictions = head(x_batch)
                 loss = loss_function(predictions, y_batch)
                 loss.backward()
                 optimizer.step()
-        
+
         head.eval()
-    
+
     return collection
 
+
 if __name__ == "__main__":
-    import os, torch
+    import os
+    import torch
     from training.dataset import load_r2bench, MODEL_NAME_MAP
     from training.augmentation import augment_records
     from hybrid_router.encoder import HybridRouterEncoder
@@ -69,5 +74,7 @@ if __name__ == "__main__":
     os.makedirs(heads_dir, exist_ok=True)
     for name in model_names:
         filename = name.replace("/", "_") + ".pt"
-        torch.save(collection.heads[name].state_dict(), os.path.join(heads_dir, filename))
+        torch.save(
+            collection.heads[name].state_dict(), os.path.join(heads_dir, filename)
+        )
         print(f"Saved {filename}")

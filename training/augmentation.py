@@ -37,7 +37,8 @@ def _synonym_swap(text: str, swap_rate: float = 0.15, rng: random.Random = None)
 
     n_to_swap = max(1, int(len(tokens) * swap_rate))
     eligible_indices = [
-        i for i, (tok, tag) in enumerate(pos_tags)
+        i
+        for i, (tok, tag) in enumerate(pos_tags)
         if tok.lower() not in _STOPWORDS
         and tok.isalpha()
         and _get_wordnet_pos(tag) is not None
@@ -46,7 +47,9 @@ def _synonym_swap(text: str, swap_rate: float = 0.15, rng: random.Random = None)
     if not eligible_indices:
         return text
 
-    swap_indices = set(rng.sample(eligible_indices, min(n_to_swap, len(eligible_indices))))
+    swap_indices = set(
+        rng.sample(eligible_indices, min(n_to_swap, len(eligible_indices)))
+    )
 
     result = []
     for i, (tok, tag) in enumerate(pos_tags):
@@ -71,7 +74,9 @@ def _synonym_swap(text: str, swap_rate: float = 0.15, rng: random.Random = None)
     return " ".join(result)
 
 
-def augment_records(records: list[dict], n_paraphrases: int = 1, seed: int = 42) -> list[dict]:
+def augment_records(
+    records: list[dict], n_paraphrases: int = 1, seed: int = 42
+) -> list[dict]:
     """
     For each record with a numeric budget, generate n_paraphrases variants by
     synonym substitution. Augmented records carry the same model, budget,
@@ -87,13 +92,15 @@ def augment_records(records: list[dict], n_paraphrases: int = 1, seed: int = 42)
     for record in eligible:
         for _ in range(n_paraphrases):
             new_prompt = _synonym_swap(record["prompt"], rng=rng)
-            augmented.append({
-                "global_index": record["global_index"],
-                "prompt": new_prompt,
-                "model": record["model"],
-                "budget": record["budget"],
-                "accuracy": record["accuracy"],
-                "cost": record["cost"],
-            })
+            augmented.append(
+                {
+                    "global_index": record["global_index"],
+                    "prompt": new_prompt,
+                    "model": record["model"],
+                    "budget": record["budget"],
+                    "accuracy": record["accuracy"],
+                    "cost": record["cost"],
+                }
+            )
 
     return augmented

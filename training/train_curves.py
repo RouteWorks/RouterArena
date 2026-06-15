@@ -2,6 +2,7 @@ from hybrid_router.budget_curves import BudgetCurves
 from collections import defaultdict
 import numpy as np
 
+
 def fit_budget_curves(records, anchor_budgets=None) -> BudgetCurves:
     """
     Default anchor_budgets is [80, 150, 200, 400, 800, 1500] if not provided.
@@ -14,7 +15,7 @@ def fit_budget_curves(records, anchor_budgets=None) -> BudgetCurves:
     buckets = defaultdict(lambda: defaultdict(list))
     for rec in records:
         buckets[rec["model"]][rec["budget"]].append(rec["accuracy"])
-    
+
     anchors = {}
     for model, budget_map in buckets.items():
         fallback = float(np.mean(budget_map[None])) if budget_map[None] else 0.5
@@ -25,10 +26,11 @@ def fit_budget_curves(records, anchor_budgets=None) -> BudgetCurves:
                 anchor_array[i] = float(np.mean(budget_map[b]))
             else:
                 anchor_array[i] = fallback
-        
+
         anchors[model] = anchor_array
-    
+
     return BudgetCurves(anchors)
+
 
 if __name__ == "__main__":
     import os

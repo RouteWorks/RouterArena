@@ -4,7 +4,7 @@
 """
 Hybrid Router adapter for RouterArena.
 
-Loads pre-trained MLP heads, temperature calibration, PCHIP budget curves, 
+Loads pre-trained MLP heads, temperature calibration, PCHIP budget curves,
 and cost model. Then, wraps them in a HybridRouter instance.
 
 Expected checkpoint layout (relative to project root):
@@ -22,11 +22,12 @@ import torch
 
 from router_inference.router.base_router import BaseRouter
 from hybrid_router.encoder import HybridRouterEncoder
-from hybrid_router.model_heads import ModelHead, ModelHeadCollection
+from hybrid_router.model_heads import ModelHeadCollection
 from hybrid_router.calibration import TemperatureScaler
 from hybrid_router.budget_curves import BudgetCurves
 from hybrid_router.cost_model import CostModel
 from hybrid_router.router import HybridRouter
+
 
 def _model_name_to_filename(model_name: str) -> str:
     """
@@ -34,6 +35,7 @@ def _model_name_to_filename(model_name: str) -> str:
     e.g. 'qwen/qwen3-235b-a22b-2507' -> 'qwen_qwen3-235b-a22b-2507'
     """
     return model_name.replace("/", "_")
+
 
 class HybridRouterAdapter(BaseRouter):
     """
@@ -43,6 +45,7 @@ class HybridRouterAdapter(BaseRouter):
     to HybridRouter.route(), returning only the model name to satisfy
     the BaseRouter interface.
     """
+
     def __init__(self, router_name: str):
         super().__init__(router_name)
 
@@ -79,9 +82,8 @@ class HybridRouterAdapter(BaseRouter):
             heads=collection,
             scaler=scaler,
             curves=curves,
-            cost_model=cost_model
+            cost_model=cost_model,
         )
-
 
     def _get_prediction(self, query: str) -> str:
         model_name, _budget = self.router.route(query)

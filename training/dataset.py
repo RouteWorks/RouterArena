@@ -10,17 +10,19 @@ MODEL_NAME_MAP = {
 }
 
 SKIP_FOLDERS = {
-    "gemma-3n-e4b", # wrong schema — no accuracy/cost fields
-    "glm-5", # concise only, wrong schema
-    "gemini-3-pro", # concise only, wrong schema
-    "gpt-5.2", # concise only, wrong schema
-    "gpt4o", # concise only, wrong schema
-    "haiku", # concise only, no budget sweep
-    "gemini-flash", # concise only, no budget sweep
+    "gemma-3n-e4b",  # wrong schema — no accuracy/cost fields
+    "glm-5",  # concise only, wrong schema
+    "gemini-3-pro",  # concise only, wrong schema
+    "gpt-5.2",  # concise only, wrong schema
+    "gpt4o",  # concise only, wrong schema
+    "haiku",  # concise only, no budget sweep
+    "gemini-flash",  # concise only, no budget sweep
 }
+
 
 def _get_global_index(entry: dict) -> str:
     return entry.get("global_index") or entry.get("global index", "")
+
 
 def load_r2bench(data_dir, model_name_map) -> list[dict]:
     """
@@ -49,25 +51,33 @@ def load_r2bench(data_dir, model_name_map) -> list[dict]:
             if not match:
                 continue
             budget = int(match.group(1))
-            
+
             with open(json_file) as file:
                 data = json.load(file)
             for entry in data:
                 accuracy = entry.get("accuracy")
                 if accuracy is None:
                     continue
-                records.append({
-                    "global_index": _get_global_index(entry),
-                    "prompt": entry["prompt"],
-                    "model": canonical_name,
-                    "budget": budget,
-                    "accuracy": float(accuracy),
-                    "cost": float(entry.get("cost", 0.0)),
-                })
-        
+                records.append(
+                    {
+                        "global_index": _get_global_index(entry),
+                        "prompt": entry["prompt"],
+                        "model": canonical_name,
+                        "budget": budget,
+                        "accuracy": float(accuracy),
+                        "cost": float(entry.get("cost", 0.0)),
+                    }
+                )
+
         unlimited_file = subfolder / "budget_unlimited.json"
         concise_file = subfolder / "concise.json"
-        source_file = unlimited_file if unlimited_file.exists() else concise_file if concise_file.exists() else None
+        source_file = (
+            unlimited_file
+            if unlimited_file.exists()
+            else concise_file
+            if concise_file.exists()
+            else None
+        )
 
         if source_file:
             with open(source_file) as file:
@@ -76,17 +86,23 @@ def load_r2bench(data_dir, model_name_map) -> list[dict]:
                 accuracy = entry.get("accuracy")
                 if accuracy is None:
                     continue
-                records.append({
-                    "global_index": _get_global_index(entry),
-                    "prompt": entry["prompt"],
-                    "model": canonical_name,
-                    "budget": None,
-                    "accuracy": float(accuracy),
-                    "cost": float(entry.get("cost", 0.0)),
-                })
-        
+                records.append(
+                    {
+                        "global_index": _get_global_index(entry),
+                        "prompt": entry["prompt"],
+                        "model": canonical_name,
+                        "budget": None,
+                        "accuracy": float(accuracy),
+                        "cost": float(entry.get("cost", 0.0)),
+                    }
+                )
+
     return records
 
+
 def embed_in_chunks(encoder, prompts, chunk_size=256):
-    chunks = [encoder.encode(prompts[i: i + chunk_size]) for i in range(0, len(prompts), chunk_size)]
+    chunks = [
+        encoder.encode(prompts[i : i + chunk_size])
+        for i in range(0, len(prompts), chunk_size)
+    ]
     return np.concatenate(chunks, axis=0)

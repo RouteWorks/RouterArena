@@ -6,7 +6,7 @@ os.makedirs("./data/r2bench", exist_ok=True)
 path = snapshot_download(
     repo_id="JiaqiXue/R2-Bench-RouterArena",
     repo_type="dataset",
-    local_dir="./data/r2bench"
+    local_dir="./data/r2bench",
 )
 print(f"Downloaded to {path}")
 

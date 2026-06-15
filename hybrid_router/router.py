@@ -1,7 +1,10 @@
 import math
 
+
 class HybridRouter:
-    def __init__(self, encoder, heads, scaler, curves, cost_model, budget_candidates=None):
+    def __init__(
+        self, encoder, heads, scaler, curves, cost_model, budget_candidates=None
+    ):
         """
         Takes the parameters encoder, heads, scaler, curves, cost_model, and budget_candidates in order.
         Budget candidates is set to be [80, 150, 200, 400, 800, 1500] by default.

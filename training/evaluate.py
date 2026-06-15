@@ -8,11 +8,12 @@ from collections import defaultdict
 import torch
 import math
 
+
 def evaluate(records, encoder, collection, scaler, curves, cost_model) -> dict:
     """
     Runs the full router logic offline against the R2-Bench records and returns metrics.
     Computes the following metrics:
-        - mean_accuracy (the average accuracy of the records the router would have selected) 
+        - mean_accuracy (the average accuracy of the records the router would have selected)
         - mean_cost (average cost of those selections)
         - accuracy_at_budget (a dict mapping each anchor budget to mean accuracy across records routed to that budget)
         - model_distribution (dict mapping each model name to fraction of queries routed to it)
@@ -70,9 +71,11 @@ def evaluate(records, encoder, collection, scaler, curves, cost_model) -> dict:
                     best_score = score
                     best_model = model
                     best_budget = budget
-        
+
         true_acc = ground_truth[global_index].get(best_model, 0.0)
-        est_cost = cost_model.estimate(best_model, len(query["prompt"].split()), best_budget)
+        est_cost = cost_model.estimate(
+            best_model, len(query["prompt"].split()), best_budget
+        )
 
         chosen_models.append(best_model)
         chosen_budgets.append(best_budget)
@@ -82,7 +85,9 @@ def evaluate(records, encoder, collection, scaler, curves, cost_model) -> dict:
     accuracy_at_budget = defaultdict(list)
     for acc, bud in zip(chosen_accuracies, chosen_budgets):
         accuracy_at_budget[bud].append(acc)
-    accuracy_at_budget = {b: float(np.mean(accs)) for b, accs in accuracy_at_budget.items()}
+    accuracy_at_budget = {
+        b: float(np.mean(accs)) for b, accs in accuracy_at_budget.items()
+    }
 
     model_distribution = defaultdict(int)
     for m in chosen_models:
@@ -97,8 +102,10 @@ def evaluate(records, encoder, collection, scaler, curves, cost_model) -> dict:
         "model_distribution": model_distribution,
     }
 
+
 if __name__ == "__main__":
-    import os, torch
+    import os
+    import torch
     from training.dataset import load_r2bench, MODEL_NAME_MAP
     from hybrid_router.encoder import HybridRouterEncoder
     from hybrid_router.model_heads import ModelHeadCollection
@@ -115,7 +122,9 @@ if __name__ == "__main__":
     heads_dir = os.path.join(ckpt, "heads")
     for name in model_names:
         filename = name.replace("/", "_") + ".pt"
-        state = torch.load(os.path.join(heads_dir, filename), map_location="cpu", weights_only=True)
+        state = torch.load(
+            os.path.join(heads_dir, filename), map_location="cpu", weights_only=True
+        )
         collection.heads[name].load_state_dict(state)
         collection.heads[name].eval()
 
@@ -126,7 +135,9 @@ if __name__ == "__main__":
     metrics = evaluate(records, encoder, collection, scaler, curves, cost_model)
     if not metrics:
         print("No unlimited-budget records found for evaluation.")
-        print("Check that MODEL_NAME_MAP folders have budget_unlimited.json or concise.json")
+        print(
+            "Check that MODEL_NAME_MAP folders have budget_unlimited.json or concise.json"
+        )
     else:
         print(f"mean_accuracy : {metrics['mean_accuracy']:.4f}")
         print(f"mean_cost : {metrics['mean_cost']:.8f}")

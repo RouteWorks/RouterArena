@@ -1,10 +1,11 @@
 import math
 import json
 
+
 class TemperatureScaler:
     def __init__(self, temperatures: dict[str, float], default_temperature=1.0):
         """
-        Takes a temperatures: dict[str, float] and stores it. 
+        Takes a temperatures: dict[str, float] and stores it.
         Also provides a default_temperature parameter defaulting to 1.0.
         This is what gets used for any model not yet in the dict (i.e. before calibration has been run).
         """
@@ -13,8 +14,8 @@ class TemperatureScaler:
 
     def apply(self, model_name: str, raw_logit: float) -> float:
         """
-        Returns sigmoid(logit / T) where T is looked up from the dict, falling back to default_temperature 
-        if the model isn't there yet. 
+        Returns sigmoid(logit / T) where T is looked up from the dict, falling back to default_temperature
+        if the model isn't there yet.
 
         Sigmoid is implemented as 1 / (1 + exp(-x)) using math.exp.
         """
@@ -29,15 +30,15 @@ class TemperatureScaler:
         """
         Writes self.temperatures to a JSON file.
         """
-        with open(path, 'w', encoding="utf-8") as file:
+        with open(path, "w", encoding="utf-8") as file:
             json.dump(self.temperatures, file, indent=4)
-    
+
     @classmethod
     def load(cls, path: str):
         """
         A class method that reads the JSON file and returns a TemperatureScaler instance.
         """
-        with open(path, 'r') as file:
+        with open(path, "r") as file:
             data = json.load(file)
 
         return cls(data)
