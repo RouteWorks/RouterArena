@@ -49,7 +49,7 @@ STEP 2 — Length + content-aware generic MCQ (v0.6.1):
   LaTeX notation present → qwen3-235b     [formal STEM below length cutoff]
   Hard STEM keywords → qwen3-235b         [safety net]
   Math word problems → deepseek-v4-flash
-  Remaining generic MCQ → gpt-4o-mini
+  Remaining generic MCQ → deepseek-v4-flash [data: +14.5% vs gpt-4o-mini]
 
 STEP 3 — Weighted signal scoring for non-benchmark prompts.
 
@@ -611,9 +611,12 @@ class ChuzomRouter(BaseRouter):
             if _MATH_WORD_MCQ.search(q):
                 if "deepseek/deepseek-v4-flash" in self.models:
                     return "deepseek/deepseek-v4-flash"
-            # Default: gpt-4o-mini (100% cache for all 8400 queries)
-            if "gpt-4o-mini" in self.models:
-                return "gpt-4o-mini"
+            # Default for short MCQ (≤700 chars): deepseek-v4-flash.
+            # Empirical data: deepseek 86.0% vs gpt-4o-mini 71.5% on ArcMMLU (396q),
+            # 84.3% vs 62.0% on MathQA (158q). Deepseek also cheaper: $0.14+$0.28/M
+            # input+output vs gpt-4o-mini $0.15+$0.60/M (output is 2x cheaper).
+            if "deepseek/deepseek-v4-flash" in self.models:
+                return "deepseek/deepseek-v4-flash"
 
         # \\boxed{X} fallback for any MCQ that slipped through.
         if _MCQ_BOXED.search(q):
