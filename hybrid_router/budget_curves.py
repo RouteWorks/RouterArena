@@ -14,7 +14,7 @@ class BudgetCurves:
     def quality_at_budget(self, model_name: str, budget: float) -> float:
         """
         Builds a PCHIP interpolator from scipy.interpolate.PchipInterpolator using self.budgets as 
-        x and self.anchors[model_name] as y, then evalutes it at budget. Clamps the result to [0.0, 1.0] 
+        x and self.anchors[model_name] as y, then evaluates it at budget. Clamps the result to [0.0, 1.0] 
         using float(np.clip(..., 0.0, 1.0)) before returning.
         """
         interpolator = PchipInterpolator(self.budgets, self.anchors[model_name])

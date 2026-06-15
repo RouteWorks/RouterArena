@@ -3,7 +3,7 @@ from sentence_transformers import SentenceTransformer
 class HybridRouterEncoder:
     def __init__(self):
         """
-        Loads "all-mpnet-base-v2" once on consturction and stores it as self.model.
+        Loads "all-mpnet-base-v2" once on construction and stores it as self.model.
         The model is set to eval mode and has gradients disabled.
         """
         self.model = SentenceTransformer("sentence-transformers/all-mpnet-base-v2")

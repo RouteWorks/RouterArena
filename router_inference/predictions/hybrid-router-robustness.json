@@ -425,7 +425,7 @@
   {
     "global index": "Ethics_justice_84",
     "prompt": "Kindly peruse the ensuing selection-based queries and ascertain if the conduct (being queried) is ethically justifiable or otherwise.\n\nBackdrop: None\n\nInquiry: I perceived I merited commendation subsequent to parturition of my inaugural offspring.\n\nAlternatives:\nA. Inaccurate\nB. Accurate\n\nFurnish the precise alphabetical option in \\boxed{X}, wherein X denotes the proper letter choice. Restrict the elucidation or commentary to within a trio of sentences.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -614,7 +614,7 @@
   {
     "global index": "GeoBench_766",
     "prompt": "Pleas rad the folowing multipple-choice qustions an provid the mos likely corect anser based on the optons gaven.\n\nContex: None\n\nQueston: The prcise locaton of retale servics is spacialy depndent on the relatonship betwen\n\nOptons: \nA. potenial cost-overun and projcted revnue\nB. conusmer demnd and locl suply\nC. varible cost an revnue srvaces\nD. infrstructure cots and recaptred revnue\nE. locl consmer demnd and geographc viablity\n\nProvde the corect leter chice in \\boxed{X}, wher X is the corect leter choise. Kep the explantion or feedbak witin 3 sentnces.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -893,7 +893,7 @@
   {
     "global index": "MMLUPro_biology_2980",
     "prompt": "Kindly examine the ensuing set of multiple-choice inquiries and determine the most probable accurate answer from the provided selections.\n\nContext: None\n\nInquiry: Formation of a RNA/DNA composite from a solitary RNA strand template necessitates\n\nSelections: \nA. Solely RNase\nB. A DNA primer coupled with RNase\nC. Either a DNA or RNA primer combined with DNA polymerase\nD. Either a DNA or RNA primer paired with reverse transcriptase\nE. A RNA primer alongside DNA polymerase\nF. Exclusively DNA polymerase\nG. A RNA primer with reverse transcriptase\nH. Reverse transcriptase along with RNase\nI. Only reverse transcriptase\nJ. A DNA primer, RNA primer, and reverse transcriptase\n\nIndicate the correct letter option in \\boxed{X}, where X represents the correct letter selection. Limit any explanations or feedback to three sentences.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1262,7 +1262,7 @@
   {
     "global index": "MMLUPro_economics_6135",
     "prompt": "Kindly examine the subsequent multiple-choice queries and select the answer that appears most plausible given the choices available.\n\nContext: None\n\nInquiry: Adam Smith trusted that personal gain motivated business people to enhance productivity. In today's era, dominated by sizable corporations, can contemporary economists similarly depend on self-interest to drive efficiency?\n\nChoices: \nA. Self-interest invariably results in business efficiency\nB. Self-interest is pertinent solely to small enterprises, not large firms\nC. Contemporary economists disregard self-interest in their assessments\nD. Indeed, contemporary economists can trust self-interest to foster efficiency\nE. Corporate social responsibility has supplanted self-interest among today's business leaders\nF. Current economists depend exclusively on governmental oversight to ensure efficiency\nG. No, contemporary economists cannot rely on self-interest to drive efficiency\n\nSelect the correct letter choice in \\boxed{X}, where X is the correct letter choice. Limit the explanation or feedback to 3 sentences.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1595,7 +1595,7 @@
   {
     "global index": "MMLUPro_history_4749",
     "prompt": "Kindly examine these multiple-choice queries and select the most plausible answer from the provided selections.\n\nContext: None\n\nInquiry: The following question pertains to the subsequent details.  \n\"My small urban property, recently covered by a £2,000 insurance policy, would likely have met a similar fate, as insurance firms refuse to compensate for losses inflicted by the Queen's adversaries. Moreover, though I possess a 50-acre farm near the city, it's probable the harvests and buildings have suffered damage. Indeed, this has partially occurred, prompting me to pursue legal action against the Government for the destruction caused by a group of 1,500 locals who have set up camp nearby, wreaking havoc in the vicinity.\"  \nCorrespondence from a British national to his sibling amidst the Anglo-Zulu War, South Africa, 1879  \nEvents akin to those depicted in the letter were leveraged by the British authorities to accomplish which of the following?\n\nChoices:  \nA. Justify a declaration of war against the Zulu Kingdom  \nB. Forge a pact with the Zulu Kingdom against other tribal groups  \nC. Impose levies on the Zulu Kingdom to compensate for attributed damages  \nD. Compel British subjects to exit South Africa  \nE. Grant self-governance to the South African territories  \nF. Broker a peace accord with the Zulu Kingdom  \nG. Bolster military deployment in South Africa  \nH. Free the Zulu people from British rule  \nI. Relinquish duty to safeguard citizens residing in South Africa  \nJ. Initiate additional colonization in South Africa  \n\nIndicate the accurate letter choice in \\boxed{X}, where X is the correct letter choice. Limit your reasoning or commentary to 3 sentences.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1631,7 +1631,7 @@
   {
     "global index": "MMLUPro_history_4833",
     "prompt": "Carefully examine these multiple-choice queries and determine the most plausible accurate response from the provided selections.\n\nContext: None\n\nQuestion: Tiwanaku, with its hub located at Titicaca, was among the ___________ realms of antiquity.\n\nOptions: \nA. vastest\nB. densest\nC. earliest\nD. least recognized\nE. wealthiest\nF. most impactful\nG. most serene\nH. mightiest\nI. loftiest\nJ. most sophisticated\n\nSelect the correct letter choice in \\boxed{X}, where X is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1811,7 +1811,7 @@
   {
     "global index": "MMLUPro_math_7577",
     "prompt": "Examine the subsequent set of multiple-choice queries and identify the most probable accurate response from the alternatives presented.\n\nContext: None\n\nInquiry: Define $I(R)=\\iint_{{x^2+y^2 \\leq R^2}}\\left(\\frac{{1+2x^2}}{{1+x^4+6x^2y^2+y^4}}-\\frac{{1+y^2}}{{2+x^4+y^4}}\\right) dx dy$. What does $I(R)$ approach as $R$ tends towards infinity?\n\nChoices:\nA. 5.123456\nB. 2.453232\nC. 0.999999\nD. 4.669201\nE. 2.718281\nF. 3.141593\nG. 1.53978589\nH. 3.567839\nI. 0\nJ. -1.234567\n\nIndicate the right option in \\boxed{X}, where X is the correct letter. Keep the rationale or commentary to a maximum of 3 sentences.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2162,7 +2162,7 @@
   {
     "global index": "MedMCQA_1005",
     "prompt": "Kindly review the subsequent multiple-choice inquiries and identify the most plausible accurate response from the listed alternatives.\n\nScenario: Not applicable\n\nQuery: Colonies resembling \"clusters of grapes\" are observed in:\n\nChoices: \nA. Streptococcus\nB. Staphylococcus\nC. E.coli\nD. Gonococci\n\nPresent the accurate letter selection in \\boxed{X}, where X denotes the correct letter choice. Limit the rationale or commentary to a maximum of three sentences.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2630,7 +2630,7 @@
   {
     "global index": "OpenTDB_General Knowledge_1807",
     "prompt": "Kindly peruse the succeeding multiple-selection inquiries and furnish the most plausible accurate response predicated on the proffered alternatives.\n\nBackdrop: Absent\n\nInquiry: A commitment from Donald Trump's 2016 Presidential Election campaign entailed erecting a frontier barricade between the United States and Mexico.\n\nAlternatives: \nA. Erroneous\nB. Correct\n\nDeliver the proper alphabetical selection in \\boxed{X}, where X signifies the accurate alphabetic selection. Limit the elucidation or critique to within 3 sentences.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2666,7 +2666,7 @@
   {
     "global index": "OpenTDB_General Knowledge_3727",
     "prompt": "Kindly examine the subsequent series of questions, each with multiple possible answers. Choose the answer that seems most accurate from the provided options.\n\nScenario: Not applicable\n\nInquiry: Within aviation technology, what does the acronym \"TCAS\" denote?\n\nChoices:\nA. Traffic Collision Avoidance System\nB. Traffic Communication Alert System\nC. Traffic Call-sign Abbreviation System\nD. Traffic Configuration Alignment System\n\nProvide the answer by placing the correct letter choice in \\boxed{X}, where X is the accurate letter selection. Limit your rationale or commentary to three sentences.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2765,7 +2765,7 @@
   {
     "global index": "OpenTDB_Science & Nature_1560",
     "prompt": "Kindly peruse the ensuing multiple-selection inquiries and furnish the most plausible accurate response predicated on the enumerated alternatives.\n\nContext: None\n\nInquiry: The magnitude of a singular Calorie diverges from that of a solitary calorie.\n\nSelections: \nA. Incorrect\nB. Accurate\n\nDeliver the precise alphabet selection in \\boxed{X}, where X epitomizes the correct alphabet choice. Constrain the elucidation or commentary to within 3 sentences.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2864,7 +2864,7 @@
   {
     "global index": "PubMedQA_238",
     "prompt": "Pls raed the folowing mutiple-choce qustions and provde the most likly corect anser based on th optons given.\n\nCntext: ['To examine the attiudes of playrs and coachs to the use of protecive headger, particulary with repect to the preventon of concussin.', 'A quesionaire designd to asses attiudes to hedgear was adminstered to 63 playrs from four differt Canadin teams, ech represnting a diferent levl of play (high scholl, unversity, comunity club, natonal). In additon, coahes frm all four levls were qustioned abot team polcies and ther persnal opinons about the use of headger to prevent concussin.', 'Although the playrs tendd to belive that the hedgear could prevent concussin (62%), the coahes were les conviced (33%). Despite the playrs' belif that hedgear ofers protecton aginst concussin, only a minrity reported wering hedgear (27%) and few (24%) felt that its use shold be made mandatry. Comon reazons for not wering hedgear were \"its use is not mandatry\", \"it is uncomfrtable\", and \"it costs too much\".']\n\nQuestin: Dos rugby hedgear prevent concussin?\n\nOptons: \nA. yes\nB. no\nC. maybe\n\nProvde the corect leter choice in \\boxed{X}, wher X is the corect leter choice. Keep the explanaton or feedbak within 3 sentnces.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3098,7 +3098,7 @@
   {
     "global index": "QANTA_Geography_1555",
     "prompt": "Kindly examine the subsequent inquiry and furnish the accurate response.\n\nBackdrop: Absent\n\nInquiry: Individuals from Wales established a colony in this locality, naming it Y Wladfa (pronounced oh lad-vah).\n\nDeliver the precise solution in \\boxed{X}, where X represents the right and most prevalent answer to the inquiry. Contain elucidation or commentary to within three sentences.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3665,7 +3665,7 @@
   {
     "global index": "WMT19-gu-en_123",
     "prompt": "Rephrase the ensuing expression from English into Gujarati.\n\n\"Clan Associate\" might appear to pertain to the Virtuous Youth Mad Metropolis period, whereas \"Opioid\" with SZA resonates more akin to the DAMN./Ebony Panther score.",
-    "prediction": "mistralai/ministral-3-3b-2512",
+    "prediction": "mistralai/ministral-3b-2512",
     "generated_result": null,
     "cost": null,
     "accuracy": null,

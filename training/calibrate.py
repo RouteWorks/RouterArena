@@ -7,7 +7,7 @@ from scipy.optimize import minimize_scalar
 def calibrate(records, encoder, collection) -> TemperatureScaler:
     """
     Filter to numeric-budget records only.
-    For each model, collect (raw_logit, true_accuracy) pairs. The raw logit is the pre-simgoid ouput of the head.
+    For each model, collect (raw_logit, true_accuracy) pairs. The raw logit is the pre-simgoid output of the head.
     We get this by running the embedding through head.network[:-1] (all layers except the final sigmoid) or equivalently 
     by computing torch.logit(torch.clamp(tensor, 1e-6, 1-1e-6)) on the sigmoid output.
     Find T that minimizes binary cross-entropy between sigmoid(logit / T) and the true label. 

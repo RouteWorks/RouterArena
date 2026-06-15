@@ -176,6 +176,8 @@ class ModelInference:
             "xiaomi/mimo-v2-flash:free": "openrouter",
             "openai/gpt-oss-120b": "openrouter",
             "qwen/qwen3-235b-a22b-2507": "openrouter",
+            "qwen/qwen3-30b-a3b-instruct-2507": "openrouter",
+            "mistralai/ministral-3b-2512": "openrouter",
             "x-ai/grok-4.1-fast": "openrouter",
             "mistralai/devstral-2512:free": "openrouter",
             "meta-llama/llama-3.3-70b-instruct": "openrouter",

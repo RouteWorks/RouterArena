@@ -5,7 +5,7 @@
         "models": [
             "qwen/qwen3-235b-a22b-2507",
             "qwen/qwen3-30b-a3b-instruct-2507",
-            "mistralai/ministral-3-3b-2512"
+            "mistralai/ministral-3b-2512"
         ]
     }
 }

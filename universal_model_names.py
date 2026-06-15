@@ -94,6 +94,7 @@ universal_names = [
     "qwen/qwen3-30b-a3b-instruct-2507",
     "Qwen/Qwen3-Coder-Next",
     "qwen/qwen3-coder-30b-a3b-instruct",
+    "mistralai/ministral-3b-2512",
     "mistralai/ministral-3-3b-2512",
     "mistralai/ministral-3-8b-2512",
     "mistralai/ministral-3-14b-2512",

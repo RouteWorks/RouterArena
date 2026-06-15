@@ -12,7 +12,7 @@ Expected checkpoint layout (relative to project root):
         heads/
             qwen_qwen3-235b-a22b-2507.pt
             qwen_qwen3-30b-a3b-instruct-2507.pt
-            mistralai_ministral-3-3b-2512.pt
+            mistralai_ministral-3b-2512.pt
         curves.npz
         temperatures.json
 """
