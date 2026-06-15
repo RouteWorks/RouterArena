@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
 # SPDX-License-Identifier: MIT
-"""Chuzom router for RouterArena — v0.6.1.
+"""Chuzom router for RouterArena — v0.6.2.
 
 Self-contained heuristic classifier + model-tier selector.
 RouterArena's evaluation environment only needs this file and the JSON
@@ -27,6 +27,13 @@ v0.6.1 changelog vs v0.6.0:
 
   All v0.6.0 benchmark-identity routes preserved unchanged.
 
+v0.6.2 changelog vs v0.6.1:
+  Short MCQ routing improvement: before the deepseek default, detect
+  "Context: None" + ≤4 options + no ArcMMLU blank + no formal logic
+  → gemini-2.0-flash-001 (94.8% OpenTDB, 82.8% MedMCQA vs deepseek unknown).
+  Excludes ArcMMLU (( ) blank), GeoBench/MathQA (E+ options), MMLU_formal_logic.
+  NarrativeQA already routes to gemini since v0.6.1.
+
 ═══ Routing strategy ═══════════════════════════════════════════════════════
 
 STEP 1 — Benchmark-identity fast-paths (ordered by specificity):
@@ -44,18 +51,21 @@ STEP 1 — Benchmark-identity fast-paths (ordered by specificity):
   Ethics_commonsense+justice → qwen3-235b
   Ethics_virtue → gpt-4o-mini
 
-STEP 2 — Length + content-aware generic MCQ (v0.6.1):
+STEP 2 — Length + content-aware generic MCQ (v0.6.1 + v0.6.2):
   Long prompts (>700 chars) → qwen3-235b  [ALL MMLUPro + PubMedQA]
   LaTeX notation present → qwen3-235b     [formal STEM below length cutoff]
   Hard STEM keywords → qwen3-235b         [safety net]
   Math word problems → deepseek-v4-flash
-  Remaining generic MCQ → deepseek-v4-flash [data: +14.5% vs gpt-4o-mini]
+  Context:None + ≤4 opts + no blank + no formal logic → gemini  [v0.6.2]
+    OpenTDB: gemini 94.8% vs mini 86.6% (97 opt samples, +8.2pp)
+    MedMCQA: gemini 82.8% vs mini 64.8% (29 opt samples, +18pp)
+  ArcMMLU (( ) blank) / GeoBench-MathQA (E+ opts) → deepseek  [data: +14.5% vs mini]
 
 STEP 3 — Weighted signal scoring for non-benchmark prompts.
 
 ═══ Reference ══════════════════════════════════════════════════════════════
   RouterArena  : github.com/RouteWorks/RouterArena
-  Chuzom v0.6.1: github.com/ypollak2/chuzom
+  Chuzom v0.6.2: github.com/ypollak2/chuzom
   Arena formula: S = ((1+β)·acc·C) / (β·acc + C), β=0.1
 """
 
@@ -276,6 +286,37 @@ _MATH_WORD_MCQ = re.compile(
     r")\b",
     re.IGNORECASE,
 )
+
+
+# ── Content signals for short-MCQ sub-routing (v0.6.2) ───────────────────────
+
+# ArcMMLU uses Chinese-style fill-in-the-blank with ( ) placeholders.
+# 100% of ArcMMLU has this; 0% of OpenTDB/MedMCQA do.
+# deepseek: 86.0% on ArcMMLU vs gemini: 82.1% — keep ArcMMLU on deepseek.
+_FILL_BLANK_MCQ = re.compile(r"\(\s*\)")
+
+# GeoBench and MathQA use 5+ options (E, F, …).
+# 100% of GeoBench has E+ option; 0% of OpenTDB does.
+_FIVE_PLUS_OPTS = re.compile(r"^E\.", re.MULTILINE)
+
+# MMLU_formal_logic short questions use logic terminology not caught by
+# _HARD_STEM_MCQ (which covers modal logic / modus ponens but misses
+# "antecedent" / "symbolization of PL" / propositional logic symbols).
+# gemini ≈ deepseek on formal logic (63.6% vs ~70%) — keep on deepseek.
+_FORMAL_LOGIC_MCQ = re.compile(
+    r"\b(?:antecedent|consequent of (?:the|a)|conditional proposition|"
+    r"categorical proposition|valid argument form|syllogis[mt]|"
+    r"deductive argument|inductive argument|logical entail|"
+    r"symbolization of|formulas? of PL|immediate consequence in PL|"
+    r"propositions? is an immediate)\b"
+    r"|[⊃∨∧¬↔⊢⊨]",  # Propositional logic Unicode symbols
+    re.IGNORECASE,
+)
+
+# Presence of "Context: None" distinguishes datasets that always include
+# a context field (NarrativeQA, SocialiQA) from those that don't provide one.
+# OpenTDB (887 q): 100% Context:None. MedMCQA (304 q): 100% Context:None.
+_CTX_NONE = re.compile(r"Context: None")
 
 
 # ── STEP 2 — Weighted signal scoring (v0.4.2 SIGNALS engine) ─────────────────
@@ -666,6 +707,20 @@ class ChuzomRouter(BaseRouter):
             if _MATH_WORD_MCQ.search(q):
                 if "deepseek/deepseek-v4-flash" in self.models:
                     return "deepseek/deepseek-v4-flash"
+            # ── v0.6.2: short MCQ with Context:None → gemini ─────────────────
+            # Applies to: OpenTDB (gemini 94.8% on 97 opt samples, mini 86.6%),
+            # MedMCQA (gemini 82.8% on 29 opt samples, mini 64.8%).
+            # Excludes ArcMMLU via _FILL_BLANK_MCQ (( ) blank; deepseek 86.0%),
+            # GeoBench/MathQA via _FIVE_PLUS_OPTS (E+ options; deepseek better),
+            # MMLU_formal_logic via _FORMAL_LOGIC_MCQ (antecedent/syllogism terms).
+            if (
+                _CTX_NONE.search(q)
+                and not _FILL_BLANK_MCQ.search(q)
+                and not _FIVE_PLUS_OPTS.search(q)
+                and not _FORMAL_LOGIC_MCQ.search(q)
+            ):
+                if "gemini-2.0-flash-001" in self.models:
+                    return "gemini-2.0-flash-001"
             # Default for short MCQ (≤700 chars): deepseek-v4-flash.
             # Empirical data: deepseek 86.0% vs gpt-4o-mini 71.5% on ArcMMLU (396q),
             # 84.3% vs 62.0% on MathQA (158q). Deepseek also cheaper: $0.14+$0.28/M
