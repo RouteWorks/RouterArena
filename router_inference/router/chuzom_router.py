@@ -162,9 +162,37 @@ _ETHICS_MORAL = re.compile(
 )
 
 # Ethics_virtue: "determine which virtue or vice".
-# NOT fully cached in qwen3-235b — fall back to gpt-4o-mini.
+# gemini-2.0-flash-001 (marginal improvement over gpt-4o-mini; 2× cheaper).
 _ETHICS_VIRTUE = re.compile(
     r"determine which virtue or vice best describes",
+    re.IGNORECASE,
+)
+
+# SuperGLUE-RC: evaluate correctness of a Provided Answer vs a Paragraph.
+# haiku: 50% vs mini: 34.5% vs gemini: 33.3% (6 optimality samples).
+_SUPERGLUE_RC = re.compile(
+    r'Your task is to evaluate if the .Provided Answer. is a correct response',
+    re.IGNORECASE,
+)
+
+# SuperGLUE-QA (boolq-style reading comprehension + binary judgment).
+# gemini: 85.7% vs mini: 47.8% (7 optimality samples). 2× cheaper than mini.
+_SUPERGLUE_QA = re.compile(
+    r'^You are a reading comprehension assistant\.',
+    re.IGNORECASE,
+)
+
+# SuperGLUE-Entailment (Natural Language Inference / textual entailment).
+# gemini: 100% vs mini: 80.3% (6 optimality samples). 2× cheaper than mini.
+_NLI = re.compile(
+    r'^You are a Natural Language Inference expert\.',
+    re.IGNORECASE,
+)
+
+# SuperGLUE-ClozeTest (story completion — choose best passage option).
+# gemini: 60% vs mini: 0% vs haiku: 0% (5 optimality samples). Massive gain.
+_CLOZE = re.compile(
+    r'^Read the following passage and answer the question by choosing the best option\. Provide only the text',
     re.IGNORECASE,
 )
 
@@ -584,10 +612,34 @@ class ChuzomRouter(BaseRouter):
             if "qwen/qwen3-235b-a22b-2507" in self.models:
                 return "qwen/qwen3-235b-a22b-2507"
 
-        # Ethics_virtue: NOT fully cached in qwen3-235b — fall back to gpt-4o-mini.
+        # ── SuperGLUE-RC → haiku ──────────────────────────────────────────────
+        # haiku: 50% vs mini: 34.5% vs gemini: 33.3% on 6 optimality samples.
+        if _SUPERGLUE_RC.search(q):
+            if "claude-3-haiku-20240307" in self.models:
+                return "claude-3-haiku-20240307"
+
+        # ── SuperGLUE-QA → gemini-2.0-flash-001 ──────────────────────────────
+        # gemini: 85.7% vs mini: 47.8% (7 opt samples). 2× cheaper.
+        if _SUPERGLUE_QA.match(q):
+            if "gemini-2.0-flash-001" in self.models:
+                return "gemini-2.0-flash-001"
+
+        # ── SuperGLUE-Entailment (NLI) → gemini-2.0-flash-001 ────────────────
+        # gemini: 100% vs mini: 80.3% (6 opt samples). 2× cheaper.
+        if _NLI.match(q):
+            if "gemini-2.0-flash-001" in self.models:
+                return "gemini-2.0-flash-001"
+
+        # ── SuperGLUE-ClozeTest → gemini-2.0-flash-001 ───────────────────────
+        # gemini: 60% vs mini: 0% vs haiku: 0% (5 opt samples). Huge gain.
+        if _CLOZE.match(q):
+            if "gemini-2.0-flash-001" in self.models:
+                return "gemini-2.0-flash-001"
+
+        # ── Ethics_virtue → gemini-2.0-flash-001 (marginal; 2× cheaper) ──────
         if _ETHICS_VIRTUE.search(q):
-            if "gpt-4o-mini" in self.models:
-                return "gpt-4o-mini"
+            if "gemini-2.0-flash-001" in self.models:
+                return "gemini-2.0-flash-001"
 
         # ── Generic MCQ (v0.6.1: length + content-aware sub-routing) ───────
         # Catches all remaining MCQ datasets (MMLUPro, ArcMMLU, PubMedQA,
