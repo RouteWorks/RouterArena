@@ -31,7 +31,7 @@ v0.6.1 changelog vs v0.6.0:
 
 STEP 1 — Benchmark-identity fast-paths (ordered by specificity):
   LiveCodeBench → qwen3-235b
-  NarrativeQA   → deepseek-v4-flash
+  NarrativeQA   → gemini-2.0-flash-001 (55.9% vs deepseek 45.3% on 39 samples)
   QANTA + GeoGraphyData → deepseek-v4-flash
   MATH + GSM8K  → deepseek-v4-flash
   FinQA         → deepseek-v4-flash
@@ -77,7 +77,7 @@ _GEO_QUESTION = re.compile(
 )
 
 # NarrativeQA reading comprehension.
-# deepseek-v4-flash has 100% cache coverage for all 383 NarrativeQA queries.
+# gemini-2.0-flash-001: 55.9% vs deepseek: 45.3% (39 optimality samples, +10.6pp).
 _NARRATIVE_CTX = re.compile(
     r"^Please read the following context and answer the question",
     re.IGNORECASE,
@@ -540,9 +540,12 @@ class ChuzomRouter(BaseRouter):
             if "qwen/qwen3-235b-a22b-2507" in self.models:
                 return "qwen/qwen3-235b-a22b-2507"
 
-        # ── NarrativeQA → deepseek ────────────────────────────────────────────
-        # 100% cache (383/383). Accuracy: 45.3% vs gpt-4o-mini 43.2%.
+        # ── NarrativeQA → gemini-2.0-flash-001 ──────────────────────────────────
+        # gemini: 55.9% vs deepseek: 45.3% on 39 optimality samples (+10.6pp).
+        # gemini also cheaper than deepseek on input ($0.075 vs $0.14/M).
         if _NARRATIVE_CTX.match(q) or _NARRATIVE_PASSAGE.search(q):
+            if "gemini-2.0-flash-001" in self.models:
+                return "gemini-2.0-flash-001"
             if "deepseek/deepseek-v4-flash" in self.models:
                 return "deepseek/deepseek-v4-flash"
 
