@@ -90,6 +90,7 @@ def build_complete_evaluation_dictionary() -> Dict[str, Dict[str, Tuple[float, f
                     output_tokens = token_usage.get(
                         "output_tokens", token_usage.get("completion_tokens", 0)
                     )
+                    total_tokens = token_usage.get("total_tokens", 0) or 0
 
                     if input_tokens and output_tokens:
                         input_cost_per_million = cost_data[model_name][
@@ -98,12 +99,21 @@ def build_complete_evaluation_dictionary() -> Dict[str, Dict[str, Tuple[float, f
                         output_cost_per_million = cost_data[model_name][
                             "output_token_price_per_million"
                         ]
+                        # Bill reasoning tokens (total - input - output) at the
+                        # output rate, consistent with the evaluator. See issue #135.
+                        reasoning_tokens = max(
+                            0, total_tokens - input_tokens - output_tokens
+                        )
+                        reasoning_cost_per_million = cost_data[model_name].get(
+                            "reasoning_token_price_per_million", output_cost_per_million
+                        )
 
                         inference_cost = (
-                            input_tokens / 1_000_000
-                        ) * input_cost_per_million + (
-                            output_tokens / 1_000_000
-                        ) * output_cost_per_million
+                            (input_tokens / 1_000_000) * input_cost_per_million
+                            + (output_tokens / 1_000_000) * output_cost_per_million
+                            + (reasoning_tokens / 1_000_000)
+                            * reasoning_cost_per_million
+                        )
 
                 # Get accuracy (score)
                 accuracy = result["evaluation_result"]["score"]

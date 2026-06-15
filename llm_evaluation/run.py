@@ -98,6 +98,37 @@ def compute_arena_score(cost, accuracy, beta=0.1, c_max=200, c_min=0.0044):
     return S
 
 
+def has_usable_token_usage(token_usage: Any) -> bool:
+    """Return True if token_usage reports a positive output_tokens count.
+
+    A successful, non-empty generation must report usable token usage so its cost
+    can be computed. Rows with missing/empty token_usage or output_tokens == 0
+    cannot be costed and are treated as failed inference (scored as wrong, excluded
+    from cost) rather than billed at $0. See issue #135.
+    """
+    if not isinstance(token_usage, dict):
+        return False
+    output_tokens = token_usage.get("output_tokens")
+    return (
+        isinstance(output_tokens, (int, float))
+        and not isinstance(output_tokens, bool)
+        and output_tokens > 0
+    )
+
+
+def is_valid_generation(generated_result: Any) -> bool:
+    """Return True only for a successful generation with usable token usage.
+
+    Mirrors the leaderboard's integrity rule: a generation counts toward accuracy
+    and cost only if it succeeded AND reported a positive output_tokens count.
+    """
+    return (
+        isinstance(generated_result, dict)
+        and generated_result.get("success") is True
+        and has_usable_token_usage(generated_result.get("token_usage"))
+    )
+
+
 def load_predictions_file(
     router_name: str, split: Optional[str] = None
 ) -> List[Dict[str, Any]]:
@@ -621,9 +652,13 @@ def _build_evaluation_dict(
     """
     evaluation_dict: Dict[str, Dict[str, Tuple[float, float]]] = {}
 
-    # Add router selections
+    # Add router selections. Skip generations without usable token usage: an
+    # uncostable "success" must not enter the optimal-model pool at $0, where it
+    # could be falsely chosen as the cheapest optimal model. See issue #135.
     for global_index, pred in router_selections.items():
         if not global_index:  # Skip if None
+            continue
+        if not is_valid_generation(pred.get("generated_result")):
             continue
         model = pred.get("prediction")
         accuracy = pred.get("accuracy")
@@ -638,6 +673,8 @@ def _build_evaluation_dict(
     for pred in optimality_entries:
         global_index_raw = pred.get("global index") or pred.get("global_index")
         if global_index_raw is None:
+            continue
+        if not is_valid_generation(pred.get("generated_result")):
             continue
         global_index = str(global_index_raw)
         model = pred.get("prediction")
@@ -779,6 +816,12 @@ def compute_optimality_from_predictions(
             router_cost = router_pred.get("cost")
 
             if not router_model:
+                continue
+
+            # Skip failed-inference selections (no usable token usage): they are
+            # scored as wrong and have no trustworthy cost, so they must not count
+            # toward optimality. See issue #135.
+            if not is_valid_generation(router_pred.get("generated_result")):
                 continue
 
             # Skip if accuracy or cost is None or both are 0
@@ -948,11 +991,11 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
     for prediction in regular_predictions:
         generated_result = prediction.get("generated_result")
         # Prediction files are untrusted contributor input. Require success to be
-        # exactly True (a truthy string like "False" must not pass).
-        has_valid_generation = (
-            isinstance(generated_result, dict)
-            and generated_result.get("success") is True
-        )
+        # exactly True (a truthy string like "False" must not pass) AND usable token
+        # usage (positive output_tokens). A "successful" generation that reports no
+        # token usage cannot be costed; counting it would let it ride for free, so it
+        # is treated as failed inference (scored as wrong, excluded from cost). #135
+        has_valid_generation = is_valid_generation(generated_result)
         accuracy = prediction.get("accuracy")
         # Accept accuracy only if it is a real number (reject bool, since
         # isinstance(True, int) is True, and strings that would break sum()).
@@ -967,8 +1010,10 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
             accuracies.append(0.0)
             abnormal_count += 1
 
+        # Only count cost for valid generations. This excludes failed-inference rows
+        # (no usable token usage) so they cannot dilute average cost as free queries.
         cost = prediction.get("cost")
-        if cost is not None and cost > 0:
+        if has_valid_generation and cost is not None and cost > 0:
             costs.append(cost)
             valid_cost_count += 1
 

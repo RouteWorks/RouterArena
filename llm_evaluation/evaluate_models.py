@@ -245,16 +245,29 @@ class ModelEvaluator:
             return 0.0
 
         # Calculate cost
-        input_tokens = token_usage.get("input_tokens", 0)
-        output_tokens = token_usage.get("output_tokens", 0)
+        input_tokens = token_usage.get("input_tokens", 0) or 0
+        output_tokens = token_usage.get("output_tokens", 0) or 0
+        total_tokens = token_usage.get("total_tokens", 0) or 0
 
         input_cost_per_million = cost_info.get("input_token_price_per_million", 0.0)
         output_cost_per_million = cost_info.get("output_token_price_per_million", 0.0)
 
+        # Reasoning ("thinking") tokens are billed by providers (e.g. xAI, OpenAI)
+        # at the completion rate but are NOT included in output_tokens. They are
+        # recoverable as the gap between total_tokens and the reported input+output
+        # tokens. Bill them at the model's output rate (or an explicit reasoning
+        # rate when configured) so reasoning-capable models are not under-charged.
+        # See issue #135.
+        reasoning_tokens = max(0, total_tokens - input_tokens - output_tokens)
+        reasoning_cost_per_million = cost_info.get(
+            "reasoning_token_price_per_million", output_cost_per_million
+        )
+
         input_cost = (input_tokens / 1_000_000) * input_cost_per_million
         output_cost = (output_tokens / 1_000_000) * output_cost_per_million
+        reasoning_cost = (reasoning_tokens / 1_000_000) * reasoning_cost_per_million
 
-        total_cost = input_cost + output_cost
+        total_cost = input_cost + output_cost + reasoning_cost
         return total_cost
 
     def determine_dataset_from_global_index(self, global_index: str) -> str:
