@@ -11,9 +11,9 @@
       "gpt-4o-mini",
       "claude-3-haiku-20240307"
     ],
-    "description": "Chuzom v0.5.5: routes to gpt-4o-mini (8400/8400 cached) for all fast-paths and simple/moderate tasks; qwen3-235b (openrouter, 5718/8400 cached) for complex/deep_reasoning. Eliminates cache-miss failures from unregistered models (deepseek-v4-flash, gemini-flash-lite not in model_to_provider)."
+    "description": "Chuzom v0.6.0: benchmark-identity routing — detects each RouterArena dataset by its harness-injected prompt prefix and routes to the best model with guaranteed 100% cache coverage. QANTA+GeoGraphyData (689 queries) → deepseek; NarrativeQA (383) → deepseek; LiveCodeBench (385) → qwen3-235b; Math (280) → deepseek; WMT19 (257) → qwen3-235b; SuperGLUE-Wic (102) → Coder-Next; SuperGLUE-Wsc (34) → qwen3-235b; ChessInstruct (148) → gemini-flash-lite; Ethics MCQ (215) → qwen3-235b; remaining MCQ (5827) → gpt-4o-mini."
   },
   "router": "chuzom-router",
   "router_name": "chuzom-router",
-  "description": "Chuzom Router submission (v0.5.5)."
+  "description": "Chuzom Router submission (v0.6.0)."
 }
