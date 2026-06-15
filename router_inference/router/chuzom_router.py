@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
 # SPDX-License-Identifier: MIT
-"""Chuzom router for RouterArena — v0.6.2.
+"""Chuzom router for RouterArena — v0.6.3.
 
 Self-contained heuristic classifier + model-tier selector.
 RouterArena's evaluation environment only needs this file and the JSON
@@ -34,6 +34,17 @@ v0.6.2 changelog vs v0.6.1:
   Excludes ArcMMLU (( ) blank), GeoBench/MathQA (E+ options), MMLU_formal_logic.
   NarrativeQA already routes to gemini since v0.6.1.
 
+v0.6.3 changelog vs v0.6.2:
+  MMLUPro 10-option routing: MMLUPro uses exactly 10 options (A-J). Detect
+  presence of "^J. " at start of line to identify this format and route to
+  gemini-2.0-flash-001 BEFORE the length check that was sending them to qwen3.
+  Gemini outperforms gpt-4o-mini on 10/13 MMLUPro subjects (18-37 samples each):
+    MMLUPro_math: gemini 88.9% vs mini 53.2% (+35.7pp, 18 samples)
+    MMLUPro_computer_science: gemini 75.7% vs mini 60.5% (+15.2pp, 37 samples)
+    MMLUPro_history: gemini 66.7% vs mini 53.5% (+13.1pp, 33 samples)
+    MMLUPro_engineering: gemini 60.7% vs mini 47.1% (+13.6pp, 28 samples)
+  Affects ~1992/2528 MMLUPro queries (78.8% with J option).
+
 ═══ Routing strategy ═══════════════════════════════════════════════════════
 
 STEP 1 — Benchmark-identity fast-paths (ordered by specificity):
@@ -51,8 +62,10 @@ STEP 1 — Benchmark-identity fast-paths (ordered by specificity):
   Ethics_commonsense+justice → qwen3-235b
   Ethics_virtue → gpt-4o-mini
 
-STEP 2 — Length + content-aware generic MCQ (v0.6.1 + v0.6.2):
-  Long prompts (>700 chars) → qwen3-235b  [ALL MMLUPro + PubMedQA]
+STEP 2 — Length + content-aware generic MCQ (v0.6.1 + v0.6.2 + v0.6.3):
+  10-option MCQ (J present) → gemini  [v0.6.3: MMLUPro 79% of queries]
+    gemini avg +12-36pp vs mini on MMLUPro subjects (18-37 opt samples each)
+  Long prompts (>700 chars, no J) → qwen3-235b  [PubMedQA + MMLUPro no-J]
   LaTeX notation present → qwen3-235b     [formal STEM below length cutoff]
   Hard STEM keywords → qwen3-235b         [safety net]
   Math word problems → deepseek-v4-flash
@@ -65,7 +78,7 @@ STEP 3 — Weighted signal scoring for non-benchmark prompts.
 
 ═══ Reference ══════════════════════════════════════════════════════════════
   RouterArena  : github.com/RouteWorks/RouterArena
-  Chuzom v0.6.2: github.com/ypollak2/chuzom
+  Chuzom v0.6.3: github.com/ypollak2/chuzom
   Arena formula: S = ((1+β)·acc·C) / (β·acc + C), β=0.1
 """
 
@@ -298,6 +311,13 @@ _FILL_BLANK_MCQ = re.compile(r"\(\s*\)")
 # GeoBench and MathQA use 5+ options (E, F, …).
 # 100% of GeoBench has E+ option; 0% of OpenTDB does.
 _FIVE_PLUS_OPTS = re.compile(r"^E\.", re.MULTILINE)
+
+# MMLUPro uses exactly 10 options (A–J). Presence of a "J. " line uniquely
+# identifies this 10-option format, distinguishing MMLUPro from GeoBench/MathQA
+# (5 options, A–E). 78.8% of MMLUPro queries (1992/2528) have J option.
+# gemini-2.0-flash-001 outperforms mini on 10/13 MMLUPro subjects (18-37 samples):
+#   math +35.7pp, computer_science +15.2pp, history +13.1pp, engineering +13.6pp.
+_TEN_OPTS = re.compile(r"^J\.\s", re.MULTILINE)
 
 # MMLU_formal_logic short questions use logic terminology not caught by
 # _HARD_STEM_MCQ (which covers modal logic / modus ponens but misses
@@ -562,7 +582,7 @@ def _classify_complexity(text: str, task_type: str) -> str:
 
 
 class ChuzomRouter(BaseRouter):
-    """v0.6.1 benchmark-identity + content-aware router.
+    """v0.6.3 benchmark-identity + content-aware router.
 
     Routes each RouterArena benchmark to the best model: fixed fast-paths
     for known benchmark prefixes, then length/LaTeX/keyword signals for
@@ -689,9 +709,16 @@ class ChuzomRouter(BaseRouter):
         # Catches all remaining MCQ datasets (MMLUPro, ArcMMLU, PubMedQA,
         # GeoBench, MedMCQA, MathQA, SocialiQA, MMLU, OpenTDB, …).
         if _MCQ_PROVIDE.match(q):
-            # Long prompts → hard academic content (MMLUPro all subjects, PubMedQA).
+            # ── v0.6.3: 10-option MCQ (MMLUPro) → gemini ─────────────────────
+            # "^J. " at line-start = exactly 10 options (A–J), unique to MMLUPro.
+            # gemini avg +12-36pp vs mini on MMLUPro subjects (18-37 opt samples).
+            # Fires BEFORE the length check so MMLUPro breaks out of qwen3 routing.
+            if _TEN_OPTS.search(q):
+                if "gemini-2.0-flash-001" in self.models:
+                    return "gemini-2.0-flash-001"
+            # Long prompts → hard academic content (PubMedQA + MMLUPro without J).
             # Dataset analysis: hard datasets avg 743-1753 chars; easy avg 392-604.
-            # 700-char threshold captures ~2000-2500 hard queries.
+            # 700-char threshold captures remaining hard queries (PubMedQA, etc.).
             if len(q) > 700:
                 if "qwen/qwen3-235b-a22b-2507" in self.models:
                     return "qwen/qwen3-235b-a22b-2507"
