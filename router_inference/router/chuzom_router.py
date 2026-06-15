@@ -181,28 +181,28 @@ _ETHICS_VIRTUE = re.compile(
 # SuperGLUE-RC: evaluate correctness of a Provided Answer vs a Paragraph.
 # haiku: 50% vs mini: 34.5% vs gemini: 33.3% (6 optimality samples).
 _SUPERGLUE_RC = re.compile(
-    r'Your task is to evaluate if the .Provided Answer. is a correct response',
+    r"Your task is to evaluate if the .Provided Answer. is a correct response",
     re.IGNORECASE,
 )
 
 # SuperGLUE-QA (boolq-style reading comprehension + binary judgment).
 # gemini: 85.7% vs mini: 47.8% (7 optimality samples). 2× cheaper than mini.
 _SUPERGLUE_QA = re.compile(
-    r'^You are a reading comprehension assistant\.',
+    r"^You are a reading comprehension assistant\.",
     re.IGNORECASE,
 )
 
 # SuperGLUE-Entailment (Natural Language Inference / textual entailment).
 # gemini: 100% vs mini: 80.3% (6 optimality samples). 2× cheaper than mini.
 _NLI = re.compile(
-    r'^You are a Natural Language Inference expert\.',
+    r"^You are a Natural Language Inference expert\.",
     re.IGNORECASE,
 )
 
 # SuperGLUE-ClozeTest (story completion — choose best passage option).
 # gemini: 60% vs mini: 0% vs haiku: 0% (5 optimality samples). Massive gain.
 _CLOZE = re.compile(
-    r'^Read the following passage and answer the question by choosing the best option\. Provide only the text',
+    r"^Read the following passage and answer the question by choosing the best option\. Provide only the text",
     re.IGNORECASE,
 )
 
