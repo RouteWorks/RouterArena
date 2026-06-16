@@ -9,7 +9,6 @@ Usage:
 """
 
 import argparse
-import hashlib
 import json
 import os
 import sys
@@ -53,7 +52,9 @@ def call_model(model: str, prompt: str, api_key: str, timeout: int = 60) -> dict
         "Content-Type": "application/json",
     }
     try:
-        resp = httpx.post(OPENROUTER_URL, json=payload, headers=headers, timeout=timeout)
+        resp = httpx.post(
+            OPENROUTER_URL, json=payload, headers=headers, timeout=timeout
+        )
         resp.raise_for_status()
         data = resp.json()
         choice = data["choices"][0]
@@ -83,9 +84,13 @@ def call_model(model: str, prompt: str, api_key: str, timeout: int = 60) -> dict
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("router_name")
-    parser.add_argument("--dry-run", action="store_true", help="Show counts but don't call APIs")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="Show counts but don't call APIs"
+    )
     parser.add_argument("--workers", type=int, default=8)
-    parser.add_argument("--optimality", action="store_true", help="Also fill optimality entries")
+    parser.add_argument(
+        "--optimality", action="store_true", help="Also fill optimality entries"
+    )
     args = parser.parse_args()
 
     api_key = os.getenv("OPENROUTER_API_KEY")
@@ -100,9 +105,13 @@ def main():
 
     # Find missing entries
     missing = [
-        e for e in predictions
+        e
+        for e in predictions
         if (not e.get("for_optimality") or args.optimality)
-        and (not e.get("generated_result") or not e["generated_result"].get("generated_answer"))
+        and (
+            not e.get("generated_result")
+            or not e["generated_result"].get("generated_answer")
+        )
     ]
 
     by_model = defaultdict(list)
@@ -117,6 +126,7 @@ def main():
         print("\n[dry-run] Done.")
         return
 
+    assert api_key is not None  # guaranteed by the earlier check
     print(f"\nRunning inference with {args.workers} workers...")
     cache_updates: dict[str, list] = defaultdict(list)  # model → new cache entries
     lock = Lock()
@@ -137,12 +147,14 @@ def main():
             entry, result, gidx, model = fut.result()
             with lock:
                 entry["generated_result"] = result
-                cache_updates[model].append({
-                    "global_index": gidx,
-                    "question": entry["prompt"],
-                    "llm_selected": model,
-                    **result,
-                })
+                cache_updates[model].append(
+                    {
+                        "global_index": gidx,
+                        "question": entry["prompt"],
+                        "llm_selected": model,
+                        **result,
+                    }
+                )
                 if result["success"]:
                     success_count += 1
                 else:
@@ -152,7 +164,9 @@ def main():
                 elapsed = time.time() - start
                 rate = i / elapsed
                 eta = (len(missing) - i) / rate if rate > 0 else 0
-                print(f"  {i}/{len(missing)} | ✅{success_count} ❌{fail_count} | {rate:.1f}/s | ETA {eta:.0f}s")
+                print(
+                    f"  {i}/{len(missing)} | ✅{success_count} ❌{fail_count} | {rate:.1f}/s | ETA {eta:.0f}s"
+                )
 
     elapsed = time.time() - start
     print(f"\nDone in {elapsed:.0f}s | Success: {success_count} | Failed: {fail_count}")
@@ -179,8 +193,10 @@ def main():
 
     # Final null count
     null_count = sum(
-        1 for e in predictions
-        if not e.get("generated_result") or not e.get("generated_result", {}).get("generated_answer")
+        1
+        for e in predictions
+        if not e.get("generated_result")
+        or not e.get("generated_result", {}).get("generated_answer")
     )
     print(f"\nFinal null count: {null_count}")
 

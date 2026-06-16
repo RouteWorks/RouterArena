@@ -37,6 +37,7 @@ from dotenv import load_dotenv
 
 try:
     import yaml
+
     _YAML_AVAILABLE = True
 except ImportError:
     _YAML_AVAILABLE = False
@@ -119,7 +120,9 @@ def _build_system_prompt_from_registry(registry_path: str) -> str:
             lines.append(f"  {domain}: {pref_str}")
         lines.append("")
 
-    lines.append("Return ONLY the exact model name (e.g. google/gemini-3.1-flash-lite). Nothing else.")
+    lines.append(
+        "Return ONLY the exact model name (e.g. google/gemini-3.1-flash-lite). Nothing else."
+    )
     return "\n".join(lines)
 
 
@@ -175,13 +178,18 @@ Return ONLY the exact model name. Nothing else."""
 _OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 
-def classify_query(query: str, api_key: str, timeout: int = 30, system_prompt: str | None = None) -> str | None:
+def classify_query(
+    query: str, api_key: str, timeout: int = 30, system_prompt: str | None = None
+) -> str | None:
     """Call the routing LLM and return the model name it selects."""
     payload = {
         "model": CLASSIFIER_MODEL,
         "messages": [
             {"role": "system", "content": system_prompt or _FALLBACK_SYSTEM_PROMPT},
-            {"role": "user", "content": USER_PROMPT_TEMPLATE.format(query=query[:2000])},
+            {
+                "role": "user",
+                "content": USER_PROMPT_TEMPLATE.format(query=query[:2000]),
+            },
         ],
         "max_tokens": 60,
         "temperature": 0.0,
@@ -191,7 +199,9 @@ def classify_query(query: str, api_key: str, timeout: int = 30, system_prompt: s
         "Content-Type": "application/json",
     }
     try:
-        resp = httpx.post(_OPENROUTER_URL, json=payload, headers=headers, timeout=timeout)
+        resp = httpx.post(
+            _OPENROUTER_URL, json=payload, headers=headers, timeout=timeout
+        )
         resp.raise_for_status()
         choice = resp.json()["choices"][0]["message"]["content"].strip()
         # Extract just the model name (LLM might add punctuation)
@@ -205,7 +215,7 @@ def classify_query(query: str, api_key: str, timeout: int = 30, system_prompt: s
             if suffix in choice_lower:
                 return model
         return None
-    except Exception as e:
+    except Exception:
         return None
 
 
@@ -213,18 +223,28 @@ def classify_query(query: str, api_key: str, timeout: int = 30, system_prompt: s
 # Main
 # ---------------------------------------------------------------------------
 
+
 def _query_hash(query: str) -> str:
     return hashlib.sha256(query.encode()).hexdigest()
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     parser.add_argument("--split", default="full", choices=list(DATASET_PATHS.keys()))
     parser.add_argument("--workers", type=int, default=16)
-    parser.add_argument("--resume", action="store_true", help="Skip already-classified queries")
-    parser.add_argument("--registry", default=REGISTRY_PATH, help="Path to model_registry.yaml")
-    parser.add_argument("--use-memory", action="store_true",
-                        help="Append routing_memory.yaml domain patterns to system prompt")
+    parser.add_argument(
+        "--resume", action="store_true", help="Skip already-classified queries"
+    )
+    parser.add_argument(
+        "--registry", default=REGISTRY_PATH, help="Path to model_registry.yaml"
+    )
+    parser.add_argument(
+        "--use-memory",
+        action="store_true",
+        help="Append routing_memory.yaml domain patterns to system prompt",
+    )
     args = parser.parse_args()
 
     system_prompt = _build_system_prompt_from_registry(args.registry)
@@ -248,7 +268,12 @@ def main():
     # Deduplicate queries by hash
     queries: dict[str, str] = {}  # hash → query text
     for entry in dataset:
-        q = entry.get("prompt_formatted") or entry.get("prompt") or entry.get("query") or entry.get("question", "")
+        q = (
+            entry.get("prompt_formatted")
+            or entry.get("prompt")
+            or entry.get("query")
+            or entry.get("question", "")
+        )
         if q:
             queries[_query_hash(q)] = q
 
@@ -259,8 +284,10 @@ def main():
     if args.resume and os.path.exists(OUTPUT_PATH):
         with open(OUTPUT_PATH, encoding="utf-8") as f:
             decisions = json.load(f)
-        print(f"Resuming: {len(decisions)} already classified, "
-              f"{len(queries) - len(decisions)} remaining")
+        print(
+            f"Resuming: {len(decisions)} already classified, "
+            f"{len(queries) - len(decisions)} remaining"
+        )
 
     pending = {h: q for h, q in queries.items() if h not in decisions}
     if not pending:
@@ -314,6 +341,7 @@ def main():
 
     # Distribution report
     from collections import Counter
+
     dist = Counter(decisions.values())
     print("\nRouting distribution:")
     for m, c in dist.most_common():

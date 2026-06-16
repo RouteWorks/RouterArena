@@ -13,7 +13,6 @@ import json
 import os
 import sys
 from collections import defaultdict
-from pathlib import Path
 
 CACHED_RESULTS_DIR = "./cached_results"
 PREDICTIONS_DIR = "./router_inference/predictions"
@@ -64,11 +63,14 @@ def build_generated_result(cached: dict) -> dict:
     return {
         "generated_answer": cached.get("generated_answer"),
         "success": cached.get("success", False),
-        "token_usage": cached.get("token_usage", {
-            "input_tokens": 0,
-            "output_tokens": 0,
-            "total_tokens": 0,
-        }),
+        "token_usage": cached.get(
+            "token_usage",
+            {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "total_tokens": 0,
+            },
+        ),
         "provider": cached.get("provider", "cached"),
         "error": cached.get("error"),
     }
@@ -102,7 +104,9 @@ def main(router_name: str):
     already_filled = 0
 
     for entry in predictions:
-        if entry.get("generated_result") and entry["generated_result"].get("generated_answer"):
+        if entry.get("generated_result") and entry["generated_result"].get(
+            "generated_answer"
+        ):
             already_filled += 1
             continue
 
@@ -117,7 +121,7 @@ def main(router_name: str):
         else:
             missing += 1
 
-    print(f"\nResults:")
+    print("\nResults:")
     print(f"  Already filled: {already_filled}")
     print(f"  Filled from cache: {filled}")
     print(f"  Missing (no cache hit): {missing}")
@@ -129,14 +133,18 @@ def main(router_name: str):
 
     # Sanity check
     null_count = sum(
-        1 for e in predictions
-        if not e.get("generated_result") or not e.get("generated_result", {}).get("generated_answer")
+        1
+        for e in predictions
+        if not e.get("generated_result")
+        or not e.get("generated_result", {}).get("generated_answer")
     )
     print(f"Entries still missing answers: {null_count}")
     if null_count > 0:
-        models_missing = defaultdict(int)
+        models_missing: dict[str, int] = defaultdict(int)
         for e in predictions:
-            if not e.get("generated_result") or not e.get("generated_result", {}).get("generated_answer"):
+            if not e.get("generated_result") or not e.get("generated_result", {}).get(
+                "generated_answer"
+            ):
                 models_missing[e["prediction"]] += 1
         print("  Breakdown by model:")
         for m, c in sorted(models_missing.items(), key=lambda x: -x[1]):

@@ -52,9 +52,7 @@ class ChuzomLLMRouter(BaseRouter):
         # Locate the decisions file relative to project root
         script_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(os.path.dirname(script_dir))
-        decisions_dir = os.path.join(
-            project_root, "router_inference", "config"
-        )
+        decisions_dir = os.path.join(project_root, "router_inference", "config")
         self._decisions_path = os.path.join(decisions_dir, _DECISIONS_FILENAME)
 
         self._decisions: dict[str, str] = {}
