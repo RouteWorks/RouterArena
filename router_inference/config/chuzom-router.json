@@ -9,12 +9,11 @@
       "qwen/qwen3-next-80b-a3b-instruct",
       "Qwen/Qwen3-Coder-Next",
       "gpt-4o-mini",
-      "claude-3-haiku-20240307",
-      "gemini-2.0-flash-001"
+      "claude-3-haiku-20240307"
     ],
-    "description": "Chuzom v0.6.1: benchmark-identity routing + length/LaTeX/content-aware MCQ sub-routing. All v0.6.0 dataset fast-paths preserved. v0.6.1 adds: long MCQ prompts >700 chars → qwen3-235b (catches all MMLUPro + PubMedQA ~2500 queries); LaTeX notation detection → qwen3-235b; hard STEM keywords → qwen3-235b; math word problems → deepseek; remaining MCQ → gpt-4o-mini."
+    "description": "Chuzom v0.7.0: content-signal routing. All routing based on intrinsic prompt content only — no benchmark fingerprints. Primary model: google/gemini-3.1-flash-lite. Math/translation: deepseek-v4-flash. Hard STEM/code: qwen3-235b."
   },
   "router": "chuzom-router",
   "router_name": "chuzom-router",
-  "description": "Chuzom Router submission (v0.6.0)."
+  "description": "Chuzom Router submission (v0.7.0)."
 }

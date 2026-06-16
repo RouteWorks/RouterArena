@@ -138,11 +138,11 @@ class ModelInference:
             "gpt-5-chat-latest": "openai",
             "gpt-5-mini": "openai",
             "gpt-5-nano": "openai",
-            # Anthropic models — routed via OpenRouter (no ANTHROPIC_API_KEY)
-            "claude-3-haiku-20240307": "openrouter",
+            # Anthropic models
+            "claude-3-haiku-20240307": "anthropic",
             "claude-3-7-sonnet-20250219": "anthropic",
-            # Google models — GOOGLE_API_KEY expired; route via OpenRouter
-            "gemini-2.0-flash-001": "openrouter",
+            # Google models
+            "gemini-2.0-flash-001": "google",
             "gemini-2.5-flash": "google",
             "gemini-2.5-pro": "google",
             # Mistral models
@@ -293,14 +293,6 @@ class ModelInference:
             "provider": "replicate",
         }
 
-    # Short names → OpenRouter fully-qualified model names
-    _OPENROUTER_NAME_MAP: dict = {
-        # OpenRouter uses undated name for Claude 3 Haiku
-        "claude-3-haiku-20240307": "anthropic/claude-3-haiku",
-        # GOOGLE_API_KEY expired; route via OpenRouter with equivalent model
-        "gemini-2.0-flash-001": "google/gemini-2.5-flash",
-    }
-
     def _call_openrouter(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call OpenRouter API."""
         openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
@@ -309,9 +301,8 @@ class ModelInference:
             api_key=openrouter_api_key,
         )
 
-        or_model = self._OPENROUTER_NAME_MAP.get(model_name, model_name)
         response = client.chat.completions.create(
-            model=or_model, messages=[{"role": "user", "content": prompt}]
+            model=model_name, messages=[{"role": "user", "content": prompt}]
         )
 
         usage = getattr(response, "usage", None)
