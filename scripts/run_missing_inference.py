@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 """Run inference for entries missing from the cache in a prediction file.
 
 Calls OpenRouter for each entry where generated_result is null or has no answer,

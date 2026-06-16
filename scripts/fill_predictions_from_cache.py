@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 """Fill prediction file answers from cached_results/ JSONL files.
 
 Matches each prediction entry (by global_index + predicted model) to its

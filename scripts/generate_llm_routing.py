@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 """Pre-generate LLM routing decisions for ChuzomLLMRouter.
 
 Calls a cheap LLM classifier (gemini-3.1-flash-lite via OpenRouter) in
@@ -29,8 +30,9 @@ import os
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from threading import Lock
 from pathlib import Path
+from threading import Lock
+from typing import Optional
 
 import httpx
 from dotenv import load_dotenv
@@ -179,8 +181,8 @@ _OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 
 def classify_query(
-    query: str, api_key: str, timeout: int = 30, system_prompt: str | None = None
-) -> str | None:
+    query: str, api_key: str, timeout: int = 30, system_prompt: Optional[str] = None
+) -> Optional[str]:
     """Call the routing LLM and return the model name it selects."""
     payload = {
         "model": CLASSIFIER_MODEL,

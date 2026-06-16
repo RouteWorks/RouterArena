@@ -1,5 +1,5 @@
-# SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
-# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 """Chuzom LLM Router for RouterArena — v0.1.0 (experimental).
 
 IMPORTANT — ISOLATION POLICY:
