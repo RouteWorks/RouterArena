@@ -125,7 +125,10 @@ def estimate_cost(entry: dict) -> float:
     tu = gr.get("token_usage") or {}
     model = entry["prediction"]
     p = PRICING.get(model, {"input": 0.20, "output": 0.80})
-    return (tu.get("input_tokens", 0) * p["input"] + tu.get("output_tokens", 0) * p["output"]) / 1_000_000
+    return (
+        tu.get("input_tokens", 0) * p["input"]
+        + tu.get("output_tokens", 0) * p["output"]
+    ) / 1_000_000
 
 
 def classify_query_content(query: str) -> str:
@@ -263,7 +266,8 @@ def main(dry_run: bool = False):
     # Only upgrade entries NOT already changed in Phase 1
     phase1_gidxs = set(phase1_changes.keys())
     gemini_entries = [
-        e for e in base_preds
+        e
+        for e in base_preds
         if e["prediction"] == "google/gemini-3.1-flash-lite"
         and e.get("global index") not in phase1_gidxs
     ]
@@ -341,7 +345,9 @@ def main(dry_run: bool = False):
                 applied += 1
             else:
                 not_found_in_cache += 1
-                print(f"  WARNING: {gidx} → {target_model} not in cache (keeping {old_model})")
+                print(
+                    f"  WARNING: {gidx} → {target_model} not in cache (keeping {old_model})"
+                )
 
         new_cost += estimate_cost(entry)
 
@@ -350,8 +356,10 @@ def main(dry_run: bool = False):
         print(f"Not found in cache (kept original): {not_found_in_cache}")
 
     print(f"\nEstimated cost: ${old_cost:.4f} → ${new_cost:.4f}")
-    print(f"Estimated savings: ${old_cost - new_cost:.4f} ({100*(old_cost-new_cost)/old_cost:.1f}%)")
-    print(f"New cost per 1K: ${new_cost/8.4:.4f}")
+    print(
+        f"Estimated savings: ${old_cost - new_cost:.4f} ({100 * (old_cost - new_cost) / old_cost:.1f}%)"
+    )
+    print(f"New cost per 1K: ${new_cost / 8.4:.4f}")
 
     # Print new distribution
     new_dist = collections.Counter(
@@ -360,7 +368,7 @@ def main(dry_run: bool = False):
     print("\nNew routing distribution:")
     total = sum(new_dist.values())
     for m, c in new_dist.most_common():
-        print(f"  {m.split('/')[-1]:<35} {c:>5} ({100*c/total:.1f}%)")
+        print(f"  {m.split('/')[-1]:<35} {c:>5} ({100 * c / total:.1f}%)")
 
     # Save updated predictions
     with open(pred_path, "w", encoding="utf-8") as f:
@@ -370,6 +378,7 @@ def main(dry_run: bool = False):
     # Update routing decisions file (for hash-based decisions)
     # We need to update hashes that correspond to changed entries
     import hashlib
+
     changes_by_hash = 0
     for entry in predictions:
         if entry.get("for_optimality"):
