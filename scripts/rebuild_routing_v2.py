@@ -20,6 +20,7 @@ import json
 import os
 import re
 import sys
+from typing import Optional
 
 CACHED_RESULTS_DIR = "./cached_results"
 PREDICTIONS_DIR = "./router_inference/predictions"
@@ -149,7 +150,7 @@ def pick_replacement_model(
     gidx: str,
     query: str,
     caches: dict,
-    content_hint: str = None,
+    content_hint: Optional[str] = None,
 ) -> str:
     """Pick the best cached replacement for a query.
 
@@ -319,15 +320,15 @@ def main(dry_run: bool = False):
         print("\n[DRY RUN] Not writing files.")
         return
 
-    old_cost = 0
-    new_cost = 0
+    old_cost: float = 0.0
+    new_cost: float = 0.0
     applied = 0
     not_found_in_cache = 0
 
     for entry in predictions:
         gidx = entry.get("global index", "")
         old_model = entry["prediction"]
-        new_model = all_changes.get(gidx)
+        new_model: Optional[str] = all_changes.get(gidx)
 
         # Estimate old cost
         old_cost += estimate_cost(entry)
