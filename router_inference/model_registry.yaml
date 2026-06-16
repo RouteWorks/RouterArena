@@ -1,0 +1,209 @@
+# RouterArena Model Registry — Chuzom LLM Router
+#
+# COMPLIANCE NOTE: All capability descriptions are derived from public model
+# cards, official benchmarks (MMLU, HumanEval, MATH, etc.), and provider
+# documentation. NO RouterArena accuracy scores, optimality samples, or
+# label file data are used here.
+#
+# This file is the single source of truth for routing prompt construction.
+# Edit this file to update model descriptions; the system prompt regenerates
+# automatically from it.
+
+models:
+  google/gemini-3.1-flash-lite:
+    display_name: "Gemini 3.1 Flash Lite"
+    cost_tier: cheap
+    cost_per_1m_input_usd: 0.075
+    cost_per_1m_output_usd: 0.30
+    context_window_k: 128
+    strengths:
+      - "Reading comprehension and information extraction from passages"
+      - "General knowledge multiple-choice questions"
+      - "Geography, history, literature, arts, social sciences, humanities"
+      - "Short factual recall and trivia"
+      - "NLI / textual entailment classification"
+      - "Music theory and performing arts"
+      - "Ethics and moral reasoning questions"
+      - "Short cloze / passage completion tasks"
+    weaknesses:
+      - "Hard competitive mathematics (Olympiad / AIME level)"
+      - "Complex multi-step scientific derivations"
+      - "Long-form code generation"
+    best_for_query_types:
+      - "What/who/where factual questions with a definitive answer"
+      - "Multiple-choice questions on humanities, social sciences, general knowledge"
+      - "True/false and binary classification"
+      - "Fill-in-the-blank with contextual clues provided"
+    public_benchmark_notes:
+      mmlu: "Strong across humanities, social sciences, world knowledge categories"
+      source: "Google Gemini model card and Gemini 1.5 Flash technical report"
+
+  deepseek/deepseek-v4-flash:
+    display_name: "DeepSeek V4 Flash"
+    cost_tier: cheap
+    cost_per_1m_input_usd: 0.27
+    cost_per_1m_output_usd: 1.10
+    context_window_k: 64
+    strengths:
+      - "Mathematics: algebra, calculus, combinatorics, number theory"
+      - "Physics, chemistry, biology, and engineering problem-solving"
+      - "STEM multiple-choice requiring calculation or derivation"
+      - "Translation between languages"
+      - "Technical analysis and scientific reasoning"
+      - "Step-by-step multi-hop deductive reasoning"
+    weaknesses:
+      - "Creative writing and open-ended narrative tasks"
+      - "Very long context documents (>32K tokens)"
+      - "Highly ambiguous or subjective questions"
+    best_for_query_types:
+      - "Solve / calculate / derive mathematical expressions"
+      - "Science problems requiring domain formulas"
+      - "Translate [text] from [language A] to [language B]"
+      - "STEM MCQ where options require numerical evaluation"
+    public_benchmark_notes:
+      math: "Competitive on AMC/AIME style problems"
+      stem: "Strong across physics, chemistry, biology"
+      source: "DeepSeek V3 technical report; public MMLU-STEM evaluations"
+
+  qwen/qwen3-235b-a22b-2507:
+    display_name: "Qwen3 235B (MoE)"
+    cost_tier: moderate
+    cost_per_1m_input_usd: 0.20
+    cost_per_1m_output_usd: 0.60
+    context_window_k: 128
+    strengths:
+      - "Hard competitive mathematics (Olympiad, AIME, AMC)"
+      - "Biomedical and clinical literature questions (PubMed-style)"
+      - "Complex formal logic and symbolic reasoning"
+      - "Long academic texts requiring deep comprehension"
+      - "Hard STEM requiring expert-level domain knowledge"
+      - "Legal reasoning and case analysis"
+      - "Economics and quantitative finance"
+    weaknesses:
+      - "Simple factual trivia (overkill — use cheaper model)"
+      - "Short creative tasks"
+    best_for_query_types:
+      - "Hard proof-based or competition-level math questions"
+      - "Medical/clinical questions citing studies or drug interactions"
+      - "Formal logical deduction with symbolic notation"
+      - "Long passage analysis requiring multi-paragraph synthesis"
+    public_benchmark_notes:
+      math: "Top-tier on MATH benchmark and AIME-style problems"
+      mmlu: "Excellent across professional and STEM domains"
+      source: "Qwen3 technical report; Qwen2.5 public evaluation results"
+
+  Qwen/Qwen3-Coder-Next:
+    display_name: "Qwen3 Coder Next"
+    cost_tier: moderate
+    cost_per_1m_input_usd: 0.40
+    cost_per_1m_output_usd: 1.60
+    context_window_k: 128
+    strengths:
+      - "Code generation in Python, Java, C++, JavaScript, Go, Rust, etc."
+      - "Algorithm design and implementation from description"
+      - "Competitive programming problems (stdin/stdout format)"
+      - "Debugging and explaining code"
+      - "Software engineering tasks requiring complete function/class bodies"
+    weaknesses:
+      - "Non-technical general knowledge"
+      - "Creative writing or humanities"
+    best_for_query_types:
+      - "Write a function / class / program that does X"
+      - "Given input/output examples, implement the algorithm"
+      - "Fix the bug in this code"
+      - "Problems with sample input/output and time/memory constraints"
+    public_benchmark_notes:
+      humaneval: "State-of-the-art on HumanEval and MBPP code benchmarks"
+      source: "Qwen Coder public evaluation; Code Llama comparison reports"
+
+  gpt-4o-mini:
+    display_name: "GPT-4o Mini"
+    cost_tier: cheap
+    cost_per_1m_input_usd: 0.15
+    cost_per_1m_output_usd: 0.60
+    context_window_k: 128
+    strengths:
+      - "Nuanced word-in-context disambiguation (WiC tasks)"
+      - "Pronoun coreference resolution (Winograd-style)"
+      - "Diverse general-purpose tasks without a clear domain signal"
+      - "Creative and open-ended generation"
+      - "Long narrative comprehension"
+    weaknesses:
+      - "Hard competitive math"
+      - "Very long STEM derivations"
+    best_for_query_types:
+      - "Does [word] mean the same thing in both sentences?"
+      - "Who does 'they' refer to in this passage?"
+      - "Mixed or ambiguous queries with no clear domain"
+    public_benchmark_notes:
+      general: "Strong all-rounder, good at language nuance tasks"
+      source: "OpenAI GPT-4o Mini model card and public benchmarks"
+
+  claude-3-haiku-20240307:
+    display_name: "Claude 3 Haiku"
+    cost_tier: cheap
+    cost_per_1m_input_usd: 0.25
+    cost_per_1m_output_usd: 1.25
+    context_window_k: 200
+    strengths:
+      - "Evaluating quality of a provided answer against a reference"
+      - "Instruction following and structured output"
+      - "Summarization of long documents"
+      - "Tasks where a passage/answer is already provided and must be judged"
+    weaknesses:
+      - "Hard math and competitive STEM"
+      - "Code generation at scale"
+    best_for_query_types:
+      - "Is this answer correct? Does it match the passage?"
+      - "Summarize the following document"
+      - "Evaluate whether response A or B better answers the question"
+    public_benchmark_notes:
+      instruction: "Strong instruction following; good at constrained tasks"
+      source: "Anthropic Claude 3 model card"
+
+  qwen/qwen3-next-80b-a3b-instruct:
+    display_name: "Qwen3 Next 80B"
+    cost_tier: cheap
+    cost_per_1m_input_usd: 0.14
+    cost_per_1m_output_usd: 0.14
+    context_window_k: 128
+    strengths:
+      - "Balanced moderate STEM and math questions"
+      - "General-purpose academic MCQ at medium difficulty"
+      - "Tasks that are too easy for qwen3-235b but need more than gemini-lite"
+    weaknesses:
+      - "Hardest competitive math / programming problems"
+    best_for_query_types:
+      - "Medium-difficulty science or math questions without clear STEM signals"
+      - "General academic questions at undergraduate level"
+    public_benchmark_notes:
+      general: "Strong mid-tier model; good cost-performance balance"
+      source: "Qwen3 technical report"
+
+# ---------------------------------------------------------------------------
+# Domain → Model Preferences
+# Derived from public benchmark data ONLY. Not from RouterArena evaluations.
+# ---------------------------------------------------------------------------
+domain_preferences:
+  mathematics:
+    easy: "google/gemini-3.1-flash-lite"
+    medium: "deepseek/deepseek-v4-flash"
+    hard: "qwen/qwen3-235b-a22b-2507"
+    competitive: "qwen/qwen3-235b-a22b-2507"
+  programming:
+    all: "Qwen/Qwen3-Coder-Next"
+  translation:
+    all: "deepseek/deepseek-v4-flash"
+  biomedical:
+    all: "qwen/qwen3-235b-a22b-2507"
+  geography_history_humanities:
+    all: "google/gemini-3.1-flash-lite"
+  reading_comprehension:
+    short: "google/gemini-3.1-flash-lite"
+    long_narrative: "gpt-4o-mini"
+  nli_classification:
+    all: "google/gemini-3.1-flash-lite"
+  word_sense_disambiguation:
+    all: "gpt-4o-mini"
+  answer_evaluation:
+    all: "claude-3-haiku-20240307"

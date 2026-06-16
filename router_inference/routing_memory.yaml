@@ -1,0 +1,209 @@
+# Chuzom LLM Router — Routing Memory
+#
+# PURPOSE: Domain-level routing priors derived from PUBLIC knowledge only.
+# These are NOT per-query decisions and are NOT derived from RouterArena data.
+#
+# COMPLIANCE NOTE: Every entry here must be traceable to public benchmark
+# scores, official model documentation, or linguistic/structural content signals.
+# NEVER add entries based on RouterArena dataset names, optimality labels, or
+# accuracy scores from RouterArena evaluations.
+#
+# FORMAT: Each domain block describes:
+#   - content_signals: substrings / patterns that identify the domain from
+#                      the query text alone (no metadata)
+#   - preferred_model: model ID from model_registry.yaml
+#   - fallback_model:  if preferred is unavailable
+#   - rationale:       why this model, in terms of public knowledge
+#
+# This file is injected as additional context into the routing LLM's system
+# prompt by generate_llm_routing.py when --use-memory is passed.
+
+domains:
+
+  # ── CODE / PROGRAMMING ─────────────────────────────────────────────────
+  competitive_programming:
+    content_signals:
+      - "def solution"
+      - "def solve"
+      - "stdin"
+      - "stdout"
+      - "input()"
+      - "sys.stdin"
+      - "sample input"
+      - "sample output"
+      - "time limit"
+      - "memory limit"
+    preferred_model: "Qwen/Qwen3-Coder-Next"
+    fallback_model: "qwen/qwen3-235b-a22b-2507"
+    rationale: >
+      Qwen Coder achieves top performance on HumanEval and MBPP; designed for
+      stdin/stdout competitive programming format. Public Qwen Coder technical report.
+
+  general_code_generation:
+    content_signals:
+      - "implement a function"
+      - "write a function"
+      - "write code"
+      - "given the following code"
+      - "complete the implementation"
+      - "return a list"
+      - "class Solution"
+      - "```python"
+      - "```javascript"
+    preferred_model: "Qwen/Qwen3-Coder-Next"
+    fallback_model: "deepseek/deepseek-v4-flash"
+    rationale: >
+      Qwen Coder is purpose-built for code generation. DeepSeek as fallback has
+      strong STEM reasoning that helps with algorithmic problems.
+
+  # ── MATHEMATICS ─────────────────────────────────────────────────────────
+  hard_math:
+    content_signals:
+      - "olympiad"
+      - "AIME"
+      - "AMC"
+      - "competition math"
+      - "prove that"
+      - "let f(x)"
+      - "modular arithmetic"
+      - "number of ways"
+      - "combinatorics"
+      - "sequence satisfies"
+    preferred_model: "qwen/qwen3-235b-a22b-2507"
+    fallback_model: "deepseek/deepseek-v4-flash"
+    rationale: >
+      Qwen3-235B leads on MATH benchmark (84%+) and AIME-level problems.
+      DeepSeek V3 also strong on competition math. Source: public MATH evals.
+
+  standard_math:
+    content_signals:
+      - "solve for"
+      - "calculate"
+      - "evaluate"
+      - "simplify"
+      - "compute"
+      - "find the value"
+      - "derivative of"
+      - "integral of"
+    preferred_model: "deepseek/deepseek-v4-flash"
+    fallback_model: "qwen/qwen3-235b-a22b-2507"
+    rationale: >
+      DeepSeek is highly cost-effective for standard-level math. Qwen3-235B as
+      fallback for harder questions. Source: MATH/GSM8K public benchmarks.
+
+  # ── SCIENCE / STEM ───────────────────────────────────────────────────────
+  biomedical:
+    content_signals:
+      - "clinical trial"
+      - "mg/kg"
+      - "pathology"
+      - "diagnosis"
+      - "patient"
+      - "efficacy"
+      - "adverse"
+      - "PubMed"
+      - "pharmacology"
+      - "disease"
+      - "treatment"
+      - "symptom"
+    preferred_model: "qwen/qwen3-235b-a22b-2507"
+    fallback_model: "deepseek/deepseek-v4-flash"
+    rationale: >
+      Qwen3-235B excels at MMLU-Medical. Biomedical questions require depth
+      that smaller models lack. Source: MMLU professional medicine category.
+
+  physics_chemistry:
+    content_signals:
+      - "velocity"
+      - "acceleration"
+      - "newton"
+      - "joule"
+      - "electron"
+      - "mole"
+      - "reaction"
+      - "equilibrium"
+      - "entropy"
+      - "thermodynamics"
+    preferred_model: "deepseek/deepseek-v4-flash"
+    fallback_model: "qwen/qwen3-235b-a22b-2507"
+    rationale: >
+      DeepSeek V3 performs strongly on MMLU Physics and Chemistry. Source: public
+      MMLU STEM category results from DeepSeek V3 technical report.
+
+  # ── LANGUAGE / TRANSLATION ───────────────────────────────────────────────
+  translation:
+    content_signals:
+      - "translate"
+      - "translation of"
+      - "in English"
+      - "in Spanish"
+      - "in French"
+      - "in German"
+      - "in Chinese"
+      - "in Japanese"
+      - "in Arabic"
+    preferred_model: "deepseek/deepseek-v4-flash"
+    fallback_model: "google/gemini-3.1-flash-lite"
+    rationale: >
+      DeepSeek V3 is trained on multilingual data and excels at translation.
+      Source: DeepSeek technical report multilingual evaluation.
+
+  # ── READING COMPREHENSION / GENERAL KNOWLEDGE ────────────────────────────
+  nli_entailment:
+    content_signals:
+      - "entailment"
+      - "contradiction"
+      - "neutral"
+      - "Does the hypothesis follow"
+      - "can we infer"
+      - "is the statement true"
+    preferred_model: "google/gemini-3.1-flash-lite"
+    fallback_model: "gpt-4o-mini"
+    rationale: >
+      Gemini Flash models perform well on NLI tasks (MNLI, RTE). Source:
+      Gemini Flash public evals and GLUE/SuperGLUE benchmark reports.
+
+  word_sense_disambiguation:
+    content_signals:
+      - "same sense"
+      - "same meaning"
+      - "both sentences use"
+      - "the word"
+      - "used in the same way"
+    preferred_model: "gpt-4o-mini"
+    fallback_model: "google/gemini-3.1-flash-lite"
+    rationale: >
+      GPT-4o Mini shows strong WiC (Word-in-Context) performance. Source:
+      SuperGLUE WiC task evaluations.
+
+  geography_history:
+    content_signals:
+      - "capital of"
+      - "located in"
+      - "country"
+      - "continent"
+      - "ocean"
+      - "founded in"
+      - "century"
+      - "war"
+      - "empire"
+      - "civilization"
+    preferred_model: "google/gemini-3.1-flash-lite"
+    fallback_model: "gpt-4o-mini"
+    rationale: >
+      Gemini Flash shows strong MMLU geography, world history, and humanities
+      performance. Source: Google Gemini model card and public MMLU evaluations.
+
+  # ── EVALUATION / SUMMARIZATION ───────────────────────────────────────────
+  answer_quality_check:
+    content_signals:
+      - "Is the following answer correct"
+      - "evaluate this response"
+      - "rate the quality"
+      - "does this answer"
+      - "is this a good"
+    preferred_model: "claude-3-haiku-20240307"
+    fallback_model: "gpt-4o-mini"
+    rationale: >
+      Claude 3 Haiku is trained for instruction following and evaluation tasks.
+      Source: Anthropic Claude 3 model card.
