@@ -328,20 +328,20 @@ def main(dry_run: bool = False):
     for entry in predictions:
         gidx = entry.get("global index", "")
         old_model = entry["prediction"]
-        new_model: Optional[str] = all_changes.get(gidx)
+        target_model: Optional[str] = all_changes.get(gidx)
 
         # Estimate old cost
         old_cost += estimate_cost(entry)
 
-        if new_model and new_model != old_model:
-            cached = caches.get(new_model, {}).get(gidx)
+        if target_model and target_model != old_model:
+            cached = caches.get(target_model, {}).get(gidx)
             if cached:
-                entry["prediction"] = new_model
+                entry["prediction"] = target_model
                 entry["generated_result"] = build_generated_result(cached)
                 applied += 1
             else:
                 not_found_in_cache += 1
-                print(f"  WARNING: {gidx} → {new_model} not in cache (keeping {old_model})")
+                print(f"  WARNING: {gidx} → {target_model} not in cache (keeping {old_model})")
 
         new_cost += estimate_cost(entry)
 
