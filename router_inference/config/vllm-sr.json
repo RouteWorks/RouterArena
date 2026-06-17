@@ -6,13 +6,13 @@
       "google/gemini-3.1-flash-lite",
       "gemini-2.5-flash",
       "deepseek/deepseek-v4-flash",
+      "deepseek/deepseek-v4-pro",
       "grok-4-1-fast-reasoning",
       "qwen/qwen3-235b-a22b-2507",
       "qwen/qwen3-next-80b-a3b-instruct",
-      "Qwen/Qwen3-Coder-Next",
-      "deepseek-reasoner"
+      "Qwen/Qwen3-Coder-Next"
     ],
     "default_model": "google/gemini-3.1-flash-lite",
-    "description": "vLLM Semantic Router submission using deterministic semantic, structural, domain-aware, and cost-aware routing over a compact model pool."
+    "description": "vLLM Semantic Router using deterministic signal, projection, and prompt-structure routing."
   }
 }
