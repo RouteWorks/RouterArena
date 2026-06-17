@@ -114,7 +114,10 @@ def _hash(query: str) -> str:
 
 def _is_multiple_choice_context_none(prompt: str) -> bool:
     """Return True if prompt uses the 'Please read multiple-choice' format with Context: None."""
-    return "Context: None" in prompt and "Please read the following multiple-choice" in prompt
+    return (
+        "Context: None" in prompt
+        and "Please read the following multiple-choice" in prompt
+    )
 
 
 def classify_override(prompt: str) -> tuple[Optional[str], str]:
@@ -129,7 +132,10 @@ def classify_override(prompt: str) -> tuple[Optional[str], str]:
     # Pattern 1b: Two moderate medical signals → gemini-2.0
     moderate_hits = len(_MEDICAL_MODERATE.findall(prompt))
     if moderate_hits >= 3:
-        return MODEL_GEMINI_2_0, f"medical MCQ ({moderate_hits} moderate signals) → gemini-2.0"
+        return (
+            MODEL_GEMINI_2_0,
+            f"medical MCQ ({moderate_hits} moderate signals) → gemini-2.0",
+        )
 
     # Pattern 2: Historical content → gemini-2.0
     if _HISTORY_STRONG.search(prompt):
