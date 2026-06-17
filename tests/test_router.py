@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
+
 from hybrid_router.router import HybridRouter
 from unittest.mock import MagicMock
 import numpy as np

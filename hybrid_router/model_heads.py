@@ -1,7 +1,9 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
+
 import torch
 import torch.nn as nn
 import numpy as np
-
 
 class ModelHead(nn.Module):
     def __init__(self, input_dim=768):

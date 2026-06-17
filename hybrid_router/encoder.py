@@ -1,5 +1,7 @@
-from sentence_transformers import SentenceTransformer
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 
+from sentence_transformers import SentenceTransformer
 
 class HybridRouterEncoder:
     def __init__(self):

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
+
 from hybrid_router.model_heads import ModelHeadCollection
 from training.dataset import embed_in_chunks
 import numpy as np
