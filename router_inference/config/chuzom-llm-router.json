@@ -5,15 +5,16 @@
     "models": [
       "qwen/qwen3-235b-a22b-2507",
       "google/gemini-3.1-flash-lite",
+      "google/gemini-2.0-flash-001",
       "deepseek/deepseek-v4-flash",
       "qwen/qwen3-next-80b-a3b-instruct",
       "Qwen/Qwen3-Coder-Next",
       "gpt-4o-mini",
       "claude-3-haiku-20240307"
     ],
-    "description": "Chuzom LLM Router v0.1.0 (experimental). Uses gemini-3.1-flash-lite as offline routing classifier. Pre-computed decisions in chuzom-llm-routing-decisions.json. Regex fallback for unknown queries. DO NOT submit without running scripts/generate_llm_routing.py first."
+    "description": "Chuzom LLM Router v0.7.1. Offline gemini-2.5-flash classifier with 5-model pool including gemini-2.0-flash-001 for long-context reading comprehension. Pre-computed decisions in chuzom-llm-routing-decisions.json."
   },
   "router": "chuzom-llm-router",
   "router_name": "chuzom-llm-router",
-  "description": "Chuzom LLM Router — experiment-only. Offline LLM classifier + regex fallback."
+  "description": "Chuzom LLM Router — offline LLM classifier (gemini-2.5-flash) + content-based regex fallback."
 }

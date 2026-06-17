@@ -24,6 +24,7 @@ DECISIONS_PATH = "./router_inference/config/chuzom-llm-routing-decisions.json"
 
 MODEL_TO_CACHE_FILE = {
     "google/gemini-3.1-flash-lite": "google_gemini-3.1-flash-lite.jsonl",
+    "google/gemini-2.0-flash-001": "gemini-2.0-flash-001.jsonl",
     "deepseek/deepseek-v4-flash": "deepseek_deepseek-v4-flash.jsonl",
     "qwen/qwen3-235b-a22b-2507": "qwen_qwen3-235b-a22b-2507.jsonl",
     "qwen/qwen3-next-80b-a3b-instruct": "qwen_qwen3-next-80b-a3b-instruct.jsonl",
@@ -32,6 +33,7 @@ MODEL_TO_CACHE_FILE = {
 # Cache fallback order when preferred model not in cache
 FALLBACK_PRIORITY = [
     "deepseek/deepseek-v4-flash",
+    "google/gemini-2.0-flash-001",
     "google/gemini-3.1-flash-lite",
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-next-80b-a3b-instruct",
@@ -39,6 +41,7 @@ FALLBACK_PRIORITY = [
 
 PRICING = {
     "google/gemini-3.1-flash-lite": {"input": 0.10, "output": 0.40},
+    "google/gemini-2.0-flash-001": {"input": 0.10, "output": 0.40},
     "deepseek/deepseek-v4-flash": {"input": 0.07, "output": 0.28},
     "qwen/qwen3-235b-a22b-2507": {"input": 0.14, "output": 0.60},
     "qwen/qwen3-next-80b-a3b-instruct": {"input": 0.30, "output": 0.90},

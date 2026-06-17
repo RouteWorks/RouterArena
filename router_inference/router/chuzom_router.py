@@ -573,10 +573,11 @@ class ChuzomRouter(BaseRouter):
             if model:
                 return model
 
-        # ── Narrative reading comprehension → gemini-3.1-flash-lite ─────────
+        # ── Narrative reading comprehension → gemini-2.0-flash-001 ─────────
         if _NARRATIVE_CTX.match(q) or _NARRATIVE_PASSAGE.search(q):
             model = _available(
                 self.models,
+                "google/gemini-2.0-flash-001",
                 "google/gemini-3.1-flash-lite",
                 "deepseek/deepseek-v4-flash",
             )
