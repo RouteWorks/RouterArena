@@ -3,6 +3,7 @@
 
 import math
 
+
 class HybridRouter:
     def __init__(
         self, encoder, heads, scaler, curves, cost_model, budget_candidates=None

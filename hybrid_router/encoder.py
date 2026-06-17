@@ -3,6 +3,7 @@
 
 from sentence_transformers import SentenceTransformer
 
+
 class HybridRouterEncoder:
     def __init__(self):
         """

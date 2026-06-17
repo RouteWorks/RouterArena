@@ -3,6 +3,7 @@
 
 import json
 
+
 class CostModel:
     def __init__(self, pricing: dict):
         """
