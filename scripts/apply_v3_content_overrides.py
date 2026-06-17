@@ -30,7 +30,7 @@ COMPLIANCE: routing decisions based solely on prompt content patterns.
 import hashlib
 import json
 import re
-import sys
+from typing import Optional
 
 DATASET_PATH = "./dataset/router_data.json"
 DECISIONS_PATH = "./router_inference/config/chuzom-llm-routing-decisions.json"
@@ -80,7 +80,7 @@ def _hash(query: str) -> str:
     return hashlib.sha256(query.encode()).hexdigest()
 
 
-def classify_override(prompt: str) -> tuple[str | None, str]:
+def classify_override(prompt: str) -> tuple[Optional[str], str]:
     """Return (new_model, reason) if this prompt should be overridden, else (None, '')."""
     # 1. LiveCodeBench → qwen3-235b
     if _LCB_PREFIX.match(prompt):
@@ -132,7 +132,9 @@ def main() -> None:
         new_model, reason = classify_override(prompt)
         if new_model and new_model != current_model:
             decisions[h] = new_model
-            override_counts[f"{current_model.split('/')[-1]} → {new_model.split('/')[-1]}"] += 1
+            override_counts[
+                f"{current_model.split('/')[-1]} → {new_model.split('/')[-1]}"
+            ] += 1
             reason_by_change[reason] += 1
             overrides_applied += 1
 
