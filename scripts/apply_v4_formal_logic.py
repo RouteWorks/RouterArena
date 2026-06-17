@@ -37,8 +37,9 @@ _FORMAL_VOCAB = re.compile(
     re.IGNORECASE,
 )
 
-# Unicode formal logic symbols: ∀∃∧∨¬→↔□◇⊢⊨≡ and ASCII variants
-_FORMAL_SYMBOLS = re.compile(r"[∀∃∧∨¬→↔□◇⊢⊨≡]")
+# Unicode formal logic symbols: ∀∃∧∨¬→↔□◇⊢⊨≡⊃ and ASCII variants
+# ⊃ is the "horseshoe" implication operator used in propositional logic (PL notation)
+_FORMAL_SYMBOLS = re.compile(r"[∀∃∧∨¬→↔□◇⊢⊨≡⊃]")
 
 # ── Model names ────────────────────────────────────────────────────────────────
 
