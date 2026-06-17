@@ -30,11 +30,18 @@ MODEL_TO_CACHE_FILE = {
     "qwen/qwen3-next-80b-a3b-instruct": "qwen_qwen3-next-80b-a3b-instruct.jsonl",
 }
 
-# Cache fallback order when preferred model not in cache
+# Cache fallback order when preferred model not in cache.
+# Order rationale:
+#   1. gemini-2.0: high accuracy, cheaper than deepseek (109 avg tokens vs 495)
+#   2. gemini-lite: cheap fallback — keeps cost low when g2.0 also misses
+#   3. deepseek: high coverage but expensive output; only reached if both gemini models miss
+# This order benefits BOTH directions:
+#   - gemini-lite misses → try gemini-2.0 (better accuracy, same price tier)
+#   - gemini-2.0 misses → try gemini-lite (cheap, avoids deepseek cost spike)
 FALLBACK_PRIORITY = [
-    "deepseek/deepseek-v4-flash",
     "google/gemini-2.0-flash-001",
     "google/gemini-3.1-flash-lite",
+    "deepseek/deepseek-v4-flash",
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-next-80b-a3b-instruct",
 ]
