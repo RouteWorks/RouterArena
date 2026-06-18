@@ -28,6 +28,7 @@ CACHED_RESULTS_DIR = "./cached_results"
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 MODEL_TO_CACHE_FILE = {
+    "google/gemini-2.0-flash-001": "gemini-2.0-flash-001.jsonl",
     "google/gemini-3.1-flash-lite": "google_gemini-3.1-flash-lite.jsonl",
     "deepseek/deepseek-v4-flash": "deepseek_deepseek-v4-flash.jsonl",
     "qwen/qwen3-235b-a22b-2507": "qwen_qwen3-235b-a22b-2507.jsonl",
