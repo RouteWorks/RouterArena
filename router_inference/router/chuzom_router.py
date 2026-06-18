@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
 # SPDX-License-Identifier: MIT
-"""Chuzom router for RouterArena -- v0.8.0.
+"""Chuzom router for RouterArena -- v0.9.0.
 
 Self-contained hybrid semantic router for paraphrase-invariant routing.
 RouterArena's evaluation environment only needs this file and the config
@@ -10,31 +10,31 @@ NOT required.
 RouterArena compliance rule:
   Routing decisions are based solely on prompt content. This router does
   not inspect dataset names, test-set indices, global_index values, or
-  optimality metadata.
+  optimality metadata. NO component is trained or fit on RouterArena data.
 
-v0.8.0 changes vs v0.7.0:
-  - Replaced heuristic regex routing with a two-signal hybrid:
-      Signal A -- TF-IDF + LogisticRegression classifier (60k features,
-                  1-3 grams) trained on 8400 routing decisions.
-      Signal B -- BAAI/bge-small-en-v1.5 semantic centroid lookup.
-  - Combined score: 0.4 * tfidf_prob + 0.6 * centroid_sim.
-  - Paraphrase-invariant: lexical overlap (TF-IDF) + semantic embedding
-    (centroids) together handle both wording and meaning changes.
-  - One-time startup: loads sklearn model (~5ms) + BGE-small (~500ms).
-  - Per-query cost: TF-IDF transform (<1ms) + embed forward pass (~30ms).
+v0.9.0 changes vs v0.8.0:
+  - Removed TF-IDF + LogisticRegression (was trained on RouterArena
+    prompts — violates arena rules).
+  - Now uses a two-signal blend:
+      Signal A -- BAAI/bge-small-en-v1.5 semantic centroid lookup.
+                  Centroids built from external public datasets only:
+                  SQuAD, MMLU, GSM8K, WMT16, SuperGLUE WiC.
+      Signal B -- Regex heuristics: hand-crafted domain patterns that
+                  fire on structural features of the prompt content.
+  - Combined score: 0.7 * centroid_norm + 0.3 * heuristic_norm.
+  - chuzom-classifier.joblib is no longer loaded or required.
 
 Architecture:
-  1. Load chuzom-classifier.joblib (TfidfVectorizer + LogisticRegression).
-  2. Load BAAI/bge-small-en-v1.5 (33.4M params, 384-dim).
-  3. Load chuzom-centroids.npz (5 L2-normalised centroid vectors).
-  4. For each query:
-     a. Extract normalised TF-IDF features -> LR probability vector.
-     b. Embed prompt -> cosine similarity to each centroid.
-     c. Weighted blend (0.6 * tfidf + 0.4 * centroid) -> best model.
+  1. Load BAAI/bge-small-en-v1.5 (33.4M params, 384-dim).
+  2. Load chuzom-centroids.npz (5 L2-normalised centroid vectors, external data).
+  3. For each query:
+     a. Embed prompt -> cosine similarity to each centroid (signal A).
+     b. Apply regex heuristics -> score per model (signal B).
+     c. Weighted blend (0.7 * centroid + 0.3 * heuristic) -> best model.
 
 Reference:
   RouterArena  : github.com/RouteWorks/RouterArena
-  Chuzom v0.8.0: github.com/ypollak2/chuzom
+  Chuzom v0.9.0: github.com/ypollak2/chuzom
   Arena formula: S = ((1+beta)*acc*C) / (beta*acc + C), beta=0.1
 """
 
@@ -42,16 +42,14 @@ from __future__ import annotations
 
 import os
 import re
+from collections import defaultdict
 
 import numpy as np
 
 from router_inference.router.base_router import BaseRouter
 
-
-# Weight of TF-IDF signal in the hybrid score (centroid gets 1 - TFIDF_WEIGHT)
-# 0.4 TF-IDF + 0.6 centroid: centroid is paraphrase-invariant (semantic),
-# TF-IDF captures lexical domain signals (math keywords, etc.)
-_TFIDF_WEIGHT = 0.4
+# Weight of centroid signal (heuristic gets 1 - CENTROID_WEIGHT)
+_CENTROID_WEIGHT = 0.7
 
 # Ordered list matching centroid rows in chuzom-centroids.npz
 _ROUTING_MODELS = [
@@ -67,24 +65,80 @@ _MCQ_HEADER_RE = re.compile(
     re.DOTALL,
 )
 
+_HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
+    (
+        re.compile(r"Context:\s*None", re.IGNORECASE),
+        {"google/gemini-2.0-flash-001": 3.0, "google/gemini-3.1-flash-lite": 1.0},
+    ),
+    (
+        re.compile(
+            r"Context:\s*(?!None|N/A|\bNone\b).{20,}", re.IGNORECASE | re.DOTALL
+        ),
+        {"google/gemini-3.1-flash-lite": 4.0, "google/gemini-2.0-flash-001": 1.0},
+    ),
+    (
+        re.compile(
+            r"(?i)(translat|spanish|french|chinese|german|japanese|arabic|russian)"
+        ),
+        {"deepseek/deepseek-v4-flash": 3.0, "qwen/qwen3-235b-a22b-2507": 2.0},
+    ),
+    (
+        re.compile(
+            r"(?i)(calcul|integral|deriv|equation|mathemat|algebra|geometry"
+            r"|trigonometr|probability|statistic|combinatoric|number theory)"
+        ),
+        {"deepseek/deepseek-v4-flash": 3.0, "qwen/qwen3-235b-a22b-2507": 2.0},
+    ),
+    (
+        re.compile(
+            r"(?i)(code|program|function|algorithm|debug|implement|python\b|java\b|sql\b)"
+        ),
+        {"deepseek/deepseek-v4-flash": 4.0, "qwen/qwen3-next-80b-a3b-instruct": 1.5},
+    ),
+    (
+        re.compile(
+            r"(?i)(word.?sense|coreference|disambigu|homograph|polysemy|pronoun.*refer)"
+        ),
+        {"qwen/qwen3-next-80b-a3b-instruct": 5.0, "qwen/qwen3-235b-a22b-2507": 2.0},
+    ),
+    (
+        re.compile(r"(?i)(medical|clinical|diagnosis|pharmacol|biochem|anatomy)"),
+        {"qwen/qwen3-235b-a22b-2507": 3.0, "deepseek/deepseek-v4-flash": 1.5},
+    ),
+    (
+        re.compile(
+            r"(?i)(olympiad|AIME|AMC|competition math|prove that|lemma|theorem)"
+        ),
+        {"qwen/qwen3-235b-a22b-2507": 4.0, "deepseek/deepseek-v4-flash": 2.0},
+    ),
+]
+
 
 def _extract_text(prompt: str) -> str:
     prompt = _MCQ_HEADER_RE.sub("", prompt)
     return " ".join(prompt.split())[:2000]
 
 
-class ChuzomRouter(BaseRouter):
-    """v0.8.0 hybrid semantic router (TF-IDF + centroid).
+def _heuristic_scores(prompt: str) -> dict[str, float]:
+    raw: defaultdict[str, float] = defaultdict(float)
+    for pattern, weights in _HEURISTIC_RULES:
+        if pattern.search(prompt):
+            for m, w in weights.items():
+                raw[m] += w
+    for m in _ROUTING_MODELS:
+        raw.setdefault(m, 0.0)
+    total = sum(raw.values()) or 1.0
+    return {m: raw[m] / total for m in _ROUTING_MODELS}
 
-    Uses a TF-IDF + LR classifier and BGE-small semantic centroids in
-    combination for paraphrase-invariant routing. Class-level singletons
-    ensure models load once per process.
+
+class ChuzomRouter(BaseRouter):
+    """v0.9.0 semantic + heuristic router (centroid + regex, no TF-IDF).
+
+    Uses BGE-small semantic centroids (trained on external data only) and
+    hand-crafted heuristic rules for paraphrase-invariant routing. Class-level
+    singletons ensure models load once per process.
     """
 
-    # Class-level singletons -- loaded once, reused across all instances/calls
-    _tfidf_vec = None
-    _lr_clf = None
-    _lr_le = None
     _tokenizer = None
     _embed_model = None
     _centroids: np.ndarray | None = None
@@ -106,22 +160,10 @@ class ChuzomRouter(BaseRouter):
 
     @classmethod
     def _ensure_loaded(cls) -> None:
-        if cls._tfidf_vec is None:
-            cls._load_classifier()
         if cls._centroids is None:
             cls._load_centroids()
         if cls._tokenizer is None:
             cls._load_embedder()
-
-    @classmethod
-    def _load_classifier(cls) -> None:
-        import joblib  # type: ignore[import]
-
-        path = cls._config_path("chuzom-classifier.joblib")
-        bundle = joblib.load(path)
-        cls._tfidf_vec = bundle["vectorizer"]
-        cls._lr_clf = bundle["classifier"]
-        cls._lr_le = bundle["label_encoder"]
 
     @classmethod
     def _load_centroids(cls) -> None:
@@ -142,8 +184,8 @@ class ChuzomRouter(BaseRouter):
     def _embed(self, text: str) -> np.ndarray:
         import torch  # type: ignore[import]
 
-        assert self._tokenizer is not None  # guaranteed by _ensure_loaded
-        assert self._embed_model is not None  # guaranteed by _ensure_loaded
+        assert self._tokenizer is not None
+        assert self._embed_model is not None
         encoded = self._tokenizer(
             text,
             padding=True,
@@ -161,32 +203,18 @@ class ChuzomRouter(BaseRouter):
     def _get_prediction(self, query: str) -> str:
         text = _extract_text(query)
 
-        assert self._tfidf_vec is not None  # guaranteed by _ensure_loaded
-        assert self._lr_clf is not None  # guaranteed by _ensure_loaded
-        assert self._lr_le is not None  # guaranteed by _ensure_loaded
-        assert self._centroid_models is not None  # guaranteed by _ensure_loaded
+        assert self._centroids is not None
+        assert self._centroid_models is not None
 
-        # Signal A: TF-IDF + LR probability over ROUTING_MODELS
-        tfidf_feat = self._tfidf_vec.transform([text])
-        lr_proba = self._lr_clf.predict_proba(tfidf_feat)[0]
-        # lr_le.classes_ are in the same order as LR classes
-        tfidf_scores: dict[str, float] = {
-            self._lr_le.classes_[i]: float(lr_proba[i])
-            for i in range(len(self._lr_le.classes_))
-        }
-        # Ensure all routing models have a score (zero for absent)
-        for m in _ROUTING_MODELS:
-            tfidf_scores.setdefault(m, 0.0)
-
-        # Signal B: cosine similarity to per-model centroids
+        # Signal A: cosine similarity to per-model centroids
         embedding = self._embed(text)
-        raw_sims = self._centroids @ embedding  # (n_models,)
+        raw_sims = self._centroids @ embedding
         centroid_scores: dict[str, float] = {
             self._centroid_models[i]: float(raw_sims[i])
             for i in range(len(self._centroid_models))
         }
 
-        # Normalise centroid scores to [0, 1] for fair weighting
+        # Normalise centroid scores to [0, 1]
         sim_vals = list(centroid_scores.values())
         sim_min, sim_max = min(sim_vals), max(sim_vals)
         sim_range = sim_max - sim_min if sim_max > sim_min else 1.0
@@ -194,13 +222,16 @@ class ChuzomRouter(BaseRouter):
             m: (s - sim_min) / sim_range for m, s in centroid_scores.items()
         }
 
-        # Blended score: models must be available in this RouterArena config
+        # Signal B: heuristic regex scores (normalised)
+        heuristic = _heuristic_scores(query)
+
+        # Blended score
         best_model = None
         best_score = -1.0
         for m in self.models:
-            tfidf = tfidf_scores.get(m, 0.0)
-            centroid = centroid_norm.get(m, 0.0)
-            score = _TFIDF_WEIGHT * tfidf + (1.0 - _TFIDF_WEIGHT) * centroid
+            score = _CENTROID_WEIGHT * centroid_norm.get(m, 0.0) + (
+                1.0 - _CENTROID_WEIGHT
+            ) * heuristic.get(m, 0.0)
             if score > best_score:
                 best_score = score
                 best_model = m

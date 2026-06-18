@@ -1,30 +1,28 @@
 # SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
 # SPDX-License-Identifier: MIT
-"""Chuzom multi-layer parallel ensemble router — v2.0.0.
+"""Chuzom multi-layer parallel ensemble router — v2.1.0.
 
 RouterArena compliance rule:
   Routing decisions are based solely on prompt content. No dataset names,
   test-set indices, global_index values, or optimality metadata are used.
+  NO component is trained or fit on RouterArena data.
 
-Architecture — 4 parallel gates with confidence-weighted smart score:
+Architecture — 3 parallel gates with confidence-weighted smart score:
 
   QUERY ──────────────────────────────────────────────────────────────┐
     │                                                                  │
-    ├──► Gate 1: TF-IDF + LogisticRegression                          │
-    │     signal_strength = top1_prob - top2_prob  (margin)           │
-    │     base_weight = 1.0                                            │
-    │                                                                  │
-    ├──► Gate 2: BGE-small centroid cosine similarity                  │
+    ├──► Gate 1: BGE-small centroid cosine similarity                  │
     │     signal_strength = (top1_sim - top2_sim) / sim_range          │
     │     base_weight = 1.3                                            │
+    │     trained on: SQuAD, MMLU, GSM8K, WMT16, SuperGLUE WiC        │
     │                                                                  │
-    ├──► Gate 3: Structural heuristic (regex rules)                    │
+    ├──► Gate 2: Structural heuristic (regex rules)                    │
     │     signal_strength = (top_score - second_score) / top_score     │
     │     base_weight = 0.9                                            │
     │                                                                  │
-    └──► Gate 4: LLM-as-Judge (conditional, pre-cached preferred)      │
+    └──► Gate 3: LLM-as-Judge (conditional, pre-cached preferred)      │
           activated when combined confidence < JUDGE_THRESHOLD         │
-          sees all raw gate scores in a compact signal summary          │
+          sees centroid + heuristic raw scores in signal summary       │
           base_weight = 2.5 (highest authority)                        │
                                                                        │
   Smart Score:                                                         │
@@ -32,25 +30,26 @@ Architecture — 4 parallel gates with confidence-weighted smart score:
     final_score(m) = Σ_i  eff_w_i × gate_score_i(m)                  │
                                                                        │
   Early-exit rule:                                                     │
-    If ≥2 gates agree AND max_strength > HIGH_THRESHOLD → return      │
-    immediately without invoking LLM judge.                            │
+    If centroid and heuristic agree AND both margins > HIGH_THRESHOLD  │
+    → return immediately without invoking LLM judge.                   │
                                                                        │
   LLM-judge trigger:                                                   │
     If top model's blended_margin < JUDGE_THRESHOLD → call LLM.       │
     LLM receives compact signal dict → returns single model name.      │
     Result is cached in llm-judge-decisions.json for future calls.     │
 
-v2.0.0 changes vs v0.8.0:
-  - Replaced single TF-IDF+centroid blend with 4-gate parallel ensemble
-  - Confidence-weighted Borda-style aggregation (not fixed weights)
-  - Structural heuristic reinstated as Gate 3 for fast domain signals
-  - LLM judge as Gate 4: fires on low blended confidence
-  - Pre-cached LLM decisions loaded at startup for zero latency
-  - Early-exit shortcut when high-confidence gates unanimously agree
+v2.1.0 changes vs v2.0.0:
+  - Removed Gate 1 (TF-IDF + LogisticRegression).  That classifier was
+    trained on RouterArena prompts, which violates the arena rules.
+  - Gates renumbered: centroid=1, heuristic=2, LLM judge=3.
+  - chuzom-classifier.joblib is no longer loaded or used.
+  - All routing decisions based solely on BGE-small centroids (external
+    data only: SQuAD, MMLU, GSM8K, WMT16, SuperGLUE WiC) and hand-
+    crafted regex heuristics that are prompt-content-only.
 
 Reference:
   RouterArena  : github.com/RouteWorks/RouterArena
-  Chuzom v2.0.0: github.com/ypollak2/chuzom
+  Chuzom v2.1.0: github.com/ypollak2/chuzom
   Arena formula: S = ((1+beta)*acc*C) / (beta*acc + C), beta=0.1
 """
 
@@ -75,7 +74,6 @@ _JUDGE_THRESHOLD = 0.12
 
 # Base weights per gate (before confidence boosting)
 _GATE_WEIGHTS = {
-    "tfidf": 1.0,
     "centroid": 1.3,
     "heuristic": 0.9,
     "llm_judge": 2.5,
@@ -95,7 +93,7 @@ _MCQ_HEADER_RE = re.compile(
     re.DOTALL,
 )
 
-# ── Heuristic rules (Gate 3) ──────────────────────────────────────────────────
+# ── Heuristic rules (Gate 2) ──────────────────────────────────────────────────
 
 _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
     (
@@ -155,19 +153,16 @@ def _extract_text(prompt: str) -> str:
 
 _JUDGE_SYSTEM = """\
 You are a routing classifier for a multi-model benchmark. You receive raw signal
-scores from three classifiers. Select EXACTLY ONE model. Base your decision ONLY on
+scores from two classifiers. Select EXACTLY ONE model. Base your decision ONLY on
 the signal data and the query excerpt. Return the full model name, nothing else."""
 
 _JUDGE_USER_TEMPLATE = """\
 Gate signals (each gate reports top-3 model scores):
 
-TF-IDF+LR  (lexical, margin={tfidf_margin:.3f}):
-{tfidf_top3}
-
-Centroid   (semantic, margin={centroid_margin:.3f}):
+Centroid   (semantic similarity to task clusters, margin={centroid_margin:.3f}):
 {centroid_top3}
 
-Heuristic  (structural, margin={heuristic_margin:.3f}):
+Heuristic  (structural text patterns, margin={heuristic_margin:.3f}):
 {heuristic_top3}
 
 Query excerpt (first 400 chars):
@@ -180,18 +175,19 @@ Which model should handle this query? Reply with exactly one full model name."""
 
 
 class ChuzomRouterV2(BaseRouter):
-    """v2.0.0 multi-layer parallel ensemble with confidence-weighted smart score.
+    """v2.1.0 multi-layer parallel ensemble with confidence-weighted smart score.
 
-    Four gates run in parallel. Confidence-weighted aggregation amplifies
+    Three gates run in parallel. Confidence-weighted aggregation amplifies
     gates with strong signals. An LLM judge fires only when the blended
     confidence is below threshold, providing high-quality tie-breaking
     without incurring LLM cost on confident predictions.
+
+    All training data is external (not RouterArena):
+      - BGE-small centroids: SQuAD, MMLU, GSM8K, WMT16, SuperGLUE WiC
+      - Heuristic rules: hand-crafted regex, no corpus required
     """
 
     # Class-level singletons — loaded once, shared across all instances
-    _tfidf_vec = None
-    _lr_clf = None
-    _lr_le = None
     _tokenizer = None
     _embed_model = None
     _centroids: np.ndarray | None = None
@@ -217,24 +213,12 @@ class ChuzomRouterV2(BaseRouter):
 
     @classmethod
     def _ensure_loaded(cls) -> None:
-        if cls._tfidf_vec is None:
-            cls._load_classifier()
         if cls._centroids is None:
             cls._load_centroids()
         if cls._tokenizer is None:
             cls._load_embedder()
         if cls._llm_judge_cache is None:
             cls._load_judge_cache()
-
-    @classmethod
-    def _load_classifier(cls) -> None:
-        import joblib  # type: ignore[import]
-
-        path = cls._config_path("chuzom-classifier.joblib")
-        bundle = joblib.load(path)
-        cls._tfidf_vec = bundle["vectorizer"]
-        cls._lr_clf = bundle["classifier"]
-        cls._lr_le = bundle["label_encoder"]
 
     @classmethod
     def _load_centroids(cls) -> None:
@@ -263,25 +247,6 @@ class ChuzomRouterV2(BaseRouter):
 
     # ── Gate implementations ───────────────────────────────────────────────────
 
-    def _gate_tfidf(self, text: str) -> tuple[dict[str, float], float]:
-        """Gate 1: TF-IDF + LR.  Returns (scores, margin)."""
-        assert self._tfidf_vec is not None
-        assert self._lr_clf is not None
-        assert self._lr_le is not None
-
-        feat = self._tfidf_vec.transform([text])
-        proba = self._lr_clf.predict_proba(feat)[0]
-        scores: dict[str, float] = {
-            self._lr_le.classes_[i]: float(proba[i])
-            for i in range(len(self._lr_le.classes_))
-        }
-        for m in _ROUTING_MODELS:
-            scores.setdefault(m, 0.0)
-
-        vals = sorted(scores.values(), reverse=True)
-        margin = vals[0] - vals[1] if len(vals) > 1 else 1.0
-        return scores, margin
-
     def _embed(self, text: str) -> np.ndarray:
         import torch  # type: ignore[import]
 
@@ -299,7 +264,7 @@ class ChuzomRouterV2(BaseRouter):
         return emb.squeeze(0).numpy().astype(np.float32)
 
     def _gate_centroid(self, text: str) -> tuple[dict[str, float], float]:
-        """Gate 2: BGE-small centroid similarity.  Returns (norm_scores, margin)."""
+        """Gate 1: BGE-small centroid similarity.  Returns (norm_scores, margin)."""
         assert self._centroids is not None
         assert self._centroid_models is not None
 
@@ -319,7 +284,7 @@ class ChuzomRouterV2(BaseRouter):
         return norm_scores, margin
 
     def _gate_heuristic(self, prompt: str) -> tuple[dict[str, float], float]:
-        """Gate 3: Structural regex heuristic.  Returns (norm_scores, margin)."""
+        """Gate 2: Structural regex heuristic.  Returns (norm_scores, margin)."""
         raw: defaultdict[str, float] = defaultdict(float)
         for pattern, weights in _HEURISTIC_RULES:
             if pattern.search(prompt):
@@ -345,27 +310,20 @@ class ChuzomRouterV2(BaseRouter):
 
     def _smart_score(
         self,
-        tfidf: dict[str, float],
-        tfidf_margin: float,
         centroid: dict[str, float],
         centroid_margin: float,
         heuristic: dict[str, float],
         heuristic_margin: float,
         llm_winner: str | None,
     ) -> dict[str, float]:
-        """Combine all gate outputs into a single blended score per model."""
-        w_t = self._effective_weight(_GATE_WEIGHTS["tfidf"], tfidf_margin)
+        """Combine gate outputs into a single blended score per model."""
         w_c = self._effective_weight(_GATE_WEIGHTS["centroid"], centroid_margin)
         w_h = self._effective_weight(_GATE_WEIGHTS["heuristic"], heuristic_margin)
-        total_w = w_t + w_c + w_h
+        total_w = w_c + w_h
 
         blended: dict[str, float] = {}
         for m in self.models:
-            score = (
-                w_t * tfidf.get(m, 0.0)
-                + w_c * centroid.get(m, 0.0)
-                + w_h * heuristic.get(m, 0.0)
-            ) / total_w
+            score = (w_c * centroid.get(m, 0.0) + w_h * heuristic.get(m, 0.0)) / total_w
             blended[m] = score
 
         # LLM judge: add as a strong additional vote if it fired
@@ -377,7 +335,7 @@ class ChuzomRouterV2(BaseRouter):
 
         return blended
 
-    # ── LLM judge (Gate 4) ────────────────────────────────────────────────────
+    # ── LLM judge (Gate 3) ────────────────────────────────────────────────────
 
     @staticmethod
     def _top3_str(scores: dict[str, float]) -> str:
@@ -387,8 +345,6 @@ class ChuzomRouterV2(BaseRouter):
     def _call_llm_judge(
         self,
         prompt: str,
-        tfidf: dict[str, float],
-        tfidf_margin: float,
         centroid: dict[str, float],
         centroid_margin: float,
         heuristic: dict[str, float],
@@ -412,8 +368,6 @@ class ChuzomRouterV2(BaseRouter):
             return None
 
         user_msg = _JUDGE_USER_TEMPLATE.format(
-            tfidf_margin=tfidf_margin,
-            tfidf_top3=self._top3_str(tfidf),
             centroid_margin=centroid_margin,
             centroid_top3=self._top3_str(centroid),
             heuristic_margin=heuristic_margin,
@@ -455,13 +409,9 @@ class ChuzomRouterV2(BaseRouter):
     def _get_prediction(self, query: str) -> str:
         text = _extract_text(query)
 
-        # ── Run all gates in parallel (conceptually; Python is single-threaded) ──
-        tfidf_scores, tfidf_margin = self._gate_tfidf(text)
         centroid_scores, centroid_margin = self._gate_centroid(text)
         heuristic_scores, heuristic_margin = self._gate_heuristic(query)
 
-        # ── Early-exit: unanimous high-confidence agreement ───────────────────
-        tfidf_winner = max(tfidf_scores, key=lambda m: tfidf_scores.get(m, 0.0))
         centroid_winner = max(
             centroid_scores, key=lambda m: centroid_scores.get(m, 0.0)
         )
@@ -469,22 +419,16 @@ class ChuzomRouterV2(BaseRouter):
             heuristic_scores, key=lambda m: heuristic_scores.get(m, 0.0)
         )
 
-        gate_winners = {tfidf_winner, centroid_winner}
-        if heuristic_margin > 0:  # heuristic fired (not uniform)
-            gate_winners.add(heuristic_winner)
-
+        # ── Early-exit: both gates agree with high confidence ─────────────────
         if (
-            len(gate_winners) == 1
-            and tfidf_margin > _HIGH_CONFIDENCE
+            centroid_winner == heuristic_winner
             and centroid_margin > _HIGH_CONFIDENCE
+            and heuristic_margin > _HIGH_CONFIDENCE
         ):
-            # All active gates agree strongly — skip LLM judge
-            return next(iter(gate_winners))
+            return centroid_winner
 
         # ── Compute blended score (no LLM yet) ───────────────────────────────
         blended = self._smart_score(
-            tfidf_scores,
-            tfidf_margin,
             centroid_scores,
             centroid_margin,
             heuristic_scores,
@@ -496,13 +440,11 @@ class ChuzomRouterV2(BaseRouter):
             blended_vals[0] - blended_vals[1] if len(blended_vals) > 1 else 1.0
         )
 
-        # ── Gate 4: LLM judge for low-confidence cases ───────────────────────
+        # ── Gate 3: LLM judge for low-confidence cases ───────────────────────
         llm_winner: str | None = None
         if self._llm_judge_enabled and blended_margin < _JUDGE_THRESHOLD:
             llm_winner = self._call_llm_judge(
                 query,
-                tfidf_scores,
-                tfidf_margin,
                 centroid_scores,
                 centroid_margin,
                 heuristic_scores,
@@ -512,8 +454,6 @@ class ChuzomRouterV2(BaseRouter):
         # ── Final smart score incorporating LLM judge ────────────────────────
         if llm_winner:
             final = self._smart_score(
-                tfidf_scores,
-                tfidf_margin,
                 centroid_scores,
                 centroid_margin,
                 heuristic_scores,
