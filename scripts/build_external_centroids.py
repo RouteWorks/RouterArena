@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
+# SPDX-License-Identifier: MIT
 """
 Build per-model centroid embeddings from EXTERNAL public datasets.
 
@@ -16,9 +18,10 @@ Usage:
     uv run python scripts/build_external_centroids.py
 """
 
-import re
 import sys
+from collections.abc import Callable
 from pathlib import Path
+from typing import Optional
 
 import numpy as np
 
@@ -53,13 +56,15 @@ def load_math_prompts(n: int) -> list[str]:
             if name:
                 kwargs["name"] = name
             ds = load_dataset(path, **kwargs)
-            prompts = []
+            prompts: list[str] = []
             for row in ds:
                 if len(prompts) >= n:
                     break
                 p = row.get("problem", "") or row.get("question", "")
                 if p:
-                    prompts.append(f"Please solve the following mathematical problem step by step. {p}")
+                    prompts.append(
+                        f"Please solve the following mathematical problem step by step. {p}"
+                    )
             if prompts:
                 return prompts[:n]
         except Exception:
@@ -74,10 +79,14 @@ def load_math_prompts(n: int) -> list[str]:
                 break
             p = row.get("question", "")
             if p:
-                prompts.append(f"Please solve the following mathematical problem step by step. {p}")
+                prompts.append(
+                    f"Please solve the following mathematical problem step by step. {p}"
+                )
         return prompts[:n]
     except Exception as e:
-        print(f"  GSM8K also failed ({e}), using synthetic math prompts", file=sys.stderr)
+        print(
+            f"  GSM8K also failed ({e}), using synthetic math prompts", file=sys.stderr
+        )
         templates = [
             "Please solve the following mathematical problem step by step. Find the value of x: {a}x + {b} = {c}",
             "Please solve the following mathematical problem step by step. Calculate the integral of f(x) = {a}x^{b} from 0 to {c}.",
@@ -86,7 +95,7 @@ def load_math_prompts(n: int) -> list[str]:
         prompts = []
         for i in range(n):
             t = templates[i % len(templates)]
-            prompts.append(t.format(a=i+1, b=i+2, c=i+3))
+            prompts.append(t.format(a=i + 1, b=i + 2, c=i + 3))
         return prompts
 
 
@@ -96,7 +105,7 @@ def load_wmt_prompts(n: int) -> list[str]:
 
     try:
         ds = load_dataset("wmt16", "de-en", split="train", trust_remote_code=True)
-        prompts = []
+        prompts: list[str] = []
         for row in ds:
             if len(prompts) >= n:
                 break
@@ -107,15 +116,24 @@ def load_wmt_prompts(n: int) -> list[str]:
                 prompts.append(f"Translate from English to German: {en}")
         return prompts[:n]
     except Exception as e:
-        print(f"  WMT load failed ({e}), using synthetic translation prompts", file=sys.stderr)
+        print(
+            f"  WMT load failed ({e}), using synthetic translation prompts",
+            file=sys.stderr,
+        )
         langs = [
-            ("French", "Spanish"), ("German", "English"), ("English", "Japanese"),
-            ("Chinese", "English"), ("Russian", "English"), ("Arabic", "English"),
+            ("French", "Spanish"),
+            ("German", "English"),
+            ("English", "Japanese"),
+            ("Chinese", "English"),
+            ("Russian", "English"),
+            ("Arabic", "English"),
         ]
         samples = []
         for i in range(n):
             src, tgt = langs[i % len(langs)]
-            samples.append(f"Translate the following text from {src} to {tgt}: This is sample sentence number {i}.")
+            samples.append(
+                f"Translate the following text from {src} to {tgt}: This is sample sentence number {i}."
+            )
         return samples
 
 
@@ -124,7 +142,7 @@ def load_squad_prompts(n: int) -> list[str]:
     from datasets import load_dataset
 
     ds = load_dataset("rajpurkar/squad", split="train")
-    prompts = []
+    prompts: list[str] = []
     seen = set()
     for row in ds:
         if len(prompts) >= n:
@@ -147,7 +165,7 @@ def load_mmlu_prompts(n: int) -> list[str]:
 
     ds = load_dataset("cais/mmlu", "all", split="test", trust_remote_code=True)
     letters = ["A", "B", "C", "D"]
-    prompts = []
+    prompts: list[str] = []
     for row in ds:
         if len(prompts) >= n:
             break
@@ -170,7 +188,7 @@ def load_mmlu_pro_stem_prompts(n: int) -> list[str]:
     try:
         ds = load_dataset("TIGER-Lab/MMLU-Pro", split="test", trust_remote_code=True)
         letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-        prompts = []
+        prompts: list[str] = []
         for row in ds:
             if len(prompts) >= n:
                 break
@@ -180,7 +198,9 @@ def load_mmlu_pro_stem_prompts(n: int) -> list[str]:
             q = row.get("question", "")
             choices = row.get("options", row.get("choices", []))
             if q and len(choices) >= 2:
-                opts = "\n".join(f"{letters[i]}. {c}" for i, c in enumerate(choices[:10]))
+                opts = "\n".join(
+                    f"{letters[i]}. {c}" for i, c in enumerate(choices[:10])
+                )
                 prompts.append(
                     f"Please read the following multiple-choice questions and provide "
                     f"the correct answer.\nContext: None\nQuestion: {q}\n{opts}"
@@ -189,7 +209,10 @@ def load_mmlu_pro_stem_prompts(n: int) -> list[str]:
             raise ValueError("Insufficient STEM rows")
         return prompts[:n]
     except Exception as e:
-        print(f"  MMLUPro load failed ({e}), using ARC-Challenge STEM proxy", file=sys.stderr)
+        print(
+            f"  MMLUPro load failed ({e}), using ARC-Challenge STEM proxy",
+            file=sys.stderr,
+        )
         ds2 = load_dataset("allenai/ai2_arc", "ARC-Challenge", split="test")
         letters = ["A", "B", "C", "D"]
         prompts = []
@@ -214,7 +237,7 @@ def load_wic_prompts(n: int) -> list[str]:
 
     try:
         ds = load_dataset("super_glue", "wic", split="train", trust_remote_code=True)
-        prompts = []
+        prompts: list[str] = []
         for row in ds:
             if len(prompts) >= n:
                 break
@@ -224,9 +247,9 @@ def load_wic_prompts(n: int) -> list[str]:
             if word and s1 and s2:
                 prompts.append(
                     f'Consider the word "{word}".\n'
-                    f'Sentence 1: {s1}\n'
-                    f'Sentence 2: {s2}\n'
-                    f'Is the word used in the same sense in both sentences? Answer Yes or No.'
+                    f"Sentence 1: {s1}\n"
+                    f"Sentence 2: {s2}\n"
+                    f"Is the word used in the same sense in both sentences? Answer Yes or No."
                 )
         if len(prompts) < n // 2:
             raise ValueError("Insufficient WiC rows")
@@ -234,7 +257,9 @@ def load_wic_prompts(n: int) -> list[str]:
     except Exception as e:
         print(f"  WiC load failed ({e}), using WSC fallback", file=sys.stderr)
         try:
-            ds2 = load_dataset("super_glue", "wsc", split="train", trust_remote_code=True)
+            ds2 = load_dataset(
+                "super_glue", "wsc", split="train", trust_remote_code=True
+            )
             prompts = []
             for row in ds2:
                 if len(prompts) >= n:
@@ -245,20 +270,38 @@ def load_wic_prompts(n: int) -> list[str]:
                 if text and span1 and span2:
                     prompts.append(
                         f'In the "Text" below, does the pronoun "{span2}" refer to "{span1}"?\n'
-                        f'Text: {text}\nAnswer: '
+                        f"Text: {text}\nAnswer: "
                     )
             return prompts[:n]
         except Exception as e2:
-            print(f"  WSC also failed ({e2}), using synthetic word-sense prompts", file=sys.stderr)
-            words = ["bank", "bar", "bat", "bear", "book", "bright", "can", "charge",
-                     "cold", "crane", "date", "fall", "file", "fine", "firm"]
+            print(
+                f"  WSC also failed ({e2}), using synthetic word-sense prompts",
+                file=sys.stderr,
+            )
+            words = [
+                "bank",
+                "bar",
+                "bat",
+                "bear",
+                "book",
+                "bright",
+                "can",
+                "charge",
+                "cold",
+                "crane",
+                "date",
+                "fall",
+                "file",
+                "fine",
+                "firm",
+            ]
             prompts = []
             for i in range(n):
                 w = words[i % len(words)]
                 prompts.append(
                     f'Consider the word "{w}" as used in the following two sentences. '
-                    f'Does it have the same meaning in both? Sentence 1: The {w} was near the river. '
-                    f'Sentence 2: She went to the {w} to deposit money. Answer Yes or No.'
+                    f"Does it have the same meaning in both? Sentence 1: The {w} was near the river. "
+                    f"Sentence 2: She went to the {w} to deposit money. Answer Yes or No."
                 )
             return prompts
 
@@ -300,12 +343,12 @@ def embed_texts(texts: list, tokenizer, model_obj, batch_size: int = 64) -> np.n
 
 def main() -> None:
     # Model -> (label, loader_fn)
-    model_loaders = [
-        ("google/gemini-2.0-flash-001",       "Reading comprehension", load_squad_prompts),
-        ("google/gemini-3.1-flash-lite",       "General MCQ (MMLU)",   load_mmlu_prompts),
-        ("deepseek/deepseek-v4-flash",         "Math + Translation",   None),  # two sources
-        ("qwen/qwen3-235b-a22b-2507",          "STEM MCQ (MMLUPro)",  load_mmlu_pro_stem_prompts),
-        ("qwen/qwen3-next-80b-a3b-instruct",  "Word sense (WiC/WSC)", load_wic_prompts),
+    model_loaders: list[tuple[str, str, Optional[Callable[[int], list[str]]]]] = [
+        ("google/gemini-2.0-flash-001", "Reading comprehension", load_squad_prompts),
+        ("google/gemini-3.1-flash-lite", "General MCQ (MMLU)", load_mmlu_prompts),
+        ("deepseek/deepseek-v4-flash", "Math + Translation", None),  # two sources
+        ("qwen/qwen3-235b-a22b-2507", "STEM MCQ (MMLUPro)", load_mmlu_pro_stem_prompts),
+        ("qwen/qwen3-next-80b-a3b-instruct", "Word sense (WiC/WSC)", load_wic_prompts),
     ]
 
     print(f"Loading embedding model: {EMBED_MODEL}", file=sys.stderr)
@@ -319,7 +362,9 @@ def main() -> None:
 
     for model_name, label, loader_fn in model_loaders:
         model_idx = ROUTING_MODELS.index(model_name)
-        print(f"\nLoading [{label}] for {model_name.split('/')[-1]}...", file=sys.stderr)
+        print(
+            f"\nLoading [{label}] for {model_name.split('/')[-1]}...", file=sys.stderr
+        )
 
         if model_name == "deepseek/deepseek-v4-flash":
             # Two sources: math + translation
@@ -328,6 +373,7 @@ def main() -> None:
             wmt_prompts = load_wmt_prompts(n_each)
             prompts = (math_prompts + wmt_prompts)[:SAMPLES_PER_MODEL]
         else:
+            assert loader_fn is not None
             prompts = loader_fn(SAMPLES_PER_MODEL)
 
         print(f"  Loaded {len(prompts)} prompts", file=sys.stderr)
@@ -358,7 +404,10 @@ def main() -> None:
             if j <= i:
                 continue
             sim = float(centroid_matrix[i] @ centroid_matrix[j])
-            print(f"  {m1.split('/')[-1][:20]} <-> {m2.split('/')[-1][:20]}: {sim:.4f}", file=sys.stderr)
+            print(
+                f"  {m1.split('/')[-1][:20]} <-> {m2.split('/')[-1][:20]}: {sim:.4f}",
+                file=sys.stderr,
+            )
 
 
 if __name__ == "__main__":

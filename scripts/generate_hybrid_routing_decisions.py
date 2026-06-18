@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
+# SPDX-License-Identifier: MIT
 """
 Generate new routing decisions using the hybrid router (TF-IDF + external centroids).
 
@@ -55,7 +57,9 @@ def main() -> None:
     print("\nDistribution:", file=sys.stderr)
     total = len(decisions)
     for m, n in sorted(model_counts.items(), key=lambda x: -x[1]):
-        print(f"  {m.split('/')[-1]:<40} {n:>5} ({100 * n / total:.1f}%)", file=sys.stderr)
+        print(
+            f"  {m.split('/')[-1]:<40} {n:>5} ({100 * n / total:.1f}%)", file=sys.stderr
+        )
 
     print(f"\nSaving {len(decisions)} decisions to {OUTPUT_FILE}...", file=sys.stderr)
     with open(OUTPUT_FILE, "w") as f:

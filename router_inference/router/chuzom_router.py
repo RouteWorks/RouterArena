@@ -140,6 +140,8 @@ class ChuzomRouter(BaseRouter):
     def _embed(self, text: str) -> np.ndarray:
         import torch  # type: ignore[import]
 
+        assert self._tokenizer is not None  # guaranteed by _ensure_loaded
+        assert self._embed_model is not None  # guaranteed by _ensure_loaded
         encoded = self._tokenizer(
             text,
             padding=True,
@@ -156,6 +158,11 @@ class ChuzomRouter(BaseRouter):
 
     def _get_prediction(self, query: str) -> str:
         text = _extract_text(query)
+
+        assert self._tfidf_vec is not None  # guaranteed by _ensure_loaded
+        assert self._lr_clf is not None  # guaranteed by _ensure_loaded
+        assert self._lr_le is not None  # guaranteed by _ensure_loaded
+        assert self._centroid_models is not None  # guaranteed by _ensure_loaded
 
         # Signal A: TF-IDF + LR probability over ROUTING_MODELS
         tfidf_feat = self._tfidf_vec.transform([text])

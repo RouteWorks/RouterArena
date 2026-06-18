@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
+# SPDX-License-Identifier: MIT
 """
 Compute per-model centroid embeddings from v4 routing decisions and save to npz.
 

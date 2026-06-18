@@ -1,12 +1,14 @@
 # SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
 # SPDX-License-Identifier: Apache-2.0
-"""Re-classify RouterArena queries using gemini-2.5-flash as the routing classifier.
+"""Re-classify RouterArena queries using Gemini 2.5 Flash as the routing classifier.
 
-This v3 script improves over v2 (generate_llm_routing_v2.py) by:
-  - Using gemini-2.5-flash as the classifier (faster, no rate-limit at 8398 queries)
-  - Adding google/gemini-2.0-flash-001 as a 5th routing target for long-context
-    reading comprehension tasks (2767 cached entries available)
-  - Full dataset rebuild for clean slate; --resume to continue after interruption
+v3 improvements over v2 (qwen3-235b via OpenRouter):
+  - Gemini 2.5 Flash via GOOGLE_API_KEY (no OpenRouter credits needed)
+  - Adds google/gemini-2.0-flash-001 as a 5th routing target
+  - gemini-2.0 is PRIMARY for standard MCQ (cheapest in arena output pricing)
+  - gemini-lite becomes the passage-based/reading-comprehension specialist
+  - Tighter qwen3-235b threshold: only genuinely expert-level hard reasoning
+  - Retry with exponential backoff handles 429 rate-limit responses
 
 Output: router_inference/config/chuzom-llm-routing-decisions.json
 
@@ -15,7 +17,7 @@ COMPLIANCE:
     global_index values, or optimality/accuracy labels are used.
 
 Usage:
-    uv run python scripts/generate_llm_routing_v3.py [--workers 20] [--resume]
+    uv run python scripts/generate_llm_routing_v3.py [--workers 2] [--resume]
 """
 
 import argparse
@@ -24,9 +26,10 @@ import json
 import os
 import sys
 import time
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from threading import Lock
-from typing import Optional
+from typing import Any, Optional
 
 import httpx
 from dotenv import load_dotenv
@@ -40,14 +43,17 @@ load_dotenv()
 DATASET_PATH = "./dataset/router_data.json"
 OUTPUT_PATH = "./router_inference/config/chuzom-llm-routing-decisions.json"
 
-# Classifier: qwen3-235b — proved superior routing quality in v2 (score 0.7210 vs gemini-2.5-flash 0.7152)
-# Use --workers 8 to stay within rate limits (20 workers caused 20.8% fallbacks in v2)
-CLASSIFIER_MODEL = "qwen/qwen3-235b-a22b-2507"
+# Gemini 2.5 Flash via Google AI API — high-capability, higher rate limits than Pro
+CLASSIFIER_MODEL = "gemini-2.5-flash"
+_GEMINI_URL = (
+    "https://generativelanguage.googleapis.com/v1beta/models/"
+    "{model}:generateContent?key={key}"
+)
 
-# The 5 compliant routing targets
+# 5 compliant routing targets (adds gemini-2.0 which has cheapest arena output cost)
 ROUTING_MODELS = [
-    "google/gemini-3.1-flash-lite",
     "google/gemini-2.0-flash-001",
+    "google/gemini-3.1-flash-lite",
     "deepseek/deepseek-v4-flash",
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-next-80b-a3b-instruct",
@@ -56,101 +62,132 @@ ROUTING_MODELS = [
 FALLBACK_MODEL = "google/gemini-3.1-flash-lite"
 
 # ---------------------------------------------------------------------------
-# System prompt — crafted for 5-model routing
+# System prompt — tuned for top-tier reasoning
 # ---------------------------------------------------------------------------
 
 SYSTEM_PROMPT = """\
-You are an expert LLM routing classifier for a multi-model benchmark system.
-Select EXACTLY ONE model from the five below. Base your decision ONLY on the
-semantic content of the query. Never use index numbers, dataset names, or metadata.
+You are an expert LLM routing classifier for a multi-model benchmark evaluation system.
+Select EXACTLY ONE model from the five below. Base your decision ONLY on the semantic
+content of the query. Never use index numbers, dataset names, or any metadata.
 
-## google/gemini-3.1-flash-lite  [DEFAULT — use when unsure]
-Best for: general knowledge MCQ, factual recall, humanities, geography, history,
-literature, arts, social sciences, ethics, NLI / textual entailment, music theory,
-true/false classification, answer-evaluation tasks ("Is this response correct?"),
-short structured classification tasks. Use when the prompt is self-contained
-and does not include a long passage to read.
+Your goal: assign each query to the model most likely to answer it correctly.
 
-## google/gemini-2.0-flash-001  [LONG-CONTEXT READING COMPREHENSION]
-Best for: questions that embed a long passage, story, or document (300+ words)
-directly in the prompt and ask the model to answer from it — e.g. "Please read
-the following context and answer the question based on its content", narrative
-comprehension, plot or character questions about a provided text, cloze-style
-tasks where a passage is given. Use when the majority of the prompt IS the
-source material to read.
+## google/gemini-2.0-flash-001  [STANDARD MCQ — primary choice for multiple-choice]
+Best for: multiple-choice questions asking you to select one of several lettered options
+(A / B / C / D / E) when no passage or external document is provided.
+This includes MCQ in ANY knowledge domain: medical, clinical, pharmacology, anatomy,
+dental, nursing, history, geography, civics, philosophy, ethics, literature, arts,
+social sciences, standardized-test-style questions (MMLU format, MedMCQA, etc.).
+Key signal: prompt contains "Please read the following multiple-choice question" and
+"Context: None" (or no context block). These are standalone knowledge questions.
+
+## google/gemini-3.1-flash-lite  [PASSAGE-BASED / READING COMPREHENSION]
+Best for: tasks where a passage, document, or context IS provided for the model to
+read and reason over. Reading comprehension ("Based on the passage above, ..."),
+NLI / textual entailment (given a premise, classify hypothesis as true/false/neutral),
+answer-evaluation tasks ("Given the context, is this response correct?"),
+true/false classification with provided context, music theory with notation.
+Also: geography trivia, quiz bowl factoid questions ("For 10 points, name this..."),
+general knowledge questions that do NOT fit the MCQ multiple-choice format.
 
 ## deepseek/deepseek-v4-flash  [MATH / STEM / CODING / TRANSLATION]
-Best for: mathematics (algebra, calculus, geometry, combinatorics, number theory),
-physics, chemistry, biology problems requiring calculation or derivation,
-code generation and programming tasks (Python, C++, algorithms, data structures,
-competitive programming), step-by-step scientific reasoning, translation between
-languages (German, French, Chinese, Spanish, Russian, etc.), FinQA and financial
-numerical reasoning.
+Best for: mathematics requiring calculation or proof (algebra, calculus, geometry,
+combinatorics, number theory, statistics), physics and chemistry problems with
+derivations, code generation and debugging (Python, C++, SQL, algorithms, data
+structures, competitive programming), step-by-step scientific reasoning, language
+translation (German, French, Chinese, Spanish, Japanese, Russian, etc.),
+financial numerical reasoning (FinQA, ratio calculations).
 
-## qwen/qwen3-235b-a22b-2507  [EXPERT KNOWLEDGE / HARD REASONING]
-Best for: hard competitive mathematics (Olympiad, AIME, AMC level), biomedical and
-clinical questions (pharmacology, pathology, medical diagnoses, clinical trials,
-drug interactions, PubMed-style abstracts, healthcare decisions), complex formal
-logic, legal reasoning and case analysis, deep academic science requiring expert
-domain knowledge beyond standard MMLU difficulty. Use when the query demands
-specialist expertise, not just factual recall.
+## qwen/qwen3-235b-a22b-2507  [EXPERT HARD REASONING — use sparingly]
+Best for: questions that require deep expert reasoning beyond simple factual recall.
+Use ONLY when the question clearly demands multi-step specialist expertise:
+- Hard competitive mathematics at Olympiad / AIME / AMC level
+- Complex biomedical research (clinical trial methodology, pharmacokinetics,
+  disease mechanism analysis at research depth — NOT standard medical MCQ)
+- Formal symbolic logic (propositional logic with symbols, modal logic proofs)
+- Deep legal case analysis requiring multi-step statutory interpretation
+Do NOT use for standard MMLU-style medical or science MCQ — those go to gemini-2.0.
 
 ## qwen/qwen3-next-80b-a3b-instruct  [LINGUISTIC / WORD-SENSE / COREFERENCE]
-Best for: word-sense disambiguation ("Does word X mean the same thing in both
+Best for: word-sense disambiguation ("Does word X carry the same meaning in both
 sentences?"), pronoun coreference resolution ("Who does 'they' refer to in this
 context?"), Winograd-schema / commonsense pronoun tasks, semantic similarity
 and paraphrase detection at the word or phrase level.
+ONLY use when the question is explicitly about word meaning, reference resolution,
+or lexical semantics — NOT for general language questions.
 
 Return ONLY the exact model name string — nothing else, no punctuation, no quotes.
 Example valid outputs:
-google/gemini-3.1-flash-lite
 google/gemini-2.0-flash-001
+google/gemini-3.1-flash-lite
 deepseek/deepseek-v4-flash
 qwen/qwen3-235b-a22b-2507
 qwen/qwen3-next-80b-a3b-instruct"""
 
 USER_TEMPLATE = "Query:\n{query}\n\nModel:"
 
-_OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-
 # ---------------------------------------------------------------------------
 # Classifier call
 # ---------------------------------------------------------------------------
 
 
-def classify_query(query: str, api_key: str, timeout: int = 45) -> Optional[str]:
-    """Call gemini-2.5-flash to classify the query. Returns exact model name or None."""
-    payload = {
-        "model": CLASSIFIER_MODEL,
-        "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": USER_TEMPLATE.format(query=query[:3000])},
+def classify_query(query: str, api_key: str, timeout: int = 60) -> Optional[str]:
+    """Call Gemini 2.5 Flash to classify the query. Returns exact model name or None.
+
+    Retries up to 5 times with exponential backoff on 429 (rate limit) errors.
+    """
+    url = _GEMINI_URL.format(model=CLASSIFIER_MODEL, key=api_key)
+    payload: dict[str, Any] = {
+        "system_instruction": {"parts": [{"text": SYSTEM_PROMPT}]},
+        "contents": [
+            {
+                "role": "user",
+                "parts": [{"text": USER_TEMPLATE.format(query=query[:4000])}],
+            }
         ],
-        "max_tokens": 80,
-        "temperature": 0.0,
+        "generationConfig": {
+            # 512: Gemini 2.5 Flash thinking tokens + output share the maxOutputTokens budget.
+            # Output (a model name) is ~10 tokens; rest is thinking budget.
+            "maxOutputTokens": 512,
+            "temperature": 0.0,
+        },
     }
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
-    }
-    try:
-        resp = httpx.post(
-            _OPENROUTER_URL, json=payload, headers=headers, timeout=timeout
-        )
-        resp.raise_for_status()
-        raw = resp.json()["choices"][0]["message"]["content"].strip()
-        # Exact match first
-        for model in ROUTING_MODELS:
-            if model in raw:
-                return model
-        # Fuzzy: match on last path segment
-        raw_lower = raw.lower()
-        for model in ROUTING_MODELS:
-            if model.split("/")[-1].lower() in raw_lower:
-                return model
-        return None
-    except Exception:
-        return None
+    max_retries = 5
+    backoff = 5  # seconds, doubles each retry
+    for attempt in range(max_retries):
+        try:
+            resp = httpx.post(url, json=payload, timeout=timeout)
+            if resp.status_code == 429:
+                wait = backoff * (2**attempt)
+                print(
+                    f"  [rate limit] waiting {wait}s (attempt {attempt + 1})",
+                    file=sys.stderr,
+                )
+                time.sleep(wait)
+                continue
+            resp.raise_for_status()
+            cands = resp.json().get("candidates", [])
+            if not cands or "parts" not in cands[0].get("content", {}):
+                # thinking consumed all tokens — retry with more budget
+                print("  [no parts] increasing budget, retrying", file=sys.stderr)
+                payload["generationConfig"]["maxOutputTokens"] = 2048
+                continue
+            raw = cands[0]["content"]["parts"][0]["text"].strip()
+            # Exact match first
+            for model in ROUTING_MODELS:
+                if model in raw:
+                    return model
+            # Fuzzy: match on last path segment
+            raw_lower = raw.lower()
+            for model in ROUTING_MODELS:
+                if model.split("/")[-1].lower() in raw_lower:
+                    return model
+            return None
+        except Exception as e:
+            print(f"  [classify error attempt {attempt + 1}] {e}", file=sys.stderr)
+            if attempt < max_retries - 1:
+                time.sleep(backoff * (2**attempt))
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -164,7 +201,12 @@ def _query_hash(query: str) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--workers", type=int, default=8, help="Parallel workers")
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=2,
+        help="Parallel workers (default 2; keep low to respect free-tier rate limits)",
+    )
     parser.add_argument(
         "--resume",
         action="store_true",
@@ -172,9 +214,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    api_key = os.getenv("OPENROUTER_API_KEY")
+    api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
-        print("ERROR: OPENROUTER_API_KEY not set in .env", file=sys.stderr)
+        print("ERROR: GOOGLE_API_KEY not set in .env", file=sys.stderr)
         sys.exit(1)
 
     print(f"Classifier: {CLASSIFIER_MODEL}")
@@ -203,11 +245,11 @@ def main() -> None:
     if args.resume and os.path.exists(OUTPUT_PATH):
         with open(OUTPUT_PATH, encoding="utf-8") as f:
             decisions = json.load(f)
-        # Prune any decisions pointing to banned models
-        banned = {"Qwen/Qwen3-Coder-Next", "gpt-4o-mini", "claude-3-haiku-20240307"}
-        pruned = {h: m for h, m in decisions.items() if m not in banned}
+        # Prune any decisions pointing to unknown models
+        known = set(ROUTING_MODELS)
+        pruned = {h: m for h, m in decisions.items() if m in known}
         if len(pruned) < len(decisions):
-            print(f"  Pruned {len(decisions) - len(pruned)} banned-model entries")
+            print(f"  Pruned {len(decisions) - len(pruned)} unknown-model entries")
             decisions = pruned
         print(
             f"Resuming: {len(decisions)} done, {len(queries) - len(decisions)} remaining"
@@ -217,6 +259,8 @@ def main() -> None:
     if not pending:
         print("All queries already classified.")
         return
+
+    print(f"Classifying {len(pending)} queries with {args.workers} workers...")
 
     lock = Lock()
     success_count = 0
@@ -244,10 +288,10 @@ def main() -> None:
                 rate = i / elapsed
                 eta = (len(pending) - i) / rate if rate > 0 else 0
                 print(
-                    f"  {i}/{len(pending)} | ✅ {success_count} | ⚠️  fallback {fallback_count}"
+                    f"  {i}/{len(pending)} | OK {success_count} | fallback {fallback_count}"
                     f" | {rate:.1f} q/s | ETA {eta:.0f}s"
                 )
-                # Checkpoint save
+                # Checkpoint save every 100
                 with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
                     json.dump(decisions, f)
 
@@ -260,13 +304,11 @@ def main() -> None:
         json.dump(decisions, f, ensure_ascii=False)
     print(f"Saved: {OUTPUT_PATH}")
 
-    from collections import Counter
-
     dist = Counter(decisions.values())
     total = sum(dist.values())
     print("\nRouting distribution:")
     for m, c in dist.most_common():
-        print(f"  {m.split('/')[-1]:<40} {c:>5} ({100 * c / total:.1f}%)")
+        print(f"  {m.split('/')[-1]:<44} {c:>5} ({100 * c / total:.1f}%)")
 
 
 if __name__ == "__main__":

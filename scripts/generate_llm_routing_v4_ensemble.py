@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
+# SPDX-License-Identifier: MIT
 """
 RouterArena v4: 3-Layer Parallel Ensemble with Weighted Borda Voting.
 
@@ -97,7 +99,7 @@ def build_centroids(routing_entries, model, embeddings):
     return {m: centroid_matrix[i] for i, m in enumerate(ROUTING_MODELS)}
 
 
-def semantic_rank(embedding: np.ndarray, centroids: dict) -> list:
+def semantic_rank(embedding: np.ndarray, centroids: dict) -> tuple[list[str], float]:
     """Rank models by cosine similarity to centroids. Returns [model, ...] best→worst."""
     sims = {m: float(np.dot(embedding, centroids[m])) for m in ROUTING_MODELS}
     confidence_top = sorted(sims.values(), reverse=True)
@@ -180,9 +182,9 @@ _HEURISTIC_RULES = [
 _compiled_rules = [(re.compile(pat), scores) for pat, scores in _HEURISTIC_RULES]
 
 
-def heuristic_rank(prompt: str) -> tuple:
+def heuristic_rank(prompt: str) -> tuple[list[str], float]:
     """Score models via structural heuristics. Returns (ranking, margin)."""
-    scores = defaultdict(float)
+    scores: defaultdict[str, float] = defaultdict(float)
     for pattern, model_scores in _compiled_rules:
         if pattern.search(prompt):
             for model, score in model_scores.items():
@@ -233,7 +235,7 @@ def weighted_borda(votes: list) -> str:
     votes: list of (layer_name, ranking, margin)
     Returns the winning model.
     """
-    scores = defaultdict(float)
+    scores: defaultdict[str, float] = defaultdict(float)
     for layer_name, ranking, margin in votes:
         base_weight = LAYER_WEIGHTS[layer_name]
         # Boost weight by confidence margin (capped at 0.5 bonus)
@@ -284,7 +286,7 @@ def main():
     print("Voting on routing decisions...", file=sys.stderr)
     decisions = {}
 
-    model_counts = defaultdict(int)
+    model_counts: defaultdict[str, int] = defaultdict(int)
     for i, entry in enumerate(routing_entries):
         # Key must match rebuild_predictions_from_routing.py: sha256(raw prompt)
         prompt_key = hashlib.sha256(entry["prompt"].encode()).hexdigest()

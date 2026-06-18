@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
+# SPDX-License-Identifier: MIT
 """
 Train TF-IDF + LogisticRegression classifier from routing decisions and save.
 
