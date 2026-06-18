@@ -30,7 +30,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
 from collections import Counter
 from pathlib import Path
@@ -62,7 +61,9 @@ ROUTING_MODELS = [
 
 # Model answers — pulled from the full RouterArena prediction file (which has
 # pre-computed generated_answers for all models). We need these to compute accuracy.
-_REFERENCE_PREDICTIONS_FILE = Path("router_inference/predictions/chuzom-llm-router.json")
+_REFERENCE_PREDICTIONS_FILE = Path(
+    "router_inference/predictions/chuzom-llm-router.json"
+)
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -109,12 +110,10 @@ def main() -> None:
     sys.path.insert(0, str(Path(__file__).parent.parent))
     from router_inference.router.chuzom_router_v2 import ChuzomRouterV2
 
-    judge_cache_path = Path(
-        "router_inference/config/chuzom-llm-judge-decisions.json"
-    )
+    judge_cache_path = Path("router_inference/config/chuzom-llm-judge-decisions.json")
     judge_enabled = not args.no_judge and judge_cache_path.exists()
     if judge_enabled:
-        print(f"LLM judge cache found — Gate 4 enabled", file=sys.stderr)
+        print("LLM judge cache found — Gate 4 enabled", file=sys.stderr)
     else:
         print(
             f"LLM judge cache {'disabled (--no-judge)' if args.no_judge else 'not found'} — Gate 4 disabled",
@@ -146,7 +145,9 @@ def main() -> None:
 
     for i, entry in enumerate(routing_entries):
         prompt = entry["prompt"]
-        global_idx = entry.get("global_index", entry.get("global index", f"unknown_{i}"))
+        global_idx = entry.get(
+            "global_index", entry.get("global index", f"unknown_{i}")
+        )
 
         predicted_model = router.get_prediction(prompt)
         model_counter[predicted_model] += 1
@@ -188,12 +189,16 @@ def main() -> None:
         predictions.append(prediction_entry)
 
         if i % 500 == 0:
-            print(f"  {i}/{len(routing_entries)} predictions generated", file=sys.stderr)
+            print(
+                f"  {i}/{len(routing_entries)} predictions generated", file=sys.stderr
+            )
 
     # Add optimality entries (full split only)
     if args.split == "full":
         optimality_entries = [e for e in dataset if e.get("for_optimality")]
-        print(f"  Adding {len(optimality_entries)} optimality entries...", file=sys.stderr)
+        print(
+            f"  Adding {len(optimality_entries)} optimality entries...", file=sys.stderr
+        )
 
         for entry in optimality_entries:
             global_idx = entry.get("global_index", entry.get("global index", ""))
@@ -204,18 +209,22 @@ def main() -> None:
             all_model_results = ref.get("all_model_results", {})
             model_result = all_model_results.get(opt_model, {})
 
-            predictions.append({
-                "global index": global_idx,
-                "prompt": entry["prompt"],
-                "prediction": opt_model,
-                "generated_result": {
-                    "generated_answer": model_result.get("generated_answer", ""),
-                    "cost": model_result.get("cost", 0.0),
-                },
-                "dataset": entry.get("dataset", ""),
-                "for_optimality": True,
-                "correct_answer": entry.get("correct_answer", entry.get("answer", "")),
-            })
+            predictions.append(
+                {
+                    "global index": global_idx,
+                    "prompt": entry["prompt"],
+                    "prediction": opt_model,
+                    "generated_result": {
+                        "generated_answer": model_result.get("generated_answer", ""),
+                        "cost": model_result.get("cost", 0.0),
+                    },
+                    "dataset": entry.get("dataset", ""),
+                    "for_optimality": True,
+                    "correct_answer": entry.get(
+                        "correct_answer", entry.get("answer", "")
+                    ),
+                }
+            )
 
     # Save
     output_path = OUTPUT_DIR / OUTPUT_NAMES[args.split]

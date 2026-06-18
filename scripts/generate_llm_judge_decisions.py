@@ -32,9 +32,10 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import time
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 
 # ── Config ────────────────────────────────────────────────────────────────────
@@ -104,9 +105,6 @@ def top3_str(scores: dict[str, float]) -> str:
 
 # ── Inline gate implementations (mirrors ChuzomRouterV2 without full class) ───
 
-import re
-from collections import defaultdict
-
 _MCQ_HEADER_RE = re.compile(
     r"Please read the following multiple-choice questions.*?(?=Context:)",
     re.DOTALL,
@@ -114,23 +112,51 @@ _MCQ_HEADER_RE = re.compile(
 _HIGH_CONFIDENCE = 0.35
 
 _HEURISTIC_RULES = [
-    (re.compile(r"Context:\s*None", re.IGNORECASE),
-     {"google/gemini-2.0-flash-001": 3.0, "google/gemini-3.1-flash-lite": 1.0}),
-    (re.compile(r"Context:\s*(?!None|N/A|\bNone\b).{20,}", re.IGNORECASE | re.DOTALL),
-     {"google/gemini-3.1-flash-lite": 4.0, "google/gemini-2.0-flash-001": 1.0}),
-    (re.compile(r"(?i)(translat|spanish|french|chinese|german|japanese|arabic|russian)"),
-     {"deepseek/deepseek-v4-flash": 3.0, "qwen/qwen3-235b-a22b-2507": 2.0}),
-    (re.compile(r"(?i)(calcul|integral|deriv|equation|mathemat|algebra|geometry"
-                r"|trigonometr|probability|statistic|combinatoric|number theory)"),
-     {"deepseek/deepseek-v4-flash": 3.0, "qwen/qwen3-235b-a22b-2507": 2.0}),
-    (re.compile(r"(?i)(code|program|function|algorithm|debug|implement|python\b|java\b|sql\b)"),
-     {"deepseek/deepseek-v4-flash": 4.0, "qwen/qwen3-next-80b-a3b-instruct": 1.5}),
-    (re.compile(r"(?i)(word.?sense|coreference|disambigu|homograph|polysemy|pronoun.*refer)"),
-     {"qwen/qwen3-next-80b-a3b-instruct": 5.0, "qwen/qwen3-235b-a22b-2507": 2.0}),
-    (re.compile(r"(?i)(medical|clinical|diagnosis|pharmacol|biochem|anatomy)"),
-     {"qwen/qwen3-235b-a22b-2507": 3.0, "deepseek/deepseek-v4-flash": 1.5}),
-    (re.compile(r"(?i)(olympiad|AIME|AMC|competition math|prove that|lemma|theorem)"),
-     {"qwen/qwen3-235b-a22b-2507": 4.0, "deepseek/deepseek-v4-flash": 2.0}),
+    (
+        re.compile(r"Context:\s*None", re.IGNORECASE),
+        {"google/gemini-2.0-flash-001": 3.0, "google/gemini-3.1-flash-lite": 1.0},
+    ),
+    (
+        re.compile(
+            r"Context:\s*(?!None|N/A|\bNone\b).{20,}", re.IGNORECASE | re.DOTALL
+        ),
+        {"google/gemini-3.1-flash-lite": 4.0, "google/gemini-2.0-flash-001": 1.0},
+    ),
+    (
+        re.compile(
+            r"(?i)(translat|spanish|french|chinese|german|japanese|arabic|russian)"
+        ),
+        {"deepseek/deepseek-v4-flash": 3.0, "qwen/qwen3-235b-a22b-2507": 2.0},
+    ),
+    (
+        re.compile(
+            r"(?i)(calcul|integral|deriv|equation|mathemat|algebra|geometry"
+            r"|trigonometr|probability|statistic|combinatoric|number theory)"
+        ),
+        {"deepseek/deepseek-v4-flash": 3.0, "qwen/qwen3-235b-a22b-2507": 2.0},
+    ),
+    (
+        re.compile(
+            r"(?i)(code|program|function|algorithm|debug|implement|python\b|java\b|sql\b)"
+        ),
+        {"deepseek/deepseek-v4-flash": 4.0, "qwen/qwen3-next-80b-a3b-instruct": 1.5},
+    ),
+    (
+        re.compile(
+            r"(?i)(word.?sense|coreference|disambigu|homograph|polysemy|pronoun.*refer)"
+        ),
+        {"qwen/qwen3-next-80b-a3b-instruct": 5.0, "qwen/qwen3-235b-a22b-2507": 2.0},
+    ),
+    (
+        re.compile(r"(?i)(medical|clinical|diagnosis|pharmacol|biochem|anatomy)"),
+        {"qwen/qwen3-235b-a22b-2507": 3.0, "deepseek/deepseek-v4-flash": 1.5},
+    ),
+    (
+        re.compile(
+            r"(?i)(olympiad|AIME|AMC|competition math|prove that|lemma|theorem)"
+        ),
+        {"qwen/qwen3-235b-a22b-2507": 4.0, "deepseek/deepseek-v4-flash": 2.0},
+    ),
 ]
 
 _GATE_WEIGHTS = {"tfidf": 1.0, "centroid": 1.3, "heuristic": 0.9}
@@ -161,9 +187,12 @@ def _gate_heuristic(prompt: str) -> tuple[dict[str, float], float]:
 
 
 def _blended_margin(
-    tfidf: dict, tm: float,
-    centroid: dict, cm: float,
-    heuristic: dict, hm: float,
+    tfidf: dict,
+    tm: float,
+    centroid: dict,
+    cm: float,
+    heuristic: dict,
+    hm: float,
     models: list[str],
 ) -> tuple[str, float]:
     """Compute blended score and return (winner, margin)."""
@@ -191,9 +220,12 @@ def _blended_margin(
 
 def call_judge(
     prompt: str,
-    tfidf: dict, tm: float,
-    centroid: dict, cm: float,
-    heuristic: dict, hm: float,
+    tfidf: dict,
+    tm: float,
+    centroid: dict,
+    cm: float,
+    heuristic: dict,
+    hm: float,
     api_key: str,
 ) -> str | None:
     import httpx
@@ -233,9 +265,12 @@ def call_judge(
             return None
         except Exception as e:
             if attempt < MAX_RETRIES - 1:
-                time.sleep(2 ** attempt)
+                time.sleep(2**attempt)
             else:
-                print(f"  Judge call failed after {MAX_RETRIES} retries: {e}", file=sys.stderr)
+                print(
+                    f"  Judge call failed after {MAX_RETRIES} retries: {e}",
+                    file=sys.stderr,
+                )
                 return None
     return None
 
@@ -245,12 +280,22 @@ def call_judge(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dry-run", action="store_true",
-                        help="Show how many prompts need judging, no API calls")
-    parser.add_argument("--resume", action="store_true",
-                        help="Load existing cache and only process missing entries")
-    parser.add_argument("--max-prompts", type=int, default=None,
-                        help="Cap number of prompts to process (for testing)")
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Show how many prompts need judging, no API calls",
+    )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Load existing cache and only process missing entries",
+    )
+    parser.add_argument(
+        "--max-prompts",
+        type=int,
+        default=None,
+        help="Cap number of prompts to process (for testing)",
+    )
     args = parser.parse_args()
 
     api_key = os.environ.get("GOOGLE_API_KEY", "")
@@ -264,7 +309,7 @@ def main() -> None:
         dataset = json.load(f)
     routing_entries = [e for e in dataset if not e.get("for_optimality")]
     if args.max_prompts:
-        routing_entries = routing_entries[:args.max_prompts]
+        routing_entries = routing_entries[: args.max_prompts]
     print(f"  {len(routing_entries)} routing prompts", file=sys.stderr)
 
     # Load existing cache if resuming
@@ -278,6 +323,7 @@ def main() -> None:
     print("Loading ChuzomRouterV2 gates...", file=sys.stderr)
     sys.path.insert(0, str(Path(__file__).parent.parent))
     from router_inference.router.chuzom_router_v2 import ChuzomRouterV2
+
     router = ChuzomRouterV2(ROUTER_CONFIG, llm_judge_enabled=False)
 
     # Process each prompt
@@ -305,7 +351,9 @@ def main() -> None:
 
         # Check early-exit condition
         tfidf_winner = max(tfidf_scores, key=lambda m: tfidf_scores.get(m, 0.0))
-        centroid_winner = max(centroid_scores, key=lambda m: centroid_scores.get(m, 0.0))
+        centroid_winner = max(
+            centroid_scores, key=lambda m: centroid_scores.get(m, 0.0)
+        )
 
         if (
             tfidf_winner == centroid_winner
@@ -316,14 +364,20 @@ def main() -> None:
             decisions[key] = tfidf_winner
             model_counter[tfidf_winner] += 1
             if i % 200 == 0:
-                print(f"  {i}/{len(routing_entries)} — high-conf, skip judge", file=sys.stderr)
+                print(
+                    f"  {i}/{len(routing_entries)} — high-conf, skip judge",
+                    file=sys.stderr,
+                )
             continue
 
         # Compute blended score
         winner, blended_margin = _blended_margin(
-            tfidf_scores, tfidf_margin,
-            centroid_scores, centroid_margin,
-            heuristic_scores, heuristic_margin,
+            tfidf_scores,
+            tfidf_margin,
+            centroid_scores,
+            centroid_margin,
+            heuristic_scores,
+            heuristic_margin,
             router.models,
         )
 
@@ -342,9 +396,12 @@ def main() -> None:
         # Call judge
         judge_result = call_judge(
             prompt,
-            tfidf_scores, tfidf_margin,
-            centroid_scores, centroid_margin,
-            heuristic_scores, heuristic_margin,
+            tfidf_scores,
+            tfidf_margin,
+            centroid_scores,
+            centroid_margin,
+            heuristic_scores,
+            heuristic_margin,
             api_key,
         )
 
@@ -367,7 +424,9 @@ def main() -> None:
             )
 
         # Save checkpoint every 200 judge calls
-        if (judged_count + fallback_count) % 200 == 0 and (judged_count + fallback_count) > 0:
+        if (judged_count + fallback_count) % 200 == 0 and (
+            judged_count + fallback_count
+        ) > 0:
             OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
             with open(OUTPUT_PATH, "w") as f:
                 json.dump(decisions, f, indent=2)
@@ -376,7 +435,10 @@ def main() -> None:
     # Final report
     print(f"\n{'DRY RUN ' if args.dry_run else ''}Summary:", file=sys.stderr)
     print(f"  Total prompts:      {len(routing_entries)}", file=sys.stderr)
-    print(f"  Low-confidence:     {low_confidence_count} ({low_confidence_count / max(len(routing_entries), 1) * 100:.1f}%)", file=sys.stderr)
+    print(
+        f"  Low-confidence:     {low_confidence_count} ({low_confidence_count / max(len(routing_entries), 1) * 100:.1f}%)",
+        file=sys.stderr,
+    )
     if not args.dry_run:
         print(f"  LLM judged:         {judged_count}", file=sys.stderr)
         print(f"  Fallback (blended): {fallback_count}", file=sys.stderr)

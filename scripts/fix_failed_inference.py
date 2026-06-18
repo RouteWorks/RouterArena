@@ -7,8 +7,10 @@ Problems found:
 
 Fix: reroute those entries to gemini-3.1-flash-lite, then rerun inference.
 """
-import json, sys, os, time
-from collections import defaultdict
+
+import json
+import sys
+import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from threading import Lock
 import httpx
@@ -22,6 +24,7 @@ FALLBACK_MODEL = "google/gemini-3.1-flash-lite"
 CACHE_FILE = "./cached_results/google_gemini-3.1-flash-lite.jsonl"
 MAX_OUTPUT_TOKENS = 512
 WORKERS = 20
+
 
 def call_model(model, prompt, api_key):
     payload = {
@@ -49,13 +52,20 @@ def call_model(model, prompt, api_key):
             "error": None,
         }
     except Exception as e:
-        return {"generated_answer": None, "success": False,
-                "token_usage": {}, "provider": "openrouter", "error": str(e)[:200]}
+        return {
+            "generated_answer": None,
+            "success": False,
+            "token_usage": {},
+            "provider": "openrouter",
+            "error": str(e)[:200],
+        }
+
 
 def main():
     api_key = os.getenv("OPENROUTER_API_KEY")
     if not api_key:
-        print("ERROR: OPENROUTER_API_KEY not set"); sys.exit(1)
+        print("ERROR: OPENROUTER_API_KEY not set")
+        sys.exit(1)
 
     print(f"Loading {PRED_PATH}...")
     with open(PRED_PATH) as f:
@@ -68,21 +78,23 @@ def main():
             continue
         gr = e.get("generated_result")
         needs_fix = (
-            gr is None
-            or not gr.get("generated_answer")  # null or empty string
+            gr is None or not gr.get("generated_answer")  # null or empty string
         )
         if needs_fix:
             to_fix.append(e)
 
     print(f"Entries to fix: {len(to_fix)}")
     from collections import Counter
-    print("  By model:", Counter(e['prediction'] for e in to_fix).most_common())
+
+    print("  By model:", Counter(e["prediction"] for e in to_fix).most_common())
 
     # Reroute to fallback model
     for e in to_fix:
         e["prediction"] = FALLBACK_MODEL
 
-    print(f"\nAll rerouted to {FALLBACK_MODEL}. Running inference ({WORKERS} workers)...")
+    print(
+        f"\nAll rerouted to {FALLBACK_MODEL}. Running inference ({WORKERS} workers)..."
+    )
     lock = Lock()
     new_cache = []
     success = fail = 0
@@ -97,12 +109,14 @@ def main():
             with lock:
                 e["generated_result"] = result
                 if result["success"]:
-                    new_cache.append({
-                        "global_index": e["global index"],
-                        "question": e["prompt"],
-                        "llm_selected": FALLBACK_MODEL,
-                        **result,
-                    })
+                    new_cache.append(
+                        {
+                            "global_index": e["global index"],
+                            "question": e["prompt"],
+                            "llm_selected": FALLBACK_MODEL,
+                            **result,
+                        }
+                    )
                     success += 1
                 else:
                     fail += 1
@@ -125,11 +139,13 @@ def main():
 
     # Final check
     remaining = sum(
-        1 for e in data
+        1
+        for e in data
         if not e.get("for_optimality")
         and not (e.get("generated_result") or {}).get("generated_answer")
     )
     print(f"Remaining null routing entries: {remaining}")
+
 
 if __name__ == "__main__":
     main()

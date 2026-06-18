@@ -103,7 +103,9 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
         {"google/gemini-2.0-flash-001": 3.0, "google/gemini-3.1-flash-lite": 1.0},
     ),
     (
-        re.compile(r"Context:\s*(?!None|N/A|\bNone\b).{20,}", re.IGNORECASE | re.DOTALL),
+        re.compile(
+            r"Context:\s*(?!None|N/A|\bNone\b).{20,}", re.IGNORECASE | re.DOTALL
+        ),
         {"google/gemini-3.1-flash-lite": 4.0, "google/gemini-2.0-flash-001": 1.0},
     ),
     (
@@ -136,7 +138,9 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
         {"qwen/qwen3-235b-a22b-2507": 3.0, "deepseek/deepseek-v4-flash": 1.5},
     ),
     (
-        re.compile(r"(?i)(olympiad|AIME|AMC|competition math|prove that|lemma|theorem)"),
+        re.compile(
+            r"(?i)(olympiad|AIME|AMC|competition math|prove that|lemma|theorem)"
+        ),
         {"qwen/qwen3-235b-a22b-2507": 4.0, "deepseek/deepseek-v4-flash": 2.0},
     ),
 ]
@@ -458,8 +462,12 @@ class ChuzomRouterV2(BaseRouter):
 
         # ── Early-exit: unanimous high-confidence agreement ───────────────────
         tfidf_winner = max(tfidf_scores, key=lambda m: tfidf_scores.get(m, 0.0))
-        centroid_winner = max(centroid_scores, key=lambda m: centroid_scores.get(m, 0.0))
-        heuristic_winner = max(heuristic_scores, key=lambda m: heuristic_scores.get(m, 0.0))
+        centroid_winner = max(
+            centroid_scores, key=lambda m: centroid_scores.get(m, 0.0)
+        )
+        heuristic_winner = max(
+            heuristic_scores, key=lambda m: heuristic_scores.get(m, 0.0)
+        )
 
         gate_winners = {tfidf_winner, centroid_winner}
         if heuristic_margin > 0:  # heuristic fired (not uniform)
@@ -475,30 +483,41 @@ class ChuzomRouterV2(BaseRouter):
 
         # ── Compute blended score (no LLM yet) ───────────────────────────────
         blended = self._smart_score(
-            tfidf_scores, tfidf_margin,
-            centroid_scores, centroid_margin,
-            heuristic_scores, heuristic_margin,
+            tfidf_scores,
+            tfidf_margin,
+            centroid_scores,
+            centroid_margin,
+            heuristic_scores,
+            heuristic_margin,
             llm_winner=None,
         )
         blended_vals = sorted(blended.values(), reverse=True)
-        blended_margin = blended_vals[0] - blended_vals[1] if len(blended_vals) > 1 else 1.0
+        blended_margin = (
+            blended_vals[0] - blended_vals[1] if len(blended_vals) > 1 else 1.0
+        )
 
         # ── Gate 4: LLM judge for low-confidence cases ───────────────────────
         llm_winner: str | None = None
         if self._llm_judge_enabled and blended_margin < _JUDGE_THRESHOLD:
             llm_winner = self._call_llm_judge(
                 query,
-                tfidf_scores, tfidf_margin,
-                centroid_scores, centroid_margin,
-                heuristic_scores, heuristic_margin,
+                tfidf_scores,
+                tfidf_margin,
+                centroid_scores,
+                centroid_margin,
+                heuristic_scores,
+                heuristic_margin,
             )
 
         # ── Final smart score incorporating LLM judge ────────────────────────
         if llm_winner:
             final = self._smart_score(
-                tfidf_scores, tfidf_margin,
-                centroid_scores, centroid_margin,
-                heuristic_scores, heuristic_margin,
+                tfidf_scores,
+                tfidf_margin,
+                centroid_scores,
+                centroid_margin,
+                heuristic_scores,
+                heuristic_margin,
                 llm_winner=llm_winner,
             )
         else:
