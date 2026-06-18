@@ -55,6 +55,7 @@ BORDA_POINTS = list(range(len(ROUTING_MODELS) - 1, -1, -1))
 
 # ── Data Loading ───────────────────────────────────────────────────────────────
 
+
 def load_data():
     preds = json.load(open(PREDICTIONS_FILE))
     routing = [p for p in preds if not p.get("for_optimality")]
@@ -76,9 +77,9 @@ def extract_prompt_text(prompt: str) -> str:
 
 # ── Layer 1: Semantic Centroid ─────────────────────────────────────────────────
 
+
 def build_centroids(routing_entries, model, embeddings):
     """Compute per-model centroid from existing routing pseudo-labels."""
-    from sklearn.preprocessing import normalize
 
     centroids = {}
     for m in ROUTING_MODELS:
@@ -98,9 +99,7 @@ def build_centroids(routing_entries, model, embeddings):
 
 def semantic_rank(embedding: np.ndarray, centroids: dict) -> list:
     """Rank models by cosine similarity to centroids. Returns [model, ...] best→worst."""
-    sims = {
-        m: float(np.dot(embedding, centroids[m])) for m in ROUTING_MODELS
-    }
+    sims = {m: float(np.dot(embedding, centroids[m])) for m in ROUTING_MODELS}
     confidence_top = sorted(sims.values(), reverse=True)
     margin = confidence_top[0] - confidence_top[1] if len(confidence_top) > 1 else 0.0
     ranking = sorted(ROUTING_MODELS, key=lambda m: sims[m], reverse=True)
@@ -112,43 +111,70 @@ def semantic_rank(embedding: np.ndarray, centroids: dict) -> list:
 # Keyword signals mapped to model preference scores
 _HEURISTIC_RULES = [
     # (regex_pattern, {model: score})
-    (r"Context:\s*None", {
-        "google/gemini-2.0-flash-001": 3,
-        "deepseek/deepseek-v4-flash": 2,
-        "qwen/qwen3-235b-a22b-2507": 1,
-    }),
-    (r"Context:\s*(?!None).{20,}", {
-        "google/gemini-3.1-flash-lite": 4,
-        "google/gemini-2.0-flash-001": 1,
-    }),
-    (r"(?i)(translate|translation|spanish|french|chinese|german|japanese|arabic)", {
-        "deepseek/deepseek-v4-flash": 3,
-        "qwen/qwen3-235b-a22b-2507": 2,
-    }),
-    (r"(?i)(calcul|integral|deriv|equation|mathemat|algebra|geometry|trigonometr|probability|statistics)", {
-        "deepseek/deepseek-v4-flash": 3,
-        "qwen/qwen3-235b-a22b-2507": 2,
-    }),
-    (r"(?i)(code|program|function|algorithm|debug|implement|software|python|java\b)", {
-        "deepseek/deepseek-v4-flash": 4,
-        "qwen/qwen3-next-80b-a3b-instruct": 2,
-    }),
-    (r"(?i)(word sense|coreference|disambigu|homograph|polysemy|synonym)", {
-        "qwen/qwen3-next-80b-a3b-instruct": 5,
-        "qwen/qwen3-235b-a22b-2507": 2,
-    }),
-    (r"(?i)(medical|clinical|diagnosis|pharmacol|biochem|anatomy|physiology)", {
-        "qwen/qwen3-235b-a22b-2507": 3,
-        "deepseek/deepseek-v4-flash": 2,
-    }),
-    (r"(?i)(legal|law|jurisdiction|statute|contract|constitution|court)", {
-        "qwen/qwen3-235b-a22b-2507": 3,
-        "google/gemini-2.0-flash-001": 2,
-    }),
-    (r"(?i)(read(ing)? comprehension|passage|paragraph|according to the (text|passage|article))", {
-        "google/gemini-3.1-flash-lite": 4,
-        "google/gemini-2.0-flash-001": 1,
-    }),
+    (
+        r"Context:\s*None",
+        {
+            "google/gemini-2.0-flash-001": 3,
+            "deepseek/deepseek-v4-flash": 2,
+            "qwen/qwen3-235b-a22b-2507": 1,
+        },
+    ),
+    (
+        r"Context:\s*(?!None).{20,}",
+        {
+            "google/gemini-3.1-flash-lite": 4,
+            "google/gemini-2.0-flash-001": 1,
+        },
+    ),
+    (
+        r"(?i)(translate|translation|spanish|french|chinese|german|japanese|arabic)",
+        {
+            "deepseek/deepseek-v4-flash": 3,
+            "qwen/qwen3-235b-a22b-2507": 2,
+        },
+    ),
+    (
+        r"(?i)(calcul|integral|deriv|equation|mathemat|algebra|geometry|trigonometr|probability|statistics)",
+        {
+            "deepseek/deepseek-v4-flash": 3,
+            "qwen/qwen3-235b-a22b-2507": 2,
+        },
+    ),
+    (
+        r"(?i)(code|program|function|algorithm|debug|implement|software|python|java\b)",
+        {
+            "deepseek/deepseek-v4-flash": 4,
+            "qwen/qwen3-next-80b-a3b-instruct": 2,
+        },
+    ),
+    (
+        r"(?i)(word sense|coreference|disambigu|homograph|polysemy|synonym)",
+        {
+            "qwen/qwen3-next-80b-a3b-instruct": 5,
+            "qwen/qwen3-235b-a22b-2507": 2,
+        },
+    ),
+    (
+        r"(?i)(medical|clinical|diagnosis|pharmacol|biochem|anatomy|physiology)",
+        {
+            "qwen/qwen3-235b-a22b-2507": 3,
+            "deepseek/deepseek-v4-flash": 2,
+        },
+    ),
+    (
+        r"(?i)(legal|law|jurisdiction|statute|contract|constitution|court)",
+        {
+            "qwen/qwen3-235b-a22b-2507": 3,
+            "google/gemini-2.0-flash-001": 2,
+        },
+    ),
+    (
+        r"(?i)(read(ing)? comprehension|passage|paragraph|according to the (text|passage|article))",
+        {
+            "google/gemini-3.1-flash-lite": 4,
+            "google/gemini-2.0-flash-001": 1,
+        },
+    ),
 ]
 
 _compiled_rules = [(re.compile(pat), scores) for pat, scores in _HEURISTIC_RULES]
@@ -172,6 +198,7 @@ def heuristic_rank(prompt: str) -> tuple:
 
 
 # ── Layer 3: TF-IDF + Logistic Regression ─────────────────────────────────────
+
 
 def train_classifier(routing_entries, texts):
     labels = [e["prediction"] for e in routing_entries]
@@ -200,6 +227,7 @@ def classifier_rank(prompt_tfidf, clf, le) -> tuple:
 
 # ── Weighted Borda Count ───────────────────────────────────────────────────────
 
+
 def weighted_borda(votes: list) -> str:
     """
     votes: list of (layer_name, ranking, margin)
@@ -224,6 +252,7 @@ def weighted_borda(votes: list) -> str:
 
 # ── Main ───────────────────────────────────────────────────────────────────────
 
+
 def main():
     print("Loading data...", file=sys.stderr)
     routing_entries = load_data()
@@ -233,6 +262,7 @@ def main():
     # ── Layer 1 setup: embed all prompts ──────────────────────────────────────
     print(f"Loading embedding model: {EMBED_MODEL}", file=sys.stderr)
     from sentence_transformers import SentenceTransformer
+
     embed_model = SentenceTransformer(EMBED_MODEL)
 
     print(f"Embedding {len(texts)} prompts...", file=sys.stderr)
@@ -286,7 +316,7 @@ def main():
     total = len(decisions)
     for model in ROUTING_MODELS:
         n = model_counts[model]
-        print(f"  {model}: {n} ({n/total*100:.1f}%)", file=sys.stderr)
+        print(f"  {model}: {n} ({n / total * 100:.1f}%)", file=sys.stderr)
 
     # ── Save ─────────────────────────────────────────────────────────────────
     print(f"\nSaving to {OUTPUT_FILE}...", file=sys.stderr)
