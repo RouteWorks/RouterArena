@@ -35,15 +35,17 @@ MODEL_TO_CACHE_FILE = {
 #   1. gemini-2.0: high accuracy, cheaper than deepseek (109 avg tokens vs 495)
 #   2. gemini-lite: cheap fallback — keeps cost low when g2.0 also misses
 #   3. deepseek: high coverage but expensive output; only reached if both gemini models miss
-# This order benefits BOTH directions:
-#   - gemini-lite misses → try gemini-2.0 (better accuracy, same price tier)
-#   - gemini-2.0 misses → try gemini-lite (cheap, avoids deepseek cost spike)
+# Fallback order chosen to maximise accuracy on cache misses:
+#   - gemini-2.0 misses → deepseek (7016 cache, accurate on STEM/MCQ, cheap)
+#   - deepseek misses → gemini-lite (5627 cache, cheap)
+#   - gemini-lite misses → qwen3-80b (targeted tasks)
+#   - qwen3-235b last: most expensive, 6887 cache but avoid as primary fallback
 FALLBACK_PRIORITY = [
     "google/gemini-2.0-flash-001",
-    "google/gemini-3.1-flash-lite",
     "deepseek/deepseek-v4-flash",
-    "qwen/qwen3-235b-a22b-2507",
+    "google/gemini-3.1-flash-lite",
     "qwen/qwen3-next-80b-a3b-instruct",
+    "qwen/qwen3-235b-a22b-2507",
 ]
 
 PRICING = {
