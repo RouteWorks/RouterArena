@@ -17,7 +17,7 @@ v0.8.0 changes vs v0.7.0:
       Signal A -- TF-IDF + LogisticRegression classifier (60k features,
                   1-3 grams) trained on 8400 routing decisions.
       Signal B -- BAAI/bge-small-en-v1.5 semantic centroid lookup.
-  - Combined score: 0.6 * tfidf_prob + 0.4 * centroid_sim.
+  - Combined score: 0.4 * tfidf_prob + 0.6 * centroid_sim.
   - Paraphrase-invariant: lexical overlap (TF-IDF) + semantic embedding
     (centroids) together handle both wording and meaning changes.
   - One-time startup: loads sklearn model (~5ms) + BGE-small (~500ms).
@@ -49,7 +49,9 @@ from router_inference.router.base_router import BaseRouter
 
 
 # Weight of TF-IDF signal in the hybrid score (centroid gets 1 - TFIDF_WEIGHT)
-_TFIDF_WEIGHT = 0.6
+# 0.4 TF-IDF + 0.6 centroid: centroid is paraphrase-invariant (semantic),
+# TF-IDF captures lexical domain signals (math keywords, etc.)
+_TFIDF_WEIGHT = 0.4
 
 # Ordered list matching centroid rows in chuzom-centroids.npz
 _ROUTING_MODELS = [
