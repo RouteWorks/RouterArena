@@ -236,13 +236,6 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
         ),
         {"qwen/qwen3-235b-a22b-2507": 4.0, "deepseek/deepseek-v4-flash": 1.5},
     ),
-    # ── Chess notation (low-weight backup — domain lock handles main routing) ──
-    (
-        re.compile(
-            r'(?i)(chess\s+move|question about chess|"moves":\s*\[)'
-        ),
-        {"qwen/qwen3-235b-a22b-2507": 2.0},
-    ),
 ]
 
 
@@ -563,17 +556,6 @@ class ChuzomRouterV2(BaseRouter):
         return vals[0] - vals[1] if len(vals) > 1 else 1.0
 
     def _get_prediction(self, query: str) -> str:
-        # ── Domain locks: bypass centroid only for very high-confidence signals ───
-        # LaTeX math is intentionally NOT a domain lock — opt.sel data shows
-        # the oracle often prefers cheaper models even for LaTeX-heavy MMLU entries.
-        # LaTeX heuristic removed — centroid handles math classification.
-        if _CHESS_RE.search(query):
-            return "qwen/qwen3-235b-a22b-2507"
-        if _COMP_MATH_CONTENT_RE.search(query):
-            return "qwen/qwen3-235b-a22b-2507"
-        if _CODEGEN_RE.search(query):
-            return "deepseek/deepseek-v4-flash"
-
         text = _extract_text(query)
 
         centroid_scores, centroid_margin = self._gate_centroid(text)
