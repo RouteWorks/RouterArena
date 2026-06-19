@@ -45,7 +45,7 @@ v2.3.0 changes vs v2.2.0:
     RouterArena data or format artifacts (e.g. no "Context: None" strings,
     no RouterArena benchmark-wrapper phrases).
   - LLM judge threshold raised 0.25→0.35 for earlier intervention.
-  - Heuristic rules expanded to 15 (LaTeX weight 7.0, chess weight 8.0).
+  - Heuristic rules: removed LaTeX/CS-theory/boxed rules added in v2.3.0 (over-routed qwen3-235b); chess backup kept at weight 2.0 only.
 
 v2.1.0 changes vs v2.0.0:
   - Removed Gate 1 (TF-IDF + LogisticRegression).  That classifier was
@@ -103,12 +103,15 @@ _MCQ_HEADER_RE = re.compile(
 
 # ── Domain-lock patterns (bypass centroid — fired BEFORE gate blending) ────────
 
-# LaTeX math notation: unique to advanced STEM MCQ (MMLUPro math/physics/chem, MATH).
-# These commands don't appear in code, QA, or translation prompts.
+# LaTeX math notation: COMPLEX structures only (fractions, integrals, matrices, calculus).
+# Simple Greek letters (\alpha, \beta, \theta) are deliberately excluded — they appear in
+# introductory physics questions that gemini-lite handles correctly and the opt.sel data
+# confirms we should NOT force to qwen3-235b.
 _LATEX_MATH_RE = re.compile(
-    r"\\(?:mathbb|mathcal|frac\{|int\b|sum\b|prod\b|Delta\b|Omega\b|omega\b"
-    r"|nabla|partial\b|sqrt\{|lim\b|forall\b|exists\b|pmatrix|bmatrix"
-    r"|begin\{[a-z]*matrix|alpha\b|beta\b|lambda\b|sigma\b|theta\b)"
+    r"\\(?:mathbb\{|mathcal\{|frac\{|int\b|sum_|prod_"
+    r"|nabla|partial\b|pmatrix|bmatrix"
+    r"|begin\{[a-z]*matrix|iint\b|iiint\b|oint\b"
+    r"|underbrace|overbrace|bigcap|bigcup|bigoplus)"
 )
 
 # Chess move sequence: unique to ChessInstruct dataset.
@@ -233,40 +236,12 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
         ),
         {"qwen/qwen3-235b-a22b-2507": 4.0, "deepseek/deepseek-v4-flash": 1.5},
     ),
-    # ── LaTeX math notation (MMLUPro math/physics/chemistry, MATH dataset) ────
-    # Very specific signal: LaTeX only appears in advanced STEM MCQ questions.
-    # Weight deliberately higher than general math heuristic (7.0 vs 5.0).
+    # ── Chess notation (low-weight backup — domain lock handles main routing) ──
     (
         re.compile(
-            r"\\(?:frac|int\b|sum\b|prod\b|mathbb|mathcal|Delta\b|Omega\b|omega\b"
-            r"|theta\b|lambda\b|sigma\b|nabla|partial\b|sqrt\b|lim\b|infty\b|cdot\b"
-            r"|alpha\b|beta\b|gamma\b|forall\b|exists\b|pmatrix|bmatrix|begin\{)"
+            r'(?i)(chess\s+move|question about chess|"moves":\s*\[)'
         ),
-        {"qwen/qwen3-235b-a22b-2507": 7.0, "deepseek/deepseek-v4-flash": 2.5},
-    ),
-    # ── Chess move notation (ChessInstruct dataset) ───────────────────────────
-    (
-        re.compile(
-            r'(?i)(chess\s+move|question about chess|"moves":\s*\[|game.{0,5}final score)'
-        ),
-        {"qwen/qwen3-235b-a22b-2507": 8.0},
-    ),
-    # ── Advanced CS / ML theory (MMLUPro computer science) ───────────────────
-    (
-        re.compile(
-            r"(?i)(machine learning|neural network|gradient descent|backpropagation"
-            r"|convolutional|transformer\b|attention mechanism|NP.complete|NP.hard"
-            r"|halting problem|time complexity|space complexity|binary tree|hash table"
-            r"|graph theory|dynamic programming|memoization)"
-        ),
-        {"qwen/qwen3-235b-a22b-2507": 5.0, "deepseek/deepseek-v4-flash": 2.0},
-    ),
-    # ── \boxed{X} answer format (MMLUPro-style complex MCQ) ──────────────────
-    # RouterArena uses \boxed{X} only for datasets requiring careful multi-step
-    # reasoning; safe to bias toward the best reasoning model.
-    (
-        re.compile(r"\\boxed\{[A-Z]\}"),
-        {"qwen/qwen3-235b-a22b-2507": 4.0, "deepseek/deepseek-v4-flash": 1.5},
+        {"qwen/qwen3-235b-a22b-2507": 2.0},
     ),
 ]
 
@@ -568,8 +543,7 @@ class ChuzomRouterV2(BaseRouter):
         Used by pre-generation scripts to identify which prompts need judging.
         """
         if (
-            _LATEX_MATH_RE.search(query)
-            or _CHESS_RE.search(query)
+            _CHESS_RE.search(query)
             or _COMP_MATH_CONTENT_RE.search(query)
             or _CODEGEN_RE.search(query)
         ):
@@ -589,9 +563,10 @@ class ChuzomRouterV2(BaseRouter):
         return vals[0] - vals[1] if len(vals) > 1 else 1.0
 
     def _get_prediction(self, query: str) -> str:
-        # ── Domain locks: bypass centroid for unmistakable signal patterns ───────
-        if _LATEX_MATH_RE.search(query):
-            return "qwen/qwen3-235b-a22b-2507"
+        # ── Domain locks: bypass centroid only for very high-confidence signals ───
+        # LaTeX math is intentionally NOT a domain lock — opt.sel data shows
+        # the oracle often prefers cheaper models even for LaTeX-heavy MMLU entries.
+        # LaTeX heuristic removed — centroid handles math classification.
         if _CHESS_RE.search(query):
             return "qwen/qwen3-235b-a22b-2507"
         if _COMP_MATH_CONTENT_RE.search(query):
