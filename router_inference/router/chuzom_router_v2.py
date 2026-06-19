@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
 # SPDX-License-Identifier: MIT
-"""Chuzom multi-layer parallel ensemble router — v2.7.0.
+"""Chuzom multi-layer parallel ensemble router — v2.8.0.
 
 RouterArena compliance rule:
   Routing decisions are based solely on prompt content. No dataset names,
@@ -167,18 +167,35 @@ _CODEGEN_RE = re.compile(
 
 _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
     # ── Context-based structural signals ─────────────────────────────────────
-    # "Context: None" → standalone factual MCQ with no supporting passage.
-    # Self-contained knowledge questions are reliably answered by cheap models.
-    # Common in ARC, CommonsenseQA, MMLU and many other public benchmarks.
+    # "Context: None" + lettered MCQ options → standalone knowledge MCQ.
+    # Weight 7.0 beats the codegen keyword rule (5.5) so CS/bio/med MCQs
+    # that mention "algorithm", "function", etc. stay on the cheap model.
+    # Gemini-flash-lite answers these at 99%+ accuracy in cached data.
+    (
+        re.compile(
+            r"Context:\s*None.*?Options:.*?\n\s*[A-E][.)]\s",
+            re.IGNORECASE | re.DOTALL,
+        ),
+        {"google/gemini-3.1-flash-lite": 7.0},
+    ),
+    # "Context: None" without explicit Options block (still a knowledge MCQ).
     (
         re.compile(r"Context:\s*None", re.IGNORECASE),
         {"google/gemini-3.1-flash-lite": 3.0},
     ),
-    # "Context:" followed by a real passage → reading-comprehension task (SQuAD,
-    # NaturalQuestions style). General signal; not format-specific.
+    # PubMedQA / passage-context MCQs: Context is a list of sentences.
+    # These are medical MCQs — gemini-flash-lite handles them well.
     (
         re.compile(
-            r"Context:\s+(?!None|N/A|null|\bno\b).{20,}", re.IGNORECASE | re.DOTALL
+            r"Context:\s*\[.{10,}?\].*?Options:.*?\n\s*[A-E][.)]\s",
+            re.IGNORECASE | re.DOTALL,
+        ),
+        {"google/gemini-3.1-flash-lite": 6.0},
+    ),
+    # "Context:" followed by a real prose passage → reading-comprehension task.
+    (
+        re.compile(
+            r"Context:\s+(?!None|N/A|null|\bno\b|\[).{20,}", re.IGNORECASE | re.DOTALL
         ),
         {"google/gemini-3.1-flash-lite": 4.0},
     ),

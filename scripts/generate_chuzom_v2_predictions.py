@@ -144,7 +144,7 @@ def main() -> None:
     missed_refs = 0
 
     for i, entry in enumerate(routing_entries):
-        prompt = entry["prompt"]
+        prompt = entry.get("prompt") or entry.get("prompt_formatted", "")
         global_idx = entry.get(
             "global_index", entry.get("global index", f"unknown_{i}")
         )
