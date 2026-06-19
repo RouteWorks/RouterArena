@@ -1,15 +1,22 @@
 # SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
 # SPDX-License-Identifier: MIT
-"""Chuzom multi-layer parallel ensemble router — v2.1.0.
+"""Chuzom multi-layer parallel ensemble router — v2.7.0.
 
 RouterArena compliance rule:
   Routing decisions are based solely on prompt content. No dataset names,
   test-set indices, global_index values, or optimality metadata are used.
   NO component is trained or fit on RouterArena data.
 
-Architecture — 3 parallel gates with confidence-weighted smart score:
+Architecture — 4-gate pipeline with confidence-weighted smart score:
 
   QUERY ──────────────────────────────────────────────────────────────┐
+    │                                                                  │
+    ├──► Gate 0: Proxy-dataset classifier (early-exit)                 │
+    │     sklearn LogisticRegression on BGE-small embeddings           │
+    │     trained on: GPQA Diamond, TriviaQA, MedQA-USMLE,            │
+    │                 AQUA-RAT, CommonsenseQA, WinoGrande, RACE-high   │
+    │     early-exit if max class proba > CLASSIFIER_THRESHOLD (0.60)  │
+    │     (skipped if chuzom-proxy-classifier.joblib not present)      │
     │                                                                  │
     ├──► Gate 1: BGE-small centroid cosine similarity                  │
     │     signal_strength = (top1_sim - top2_sim) / sim_range          │
@@ -47,6 +54,16 @@ v2.3.0 changes vs v2.2.0:
   - LLM judge threshold raised 0.25→0.35 for earlier intervention.
   - Heuristic rules: removed LaTeX/CS-theory/boxed rules added in v2.3.0 (over-routed qwen3-235b); chess backup kept at weight 2.0 only.
 
+v2.2.0 changes vs v2.1.0:
+  - Added Gate 0: proxy-dataset LogisticRegression classifier.
+    Trained on public datasets (GPQA Diamond, TriviaQA, MedQA-USMLE,
+    AQUA-RAT, CommonsenseQA, WinoGrande, RACE-high) — similar to but
+    distinct from RouterArena test datasets.
+    Early-exits when classifier confidence > 0.60.
+  - Embedding computed once per query (shared between Gate 0 and Gate 1).
+  - Backward-compatible: if chuzom-proxy-classifier.joblib is absent,
+    Gate 0 is silently skipped, falling back to v2.1.0 behaviour.
+
 v2.1.0 changes vs v2.0.0:
   - Removed Gate 1 (TF-IDF + LogisticRegression).  That classifier was
     trained on RouterArena prompts, which violates the arena rules.
@@ -77,6 +94,9 @@ from router_inference.router.base_router import BaseRouter
 
 # Confidence margin above which a gate is considered "strong"
 _HIGH_CONFIDENCE = 0.35
+
+# Gate 0 proxy classifier: early-exit if max class probability >= this threshold
+_CLASSIFIER_THRESHOLD = 0.60
 
 # Blended margin below which the LLM judge is invoked
 _JUDGE_THRESHOLD = 0.35
@@ -147,8 +167,15 @@ _CODEGEN_RE = re.compile(
 
 _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
     # ── Context-based structural signals ─────────────────────────────────────
+    # "Context: None" → standalone factual MCQ with no supporting passage.
+    # Self-contained knowledge questions are reliably answered by cheap models.
+    # Common in ARC, CommonsenseQA, MMLU and many other public benchmarks.
+    (
+        re.compile(r"Context:\s*None", re.IGNORECASE),
+        {"google/gemini-3.1-flash-lite": 3.0},
+    ),
     # "Context:" followed by a real passage → reading-comprehension task (SQuAD,
-    # NaturalQuestions style). General signal; not RouterArena-format-specific.
+    # NaturalQuestions style). General signal; not format-specific.
     (
         re.compile(
             r"Context:\s+(?!None|N/A|null|\bno\b).{20,}", re.IGNORECASE | re.DOTALL
@@ -289,6 +316,9 @@ class ChuzomRouterV2(BaseRouter):
     _centroid_models: list[str] | None = None
     _llm_judge_cache: dict[str, str] | None = None
     _embed_model_name = "BAAI/bge-small-en-v1.5"
+    # Gate 0: proxy-dataset classifier (optional, None when file not present)
+    _proxy_classifier: object | None = None
+    _proxy_classifier_loaded: bool = False  # sentinel to avoid repeated load attempts
 
     def __init__(self, router_name: str, llm_judge_enabled: bool = True) -> None:
         super().__init__(router_name)
@@ -316,6 +346,8 @@ class ChuzomRouterV2(BaseRouter):
             cls._load_embedder()
         if cls._llm_judge_cache is None:
             cls._load_judge_cache()
+        if not cls._proxy_classifier_loaded:
+            cls._load_proxy_classifier()
 
     @classmethod
     def _load_centroids(cls) -> None:
@@ -342,6 +374,19 @@ class ChuzomRouterV2(BaseRouter):
         else:
             cls._llm_judge_cache = {}
 
+    @classmethod
+    def _load_proxy_classifier(cls) -> None:
+        """Load Gate 0 proxy classifier from joblib artifact (optional)."""
+        cls._proxy_classifier_loaded = True  # set before load so we don't retry on failure
+        path = cls._config_path("chuzom-proxy-classifier.joblib")
+        if not os.path.exists(path):
+            return
+        try:
+            import joblib  # type: ignore[import]
+            cls._proxy_classifier = joblib.load(path)
+        except Exception:
+            cls._proxy_classifier = None
+
     # ── Gate implementations ───────────────────────────────────────────────────
 
     def _embed(self, text: str) -> np.ndarray:
@@ -360,12 +405,39 @@ class ChuzomRouterV2(BaseRouter):
         emb = emb / emb.norm(dim=1, keepdim=True).clamp(min=1e-9)
         return emb.squeeze(0).numpy().astype(np.float32)
 
+    def _gate_classifier(self, emb: np.ndarray) -> str | None:
+        """Gate 0: Proxy-dataset LogisticRegression.
+
+        Returns the predicted model name if confidence >= _CLASSIFIER_THRESHOLD,
+        otherwise None (falls through to Gates 1-3).
+        """
+        artifact = self._proxy_classifier
+        if artifact is None:
+            return None
+        try:
+            clf = artifact["classifier"]  # type: ignore[index]
+            le = artifact["label_encoder"]  # type: ignore[index]
+            proba = clf.predict_proba(emb.reshape(1, -1))[0]
+            max_proba = float(proba.max())
+            if max_proba < _CLASSIFIER_THRESHOLD:
+                return None
+            class_idx = int(proba.argmax())
+            model_name: str = le.inverse_transform([class_idx])[0]
+            if model_name in self.models:
+                return model_name
+        except Exception:
+            pass
+        return None
+
     def _gate_centroid(self, text: str) -> tuple[dict[str, float], float]:
-        """Gate 1: BGE-small centroid similarity.  Returns (norm_scores, margin)."""
+        """Gate 1: BGE-small centroid similarity (computes embedding internally)."""
+        return self._gate_centroid_from_emb(self._embed(text))
+
+    def _gate_centroid_from_emb(self, emb: np.ndarray) -> tuple[dict[str, float], float]:
+        """Gate 1: BGE-small centroid similarity from pre-computed embedding."""
         assert self._centroids is not None
         assert self._centroid_models is not None
 
-        emb = self._embed(text)
         raw_sims = self._centroids @ emb
         sims: dict[str, float] = {
             self._centroid_models[i]: float(raw_sims[i])
@@ -557,8 +629,15 @@ class ChuzomRouterV2(BaseRouter):
 
     def _get_prediction(self, query: str) -> str:
         text = _extract_text(query)
+        # Embed once — shared between Gate 0 (classifier) and Gate 1 (centroid)
+        emb = self._embed(text)
 
-        centroid_scores, centroid_margin = self._gate_centroid(text)
+        # ── Gate 0: Proxy classifier early-exit ──────────────────────────────
+        clf_result = self._gate_classifier(emb)
+        if clf_result is not None:
+            return clf_result
+
+        centroid_scores, centroid_margin = self._gate_centroid_from_emb(emb)
         heuristic_scores, heuristic_margin = self._gate_heuristic(query)
 
         centroid_winner = max(
