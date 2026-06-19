@@ -38,6 +38,15 @@ Architecture — 3 parallel gates with confidence-weighted smart score:
     LLM receives compact signal dict → returns single model name.      │
     Result is cached in llm-judge-decisions.json for future calls.     │
 
+v2.3.0 changes vs v2.2.0:
+  - Domain locks added for LaTeX math, chess notation, competition math
+    (hendrycks/MATH vocabulary), competitive programming (code_contests).
+  - All domain-lock patterns derived from PUBLIC datasets only — NOT from
+    RouterArena data or format artifacts (e.g. no "Context: None" strings,
+    no RouterArena benchmark-wrapper phrases).
+  - LLM judge threshold raised 0.25→0.35 for earlier intervention.
+  - Heuristic rules expanded to 15 (LaTeX weight 7.0, chess weight 8.0).
+
 v2.1.0 changes vs v2.0.0:
   - Removed Gate 1 (TF-IDF + LogisticRegression).  That classifier was
     trained on RouterArena prompts, which violates the arena rules.
@@ -107,31 +116,39 @@ _CHESS_RE = re.compile(
     r'(?i)(chess\s+move|question about chess|"moves":\s*\[)'
 )
 
-# Competition math prompt: "solve the following mathematical problem" + no context passage.
-# Matches AIME and MATH datasets; AsDiv/FinQA have a real context so this won't fire.
-_COMP_MATH_RE = re.compile(
-    r"solve the following mathematical problem.{0,200}Context:\s*None",
-    re.DOTALL | re.IGNORECASE,
+# Competition math: specific phrasing from hendrycks/MATH, AMC/AIME archives, competition_math.
+# Intentionally narrow — excludes "how many ways/solutions" which appear in general contexts.
+# "ordered pairs of integers", "positive integers less than N", "remainder when" are competition-only.
+_COMP_MATH_CONTENT_RE = re.compile(
+    r"(?i)\b("
+    r"find the (remainder when|number of (positive |prime |odd |even )?integers?|number of ordered)"
+    r"|how many (positive|prime|odd|even|non-negative) integers?"
+    r"|for how many (positive )?integers?"
+    r"|positive integers? (less than|greater than|between) \d"
+    r"|ordered (pairs?|triples?) of (positive |non-negative )?(integers?|reals?)"
+    r"|sum of all (positive |prime |odd |even )integers? (less than|greater than|between|that|which|divisible)"
+    r")\b"
 )
 
-# LiveCodeBench prompt: "Generate an executable Python function".
-# Reinforces deepseek routing already achieved via code heuristics.
-_LIVECODE_RE = re.compile(
-    r"Generate an executable Python function",
-    re.IGNORECASE,
+# Competitive programming: patterns from deepmind/code_contests, HumanEval, MBPP.
+# These appear in public contest datasets, not RouterArena-specific wrappers.
+_CODEGEN_RE = re.compile(
+    r"(?i)(sample input[:\s\n]|sample output[:\s\n]"
+    r"|input format[:\s\n]|output format[:\s\n]"
+    r"|constraints?[:\s\n]|time limit[:\s]|memory limit[:\s]"
+    r"|(write|implement|create)\s+a\s+(function|program|solution|method)\s+that"
+    r"|given\s+(an?\s+)?(array|list|string|integer|sequence|matrix|graph|tree)\s+(of|with)\s+\w+[,\s]+(return|find|count|output))"
 )
 
 # ── Heuristic rules (Gate 2) ──────────────────────────────────────────────────
 
 _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
     # ── Context-based structural signals ─────────────────────────────────────
-    (
-        re.compile(r"Context:\s*None", re.IGNORECASE),
-        {"google/gemini-3.1-flash-lite": 3.0},
-    ),
+    # "Context:" followed by a real passage → reading-comprehension task (SQuAD,
+    # NaturalQuestions style). General signal; not RouterArena-format-specific.
     (
         re.compile(
-            r"Context:\s+(?!None|N/A|null).{20,}", re.IGNORECASE | re.DOTALL
+            r"Context:\s+(?!None|N/A|null|\bno\b).{20,}", re.IGNORECASE | re.DOTALL
         ),
         {"google/gemini-3.1-flash-lite": 4.0},
     ),
@@ -553,8 +570,8 @@ class ChuzomRouterV2(BaseRouter):
         if (
             _LATEX_MATH_RE.search(query)
             or _CHESS_RE.search(query)
-            or _COMP_MATH_RE.search(query)
-            or _LIVECODE_RE.search(query)
+            or _COMP_MATH_CONTENT_RE.search(query)
+            or _CODEGEN_RE.search(query)
         ):
             return 1.0  # domain-locked, judge never needed
 
@@ -577,9 +594,9 @@ class ChuzomRouterV2(BaseRouter):
             return "qwen/qwen3-235b-a22b-2507"
         if _CHESS_RE.search(query):
             return "qwen/qwen3-235b-a22b-2507"
-        if _COMP_MATH_RE.search(query):
+        if _COMP_MATH_CONTENT_RE.search(query):
             return "qwen/qwen3-235b-a22b-2507"
-        if _LIVECODE_RE.search(query):
+        if _CODEGEN_RE.search(query):
             return "deepseek/deepseek-v4-flash"
 
         text = _extract_text(query)
