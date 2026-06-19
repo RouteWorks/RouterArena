@@ -9,6 +9,7 @@ inference only for entries whose assigned model changed.
 Usage:
     uv run python scripts/reroute_v2_predictions.py [--dry-run]
 """
+
 from __future__ import annotations
 
 import argparse
@@ -82,7 +83,7 @@ def reroute_file(
     dry_run: bool,
     label: str,
 ) -> None:
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"Processing: {pred_path}  [{label}]")
     with open(pred_path, encoding="utf-8") as f:
         data = json.load(f)
@@ -123,7 +124,9 @@ def reroute_file(
     if not to_infer:
         print("  Nothing to infer.")
     else:
-        print(f"\n  Running inference for {len(to_infer)} changed entries ({WORKERS} workers)...")
+        print(
+            f"\n  Running inference for {len(to_infer)} changed entries ({WORKERS} workers)..."
+        )
         lock = Lock()
         cache_updates: dict[str, list] = {}
         success = fail = 0
@@ -140,19 +143,23 @@ def reroute_file(
                 with lock:
                     e["generated_result"] = result
                     if result["success"]:
-                        cache_updates.setdefault(model, []).append({
-                            "global_index": e["global index"],
-                            "question": e["prompt"],
-                            "llm_selected": model,
-                            **result,
-                        })
+                        cache_updates.setdefault(model, []).append(
+                            {
+                                "global_index": e["global index"],
+                                "question": e["prompt"],
+                                "llm_selected": model,
+                                **result,
+                            }
+                        )
                         success += 1
                     else:
                         fail += 1
                 if i % 50 == 0 or i == len(to_infer):
                     elapsed = time.time() - start
                     rate = i / elapsed
-                    print(f"    {i}/{len(to_infer)} | ✅{success} ❌{fail} | {rate:.1f}/s")
+                    print(
+                        f"    {i}/{len(to_infer)} | ✅{success} ❌{fail} | {rate:.1f}/s"
+                    )
 
         print(f"  Done | Success: {success} | Failed: {fail}")
 
@@ -175,7 +182,8 @@ def reroute_file(
 
     # Final null check
     null_count = sum(
-        1 for e in data
+        1
+        for e in data
         if not e.get("for_optimality")
         and not (e.get("generated_result") or {}).get("generated_answer")
     )

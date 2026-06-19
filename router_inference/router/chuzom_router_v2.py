@@ -70,7 +70,7 @@ from router_inference.router.base_router import BaseRouter
 _HIGH_CONFIDENCE = 0.35
 
 # Blended margin below which the LLM judge is invoked
-_JUDGE_THRESHOLD = 0.12
+_JUDGE_THRESHOLD = 0.25
 
 # Base weights per gate (before confidence boosting)
 _GATE_WEIGHTS = {
@@ -81,7 +81,6 @@ _GATE_WEIGHTS = {
 
 # Ordered list matching centroid rows in chuzom-centroids.npz
 _ROUTING_MODELS = [
-    "google/gemini-2.0-flash-001",
     "google/gemini-3.1-flash-lite",
     "deepseek/deepseek-v4-flash",
     "qwen/qwen3-235b-a22b-2507",
@@ -96,50 +95,97 @@ _MCQ_HEADER_RE = re.compile(
 # ── Heuristic rules (Gate 2) ──────────────────────────────────────────────────
 
 _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
+    # ── Context-based structural signals ─────────────────────────────────────
     (
         re.compile(r"Context:\s*None", re.IGNORECASE),
-        {"google/gemini-2.0-flash-001": 3.0, "google/gemini-3.1-flash-lite": 1.0},
+        {"google/gemini-3.1-flash-lite": 3.0},
     ),
     (
         re.compile(
             r"Context:\s*(?!None|N/A|\bNone\b).{20,}", re.IGNORECASE | re.DOTALL
         ),
-        {"google/gemini-3.1-flash-lite": 4.0, "google/gemini-2.0-flash-001": 1.0},
+        {"google/gemini-3.1-flash-lite": 4.0},
     ),
+    # ── Code: explicit code blocks (strongest signal, highest weight) ─────────
     (
         re.compile(
-            r"(?i)(translat|spanish|french|chinese|german|japanese|arabic|russian)",
+            r"```\s*(python|java|javascript|typescript|c\+\+|cpp|c#|go|rust|ruby"
+            r"|kotlin|swift|bash|shell|sql|r\b|scala|php)",
+            re.IGNORECASE,
         ),
-        {"deepseek/deepseek-v4-flash": 3.0, "qwen/qwen3-235b-a22b-2507": 2.0},
+        {"deepseek/deepseek-v4-flash": 7.0, "qwen/qwen3-next-80b-a3b-instruct": 2.0},
     ),
+    # ── Code: function/class definitions and common programming keywords ──────
+    (
+        re.compile(
+            r"(?m)^\s*(def |class |public\s+static|void\s+\w+\s*\(|#include\s*<"
+            r"|import\s+\w+|from\s+\w+\s+import)"
+        ),
+        {"deepseek/deepseek-v4-flash": 6.0, "qwen/qwen3-next-80b-a3b-instruct": 1.5},
+    ),
+    # ── Code: general programming keywords (boosted from 4.0 → 5.5) ──────────
+    (
+        re.compile(
+            r"(?i)(code|program|function|algorithm|debug|implement|python\b|java\b"
+            r"|sql\b|runtime|compile|syntax\s+error|stack\s+overflow|big.?O)"
+        ),
+        {"deepseek/deepseek-v4-flash": 5.5, "qwen/qwen3-next-80b-a3b-instruct": 1.5},
+    ),
+    # ── Math: competition / proof-level (highest qwen3-235b signal) ──────────
+    (
+        re.compile(
+            r"(?i)(olympiad|AIME|AMC|competition math|prove that|lemma|theorem"
+            r"|corollary|conjecture|induction|modular arithmetic|\bIMO\b|\bUSAMO\b)"
+        ),
+        {"qwen/qwen3-235b-a22b-2507": 5.5, "deepseek/deepseek-v4-flash": 2.0},
+    ),
+    # ── Math: general computation (boosted from 3.0 → 5.0) ───────────────────
     (
         re.compile(
             r"(?i)(calcul|integral|deriv|equation|mathemat|algebra|geometry"
-            r"|trigonometr|probability|statistic|combinatoric|number theory)",
+            r"|trigonometr|probability|statistic|combinatoric|number theory"
+            r"|arithmetic|how many|solve for|find the value)"
+        ),
+        {"deepseek/deepseek-v4-flash": 5.0, "qwen/qwen3-235b-a22b-2507": 3.0},
+    ),
+    # ── Math: arithmetic word problems (GSM8K style) ─────────────────────────
+    (
+        re.compile(
+            r"(?i)(if\s+\w+\s+has\s+\d+|how\s+many\s+\w+\s+(are|were|will|does)"
+            r"|\d+\s*(times|plus|minus|divided|percent|dollars|hours|days|km|kg))"
+        ),
+        {"deepseek/deepseek-v4-flash": 4.0, "qwen/qwen3-235b-a22b-2507": 2.5},
+    ),
+    # ── Translation / multilingual ────────────────────────────────────────────
+    (
+        re.compile(
+            r"(?i)(translat|spanish|french|chinese|german|japanese|arabic|russian"
+            r"|korean|portuguese|italian|hindi|turkish|dutch|polish)",
         ),
         {"deepseek/deepseek-v4-flash": 3.0, "qwen/qwen3-235b-a22b-2507": 2.0},
     ),
+    # ── NLI / entailment (SuperGLUE-Entailment) ───────────────────────────────
     (
         re.compile(
-            r"(?i)(code|program|function|algorithm|debug|implement|python\b|java\b|sql\b)",
+            r"(?i)(entail|contradict|neutral\b|hypothesis|premise|nli\b"
+            r"|natural language inference|does.*follow\s+from|can we conclude)"
         ),
-        {"deepseek/deepseek-v4-flash": 4.0, "qwen/qwen3-next-80b-a3b-instruct": 1.5},
+        {"qwen/qwen3-next-80b-a3b-instruct": 5.0, "qwen/qwen3-235b-a22b-2507": 2.0},
     ),
+    # ── Word sense / coreference ──────────────────────────────────────────────
     (
         re.compile(
             r"(?i)(word.?sense|coreference|disambigu|homograph|polysemy|pronoun.*refer)",
         ),
         {"qwen/qwen3-next-80b-a3b-instruct": 5.0, "qwen/qwen3-235b-a22b-2507": 2.0},
     ),
-    (
-        re.compile(r"(?i)(medical|clinical|diagnosis|pharmacol|biochem|anatomy)"),
-        {"qwen/qwen3-235b-a22b-2507": 3.0, "deepseek/deepseek-v4-flash": 1.5},
-    ),
+    # ── Medical / scientific STEM ─────────────────────────────────────────────
     (
         re.compile(
-            r"(?i)(olympiad|AIME|AMC|competition math|prove that|lemma|theorem)"
+            r"(?i)(medical|clinical|diagnosis|pharmacol|biochem|anatomy"
+            r"|physic[si]|chemistry|molecular|quantum|thermodynam|electr(on|ic))"
         ),
-        {"qwen/qwen3-235b-a22b-2507": 4.0, "deepseek/deepseek-v4-flash": 2.0},
+        {"qwen/qwen3-235b-a22b-2507": 4.0, "deepseek/deepseek-v4-flash": 1.5},
     ),
 ]
 
@@ -197,6 +243,8 @@ class ChuzomRouterV2(BaseRouter):
 
     def __init__(self, router_name: str, llm_judge_enabled: bool = True) -> None:
         super().__init__(router_name)
+        # Restrict routing pool to models that are reliably available on OpenRouter
+        self.models = [m for m in self.models if m in _ROUTING_MODELS]
         self._llm_judge_enabled = llm_judge_enabled
         self._ensure_loaded()
 
@@ -362,11 +410,6 @@ class ChuzomRouterV2(BaseRouter):
             if cached in self.models:
                 return cached
 
-        # Live LLM call (only if API key is available)
-        api_key = os.environ.get("GOOGLE_API_KEY", "")
-        if not api_key:
-            return None
-
         user_msg = _JUDGE_USER_TEMPLATE.format(
             centroid_margin=centroid_margin,
             centroid_top3=self._top3_str(centroid),
@@ -376,9 +419,43 @@ class ChuzomRouterV2(BaseRouter):
             models="\n".join(f"  {m}" for m in _ROUTING_MODELS),
         )
 
-        try:
-            import httpx  # type: ignore[import]
+        import httpx  # type: ignore[import]
 
+        full_prompt = f"{_JUDGE_SYSTEM}\n\n{user_msg}"
+
+        def _parse_model(raw: str) -> str | None:
+            for m in _ROUTING_MODELS:
+                if m in raw or m.split("/")[-1].lower() in raw.lower():
+                    return m
+            return None
+
+        # Try Ollama first (local, free, zero latency after warmup)
+        ollama_model = os.environ.get("CHUZOM_JUDGE_OLLAMA_MODEL", "qwen3.6:27b")
+        try:
+            resp = httpx.post(
+                "http://localhost:11434/api/chat",
+                json={
+                    "model": ollama_model,
+                    "messages": [{"role": "user", "content": full_prompt}],
+                    "stream": False,
+                    "options": {"temperature": 0, "num_predict": 64},
+                },
+                timeout=30,
+            )
+            if resp.status_code == 200:
+                raw = resp.json()["message"]["content"].strip()
+                result = _parse_model(raw)
+                if result:
+                    self._llm_judge_cache[cache_key] = result
+                    return result
+        except Exception:
+            pass
+
+        # Fallback: Gemini API
+        api_key = os.environ.get("GOOGLE_API_KEY", "")
+        if not api_key:
+            return None
+        try:
             url = (
                 "https://generativelanguage.googleapis.com/v1beta/models/"
                 f"gemini-2.5-flash:generateContent?key={api_key}"
@@ -388,23 +465,39 @@ class ChuzomRouterV2(BaseRouter):
                 "contents": [{"role": "user", "parts": [{"text": user_msg}]}],
                 "generationConfig": {"maxOutputTokens": 64, "temperature": 0.0},
             }
-            resp = httpx.post(url, json=payload, timeout=10)
+            resp = httpx.post(url, json=payload, timeout=15)
             resp.raise_for_status()
             cands = resp.json().get("candidates", [])
-            if not cands:
-                return None
-            raw = cands[0]["content"]["parts"][0]["text"].strip()
-            for m in _ROUTING_MODELS:
-                if m in raw or m.split("/")[-1].lower() in raw.lower():
-                    # Cache the result for future calls
-                    self._llm_judge_cache[cache_key] = m
-                    return m
+            if cands:
+                raw = cands[0]["content"]["parts"][0]["text"].strip()
+                result = _parse_model(raw)
+                if result:
+                    self._llm_judge_cache[cache_key] = result
+                    return result
         except Exception:
             pass
 
         return None
 
     # ── Main routing logic ────────────────────────────────────────────────────
+
+    def _compute_blended_margin(self, query: str) -> float:
+        """Return the blended margin (0–1) without invoking the LLM judge.
+
+        Used by pre-generation scripts to identify which prompts need judging.
+        """
+        text = _extract_text(query)
+        centroid_scores, centroid_margin = self._gate_centroid(text)
+        heuristic_scores, heuristic_margin = self._gate_heuristic(query)
+        blended = self._smart_score(
+            centroid_scores,
+            centroid_margin,
+            heuristic_scores,
+            heuristic_margin,
+            llm_winner=None,
+        )
+        vals = sorted(blended.values(), reverse=True)
+        return vals[0] - vals[1] if len(vals) > 1 else 1.0
 
     def _get_prediction(self, query: str) -> str:
         text = _extract_text(query)

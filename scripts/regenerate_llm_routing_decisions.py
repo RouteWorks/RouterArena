@@ -9,6 +9,7 @@ prompts and writes a fresh sha256 → model_name lookup table.
 Usage:
     uv run python scripts/regenerate_llm_routing_decisions.py [--dry-run]
 """
+
 from __future__ import annotations
 
 import argparse
