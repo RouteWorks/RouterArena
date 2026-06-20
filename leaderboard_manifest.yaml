@@ -99,6 +99,15 @@ routers:
     category_key: "chayan"
     # no robustness file -> no flip_key
 
+  - readme_name: "Hybrid Router"
+    website_name: "Hybrid Router"
+    prediction: "hybrid-router"
+    category_key: "hybrid-router"
+    flip_key: "hybrid-router"
+    website:
+      affiliation: "@mikemao27"
+      github_url: "https://github.com/mikemao27"
+
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
   - readme_name: "MIRT-BERT"
