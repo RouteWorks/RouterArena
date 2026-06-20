@@ -31,7 +31,7 @@ def build_complete_evaluation_dictionary() -> Dict[str, Dict[str, Tuple[float, f
     """
     print("Building complete evaluation dictionary...")
 
-    results_dir = "./cached_results2"
+    results_dir = "./cached_results"
     cost_data = load_cost_data()
 
     evaluation_dict: DefaultDict[str, Dict[Any, Tuple[float, float]]] = defaultdict(

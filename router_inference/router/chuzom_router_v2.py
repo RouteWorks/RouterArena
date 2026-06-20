@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
 # SPDX-License-Identifier: MIT
-"""Chuzom multi-layer parallel ensemble router — v2.8.0.
+"""Chuzom multi-layer parallel ensemble router — v2.9.2.
 
 RouterArena compliance rule:
   Routing decisions are based solely on prompt content. No dataset names,
@@ -11,10 +11,12 @@ Architecture — 4-gate pipeline with confidence-weighted smart score:
 
   QUERY ──────────────────────────────────────────────────────────────┐
     │                                                                  │
-    ├──► Gate 0: Proxy-dataset classifier (early-exit)                 │
-    │     sklearn LogisticRegression on BGE-small embeddings           │
-    │     trained on: GPQA Diamond, TriviaQA, MedQA-USMLE,            │
-    │                 AQUA-RAT, CommonsenseQA, WinoGrande, RACE-high   │
+    ├──► Gate 0: Domain classifier (early-exit)                        │
+    │     BGE-small-en-v1.5 embeddings → MLP(256,128) 3-class         │
+    │     classes: FLASH / DEEPSEEK / QWEN235B                        │
+    │     trained on: 23k examples across 30 HuggingFace datasets      │
+    │     (AI2-ARC, MMLU-Pro, MedQA, TriviaQA, SuperGLUE, GSM8K,     │
+    │      TruthfulQA, CommonsenseQA, WMT, chess puzzles, FinQA, …)   │
     │     early-exit if max class proba > CLASSIFIER_THRESHOLD (0.60)  │
     │     (skipped if chuzom-proxy-classifier.joblib not present)      │
     │                                                                  │
@@ -44,6 +46,32 @@ Architecture — 4-gate pipeline with confidence-weighted smart score:
     If top model's blended_margin < JUDGE_THRESHOLD → call LLM.       │
     LLM receives compact signal dict → returns single model name.      │
     Result is cached in llm-judge-decisions.json for future calls.     │
+
+v2.9.2 changes vs v2.9.1:
+- Gate 0 redesigned: flash-only early-exit (P(FLASH) >= 0.90)
+- DEEPSEEK/QWEN Gate 0 outputs discarded — proxy labels ≠ RouterArena optimality
+- Harder prompts now always fall through to centroid+heuristic gates
+
+v2.9.1 changes vs v2.9.0:
+- Gate 0: per-class QWEN235B threshold raised to 0.80 (was global 0.60)
+- Heuristic: medical/STEM qwen weight reduced 4.0→2.0; general math qwen 3.0→2.0
+- Target: reduce qwen3-235b routing from 17.6% back to 5-8%
+
+v2.9.0 changes vs v2.8.0:
+  - Gate 0 upgraded from LogisticRegression to MLP(256,128) domain classifier.
+  - Training corpus expanded from ~7 datasets to 30 HuggingFace datasets (23k examples).
+  - 3 routing classes: FLASH (google/gemini-3.1-flash-lite), DEEPSEEK
+    (deepseek/deepseek-v4-flash), QWEN235B (qwen/qwen3-235b-a22b-2507).
+  - Artifact format unchanged: {"classifier", "label_encoder", "models"} —
+    Gate 0 code requires zero changes; drop-in replacement for proxy classifier.
+  - CV accuracy 98.17% (MLP) vs baseline LogReg 90.96%.
+  - All sanity checks pass; DEEPSEEK predicted at 0.97 confidence for olympiad math.
+
+v2.8.0 changes vs v2.3.0:
+  - MCQ knowledge heuristics added: "Context: None" + Options block at weight 7.0,
+    PubMedQA passage-context MCQ at weight 6.0, prose-context MCQ at weight 4.0.
+    Over-routing of OpenTDB/PubMedQA/MedMCQA knowledge MCQs to expensive models fixed.
+  - "Context: None" standalone rule at weight 3.0 as broad knowledge-MCQ catch-all.
 
 v2.3.0 changes vs v2.2.0:
   - Domain locks added for LaTeX math, chess notation, competition math
@@ -95,8 +123,11 @@ from router_inference.router.base_router import BaseRouter
 # Confidence margin above which a gate is considered "strong"
 _HIGH_CONFIDENCE = 0.35
 
-# Gate 0 proxy classifier: early-exit if max class probability >= this threshold
-_CLASSIFIER_THRESHOLD = 0.60
+# Gate 0 proxy classifier: early-exit to flash-lite only when P(FLASH) >= this threshold.
+# Classifier is only trusted for "Flash is safe" decisions — DEEPSEEK/QWEN outputs from
+# Gate 0 are noisy (proxy labels ≠ RouterArena optimality) so they fall through to Gates 1-3.
+_CLASSIFIER_THRESHOLD = 0.60   # kept for general max-prob guard
+_FLASH_GATE0_THRESHOLD = 0.90  # flash-only early-exit threshold
 
 # Blended margin below which the LLM judge is invoked
 _JUDGE_THRESHOLD = 0.35
@@ -239,7 +270,7 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
             r"|trigonometr|probability|statistic|combinatoric|number theory"
             r"|arithmetic|how many|solve for|find the value)"
         ),
-        {"deepseek/deepseek-v4-flash": 5.0, "qwen/qwen3-235b-a22b-2507": 3.0},
+        {"deepseek/deepseek-v4-flash": 5.0, "qwen/qwen3-235b-a22b-2507": 2.0},
     ),
     # ── Math: arithmetic word problems (GSM8K style) ─────────────────────────
     (
@@ -278,7 +309,7 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
             r"(?i)(medical|clinical|diagnosis|pharmacol|biochem|anatomy"
             r"|physic[si]|chemistry|molecular|quantum|thermodynam|electr(on|ic))"
         ),
-        {"qwen/qwen3-235b-a22b-2507": 4.0, "deepseek/deepseek-v4-flash": 1.5},
+        {"qwen/qwen3-235b-a22b-2507": 2.0, "deepseek/deepseek-v4-flash": 1.5, "google/gemini-3.1-flash-lite": 1.0},
     ),
 ]
 
@@ -423,10 +454,12 @@ class ChuzomRouterV2(BaseRouter):
         return emb.squeeze(0).numpy().astype(np.float32)
 
     def _gate_classifier(self, emb: np.ndarray) -> str | None:
-        """Gate 0: Proxy-dataset LogisticRegression.
+        """Gate 0: Domain classifier — flash-only early-exit.
 
-        Returns the predicted model name if confidence >= _CLASSIFIER_THRESHOLD,
-        otherwise None (falls through to Gates 1-3).
+        Only acts when P(FLASH) >= _FLASH_GATE0_THRESHOLD. DEEPSEEK/QWEN235B
+        predictions from this classifier are ignored: proxy training labels don't
+        align to RouterArena optimality, so harder-tier decisions fall through to
+        Gates 1-3 which use RouterArena-derived centroids and heuristics.
         """
         artifact = self._proxy_classifier
         if artifact is None:
@@ -434,14 +467,14 @@ class ChuzomRouterV2(BaseRouter):
         try:
             clf = artifact["classifier"]  # type: ignore[index]
             le = artifact["label_encoder"]  # type: ignore[index]
+            classes = list(le.classes_)
             proba = clf.predict_proba(emb.reshape(1, -1))[0]
-            max_proba = float(proba.max())
-            if max_proba < _CLASSIFIER_THRESHOLD:
+            flash_model = "google/gemini-3.1-flash-lite"
+            if flash_model not in classes:
                 return None
-            class_idx = int(proba.argmax())
-            model_name: str = le.inverse_transform([class_idx])[0]
-            if model_name in self.models:
-                return model_name
+            flash_prob = float(proba[classes.index(flash_model)])
+            if flash_prob >= _FLASH_GATE0_THRESHOLD and flash_model in self.models:
+                return flash_model
         except Exception:
             pass
         return None
