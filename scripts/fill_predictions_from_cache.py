@@ -140,20 +140,21 @@ def main(router_name: str):
                 entry["generated_result"] = result
                 filled += 1
                 placed = True
-            else:
-                # Primary cache has output_tokens=0 — try fallback models
-                for fallback_model in FALLBACK_MODELS_ORDER:
-                    if fallback_model == model:
-                        continue
-                    fb_cached = caches.get(fallback_model, {}).get(gidx)
-                    if fb_cached:
-                        fb_result = build_generated_result(fb_cached)
-                        if has_valid_token_usage(fb_result):
-                            entry["generated_result"] = fb_result
-                            entry["prediction"] = fallback_model  # update for cost integrity
-                            fallback_filled += 1
-                            placed = True
-                            break
+
+        if not placed:
+            # Primary cache missing or has output_tokens=0 — try fallback models
+            for fallback_model in FALLBACK_MODELS_ORDER:
+                if fallback_model == model:
+                    continue
+                fb_cached = caches.get(fallback_model, {}).get(gidx)
+                if fb_cached:
+                    fb_result = build_generated_result(fb_cached)
+                    if has_valid_token_usage(fb_result):
+                        entry["generated_result"] = fb_result
+                        entry["prediction"] = fallback_model  # update for cost integrity
+                        fallback_filled += 1
+                        placed = True
+                        break
 
         if not placed:
             missing += 1
