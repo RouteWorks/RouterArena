@@ -370,10 +370,26 @@ class ChuzomRouterV2(BaseRouter):
 
     def __init__(self, router_name: str, llm_judge_enabled: bool = True) -> None:
         super().__init__(router_name)
-        # Restrict routing pool to models that are reliably available on OpenRouter
         self.models = [m for m in self.models if m in _ROUTING_MODELS]
         self._llm_judge_enabled = llm_judge_enabled
+        self._load_dotenv()
         self._ensure_loaded()
+
+    @classmethod
+    def _load_dotenv(cls) -> None:
+        """Load .env from project root so GOOGLE_API_KEY etc. are available."""
+        env_path = os.path.join(cls._project_root(), ".env")
+        if not os.path.exists(env_path):
+            return
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, _, val = line.partition("=")
+                key = key.strip()
+                if key and key not in os.environ:
+                    os.environ[key] = val.strip()
 
     # ── Setup ──────────────────────────────────────────────────────────────────
 
@@ -636,7 +652,8 @@ class ChuzomRouterV2(BaseRouter):
                 "contents": [{"role": "user", "parts": [{"text": user_msg}]}],
                 "generationConfig": {"maxOutputTokens": 64, "temperature": 0.0},
             }
-            resp = httpx.post(url, json=payload, timeout=15)
+            # Separate connect/read timeouts prevent CLOSE_WAIT socket hangs
+            resp = httpx.post(url, json=payload, timeout=httpx.Timeout(connect=5.0, read=12.0, write=5.0, pool=5.0))
             resp.raise_for_status()
             cands = resp.json().get("candidates", [])
             if cands:
