@@ -1,0 +1,2102 @@
+[
+ {
+  "global index": "AIME_112",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "AIME_58",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_12",
+  "prediction": "grok-4-1-fast-reasoning",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_123",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_16",
+  "prediction": "google/gemini-3.1-flash-lite",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_182",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_230",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_293",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_349",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_378",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_443",
+  "prediction": "qwen/qwen3-30b-a3b-instruct-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_496",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_631",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_646",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_659",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_676",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_685",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_689",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_702",
+  "prediction": "google/gemini-3.1-flash-lite",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_713",
+  "prediction": "google/gemini-3.1-flash-lite",
+  "for_optimality": false
+ },
+ {
+  "global index": "ArcMMLU_98",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "AsDiv_1165",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "AsDiv_1347",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "AsDiv_472",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "AsDiv_733",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ChessInstruct_0",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ChessInstruct_107",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ChessInstruct_144",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ChessInstruct_42",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ChessInstruct_58",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ChessInstruct_71",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "ChessInstruct_84",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_commonsense_28",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_commonsense_51",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_commonsense_6",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_commonsense_62",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_commonsense_70",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_commonsense_85",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_commonsense_90",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_deontology_0",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_deontology_2",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_deontology_31",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_deontology_32",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_deontology_56",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_justice_1",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_justice_45",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_justice_76",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_justice_84",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_virtue_14",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_virtue_26",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_virtue_30",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_virtue_48",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "Ethics_virtue_51",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "FinQA_149",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "FinQA_208",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "FinQA_56",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "FinQA_60",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GSM8K_43",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_1002",
+  "prediction": "gpt-4o-mini",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_1094",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_1102",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_1113",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_124",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_1243",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_30",
+  "prediction": "gpt-4o-mini",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_502",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_526",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_591",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_766",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_87",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_915",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_944",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoBench_968",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoGraphyData_100k_27",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "GeoGraphyData_100k_42",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_105",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_114",
+  "prediction": "qwen/qwen3-30b-a3b-instruct-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_118",
+  "prediction": "grok-4-1-fast-reasoning",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_131",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_136",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_181",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_237",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_271",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_350",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_386",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_405",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_43",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_431",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_437",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_476",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_485",
+  "prediction": "qwen/qwen3-30b-a3b-instruct-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_49",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_491",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "LiveCodeBench_499",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MATH_108",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MATH_442",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MATH_53",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_biology_2808",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_biology_2912",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_biology_2980",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_biology_2985",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_biology_3188",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_biology_3215",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_biology_3225",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_business_226",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_business_294",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_business_378",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_business_430",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_business_503",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_business_507",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_business_6",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_business_784",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_chemistry_3796",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_chemistry_3837",
+  "prediction": "qwen/qwen3-30b-a3b-instruct-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_chemistry_3974",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_chemistry_4067",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_chemistry_4407",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9086",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9110",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9136",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9138",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9149",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9200",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9212",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9239",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9264",
+  "prediction": "grok-4-1-fast-reasoning",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9285",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9289",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9414",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9415",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9430",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9452",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9471",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_computer science_9475",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_economics_5769",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_economics_5907",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_economics_5931",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_economics_5965",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_economics_6114",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_economics_6122",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_economics_6135",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_economics_6325",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_economics_6353",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10076",
+  "prediction": "qwen/qwen3-30b-a3b-instruct-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10125",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10179",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10195",
+  "prediction": "gpt-4o-mini",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10199",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10298",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10342",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10395",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10428",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10432",
+  "prediction": "gpt-4o-mini",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10473",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10537",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10701",
+  "prediction": "google/gemini-3.1-flash-lite",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10823",
+  "prediction": "google/gemini-3.1-flash-lite",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_engineering_10864",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_health_4885",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_health_4973",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_health_5093",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_health_5144",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_health_5214",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_health_5215",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_health_5261",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_health_5473",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_health_5514",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4486",
+  "prediction": "gpt-4o-mini",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4490",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4497",
+  "prediction": "gpt-4o-mini",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4509",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4517",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4523",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4605",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4629",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4638",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4717",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4749",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4752",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4774",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4810",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4833",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4836",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_history_4841",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_law_1007",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_law_1031",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_law_1386",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_law_1462",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_law_1484",
+  "prediction": "gpt-4o-mini",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_law_1518",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_law_1818",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_law_806",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_law_899",
+  "prediction": "gpt-4o-mini",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_math_6429",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_math_6526",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_math_6623",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_math_6848",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_math_7101",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_math_7249",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_math_7284",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_math_7451",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_math_7577",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_philosophy_9510",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_philosophy_9536",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_philosophy_9663",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_philosophy_9672",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_philosophy_9943",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_physics_7773",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_physics_7887",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_physics_7893",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_physics_8888",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_physics_9017",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_psychology_2005",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_psychology_2186",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_psychology_2329",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_psychology_2406",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_psychology_2420",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_psychology_2450",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_psychology_2457",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLUPro_psychology_2524",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_formal_logic_121",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_formal_logic_16",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_formal_logic_32",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_formal_logic_63",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_formal_logic_7",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_formal_logic_70",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_formal_logic_85",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_management_4",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_management_41",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_management_77",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_management_91",
+  "prediction": "Qwen/Qwen3-Coder-Next",
+  "for_optimality": false
+ },
+ {
+  "global index": "MMLU_management_93",
+  "prediction": "Qwen/Qwen3-Coder-Next",
+  "for_optimality": false
+ },
+ {
+  "global index": "MathQA_158",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MathQA_1742",
+  "prediction": "grok-4-1-fast-reasoning",
+  "for_optimality": false
+ },
+ {
+  "global index": "MathQA_202",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "MathQA_2092",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MathQA_2102",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MathQA_2851",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MathQA_827",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MathQA_84",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_1005",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_1054",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_1298",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_1309",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_1362",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_145",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_2010",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_2323",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_2366",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_2581",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_511",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_59",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_643",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MedMCQA_853",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MusicTheoryBench_126",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "MusicTheoryBench_14",
+  "prediction": "gpt-4o-mini",
+  "for_optimality": false
+ },
+ {
+  "global index": "MusicTheoryBench_147",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MusicTheoryBench_152",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MusicTheoryBench_188",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MusicTheoryBench_189",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "MusicTheoryBench_240",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "MusicTheoryBench_33",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MusicTheoryBench_337",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "MusicTheoryBench_340",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "MusicTheoryBench_70",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_131",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_1683",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_2474",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_2820",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_3282",
+  "prediction": "qwen/qwen3-30b-a3b-instruct-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_4102",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_4128",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_4347",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_4540",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_5022",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_5259",
+  "prediction": "qwen/qwen3-30b-a3b-instruct-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_533",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_5894",
+  "prediction": "gpt-4o-mini",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_6829",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_7678",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_7964",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_8215",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_8598",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "NarrativeQA_927",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Animals_2545",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Animals_262",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Art_1429",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Celebrities_1078",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Celebrities_1456",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Celebrities_3577",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Celebrities_3968",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_General Knowledge_1178",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_General Knowledge_1807",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_General Knowledge_1957",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_General Knowledge_2181",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_General Knowledge_3404",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_General Knowledge_3727",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_General Knowledge_4019",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Geography_2099",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Geography_2346",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Geography_3880",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Geography_792",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_History_1162",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_History_2026",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_History_3712",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_History_3902",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Science & Nature_1175",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Science & Nature_1560",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Science & Nature_3716",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Science & Nature_476",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Sports_2289",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Vehicles_1173",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Vehicles_1419",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Vehicles_2519",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "OpenTDB_Vehicles_3234",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_0",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_154",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_18",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_238",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_250",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_337",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_362",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_437",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_510",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_520",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_575",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_582",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_588",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_610",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_63",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_643",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_687",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_722",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_73",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_755",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_8",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_81",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_854",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "PubMedQA_905",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Fine Arts_1212",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Fine Arts_1702",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Fine Arts_828",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Fine Arts_865",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Geography_1023",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Geography_1555",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Geography_304",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_History_1084",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_History_1154",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_History_433",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_History_473",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_History_926",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Literature_1045",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Literature_1073",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Literature_1239",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Literature_1326",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Literature_1727",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Literature_1843",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Literature_386",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Literature_408",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Literature_475",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Literature_833",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Philosophy_1270",
+  "prediction": "google/gemini-3.1-flash-lite",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Philosophy_499",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Philosophy_91",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Science_1360",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Science_1473",
+  "prediction": "google/gemini-3.1-flash-lite",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Science_308",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Science_619",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Social Science_1847",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Social Science_2",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "QANTA_Social Science_77",
+  "prediction": "gemini-2.5-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "SocialiQA_13810",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SocialiQA_22095",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SocialiQA_26846",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SocialiQA_7839",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-CausalReasoning_4526",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-ClozeTest_12894",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-ClozeTest_17965",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-ClozeTest_18766",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-Entailment_19410",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-Entailment_19567",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-Entailment_522",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-Entailment_767",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-QA_1408",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-QA_3137",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-QA_4046",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-QA_4102",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-QA_4160",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-RC_7725",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-RC_7738",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-RC_8531",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-Wic_19695",
+  "prediction": "deepseek/deepseek-v3.2",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-Wic_19738",
+  "prediction": "Qwen/Qwen3-Coder-Next",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-Wic_20079",
+  "prediction": "Qwen/Qwen3-Coder-Next",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-Wic_20189",
+  "prediction": "Qwen/Qwen3-Coder-Next",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-Wic_20253",
+  "prediction": "Qwen/Qwen3-Coder-Next",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-Wsc_20368",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "SuperGLUE-Wsc_20370",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-cs-en_156",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-cs-en_246",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-cs-en_568",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-de-en_46",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-de-en_715",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-de-en_883",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-fi-en_222",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-fi-en_610",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-gu-en_116",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-gu-en_123",
+  "prediction": "deepseek/deepseek-v4-flash",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-gu-en_191",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-gu-en_491",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-gu-en_968",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-kk-en_528",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-kk-en_826",
+  "prediction": "gpt-4o-mini",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-lt-en_135",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-lt-en_269",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-lt-en_636",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-ru-en_222",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-zh-en_218",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-zh-en_252",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ },
+ {
+  "global index": "WMT19-zh-en_59",
+  "prediction": "qwen/qwen3-235b-a22b-2507",
+  "for_optimality": false
+ }
+]
