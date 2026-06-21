@@ -18,6 +18,12 @@ from collections import defaultdict
 CACHED_RESULTS_DIR = "./cached_results"
 PREDICTIONS_DIR = "./router_inference/predictions"
 
+# Models tried in order when primary cache has invalid token_usage (output_tokens=0)
+FALLBACK_MODELS_ORDER = [
+    "qwen/qwen3-235b-a22b-2507",
+    "deepseek/deepseek-v4-flash",
+]
+
 MODEL_TO_CACHE_FILE = {
     "google/gemini-3.1-flash-lite": "google_gemini-3.1-flash-lite.jsonl",
     "deepseek/deepseek-v4-flash": "deepseek_deepseek-v4-flash.jsonl",
@@ -59,6 +65,14 @@ def load_cache(model_name: str) -> dict:
     return cache
 
 
+def has_valid_token_usage(generated_result: dict) -> bool:
+    """Return True only when output_tokens > 0 (matches is_valid_generation() in run.py)."""
+    if not generated_result:
+        return False
+    token_usage = generated_result.get("token_usage") or {}
+    return (token_usage.get("output_tokens") or 0) > 0
+
+
 def build_generated_result(cached: dict) -> dict:
     """Convert a cached result entry to the generated_result format."""
     return {
@@ -93,21 +107,24 @@ def main(router_name: str):
     models_used = set(e["prediction"] for e in predictions)
     print(f"Models used: {sorted(models_used)}")
 
-    # Load all needed caches
+    # Load all needed caches (plus fallbacks pre-emptively)
     print("\nLoading caches:")
     caches: dict[str, dict] = {}
     for model in models_used:
         caches[model] = load_cache(model)
+    for fallback_model in FALLBACK_MODELS_ORDER:
+        if fallback_model not in caches:
+            caches[fallback_model] = load_cache(fallback_model)
 
     # Fill in generated_result
     filled = 0
+    fallback_filled = 0
     missing = 0
     already_filled = 0
 
     for entry in predictions:
-        if entry.get("generated_result") and entry["generated_result"].get(
-            "generated_answer"
-        ):
+        existing = entry.get("generated_result")
+        if existing and existing.get("generated_answer") and has_valid_token_usage(existing):
             already_filled += 1
             continue
 
@@ -116,16 +133,36 @@ def main(router_name: str):
         cache = caches.get(model, {})
         cached = cache.get(gidx)
 
+        placed = False
         if cached:
-            entry["generated_result"] = build_generated_result(cached)
-            filled += 1
-        else:
+            result = build_generated_result(cached)
+            if has_valid_token_usage(result):
+                entry["generated_result"] = result
+                filled += 1
+                placed = True
+            else:
+                # Primary cache has output_tokens=0 — try fallback models
+                for fallback_model in FALLBACK_MODELS_ORDER:
+                    if fallback_model == model:
+                        continue
+                    fb_cached = caches.get(fallback_model, {}).get(gidx)
+                    if fb_cached:
+                        fb_result = build_generated_result(fb_cached)
+                        if has_valid_token_usage(fb_result):
+                            entry["generated_result"] = fb_result
+                            entry["prediction"] = fallback_model  # update for cost integrity
+                            fallback_filled += 1
+                            placed = True
+                            break
+
+        if not placed:
             missing += 1
 
     print("\nResults:")
     print(f"  Already filled: {already_filled}")
     print(f"  Filled from cache: {filled}")
-    print(f"  Missing (no cache hit): {missing}")
+    print(f"  Filled via fallback model: {fallback_filled}")
+    print(f"  Missing (no valid cache hit): {missing}")
 
     # Save updated predictions
     with open(pred_path, "w", encoding="utf-8") as f:

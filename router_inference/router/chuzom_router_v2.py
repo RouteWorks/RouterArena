@@ -696,6 +696,23 @@ class ChuzomRouterV2(BaseRouter):
 
     def _get_prediction(self, query: str) -> str:
         text = _extract_text(query)
+
+        # ── Gate 0.5: Strong-heuristic pre-filter (runs BEFORE classifier) ───
+        # Rules with max model score >= 8.0 are high-precision domain locks
+        # (e.g. "Translate the following sentence from … to …" = WMT translation).
+        # They must fire before Gate 0 or the proxy classifier's Flash bias
+        # short-circuits them.  Gate 0 only handles the remaining queries.
+        raw_h: defaultdict[str, float] = defaultdict(float)
+        for pattern, weights in _HEURISTIC_RULES:
+            if pattern.search(query):
+                for m, w in weights.items():
+                    raw_h[m] += w
+        _STRONG_HEURISTIC_THRESHOLD = 8.0
+        if raw_h:
+            top_model = max(raw_h, key=lambda m: raw_h[m])
+            if raw_h[top_model] >= _STRONG_HEURISTIC_THRESHOLD and top_model in self.models:
+                return top_model
+
         # Embed once — shared between Gate 0 (classifier) and Gate 1 (centroid)
         emb = self._embed(text)
 
