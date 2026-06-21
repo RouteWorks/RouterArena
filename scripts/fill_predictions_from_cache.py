@@ -107,7 +107,7 @@ def main(router_name: str):
     models_used = set(e["prediction"] for e in predictions)
     print(f"Models used: {sorted(models_used)}")
 
-    # Load all needed caches (plus fallbacks pre-emptively)
+    # Load all needed caches (plus fallbacks preemptively)
     print("\nLoading caches:")
     caches: dict[str, dict] = {}
     for model in models_used:
@@ -124,7 +124,11 @@ def main(router_name: str):
 
     for entry in predictions:
         existing = entry.get("generated_result")
-        if existing and existing.get("generated_answer") and has_valid_token_usage(existing):
+        if (
+            existing
+            and existing.get("generated_answer")
+            and has_valid_token_usage(existing)
+        ):
             already_filled += 1
             continue
 
@@ -151,7 +155,9 @@ def main(router_name: str):
                     fb_result = build_generated_result(fb_cached)
                     if has_valid_token_usage(fb_result):
                         entry["generated_result"] = fb_result
-                        entry["prediction"] = fallback_model  # update for cost integrity
+                        entry["prediction"] = (
+                            fallback_model  # update for cost integrity
+                        )
                         fallback_filled += 1
                         placed = True
                         break

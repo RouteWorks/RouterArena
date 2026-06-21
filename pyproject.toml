@@ -91,6 +91,10 @@ packages = ["."]
 [tool.uv]
 dev-dependencies = []
 
+[tool.codespell]
+# oint = LaTeX contour integral (\oint); iint/iiint = double/triple integrals
+ignore-words-list = "rouge,difflib,oint,iint,iiint"
+
 [tool.mypy]
 plugins = ['pydantic.mypy']
 ignore_missing_imports = true

@@ -17,7 +17,7 @@ repos:
   rev: v2.4.1
   hooks:
   - id: codespell
-    args: [--ignore-words-list=rouge,Rouge,difflib,Difflib]
+    args: [--ignore-words-list=rouge,Rouge,difflib,Difflib,oint,iint,iiint]
     exclude: '^(cached_results/.*|.*\.svg$|router_inference/predictions/.*|llm_inference/datasets/.*)$'
 # Remove local license hooks (no tools directory present)
 - repo: https://github.com/jackdewinter/pymarkdown

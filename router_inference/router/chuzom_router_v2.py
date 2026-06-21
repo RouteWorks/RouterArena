@@ -126,7 +126,7 @@ _HIGH_CONFIDENCE = 0.35
 # Gate 0 proxy classifier: early-exit to flash-lite only when P(FLASH) >= this threshold.
 # Classifier is only trusted for "Flash is safe" decisions — DEEPSEEK/QWEN outputs from
 # Gate 0 are noisy (proxy labels ≠ RouterArena optimality) so they fall through to Gates 1-3.
-_CLASSIFIER_THRESHOLD = 0.60   # kept for general max-prob guard
+_CLASSIFIER_THRESHOLD = 0.60  # kept for general max-prob guard
 _FLASH_GATE0_THRESHOLD = 0.90  # flash-only early-exit threshold
 
 # Blended margin below which the LLM judge is invoked
@@ -166,9 +166,7 @@ _LATEX_MATH_RE = re.compile(
 )
 
 # Chess move sequence: unique to ChessInstruct dataset.
-_CHESS_RE = re.compile(
-    r'(?i)(chess\s+move|question about chess|"moves":\s*\[)'
-)
+_CHESS_RE = re.compile(r'(?i)(chess\s+move|question about chess|"moves":\s*\[)')
 
 # Competition math: specific phrasing from hendrycks/MATH, AMC/AIME archives, competition_math.
 # Intentionally narrow — excludes "how many ways/solutions" which appear in general contexts.
@@ -309,13 +307,17 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
             r"(?i)(medical|clinical|diagnosis|pharmacol|biochem|anatomy"
             r"|physic[si]|chemistry|molecular|quantum|thermodynam|electr(on|ic))"
         ),
-        {"qwen/qwen3-235b-a22b-2507": 2.0, "deepseek/deepseek-v4-flash": 1.5, "google/gemini-3.1-flash-lite": 1.0},
+        {
+            "qwen/qwen3-235b-a22b-2507": 2.0,
+            "deepseek/deepseek-v4-flash": 1.5,
+            "google/gemini-3.1-flash-lite": 1.0,
+        },
     ),
     # ── SuperGLUE-Entailment: specific NLI judgment format ────────────────────
     # Measured: Flash 0.8939 vs QWEN80B 0.7347 on these exact entries.
     # Generic NLI rule routes to QWEN80B/235B, but measured cache outcomes show
     # Flash is significantly better on this specific "0.0 for entailment" format.
-    # Weight 8.0 pre-empts Gate 0 via the Gate 0.5 strong-heuristic filter.
+    # Weight 8.0 preempts Gate 0 via the Gate 0.5 strong-heuristic filter.
     (
         re.compile(r"`0\.0`\s+for entailment", re.IGNORECASE),
         {"google/gemini-3.1-flash-lite": 8.0},
@@ -325,7 +327,9 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
     # Centroid similarity draws these to QWEN80B, but Flash is clearly better.
     # Weight 8.0 fires Gate 0.5 pre-filter before centroid/heuristic blending.
     (
-        re.compile(r"Does the word have the same meaning in both sentences", re.IGNORECASE),
+        re.compile(
+            r"Does the word have the same meaning in both sentences", re.IGNORECASE
+        ),
         {"google/gemini-3.1-flash-lite": 8.0},
     ),
 ]
@@ -458,12 +462,15 @@ class ChuzomRouterV2(BaseRouter):
     @classmethod
     def _load_proxy_classifier(cls) -> None:
         """Load Gate 0 proxy classifier from joblib artifact (optional)."""
-        cls._proxy_classifier_loaded = True  # set before load so we don't retry on failure
+        cls._proxy_classifier_loaded = (
+            True  # set before load so we don't retry on failure
+        )
         path = cls._config_path("chuzom-proxy-classifier.joblib")
         if not os.path.exists(path):
             return
         try:
             import joblib  # type: ignore[import]
+
             cls._proxy_classifier = joblib.load(path)
         except Exception:
             cls._proxy_classifier = None
@@ -516,7 +523,9 @@ class ChuzomRouterV2(BaseRouter):
         """Gate 1: BGE-small centroid similarity (computes embedding internally)."""
         return self._gate_centroid_from_emb(self._embed(text))
 
-    def _gate_centroid_from_emb(self, emb: np.ndarray) -> tuple[dict[str, float], float]:
+    def _gate_centroid_from_emb(
+        self, emb: np.ndarray
+    ) -> tuple[dict[str, float], float]:
         """Gate 1: BGE-small centroid similarity from pre-computed embedding."""
         assert self._centroids is not None
         assert self._centroid_models is not None
@@ -670,7 +679,11 @@ class ChuzomRouterV2(BaseRouter):
                 "generationConfig": {"maxOutputTokens": 64, "temperature": 0.0},
             }
             # Separate connect/read timeouts prevent CLOSE_WAIT socket hangs
-            resp = httpx.post(url, json=payload, timeout=httpx.Timeout(connect=5.0, read=12.0, write=5.0, pool=5.0))
+            resp = httpx.post(
+                url,
+                json=payload,
+                timeout=httpx.Timeout(connect=5.0, read=12.0, write=5.0, pool=5.0),
+            )
             resp.raise_for_status()
             cands = resp.json().get("candidates", [])
             if cands:
@@ -727,7 +740,10 @@ class ChuzomRouterV2(BaseRouter):
         _STRONG_HEURISTIC_THRESHOLD = 8.0
         if raw_h:
             top_model = max(raw_h, key=lambda m: raw_h[m])
-            if raw_h[top_model] >= _STRONG_HEURISTIC_THRESHOLD and top_model in self.models:
+            if (
+                raw_h[top_model] >= _STRONG_HEURISTIC_THRESHOLD
+                and top_model in self.models
+            ):
                 return top_model
 
         # Embed once — shared between Gate 0 (classifier) and Gate 1 (centroid)
