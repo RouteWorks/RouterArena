@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 #!/usr/bin/env python3
 """Build a proxy-dataset classifier for ChuzomRouterV2.
 
@@ -25,16 +27,13 @@ Output:
   router_inference/config/chuzom-proxy-classifier.joblib
   data/proxy_classifier_labels.jsonl
 """
+
 from __future__ import annotations
 
-import ast
 import json
 import os
 import re
-import subprocess
 import sys
-import tempfile
-import textwrap
 import urllib.request
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -65,7 +64,9 @@ PROMPTS_PER_DATASET = 300  # per dataset — keep inference cost manageable
 MAX_WORKERS = 24
 MAX_TOKENS = 256
 LABELS_FILE = ROOT / "data" / "proxy_classifier_labels.jsonl"
-CLASSIFIER_FILE = ROOT / "router_inference" / "config" / "chuzom-proxy-classifier.joblib"
+CLASSIFIER_FILE = (
+    ROOT / "router_inference" / "config" / "chuzom-proxy-classifier.joblib"
+)
 
 # ── Metadata table (for similarity comparison printout) ───────────────────────
 
@@ -139,7 +140,9 @@ def _mcq_prompt(question: str, choices: list[str], labels: list[str]) -> str:
 def load_gpqa(n: int = PROMPTS_PER_DATASET) -> list[dict]:
     from datasets import load_dataset  # type: ignore
 
-    ds = load_dataset("google-deepmind/gpqa", "gpqa_diamond", split="train", trust_remote_code=False)
+    ds = load_dataset(
+        "google-deepmind/gpqa", "gpqa_diamond", split="train", trust_remote_code=False
+    )
     labels = ["A", "B", "C", "D"]
     items = []
     for row in ds.shuffle(seed=42).select(range(min(n, len(ds)))):
@@ -150,14 +153,18 @@ def load_gpqa(n: int = PROMPTS_PER_DATASET) -> list[dict]:
             row["Incorrect Answer 3"],
         ]
         prompt = _mcq_prompt(row["Question"], choices, labels)
-        items.append({"prompt": prompt, "answer": "A", "type": "mcq", "source": "gpqa_diamond"})
+        items.append(
+            {"prompt": prompt, "answer": "A", "type": "mcq", "source": "gpqa_diamond"}
+        )
     return items
 
 
 def load_trivia_qa(n: int = PROMPTS_PER_DATASET) -> list[dict]:
     from datasets import load_dataset  # type: ignore
 
-    ds = load_dataset("trivia_qa", "rc.nocontext", split="validation", trust_remote_code=False)
+    ds = load_dataset(
+        "trivia_qa", "rc.nocontext", split="validation", trust_remote_code=False
+    )
     items = []
     for row in ds.shuffle(seed=42).select(range(min(n, len(ds)))):
         q = row["question"]
@@ -165,21 +172,37 @@ def load_trivia_qa(n: int = PROMPTS_PER_DATASET) -> list[dict]:
         value = row["answer"].get("value", "")
         all_answers = [value] + aliases
         prompt = f"{q}\n\nAnswer in one or two words."
-        items.append({"prompt": prompt, "answer": all_answers, "type": "trivia", "source": "trivia_qa"})
+        items.append(
+            {
+                "prompt": prompt,
+                "answer": all_answers,
+                "type": "trivia",
+                "source": "trivia_qa",
+            }
+        )
     return items[:n]
 
 
 def load_medqa_usmle(n: int = PROMPTS_PER_DATASET) -> list[dict]:
     from datasets import load_dataset  # type: ignore
 
-    ds = load_dataset("GBaker/MedQA-USMLE-4-options", split="test", trust_remote_code=False)
+    ds = load_dataset(
+        "GBaker/MedQA-USMLE-4-options", split="test", trust_remote_code=False
+    )
     labels = ["A", "B", "C", "D"]
     items = []
     for row in ds.shuffle(seed=42).select(range(min(n, len(ds)))):
         opts = row["options"]
         choices = [opts.get(lab, "") for lab in labels]
         prompt = _mcq_prompt(row["question"], choices, labels)
-        items.append({"prompt": prompt, "answer": row["answer_idx"], "type": "mcq", "source": "medqa_usmle"})
+        items.append(
+            {
+                "prompt": prompt,
+                "answer": row["answer_idx"],
+                "type": "mcq",
+                "source": "medqa_usmle",
+            }
+        )
     return items[:n]
 
 
@@ -195,9 +218,11 @@ def load_aqua_rat(n: int = PROMPTS_PER_DATASET) -> list[dict]:
         for opt_str in options:
             parts = opt_str.split(")", 1)
             choices.append(parts[1].strip() if len(parts) == 2 else opt_str)
-        prompt = _mcq_prompt(row["question"], choices[:5], labels[:len(choices)])
+        prompt = _mcq_prompt(row["question"], choices[:5], labels[: len(choices)])
         gold = row["correct"].strip().upper()
-        items.append({"prompt": prompt, "answer": gold, "type": "mcq", "source": "aqua_rat"})
+        items.append(
+            {"prompt": prompt, "answer": gold, "type": "mcq", "source": "aqua_rat"}
+        )
     return items[:n]
 
 
@@ -212,14 +237,26 @@ def load_commonsense_qa(n: int = PROMPTS_PER_DATASET) -> list[dict]:
         texts = choice_data["text"]
         prompt = _mcq_prompt(row["question"], texts, labels_l)
         gold = row["answerKey"].strip().upper()
-        items.append({"prompt": prompt, "answer": gold, "type": "mcq", "source": "commonsense_qa"})
+        items.append(
+            {
+                "prompt": prompt,
+                "answer": gold,
+                "type": "mcq",
+                "source": "commonsense_qa",
+            }
+        )
     return items[:n]
 
 
 def load_winogrande(n: int = PROMPTS_PER_DATASET) -> list[dict]:
     from datasets import load_dataset  # type: ignore
 
-    ds = load_dataset("allenai/winogrande", "winogrande_xl", split="validation", trust_remote_code=False)
+    ds = load_dataset(
+        "allenai/winogrande",
+        "winogrande_xl",
+        split="validation",
+        trust_remote_code=False,
+    )
     items = []
     for row in ds.shuffle(seed=42).select(range(min(n, len(ds)))):
         sentence = row["sentence"]
@@ -231,7 +268,9 @@ def load_winogrande(n: int = PROMPTS_PER_DATASET) -> list[dict]:
             f"A. {opt1}\nB. {opt2}\n\nAnswer with just A or B."
         )
         gold = "A" if str(row["answer"]) == "1" else "B"
-        items.append({"prompt": prompt, "answer": gold, "type": "mcq", "source": "winogrande"})
+        items.append(
+            {"prompt": prompt, "answer": gold, "type": "mcq", "source": "winogrande"}
+        )
     return items[:n]
 
 
@@ -253,7 +292,9 @@ def load_race_high(n: int = PROMPTS_PER_DATASET) -> list[dict]:
             + "\n\nAnswer with just the letter (A, B, C, or D)."
         )
         gold = row["answer"].strip().upper()
-        items.append({"prompt": prompt, "answer": gold, "type": "mcq", "source": "race_high"})
+        items.append(
+            {"prompt": prompt, "answer": gold, "type": "mcq", "source": "race_high"}
+        )
     return items[:n]
 
 
@@ -292,11 +333,13 @@ def grade(response: str, item: dict) -> bool:
 
 
 def call_model(model: str, prompt: str) -> str | None:
-    payload = json.dumps({
-        "model": model,
-        "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": MAX_TOKENS,
-    }).encode()
+    payload = json.dumps(
+        {
+            "model": model,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": MAX_TOKENS,
+        }
+    ).encode()
     req = urllib.request.Request(
         "https://openrouter.ai/api/v1/chat/completions",
         data=payload,
@@ -323,7 +366,7 @@ def run_all_models(item: dict) -> dict | None:
             m = futures[f]
             responses[m] = f.result()
 
-    correct = [m for m in MODELS if responses.get(m) and grade(responses[m], item)]
+    correct = [m for m in MODELS if (r := responses.get(m)) and grade(r, item)]
     if not correct:
         return None
 
@@ -332,7 +375,9 @@ def run_all_models(item: dict) -> dict | None:
         "prompt": prompt,
         "source": item["source"],
         "type": item["type"],
-        "answer": item["answer"] if isinstance(item["answer"], str) else item["answer"][0],
+        "answer": item["answer"]
+        if isinstance(item["answer"], str)
+        else item["answer"][0],
         "cheapest_correct": cheapest,
         "correct_models": correct,
         "responses": {m: responses[m] for m in MODELS},
@@ -401,7 +446,7 @@ def train_classifier(labels: list[dict]) -> dict:
     print("\nTraining label distribution:")
     for m in MODELS:
         n = class_dist.get(m, 0)
-        print(f"  {n:5d} ({n/len(labels)*100:.1f}%)  {m}")
+        print(f"  {n:5d} ({n / len(labels) * 100:.1f}%)  {m}")
 
     # Logistic regression — balanced class weights handle imbalance
     clf = LogisticRegression(
@@ -473,19 +518,21 @@ def main() -> None:
     print("Loading proxy datasets...")
     all_items: list[dict] = []
     loaders = [
-        ("GPQA Diamond",    load_gpqa),
-        ("TriviaQA",        load_trivia_qa),
-        ("MedQA-USMLE",     load_medqa_usmle),
-        ("AQUA-RAT",        load_aqua_rat),
-        ("CommonsenseQA",   load_commonsense_qa),
-        ("WinoGrande",      load_winogrande),
-        ("RACE (high)",     load_race_high),
+        ("GPQA Diamond", load_gpqa),
+        ("TriviaQA", load_trivia_qa),
+        ("MedQA-USMLE", load_medqa_usmle),
+        ("AQUA-RAT", load_aqua_rat),
+        ("CommonsenseQA", load_commonsense_qa),
+        ("WinoGrande", load_winogrande),
+        ("RACE (high)", load_race_high),
     ]
     for name, loader in loaders:
         try:
             items = loader()
             all_items.extend(items)
-            print(f"  {name:<20s}: {len(items)} prompts  (source={items[0]['source'] if items else '?'})")
+            print(
+                f"  {name:<20s}: {len(items)} prompts  (source={items[0]['source'] if items else '?'})"
+            )
         except Exception as ex:
             print(f"  {name:<20s}: FAILED — {ex}")
 
@@ -495,7 +542,9 @@ def main() -> None:
     print_metadata_comparison(all_items)
 
     # ── Step 3: Run inference + grading ───────────────────────────────────────
-    print(f"Running inference ({MAX_WORKERS} workers × 4 models = up to {MAX_WORKERS * 4} concurrent calls)...")
+    print(
+        f"Running inference ({MAX_WORKERS} workers × 4 models = up to {MAX_WORKERS * 4} concurrent calls)..."
+    )
     labels: list[dict] = []
     done = 0
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
@@ -508,7 +557,9 @@ def main() -> None:
             if done % 50 == 0 or done == len(all_items):
                 print(f"  {done}/{len(all_items)} | {len(labels)} labeled", flush=True)
 
-    print(f"\nLabeled: {len(labels)}/{len(all_items)} ({len(labels)/len(all_items)*100:.1f}% had at least one model correct)")
+    print(
+        f"\nLabeled: {len(labels)}/{len(all_items)} ({len(labels) / len(all_items) * 100:.1f}% had at least one model correct)"
+    )
 
     # ── Step 4: Save labels ────────────────────────────────────────────────────
     with open(LABELS_FILE, "w") as fp:
@@ -521,7 +572,7 @@ def main() -> None:
     dist = Counter(r["cheapest_correct"] for r in labels)
     for m in MODELS:
         n = dist.get(m, 0)
-        print(f"  {n:5d} ({n/len(labels)*100:.1f}%)  {m}")
+        print(f"  {n:5d} ({n / len(labels) * 100:.1f}%)  {m}")
 
     print_source_routing_estimate(labels)
 

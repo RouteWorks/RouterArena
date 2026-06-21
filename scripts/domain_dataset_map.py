@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 """
 Domain dataset map: RouterArena categories → HuggingFace proxy datasets.
 
@@ -16,10 +18,10 @@ Label derivation (from RouterArena per-dataset model accuracy):
   QWEN235B  = only qwen3-235b ≥0.50, or all models <0.50 (route to best)
 """
 
-DOMAIN_MAP = [
+from typing import Any
 
+DOMAIN_MAP: list[dict[str, Any]] = [
     # ── FLASH: factual MCQ / knowledge ────────────────────────────────────────
-
     # ArcMMLU → AI2-ARC (different difficulty levels)
     {
         "ra_datasets": ["ArcMMLU"],
@@ -41,14 +43,23 @@ DOMAIN_MAP = [
         "format_fn": "arc_mcq",
         "rationale": "ArcMMLU flash-lite=0.82; ARC-Challenge same domain",
     },
-
     # MMLUPro_* → MMLU-Pro (test split has more examples than validation)
     {
-        "ra_datasets": ["MMLUPro_computer science", "MMLUPro_engineering",
-                        "MMLUPro_biology", "MMLUPro_chemistry", "MMLUPro_physics",
-                        "MMLUPro_math", "MMLUPro_history", "MMLUPro_economics",
-                        "MMLUPro_business", "MMLUPro_law", "MMLUPro_psychology",
-                        "MMLUPro_health", "MMLUPro_philosophy"],
+        "ra_datasets": [
+            "MMLUPro_computer science",
+            "MMLUPro_engineering",
+            "MMLUPro_biology",
+            "MMLUPro_chemistry",
+            "MMLUPro_physics",
+            "MMLUPro_math",
+            "MMLUPro_history",
+            "MMLUPro_economics",
+            "MMLUPro_business",
+            "MMLUPro_law",
+            "MMLUPro_psychology",
+            "MMLUPro_health",
+            "MMLUPro_philosophy",
+        ],
         "hf_path": "TIGER-Lab/MMLU-Pro",
         "hf_name": None,
         "split": "test",
@@ -57,7 +68,6 @@ DOMAIN_MAP = [
         "format_fn": "mmlupro_mcq",
         "rationale": "All MMLUPro subjects flash-lite ≥0.74; test split has 12k examples",
     },
-
     # MMLU → MMLU (train split, multiple subjects)
     {
         "ra_datasets": ["MMLU_formal_logic", "MMLU_management"],
@@ -69,7 +79,6 @@ DOMAIN_MAP = [
         "format_fn": "mmlu_mcq",
         "rationale": "MMLU_formal_logic flash-lite=0.82, management=0.89",
     },
-
     # PubMedQA → MedQA USMLE (different dataset, same biomedical domain)
     {
         "ra_datasets": ["PubMedQA"],
@@ -81,7 +90,6 @@ DOMAIN_MAP = [
         "format_fn": "medqa_mcq",
         "rationale": "PubMedQA flash-lite=0.79; MedQA-USMLE same biomedical MCQ domain",
     },
-
     # MedMCQA → HeadQA (Spanish medical MCQ, different dataset same domain)
     {
         "ra_datasets": ["MedMCQA"],
@@ -93,7 +101,6 @@ DOMAIN_MAP = [
         "format_fn": "medmcqa_mcq",
         "rationale": "MedMCQA flash-lite=0.83; same dataset different split",
     },
-
     # GeoBench → MMLU high_school_geography + world_religions (same knowledge domain)
     {
         "ra_datasets": ["GeoBench", "GeoGraphyData_100k"],
@@ -105,22 +112,31 @@ DOMAIN_MAP = [
         "format_fn": "mmlu_mcq",
         "rationale": "GeoBench flash-lite=0.91; MMLU geography is similar knowledge MCQ",
     },
-
     # OpenTDB → TriviaQA (similar trivia format)
     {
-        "ra_datasets": ["OpenTDB_General Knowledge", "OpenTDB_Science: Computers",
-                        "OpenTDB_Geography", "OpenTDB_History", "OpenTDB_Animals",
-                        "OpenTDB_Art", "OpenTDB_Celebrities", "OpenTDB_Sports",
-                        "OpenTDB_Vehicles", "OpenTDB_Entertainment: Books",
-                        "OpenTDB_Entertainment: Film", "OpenTDB_Entertainment: Music",
-                        "OpenTDB_Entertainment: Television",
-                        "OpenTDB_Entertainment: Video Games",
-                        "OpenTDB_Entertainment: Board Games",
-                        "OpenTDB_Entertainment: Cartoon & Animations",
-                        "OpenTDB_Entertainment: Comics",
-                        "OpenTDB_Entertainment: Japanese Anime & Manga",
-                        "OpenTDB_Entertainment: Musicals & Theatres",
-                        "OpenTDB_Science & Nature", "OpenTDB_Science: Mathematics"],
+        "ra_datasets": [
+            "OpenTDB_General Knowledge",
+            "OpenTDB_Science: Computers",
+            "OpenTDB_Geography",
+            "OpenTDB_History",
+            "OpenTDB_Animals",
+            "OpenTDB_Art",
+            "OpenTDB_Celebrities",
+            "OpenTDB_Sports",
+            "OpenTDB_Vehicles",
+            "OpenTDB_Entertainment: Books",
+            "OpenTDB_Entertainment: Film",
+            "OpenTDB_Entertainment: Music",
+            "OpenTDB_Entertainment: Television",
+            "OpenTDB_Entertainment: Video Games",
+            "OpenTDB_Entertainment: Board Games",
+            "OpenTDB_Entertainment: Cartoon & Animations",
+            "OpenTDB_Entertainment: Comics",
+            "OpenTDB_Entertainment: Japanese Anime & Manga",
+            "OpenTDB_Entertainment: Musicals & Theatres",
+            "OpenTDB_Science & Nature",
+            "OpenTDB_Science: Mathematics",
+        ],
         "hf_path": "trivia_qa",
         "hf_name": "unfiltered",
         "split": "train",
@@ -129,15 +145,20 @@ DOMAIN_MAP = [
         "format_fn": "triviaqa",
         "rationale": "All OpenTDB flash-lite ≥0.86; trivia is cheap-model territory",
     },
-
     # QANTA → quiz bowl / adversarial factual Q&A (NODATA — QWEN235B)
     # jeopardy + trivia_qa/rc both have download issues; use TruthfulQA instead:
     #   TruthfulQA is designed to expose model failures on hard factual questions,
     #   making it a good signal for QWEN235B (only best model handles tricky facts).
     {
-        "ra_datasets": ["QANTA_Literature", "QANTA_History", "QANTA_Science",
-                        "QANTA_Fine Arts", "QANTA_Philosophy", "QANTA_Social Science",
-                        "QANTA_Geography"],
+        "ra_datasets": [
+            "QANTA_Literature",
+            "QANTA_History",
+            "QANTA_Science",
+            "QANTA_Fine Arts",
+            "QANTA_Philosophy",
+            "QANTA_Social Science",
+            "QANTA_Geography",
+        ],
         "hf_path": "truthful_qa",
         "hf_name": "multiple_choice",
         "split": "validation",
@@ -146,7 +167,6 @@ DOMAIN_MAP = [
         "format_fn": "truthfulqa_mcq",
         "rationale": "QANTA all models <0.45; TruthfulQA is adversarial factual → best model",
     },
-
     # Ethics → MMLU moral/philosophy MCQs (hendrycks/ethics uses deprecated loading script)
     {
         "ra_datasets": ["Ethics_commonsense", "Ethics_virtue", "Ethics_deontology"],
@@ -169,7 +189,6 @@ DOMAIN_MAP = [
         "format_fn": "mmlu_mcq",
         "rationale": "Ethics_justice flash=0.24; professional_law requires careful reasoning → deepseek",
     },
-
     # SocialiQA → CommonsenseQA (same commonsense reasoning domain)
     {
         "ra_datasets": ["SocialiQA"],
@@ -181,7 +200,6 @@ DOMAIN_MAP = [
         "format_fn": "commonsenseqa_mcq",
         "rationale": "SocialiQA flash-lite=0.72; commonsense MCQ is flash territory",
     },
-
     # NarrativeQA → QuALITY (long-form reading comprehension)
     {
         "ra_datasets": ["NarrativeQA"],
@@ -193,7 +211,6 @@ DOMAIN_MAP = [
         "format_fn": "narrative_qa",
         "rationale": "NarrativeQA flash-lite=0.56 (marginal but still cheapest correct)",
     },
-
     # MusicTheoryBench → world_religions MCQ (music_theory not in cais/mmlu configs)
     {
         "ra_datasets": ["MusicTheoryBench"],
@@ -205,11 +222,14 @@ DOMAIN_MAP = [
         "format_fn": "mmlu_mcq",
         "rationale": "MusicTheoryBench flash=0.64; world_religions is same niche-knowledge MCQ domain",
     },
-
     # SuperGLUE tasks
     {
-        "ra_datasets": ["SuperGLUE-Wic", "SuperGLUE-Entailment",
-                        "SuperGLUE-CausalReasoning", "SuperGLUE-Wsc"],
+        "ra_datasets": [
+            "SuperGLUE-Wic",
+            "SuperGLUE-Entailment",
+            "SuperGLUE-CausalReasoning",
+            "SuperGLUE-Wsc",
+        ],
         "hf_path": "super_glue",
         "hf_name": "wic",
         "split": "train",
@@ -248,7 +268,6 @@ DOMAIN_MAP = [
         "format_fn": "superglue_copa",
         "rationale": "SuperGLUE-ClozeTest all models <0.50; use best model",
     },
-
     # Math: GSM8K, AsDiv, MathQA → FLASH (flash-lite handles these)
     {
         "ra_datasets": ["GSM8K", "AsDiv"],
@@ -264,7 +283,6 @@ DOMAIN_MAP = [
     # hendrycks_math entries removed: their surface form is identical to AIME (DEEPSEEK),
     # causing the MLP to confuse competition math difficulty tiers (84% DEEPSEEK recall).
     # MATH (hendrycks/competition_math doesn't exist on Hub) → skip for same reason.
-
     # AIME → DEEPSEEK (flash-lite=0.35, deepseek=0.72)
     # Use AI-MO/aimo-validation-aime which is on the hub
     {
@@ -277,7 +295,6 @@ DOMAIN_MAP = [
         "format_fn": "aime_math",
         "rationale": "AIME flash-lite=0.35, deepseek=0.72 — olympiad math needs deepseek",
     },
-
     # LiveCodeBench → HumanEval / MBPP (coding)
     {
         "ra_datasets": ["LiveCodeBench"],
@@ -300,7 +317,6 @@ DOMAIN_MAP = [
         "format_fn": "mbpp_code",
         "rationale": "LiveCodeBench flash=0.67; mbpp/full train split has same examples as sanitized",
     },
-
     # ChessInstruct → NODATA → QWEN235B
     {
         "ra_datasets": ["ChessInstruct"],
@@ -312,7 +328,6 @@ DOMAIN_MAP = [
         "format_fn": "chess_generic",
         "rationale": "ChessInstruct flash=0.34 deepseek=0.41 — both fail; use best model",
     },
-
     # FinQA → NODATA → QWEN235B (flare-finqa is similar financial text reasoning)
     {
         "ra_datasets": ["FinQA"],
@@ -324,11 +339,15 @@ DOMAIN_MAP = [
         "format_fn": "finqa_generic",
         "rationale": "FinQA flash=0.36 deepseek=0.33 — both fail; financial reasoning needs best",
     },
-
     # WMT19 translation → FLASH for common pairs, DEEPSEEK for cs-en, QWEN235B for rare
     {
-        "ra_datasets": ["WMT19-de-en", "WMT19-zh-en", "WMT19-fi-en",
-                        "WMT19-gu-en", "WMT19-ru-en"],
+        "ra_datasets": [
+            "WMT19-de-en",
+            "WMT19-zh-en",
+            "WMT19-fi-en",
+            "WMT19-gu-en",
+            "WMT19-ru-en",
+        ],
         "hf_path": "wmt/wmt14",
         "hf_name": "de-en",
         "split": "train",
@@ -357,7 +376,6 @@ DOMAIN_MAP = [
         "format_fn": "wmt_translation",
         "rationale": "WMT19-lt-en/kk-en flash=0.35/0.31 — rare lang pairs need best model",
     },
-
     # OpenBookQA → FLASH (science knowledge)
     {
         "ra_datasets": ["OpenTDB_Science & Nature", "OpenTDB_Science: Computers"],
@@ -369,7 +387,6 @@ DOMAIN_MAP = [
         "format_fn": "arc_mcq",
         "rationale": "Science knowledge is flash territory; openbookqa is similar domain",
     },
-
     # WinoGrande → FLASH (commonsense)
     {
         "ra_datasets": ["SuperGLUE-Wsc"],
@@ -385,6 +402,7 @@ DOMAIN_MAP = [
 
 if __name__ == "__main__":
     from collections import Counter
+
     label_counts = Counter(d["label"] for d in DOMAIN_MAP)
     total_samples = sum(d["sample_n"] for d in DOMAIN_MAP)
     print(f"Total dataset configs: {len(DOMAIN_MAP)}")
@@ -393,7 +411,11 @@ if __name__ == "__main__":
     print()
     for label in ["FLASH", "DEEPSEEK", "QWEN235B"]:
         configs = [d for d in DOMAIN_MAP if d["label"] == label]
-        print(f"{label}: {len(configs)} configs, {sum(d['sample_n'] for d in configs):,} samples")
+        print(
+            f"{label}: {len(configs)} configs, {sum(d['sample_n'] for d in configs):,} samples"
+        )
         for c in configs:
-            print(f"  {c['hf_path']}/{c.get('hf_name') or ''} ({c['split']}, n={c['sample_n']})")
+            print(
+                f"  {c['hf_path']}/{c.get('hf_name') or ''} ({c['split']}, n={c['sample_n']})"
+            )
         print()

@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 """Patch chuzom-router-v2.json: reroute unavailable/empty entries and rerun inference.
 
 Problems found:

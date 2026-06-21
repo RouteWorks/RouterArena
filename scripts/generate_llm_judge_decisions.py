@@ -345,24 +345,31 @@ def main() -> None:
         text = _extract_text(prompt)
 
         # Compute all gate scores
-        tfidf_scores, tfidf_margin = router._gate_tfidf(text)
+        # _gate_tfidf was removed in v2.1.0 (it was trained on RouterArena data)
+        tfidf_scores: dict[str, float] = {m: 0.0 for m in router.models}
+        tfidf_margin = 0.0
         centroid_scores, centroid_margin = router._gate_centroid(text)
         heuristic_scores, heuristic_margin = router._gate_heuristic(prompt)
 
-        # Check early-exit condition
-        tfidf_winner = max(tfidf_scores, key=lambda m: tfidf_scores.get(m, 0.0))
+        # Check early-exit condition (centroid + heuristic agreement, tfidf removed)
         centroid_winner = max(
             centroid_scores, key=lambda m: centroid_scores.get(m, 0.0)
         )
+        heuristic_winner = (
+            max(heuristic_scores, key=lambda m: heuristic_scores.get(m, 0.0))
+            if heuristic_scores
+            else None
+        )
 
         if (
-            tfidf_winner == centroid_winner
-            and tfidf_margin > _HIGH_CONFIDENCE
+            heuristic_winner is not None
+            and heuristic_winner == centroid_winner
+            and heuristic_margin > _HIGH_CONFIDENCE
             and centroid_margin > _HIGH_CONFIDENCE
         ):
             # High-confidence consensus — judge not needed
-            decisions[key] = tfidf_winner
-            model_counter[tfidf_winner] += 1
+            decisions[key] = centroid_winner
+            model_counter[centroid_winner] += 1
             if i % 200 == 0:
                 print(
                     f"  {i}/{len(routing_entries)} — high-conf, skip judge",

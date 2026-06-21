@@ -93,7 +93,7 @@ dev-dependencies = []
 
 [tool.codespell]
 # oint = LaTeX contour integral (\oint); iint/iiint = double/triple integrals
-ignore-words-list = "rouge,difflib,oint,iint,iiint"
+ignore-words-list = "rouge,difflib,oint,iint,iiint,ans"
 
 [tool.mypy]
 plugins = ['pydantic.mypy']

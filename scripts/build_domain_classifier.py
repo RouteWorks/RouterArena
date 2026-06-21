@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 #!/usr/bin/env python3
 """
 Build an enhanced domain classifier for Gate 0 of ChuzomRouterV2.
@@ -22,7 +24,6 @@ Outputs:
 from __future__ import annotations
 
 import json
-import os
 import sys
 from pathlib import Path
 
@@ -37,16 +38,19 @@ from sklearn.linear_model import LogisticRegression  # baseline comparison
 
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
-from scripts.domain_dataset_map import DOMAIN_MAP
+from scripts.domain_dataset_map import DOMAIN_MAP  # noqa: E402
 
 LABELS_PATH = ROOT / "data" / "domain_classifier_labels.jsonl"
 # Saves in the same artifact format as build_proxy_classifier.py so Gate 0 needs no changes:
 # {"classifier": mlp, "label_encoder": le, "models": [...]}
 MODEL_PATH = ROOT / "router_inference" / "config" / "chuzom-domain-classifier.joblib"
-PROXY_PATH = ROOT / "router_inference" / "config" / "chuzom-proxy-classifier.joblib"  # Gate 0 slot
+PROXY_PATH = (
+    ROOT / "router_inference" / "config" / "chuzom-proxy-classifier.joblib"
+)  # Gate 0 slot
 BGE_MODEL = "BAAI/bge-small-en-v1.5"
 
 # ── Format functions ──────────────────────────────────────────────────────────
+
 
 def _options_block(choices: list[str]) -> str:
     letters = "ABCDEFGHIJ"
@@ -128,10 +132,7 @@ def fmt_triviaqa(entry: dict) -> str | None:
 
 
 def fmt_qanta_qa(entry: dict) -> str | None:
-    q = (
-        entry.get("text") or entry.get("question") or
-        entry.get("first_sentence") or ""
-    )
+    q = entry.get("text") or entry.get("question") or entry.get("first_sentence") or ""
     if not q:
         return None
     return f"Context: None\n\nQuestion: {q}\n\nAnswer in one or two words."
@@ -164,7 +165,8 @@ def fmt_commonsenseqa_mcq(entry: dict) -> str | None:
 
 def fmt_narrative_qa(entry: dict) -> str | None:
     q = (
-        entry.get("question", {}).get("text", "") if isinstance(entry.get("question"), dict)
+        entry.get("question", {}).get("text", "")
+        if isinstance(entry.get("question"), dict)
         else entry.get("question", "")
     )
     doc = entry.get("document", {})
@@ -317,7 +319,9 @@ def fmt_finqa_generic(entry: dict) -> str | None:
     if ctx_text:
         ctx = ctx_text[:400]
     elif table and isinstance(table, list):
-        ctx = "Table:\n" + "\n".join(" | ".join(str(c) for c in row) for row in table[:5])
+        ctx = "Table:\n" + "\n".join(
+            " | ".join(str(c) for c in row) for row in table[:5]
+        )
     else:
         ctx = "None"
     return f"Context: {ctx}\n\nQuestion: {q}\n\nProvide the numerical answer."
@@ -351,10 +355,7 @@ def fmt_winogrande(entry: dict) -> str | None:
 
 def fmt_generic_mcq(entry: dict) -> str | None:
     q = entry.get("question", "") or entry.get("Question", "")
-    choices = (
-        entry.get("choices") or entry.get("options") or
-        entry.get("Options") or []
-    )
+    choices = entry.get("choices") or entry.get("options") or entry.get("Options") or []
     if not q:
         return None
     if choices:
@@ -403,6 +404,7 @@ FORMAT_REGISTRY = {
 
 # ── Download and format ───────────────────────────────────────────────────────
 
+
 def download_and_format() -> list[dict]:
     records: list[dict] = []
 
@@ -415,7 +417,9 @@ def download_and_format() -> list[dict]:
         fmt_key = cfg["format_fn"]
         fmt_fn = FORMAT_REGISTRY.get(fmt_key, fmt_generic_mcq)
 
-        print(f"  Loading {hf_path}/{hf_name or ''} [{split}] → {label} ...", flush=True)
+        print(
+            f"  Loading {hf_path}/{hf_name or ''} [{split}] → {label} ...", flush=True
+        )
         try:
             ds = load_dataset(
                 hf_path,
@@ -433,12 +437,14 @@ def download_and_format() -> list[dict]:
             prompt = fmt_fn(dict(entry))
             if not prompt or len(prompt) < 20:
                 continue
-            records.append({
-                "prompt": prompt,
-                "label": label,
-                "source": f"{hf_path}/{hf_name or ''}",
-                "ra_datasets": cfg["ra_datasets"],
-            })
+            records.append(
+                {
+                    "prompt": prompt,
+                    "label": label,
+                    "source": f"{hf_path}/{hf_name or ''}",
+                    "ra_datasets": cfg["ra_datasets"],
+                }
+            )
             added += 1
 
         print(f"    → {added} examples", flush=True)
@@ -447,6 +453,7 @@ def download_and_format() -> list[dict]:
 
 
 # ── Embed + train ─────────────────────────────────────────────────────────────
+
 
 def embed_prompts(prompts: list[str], model: SentenceTransformer) -> np.ndarray:
     print(f"  Embedding {len(prompts)} prompts with BGE-small ...", flush=True)
@@ -458,11 +465,15 @@ def embed_prompts(prompts: list[str], model: SentenceTransformer) -> np.ndarray:
     )
 
 
-def train_and_evaluate(X: np.ndarray, y: np.ndarray, label_names: list[str]) -> MLPClassifier:
+def train_and_evaluate(
+    X: np.ndarray, y: np.ndarray, label_names: list[str]
+) -> MLPClassifier:
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
     print("\nBaseline — LogisticRegression:", flush=True)
-    lr = LogisticRegression(C=0.5, max_iter=2000, class_weight="balanced", random_state=42)
+    lr = LogisticRegression(
+        C=0.5, max_iter=2000, class_weight="balanced", random_state=42
+    )
     lr_scores = cross_val_score(lr, X, y, cv=cv, scoring="accuracy")
     print(f"  CV accuracy: {lr_scores.mean():.4f} ± {lr_scores.std():.4f}", flush=True)
 
@@ -481,11 +492,14 @@ def train_and_evaluate(X: np.ndarray, y: np.ndarray, label_names: list[str]) -> 
         verbose=False,
     )
     mlp_scores = cross_val_score(mlp, X, y, cv=cv, scoring="accuracy")
-    print(f"  CV accuracy: {mlp_scores.mean():.4f} ± {mlp_scores.std():.4f}", flush=True)
+    print(
+        f"  CV accuracy: {mlp_scores.mean():.4f} ± {mlp_scores.std():.4f}", flush=True
+    )
 
     # Per-class breakdown
     from sklearn.model_selection import cross_val_predict
     from sklearn.metrics import classification_report
+
     y_pred = cross_val_predict(mlp, X, y, cv=cv)
     print("\nClassification report (MLP, CV):", flush=True)
     print(classification_report(y, y_pred, target_names=label_names), flush=True)
@@ -498,6 +512,7 @@ def train_and_evaluate(X: np.ndarray, y: np.ndarray, label_names: list[str]) -> 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     LABELS_PATH.parent.mkdir(parents=True, exist_ok=True)
 
@@ -505,7 +520,7 @@ def main() -> None:
     if LABELS_PATH.exists():
         print(f"Loading cached labels from {LABELS_PATH} ...", flush=True)
         with open(LABELS_PATH) as f:
-            records = [json.loads(l) for l in f]
+            records = [json.loads(line) for line in f]
         print(f"  {len(records)} examples loaded", flush=True)
     else:
         print("Downloading datasets ...", flush=True)
@@ -517,6 +532,7 @@ def main() -> None:
         print(f"Saved to {LABELS_PATH}", flush=True)
 
     from collections import Counter
+
     label_dist = Counter(r["label"] for r in records)
     print(f"\nLabel distribution: {dict(label_dist)}", flush=True)
 
@@ -532,7 +548,10 @@ def main() -> None:
     print(f"\nClasses: {list(le.classes_)}", flush=True)
 
     # Step 3: Train
-    print("\n── Training ─────────────────────────────────────────────────────\n", flush=True)
+    print(
+        "\n── Training ─────────────────────────────────────────────────────\n",
+        flush=True,
+    )
     mlp, mlp_cv_mean, mlp_cv_std = train_and_evaluate(X, y, list(le.classes_))
 
     # Step 4: Save — compatible artifact format for Gate 0 in chuzom_router_v2.py
@@ -554,6 +573,7 @@ def main() -> None:
 
     # Build a label encoder that returns routing model names (not class labels)
     from sklearn.preprocessing import LabelEncoder as LE
+
     model_le = LE()
     model_names_per_sample = [CLASS_TO_MODEL.get(lbl, lbl) for lbl in labels_raw]
     model_le.fit(model_names_per_sample)
@@ -594,12 +614,27 @@ def main() -> None:
     print(f"Installed as Gate 0    → {PROXY_PATH}", flush=True)
 
     # Step 5: Sanity check
-    print("\n── Sanity checks ────────────────────────────────────────────────\n", flush=True)
+    print(
+        "\n── Sanity checks ────────────────────────────────────────────────\n",
+        flush=True,
+    )
     test_cases = [
-        ("Context: None\n\nQuestion: What is the capital of France?\n\nOptions:\nA. Berlin\nB. Paris\nC. Rome\nD. Madrid\n\nProvide the correct letter choice.", "FLASH"),
-        ("Complete the following Python function:\n\n```python\ndef two_sum(nums, target):\n    # return indices\n```", "FLASH"),
-        ("Context: None\n\nQuestion: Find all positive integers n such that n^2 + 2 is divisible by n + 1.\n\nSolve and provide the final numerical answer.", "DEEPSEEK"),
-        ("Is the following morally acceptable?\n\nI returned the extra change the cashier mistakenly gave me.", "FLASH"),
+        (
+            "Context: None\n\nQuestion: What is the capital of France?\n\nOptions:\nA. Berlin\nB. Paris\nC. Rome\nD. Madrid\n\nProvide the correct letter choice.",
+            "FLASH",
+        ),
+        (
+            "Complete the following Python function:\n\n```python\ndef two_sum(nums, target):\n    # return indices\n```",
+            "FLASH",
+        ),
+        (
+            "Context: None\n\nQuestion: Find all positive integers n such that n^2 + 2 is divisible by n + 1.\n\nSolve and provide the final numerical answer.",
+            "DEEPSEEK",
+        ),
+        (
+            "Is the following morally acceptable?\n\nI returned the extra change the cashier mistakenly gave me.",
+            "FLASH",
+        ),
     ]
     for prompt, expected in test_cases:
         emb = bge.encode([prompt], normalize_embeddings=True)
@@ -608,7 +643,10 @@ def main() -> None:
         pred_label = le.classes_[pred_idx]
         conf = probs[pred_idx]
         status = "✓" if pred_label == expected else "✗"
-        print(f"  {status} Predicted: {pred_label} ({conf:.2f}) | Expected: {expected}", flush=True)
+        print(
+            f"  {status} Predicted: {pred_label} ({conf:.2f}) | Expected: {expected}",
+            flush=True,
+        )
         print(f"    Prompt: {prompt[:80].strip()!r}", flush=True)
 
 
