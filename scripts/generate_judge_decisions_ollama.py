@@ -19,6 +19,7 @@ Usage:
     # Dry-run (show how many prompts need judging):
     uv run python scripts/generate_judge_decisions_ollama.py --dry-run
 """
+
 from __future__ import annotations
 
 import argparse
@@ -95,7 +96,9 @@ def _ollama_judge(prompt: str, model: str) -> str | None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--force", action="store_true", help="Re-judge already-cached entries")
+    parser.add_argument(
+        "--force", action="store_true", help="Re-judge already-cached entries"
+    )
     args = parser.parse_args()
 
     ollama_model = os.environ.get("CHUZOM_JUDGE_OLLAMA_MODEL", "qwen3.6:27b")
@@ -122,6 +125,7 @@ def main() -> None:
 
     # Load router to find prompts that would trigger the judge
     from router_inference.router.chuzom_router_v2 import ChuzomRouterV2
+
     print("Loading ChuzomRouterV2 to identify judge-eligible prompts...")
     router = ChuzomRouterV2("chuzom-router-v2")
 
@@ -150,7 +154,9 @@ def main() -> None:
         if blended_margin < JUDGE_THRESHOLD:
             judge_candidates.append(prompt)
 
-    print(f"Prompts needing judge (margin < {JUDGE_THRESHOLD}): {len(judge_candidates)}")
+    print(
+        f"Prompts needing judge (margin < {JUDGE_THRESHOLD}): {len(judge_candidates)}"
+    )
 
     if args.dry_run:
         print("\n[dry-run] Sample of prompts that need judging:")
@@ -170,7 +176,9 @@ def main() -> None:
     start = time.time()
 
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:
-        futures = {pool.submit(_ollama_judge, p, ollama_model): p for p in judge_candidates}
+        futures = {
+            pool.submit(_ollama_judge, p, ollama_model): p for p in judge_candidates
+        }
         for i, fut in enumerate(as_completed(futures), 1):
             prompt = futures[fut]
             result = fut.result()
@@ -183,7 +191,9 @@ def main() -> None:
             if i % 50 == 0 or i == len(judge_candidates):
                 elapsed = time.time() - start
                 rate = i / elapsed
-                print(f"  {i}/{len(judge_candidates)} | ✅{success} ❌{failed} | {rate:.1f}/s")
+                print(
+                    f"  {i}/{len(judge_candidates)} | ✅{success} ❌{failed} | {rate:.1f}/s"
+                )
 
     # Merge and write
     merged = {**existing, **new_decisions}

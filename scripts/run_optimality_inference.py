@@ -8,6 +8,7 @@ RouterArena uses them to compute Opt.Sel / Opt.Cost / Opt.Acc.
 Usage:
     uv run python scripts/run_optimality_inference.py [--dry-run]
 """
+
 from __future__ import annotations
 
 import argparse
@@ -33,7 +34,9 @@ TIMEOUT = 45
 _lock = Lock()
 
 
-def _call_openrouter(model: str, prompt: str, api_key: str) -> tuple[str | None, int, int]:
+def _call_openrouter(
+    model: str, prompt: str, api_key: str
+) -> tuple[str | None, int, int]:
     headers = {
         "Authorization": f"Bearer {api_key}",
         "HTTP-Referer": "https://github.com/ypollak2/RouterArena",
@@ -45,7 +48,9 @@ def _call_openrouter(model: str, prompt: str, api_key: str) -> tuple[str | None,
         "temperature": 0.0,
     }
     try:
-        resp = httpx.post(OPENROUTER_URL, headers=headers, json=payload, timeout=TIMEOUT)
+        resp = httpx.post(
+            OPENROUTER_URL, headers=headers, json=payload, timeout=TIMEOUT
+        )
         if resp.status_code == 200:
             data = resp.json()
             ans = data["choices"][0]["message"]["content"]
