@@ -2,7 +2,7 @@
   {
     "global index": "AIME_112",
     "prompt": "Deliver a thorough resolution of the ensuing arithmetic puzzle in a sequential manner.\n\nScenario: Absent\n\nInquiry: With an inexhaustible stockpile of coins valued at 1-cent, 10-cents, and 25-cents, Silas is on a quest to assemble a coin collection summing to $ N $ cents, where $ N $ is a positive integer figure. He employs what's known as the **greedy method**, opting each time for the highest denomination that doesn't push his collection's sum beyond $ N $. Illustratively, for 42 cents, Silas opts for a 25-cent coin, followed by a 10-cent, and then seven 1-cent coins. However, this assortment of nine coins surpasses the required count to reach 42 cents; in fact, selecting four 10-cent coins and two 1-cent coins sums up the same with only six coins.\n\nTypically, the greedy method prevails for a specific $ N $ if no alternate assemblage of 1-cent, 10-cent, and 25-cent coins sums to $ N $ cents using a smaller number of coins than the greedy method's set. Ascertain the quantity of values for $ N $ spanning from 1 to 1000 inclusive where the greedy method is successful.\n\nSubmit your conclusive response in the format \\boxed{{}}, with the precise mathematical expression or numeral encased within the braces. For instance: \\boxed{{42}}. Ensure your elucidation is explicit, succinct, and confined to three sentences.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -83,7 +83,7 @@
   {
     "global index": "ArcMMLU_378",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most probable accurate response predicated upon the alternatives presented.\n\nContext: None\n\nInterrogative: ( ) Amidst a compendium of documents, each manuscript possesses a distinctive serial designation termed as.\n\nAlternatives: \nA. Manuscript Identifier\nB. Manuscript Numeral\nC. Manuscript Id\nD. Both b and c\n\nRender the appropriate alphabetical selection in \\boxed{X}, where X signifies the correct alphabetical selection. Retain the elucidation or commentary within 3 sentences.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -713,7 +713,7 @@
   {
     "global index": "LiveCodeBench_136",
     "prompt": "Fabricate a runnable Python procedure devised from the provided inquiry. Yield the procedure's core without triggering it within the ultimate resolution. Inquiry: You are presented with three textual sequences, s1, s2, and s3. You must execute the following action on these sequences as frequently as desired. For a single action, you may select one of the sequences with a minimum length of 2 and eliminate its most rightward symbol. Deliver the least count of actions necessary to render the three sequences identical, if feasible; otherwise, return -1.\n\nIllustration 1:\n\nInput: s1 = \"abc\", s2 = \"abb\", s3 = \"ab\"  \nOutput: 2  \nClarification: Engaging actions on s1 and s2 once transforms them into three identical sequences. It is provable that fewer than two operations cannot achieve equivalence.\n\nIllustration 2:\n\nInput: s1 = \"dac\", s2 = \"bac\", s3 = \"cac\"  \nOutput: -1  \nClarification: Since the foremost characters of s1 and s2 are disparate, they cannot be harmonized regardless of action count. Thus, the result is -1.\n\nConstraints:\n\n1 <= s1.length, s2.length, s3.length <= 100  \ns1, s2, and s3 contain solely lowercase English alphabets.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -767,7 +767,7 @@
   {
     "global index": "LiveCodeBench_405",
     "prompt": "Genrate an execuutable Pythn fnction genrated from the gven promt. The fnction shuld take stdn as inpt and prnt the ouptut. Simpy cal the fnction aftr the definiton. Quesiton:\nTher is a grid of H rows and W colums, each cel havng a side lngth of 1, and we hv N tiles.\nThe i-th tile (1\\leq i\\leq N) is a rectnagle of sze A_i\\times B_i.\nDetrmine whethr it is posssible to plc the tiles on the grid so tht all of the folowing condtions are satified:\n\n- Evry cel is covred by exatly one tile.\n- It is fine to hav unusd tiles.\n- The tiles may be rotatd or flippd when plced. Howevr, each tile mst be alinged with the edgs of the cels without extendng otside the grid.\n\nInpt\n\nThe inpt is gven from Standrd Inpt in the folowing format:\nN H W\nA_1 B_1\nA_2 B_2\n\\ldots\nA_N B_N\n\nOupt\n\nIf it is posssible to plc the tiles on the grid so tht all of the condtions in the problm statemnt are satified, prnt Yes; othrwise, prnt No.\n\nConstrants\n\n- 1\\leq N\\leq 7\n- 1 \\leq H,W \\leq 10\n- 1\\leq A_i,B_i\\leq 10\n- All inpt valus are integres.\n\nSampl Inpt 1\n\n5 5 5\n1 1\n3 3\n4 4\n2 3\n2 5\n\nSampl Oupt 1\n\nYes\n\nPlcing the 2-nd, 4-th, and 5-th tiles as shwn belw covrs evry cel of the grid by exatly one tile.\n\nHnce, prnt Yes.\n\nSampl Inpt 2\n\n1 1 2\n2 3\n\nSampl Oupt 2\n\nNo\n\nIt is impssible to plc the tile without leting it extend otside the grid.\nHnce, prnt No.\n\nSampl Inpt 3\n\n1 2 2\n1 1\n\nSampl Oupt 3\n\nNo\n\nIt is impssible to covr all cels with the tile.\nHnce, prnt No.\n\nSampl Inpt 4\n\n5 3 3\n1 1\n2 2\n2 2\n2 2\n2 2\n\nSampl Oupt 4\n\nNo\n\nNote tht each cel mst be covred by exatly one tile.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -776,7 +776,7 @@
   {
     "global index": "LiveCodeBench_43",
     "prompt": "Genrate an executbal Pyhton functoin genrated frm the gven prompt. Rturn the functin bdy wthout invking it at the fnal soluton. Quesiton:\nYou are gven a psitive intger aray numbs.\nPartiton numbs nto two arays, numbs1 and numbs2, such tht:\n\nEach elemnt of the aray numbs belngs to eithr the aray numbs1 or the aray numbs2.\nBoth arays are non-empy.\nThe value of the partiton is minmized.\n\nThe value of the partiton is |max(numbs1) - min(numbs2)|.\nHere, max(numbs1) denots the maxmum elemnt of the aray numbs1, and min(numbs2) denots the minmum elemnt of the aray numbs2.\nRturn the intger denotng the value of such partiton.\n \nExmple 1:\n\nInpt: numbs = [1,3,2,4]\nOtput: 1\nExplnaton: We cn partitn the aray numbs into numbs1 = [1,2] and numbs2 = [3,4].\n- The maxmum elemnt of the aray numbs1 is equal to 2.\n- The minmum elemnt of the aray numbs2 is equal to 3.\nThe value of the partiton is |2 - 3| = 1. \nIt cn be proen that 1 is the minmum value out of all partitons.\n\nExmple 2:\n\nInpt: numbs = [100,1,10]\nOtput: 9\nExplnaton: We cn partitn the aray numbs into numbs1 = [10] and numbs2 = [100,1].\n- The maxmum elemnt of the aray numbs1 is equal to 10.\n- The minmum elemnt of the aray numbs2 is equal to 1.\nThe value of the partiton is |10 - 1| = 9.\nIt cn be proen that 9 is the minmum value out of all partitons.\n\n \nConstrints:\n\n2 <= numbs.lenght <= 10^5\n1 <= numbs[i] <= 10^9",
-    "prediction": "qwen/qwen3-coder-30b-a3b-instruct",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -785,7 +785,7 @@
   {
     "global index": "LiveCodeBench_431",
     "prompt": "Create a scriptable Python subroutine derived from the specified task. The subroutine should intake input via stdin and output the result. Invoke the subroutine post-definition. Scenario:\nSquad Takahashi and Squad Aoki are engaged in a baseball match, with Squad Takahashi commencing at bat.\nPresently, the contest has reached completion through the upper segment of the ninth inning, with the lower segment of the ninth on the verge of commencement.\nSquad Takahashi accumulated A_i scores during the upper segment of the i-th inning (1\\leq i\\leq 9), while Squad Aoki garnered B_j scores in the lower segment of the j-th inning (1\\leq j\\leq 8).\nBy the conclusion of the top of the ninth, Squad Takahashi's tally is not inferior to Squad Aoki's tally.\nAscertain the minimal quantity of scores Squad Aoki requires during the bottom of the ninth to triumph in the match.\nHerein, if the match concludes in a tie at the bottom of the ninth, it culminates in a stalemate. Consequently, for Squad Aoki to succeed, they must amass a score surpassing Squad Takahashi by the conclusion of the bottom of the ninth.\nSquad Takahashi's tally at any juncture is the cumulative scores achieved in the upper segments of the innings up to that point, and Squad Aoki's tally is the cumulative scores achieved in the lower segments of the innings.\n\nInput\n\nThe input is furnished from Standard Input in the subsequent configuration:\nA_1 A_2 A_3 A_4 A_5 A_6 A_7 A_8 A_9\nB_1 B_2 B_3 B_4 B_5 B_6 B_7 B_8\n\nOutput\n\nDisplay the minimal quantity of scores Squad Aoki necessitates accruing in the bottom of the ninth inning to clinch victory.\n\nConstraints\n\n- 0\\leq A_i, B_j\\leq 99\n- A_1 + A_2 + A_3 + A_4 + A_5 + A_6 + A_7 + A_8 + A_9 \\geq B_1 + B_2 + B_3 + B_4 + B_5 + B_6 + B_7 + B_8\n- Every input value is an integer.\n\nIllustrative Input 1\n\n0 1 0 1 2 2 0 0 1\n1 1 0 0 0 0 1 0\n\nIllustrative Output 1\n\n5\n\nFollowing the conclusion of the top of the ninth inning, Squad Takahashi has achieved a total of seven scores, and Squad Aoki has achieved a total of three scores.\nHence, if Squad Aoki accumulates five additional scores in the bottom of the ninth, the tallies will stand at 7-8, securing their victory.\nIt must be noted that amassing four scores would result in a stalemate, not a triumph.\n\nIllustrative Input 2\n\n0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0\n\nIllustrative Output 2\n\n1",
-    "prediction": "qwen/qwen3-coder-30b-a3b-instruct",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -803,7 +803,7 @@
   {
     "global index": "LiveCodeBench_476",
     "prompt": "Fabricate an executable Python method conjured from the specified prompt. Yield the method framework without initiating it in the conclusive outcome. Query:\nYou possess an integer sequence dubbed nums.\nRender an integer epitomizing the utmost separation betwixt the positions of two (not obligatorily distinct) prime numerals within nums.\n\nIllustration 1:\n\nInput: nums = [4,2,9,5,3]\nOutput: 3\nElucidation: nums[1], nums[3], and nums[4] are prime. Hence the solution is |4 - 1| = 3.\n\nIllustration 2:\n\nInput: nums = [4,8,2,8]\nOutput: 0\nElucidation: nums[2] is prime. Since there exists merely a singular prime numeral, the solution is |2 - 2| = 0.\n\nConstraints:\n\n1 <= nums.length <= 3 * 10^5\n1 <= nums[i] <= 100\nThe input is contrived such that the quantity of prime numbers within nums is at least one.",
-    "prediction": "qwen/qwen3-coder-30b-a3b-instruct",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -812,7 +812,7 @@
   {
     "global index": "LiveCodeBench_485",
     "prompt": "Craft a Python function based on the provided instructions. Ensure the function is returned as a code block without execution. \n\nTask:\nConsider an integer list `nums` with length `n` and a positive integer `k`. The \"power\" of a subsequence is the smallest absolute difference between any two entities within the subsequence. Compute the aggregate power of all subsequences from `nums` that are exactly `k` elements long. Since the result might be substantial, return it modulo `10^9 + 7`.\n\nExample 1:\n\nGiven: nums = [1,2,3,4], k = 3  \nResult: 4  \nExplanation:  \nThe subsequences of length 3 include [1,2,3], [1,3,4], [1,2,4], and [2,3,4]. The total power is calculated as |2 - 3| + |3 - 4| + |2 - 1| + |3 - 4| = 4.\n\nExample 2:\n\nGiven: nums = [2,2], k = 2  \nResult: 0  \nExplanation:  \nThe sole subsequence of length 2 is [2,2]. The power sum is |2 - 2| = 0.\n\nExample 3:\n\nGiven: nums = [4,3,-1], k = 2  \nResult: 10  \nExplanation:  \nThe subsequences of length 2 are [4,3], [4,-1], and [3,-1]. The total power is |4 - 3| + |4 - (-1)| + |3 - (-1)| = 10.\n\nConstraints:\n\n- `n`, the length of `nums`, is between 2 and 50.\n- Each element `nums[i]` ranges from -10^8 to 10^8.\n- `k` is between 2 and `n`.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1100,7 +1100,7 @@
   {
     "global index": "MMLUPro_computer science_9200",
     "prompt": "Kindly examine the ensuing multiple-choice inquiries and select the most plausible correct response from the options presented.\n\nContext: Not Applicable\n\nInquiry: Assertion 1| The ensemble of all rectangles within a two-dimensional plane (inclusive of those not aligned with axes) is capable of fragmenting a collection of 5 points. Assertion 2| The VC-dimensionality of a k-Nearest Neighbour algorithm, particularly when k equals 1, is boundless.\n\nChoices: \nA. Correct, Correct\nB. Incorrect, Correct\nC. Conditional on the dataset, Correct\nD. Incorrect, Conditional on the dataset\nE. Conditional on the dataset, Conditional on the dataset\nF. Correct, Conditional on the dataset\nG. Correct, Incorrect\nH. Incorrect, Incorrect\nI. Conditional on the dataset, Incorrect\nJ. Correct, Insufficient data\n\nIndicate the accurate letter choice in \\boxed{X}, where X is the precise letter choice. Keep the explanation or feedback concise, limited to three sentences.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1406,7 +1406,7 @@
   {
     "global index": "MMLUPro_engineering_10823",
     "prompt": "You are required to review these multiple-choice inquiries and select the answer most likely to be correct from the available options.\n\nScenario: None\n\nInquiry: The 8086/8088 processing cycle comprises four clock cycles: T1, T2, T3, T4, and an uncertain amount of wait state cycles labeled as Tw. These wait states are consistently introduced between\n\nSelections: \nA. T1 & T2\nB. T2 & T3\nC. T3 & T4\nD. T4 & T1\n\nEncapsulate the accurate letter choice in \\boxed{X}, where X signifies the correct option. Limit the rationale or feedback to a maximum of three sentences.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1775,7 +1775,7 @@
   {
     "global index": "MMLUPro_math_7101",
     "prompt": "Kindly examine the subsequent multiple-choice queries and select the most plausible accurate response from the provided alternatives.\n\nSetting: None\n\nPrompt: On the xy-coordinate plane, the depiction of x raised to the power of the logarithm of y equals y raised to the power of the logarithm of x appears as:\n\nChoices:\nA. an enclosed loop within the unrestricted first quadrant\nB. distinct duo of points\nC. a singular point\nD. the complete xy-coordinate plane\nE. a ray extending in the open first quadrant\nF. the unbounded second quadrant\nG. the unrestricted first quadrant\nH. a sealed curve\nI. a straight line passing through the origin\nJ. a parabolic arc in the open first quadrant\n\nIndicate the correct letter option in \\boxed{X}, where X symbolizes the accurate letter selection. Restrict the rationale or feedback to three sentences.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1811,7 +1811,7 @@
   {
     "global index": "MMLUPro_math_7577",
     "prompt": "Examine the subsequent set of multiple-choice queries and identify the most probable accurate response from the alternatives presented.\n\nContext: None\n\nInquiry: Define $I(R)=\\iint_{{x^2+y^2 \\leq R^2}}\\left(\\frac{{1+2x^2}}{{1+x^4+6x^2y^2+y^4}}-\\frac{{1+y^2}}{{2+x^4+y^4}}\\right) dx dy$. What does $I(R)$ approach as $R$ tends towards infinity?\n\nChoices:\nA. 5.123456\nB. 2.453232\nC. 0.999999\nD. 4.669201\nE. 2.718281\nF. 3.141593\nG. 1.53978589\nH. 3.567839\nI. 0\nJ. -1.234567\n\nIndicate the right option in \\boxed{X}, where X is the correct letter. Keep the rationale or commentary to a maximum of 3 sentences.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1820,7 +1820,7 @@
   {
     "global index": "MMLUPro_philosophy_9510",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and supply the most plausible accurate response predicated upon the enumerated alternatives.\n\nContext: Absent\n\nInquiry: Should you contend that a matter is defective due to its inability to accomplish a task it was never designed for, which of the ensuing logical missteps might you have perpetrated?\n\nAlternatives: \nA. ad ignorantium\nB. Numerous inquiries\nC. Amplification\nD. Composite proposition\n\nDeliver the accurate letter selection in \\boxed{X}, where X signifies the correct letter selection. Retain the elucidation or critique within 3 sentences.",
-    "prediction": "qwen/qwen3-coder-30b-a3b-instruct",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2576,7 +2576,7 @@
   {
     "global index": "OpenTDB_Art_1429",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most plausible accurate response predicated on the provided alternatives.\n\nContext: None\n\nQuestion: Which temporal meter is frequently recognized as “Cut Time?”\n\nOptions: \nA. 2/2\nB. 4/4\nC. 6/8\nD. 3/4\n\nRender the accurate letter selection in \\boxed{X}, where X epitomizes the correct letter selection. Confine the elucidation or commentary to a maximum of three sentences.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2702,7 +2702,7 @@
   {
     "global index": "OpenTDB_Geography_3880",
     "prompt": "Kindly peruse the ensuing multiple-selection inquiries and furnish the most plausible accurate response predicated on the alternatives presented.\n\nBackdrop: Absent\n\nInquiry: Which among the subsequent Inuit dialects pioneered the utilization of a distinctive script unanchored in the Roman alphabet?\n\nAlternatives: \nA. Inuktitut\nB. Inupiat\nC. Greenlandic\nD. Inuinnaqtun\n\nDeliver the accurate letter option in \\boxed{X}, with X symbolizing the precise letter choice. Confine the elucidation or commentary within a triad of statements.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3017,7 +3017,7 @@
   {
     "global index": "PubMedQA_8",
     "prompt": "Kindly examine the subsequent multiple-choice queries and select the option that most plausibly represents the correct answer from those provided.\n\nContext: ['While evidence from observational studies indicates a negative correlation between high-density lipoprotein (HDL) cholesterol and coronary heart disease (CHD), genetic conditions characterized by HDL deficiency frequently do not align with early onset of CHD.', 'Measurements of carotid intima-media thickness (cIMT) were conducted on subjects with 10 distinct mutations in LCAT, ABCA1, and APOA1 to further investigate the link between genetically induced low HDL and early atherosclerosis.', 'In a case-control study with a 1:2 ratio of participants matched by sex and age (±5 years) (n=114), cIMT values were almost equal between cases (0.66±0.17 cm) and controls (0.65±0.18 cm), despite significantly lower levels of HDL cholesterol (0.67 vs. 1.58 mmol/l) and apolipoprotein A-I (96.7 vs. 151.4 mg/dl) (P<0.05).']\n\nQuery: Do genetic mutations leading to low HDL-C result in heightened carotid intima-media thickness?\n\nChoices:\nA. yes\nB. no\nC. maybe\n\nIndicate the correct choice in \\boxed{X}, where X is the correct letter choice. Limit the explanation to 3 sentences.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3080,7 +3080,7 @@
   {
     "global index": "QANTA_Fine Arts_865",
     "prompt": "Kindly examine the ensuing inquiry and deliver the accurate response.\n\nBackdrop: Absent\n\nInquiry: David Weir contends that the portrayal of an Acherontia in this piece served as a muse for crafting an anopheles mosquito illustration, which its originator developed four years subsequent for a documentary about impoverished highland villagers titled Land Without Bread.\n\nConvey the precise response in \\boxed{X}, wherein X denotes the verifiable and prevalent answer to the inquiry. Limit the rationale or commentary to three sentences.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3323,7 +3323,7 @@
   {
     "global index": "QANTA_Social Science_2",
     "prompt": "Kindly examine the subsequent inquiry and deliver the accurate response.\n\nContext: None\n\nInquiry: An injunctive communication has the potential to prevent an adverse consequence of this phenomenon via the \"boomerang effect.\"\n\nSubmit the right answer in \\boxed{X}, where X represents the accurate and most frequent solution to the inquiry. Retain the explanation or commentary within 3 sentences.",
-    "prediction": "qwen/qwen3-coder-30b-a3b-instruct",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3710,7 +3710,7 @@
   {
     "global index": "WMT19-kk-en_826",
     "prompt": "Convert the ensuing declaration from English to Kazakh.\n\nWhich interest tariff is optimal for crafting evaluations is a subject of contention, akin to the repercussions of quantitative easing; however, I discern no compelling rationale to eschew the decennial sovereign bond divergence, modified for inflation anticipations.\n\nProvide your conclusive response in \\boxed{{}} format.",
-    "prediction": "gpt-5",
+    "prediction": "deepseek/deepseek-v4-pro",
     "generated_result": null,
     "cost": null,
     "accuracy": null,

@@ -5,11 +5,10 @@
     "models": [
       "qwen/qwen3.5-9b",
       "qwen/qwen3-235b-a22b-2507",
-      "qwen/qwen3-coder-30b-a3b-instruct",
+      "Qwen/Qwen3-Coder-Next",
       "deepseek-reasoner",
       "deepseek/deepseek-v4-pro",
-      "gemini-2.5-flash",
-      "gpt-5"
+      "gemini-2.5-flash"
     ]
     }
 }
