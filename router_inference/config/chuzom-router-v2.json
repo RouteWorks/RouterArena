@@ -7,7 +7,8 @@
       "google/gemini-3.1-flash-lite",
       "deepseek/deepseek-v4-flash",
       "qwen/qwen3-235b-a22b-2507",
-      "qwen/qwen3-next-80b-a3b-instruct"
+      "qwen/qwen3-next-80b-a3b-instruct",
+      "anthropic/claude-sonnet-4"
     ],
     "description": "Chuzom v2.0.0: 4-gate parallel ensemble with confidence-weighted smart score. Gate 1: TF-IDF+LR (lexical). Gate 2: BGE-small centroid cosine (semantic, paraphrase-invariant). Gate 3: Structural heuristic (regex domain signals). Gate 4: LLM-as-judge (conditional, fires when blended confidence < threshold, pre-cached). Smart score amplifies gates with strong signal margins. Early-exit when all active gates agree with high confidence. Routing based solely on prompt content — no benchmark metadata."
   },
