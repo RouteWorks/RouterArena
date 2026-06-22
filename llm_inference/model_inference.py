@@ -138,6 +138,7 @@ class ModelInference:
             "gpt-5-chat-latest": "openai",
             "gpt-5-mini": "openai",
             "gpt-5-nano": "openai",
+            "gpt-5": "openai",
             # Anthropic models
             "claude-3-haiku-20240307": "anthropic",
             "claude-3-7-sonnet-20250219": "anthropic",
@@ -156,6 +157,8 @@ class ModelInference:
             "open-mistral-nemo": "mistral",
             # DeepSeek models
             "deepseek-coder": "deepseek",
+            "deepseek-reasoner": "deepseek",
+            "deepseek/deepseek-v4-pro": "deepseek",
             # Together AI models
             "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo": "together",
             "meta-llama/Meta-Llama-3-70B-Instruct-Turbo": "together",
@@ -180,6 +183,8 @@ class ModelInference:
             "mistralai/devstral-2512:free": "openrouter",
             "meta-llama/llama-3.3-70b-instruct": "openrouter",
             "meta-llama/llama-3.1-405b-instruct": "openrouter",
+            "qwen/qwen3.5-9b": "openrouter",
+            "qwen/qwen3-coder-30b-a3b-instruct": "openrouter",
             # Replicate
             "meta/codellama-34b-instruct": "replicate",
             # AWS Bedrock
