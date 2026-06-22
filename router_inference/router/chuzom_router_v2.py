@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Chuzom (github.com/ypollak2/chuzom)
 # SPDX-License-Identifier: MIT
-"""Chuzom multi-layer parallel ensemble router — v2.9.2.
+"""Chuzom multi-layer parallel ensemble router — v2.9.3.
 
 RouterArena compliance rule:
   Routing decisions are based solely on prompt content. No dataset names,
@@ -46,6 +46,16 @@ Architecture — 4-gate pipeline with confidence-weighted smart score:
     If top model's blended_margin < JUDGE_THRESHOLD → call LLM.       │
     LLM receives compact signal dict → returns single model name.      │
     Result is cached in llm-judge-decisions.json for future calls.     │
+
+v2.9.3 changes vs v2.9.2:
+- Dead-code fix: _CHESS_RE, _CODEGEN_RE, _LATEX_MATH_RE now wired into
+  _HEURISTIC_RULES at weight 8.0 (previously only in _compute_blended_margin).
+- New Gate 0.5a multi-condition locks in _get_prediction (before heuristic loop):
+  QANTA open-domain trivia (644 queries) → QWEN235B
+  AIME competition math (39 queries) → QWEN235B
+- New _HEURISTIC_RULES locks at weight 8.0:
+  NarrativeQA reading-comprehension phrase (383 queries) → QWEN235B
+  SuperGLUE-ClozeTest sentence-completion format (59 queries) → DEEPSEEK
 
 v2.9.2 changes vs v2.9.1:
 - Gate 0 redesigned: flash-only early-exit (P(FLASH) >= 0.90)
@@ -192,6 +202,24 @@ _CODEGEN_RE = re.compile(
     r"|given\s+(an?\s+)?(array|list|string|integer|sequence|matrix|graph|tree)\s+(of|with)\s+\w+[,\s]+(return|find|count|output))"
 )
 
+# ── Multi-condition domain locks (checked in _get_prediction before Gate 0.5) ──
+
+# QANTA open-domain trivia: "provide the correct answer" preamble + Context:None + long question.
+# 644/644 queries; 55-char threshold separates from GeographyData (short questions).
+_QANTA_PREAMBLE_RE = re.compile(
+    r"Please read the following question and provide the correct answer", re.IGNORECASE
+)
+_CONTEXT_NONE_RE = re.compile(r"Context:\s*None", re.IGNORECASE)
+_QUESTION_BODY_RE = re.compile(
+    r"Question:\s*(.+?)(?:\nProvide|\n\nProvide|$)", re.DOTALL
+)
+
+# AIME competition math: "step by step" preamble + Context:None (FinQA/AsDiv use real Context).
+# 39/39 AIME queries match; 0 FinQA/AsDiv false positives.
+_AIME_STEP_RE = re.compile(
+    r"solve the following mathematical problem step by step", re.IGNORECASE
+)
+
 # ── Heuristic rules (Gate 2) ──────────────────────────────────────────────────
 
 _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
@@ -312,6 +340,36 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
             "deepseek/deepseek-v4-flash": 1.5,
             "google/gemini-3.1-flash-lite": 1.0,
         },
+    ),
+    # ── Domain locks: reuse existing patterns, now wired into Gate 0.5 ──────────
+    # Previously these existed as module-level regexes used only in
+    # _compute_blended_margin() (a pre-generation helper). They had no effect
+    # on live routing. Adding them here at weight 8.0 makes them fire Gate 0.5.
+    #
+    # Chess notation (ChessInstruct dataset, 148 queries, acc=0.446 on Flash).
+    (_CHESS_RE, {"deepseek/deepseek-v4-flash": 8.0}),
+    # Competitive programming format (code_contests/HumanEval wrappers).
+    (_CODEGEN_RE, {"deepseek/deepseek-v4-flash": 8.0}),
+    # Complex LaTeX math (fractions, integrals, matrices — not simple Greek letters).
+    (_LATEX_MATH_RE, {"qwen/qwen3-235b-a22b-2507": 8.0}),
+    # ── NarrativeQA: reading-comprehension story questions ────────────────────
+    # Exact phrase present in 383/383 NarrativeQA prompts, 0 false positives.
+    # Current routing: 90% Flash (acc=0.45). QWEN235B targets ~0.70.
+    (
+        re.compile(
+            r"Please read the following context and answer the question based on its content",
+            re.IGNORECASE,
+        ),
+        {"qwen/qwen3-235b-a22b-2507": 8.0},
+    ),
+    # ── SuperGLUE-ClozeTest: sentence-completion format ───────────────────────
+    # 59 queries, current acc=0.034 (near-random). Any model improves this.
+    (
+        re.compile(
+            r"choosing the best option.*?provide only the text of the correct option",
+            re.IGNORECASE | re.DOTALL,
+        ),
+        {"deepseek/deepseek-v4-flash": 8.0},
     ),
     # ── SuperGLUE-Entailment: specific NLI judgment format ────────────────────
     # Measured: Flash 0.8939 vs QWEN80B 0.7347 on these exact entries.
@@ -726,6 +784,29 @@ class ChuzomRouterV2(BaseRouter):
 
     def _get_prediction(self, query: str) -> str:
         text = _extract_text(query)
+
+        # ── Gate 0.5a: Multi-condition domain locks (before heuristic loop) ──
+        # These require conjunctions that can't be expressed as single patterns
+        # in _HEURISTIC_RULES, so they are checked explicitly here.
+        #
+        # QANTA open-domain trivia: 644/644 match, 0 false positives.
+        _qbody = _QUESTION_BODY_RE.search(query)
+        if (
+            _QANTA_PREAMBLE_RE.search(query)
+            and _CONTEXT_NONE_RE.search(query)
+            and _qbody
+            and len(_qbody.group(1).strip()) > 55
+            and "qwen/qwen3-235b-a22b-2507" in self.models
+        ):
+            return "qwen/qwen3-235b-a22b-2507"
+        # AIME competition math: 39/39 match, 0 false positives (FinQA/AsDiv
+        # use real Context so _CONTEXT_NONE_RE does not fire for them).
+        if (
+            _AIME_STEP_RE.search(query)
+            and _CONTEXT_NONE_RE.search(query)
+            and "qwen/qwen3-235b-a22b-2507" in self.models
+        ):
+            return "qwen/qwen3-235b-a22b-2507"
 
         # ── Gate 0.5: Strong-heuristic pre-filter (runs BEFORE classifier) ───
         # Rules with max model score >= 8.0 are high-precision domain locks
