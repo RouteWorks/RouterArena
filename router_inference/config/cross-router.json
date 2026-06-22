@@ -3,12 +3,9 @@
     "router_name": "cross-router",
     "router_cls_name": "CrossRouter",
     "models": [
-      "qwen/qwen3.5-9b",
-      "qwen/qwen3-235b-a22b-2507",
-      "Qwen/Qwen3-Coder-Next",
-      "deepseek-reasoner",
-      "deepseek/deepseek-v4-pro",
-      "gemini-2.5-flash"
+      "claude-3-haiku-20240307",
+      "gemini-2.0-flash-001",
+      "gpt-4o-mini"
     ]
-    }
+  }
 }
