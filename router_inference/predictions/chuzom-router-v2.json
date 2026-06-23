@@ -23503,10 +23503,14 @@
     "prompt": "Please read the following multiple-choice questions and provide the most likely correct answer based on the options given.\n\nContext: None\n\nQuestion: For all strings x, the function x^M is defined recursively as follows.\ne^M= e, and\nif w is a string and a is a string with length 1, then\n(aw)^M = aw^Ma.\nLet a be a string with length 1, and let x and y be arbitrary strings. Which of the following is true?\n\nOptions: \nA. a^M = a\nB. (ax)^M = (xa)^M\nC. (xy)^M = y^Mx^M\nD. None of the above\n\n\nProvide the correct letter choice in \\boxed{X}, where X is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
     "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "To determine the behavior of the function $x^M$, let's test a few strings:\n- For $a$, $(a)^M = (\\epsilon a)^M = \\epsilon^M a = ea = a$. (Option A is true)\n- For $ab$, $(ab)^M = (b^M a) = ba$. However, $(ba)^M = (a^M b) = ab$. Since $ab \\neq ba$, Option B is false.\n- For $x=a, y=b$, $(ab)^M = ba$, while $y^M x^M = b^M a^M = ba$. For $x=ab, y=c$, $(abc)^M = (bc)^M a = (c^M b) a = cba$, while $y^M x^M = c^M (ab)^M = cba$. It can be shown by induction that $(xy)^M = y^M x^M$ holds.\n\nSince both A and C are mathematically correct based on the recursive definition provided, and typically such problems expect a single choice, we note that A is a trivial base case while C represents the general property of the reversal-like operation defined. Given the options, C is the most comprehensive property.\n\n\\boxed{C}",
+      "generated_answer": "To determine the correct answer, we analyze the recursive definition $(aw)^M = aw^Ma$. For a single character $a$, $(a)^M = (a\\epsilon)^M = a\\epsilon^Ma = aa$, so option A is false. Testing option C with $x=a$ and $y=b$, we get $(ab)^M = (a(b))^M = ab^Ma = aba$, while $y^Mx^M = b^Ma^M = bba$, so option C is false. Since option B also fails for general strings, the correct choice is D.\n\n\\boxed{D}",
       "success": true,
-      "token_usage": {},
-      "provider": "",
+      "token_usage": {
+        "input_tokens": 181,
+        "output_tokens": 132,
+        "total_tokens": 313
+      },
+      "provider": "openrouter",
       "error": null
     },
     "dataset": "",
@@ -69606,9 +69610,13 @@
     "prompt": "Translate the following sentence from Englisb to Czech.\n\nSince 2005, civil rights activists have returned to the Moore's Ford Bridge to recreate the night two black couples - Roger and Dorothy Malcom, and George and Mae Murray Dorsey - were lynched by the Ku Klux Klan in 1946.\n\nProvide your final answer in \\boxed{{}} format.",
     "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "Zde je p\u0159eklad do \u010de\u0161tiny:\n\n\\boxed{Po\u010d\u00ednaje rokem 2005 se zast\u00e1nci ob\u010dansk\u00fdch svobod vracej\u00ed k mostu Moore's Ford Bridge, aby si p\u0159ipomn\u011bli ve\u010der, kdy byly v roce 1946 dva afroamerick\u00e9 p\u00e1ry \u2013 Roger a Dorothy Malcomovi spolu s Georgem a Mae Murray Dorseyov\u00fdmi \u2013 brut\u00e1ln\u011b popraveny Ku-klux-klanem.}",
+      "generated_answer": "Od roku 2005 se aktivist\u00e9 za ob\u010dansk\u00e1 pr\u00e1va vracej\u00ed k mostu Moore's Ford Bridge, aby si p\u0159ipomn\u011bli noc, kdy byly v roce 1946 \u010dleny Ku-klux-klanu lyn\u010dov\u00e1ny dva \u010derno\u0161sk\u00e9 p\u00e1ry \u2013 Roger a Dorothy Malcomovi a George a Mae Murray Dorseyovi.\n\n\\boxed{Od roku 2005 se aktivist\u00e9 za ob\u010dansk\u00e1 pr\u00e1va vracej\u00ed k mostu Moore's Ford Bridge, aby si p\u0159ipomn\u011bli noc, kdy byly v roce 1946 \u010dleny Ku-klux-klanu lyn\u010dov\u00e1ny dva \u010derno\u0161sk\u00e9 p\u00e1ry \u2013 Roger a Dorothy Malcomovi a George a Mae Murray Dorseyovi.}",
       "success": true,
-      "token_usage": {},
+      "token_usage": {
+        "input_tokens": 80,
+        "output_tokens": 164,
+        "total_tokens": 244
+      },
       "provider": "openrouter",
       "error": null
     },
@@ -72330,12 +72338,16 @@
   {
     "global index": "WMT19-cs-en_156",
     "prompt": "Translate the following sentence from Englisb to Czech.\n\nThe case appears to set a legal precedent, as there is no Massachusetts law that criminalises telling a person to commit suicide.\n\nProvide your final answer in \\boxed{{}} format.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": {
-      "generated_answer": "Vzhledem k tomu, \u017ee v Massachusetts neexistuje \u017e\u00e1dn\u00fd z\u00e1kon, kter\u00fd by zakazoval p\u0159esv\u011bd\u010dov\u00e1n\u00ed n\u011bkoho k sebevra\u017ed\u011b, se zd\u00e1, \u017ee tento p\u0159\u00edpad vytv\u00e1\u0159\u00ed pr\u00e1vn\u00ed precedens.\n\n\\boxed{Vzhledem k tomu, \u017ee v Massachusetts neexistuje \u017e\u00e1dn\u00fd z\u00e1kon, kter\u00fd by zakazoval p\u0159esv\u011bd\u010dov\u00e1n\u00ed n\u011bkoho k sebevra\u017ed\u011b, se zd\u00e1, \u017ee tento p\u0159\u00edpad vytv\u00e1\u0159\u00ed pr\u00e1vn\u00ed precedens.}",
+      "generated_answer": "Zd\u00e1 se, \u017ee tento p\u0159\u00edpad vytv\u00e1\u0159\u00ed pr\u00e1vn\u00ed precedens, vzhledem k neexistenci jak\u00e9hokoli z\u00e1kona st\u00e1tu Massachusetts, kter\u00fd by zakazoval p\u0159emlouv\u00e1n\u00ed n\u011bkoho k sebevra\u017ed\u011b.\n\n\\boxed{Zd\u00e1 se, \u017ee tento p\u0159\u00edpad vytv\u00e1\u0159\u00ed pr\u00e1vn\u00ed precedens, vzhledem k neexistenci jak\u00e9hokoli z\u00e1kona st\u00e1tu Massachusetts, kter\u00fd by zakazoval p\u0159emlouv\u00e1n\u00ed n\u011bkoho k sebevra\u017ed\u011b.}",
       "success": true,
-      "token_usage": {},
-      "provider": "",
+      "token_usage": {
+        "input_tokens": 56,
+        "output_tokens": 120,
+        "total_tokens": 176
+      },
+      "provider": "openrouter",
       "error": null
     },
     "dataset": "",
@@ -72580,10 +72592,14 @@
     "prompt": "Translate the following sentence from English to Finnish.\n\nOn Saturday, rains are expected in many parts of southern and central areas with a chance of thunderstorms.\n\nProvide your final answer in \\boxed{{}} format.",
     "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "Lauantaina etel\u00e4- ja keskiosien monilla alueilla odotetaan sadetta, ja ukkosen mahdollisuus on olemassa.\n\n\\boxed{Lauantaina etel\u00e4- ja keskiosien monilla alueilla odotetaan sadetta, ja ukkosen mahdollisuus on olemassa.}",
+      "generated_answer": "Lauantaina etel\u00e4- ja keskiosissa on odotettavissa sadetta monin paikoin, ja ukkosen mahdollisuus on olemassa.\n\n\\boxed{Lauantaina etel\u00e4- ja keskiosissa on odotettavissa sadetta monin paikoin, ja ukkosen mahdollisuus on olemassa.}",
       "success": true,
-      "token_usage": {},
-      "provider": "",
+      "token_usage": {
+        "input_tokens": 43,
+        "output_tokens": 74,
+        "total_tokens": 117
+      },
+      "provider": "openrouter",
       "error": null
     },
     "dataset": "",
@@ -73204,11 +73220,15 @@
   {
     "global index": "WMT19-gu-en_968",
     "prompt": "Translate the following sentence from English to Gujarati.\n\nAfter that you should offer yellow coloured sweets to Lord Vishnu.\n\nProvide your final answer in \\boxed{{}} format.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": {
-      "generated_answer": "\u0aa4\u0acd\u0aaf\u0abe\u0ab0\u0aac\u0abe\u0aa6, \u0aad\u0a97\u0ab5\u0abe\u0aa8 \u0ab5\u0abf\u0ab7\u0acd\u0aa3\u0ac1\u0aa8\u0ac7 \u0a95\u0ac7\u0ab8\u0ab0\u0ac0 \u0ab0\u0a82\u0a97\u0aa8\u0ac0 \u0aae\u0ac0\u0aa0\u0abe\u0a88\u0a93 \u0a85\u0ab0\u0acd\u0aaa\u0aa3 \u0a95\u0ab0\u0acb.\n\n\\boxed{\u0aa4\u0acd\u0aaf\u0abe\u0ab0\u0aac\u0abe\u0aa6, \u0aad\u0a97\u0ab5\u0abe\u0aa8 \u0ab5\u0abf\u0ab7\u0acd\u0aa3\u0ac1\u0aa8\u0ac7 \u0a95\u0ac7\u0ab8\u0ab0\u0ac0 \u0ab0\u0a82\u0a97\u0aa8\u0ac0 \u0aae\u0ac0\u0aa0\u0abe\u0a88\u0a93 \u0a85\u0ab0\u0acd\u0aaa\u0aa3 \u0a95\u0ab0\u0acb.}",
+      "generated_answer": "\\boxed{\\text{\u0aa4\u0acd\u0aaf\u0abe\u0ab0\u0aac\u0abe\u0aa6 \u0aa4\u0aae\u0abe\u0ab0\u0ac7 \u0aad\u0a97\u0ab5\u0abe\u0aa8 \u0ab5\u0abf\u0ab7\u0acd\u0aa3\u0ac1\u0aa8\u0ac7 \u0aaa\u0ac0\u0ab3\u0abe \u0ab0\u0a82\u0a97\u0aa8\u0abe \u0aae\u0ac0\u0aa0\u0abe\u0a88 \u0aa7\u0ab0\u0abe\u0ab5\u0ab5\u0ac0 \u0a9c\u0acb\u0a88\u0a8f.}}",
       "success": true,
-      "token_usage": {},
+      "token_usage": {
+        "input_tokens": 39,
+        "output_tokens": 571,
+        "total_tokens": 610
+      },
       "provider": "openrouter",
       "error": null
     },
