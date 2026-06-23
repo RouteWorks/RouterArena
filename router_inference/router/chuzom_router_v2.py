@@ -329,7 +329,9 @@ def _score_categories(text: str) -> dict[str, int]:
             pattern = layers.get(layer_name)
             if pattern:
                 matches = pattern.findall(text)
-                unique = len({m.lower() if isinstance(m, str) else m[0].lower() for m in matches})
+                unique = len(
+                    {m.lower() if isinstance(m, str) else m[0].lower() for m in matches}
+                )
                 total += unique * weight
         scores[category] = total
     return scores
@@ -452,7 +454,9 @@ class ChuzomRouter(BaseRouter):
         bench = _benchmark_fast_path(query)
         if bench is not None:
             task_type = bench["task_type"]
-            complexity = bench.get("complexity") or _classify_complexity(query, task_type)
+            complexity = bench.get("complexity") or _classify_complexity(
+                query, task_type
+            )
             return self._tier(task_type, complexity)
 
         # ── STEP 3: weighted signal scoring ──────────────────────────────────
@@ -526,3 +530,7 @@ class ChuzomRouter(BaseRouter):
 
         # Defensive: return first model in pool if tier pick isn't available.
         return self.models[0]
+
+
+# Alias expected by router_inference/__init__.py
+ChuzomRouterV2 = ChuzomRouter
