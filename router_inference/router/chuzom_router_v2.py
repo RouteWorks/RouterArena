@@ -531,6 +531,23 @@ class ChuzomRouter(BaseRouter):
         # Defensive: return first model in pool if tier pick isn't available.
         return self.models[0]
 
+    def __init__(
+        self, *args: object, llm_judge_enabled: bool = False, **kwargs: object
+    ) -> None:
+        super().__init__(*args, **kwargs)  # type: ignore[arg-type]
+
+    def _gate_centroid(self, text: str) -> tuple[dict[str, float], float]:
+        """Stub — v0.5.2 is purely heuristic; no centroid gate."""
+        return {}, 1.0
+
+    def _gate_heuristic(self, prompt: str) -> tuple[dict[str, float], float]:
+        """Stub — heuristic scores are internal to _get_prediction."""
+        return {}, 1.0
+
+    def _compute_blended_margin(self, prompt: str) -> float:
+        """Stub — always returns max confidence (no LLM judge needed)."""
+        return 1.0
+
 
 # Alias expected by router_inference/__init__.py
 ChuzomRouterV2 = ChuzomRouter
