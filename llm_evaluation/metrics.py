@@ -1380,8 +1380,23 @@ def superglue_clozetest(predictions, ground_truths, **kwargs):
             else:
                 extracted_pred = extract_boxed_answer(pred)
 
+            # Strip "X. " letter prefix if model outputs "A. Facebook" style answers
+            # (qwen3-235b sometimes includes the option letter in the boxed answer)
+            import re as _re
+            extracted_pred_clean = _re.sub(r'^[A-Z]\.\s+', '', extracted_pred)
+
             # Compare with ground truth
-            is_correct = extracted_pred == gt_letter
+            # Handle multi-answer GTs like "SSRI, SSRIs" — any comma-split part is acceptable
+            for candidate in (extracted_pred, extracted_pred_clean):
+                if candidate == gt_letter:
+                    is_correct = True
+                    break
+                gt_parts = [g.strip() for g in str(gt_letter).split(',')]
+                if candidate in gt_parts:
+                    is_correct = True
+                    break
+            else:
+                is_correct = False
             correct += int(is_correct)
 
             # Create base result dict
