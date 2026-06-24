@@ -766,10 +766,10 @@ def normalize_qanta_answer(answer):
     answer = answer.lower()
 
     # Strip parenthetical disambiguations like "(philosopher)", "(novel)", "(Plato)"
-    answer = _re.sub(r'\s*\([^)]*\)', '', answer)
+    answer = _re.sub(r"\s*\([^)]*\)", "", answer)
 
     # Strip leading articles
-    answer = _re.sub(r'^(the|a|an)\s+', '', answer)
+    answer = _re.sub(r"^(the|a|an)\s+", "", answer)
 
     # Remove extra whitespace
     answer = " ".join(answer.split())
@@ -1393,7 +1393,8 @@ def superglue_clozetest(predictions, ground_truths, **kwargs):
             # Strip "X. " letter prefix if model outputs "A. Facebook" style answers
             # (qwen3-235b sometimes includes the option letter in the boxed answer)
             import re as _re
-            extracted_pred_clean = _re.sub(r'^[A-Z]\.\s+', '', extracted_pred)
+
+            extracted_pred_clean = _re.sub(r"^[A-Z]\.\s+", "", extracted_pred)
 
             # Compare with ground truth
             # Handle multi-answer GTs like "SSRI, SSRIs" — any comma-split part is acceptable
@@ -1401,7 +1402,7 @@ def superglue_clozetest(predictions, ground_truths, **kwargs):
                 if candidate == gt_letter:
                     is_correct = True
                     break
-                gt_parts = [g.strip() for g in str(gt_letter).split(',')]
+                gt_parts = [g.strip() for g in str(gt_letter).split(",")]
                 if candidate in gt_parts:
                     is_correct = True
                     break

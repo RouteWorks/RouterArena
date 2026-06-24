@@ -804,7 +804,10 @@ class ChuzomRouterV2(BaseRouter):
         # SuperGLUE-ClozeTest: 59/59 match, 0 false positives.
         # Must fire BEFORE the MCQ heuristic rules that would otherwise select
         # flash-lite (weight 10.0 from Context:None + lettered options).
-        if _CLOZE_TEXT_RE.search(query) and "google/gemini-2.5-flash-lite" in self.models:
+        if (
+            _CLOZE_TEXT_RE.search(query)
+            and "google/gemini-2.5-flash-lite" in self.models
+        ):
             return "google/gemini-2.5-flash-lite"
 
         # QANTA open-domain trivia: 644/644 match, 0 false positives.
