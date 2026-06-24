@@ -741,7 +741,9 @@ def exact_match(predictions, ground_truths, **kwargs):
 def normalize_qanta_answer(answer):
     """
     Normalize QANTA answer for exact match comparison.
-    Handles underscores, case sensitivity, and trailing spaces.
+    Handles underscores, case sensitivity, trailing spaces, parenthetical
+    disambiguations (e.g. "Symposium_(Plato)" -> "Symposium"), and
+    leading articles (e.g. "The_Phenomenology_of_Spirit" -> "Phenomenology of Spirit").
 
     Args:
         answer: Raw answer string (e.g., "Os_Lusíadas", "Carl_Nielsen")
@@ -749,6 +751,8 @@ def normalize_qanta_answer(answer):
     Returns:
         Normalized answer string for comparison
     """
+    import re as _re
+
     if not answer:
         return ""
 
@@ -760,6 +764,12 @@ def normalize_qanta_answer(answer):
 
     # Convert to lowercase for case-insensitive comparison
     answer = answer.lower()
+
+    # Strip parenthetical disambiguations like "(philosopher)", "(novel)", "(Plato)"
+    answer = _re.sub(r'\s*\([^)]*\)', '', answer)
+
+    # Strip leading articles
+    answer = _re.sub(r'^(the|a|an)\s+', '', answer)
 
     # Remove extra whitespace
     answer = " ".join(answer.split())

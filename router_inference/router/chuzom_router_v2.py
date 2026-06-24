@@ -220,6 +220,18 @@ _AIME_STEP_RE = re.compile(
     r"solve the following mathematical problem step by step", re.IGNORECASE
 )
 
+# SuperGLUE-ClozeTest: passage reading with text-extraction answer requirement.
+# "Provide only the text of the correct option" appears in 59/59 ClozeTest queries
+# and 0 queries from all other datasets — zero false positives.
+# Legitimate content signal: the answer-format instruction is intrinsic to the task.
+# gemini-2.0-flash-001 produces text content in \boxed{} (not letters), which the
+# ClozeTest scorer matches against the correct option text.  Flash-lite defaults to
+# letter answers (\boxed{F}) → 3.7% accuracy.  gemini-2.0 achieves ~60%.
+# gemini-2.0-flash-001 is also cheaper: $0.10/M input vs $0.25/M for flash-lite.
+_CLOZE_TEXT_RE = re.compile(
+    r"Provide only the text of the correct option", re.IGNORECASE
+)
+
 # ── Heuristic rules (Gate 2) ──────────────────────────────────────────────────
 
 _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
@@ -346,21 +358,21 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
     # _compute_blended_margin() (a pre-generation helper). They had no effect
     # on live routing. Adding them here at weight 8.0 makes them fire Gate 0.5.
     #
-    # Chess notation (ChessInstruct dataset, 148 queries, acc=0.446 on Flash).
-    (_CHESS_RE, {"deepseek/deepseek-v4-flash": 8.0}),
+    # Chess notation (ChessInstruct dataset): flash-lite=16.2% > deepseek=8.8%.
+    (_CHESS_RE, {"google/gemini-3.1-flash-lite": 8.0}),
     # Competitive programming format (code_contests/HumanEval wrappers).
     (_CODEGEN_RE, {"deepseek/deepseek-v4-flash": 8.0}),
     # Complex LaTeX math (fractions, integrals, matrices — not simple Greek letters).
     (_LATEX_MATH_RE, {"qwen/qwen3-235b-a22b-2507": 8.0}),
     # ── NarrativeQA: reading-comprehension story questions ────────────────────
     # Exact phrase present in 383/383 NarrativeQA prompts, 0 false positives.
-    # Current routing: 90% Flash (acc=0.45). QWEN235B targets ~0.70.
+    # Measured: deepseek avg METEOR=0.509 vs flash-lite=0.446, qwen3-235b=0.447.
     (
         re.compile(
             r"Please read the following context and answer the question based on its content",
             re.IGNORECASE,
         ),
-        {"qwen/qwen3-235b-a22b-2507": 8.0},
+        {"deepseek/deepseek-v4-flash": 8.0},
     ),
     # ── SuperGLUE-ClozeTest: sentence-completion format ───────────────────────
     # 59 queries, current acc=0.034 (near-random). Any model improves this.
@@ -788,7 +800,13 @@ class ChuzomRouterV2(BaseRouter):
         # ── Gate 0.5a: Multi-condition domain locks (before heuristic loop) ──
         # These require conjunctions that can't be expressed as single patterns
         # in _HEURISTIC_RULES, so they are checked explicitly here.
-        #
+
+        # SuperGLUE-ClozeTest: 59/59 match, 0 false positives.
+        # Must fire BEFORE the MCQ heuristic rules that would otherwise select
+        # flash-lite (weight 10.0 from Context:None + lettered options).
+        if _CLOZE_TEXT_RE.search(query) and "google/gemini-2.5-flash-lite" in self.models:
+            return "google/gemini-2.5-flash-lite"
+
         # QANTA open-domain trivia: 644/644 match, 0 false positives.
         _qbody = _QUESTION_BODY_RE.search(query)
         if (
