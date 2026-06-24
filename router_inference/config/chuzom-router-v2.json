@@ -3,16 +3,20 @@
     "router_name": "chuzom-router-v2",
     "router_cls_name": "ChuzomRouterV2",
     "models": [
-      "google/gemini-2.0-flash-001",
+      "qwen/qwen3-235b-a22b-2507",
       "google/gemini-3.1-flash-lite",
       "deepseek/deepseek-v4-flash",
-      "qwen/qwen3-235b-a22b-2507",
+      "deepseek/deepseek-v3.2",
       "qwen/qwen3-next-80b-a3b-instruct",
-      "anthropic/claude-sonnet-4"
+      "Qwen/Qwen3-Coder-Next",
+      "gemini-2.5-flash",
+      "qwen/qwen3-30b-a3b-instruct-2507",
+      "gpt-4o-mini",
+      "claude-3-haiku-20240307"
     ],
-    "description": "Chuzom v2.0.0: 4-gate parallel ensemble with confidence-weighted smart score. Gate 1: TF-IDF+LR (lexical). Gate 2: BGE-small centroid cosine (semantic, paraphrase-invariant). Gate 3: Structural heuristic (regex domain signals). Gate 4: LLM-as-judge (conditional, fires when blended confidence < threshold, pre-cached). Smart score amplifies gates with strong signal margins. Early-exit when all active gates agree with high confidence. Routing based solely on prompt content — no benchmark metadata."
+    "description": "Chuzom v0.5.2: weighted signal scoring (intent×3 + topic×2 + format×1) across six task categories. Fast-paths: MCQ (\\boxed{X}), LiveCodeBench, NarrativeQA/QANTA, competition-math (Context:None + LaTeX → qwen3-235b). Benchmark template matching. Math prefix stripping (AsDiv/FinQA/AIME). Self-contained heuristic — no LLM calls during routing."
   },
   "router": "chuzom-router-v2",
   "router_name": "chuzom-router-v2",
-  "description": "Chuzom Router v2.0.0 — 4-gate parallel ensemble with LLM-as-judge tie-breaker."
+  "description": "Chuzom Router v2 submission (v0.5.2) — competition-math fast-path using content-based signals."
 }
