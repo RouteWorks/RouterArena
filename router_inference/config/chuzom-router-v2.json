@@ -5,6 +5,7 @@
     "models": [
       "qwen/qwen3-235b-a22b-2507",
       "google/gemini-3.1-flash-lite",
+      "google/gemini-2.0-flash-001",
       "deepseek/deepseek-v4-flash",
       "deepseek/deepseek-v3.2",
       "qwen/qwen3-next-80b-a3b-instruct",
