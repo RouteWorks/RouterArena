@@ -41,7 +41,7 @@ PROMPTS_PER_DATASET = 500
 MAX_WORKERS = 20
 MAX_TOKENS = 256
 LABELS_FILE = ROOT / "data" / "public_centroid_labels.jsonl"
-CENTROIDS_FILE = ROOT / "router_inference" / "config" / "chuzom-centroids.npz"
+CENTROIDS_FILE = ROOT / "router_inference" / "config" / "chuzom-v3-centroids.npz"
 
 # ── Dataset loaders ───────────────────────────────────────────────────────────
 
@@ -86,6 +86,61 @@ def load_gsm8k(split: str = "test", n: int = PROMPTS_PER_DATASET) -> list[dict]:
         if gold:
             items.append({"prompt": prompt, "answer": gold, "type": "math", "source": "gsm8k"})
     return items[:n]
+
+
+def load_squad(split: str = "validation", n: int = PROMPTS_PER_DATASET) -> list[dict]:
+    """SQuAD: reading comprehension → builds NarrativeQA/PubMedQA-relevant centroids."""
+    from datasets import load_dataset  # type: ignore[import]
+    ds = load_dataset("rajpurkar/squad", split=split, trust_remote_code=False)
+    items = []
+    for row in ds.shuffle(seed=42).select(range(min(n * 2, len(ds)))):
+        ctx = row["context"][:1500]
+        question = row["question"]
+        gold = row["answers"]["text"][0] if row["answers"]["text"] else None
+        if not gold:
+            continue
+        prompt = f"Read the following passage and answer the question.\n\nPassage: {ctx}\n\nQuestion: {question}\n\nAnswer:"
+        items.append({"prompt": prompt, "answer": gold.lower(), "type": "reading", "source": "squad"})
+        if len(items) >= n:
+            break
+    return items
+
+
+def load_humaneval(n: int = PROMPTS_PER_DATASET) -> list[dict]:
+    """HumanEval: coding tasks → builds LiveCodeBench-relevant centroids."""
+    from datasets import load_dataset  # type: ignore[import]
+    ds = load_dataset("openai/openai_humaneval", split="test", trust_remote_code=False)
+    items = []
+    for row in ds.shuffle(seed=42).select(range(min(n, len(ds)))):
+        prompt = row["prompt"]
+        canonical = row.get("canonical_solution", "")
+        items.append({
+            "prompt": f"Complete the following Python function:\n\n{prompt}",
+            "answer": canonical[:50],
+            "type": "code",
+            "source": "humaneval",
+            "canonical": canonical,
+        })
+        if len(items) >= n:
+            break
+    return items
+
+
+def grade_reading(response: str, gold: str) -> bool:
+    """Loose reading comprehension grading: gold substring in response."""
+    response_lower = response.lower()
+    gold_lower = gold.lower()
+    if gold_lower in response_lower:
+        return True
+    gold_words = set(gold_lower.split())
+    if len(gold_words) >= 2:
+        return sum(1 for w in gold_words if w in response_lower) >= len(gold_words) * 0.8
+    return False
+
+
+def grade_code(response: str, item: dict) -> bool:
+    """Check if response defines a valid function body."""
+    return "def " in response and "return" in response
 
 
 def load_math(split: str = "test", n: int = PROMPTS_PER_DATASET) -> list[dict]:
@@ -180,6 +235,10 @@ def grade(response: str, item: dict) -> bool:
         return grade_math(response, item["answer"])
     if t == "math_hard":
         return grade_math_hard(response, item["answer"])
+    if t == "reading":
+        return grade_reading(response, item["answer"])
+    if t == "code":
+        return grade_code(response, item)
     return False
 
 
@@ -269,6 +328,8 @@ def main() -> None:
         ("MMLU", load_mmlu),
         ("GSM8K", load_gsm8k),
         ("MATH", load_math),
+        ("SQuAD", load_squad),
+        ("HumanEval", load_humaneval),
     ]
     for name, loader in loaders:
         try:

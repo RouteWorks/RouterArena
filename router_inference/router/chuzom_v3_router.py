@@ -204,9 +204,12 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
         {"qwen/qwen3-235b-a22b-2507": 2.0, "deepseek/deepseek-v4-flash": 1.0},
     ),
     # ── Chess notation ────────────────────────────────────────────────────────
+    # Chess move prediction tasks require concise UCI notation output (e.g. "h2h3").
+    # Smaller flash-class models are better at strict format-following for concise
+    # outputs; larger models over-explain and diverge from the expected 4-char format.
     (
         re.compile(r'(?i)(chess\s+move|question about chess|"moves":\s*\[)'),
-        {"qwen/qwen3-235b-a22b-2507": 8.0},
+        {"google/gemini-3.1-flash-lite": 8.0},
     ),
     # ── Language translation: explicit directive ──────────────────────────────
     (
