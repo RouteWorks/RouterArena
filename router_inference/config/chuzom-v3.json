@@ -1,0 +1,14 @@
+{
+  "pipeline_params": {
+    "router_name": "chuzom-v3",
+    "router_cls_name": "ChuzomV3Router",
+    "models": [
+      "google/gemini-3.1-flash-lite",
+      "deepseek/deepseek-v4-flash",
+      "qwen/qwen3-235b-a22b-2507",
+      "qwen/qwen3-next-80b-a3b-instruct"
+    ],
+    "default_model": "google/gemini-3.1-flash-lite",
+    "description": "Chuzom v3.0 clean 3-gate ensemble router. Gate 0 (RA-tainted proxy classifier) removed. Routing via BGE-small centroid similarity (external-data centroids), content-intrinsic structural heuristics, and optional LLM judge. All training data is external to RouterArena."
+  }
+}

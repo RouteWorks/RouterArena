@@ -9,4 +9,6 @@ from router_inference.router.vllm_sr import VLLMSR
 from router_inference.router.auto_router import auto_router
 from router_inference.router.llm_router import LLMRouter
 
-__all__ = ["BaseRouter", "ExampleRouter", "VLLMSR", "auto_router", "LLMRouter"]
+from router_inference.router.chuzom_v3_router import ChuzomV3Router
+
+__all__ = ["BaseRouter", "ExampleRouter", "VLLMSR", "auto_router", "LLMRouter", "ChuzomV3Router"]
