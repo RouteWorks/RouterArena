@@ -108,6 +108,24 @@ routers:
       affiliation: "@mikemao27"
       github_url: "https://github.com/mikemao27"
 
+  - readme_name: "Cross-Router"
+    website_name: "Cross-Router"
+    prediction: "cross-router"
+    category_key: "cross-router"
+    flip_key: "cross-router"
+    website:
+      affiliation: "@JiaHg"
+      github_url: "https://github.com/JiaHg"
+
+  - readme_name: "LLM Router"
+    website_name: "LLM Router"
+    prediction: "llm-router"
+    category_key: "llm-router"
+    flip_key: "llm-router"
+    website:
+      affiliation: "@ypollak2"
+      github_url: "https://github.com/ypollak2"
+
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
   - readme_name: "MIRT-BERT"
