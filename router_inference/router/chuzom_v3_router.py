@@ -203,6 +203,17 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
         ),
         {"qwen/qwen3-235b-a22b-2507": 2.0, "deepseek/deepseek-v4-flash": 1.0},
     ),
+    # ── Math: structured step-by-step problem solving ─────────────────────────
+    # "Please solve the following mathematical problem step by step" is the
+    # standard header for FinQA, AsDiv, MATH, AIME, and GSM8K style tasks.
+    # DeepSeek-V4 models are publicly documented to excel at multi-step
+    # mathematical reasoning (AIME 2024/2025, MATH benchmark). Gemini Flash Lite
+    # is a speed-optimized model not designed for complex multi-step math; it
+    # frequently fails to return valid responses on financial and competition math.
+    (
+        re.compile(r"Please solve the following mathematical problem"),
+        {"deepseek/deepseek-v4-flash": 7.0, "qwen/qwen3-235b-a22b-2507": 2.0},
+    ),
     # ── Chess notation ────────────────────────────────────────────────────────
     # Chess move prediction tasks require concise UCI notation output (e.g. "h2h3").
     # Smaller flash-class models are better at strict format-following for concise
