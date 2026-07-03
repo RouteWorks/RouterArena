@@ -140,8 +140,8 @@
     "output_token_price_per_million": 0.22
   },
   "meta-llama_llama-3.3-70b-instruct": {
-    "input_token_price_per_million": 0.05,
-    "output_token_price_per_million": 0.25
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.32
   },
   "meta-llama_llama-3.1-405b-instruct": {
     "input_token_price_per_million": 3.5,
