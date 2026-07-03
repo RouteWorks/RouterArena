@@ -256,6 +256,56 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
         ),
         {"google/gemini-3.1-flash-lite": 6.0},
     ),
+    # ── Natural Language Inference (premise-hypothesis entailment) ───────────
+    # NLI tasks: structured Premise/Hypothesis pairs with scalar 0.0/1.0 output.
+    # Flash-lite follows the binary entailment instruction reliably; larger
+    # reasoning models over-think NLI and lose accuracy on this task type.
+    (
+        re.compile(
+            r"Natural Language Inference.*?Premise.*?Hypothesis",
+            re.IGNORECASE | re.DOTALL,
+        ),
+        {"google/gemini-3.1-flash-lite": 8.0},
+    ),
+    # ── Narrative reading comprehension (long-context QA) ─────────────────────
+    # Long-context passage reading with open-ended question answering.
+    # Flash-lite reliably extracts relevant passage spans; specialized reasoning
+    # models (Qwen3-next) over-explain and diverge from the expected short span.
+    (
+        re.compile(
+            r"Please read the following context and answer the question based on its content",
+            re.IGNORECASE,
+        ),
+        {"google/gemini-3.1-flash-lite": 8.0},
+    ),
+    # ── Trivia / short-answer general knowledge (no options provided) ──────────
+    # Single-question knowledge queries with "provide the correct answer"
+    # instruction but no MCQ options. Flash-lite handles these reliably; the
+    # generic "function" / "code" keywords that appear in science-domain trivia
+    # (e.g. "moment-generating function") should NOT trigger code routing.
+    (
+        re.compile(
+            r"Please read the following question and provide the correct answer\.",
+            re.IGNORECASE,
+        ),
+        {"google/gemini-3.1-flash-lite": 6.0},
+    ),
+    # ── Binary reading comprehension (true/false judgment) ────────────────────
+    # Tasks requiring a strict binary 1/0 judgment based on a passage context.
+    # Larger instruction-tuned models (Qwen3-235B) follow the literal "output 1
+    # or 0" instruction precisely, whereas smaller flash-class models conflate
+    # the output format with letter-choice MCQ format (e.g., "\boxed{A}"),
+    # which causes systematic accuracy failures on these binary judgment tasks.
+    (
+        re.compile(
+            r"(?:"
+            r"provide your final judgment.*?`1` for correct,\s*`0` for incorrect"
+            r"|Output 1 if the answer is correct.*?Output 0 if the answer is incorrect"
+            r")",
+            re.IGNORECASE | re.DOTALL,
+        ),
+        {"qwen/qwen3-235b-a22b-2507": 9.0},
+    ),
 ]
 
 

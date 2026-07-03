@@ -215,7 +215,8 @@ def main() -> None:
 
     # Save
     OUTPUT_DIR.mkdir(exist_ok=True)
-    out_path = OUTPUT_DIR / f"chuzom-v3.json"
+    suffix = "-robustness" if args.split == "robustness" else ""
+    out_path = OUTPUT_DIR / f"chuzom-v3{suffix}.json"
     with open(out_path, "w") as f:
         json.dump(predictions_list, f, ensure_ascii=False, indent=2)
     print(f"\n[6] Saved {len(predictions_list)} predictions → {out_path}")
