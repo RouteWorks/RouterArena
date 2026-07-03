@@ -447,28 +447,10 @@ def main() -> None:
     print("\nBuilding centroids from cheapest-correct examples...")
     centroids = build_centroids(labels)
 
-    # Backup existing file
-    if CENTROIDS_FILE.exists():
-        backup = CENTROIDS_FILE.with_suffix(".npz.bak")
-        import shutil
-
-        shutil.copy(CENTROIDS_FILE, backup)
-        print(f"Backed up existing centroids to {backup}")
-
-    # Build final arrays preserving model order from the existing file; rows for
-    # models not retrained here (e.g. gemini-2.0-flash-001) are kept as-is.
-    existing = np.load(CENTROIDS_FILE)
-    existing_models = [str(m) for m in existing["models"]]
-    final_models = existing_models
-    final_centroids = existing["centroids"].astype(np.float32).copy()
-    for new_idx, model in enumerate(MODELS):
-        if model in existing_models:
-            existing_idx = existing_models.index(model)
-            final_centroids[existing_idx] = centroids[new_idx]
-
-    np.savez(CENTROIDS_FILE, centroids=final_centroids, models=np.array(final_models))
-    print(f"Saved updated centroids to {CENTROIDS_FILE}")
-    print(f"Shape: {final_centroids.shape}")
+    # Save centroids for exactly the 4 routing models; no merging with existing files
+    np.savez(CENTROIDS_FILE, centroids=centroids.astype(np.float32), models=np.array(MODELS))
+    print(f"Saved centroids to {CENTROIDS_FILE}")
+    print(f"Shape: {centroids.shape}")
 
 
 if __name__ == "__main__":

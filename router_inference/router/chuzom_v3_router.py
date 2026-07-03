@@ -349,7 +349,7 @@ class ChuzomV3Router(BaseRouter):
     _llm_judge_cache: dict[str, str] | None = None
     _embed_model_name = "BAAI/bge-small-en-v1.5"
 
-    def __init__(self, router_name: str, llm_judge_enabled: bool = True) -> None:
+    def __init__(self, router_name: str, llm_judge_enabled: bool = False) -> None:
         super().__init__(router_name)
         self.models = [m for m in self.models if m in _ROUTING_MODELS]
         self._llm_judge_enabled = llm_judge_enabled
@@ -404,6 +404,7 @@ class ChuzomV3Router(BaseRouter):
         m = AutoModel.from_pretrained(cls._embed_model_name)
         m.train(False)
         cls._embed_model = m
+        # BGE-small-en-v1.5 uses CLS pooling (token 0) — matches centroid builder
 
     @classmethod
     def _load_judge_cache(cls) -> None:
@@ -426,8 +427,9 @@ class ChuzomV3Router(BaseRouter):
         )
         with torch.no_grad():
             out = self._embed_model(**enc)
-        mask = enc["attention_mask"].unsqueeze(-1).float()
-        emb = (out.last_hidden_state * mask).sum(1) / mask.sum(1).clamp(min=1e-9)
+        # CLS pooling (token 0) — consistent with BAAI/bge-small-en-v1.5 model card
+        # and with scripts/build_public_centroids.py which uses SentenceTransformer CLS
+        emb = out.last_hidden_state[:, 0]
         emb = emb / emb.norm(dim=1, keepdim=True).clamp(min=1e-9)
         return emb.squeeze(0).numpy().astype(np.float32)
 
