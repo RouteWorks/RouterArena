@@ -1,0 +1,14 @@
+{
+    "pipeline_params": {
+        "router_name": "BARouter",
+        "router_cls_name": "BARouter",
+        "models": [
+            "qwen3-235b-a22b-instruct-2507",
+            "gpt-4.1",
+            "deepseek-v3.1"
+        ],
+        "budget": 0.003,
+        "budget_unit": "usd",
+        "V": 0.5
+    }
+}
