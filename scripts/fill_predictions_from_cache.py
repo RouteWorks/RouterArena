@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 """Fill generated_result in a prediction file from local cached inference results.
 
 Avoids API costs for local evaluation by using cached model outputs.

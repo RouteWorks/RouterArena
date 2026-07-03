@@ -177,7 +177,7 @@ _HEURISTIC_RULES: list[tuple[re.Pattern, dict[str, float]]] = [
         re.compile(
             r"\\(?:mathbb\{|mathcal\{|frac\{|int\b|sum_|prod_"
             r"|nabla|partial\b|pmatrix|bmatrix"
-            r"|begin\{[a-z]*matrix|iint\b|iiint\b|oint\b"
+            r"|begin\{[a-z]*matrix|iint\b|iiint\b|oint\b"  # codespell:ignore oint
             r"|underbrace|overbrace|bigcap|bigcup|bigoplus)"
         ),
         {"qwen/qwen3-235b-a22b-2507": 5.0},
@@ -614,8 +614,12 @@ class ChuzomV3Router(BaseRouter):
         centroid_scores, centroid_margin = self._gate_centroid_from_emb(emb)
         heuristic_scores, heuristic_margin = self._gate_heuristic(query)
 
-        centroid_winner = max(centroid_scores, key=lambda m: centroid_scores.get(m, 0.0))
-        heuristic_winner = max(heuristic_scores, key=lambda m: heuristic_scores.get(m, 0.0))
+        centroid_winner = max(
+            centroid_scores, key=lambda m: centroid_scores.get(m, 0.0)
+        )
+        heuristic_winner = max(
+            heuristic_scores, key=lambda m: heuristic_scores.get(m, 0.0)
+        )
 
         # Early-exit when both gates agree with high confidence
         if (
@@ -629,17 +633,27 @@ class ChuzomV3Router(BaseRouter):
             centroid_scores, centroid_margin, heuristic_scores, heuristic_margin, None
         )
         blended_vals = sorted(blended.values(), reverse=True)
-        blended_margin = blended_vals[0] - blended_vals[1] if len(blended_vals) > 1 else 1.0
+        blended_margin = (
+            blended_vals[0] - blended_vals[1] if len(blended_vals) > 1 else 1.0
+        )
 
         llm_winner: str | None = None
         if self._llm_judge_enabled and blended_margin < _JUDGE_THRESHOLD:
             llm_winner = self._call_llm_judge(
-                query, centroid_scores, centroid_margin, heuristic_scores, heuristic_margin
+                query,
+                centroid_scores,
+                centroid_margin,
+                heuristic_scores,
+                heuristic_margin,
             )
 
         if llm_winner:
             final = self._smart_score(
-                centroid_scores, centroid_margin, heuristic_scores, heuristic_margin, llm_winner
+                centroid_scores,
+                centroid_margin,
+                heuristic_scores,
+                heuristic_margin,
+                llm_winner,
             )
         else:
             final = blended

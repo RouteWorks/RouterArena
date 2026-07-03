@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 """Build cheapest-correct centroids from public HuggingFace datasets.
 
 Runs 4 RouterArena models on public prompts, grades answers, finds the
@@ -8,6 +10,7 @@ from those labeled examples.
 Usage:
     OPENROUTER_API_KEY=xxx uv run python3 scripts/build_public_centroids.py
 """
+
 from __future__ import annotations
 
 import json
@@ -15,6 +18,7 @@ import os
 import re
 import sys
 import urllib.request
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -35,7 +39,15 @@ MODELS = [
     "qwen/qwen3-next-80b-a3b-instruct",
     "qwen/qwen3-235b-a22b-2507",
 ]
-MODEL_COST_RANK = {m: i for i, m in enumerate(MODELS)}  # lower = cheaper
+# Actual cost rank for typical RA query (~100 input / 75 output tokens):
+# qwen3-235b=$0.0000121  deepseek=$0.0000531  flash-lite=$0.0001375  qwen3-next=$0.0003725
+# Flash-lite is expensive because output tokens cost $1.5/M (vs qwen3-235b $0.10/M).
+MODEL_COST_RANK = {
+    "qwen/qwen3-235b-a22b-2507": 0,  # cheapest at typical prompt lengths
+    "deepseek/deepseek-v4-flash": 1,
+    "google/gemini-3.1-flash-lite": 2,  # expensive on output-heavy prompts
+    "qwen/qwen3-next-80b-a3b-instruct": 3,  # most expensive
+}
 
 PROMPTS_PER_DATASET = 500
 MAX_WORKERS = 20
@@ -45,23 +57,32 @@ CENTROIDS_FILE = ROOT / "router_inference" / "config" / "chuzom-v3-centroids.npz
 
 # ── Dataset loaders ───────────────────────────────────────────────────────────
 
+
 def load_arc(split: str = "test", n: int = PROMPTS_PER_DATASET) -> list[dict]:
     from datasets import load_dataset  # type: ignore[import]
+
     ds = load_dataset("ai2_arc", "ARC-Challenge", split=split, trust_remote_code=False)
     items = []
     for row in ds.shuffle(seed=42).select(range(min(n, len(ds)))):
         choices = row["choices"]
         options = "\n".join(
-            f"{label}. {text}"
-            for label, text in zip(choices["label"], choices["text"])
+            f"{label}. {text}" for label, text in zip(choices["label"], choices["text"])
         )
         prompt = f"{row['question']}\n\n{options}\n\nAnswer with just the letter."
-        items.append({"prompt": prompt, "answer": row["answerKey"], "type": "mcq", "source": "arc"})
+        items.append(
+            {
+                "prompt": prompt,
+                "answer": row["answerKey"],
+                "type": "mcq",
+                "source": "arc",
+            }
+        )
     return items
 
 
 def load_mmlu(split: str = "test", n: int = PROMPTS_PER_DATASET) -> list[dict]:
     from datasets import load_dataset  # type: ignore[import]
+
     ds = load_dataset("cais/mmlu", "all", split=split, trust_remote_code=False)
     items = []
     labels = ["A", "B", "C", "D"]
@@ -70,12 +91,15 @@ def load_mmlu(split: str = "test", n: int = PROMPTS_PER_DATASET) -> list[dict]:
         options = "\n".join(f"{labels[i]}. {c}" for i, c in enumerate(choices))
         prompt = f"{row['question']}\n\n{options}\n\nAnswer with just the letter."
         gold = labels[row["answer"]]
-        items.append({"prompt": prompt, "answer": gold, "type": "mcq", "source": "mmlu"})
+        items.append(
+            {"prompt": prompt, "answer": gold, "type": "mcq", "source": "mmlu"}
+        )
     return items
 
 
 def load_gsm8k(split: str = "test", n: int = PROMPTS_PER_DATASET) -> list[dict]:
     from datasets import load_dataset  # type: ignore[import]
+
     ds = load_dataset("openai/gsm8k", "main", split=split, trust_remote_code=False)
     items = []
     for row in ds.shuffle(seed=42).select(range(min(n, len(ds)))):
@@ -84,13 +108,16 @@ def load_gsm8k(split: str = "test", n: int = PROMPTS_PER_DATASET) -> list[dict]:
         match = re.search(r"####\s*([\d,\.\-]+)", row["answer"])
         gold = match.group(1).replace(",", "") if match else None
         if gold:
-            items.append({"prompt": prompt, "answer": gold, "type": "math", "source": "gsm8k"})
+            items.append(
+                {"prompt": prompt, "answer": gold, "type": "math", "source": "gsm8k"}
+            )
     return items[:n]
 
 
 def load_squad(split: str = "validation", n: int = PROMPTS_PER_DATASET) -> list[dict]:
     """SQuAD: reading comprehension → builds NarrativeQA/PubMedQA-relevant centroids."""
     from datasets import load_dataset  # type: ignore[import]
+
     ds = load_dataset("rajpurkar/squad", split=split, trust_remote_code=False)
     items = []
     for row in ds.shuffle(seed=42).select(range(min(n * 2, len(ds)))):
@@ -100,7 +127,14 @@ def load_squad(split: str = "validation", n: int = PROMPTS_PER_DATASET) -> list[
         if not gold:
             continue
         prompt = f"Read the following passage and answer the question.\n\nPassage: {ctx}\n\nQuestion: {question}\n\nAnswer:"
-        items.append({"prompt": prompt, "answer": gold.lower(), "type": "reading", "source": "squad"})
+        items.append(
+            {
+                "prompt": prompt,
+                "answer": gold.lower(),
+                "type": "reading",
+                "source": "squad",
+            }
+        )
         if len(items) >= n:
             break
     return items
@@ -109,18 +143,21 @@ def load_squad(split: str = "validation", n: int = PROMPTS_PER_DATASET) -> list[
 def load_humaneval(n: int = PROMPTS_PER_DATASET) -> list[dict]:
     """HumanEval: coding tasks → builds LiveCodeBench-relevant centroids."""
     from datasets import load_dataset  # type: ignore[import]
+
     ds = load_dataset("openai/openai_humaneval", split="test", trust_remote_code=False)
     items = []
     for row in ds.shuffle(seed=42).select(range(min(n, len(ds)))):
         prompt = row["prompt"]
         canonical = row.get("canonical_solution", "")
-        items.append({
-            "prompt": f"Complete the following Python function:\n\n{prompt}",
-            "answer": canonical[:50],
-            "type": "code",
-            "source": "humaneval",
-            "canonical": canonical,
-        })
+        items.append(
+            {
+                "prompt": f"Complete the following Python function:\n\n{prompt}",
+                "answer": canonical[:50],
+                "type": "code",
+                "source": "humaneval",
+                "canonical": canonical,
+            }
+        )
         if len(items) >= n:
             break
     return items
@@ -134,7 +171,9 @@ def grade_reading(response: str, gold: str) -> bool:
         return True
     gold_words = set(gold_lower.split())
     if len(gold_words) >= 2:
-        return sum(1 for w in gold_words if w in response_lower) >= len(gold_words) * 0.8
+        return (
+            sum(1 for w in gold_words if w in response_lower) >= len(gold_words) * 0.8
+        )
     return False
 
 
@@ -145,12 +184,23 @@ def grade_code(response: str, item: dict) -> bool:
 
 def load_math(split: str = "test", n: int = PROMPTS_PER_DATASET) -> list[dict]:
     from datasets import load_dataset, concatenate_datasets  # type: ignore[import]
-    subsets = ["algebra", "number_theory", "counting_and_probability", "intermediate_algebra"]
+
+    subsets = [
+        "algebra",
+        "number_theory",
+        "counting_and_probability",
+        "intermediate_algebra",
+    ]
     parts = []
     per_subset = max(1, n // len(subsets))
     for subset in subsets:
         try:
-            ds = load_dataset("EleutherAI/hendrycks_math", subset, split=split, trust_remote_code=False)
+            ds = load_dataset(
+                "EleutherAI/hendrycks_math",
+                subset,
+                split=split,
+                trust_remote_code=False,
+            )
             parts.append(ds.shuffle(seed=42).select(range(min(per_subset, len(ds)))))
         except Exception:
             pass
@@ -159,12 +209,21 @@ def load_math(split: str = "test", n: int = PROMPTS_PER_DATASET) -> list[dict]:
     combined = concatenate_datasets(parts).shuffle(seed=42)
     items = []
     for row in combined:
-        prompt = f"Solve the following math problem. Show your work.\n\n{row['problem']}"
+        prompt = (
+            f"Solve the following math problem. Show your work.\n\n{row['problem']}"
+        )
         gold_raw = row.get("solution", "")
         match = re.search(r"\\boxed\{([^}]+)\}", gold_raw)
         gold = match.group(1).strip() if match else None
         if gold:
-            items.append({"prompt": prompt, "answer": gold, "type": "math_hard", "source": "math"})
+            items.append(
+                {
+                    "prompt": prompt,
+                    "answer": gold,
+                    "type": "math_hard",
+                    "source": "math",
+                }
+            )
         if len(items) >= n:
             break
     return items
@@ -244,16 +303,22 @@ def grade(response: str, item: dict) -> bool:
 
 # ── Inference ─────────────────────────────────────────────────────────────────
 
+
 def call_model(model: str, prompt: str) -> str | None:
-    payload = json.dumps({
-        "model": model,
-        "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": MAX_TOKENS,
-    }).encode()
+    payload = json.dumps(
+        {
+            "model": model,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": MAX_TOKENS,
+        }
+    ).encode()
     req = urllib.request.Request(
         "https://openrouter.ai/api/v1/chat/completions",
         data=payload,
-        headers={"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"},
+        headers={
+            "Authorization": f"Bearer {API_KEY}",
+            "Content-Type": "application/json",
+        },
     )
     try:
         with urllib.request.urlopen(req, timeout=45) as resp:
@@ -273,7 +338,9 @@ def run_all_models(item: dict) -> dict | None:
             m = futures[f]
             responses[m] = f.result()
 
-    correct_models = [m for m in MODELS if responses.get(m) and grade(responses[m], item)]  # type: ignore[arg-type]
+    correct_models = [
+        m for m in MODELS if (resp := responses.get(m)) and grade(resp, item)
+    ]
     if not correct_models:
         return None
 
@@ -291,10 +358,14 @@ def run_all_models(item: dict) -> dict | None:
 
 # ── Centroid builder ──────────────────────────────────────────────────────────
 
+
 def embed_texts(texts: list[str]) -> np.ndarray:
     from sentence_transformers import SentenceTransformer  # type: ignore[import]
+
     model = SentenceTransformer("BAAI/bge-small-en-v1.5")
-    embeddings = model.encode(texts, normalize_embeddings=True, show_progress_bar=True, batch_size=64)
+    embeddings = model.encode(
+        texts, normalize_embeddings=True, show_progress_bar=True, batch_size=64
+    )
     return np.array(embeddings, dtype=np.float32)
 
 
@@ -304,7 +375,9 @@ def build_centroids(labels: list[dict]) -> np.ndarray:
     for model in MODELS:
         prompts = [r["prompt"] for r in labels if r["cheapest_correct"] == model]
         if not prompts:
-            print(f"  WARNING: no cheapest-correct examples for {model}, using zero centroid")
+            print(
+                f"  WARNING: no cheapest-correct examples for {model}, using zero centroid"
+            )
             centroid_rows.append(np.zeros(384, dtype=np.float32))
             continue
         print(f"  Embedding {len(prompts)} examples for {model}...")
@@ -317,13 +390,14 @@ def build_centroids(labels: list[dict]) -> np.ndarray:
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     LABELS_FILE.parent.mkdir(exist_ok=True)
 
     # Load public datasets
     print("Loading public datasets...")
     all_items: list[dict] = []
-    loaders = [
+    loaders: list[tuple[str, Callable[[], list[dict]]]] = [
         ("ARC-Challenge", load_arc),
         ("MMLU", load_mmlu),
         ("GSM8K", load_gsm8k),
@@ -367,7 +441,7 @@ def main() -> None:
     print("\nCheapest-correct distribution:")
     for model in MODELS:
         n = sum(1 for r in labels if r["cheapest_correct"] == model)
-        print(f"  {n:4d} ({n/len(labels)*100:.1f}%)  {model}")
+        print(f"  {n:4d} ({n / len(labels) * 100:.1f}%)  {model}")
 
     # Build and save centroids
     print("\nBuilding centroids from cheapest-correct examples...")
@@ -377,24 +451,19 @@ def main() -> None:
     if CENTROIDS_FILE.exists():
         backup = CENTROIDS_FILE.with_suffix(".npz.bak")
         import shutil
+
         shutil.copy(CENTROIDS_FILE, backup)
         print(f"Backed up existing centroids to {backup}")
 
-    # Preserve gemini-2.0-flash-001 centroid (still in model list, keep its row)
+    # Build final arrays preserving model order from the existing file; rows for
+    # models not retrained here (e.g. gemini-2.0-flash-001) are kept as-is.
     existing = np.load(CENTROIDS_FILE)
     existing_models = [str(m) for m in existing["models"]]
-    gemini20_row = None
-    if "google/gemini-2.0-flash-001" in existing_models:
-        idx = existing_models.index("google/gemini-2.0-flash-001")
-        gemini20_row = existing["centroids"][idx]
-
-    # Build final arrays preserving model order from existing file
     final_models = existing_models
     final_centroids = existing["centroids"].astype(np.float32).copy()
-    for i, model in enumerate(MODELS):
+    for new_idx, model in enumerate(MODELS):
         if model in existing_models:
             existing_idx = existing_models.index(model)
-            new_idx = MODELS.index(model)
             final_centroids[existing_idx] = centroids[new_idx]
 
     np.savez(CENTROIDS_FILE, centroids=final_centroids, models=np.array(final_models))

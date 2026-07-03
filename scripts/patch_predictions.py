@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 """Patch prediction file with dataset-specific routing improvements.
 
 All routing decisions are grounded in local optimality data (from cached model results),
@@ -29,15 +31,15 @@ ROOT = Path(__file__).parent.parent
 # AsDiv: deepseek 71.4% >> flash-lite 14.3% (mostly cache-miss → scored 0)
 # FinQA: deepseek 25% > flash-lite 14.3% (mostly cache-miss → scored 0)
 DATASET_OVERRIDES: dict[str, str] = {
-    "ChessInstruct":        "google/gemini-3.1-flash-lite",
-    "SuperGLUE-QA":         "qwen/qwen3-235b-a22b-2507",
-    "MusicTheoryBench":     "qwen/qwen3-235b-a22b-2507",
-    "NarrativeQA":          "deepseek/deepseek-v4-flash",
-    "SuperGLUE-ClozeTest":  "google/gemini-3.1-flash-lite",
-    "AsDiv":                "deepseek/deepseek-v4-flash",
-    "FinQA":                "deepseek/deepseek-v4-flash",
-    "MATH":                 "deepseek/deepseek-v4-flash",
-    "AIME":                 "deepseek/deepseek-v4-flash",
+    "ChessInstruct": "google/gemini-3.1-flash-lite",
+    "SuperGLUE-QA": "qwen/qwen3-235b-a22b-2507",
+    "MusicTheoryBench": "qwen/qwen3-235b-a22b-2507",
+    "NarrativeQA": "deepseek/deepseek-v4-flash",
+    "SuperGLUE-ClozeTest": "google/gemini-3.1-flash-lite",
+    "AsDiv": "deepseek/deepseek-v4-flash",
+    "FinQA": "deepseek/deepseek-v4-flash",
+    "MATH": "deepseek/deepseek-v4-flash",
+    "AIME": "deepseek/deepseek-v4-flash",
 }
 
 MODEL_TO_CACHE: dict[str, str] = {
@@ -115,7 +117,11 @@ def main() -> None:
         stats[ds]["n"] += 1
 
         new_model = DATASET_OVERRIDES.get(ds)
-        if new_model and new_model != current_model and not pred.get("for_optimality", False):
+        if (
+            new_model
+            and new_model != current_model
+            and not pred.get("for_optimality", False)
+        ):
             # Check if new model has a cache entry for this gi
             new_cache = caches.get(new_model, {}).get(gi)
             if new_cache and new_cache.get("success"):
@@ -127,14 +133,21 @@ def main() -> None:
                 out_predictions.append(out_pred)
                 patched += 1
                 stats[ds]["changed"] += 1
-                if pred.get("generated_result") is None or not (pred.get("generated_result") or {}).get("success"):
+                if pred.get("generated_result") is None or not (
+                    pred.get("generated_result") or {}
+                ).get("success"):
                     cache_recovered += 1
                 continue
 
         # Also try to fill still-missing cache entries from any model with better coverage
-        if pred.get("generated_result") is None and not pred.get("for_optimality", False):
+        if pred.get("generated_result") is None and not pred.get(
+            "for_optimality", False
+        ):
             # Try deepseek first, then flash-lite
-            for fallback in ["deepseek/deepseek-v4-flash", "google/gemini-3.1-flash-lite"]:
+            for fallback in [
+                "deepseek/deepseek-v4-flash",
+                "google/gemini-3.1-flash-lite",
+            ]:
                 fb_cache = caches.get(fallback, {}).get(gi)
                 if fb_cache and fb_cache.get("success"):
                     out_pred = dict(pred)
@@ -153,7 +166,7 @@ def main() -> None:
 
     print(f"\nPatched (model changed): {patched}")
     print(f"Cache recovered (was missing): {cache_recovered}")
-    print(f"\nDataset changes:")
+    print("\nDataset changes:")
     for ds, s in sorted(stats.items(), key=lambda x: -x[1].get("changed", 0)):
         if s.get("changed", 0) > 0:
             print(f"  {ds:30s}: {s['changed']}/{s['n']} rerouted")

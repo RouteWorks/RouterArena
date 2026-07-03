@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
 """Fast batch prediction generator for chuzom-v3.
 
 Uses batched SentenceTransformer encoding to process all 8400 prompts in
@@ -16,8 +18,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
-import re
 import sys
 import time
 from collections import defaultdict
@@ -77,8 +77,11 @@ def _effective_weight(base: float, margin: float) -> float:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--split", default="full", choices=list(DATASET_PATHS.keys()))
-    parser.add_argument("--no-judge", action="store_true",
-                        help="Disable LLM judge (faster, lower quality on ambiguous prompts)")
+    parser.add_argument(
+        "--no-judge",
+        action="store_true",
+        help="Disable LLM judge (faster, lower quality on ambiguous prompts)",
+    )
     args = parser.parse_args()
 
     t_start = time.time()
@@ -97,6 +100,7 @@ def main() -> None:
     # Batch embedding
     print(f"\n[2] Loading embedding model ({EMBED_MODEL})...")
     from sentence_transformers import SentenceTransformer  # type: ignore[import]
+
     embed_model = SentenceTransformer(EMBED_MODEL)
 
     print(f"    Encoding {len(prompts)} prompts (batch_size={BATCH_SIZE})...")
@@ -130,8 +134,9 @@ def main() -> None:
 
     for i, (gi, prompt) in enumerate(zip(global_indices, prompts)):
         raw_sims = sims_matrix[i]
-        sim_dict: dict[str, float] = {centroid_models[j]: float(raw_sims[j])
-                                       for j in range(len(centroid_models))}
+        sim_dict: dict[str, float] = {
+            centroid_models[j]: float(raw_sims[j]) for j in range(len(centroid_models))
+        }
         sim_vals = list(sim_dict.values())
         sim_min, sim_max = min(sim_vals), max(sim_vals)
         sim_range = sim_max - sim_min if sim_max > sim_min else 1.0
@@ -150,31 +155,45 @@ def main() -> None:
         if raw_h:
             top_h = max(raw_h, key=lambda m: raw_h[m])
             if raw_h[top_h] >= 8.0 and top_h in _ROUTING_MODELS:
-                predictions_list.append({
+                predictions_list.append(
+                    {
+                        "global index": gi,
+                        "prompt": prompt,
+                        "prediction": top_h,
+                        "generated_result": None,
+                        "cost": None,
+                        "accuracy": None,
+                        "for_optimality": False,
+                    }
+                )
+                continue
+
+        c_winner = max(
+            (m for m in _ROUTING_MODELS if m in c_scores),
+            key=lambda m: c_scores.get(m, 0.0),
+        )
+        h_winner = max(
+            (m for m in _ROUTING_MODELS if m in h_scores),
+            key=lambda m: h_scores.get(m, 0.0),
+        )
+
+        # Early exit: both gates agree with high confidence
+        if (
+            c_winner == h_winner
+            and c_margin > _HIGH_CONFIDENCE
+            and h_margin > _HIGH_CONFIDENCE
+        ):
+            predictions_list.append(
+                {
                     "global index": gi,
                     "prompt": prompt,
-                    "prediction": top_h,
+                    "prediction": c_winner,
                     "generated_result": None,
                     "cost": None,
                     "accuracy": None,
                     "for_optimality": False,
-                })
-                continue
-
-        c_winner = max((m for m in _ROUTING_MODELS if m in c_scores), key=lambda m: c_scores.get(m, 0.0))
-        h_winner = max((m for m in _ROUTING_MODELS if m in h_scores), key=lambda m: h_scores.get(m, 0.0))
-
-        # Early exit: both gates agree with high confidence
-        if c_winner == h_winner and c_margin > _HIGH_CONFIDENCE and h_margin > _HIGH_CONFIDENCE:
-            predictions_list.append({
-                "global index": gi,
-                "prompt": prompt,
-                "prediction": c_winner,
-                "generated_result": None,
-                "cost": None,
-                "accuracy": None,
-                "for_optimality": False,
-            })
+                }
+            )
             continue
 
         # Blend
@@ -191,19 +210,25 @@ def main() -> None:
         if b_margin < _GATE_WEIGHTS["centroid"] * 0.1:
             low_conf_count += 1
 
-        best = max((m for m in _ROUTING_MODELS if m in blended), key=lambda m: blended[m])
-        predictions_list.append({
-            "global index": gi,
-            "prompt": prompt,
-            "prediction": best,
-            "generated_result": None,
-            "cost": None,
-            "accuracy": None,
-            "for_optimality": False,
-        })
+        best = max(
+            (m for m in _ROUTING_MODELS if m in blended), key=lambda m: blended[m]
+        )
+        predictions_list.append(
+            {
+                "global index": gi,
+                "prompt": prompt,
+                "prediction": best,
+                "generated_result": None,
+                "cost": None,
+                "accuracy": None,
+                "for_optimality": False,
+            }
+        )
 
     print(f"    {len(predictions_list)} predictions generated")
-    print(f"    Low confidence (judge would fire): {low_conf_count} ({low_conf_count/len(predictions_list)*100:.1f}%)")
+    print(
+        f"    Low confidence (judge would fire): {low_conf_count} ({low_conf_count / len(predictions_list) * 100:.1f}%)"
+    )
 
     # Distribution
     dist: defaultdict[str, int] = defaultdict(int)
@@ -211,7 +236,7 @@ def main() -> None:
         dist[p["prediction"].split("/")[-1]] += 1
     print("\n    Model distribution:")
     for m, n in sorted(dist.items(), key=lambda x: -x[1]):
-        print(f"      {n:5d} ({n/len(predictions_list)*100:5.1f}%)  {m}")
+        print(f"      {n:5d} ({n / len(predictions_list) * 100:5.1f}%)  {m}")
 
     # Save
     OUTPUT_DIR.mkdir(exist_ok=True)
