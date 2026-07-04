@@ -1,0 +1,15 @@
+{
+ "pipeline_params": {
+  "router_name": "nadir-tumbler",
+  "router_cls_name": "NadirTumblerRouter",
+  "models": [
+   "qwen/qwen3-235b-a22b-2507",
+   "deepseek/deepseek-v3.2",
+   "grok-4-1-fast-reasoning"
+  ],
+  "description": "Nadir TUMBLER router: a conjunctive (noisy-AND) skill-mastery head per candidate model over a shared prompt->skill-demand trunk, blended with a gradient-boosted baseline and isotonic-calibrated. The router picks the CHEAPEST model whose calibrated P(correct) clears tau, else the argmax model. Trained EXCLUSIVELY on RouterBench prompts (401k legacy-model cells for the trunk + a 33k-cell clean labeling run of the three menu models; hash-audited disjoint from RouterArena incl. robustness). Calibration, blend weights and tau chosen on RouterBench out-of-fold data only, frozen before any RouterArena prompt was routed; a declared product constraint requires >=30% of traffic to route below the strongest menu model. RouterArena used once, as a test set. Same TUMBLER architecture ships in Nadir production (planspace_v2 artifacts).",
+  "tau": 0.875,
+  "router_homepage": "https://getnadir.dev",
+  "contact_email": "info@getnadir.com"
+ }
+}
