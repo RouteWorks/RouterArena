@@ -1,0 +1,14 @@
+{
+  "pipeline_params": {
+    "router_name": "chuzom-clean",
+    "router_cls_name": "ChuzomCleanRouter",
+    "models": [
+      "qwen/qwen3-235b-a22b-2507",
+      "deepseek/deepseek-v4-flash",
+      "deepseek/deepseek-v3.2"
+    ]
+  },
+  "router": "chuzom-clean",
+  "router_name": "chuzom-clean",
+  "description": "Chuzom clean cascade: probe 2 cheapest models (qwen3-235b + deepseek-v4-flash); ship cheapest on answer-agreement, else escalate to deepseek-v3.2. Benchmark-agnostic (no RA templates); one threshold calibrated on self-generated data only; SHA-256 contamination audit = 0 overlap with RA."
+}
