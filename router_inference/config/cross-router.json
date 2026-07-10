@@ -3,9 +3,13 @@
     "router_name": "cross-router",
     "router_cls_name": "CrossRouter",
     "models": [
-      "google/gemini-3.1-flash-lite",
       "deepseek/deepseek-v4-flash",
-      "deepseek/deepseek-v4-pro"
+      "google/gemini-3.1-flash-lite",
+      "deepseek/deepseek-v4-pro",
+      "grok-4-1-fast-reasoning",
+      "Qwen/Qwen3-Coder-Next",
+      "gemini-3-flash-preview",
+      "qwen/qwen3-235b-a22b-2507"
     ]
   }
 }
