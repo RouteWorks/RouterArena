@@ -126,6 +126,33 @@ routers:
       affiliation: "@ypollak2"
       github_url: "https://github.com/ypollak2"
 
+  - readme_name: "Nadir-Tumbler"
+    website_name: "Nadir-Tumbler"
+    prediction: "nadir-tumbler"
+    category_key: "nadir-tumbler"
+    flip_key: "nadir-tumbler"
+    website:
+      affiliation: "@doramirdor"
+      github_url: "https://github.com/doramirdor"
+
+  - readme_name: "chuzom-solo-v32"
+    website_name: "chuzom-solo-v32"
+    prediction: "chuzom-solo-v32"
+    category_key: "chuzom-solo-v32"
+    flip_key: "chuzom-solo-v32"
+    website:
+      affiliation: "@ypollak2"
+      github_url: "https://github.com/ypollak2"
+
+  - readme_name: "BARouter"
+    website_name: "BARouter"
+    prediction: "BARouter"
+    category_key: "barouter"
+    flip_key: "barouter"
+    website:
+      affiliation: "@zulk2002"
+      github_url: "https://github.com/zulk2002"
+
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
   - readme_name: "MIRT-BERT"
