@@ -42,9 +42,9 @@ class LynkrRouter(BaseRouter):
                 )
 
     def _get_prediction(self, query: str) -> str:
-        payload = json.dumps(
-            {"messages": [{"role": "user", "content": query}]}
-        ).encode("utf-8")
+        payload = json.dumps({"messages": [{"role": "user", "content": query}]}).encode(
+            "utf-8"
+        )
         last_err = None
         for attempt in range(3):
             try:
