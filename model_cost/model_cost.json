@@ -326,5 +326,9 @@
   "gpt-5.4": {
     "input_token_price_per_million": 2.5,
     "output_token_price_per_million": 15.0
+  },
+  "z-ai/glm-4.7": {
+    "input_token_price_per_million": 0.4,
+    "output_token_price_per_million": 1.5
   }
 }

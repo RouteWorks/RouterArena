@@ -121,6 +121,9 @@ universal_names = [
     "gemini-2.5-flash-lite",
     "qwen3-235b-a22b-instruct-2507",
     "qwen3-30b-a3b-instruct-2507",
+    # Lynkr pool additions (all served via OpenRouter)
+    "openai/gpt-oss-120b",
+    "z-ai/glm-4.7",
 ]
 
 
