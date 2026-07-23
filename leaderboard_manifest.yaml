@@ -153,6 +153,15 @@ routers:
       affiliation: "@zulk2002"
       github_url: "https://github.com/zulk2002"
 
+  - readme_name: "Lynkr"
+    website_name: "Lynkr"
+    prediction: "lynkr"
+    category_key: "lynkr"
+    flip_key: "lynkr"
+    website:
+      affiliation: "@vishalveerareddy123"
+      github_url: "https://github.com/vishalveerareddy123"
+
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
   - readme_name: "MIRT-BERT"
