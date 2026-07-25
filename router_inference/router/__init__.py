@@ -20,3 +20,5 @@ __all__ = [
     "ChuzomSoloV32Router",
     "LynkrRouter",
 ]
+
+from router_inference.router.krusch_cascade_adapter import KruschCascadeRouter

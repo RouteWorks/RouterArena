@@ -162,6 +162,17 @@ routers:
       affiliation: "@vishalveerareddy123"
       github_url: "https://github.com/vishalveerareddy123"
 
+  - readme_name: "Krusch Cascade Router"
+    website_name: "Krusch Cascade Router"
+    prediction: "krusch-cascade-router"
+    category_key: "krusch-cascade-router"
+    flip_key: "krusch-cascade-router"
+    website:
+      affiliation: "kruschdev"
+      github_url: "https://github.com/kruschdev/krusch-cascade-router"
+      type: "open-source"
+
+
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
   - readme_name: "MIRT-BERT"
