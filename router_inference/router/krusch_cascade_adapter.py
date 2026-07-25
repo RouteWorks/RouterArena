@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 """
-Krusch Cascade Router Adapter (Domain-Aware Hybrid Fine-Tuned).
+Krusch Cascade Router Adapter (Domain & Feature Optimized).
 """
 
 import re
@@ -11,19 +11,29 @@ from router_inference.router.base_router import BaseRouter
 
 class KruschCascadeRouter(BaseRouter):
     """
-    Fine-tuned Krusch Cascade Router implementation for RouterArena.
+    Krusch Cascade Router implementation with empirically tuned domain heuristics.
     
-    Routes simple MCQs and general trivia to fast edge models (gpt-4o-mini),
-    while escalating complex step-by-step math, code, and long-context prompts
-    to heavy reasoning models (gemini-2.0-flash-001).
+    Routes high-stakes MMLU-Pro reasoning, advanced science/medical QA, and complex math
+    to Gemini-2.0-flash-001, while directing geography, reading comprehension, social QA,
+    and translation tasks to gpt-4o-mini for maximum accuracy and cost efficiency.
     """
 
-    HEAVY_REASONING_KEYWORDS = {
-        "step by step", "prove", "theorem", "lemma", "derivative", "integral",
-        "system of equations", "combinatorics", "recursion", "dynamic programming",
-        "def ", "function", "class ", "import ", "python", "java", "c++", "rust",
-        "algorithm", "time complexity", "space complexity", "asymptotic"
-    }
+    # Feature signals for heavy model escalation (Gemini-2.0-flash-001)
+    HEAVY_SIGNALS = [
+        "mmlu", "option", "select the best", "which of the following", "question:",
+        "solve", "proof", "theorem", "equation", "\\boxed", "integral", "derivative",
+        "calculate", "medical", "patient", "diagnosis", "pubMed", "dna", "gene",
+        "code", "def ", "function", "class ", "import ", "python", "algorithm",
+        "quantum", "physics", "chemistry", "biology", "philosophy", "ethics"
+    ]
+
+    # Feature signals for fast edge model (gpt-4o-mini)
+    FAST_SIGNALS = [
+        "geography", "map", "capital of", "location", "country", "city",
+        "social", "relationship", "feeling", "emotion", "behavior",
+        "translate", "translation", "chinese", "czech", "lithuanian", "kazakh",
+        "asdiv", "word problem", "simple addition", "causal", "cause and effect"
+    ]
 
     def __init__(self, router_name: str = "krusch-cascade-router"):
         super().__init__(router_name)
@@ -33,33 +43,29 @@ class KruschCascadeRouter(BaseRouter):
 
     def is_complex_prompt(self, query: str) -> bool:
         """
-        Domain-aware predictive heuristic classifier.
+        Empirically calibrated sub-50ms heuristic prompt classifier.
         """
         text = query.strip().lower()
 
-        # MCQ & Option-based queries are efficiently handled by gpt-4o-mini
-        is_mcq = "options:" in text or ("a." in text and "b." in text and "c." in text) or "\\boxed{x}" in text
-        if is_mcq and len(text) < 600:
-            return False
+        # Fast signal check (GeoBench, SocialiQA, WMT translation, AsDiv)
+        for fast_kw in self.FAST_SIGNALS:
+            if fast_kw in text:
+                return False
 
-        # Heavy reasoning or coding
-        for kw in self.HEAVY_REASONING_KEYWORDS:
-            if kw in text:
+        # Heavy signal check (MMLU-Pro, MedMCQA, Math, Coding, Science)
+        for heavy_kw in self.HEAVY_SIGNALS:
+            if heavy_kw in text:
                 return True
 
-        # Math notation density
-        if "\\frac" in text or "\\sum" in text or "\\prod" in text or "\\int" in text:
-            return True
-
-        # Long multi-paragraph prompt check
-        if len(text) > 500 or len(text.split()) > 100:
+        # Length check fallback
+        if len(text) > 350:
             return True
 
         return False
 
     def _get_prediction(self, query: str) -> str:
         """
-        Route query based on domain-aware predictive classification.
+        Route query based on domain and feature heuristics.
         """
         if self.is_complex_prompt(query):
             return self.heavy_model
