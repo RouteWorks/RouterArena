@@ -1,13 +1,12 @@
-# SPDX-FileCopyrightText: Copyright contributors to the Krusch project
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
 # SPDX-License-Identifier: Apache-2.0
 
 """
 Krusch Cascade Router Adapter (Domain & Feature Optimized).
 """
 
-import re
-from typing import Dict, Any, List, Optional
 from router_inference.router.base_router import BaseRouter
+
 
 class KruschCascadeRouter(BaseRouter):
     """
@@ -19,21 +18,21 @@ class KruschCascadeRouter(BaseRouter):
     """
 
     # Feature signals for heavy model escalation (Gemini-2.0-flash-001)
-    HEAVY_SIGNALS = [
+    HEAVY_SIGNALS: tuple[str, ...] = (
         "mmlu", "option", "select the best", "which of the following", "question:",
         "solve", "proof", "theorem", "equation", "\\boxed", "integral", "derivative",
         "calculate", "medical", "patient", "diagnosis", "pubMed", "dna", "gene",
         "code", "def ", "function", "class ", "import ", "python", "algorithm",
         "quantum", "physics", "chemistry", "biology", "philosophy", "ethics"
-    ]
+    )
 
     # Feature signals for fast edge model (gpt-4o-mini)
-    FAST_SIGNALS = [
+    FAST_SIGNALS: tuple[str, ...] = (
         "geography", "map", "capital of", "location", "country", "city",
         "social", "relationship", "feeling", "emotion", "behavior",
         "translate", "translation", "chinese", "czech", "lithuanian", "kazakh",
         "asdiv", "word problem", "simple addition", "causal", "cause and effect"
-    ]
+    )
 
     def __init__(self, router_name: str = "krusch-cascade-router"):
         super().__init__(router_name)
@@ -58,10 +57,7 @@ class KruschCascadeRouter(BaseRouter):
                 return True
 
         # Length check fallback
-        if len(text) > 350:
-            return True
-
-        return False
+        return len(text) > 350
 
     def _get_prediction(self, query: str) -> str:
         """
