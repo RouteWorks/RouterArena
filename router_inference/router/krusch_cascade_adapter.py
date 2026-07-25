@@ -11,7 +11,7 @@ from router_inference.router.base_router import BaseRouter
 class KruschCascadeRouter(BaseRouter):
     """
     Krusch Cascade Router implementation with empirically tuned domain heuristics.
-    
+
     Routes high-stakes MMLU-Pro reasoning, advanced science/medical QA, and complex math
     to Gemini-2.0-flash-001, while directing geography, reading comprehension, social QA,
     and translation tasks to gpt-4o-mini for maximum accuracy and cost efficiency.
@@ -19,19 +19,64 @@ class KruschCascadeRouter(BaseRouter):
 
     # Feature signals for heavy model escalation (Gemini-2.0-flash-001)
     HEAVY_SIGNALS: tuple[str, ...] = (
-        "mmlu", "option", "select the best", "which of the following", "question:",
-        "solve", "proof", "theorem", "equation", "\\boxed", "integral", "derivative",
-        "calculate", "medical", "patient", "diagnosis", "pubMed", "dna", "gene",
-        "code", "def ", "function", "class ", "import ", "python", "algorithm",
-        "quantum", "physics", "chemistry", "biology", "philosophy", "ethics"
+        "mmlu",
+        "option",
+        "select the best",
+        "which of the following",
+        "question:",
+        "solve",
+        "proof",
+        "theorem",
+        "equation",
+        "\\boxed",
+        "integral",
+        "derivative",
+        "calculate",
+        "medical",
+        "patient",
+        "diagnosis",
+        "pubMed",
+        "dna",
+        "gene",
+        "code",
+        "def ",
+        "function",
+        "class ",
+        "import ",
+        "python",
+        "algorithm",
+        "quantum",
+        "physics",
+        "chemistry",
+        "biology",
+        "philosophy",
+        "ethics",
     )
 
     # Feature signals for fast edge model (gpt-4o-mini)
     FAST_SIGNALS: tuple[str, ...] = (
-        "geography", "map", "capital of", "location", "country", "city",
-        "social", "relationship", "feeling", "emotion", "behavior",
-        "translate", "translation", "chinese", "czech", "lithuanian", "kazakh",
-        "asdiv", "word problem", "simple addition", "causal", "cause and effect"
+        "geography",
+        "map",
+        "capital of",
+        "location",
+        "country",
+        "city",
+        "social",
+        "relationship",
+        "feeling",
+        "emotion",
+        "behavior",
+        "translate",
+        "translation",
+        "chinese",
+        "czech",
+        "lithuanian",
+        "kazakh",
+        "asdiv",
+        "word problem",
+        "simple addition",
+        "causal",
+        "cause and effect",
     )
 
     def __init__(self, router_name: str = "krusch-cascade-router"):

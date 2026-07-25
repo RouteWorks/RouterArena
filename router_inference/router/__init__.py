@@ -22,4 +22,3 @@ __all__ = [
     "LynkrRouter",
     "auto_router",
 ]
-
