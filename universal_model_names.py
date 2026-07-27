@@ -120,6 +120,13 @@ universal_names = [
     "gemini-2.5-flash-lite",
     "qwen3-235b-a22b-instruct-2507",
     "qwen3-30b-a3b-instruct-2507",
+    ##Paix2-router
+    "MiniMax-M3",
+    "agnes-2.0-flash",
+    "THUDM/GLM-4-9B-0414",
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B"
+    
+    
 ]
 
 
