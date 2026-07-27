@@ -214,7 +214,7 @@ class ModelInference:
             "agnes-2.0-flash":"agnes",
             # Siliconflow
             "THUDM/GLM-4-9B-0414":"siliconflow",
-            "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B":"siliconflow"
+            "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B":"siliconflow",
             
             
         }
