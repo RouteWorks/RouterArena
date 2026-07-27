@@ -1,0 +1,19 @@
+{
+  "pipeline_params": {
+    "router_name": "lynkr",
+    "router_cls_name": "LynkrRouter",
+    "models": [
+      "openai/gpt-oss-120b",
+      "qwen/qwen3-235b-a22b-2507",
+      "z-ai/glm-4.7"
+    ],
+    "default_model": "openai/gpt-oss-120b",
+    "tier_map": {
+      "SIMPLE": "openai/gpt-oss-120b",
+      "MEDIUM": "qwen/qwen3-235b-a22b-2507",
+      "COMPLEX": "z-ai/glm-4.7",
+      "REASONING": "z-ai/glm-4.7"
+    },
+    "description": "Lynkr (github.com/Fast-Editor/Lynkr) — self-hosted LLM gateway; complexity-tier routing via WS7 anchor intent scoring (local embeddings), queried live through Lynkr's /routing/analyze endpoint."
+  }
+}

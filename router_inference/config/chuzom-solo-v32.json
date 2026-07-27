@@ -1,0 +1,12 @@
+{
+  "pipeline_params": {
+    "router_name": "chuzom-solo-v32",
+    "router_cls_name": "ChuzomSoloV32Router",
+    "models": [
+      "deepseek/deepseek-v3.2"
+    ]
+  },
+  "router": "chuzom-solo-v32",
+  "router_name": "chuzom-solo-v32",
+  "description": "Chuzom cost-aware single-model baseline: routes every query to deepseek-v3.2, chosen for best accuracy-per-dollar from PUBLISHED benchmarks. No RA-derived supervision, no benchmark fingerprinting, evaluator unmodified."
+}

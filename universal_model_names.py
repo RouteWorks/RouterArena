@@ -41,6 +41,7 @@ universal_names = [
     "gemini-2.5-flash",
     "gemini-2.5-pro",
     "google/gemini-3.1-flash-lite",
+    "gemini-3-flash-preview",
     # Mistral models
     "mistral-medium",
     "codestral-latest",
@@ -124,9 +125,12 @@ universal_names = [
     "MiniMax-M3",
     "agnes-2.0-flash",
     "THUDM/GLM-4-9B-0414",
-    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B"
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
     
     
+    # Lynkr pool additions (all served via OpenRouter)
+    "openai/gpt-oss-120b",
+    "z-ai/glm-4.7",
 ]
 
 
