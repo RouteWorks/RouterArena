@@ -102,6 +102,9 @@ universal_names = [
     "mistralai/ministral-3-3b-2512",
     "mistralai/ministral-3-8b-2512",
     "mistralai/ministral-3-14b-2512",
+    "google/gemma-4-31b-it:free",
+    "google/gemma-4-26b-a4b-it:free",
+    "nvidia/nemotron-3-super-120b-a12b:free",
     "google/gemma-3n-e4b-it",
     "claude-haiku-4.5",
     # Weave Router (v0.27)
