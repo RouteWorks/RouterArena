@@ -1,0 +1,12 @@
+{
+  "pipeline_params": {
+    "router_name": "a3m-router-mcts",
+    "router_cls_name": "A3MRouter",
+    "models": [
+      "google/gemma-4-31b-it:free",
+      "google/gemma-4-26b-a4b-it:free",
+      "nvidia/nemotron-3-super-120b-a12b:free"
+    ],
+    "description": "A3M Router across 3 free OpenRouter models: Gemma-31B, Gemma-26B, Nemotron-Super-120B (only for long context). A3M routing sends math to Gemma-31B, code to Gemma-26B, everything else round-robin."
+  }
+}
