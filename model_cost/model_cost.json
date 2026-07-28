@@ -324,15 +324,15 @@
     "output_token_price_per_million": 15.0
   },
   "google/gemma-4-31b-it:free": {
-    "input_token_price_per_million": 0.0,
-    "output_token_price_per_million": 0.0
+    "input_token_price_per_million": 0.001,
+    "output_token_price_per_million": 0.001
   },
   "google/gemma-4-26b-a4b-it:free": {
-    "input_token_price_per_million": 0.0,
-    "output_token_price_per_million": 0.0
+    "input_token_price_per_million": 0.001,
+    "output_token_price_per_million": 0.001
   },
   "nvidia/nemotron-3-super-120b-a12b:free": {
-    "input_token_price_per_million": 0.0,
-    "output_token_price_per_million": 0.0
+    "input_token_price_per_million": 0.001,
+    "output_token_price_per_million": 0.001
   }
 }
