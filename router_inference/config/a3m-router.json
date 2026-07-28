@@ -1,1 +1,12 @@
-{"pipeline_params":{"router_name":"a3m-router","router_cls_name":"A3MRouter","models":["deepseek-chat","mistralai/ministral-3-14b-2512","gemini-2.0-flash-001"],"description":"A3M 3-Model Query-Type Router (DeepSeek + Mistral 14B + Gemini Flash)"}}
+{
+  "pipeline_params": {
+    "router_name": "a3m-router",
+    "router_cls_name": "A3MRouter",
+    "models": [
+      "google/gemma-4-31b-it:free",
+      "google/gemma-4-26b-a4b-it:free",
+      "nvidia/nemotron-3-super-120b-a12b:free"
+    ],
+    "description": "A3M Router across 3 free OpenRouter models: Gemma-31B, Gemma-26B, Nemotron-Super-120B"
+  }
+}
