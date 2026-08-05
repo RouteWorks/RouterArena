@@ -33,16 +33,17 @@ class ModelInference:
         self.deepseek_api_key = os.getenv("DEEPSEEK_API_KEY")
         self.perplexity_api_key = os.getenv("PERPLEXITY_API_KEY")
         self.replicate_api_key = os.getenv("REPLICATE_API_KEY")
-        # add by Paix2-router
-        self.minimax_api_key=os.getenv("MINIMAX_API_KEY")
-        self.agnes_api_key=os.getenv("AGNES_API_KEY")
-        self.siliconflow_api_key=os.getenv("SILICONFLOW_API_KEY")
-
+        
         # AWS credentials
         self.aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
         self.aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
 
         self.gpt2_enc = tiktoken.get_encoding("gpt2")
+        
+        # add by Paix2-router
+        self.minimax_api_key=os.getenv("MINIMAX_API_KEY")
+        self.agnes_api_key=os.getenv("AGNES_API_KEY")
+        self.siliconflow_api_key=os.getenv("SILICONFLOW_API_KEY")
 
     def infer(
         self, model_name: str, prompt: str, max_retries: int = 3
@@ -214,9 +215,7 @@ class ModelInference:
             "agnes-2.0-flash":"agnes",
             # Siliconflow
             "THUDM/GLM-4-9B-0414":"siliconflow",
-            "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B":"siliconflow",
-            
-            
+            "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B":"siliconflow",    
         }
 
         # Check if exact model name is in mapping
