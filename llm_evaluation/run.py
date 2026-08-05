@@ -425,12 +425,23 @@ def evaluate_single_prediction(
                 generated_answer, ground_truth, scorer_func, dataset_name
             )
 
-        # Calculate inference cost
-        # Use universal model name for cost lookup to respect user-defined mappings
+        # Calculate inference cost.
+        # Prefer the model the provider actually served (generated_result.model_used)
+        # when it has a known price, so retired/redirected slugs are billed at the
+        # model that truly answered rather than the requested alias. For example the
+        # retired `grok-4-1-fast-reasoning` slug is redirected by xAI to grok-4.3,
+        # which is both stronger and ~5-6x more expensive; billing it at the alias's
+        # old price understates cost. Fall back to the router's selected model
+        # (universal name, to respect universal_model_names.py mappings) when the
+        # provider did not report an actual model or its price is unknown. See #166.
         token_usage = generated_result.get("token_usage", {})
+        cost_model_name = universal_model_name
+        actual_model = generated_result.get("model_used")
+        if actual_model and evaluator.has_price(actual_model):
+            cost_model_name = actual_model
         inference_cost = evaluator.calculate_inference_cost(
-            universal_model_name,
-            token_usage,  # Use universal_model_name to respect mapping in universal_model_names.py
+            cost_model_name,
+            token_usage,
         )
 
         # Update the prediction with evaluation results
