@@ -89,6 +89,7 @@ universal_names = [
     # xAI models
     "grok-4",
     "grok-4-1-fast-reasoning",
+    "grok-4.3",
     # R2-Router
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-next-80b-a3b-instruct",
