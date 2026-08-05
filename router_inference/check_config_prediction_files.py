@@ -221,6 +221,57 @@ def check_model_costs(
     return len(missing_costs) == 0, errors
 
 
+# Model slugs that upstream providers have retired and silently redirect to a
+# different (often stronger and pricier) model. A submission may still
+# legitimately select these via a provider that keeps hosting the original model
+# (e.g. Azure), so this is a warning rather than a hard failure: it reminds
+# submitters to record the actually-served model (generated_result.model_used)
+# so the evaluator prices the model that truly answered. See issue #166.
+RETIRED_SLUGS = {
+    "grok-4-1-fast-reasoning": "x-ai/grok-4.3 (xAI redirect after 2026-05-15)",
+    "grok-4-1-fast-non-reasoning": "x-ai/grok-4.3 (xAI redirect after 2026-05-15)",
+}
+
+
+def check_retired_slugs(predictions: List[Dict[str, Any]]) -> List[str]:
+    """
+    Warn when predictions select a provider-retired slug, especially when the
+    recorded actual model (generated_result.model_used) differs from the selected
+    slug. Returns a list of warning strings; it never fails the run. See #166.
+    """
+    warnings: List[str] = []
+    counts: Dict[str, int] = {}
+    redirected: Dict[str, int] = {}
+
+    for prediction in predictions:
+        slug = prediction.get("prediction")
+        if slug in RETIRED_SLUGS:
+            counts[slug] = counts.get(slug, 0) + 1
+            generated = prediction.get("generated_result") or {}
+            model_used = generated.get("model_used")
+            if model_used and model_used.split("/")[-1].lower() not in slug.lower():
+                redirected[slug] = redirected.get(slug, 0) + 1
+
+    for slug, count in counts.items():
+        msg = (
+            f"'{slug}' is a retired slug that providers redirect to "
+            f"{RETIRED_SLUGS[slug]}; {count} prediction(s) select it."
+        )
+        if redirected.get(slug):
+            msg += (
+                f" {redirected[slug]} row(s) recorded a different model_used, "
+                "confirming the redirect — these are priced at the actually-served model."
+            )
+        else:
+            msg += (
+                " Record generated_result.model_used with the actually-served model so "
+                "it is priced correctly, or select the resolved model explicitly."
+            )
+        warnings.append(msg)
+
+    return warnings
+
+
 def check_config_models(config: Dict[str, Any]) -> Tuple[bool, List[str]]:
     """
     Check that all model names in config can be found in ModelNameManager.
@@ -626,6 +677,21 @@ def main():
         print(f"✗ Error checking model costs: {e}")
         all_valid = False
         errors_summary.append(f"Cost check error: {str(e)}")
+
+    # Check 5: Warn about retired/redirected model slugs (informational only)
+    print("\n[5] Checking for retired/redirected model slugs...")
+    try:
+        if predictions is not None:
+            slug_warnings = check_retired_slugs(predictions)
+            if slug_warnings:
+                for warning in slug_warnings:
+                    print(f"  ⚠ {warning}")
+            else:
+                print("✓ No retired/redirected model slugs detected")
+        else:
+            print("⚠ Skipping retired-slug check (predictions not loaded)")
+    except Exception as e:
+        print(f"⚠ Error checking retired slugs: {e}")
 
     # Final summary
     print("\n" + "=" * 80)

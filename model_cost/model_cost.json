@@ -346,5 +346,13 @@
   "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
     "input_token_price_per_million": 0.18,
     "output_token_price_per_million": 0.85
+  },  
+  "grok-4.3": {
+    "input_token_price_per_million": 1.25,
+    "output_token_price_per_million": 2.5
+  },
+  "x-ai/grok-4.3": {
+    "input_token_price_per_million": 1.25,
+    "output_token_price_per_million": 2.5
   }
 }

@@ -206,6 +206,29 @@ class ModelEvaluator:
             print(f"Warning: Could not load cost configuration from {cost_file}: {e}")
             self.cost_config = {}
 
+    def _lookup_cost_info(self, model_name: str):
+        """Find the pricing entry for a model name, trying an exact match first
+        and then a substring fallback (historical behaviour). Returns the cost
+        dict, or None if no price is known."""
+        if not self.cost_config or not model_name:
+            return None
+        # Remove _batch suffix if present for cost lookup
+        cost_lookup_name = (
+            model_name[:-6] if model_name.endswith("_batch") else model_name
+        )
+        if cost_lookup_name in self.cost_config:
+            return self.cost_config[cost_lookup_name]
+        for config_name in self.cost_config.keys():
+            if config_name in cost_lookup_name or cost_lookup_name in config_name:
+                return self.cost_config[config_name]
+        return None
+
+    def has_price(self, model_name: str) -> bool:
+        """Whether a price is known for this model name. Used to decide whether a
+        provider-reported actual model (generated_result.model_used) can be
+        billed directly instead of the router's selected slug. See issue #166."""
+        return self._lookup_cost_info(model_name) is not None
+
     def calculate_inference_cost(
         self, model_name: str, token_usage: Dict[str, int]
     ) -> float:
@@ -222,17 +245,7 @@ class ModelEvaluator:
         if model_name.endswith("_batch"):
             cost_lookup_name = model_name[:-6]  # Remove '_batch' suffix
 
-        # Use model name directly - assume model_cost.json keys match model names exactly
-        # Try to find exact match first
-        if cost_lookup_name in self.cost_config:
-            cost_info = self.cost_config[cost_lookup_name]
-        else:
-            # Try to find partial matches as fallback
-            cost_info = None
-            for config_name in self.cost_config.keys():
-                if config_name in cost_lookup_name or cost_lookup_name in config_name:
-                    cost_info = self.cost_config[config_name]
-                    break
+        cost_info = self._lookup_cost_info(model_name)
 
         if not cost_info:
             print(

@@ -37,11 +37,11 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 
 | Rank | Router | Affiliation | Acc-Cost Arena | Accuracy | Cost/1K Queries | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
 |------|--------------------|-----------------------------|--------|----------|---------|-----------------|--------------|----------------|---------|------------|
-| 🥇 | [Cross-Router]() | 👤&nbsp;[@JiaHg](https://github.com/JiaHg) | 76.12 | 78.14 | $0.30 | 17.66 | 45.49 | 90.31 | — | 67.14 |
-| 🥈 | [vLLM‑SR](https://vllm-semantic-router.com/)&nbsp;[[Code]](https://github.com/vllm-project/semantic-router)&nbsp;[[HF]](https://huggingface.co/llm-semantic-router) | 🎓&nbsp;vLLM SR Team | 75.30 | 77.18 | $0.30 | 16.81 | 25.10 | 89.37 | — | 67.62 |
-| 🥉 | [Sqwish Router](https://www.sqwish.ai/) | 👤&nbsp;[@namitha-sqwish](https://github.com/namitha-sqwish) | 75.27 | 76.40 | $0.18 | 7.41 | 25.10 | 90.47 | — | 100.00 |
-| 4 | [Nadir-Tumbler]() | 👤&nbsp;[@doramirdor](https://github.com/doramirdor) | 75.17 | 75.34 | $0.08 | — | — | — | — | 66.43 |
-| 5 | [AgentForge Router]() | 👤&nbsp;[@YangY-Z](https://github.com/YangY-Z) | 74.13 | 74.72 | $0.13 | 17.84 | 52.47 | 98.68 | — | 40.48 |
+| 🥇 | [Cross-Router]() | 👤&nbsp;[@JiaHg](https://github.com/JiaHg) | 75.75 | 78.14 | $0.40 | 17.66 | 45.49 | 90.31 | — | 67.14 |
+| 🥈 | [Sqwish Router](https://www.sqwish.ai/) | 👤&nbsp;[@namitha-sqwish](https://github.com/namitha-sqwish) | 75.27 | 76.40 | $0.18 | 7.41 | 25.10 | 90.47 | — | 100.00 |
+| 🥉 | [vLLM‑SR](https://vllm-semantic-router.com/)&nbsp;[[Code]](https://github.com/vllm-project/semantic-router)&nbsp;[[HF]](https://huggingface.co/llm-semantic-router) | 🎓&nbsp;vLLM SR Team | 74.86 | 77.18 | $0.42 | 16.81 | 25.10 | 89.37 | — | 67.62 |
+| 4 | [AgentForge Router]() | 👤&nbsp;[@YangY-Z](https://github.com/YangY-Z) | 74.13 | 74.72 | $0.13 | 17.84 | 52.47 | 98.68 | — | 40.48 |
+| 5 | [Nadir-Tumbler]() | 👤&nbsp;[@doramirdor](https://github.com/doramirdor) | 73.44 | 75.34 | $0.37 | — | — | — | — | 66.43 |
 | 6 | [Weave Router](https://workweave.ai) | 🎓&nbsp;Weave | 72.82 | 76.32 | $0.94 | — | — | — | — | 100.00 |
 | 7 | [Nadir Router](https://github.com/NadirRouter/NadirClaw) | 🎓&nbsp;NadirRouter | 72.29 | 75.01 | $0.68 | — | — | — | — | 25.48 |
 | 8 | [OrcaRouter‑Adaptive](https://www.orcarouter.ai/)&nbsp;[[Code]](https://github.com/Continuum-AI-Corp/OrcaRouter-Lite)&nbsp;[[Paper]](https://arxiv.org/abs/2605.30736)&nbsp;[[X]](https://x.com/orcarouter) | 🎓&nbsp;[Continuum&nbsp;AI](https://www.continuum01.ai/) | 72.08 | 75.54 | $1.00 | — | — | — | — | 22.62 |
