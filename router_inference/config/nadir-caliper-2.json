@@ -1,0 +1,17 @@
+{
+ "pipeline_params": {
+  "router_name": "nadir-caliper-2",
+  "router_cls_name": "NadirCaliper2Router",
+  "models": [
+   "qwen/qwen3-235b-a22b-2507",
+   "google/gemini-3.1-flash-lite",
+   "grok-4.3",
+   "deepseek/deepseek-v3.2"
+  ],
+  "description": "Nadir-Caliper-2, from Nadir Lab. Supersedes the pending nadir-caliper submission (PR #173) and the nadir-tumbler leaderboard entry; please keep a single Nadir Lab row. Identical consensus cascade to nadir-caliper with one branch changed, selected on our RouterBench-only analysis before this submission: two cheap probes (qwen3-235b, gemini-3.1-flash-lite) answer at temperature 0; agreement ships qwen; disagreement is arbitrated by grok-4.3 (low reasoning effort), shipping the cheapest confirmed model. Where the arbiter confirms neither probe, the router now ships qwen rather than the arbiter: on our RouterBench labels that branch selects questions all models fail (grok correct 12%, qwen 15%), so the premium answer bought no accuracy at 25x the price. grok-4.3 is therefore consult-only and never shipped. All fitting on RouterBench only, frozen before routing; responses self-generated with recorded token usage; rows generated 2026-08-05 carry per-row provenance (requested_model, model_used, provider, invoked_at). deepseek-v3.2 substitutes as probe-B on 44 rate-limited rows. The robustness split is a genuine re-run of the identical rule on all 420 perturbed prompts.",
+  "router_homepage": "https://getnadir.com",
+  "contact_email": "info@getnadir.com",
+  "affiliation": "Nadir Lab",
+  "github": "https://github.com/NadirRouter"
+ }
+}
