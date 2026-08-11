@@ -338,5 +338,13 @@
   "x-ai/grok-4.3": {
     "input_token_price_per_million": 1.25,
     "output_token_price_per_million": 2.5
+  },
+  "gpt-oss-20b": {
+    "input_token_price_per_million": 0.03,
+    "output_token_price_per_million": 0.13
+  },
+  "xiaomi/mimo-v2.5": {
+    "input_token_price_per_million": 0.14,
+    "output_token_price_per_million": 0.28
   }
 }

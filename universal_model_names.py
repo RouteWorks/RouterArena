@@ -124,6 +124,9 @@ universal_names = [
     # Lynkr pool additions (all served via OpenRouter)
     "openai/gpt-oss-120b",
     "z-ai/glm-4.7",
+    # Sqwish Router pool additions (OpenRouter-served)
+    "gpt-oss-20b",
+    "xiaomi/mimo-v2.5",
 ]
 
 
