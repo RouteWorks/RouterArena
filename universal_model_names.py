@@ -30,12 +30,16 @@ universal_names = [
     "gpt-5.3-chat",
     "gpt-5.4-nano",
     "gpt-5.4",
+    "gpt-5.6-luna",
+    "gpt-5.6-terra",
+    "gpt-5.6-sol",
     "gpt-oss-120b",
     # Anthropic models
     "claude-3-haiku-20240307",
     "claude-3-7-sonnet-20250219",
     "claude-opus-4-1",
     "claude-opus-4-6",
+    "claude-opus-4.8",
     # Google models
     "gemini-2.0-flash-001",
     "gemini-2.5-flash",
@@ -86,6 +90,7 @@ universal_names = [
     "glm-4-plus",
     # meta models
     "llama-4-maverick-17b-128e-instruct-fp8",
+    "llama4-maverick-instruct",
     # xAI models
     "grok-4",
     "grok-4-1-fast-reasoning",
@@ -139,6 +144,8 @@ mapping: dict[str, str] = {
     "google/gemini-2.5-flash-lite": "gemini-2.5-flash-lite",
     "openai/gpt-4o-mini": "gpt-4o-mini",
     "openai/gpt-5-mini": "gpt-5-mini",
+    "Llama-4-Maverick-17B-128E-Instruct-FP8": "llama4-maverick-instruct",
+    "claude-opus-4-8": "claude-opus-4.8",
     "alibaba/qwen3-235b-a22b-instruct-2507": "qwen3-235b-a22b-instruct-2507",
     "alibaba/qwen3-30b-a3b-instruct-2507": "qwen3-30b-a3b-instruct-2507",
 }
