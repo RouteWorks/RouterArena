@@ -33,17 +33,17 @@ class ModelInference:
         self.deepseek_api_key = os.getenv("DEEPSEEK_API_KEY")
         self.perplexity_api_key = os.getenv("PERPLEXITY_API_KEY")
         self.replicate_api_key = os.getenv("REPLICATE_API_KEY")
-        
+
         # AWS credentials
         self.aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
         self.aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
 
         self.gpt2_enc = tiktoken.get_encoding("gpt2")
-        
+
         # add by Paix2-router
-        self.minimax_api_key=os.getenv("MINIMAX_API_KEY")
-        self.agnes_api_key=os.getenv("AGNES_API_KEY")
-        self.siliconflow_api_key=os.getenv("SILICONFLOW_API_KEY")
+        self.minimax_api_key = os.getenv("MINIMAX_API_KEY")
+        self.agnes_api_key = os.getenv("AGNES_API_KEY")
+        self.siliconflow_api_key = os.getenv("SILICONFLOW_API_KEY")
 
     def infer(
         self, model_name: str, prompt: str, max_retries: int = 3
@@ -92,12 +92,12 @@ class ModelInference:
                 elif provider == "zhipu":
                     return self._call_zhipu(model_name, prompt)
                 elif provider == "minimax":
-                    return self._call_minimax(model_name, prompt)  
+                    return self._call_minimax(model_name, prompt)
                 elif provider == "agnes":
                     return self._call_agnes(model_name, prompt)
                 elif provider == "siliconflow":
-                    return self._call_siliconflow(model_name, prompt)    
-                    
+                    return self._call_siliconflow(model_name, prompt)
+
                 else:
                     # Default to Together API for most open-source models
                     return self._call_together(model_name, prompt)
@@ -210,12 +210,12 @@ class ModelInference:
             "glm-4-flash": "zhipu",
             "glm-4-plus": "zhipu",
             # MiniMax
-            "MiniMax-M3":"minimax",
+            "MiniMax-M3": "minimax",
             # Agens
-            "agnes-2.0-flash":"agnes",
+            "agnes-2.0-flash": "agnes",
             # Siliconflow
-            "THUDM/GLM-4-9B-0414":"siliconflow",
-            "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B":"siliconflow",    
+            "THUDM/GLM-4-9B-0414": "siliconflow",
+            "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": "siliconflow",
         }
 
         # Check if exact model name is in mapping
@@ -652,7 +652,7 @@ class ModelInference:
             "model_used": model_name,
             "provider": "perplexity",
         }
-        
+
     def _call_agnes(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call agnes API."""
         agnes_api_key = os.getenv("AGNES_API_KEY")
@@ -686,14 +686,15 @@ class ModelInference:
             },
             "model_used": model_name,
             "provider": "agnes",
-        }    
-        
-        
+        }
+
     def _call_minimax(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call minimax API."""
         import anthropic
 
-        client = anthropic.Anthropic(base_url="https://api.minimaxi.com/anthropic",api_key=self.minimax_api_key)
+        client = anthropic.Anthropic(
+            base_url="https://api.minimaxi.com/anthropic", api_key=self.minimax_api_key
+        )
 
         clean_model_name = model_name.replace("anthropic/", "")
 
@@ -720,8 +721,8 @@ class ModelInference:
             },
             "model_used": model_name,
             "provider": "minimax",
-        }  
-        
+        }
+
     def _call_siliconflow(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call siliconflow API."""
         import openai
@@ -760,10 +761,7 @@ class ModelInference:
             },
             "model_used": model_name,
             "provider": "siliconflow",
-        }    
-
-
-        
+        }
 
     def _call_aws(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call AWS Bedrock API."""

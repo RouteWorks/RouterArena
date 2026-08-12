@@ -326,7 +326,7 @@
   "gpt-5.4": {
     "input_token_price_per_million": 2.5,
     "output_token_price_per_million": 15.0
-  }, 
+  },
   "z-ai/glm-4.7": {
     "input_token_price_per_million": 0.4,
     "output_token_price_per_million": 1.5
@@ -338,7 +338,7 @@
   "agnes-2.0-flash": {
     "input_token_price_per_million": 0.03,
     "output_token_price_per_million": 0.15
-  }, 
+  },
   "THUDM/GLM-4-9B-0414": {
     "input_token_price_per_million": 0.05,
     "output_token_price_per_million": 0.61
@@ -346,7 +346,7 @@
   "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
     "input_token_price_per_million": 0.18,
     "output_token_price_per_million": 0.85
-  },  
+  },
   "grok-4.3": {
     "input_token_price_per_million": 1.25,
     "output_token_price_per_million": 2.5
