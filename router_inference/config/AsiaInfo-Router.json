@@ -1,6 +1,6 @@
 {
   "pipeline_params": {
-    "router_name": "AsiaInfo Router",
+    "router_name": "AsiaInfo-Router",
     "router_cls_name": "external_prediction_file",
     "models": [
       "claude-opus-4-7",
