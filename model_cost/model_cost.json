@@ -1,3 +1,27 @@
+  "google_gemma-4-26b-a4b-it:free": {
+    "input_token_price_per_million": 0,
+    "output_token_price_per_million": 0
+  },"
+  "google_gemma-4-31b-it:free": {
+    "input_token_price_per_million": 0,
+    "output_token_price_per_million": 0
+  },"
+  "nvidia_nemotron-3-nano-30b-a3b:free": {
+    "input_token_price_per_million": 0,
+    "output_token_price_per_million": 0
+  },"
+  "nvidia_nemotron-3.5-lightning:free": {
+    "input_token_price_per_million": 0,
+    "output_token_price_per_million": 0
+  },"
+  "nvidia_nemotron-nano-9b-v2:free": {
+    "input_token_price_per_million": 0,
+    "output_token_price_per_million": 0
+  },"
+  "openai_gpt-oss-20b:free": {
+    "input_token_price_per_million": 0,
+    "output_token_price_per_million": 0
+  },"
 {
   "google/gemma-3n-e4b-it": {
     "input_token_price_per_million": 0.02,
