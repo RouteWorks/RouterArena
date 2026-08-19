@@ -644,9 +644,7 @@ class ModelInference:
         input_tokens = getattr(usage, "prompt_tokens", 0) if usage else 0
         output_tokens = getattr(usage, "completion_tokens", 0) if usage else 0
         total_tokens = (
-            getattr(usage, "total_tokens", 0)
-            if usage
-            else input_tokens + output_tokens
+            getattr(usage, "total_tokens", 0) if usage else input_tokens + output_tokens
         )
 
         return {
