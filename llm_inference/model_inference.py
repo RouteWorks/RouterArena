@@ -31,6 +31,10 @@ class ModelInference:
         self.azure_api_key = os.getenv("AZURE_API_KEY")
         self.azure_endpoint = os.getenv("AZURE_ENDPOINT")
         self.deepseek_api_key = os.getenv("DEEPSEEK_API_KEY")
+        self.sinapis_api_key = os.getenv("SINAPIS_API_KEY")
+        self.sinapis_base_url = os.getenv(
+            "SINAPIS_BASE_URL", "https://api.sinapisai.com/v1"
+        )
         self.perplexity_api_key = os.getenv("PERPLEXITY_API_KEY")
         self.replicate_api_key = os.getenv("REPLICATE_API_KEY")
 
@@ -74,6 +78,8 @@ class ModelInference:
                     return self._call_azure(model_name, prompt)
                 elif provider == "deepseek":
                     return self._call_deepseek(model_name, prompt)
+                elif provider == "sinapis":
+                    return self._call_sinapis(model_name, prompt)
                 elif provider == "perplexity":
                     return self._call_perplexity(model_name, prompt)
                 elif provider == "openrouter":
@@ -158,7 +164,11 @@ class ModelInference:
             # DeepSeek models
             "deepseek-coder": "deepseek",
             "deepseek-reasoner": "deepseek",
-            "deepseek/deepseek-v4-pro": "deepseek",
+            # SinapisAI models
+            "deepseek/deepseek-v4-pro": "sinapis",
+            "deepseek/deepseek-v4-flash": "sinapis",
+            "qwen/qwen3.5-flash-02-23": "sinapis",
+            "qwen/qwen3.7-plus": "sinapis",
             # Together AI models
             "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo": "together",
             "meta-llama/Meta-Llama-3-70B-Instruct-Turbo": "together",
@@ -591,6 +601,65 @@ class ModelInference:
             },
             "model_used": model_name,
             "provider": "deepseek",
+        }
+
+    def _call_sinapis(self, model_name: str, prompt: str) -> Dict[str, Any]:
+        """Call SinapisAI's OpenAI-compatible chat completions API."""
+        if not self.sinapis_api_key:
+            raise ValueError("SINAPIS_API_KEY is not set")
+
+        api_model_names = {
+            "qwen/qwen3.5-flash-02-23": "qwen/qwen3.5-flash-2026-02-23",
+        }
+        api_model_name = api_model_names.get(model_name, model_name)
+
+        client = OpenAI(
+            api_key=self.sinapis_api_key,
+            base_url=self.sinapis_base_url,
+            timeout=900,
+            max_retries=0,
+        )
+        request = {
+            "model": api_model_name,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": 8192,
+            "temperature": 0.7,
+        }
+        if model_name in {
+            "deepseek/deepseek-v4-flash",
+            "deepseek/deepseek-v4-pro",
+        }:
+            request["extra_body"] = {"thinking": {"type": "disabled"}}
+
+        response = client.chat.completions.create(**request)
+        choice = response.choices[0]
+        message = choice.message
+        content = message.content or getattr(message, "reasoning_content", None)
+        if not content and getattr(message, "model_extra", None):
+            content = message.model_extra.get("reasoning_content")
+        if not content:
+            raise ValueError("SinapisAI returned an empty response")
+
+        usage = getattr(response, "usage", None)
+        input_tokens = getattr(usage, "prompt_tokens", 0) if usage else 0
+        output_tokens = getattr(usage, "completion_tokens", 0) if usage else 0
+        total_tokens = (
+            getattr(usage, "total_tokens", 0)
+            if usage
+            else input_tokens + output_tokens
+        )
+
+        return {
+            "response": content,
+            "success": True,
+            "token_usage": {
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+                "total_tokens": total_tokens,
+            },
+            "model_used": model_name,
+            "provider": "sinapis",
+            "finish_reason": choice.finish_reason,
         }
 
     def _call_perplexity(self, model_name: str, prompt: str) -> Dict[str, Any]:

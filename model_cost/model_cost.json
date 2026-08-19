@@ -231,6 +231,10 @@
     "input_token_price_per_million": 0.14,
     "output_token_price_per_million": 0.28
   },
+  "qwen/qwen3.7-plus": {
+    "input_token_price_per_million": 0.296736,
+    "output_token_price_per_million": 1.186944
+  },
   "qwen/qwen3-235b-a22b-2507": {
     "input_token_price_per_million": 0.071,
     "output_token_price_per_million": 0.1

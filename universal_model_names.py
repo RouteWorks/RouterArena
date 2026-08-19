@@ -111,6 +111,7 @@ universal_names = [
     "gemini-3.1-flash-lite-preview",
     "deepseek/deepseek-v4-pro",
     "qwen/qwen3.5-flash-02-23",
+    "qwen/qwen3.7-plus",
     "deepseek/deepseek-v4-flash",
     "moonshotai/kimi-k2.5",
     # OrcaRouter pool additions

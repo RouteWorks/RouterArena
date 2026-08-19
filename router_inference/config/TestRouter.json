@@ -1,0 +1,12 @@
+{
+  "pipeline_params": {
+    "router_name": "TestRouter",
+    "router_cls_name": "TestRouter",
+    "models": [
+      "qwen/qwen3.5-flash-02-23",
+      "deepseek/deepseek-v4-flash",
+      "qwen/qwen3.7-plus",
+      "deepseek/deepseek-v4-pro"
+    ]
+  }
+}
