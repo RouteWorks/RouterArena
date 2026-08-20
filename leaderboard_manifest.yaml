@@ -23,7 +23,7 @@ routers:
   # --- Routers submitted to RouterArena (derived data regenerated) ---
   - readme_name: "Sqwish Router"
     website_name: "Sqwish Router"
-    prediction: "sqwish-router"
+    prediction: "sqwish-fvcta8"
     category_key: "sqwish-router"
     flip_key: "sqwish-router"
     website:
@@ -126,11 +126,14 @@ routers:
       affiliation: "@ypollak2"
       github_url: "https://github.com/ypollak2"
 
-  - readme_name: "Nadir-Tumbler"
-    website_name: "Nadir-Tumbler"
-    prediction: "nadir-tumbler"
-    category_key: "nadir-tumbler"
-    flip_key: "nadir-tumbler"
+  # nadir-caliper (#173) supersedes nadir-tumbler (#159); regenerated from the
+  # true-grok-4.3-priced prediction file. Website's old "Nadir-Tumbler" row is
+  # replaced on the next sync.
+  - readme_name: "nadir-caliper"
+    website_name: "nadir-caliper"
+    prediction: "nadir-caliper"
+    category_key: "nadir-caliper"
+    flip_key: "nadir-caliper"
     website:
       affiliation: "@doramirdor"
       github_url: "https://github.com/doramirdor"
@@ -161,6 +164,33 @@ routers:
     website:
       affiliation: "@vishalveerareddy123"
       github_url: "https://github.com/vishalveerareddy123"
+
+  - readme_name: "Paix2"
+    website_name: "Paix2"
+    prediction: "Paix2-router"
+    category_key: "paix2"
+    flip_key: "paix2"
+    website:
+      affiliation: "@xufan866"
+      github_url: "https://github.com/xufan866"
+
+  - readme_name: "Divyam"
+    website_name: "Divyam"
+    prediction: "divyam-router"
+    category_key: "divyam"
+    flip_key: "divyam"
+    website:
+      affiliation: "@samikd"
+      github_url: "https://github.com/samikd"
+
+  - readme_name: "AsiaInfo-Router"
+    website_name: "AsiaInfo-Router"
+    prediction: "AsiaInfo-Router"
+    category_key: "asiainfo"
+    flip_key: "asiainfo"
+    website:
+      affiliation: "@Uncle-LL"
+      github_url: "https://github.com/Uncle-LL"
 
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
