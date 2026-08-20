@@ -40,6 +40,11 @@ class ModelInference:
 
         self.gpt2_enc = tiktoken.get_encoding("gpt2")
 
+        # add by Paix2-router
+        self.minimax_api_key = os.getenv("MINIMAX_API_KEY")
+        self.agnes_api_key = os.getenv("AGNES_API_KEY")
+        self.siliconflow_api_key = os.getenv("SILICONFLOW_API_KEY")
+
     def infer(
         self, model_name: str, prompt: str, max_retries: int = 3
     ) -> Dict[str, Any]:
@@ -86,6 +91,13 @@ class ModelInference:
                     return self._call_xai(model_name, prompt)
                 elif provider == "zhipu":
                     return self._call_zhipu(model_name, prompt)
+                elif provider == "minimax":
+                    return self._call_minimax(model_name, prompt)
+                elif provider == "agnes":
+                    return self._call_agnes(model_name, prompt)
+                elif provider == "siliconflow":
+                    return self._call_siliconflow(model_name, prompt)
+
                 else:
                     # Default to Together API for most open-source models
                     return self._call_together(model_name, prompt)
@@ -198,6 +210,13 @@ class ModelInference:
             "glm-4-air": "zhipu",
             "glm-4-flash": "zhipu",
             "glm-4-plus": "zhipu",
+            # MiniMax
+            "MiniMax-M3": "minimax",
+            # Agens
+            "agnes-2.0-flash": "agnes",
+            # Siliconflow
+            "THUDM/GLM-4-9B-0414": "siliconflow",
+            "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": "siliconflow",
         }
 
         # Check if exact model name is in mapping
@@ -702,6 +721,116 @@ class ModelInference:
             },
             "model_used": model_name,
             "provider": "perplexity",
+        }
+
+    def _call_agnes(self, model_name: str, prompt: str) -> Dict[str, Any]:
+        """Call agnes API."""
+        agnes_api_key = os.getenv("AGNES_API_KEY")
+        client = OpenAI(
+            base_url="https://apihub.agnes-ai.com/v1",
+            api_key=agnes_api_key,
+        )
+
+        response = client.chat.completions.create(
+            model=model_name, messages=[{"role": "user", "content": prompt}]
+        )
+
+        usage = getattr(response, "usage", None)
+        input_tokens = getattr(usage, "prompt_tokens", 0) if usage is not None else 0
+        completion_tokens = (
+            getattr(usage, "completion_tokens", 0) if usage is not None else 0
+        )
+        total_tokens = (
+            getattr(usage, "total_tokens", 0)
+            if usage is not None
+            else input_tokens + completion_tokens
+        )
+
+        return {
+            "response": response.choices[0].message.content,
+            "success": True,
+            "token_usage": {
+                "input_tokens": input_tokens,
+                "output_tokens": completion_tokens,
+                "total_tokens": total_tokens,
+            },
+            "model_used": model_name,
+            "provider": "agnes",
+        }
+
+    def _call_minimax(self, model_name: str, prompt: str) -> Dict[str, Any]:
+        """Call minimax API."""
+        import anthropic
+
+        client = anthropic.Anthropic(
+            base_url="https://api.minimaxi.com/anthropic", api_key=self.minimax_api_key
+        )
+
+        clean_model_name = model_name.replace("anthropic/", "")
+
+        response = client.messages.create(
+            model=clean_model_name,
+            max_tokens=2048,
+            messages=[{"role": "user", "content": prompt}],
+        )
+
+        usage = getattr(response, "usage", None)
+        input_tokens = getattr(usage, "input_tokens", 0) if usage is not None else 0
+        output_tokens = getattr(usage, "output_tokens", 0) if usage is not None else 0
+        total_tokens = input_tokens + output_tokens
+
+        content0 = response.content[0]
+        text = getattr(content0, "text", str(content0))
+        return {
+            "response": text,
+            "success": True,
+            "token_usage": {
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+                "total_tokens": total_tokens,
+            },
+            "model_used": model_name,
+            "provider": "minimax",
+        }
+
+    def _call_siliconflow(self, model_name: str, prompt: str) -> Dict[str, Any]:
+        """Call siliconflow API."""
+        import openai
+
+        client = openai.OpenAI(
+            api_key=self.siliconflow_api_key, base_url="https://api.siliconflow.cn/v1"
+        )
+
+        clean_model_name = model_name.replace("siliconflow/", "")
+
+        response = client.chat.completions.create(
+            model=clean_model_name,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=1024,
+            temperature=0.7,
+        )
+
+        usage = getattr(response, "usage", None)
+        input_tokens = getattr(usage, "prompt_tokens", 0) if usage is not None else 0
+        completion_tokens = (
+            getattr(usage, "completion_tokens", 0) if usage is not None else 0
+        )
+        total_tokens = (
+            getattr(usage, "total_tokens", 0)
+            if usage is not None
+            else input_tokens + completion_tokens
+        )
+
+        return {
+            "response": response.choices[0].message.content,
+            "success": True,
+            "token_usage": {
+                "input_tokens": input_tokens,
+                "output_tokens": completion_tokens,
+                "total_tokens": total_tokens,
+            },
+            "model_used": model_name,
+            "provider": "siliconflow",
         }
 
     def _call_aws(self, model_name: str, prompt: str) -> Dict[str, Any]:

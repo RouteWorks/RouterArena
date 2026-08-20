@@ -128,6 +128,11 @@ universal_names = [
     # Sqwish Router pool additions (OpenRouter-served)
     "gpt-oss-20b",
     "xiaomi/mimo-v2.5",
+    # Paix2-router pool additions
+    "MiniMax-M3",
+    "agnes-2.0-flash",
+    "THUDM/GLM-4-9B-0414",
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
 ]
 
 
