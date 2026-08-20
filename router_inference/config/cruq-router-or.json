@@ -1,0 +1,14 @@
+{
+  "pipeline_params": {
+    "router_name": "cruq-router-or",
+    "router_cls_name": "CruqRouter",
+    "price_weight_output": 0.5,
+    "models": [
+      "qwen/qwen3-235b-a22b-2507",
+      "Qwen/Qwen3-Coder-Next",
+      "deepseek/deepseek-v4-flash",
+      "qwen/qwen3-next-80b-a3b-instruct",
+      "z-ai/glm-4.7"
+    ]
+  }
+}
