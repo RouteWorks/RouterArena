@@ -89,6 +89,7 @@ universal_names = [
     # xAI models
     "grok-4",
     "grok-4-1-fast-reasoning",
+    "grok-4.3",
     # R2-Router
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-next-80b-a3b-instruct",
@@ -124,7 +125,10 @@ universal_names = [
     # Lynkr pool additions (all served via OpenRouter)
     "openai/gpt-oss-120b",
     "z-ai/glm-4.7",
-    ##Paix2-router
+    # Sqwish Router pool additions (OpenRouter-served)
+    "gpt-oss-20b",
+    "xiaomi/mimo-v2.5",
+    # Paix2-router pool additions
     "MiniMax-M3",
     "agnes-2.0-flash",
     "THUDM/GLM-4-9B-0414",

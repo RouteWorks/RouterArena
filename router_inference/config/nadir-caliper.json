@@ -1,0 +1,17 @@
+{
+ "pipeline_params": {
+  "router_name": "nadir-caliper",
+  "router_cls_name": "NadirCaliperRouter",
+  "models": [
+   "qwen/qwen3-235b-a22b-2507",
+   "google/gemini-3.1-flash-lite",
+   "grok-4.3",
+   "deepseek/deepseek-v3.2"
+  ],
+  "description": "Nadir-Caliper, from Nadir Lab. A consensus-verified cascade: two cheap probes (qwen3-235b-a22b-2507 and gemini-3.1-flash-lite) answer every prompt at temperature 0. When their extracted final answers agree, the router ships the cheaper probe. When they disagree, grok-4.3 (low reasoning effort) arbitrates and the router ships the cheapest model whose answer the arbiter confirms; if it confirms neither, grok-4.3 is shipped. An answer counts only when both jaws touch it. Every design choice (probe pair, arbiter, branch policy) was selected on RouterBench only, family-grouped out-of-fold, at current model prices, and frozen before any RouterArena prompt was routed; two alternatives (gpt-5-mini arbiter, other probe pairs) were tested and rejected on RouterBench samples under a pre-registered criterion. A declared product constraint keeps at least 30% of traffic below the strongest menu model (measured: 84% downroute). All responses are self-generated (temperature 0, byte-exact prompts, token usage recorded); rows generated after 2026-08-05 carry per-row provenance (requested_model, model_used, provider, invoked_at). deepseek-v3.2 appears only as a declared per-row probe fallback where gemini-3.1-flash-lite generation was rate-limited. The robustness split is a genuine re-run of the identical rule on freshly generated probe and arbiter responses for all 420 perturbed prompts. Supersedes nadir-tumbler; please keep a single Nadir Lab entry.",
+  "router_homepage": "https://getnadir.com",
+  "contact_email": "info@getnadir.com",
+  "affiliation": "Nadir Lab",
+  "github": "https://github.com/NadirRouter"
+ }
+}

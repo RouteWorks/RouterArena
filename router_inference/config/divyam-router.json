@@ -1,0 +1,12 @@
+{
+    "pipeline_params": {
+        "router_name": "divyam-router",
+        "router_cls_name": "DivyamRouter",
+        "models": [
+            "qwen/qwen3-235b-a22b-2507",
+            "Qwen/Qwen3-Coder-Next",
+            "gemini-3-flash-preview",
+            "google/gemini-3.1-flash-lite"
+        ]
+    }
+  }

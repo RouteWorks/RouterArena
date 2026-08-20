@@ -150,14 +150,16 @@ class ModelInference:
             "gpt-5-chat-latest": "openai",
             "gpt-5-mini": "openai",
             "gpt-5-nano": "openai",
-            "gpt-5": "openai",
             # Anthropic models
             "claude-3-haiku-20240307": "anthropic",
             "claude-3-7-sonnet-20250219": "anthropic",
             # Google models
             "gemini-2.0-flash-001": "google",
+            "gemini-2.5-flash-lite": "google",
             "gemini-2.5-flash": "google",
             "gemini-2.5-pro": "google",
+            "gemini-3-flash-preview": "google",
+            "gemini-3.1-flash-lite": "google",
             # Mistral models
             "mistral-medium": "mistral",
             "codestral-latest": "mistral",
@@ -169,8 +171,6 @@ class ModelInference:
             "open-mistral-nemo": "mistral",
             # DeepSeek models
             "deepseek-coder": "deepseek",
-            "deepseek-reasoner": "deepseek",
-            "deepseek/deepseek-v4-pro": "deepseek",
             # Together AI models
             "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo": "together",
             "meta-llama/Meta-Llama-3-70B-Instruct-Turbo": "together",
@@ -191,12 +191,13 @@ class ModelInference:
             "xiaomi/mimo-v2-flash:free": "openrouter",
             "openai/gpt-oss-120b": "openrouter",
             "qwen/qwen3-235b-a22b-2507": "openrouter",
+            "qwen/qwen3-next-80b-a3b-instruct": "openrouter",
+            "Qwen/Qwen3-Coder-Next": "openrouter",
+            "deepseek/deepseek-v4-flash": "openrouter",
             "x-ai/grok-4.1-fast": "openrouter",
             "mistralai/devstral-2512:free": "openrouter",
             "meta-llama/llama-3.3-70b-instruct": "openrouter",
             "meta-llama/llama-3.1-405b-instruct": "openrouter",
-            "qwen/qwen3.5-9b": "openrouter",
-            "qwen/qwen3-coder-30b-a3b-instruct": "openrouter",
             # Replicate
             "meta/codellama-34b-instruct": "replicate",
             # AWS Bedrock
@@ -453,31 +454,100 @@ class ModelInference:
         }
 
     def _call_google(self, model_name: str, prompt: str) -> Dict[str, Any]:
-        """Call Google AI API."""
-        import google.generativeai as genai
+        """Call Google AI API (google-genai SDK)."""
+        from google import genai
+        from google.genai import types
 
-        genai.configure(api_key=self.google_api_key)
-
+        client = genai.Client(api_key=self.google_api_key)
         clean_model_name = model_name.replace("google/", "")
-        model = genai.GenerativeModel(clean_model_name)
 
-        response = model.generate_content(prompt)
+        # Disable safety blocking for benchmark eval so sensitive passages
+        # (e.g. NarrativeQA literary excerpts) don't drop queries.
+        safety_settings = [
+            types.SafetySetting(category=c, threshold="BLOCK_NONE")
+            for c in (
+                "HARM_CATEGORY_HARASSMENT",
+                "HARM_CATEGORY_HATE_SPEECH",
+                "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                "HARM_CATEGORY_DANGEROUS_CONTENT",
+            )
+        ]
+        # set the thinking budget
+        thinking_budget = 0
+        response = client.models.generate_content(
+            model=clean_model_name,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                safety_settings=safety_settings,
+                thinking_config=types.ThinkingConfig(thinking_budget=thinking_budget),
+            ),
+        )
 
-        # Google doesn't provide detailed token usage in the free tier
-        # Estimate tokens roughly
-        input_tokens = len(prompt.split()) * 1.3
-        output_tokens = len(response.text.split()) * 1.3 if response.text else 0
+        # Guard the empty-candidates case: the .text accessor raises when
+        # response.candidates is empty. Capture WHY it was empty -- a prompt-level
+        # block (e.g. PROHIBITED_CONTENT, which BLOCK_NONE cannot override) shows up
+        # in prompt_feedback; otherwise read the candidate's finish_reason
+        # (RECITATION / MAX_TOKENS / ...).
+        try:
+            text = response.text or ""
+        except Exception:
+            text = ""
+        reason = ""
+        if not text:
+            block = getattr(
+                getattr(response, "prompt_feedback", None), "block_reason", None
+            )
+            if block:
+                reason = f"blocked={block}"
+            elif getattr(response, "candidates", None):
+                reason = f"finish_reason={response.candidates[0].finish_reason}"
+
+        # Use Google's returned usage metadata as the authoritative token counts.
+        # thoughtsTokenCount is billed at the output rate (Google's $/M output price
+        # is thinking-inclusive), so it is folded into output_tokens -- with
+        # thinking_budget=0 it is expected to be 0, and recording it makes that
+        # verifiable from the artifact instead of assumed.
+        usage = getattr(response, "usage_metadata", None)
+        prompt_token_count = getattr(usage, "prompt_token_count", None) or 0
+        candidates_token_count = getattr(usage, "candidates_token_count", None) or 0
+        thoughts_token_count = getattr(usage, "thoughts_token_count", None) or 0
+        total_token_count = getattr(usage, "total_token_count", None) or 0
+
+        if usage is not None and prompt_token_count:
+            input_tokens = prompt_token_count
+            output_tokens = candidates_token_count + thoughts_token_count
+            total_tokens = total_token_count or (input_tokens + output_tokens)
+            usage_source = "provider_metadata"
+        else:
+            # Fallback only when the SDK returns no usage metadata (should not
+            # happen on a successful generate_content call). Rough word-count
+            # estimate, flagged as such so it can be filtered out of a submission.
+            input_tokens = int(len(prompt.split()) * 1.3)
+            output_tokens = int(len(text.split()) * 1.3) if text else 0
+            total_tokens = input_tokens + output_tokens
+            usage_source = "word_count_estimate"
 
         return {
-            "response": response.text,
-            "success": True,
+            "response": text,
+            "success": bool(text),
             "token_usage": {
                 "input_tokens": int(input_tokens),
                 "output_tokens": int(output_tokens),
-                "total_tokens": int(input_tokens + output_tokens),
+                "total_tokens": int(total_tokens),
+            },
+            # Raw provider counts, kept unaggregated for auditability.
+            "token_usage_raw": {
+                "promptTokenCount": prompt_token_count,
+                "candidatesTokenCount": candidates_token_count,
+                "thoughtsTokenCount": thoughts_token_count,
+                "totalTokenCount": total_token_count,
+                "source": usage_source,
             },
             "model_used": model_name,
+            "model_version": getattr(response, "model_version", None),
+            "thinking_config": {"thinking_budget": thinking_budget},
             "provider": "google",
+            "error": "" if text else f"empty_response({reason})",
         }
 
     def _call_mistral(self, model_name: str, prompt: str) -> Dict[str, Any]:
