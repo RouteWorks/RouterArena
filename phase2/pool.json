@@ -1,0 +1,7 @@
+{
+  "models": [
+    "qwen/qwen3-235b-a22b-2507",
+    "Qwen/Qwen3-Coder-Next",
+    "deepseek/deepseek-v4-flash"
+  ]
+}

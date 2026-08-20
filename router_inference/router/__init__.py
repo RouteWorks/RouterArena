@@ -11,6 +11,7 @@ from router_inference.router.chuzom_solo_v32 import ChuzomSoloV32Router
 from router_inference.router.llm_router import LLMRouter
 from router_inference.router.lynkr_router import LynkrRouter
 from router_inference.router.cruq_router import CruqRouter
+from router_inference.router.cruq_learned_router import CruqLearnedRouter
 
 __all__ = [
     "BaseRouter",
@@ -21,4 +22,5 @@ __all__ = [
     "ChuzomSoloV32Router",
     "LynkrRouter",
     "CruqRouter",
+    "CruqLearnedRouter",
 ]

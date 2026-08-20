@@ -1,0 +1,10 @@
+{
+  "pipeline_params": {
+    "router_name": "cruq-learned",
+    "router_cls_name": "CruqLearnedRouter",
+    "tau": 0.5,
+    "price_weight_output": 0.5,
+    "predictor_path": "phase2/data/predictor.pkl",
+    "models": ["qwen/qwen3-235b-a22b-2507","Qwen/Qwen3-Coder-Next","deepseek/deepseek-v4-flash"]
+  }
+}
