@@ -1,0 +1,17 @@
+{
+  "name": "a3m-router-mcts",
+  "description": "A3M Router with feature-based provider selection",
+  "version": "1.0.0",
+  "website": "https://das-rebel.github.io/a3m-router/",
+  "github": "https://github.com/Das-rebel/a3m-router",
+  "models": [
+    "deepseek/deepseek-v4-flash",
+    "claude-sonnet-4-5",
+    "google/gemini-3.1-flash-lite",
+    "deepseek-chat",
+    "deepseek/deepseek-v3.2",
+    "Qwen/Qwen3-Coder-Next",
+    "mistralai/devstral-2512:free"
+  ],
+  "approach": "Feature-based tier routing with cost-quality optimization"
+}
