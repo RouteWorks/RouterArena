@@ -118,7 +118,56 @@ def build_gsm8k(n, ra_keys, seen):
     return out
 
 
-BUILDERS = {"mmlu": build_mmlu, "arc": build_arc, "gsm8k": build_gsm8k}
+def build_mmlu_pro(n, ra_keys, seen):
+    """MMLU-Pro: 10-option, markedly harder than MMLU; where models diverge."""
+    out = []
+    ds = load_dataset("TIGER-Lab/MMLU-Pro", split="test", streaming=True)
+    for row in ds:
+        if len(out) >= n:
+            break
+        q = row["question"]
+        opts = [o for o in row["options"] if o and o != "N/A"]
+        ans = row.get("answer")  # letter
+        if not ans or ans not in LETTERS[: len(opts)]:
+            continue
+        k = _norm(q)
+        if k in ra_keys or k in seen:
+            continue
+        seen.add(k)
+        out.append({
+            "id": f"mmlupro_{len(out)}", "source": "MMLU-Pro",
+            "domain": row.get("category", ""),
+            "prompt": _mcq_prompt(q, opts), "gold": ans,
+        })
+    return out
+
+
+def build_math(n, ra_keys, seen):
+    """MATH-500: hard competition math; boxed numeric/expression answers."""
+    out = []
+    ds = load_dataset("HuggingFaceH4/MATH-500", split="test")
+    for row in ds:
+        if len(out) >= n:
+            break
+        q = row.get("problem") or ""
+        gold = str(row.get("answer") or "").strip()
+        if not gold:
+            continue
+        k = _norm(q)
+        if k in ra_keys or k in seen:
+            continue
+        seen.add(k)
+        out.append({
+            "id": f"math_{len(out)}", "source": "MATH", "domain": "math",
+            "prompt": q + NUM_INSTR, "gold": gold,
+        })
+    return out
+
+
+BUILDERS = {
+    "mmlu": build_mmlu, "arc": build_arc, "gsm8k": build_gsm8k,
+    "mmlu_pro": build_mmlu_pro, "math": build_math,
+}
 
 
 def main():
