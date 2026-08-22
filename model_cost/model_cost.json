@@ -332,8 +332,8 @@
     "output_token_price_per_million": 1.5
   },
   "MiniMax-M3": {
-    "input_token_price_per_million": 0.60,
-    "output_token_price_per_million": 2.40
+    "input_token_price_per_million": 0.6,
+    "output_token_price_per_million": 2.4
   },
   "agnes-2.0-flash": {
     "input_token_price_per_million": 0.03,
@@ -362,5 +362,13 @@
   "xiaomi/mimo-v2.5": {
     "input_token_price_per_million": 0.14,
     "output_token_price_per_million": 0.28
+  },
+  "openai/gpt-5-mini": {
+    "input_token_price_per_million": 0.25,
+    "output_token_price_per_million": 2.0
+  },
+  "anthropic/claude-sonnet-4.5": {
+    "input_token_price_per_million": 3.0,
+    "output_token_price_per_million": 15.0
   }
 }

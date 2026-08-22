@@ -190,6 +190,8 @@ class ModelInference:
             "xiaomi/mimo-v2-flash": "openrouter",
             "xiaomi/mimo-v2-flash:free": "openrouter",
             "openai/gpt-oss-120b": "openrouter",
+            "openai/gpt-5-mini": "openrouter",
+            "anthropic/claude-sonnet-4.5": "openrouter",
             "qwen/qwen3-235b-a22b-2507": "openrouter",
             "qwen/qwen3-next-80b-a3b-instruct": "openrouter",
             "Qwen/Qwen3-Coder-Next": "openrouter",
