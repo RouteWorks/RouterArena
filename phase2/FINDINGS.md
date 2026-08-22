@@ -74,19 +74,40 @@ cheapest model and lifting accuracy, but it plateaus far below the oracle:
    data actively hurt (AUC fell); harder data fixed it.
 3. **The remaining gap to the oracle is pool spread, not the selector.** The three pool
    models are near-equal (all ~0.65-0.72 even on hard MATH), so escalating between them
-   recovers little. glm-4.7 (0.70 on MATH) was not a real step up either. The oracle's
-   0.806 is complementarity these near-twins cannot be routed into.
+   recovers little. The oracle's 0.806 is complementarity these near-twins cannot be
+   routed into.
 
-## The one lever left: a genuine strong tier
+## Update (2026-08-22): the reachable lever is cheap diversity, not a strong tier
 
-Add a genuinely more capable, pricier model to escalate *to*, then re-run the τ frontier.
-`openai/gpt-5-mini` is **wired but unvalidated**: added to `_get_provider` (as an
-openrouter slug), `model_cost.json` ($0.25/$2), and `universal_model_names.py`. The
-decisive experiment (run it across `sub_10`, recompute the 4-model oracle) did not
-complete, the run was killed at zero cached results. If the 4-model oracle jumps well
-above 0.806, label gpt-5-mini on the hard corpus, retrain the 4-head predictor, and the
-router should finally capture real accuracy gains. If it also lands ~0.72, the pool's
-ceiling is intrinsic and no reachable model helps.
+The parked conclusion assumed the only way to lift the oracle was to add a genuinely
+more capable, pricier model to escalate *to* (`openai/gpt-5-mini`). A zero-cost pass
+over the caches already on disk **refutes that**. Every model the base harness had
+already run on `sub_10` was graded and its marginal oracle lift measured
+(`phase2/oracle_lift.py`, no API spend). The lift comes from *cheap-model diversity*:
+
+| Pool | Oracle acc | Cost/1k | Δ vs base |
+|---|---|---|---|
+| base 3-model | 0.806 | $0.061 | — |
+| base3 + gemini-2.0-flash | **0.832** | $0.062 | +2.6 pts |
+| base3 + gemini + gpt-4o-mini | **0.840** | $0.062 | +3.4 pts |
+| 7-model ensemble (all real caches) | 0.852 | $0.135 | +4.7 pts |
+
+gemini-2.0-flash-001 alone rescues **19 of the 142** queries all three base models fail,
+at essentially unchanged cost (the oracle picks cheapest-correct, and gemini-flash is
+cheap). Adding gpt-4o-mini on top recovers more, still at ~$0.062/1k. The expensive
+candidates are the *worse* bets: glm-4.7 (+1.23 pts at $0.204/1k, and only 389/809 of its
+answers even emit `\boxed{}` — the rest are reasoning-runaway truncations at up to 65k
+output tokens), and gpt-5-mini was never validated — its 216 cached rows are all
+`401 Incorrect API key` (the bare slug `gpt-5-mini` resolves to the OpenAI provider and
+was called with the OpenRouter key; the openrouter-routed slug is `openai/gpt-5-mini`).
+
+**Actionable next step (spend-gated).** Set the pool to `{qwen3-235b, coder-next,
+deepseek-v4-flash, gemini-2.0-flash, gpt-4o-mini}`, label those two additions on the hard
+external corpus, retrain the per-model P(correct) heads, and re-run the τ frontier. The
+oracle ceiling to chase is now **0.840, not 0.806**. The one cost: gemini-flash and
+gpt-4o-mini route to the `google`/`openai` providers (not openrouter), so labeling them on
+the corpus needs those keys, or their openrouter slugs
+(`google/gemini-2.0-flash-001`, `openai/gpt-4o-mini`) and headroom under the weekly cap.
 
 ## Reproduce
 
