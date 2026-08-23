@@ -210,3 +210,50 @@ HF_HUB_OFFLINE=1 uv run python phase2/train_predictor.py
   lightweight grader for local iteration, run the official one only with headroom.
 - Data artifacts (`cached_results/`, `phase2/data/`, predictions) are regenerable and
   gitignored; only source is committed.
+
+## Update (2026-08-23b): domain-aware routing — best arena-S so far, but capped by coverage
+
+Complementarity was confirmed domain-structured (a per-dataset analysis gave a
+domain-routing ceiling of 0.772 acc / 0.762 arena-S vs 0.716/0.705 for the best single
+model). Root cause of the earlier router's failure was also found: the corpus was
+domain-narrow (all-`business` MMLU-Pro + MATH, a sampling bug in `build_corpus.py`), so the
+heads were out-of-distribution on 69 of sub_10's 71 domains. Fixes shipped:
+`phase2/build_corpus_domains.py` builds a 780-item corpus across 19 domains (all 14 MMLU-Pro
+categories, math, medical x2, science, knowledge), all 5 pool models relabeled on it, and
+`phase2/domain_router_eval.py` trains a query->domain classifier + a per-domain best-model
+table and routes sub_10 by predicted domain. Transfer was validated first (corpus-best model
+per domain matches sub_10-best on the domains we already had).
+
+| Policy (sub_10, 731 scorable) | Acc | Cost/1k | Arena-S |
+|---|---|---|---|
+| single: deepseek (best single) | 0.7155 | $0.266 | 0.7053 |
+| single: qwen3-235b (cheapest) | 0.6908 | $0.034 | 0.7002 |
+| prior calibrated per-model tau | 0.717 | $0.266 | 0.707 |
+| domain-router (acc-max) | 0.6922 | $0.244 | 0.6856 |
+| **domain-router (cost-aware)** | **0.7073** | **$0.090** | **0.7082** |
+| domain-router (margin-gated) | 0.7155 | $0.266 | 0.7053 |
+| oracle | 0.8317 | $0.064 | 0.8236 |
+
+The cost-aware domain router is the **best arena-S found** (0.7082): it matches deepseek's
+accuracy within ~1 pt at one-third the cost, by defaulting to cheap qwen and escalating to
+deepseek only where a domain clearly needs it. The acc-max variant *regresses* (0.686) —
+it trusts the corpus top-1 and misroutes on transfer noise (corpus said gemini wins
+mmlupro_math; gemini is weak on sub_10). Margin-gating collapses back to deepseek.
+
+Domain routing thus works directionally but stays ~5 pts of arena-S below the 0.762 ceiling.
+Three binding limits, in order of size: (1) **domain coverage** — ~40% of sub_10 (code,
+translation, reading, trivia, chess, music, ethics, SuperGLUE) is absent from the corpus and
+gets misrouted to the nearest covered domain; (2) the domain classifier is only 76% accurate
+over 19 domains; (3) per-domain table transfer noise (mitigated by the cost-aware/robust
+variants).
+
+### The real blocker
+Every result here is on the **731 scorable (boxed MCQ/numeric) items only**. The actual
+RouterArena leaderboard scores all 8,400 items with format-specific scorers (code execution,
+translation BLEU, reading-comprehension), and the complementarity that would move the needle
+toward the ceiling lives disproportionately in exactly those unscored domains (e.g. the pool
+carries Qwen3-Coder-Next specifically for code, invisible in a boxed-match grade). On the
+scorable subset deepseek is already a near-best generalist, so selector work here has hit
+diminishing returns. Making real leaderboard progress needs the **official multi-scorer
+evaluator** run over the full set — which OOMs the dev machine, so it is the natural first
+use of an off-laptop (k8s) run. That, not more selector tuning, is the next lever.
