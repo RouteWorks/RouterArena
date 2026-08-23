@@ -156,6 +156,33 @@ The 2026-08-22 update proposed running exactly this experiment against an oracle
 0.840. Executed: the reachable oracle on the live pool is 0.832, and the router captured
 none of the lift. The actionable direction is no longer "add models" but "fix the selector."
 
+## Update (2026-08-23): selector lever (a) tried — calibration + per-model tau
+
+Lever (a) above was implemented cache-only (`phase2/calibrate_route.py`): each head refit
+and wrapped in isotonic calibration (`CalibratedClassifierCV`), then thresholds tuned to
+maximize RouterArena Acc-Cost score `S` on a held-out 20% slice of the *external corpus*
+(never sub_10), as a single global tau and as per-model tau via greedy coordinate ascent.
+Evaluated on sub_10:
+
+| Policy (sub_10, never tuned on) | Acc | Cost/1k | Arena-S | Routing (cheap→exp) |
+|---|---|---|---|---|
+| uncalibrated global-tau (prior) | 0.709 | $0.251 | 0.700 | 92/27/599/12/1 |
+| calibrated global-tau | 0.709 | $0.240 | 0.700 | 86/20/584/22/19 |
+| calibrated per-model tau | **0.717** | $0.266 | 0.707 | 2/5/**723**/1/0 |
+| oracle | 0.832 | $0.064 | 0.824 | — |
+
+Two findings: (1) **calibration was not the missing piece** — val Brier scores barely moved
+(deepseek 0.1222→0.1200), the raw logistic heads were already well-calibrated, so
+cross-model comparability was not actually broken. (2) **Per-model tau gains +1.1 pts
+(0.706→0.717) but by collapsing to the single strongest model, not by exploiting
+diversity**: it routes 723/731 queries to deepseek and only 1 to gemini, 0 to gpt-4o-mini,
+landing at deepseek's standalone accuracy. The threshold search's best learnable policy is
+"always use the strongest base model." The ~11.5-pt gap to the oracle is therefore not a
+calibration/thresholding problem; per-query model-correctness on the hard items is close to
+unpredictable from a MiniLM embedding. Remaining untried levers: (b) direct learn-to-route,
+(c) richer features, (d) output-side confidence — all bet on making that prediction better,
+which is the actual bottleneck.
+
 ## Reproduce
 
 ```
