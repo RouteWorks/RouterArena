@@ -2,27 +2,33 @@
 
 The official `llm_evaluation/run.py` uses Python multiprocessing + a code-execution
 sandbox that CRASHES on macOS (`resource_tracker` semaphore leak). It runs fine on
-Linux. This packages it to run in a container / k8s Job.
+Linux. This packages it to run in a container / k8s Job. Image: `talentreviewai/routerarena-eval:v3`.
+
+## Build inputs (the build context MUST contain, next to the Dockerfile)
+    llm_evaluation/  global_utils/  universal_model_names.py  model_cost/
+    config/eval_config/            # REQUIRED — per-dataset scorer configs (see fix below)
+    dataset/routerarena/           # full 8400 arrow (ground truth for full)
+    dataset/routerarena_10/        # sub_10 arrow (ground truth for sub_10)
+    router_inference/predictions/  # the prediction file(s) to score (or mount at run)
 
 ## Build & run (local Linux container)
-    docker buildx build --platform linux/amd64 -t <img> .
+    docker buildx build --platform linux/amd64 -t talentreviewai/routerarena-eval:v3 .
     docker run -e ROUTER=<router-name> -e SPLIT=sub_10 \
-      -v $PWD/../../router_inference/predictions/<router>.json:/app/router_inference/predictions/<router>.json <img>
+      -v $PWD/pred/<router>.json:/app/router_inference/predictions/<router>.json \
+      talentreviewai/routerarena-eval:v3
 
 ## k8s Job (cruq namespace, dockerhub-secret pull secret)
-    kubectl apply -f job.yaml   # set ROUTER/SPLIT env; reads image from Docker Hub
+    kubectl apply -f job.yaml      # set ROUTER/SPLIT env; pulls image from Docker Hub
 
-## IMPORTANT caveat (measured 2026-08-23)
-This local reproduction does NOT faithfully match RouterArena's official scoring for a
-large class of datasets. Validation: scoring the #1 leaderboard router (Paix2) through
-this harness yields 0.475 on sub_10 vs its official 79.69% on full — because the sub_10
-prediction files' global-index keys do not all match the evaluator's full-arrow
-`all_data`, so `_get_ground_truth` silently returns None and those datasets (AsDiv,
-FinQA, QANTA, WMT19, SuperGLUE, ...) score 0 for EVERY router. Treat local official
-numbers as unreliable for those families; the only trustworthy leaderboard number comes
-from RouterArena's own `/evaluate` PR workflow. The lightweight boxed-match grader
-(`router_evaluation/lightweight_grade.py`) remains a fair proxy for the MCQ-heavy subset.
+## The fix that made local scoring trustworthy (2026-08-23)
+Earlier images OMITTED `config/eval_config/`. Without it, `load_eval_config_for_dataset`
+returns no metrics and the evaluator silently falls back to `mcq_accuracy` for EVERY
+dataset — so numeric/translation/word-sense answers (AsDiv, FinQA, MATH-family, WMT19,
+SuperGLUE, AIME) were scored as multiple-choice and got 0 for ALL routers. Validation:
+scoring the #1 router `Paix2-router.json` on sub_10 gave 0.475 (broken) → 0.52+ (fixed),
+with AsDiv 0→0.43, FinQA 0→0.14, WMT19 0→0.41, SuperGLUE-Wic 0→0.50 recovering. Always
+include `config/eval_config/` in the build context. (QANTA zeros are genuine — models
+ramble instead of naming the gold entity; that is real, not a harness bug.)
 
-Files: Dockerfile (deps + eval), summarize.py (aggregates per-dataset + arena-S),
-job.yaml (k8s Job). Bakes only llm_evaluation/, global_utils/, universal_model_names.py,
-model_cost/, dataset/routerarena{,_10}; predictions are mounted or baked per run.
+Note: `dataset/livecodebench` (2.9 GB) is intentionally excluded; the 38 LiveCodeBench
+sub_10 items are skipped. Add it only if you need code scoring.

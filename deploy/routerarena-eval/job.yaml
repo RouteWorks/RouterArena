@@ -13,7 +13,7 @@ spec:
         - name: dockerhub-secret
       containers:
         - name: eval
-          image: talentreviewai/routerarena-eval:v1
+          image: talentreviewai/routerarena-eval:v3
           imagePullPolicy: Always
           env:
             - name: ROUTER

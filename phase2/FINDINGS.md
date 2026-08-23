@@ -288,3 +288,35 @@ canonical prompt from its eval config, not our bug.)
 Method note: validating a new measurement harness against a known-good reference (here, the #1
 router's public score) before trusting its outputs is the check that prevented reporting
 contaminated numbers as truth.
+
+## Update (2026-08-23d): local harness FIXED — trustworthy official numbers
+
+The local-eval unreliability from the previous update was root-caused and fixed. The bug:
+the eval image OMITTED `config/eval_config/`, so `load_eval_config_for_dataset` found no
+metrics and the evaluator silently fell back to `mcq_accuracy` for EVERY dataset — numeric
+(AsDiv/FinQA/MATH/AIME), translation (WMT19), and word-sense (SuperGLUE) answers were graded
+as multiple-choice and scored 0 for ALL routers, including Paix2. Fixed by baking
+`config/eval_config/` into the image (`talentreviewai/routerarena-eval:v3`,
+`deploy/routerarena-eval/`). Validation against the reference: Paix2 sub_10 0.475 → 0.52+,
+with AsDiv 0→0.43, FinQA 0→0.14, WMT19 0→0.41, SuperGLUE-Wic 0→0.50 recovering. (QANTA zeros
+are genuine — models ramble instead of naming the gold entity.)
+
+**Corrected TRUE official numbers (v3, sub_10, 771 commonly-scored items):**
+
+| Model / policy | Acc | Cost/1k | Arena-S |
+|---|---|---|---|
+| deepseek | 0.749 | $0.238 | 0.736 |
+| qwen3-235b (cheapest) | 0.729 | $0.030 | 0.736 |
+| coder-next | 0.689 | $0.096 | 0.691 |
+| gemini-2.5-flash-lite | 0.642 | $0.166 | 0.643 |
+| gpt-4o-mini | 0.625 | $0.078 | 0.634 |
+| **domain-routing ceiling** | **0.790** | $0.141 | **0.778** |
+| per-query oracle | 0.853 | $0.067 | 0.842 |
+
+These supersede the "true official" numbers in update 23b/c (which were contaminated by the
+missing-config bug) and also come out somewhat ABOVE the lightweight-grader proxy (deepseek
+0.716→0.749, oracle 0.832→0.853), because the official scorers award partial credit
+(meteor/rouge) and score datasets the boxed-match grader skipped. Domain routing is worth
+**+5.4 pts arena-S** on the true metric (best single 0.736 → ceiling 0.778), with the oracle a
+further +6.4 above that. The trustworthy iteration metric now exists; next is to build the
+domain router's full prediction file and score it under v3, then push toward the ceiling.
