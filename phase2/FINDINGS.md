@@ -101,13 +101,60 @@ output tokens), and gpt-5-mini was never validated — its 216 cached rows are a
 `401 Incorrect API key` (the bare slug `gpt-5-mini` resolves to the OpenAI provider and
 was called with the OpenRouter key; the openrouter-routed slug is `openai/gpt-5-mini`).
 
-**Actionable next step (spend-gated).** Set the pool to `{qwen3-235b, coder-next,
-deepseek-v4-flash, gemini-2.0-flash, gpt-4o-mini}`, label those two additions on the hard
-external corpus, retrain the per-model P(correct) heads, and re-run the τ frontier. The
-oracle ceiling to chase is now **0.840, not 0.806**. The one cost: gemini-flash and
-gpt-4o-mini route to the `google`/`openai` providers (not openrouter), so labeling them on
-the corpus needs those keys, or their openrouter slugs
-(`google/gemini-2.0-flash-001`, `openai/gpt-4o-mini`) and headroom under the weekly cap.
+## Update (2026-08-23): experiment run to completion — the bottleneck is now the selector
+
+The spend-gated step above was executed via OpenRouter slugs. `gemini-2.0-flash-001` is
+aged out of OpenRouter (404), so the live same-price stand-in `google/gemini-2.5-flash-lite`
+was used, plus `openai/gpt-4o-mini`. Both were labeled on the full 1066-item corpus and a
+consistent 5-head predictor retrained (`phase2/train_predictor.py`); `gemini-2.5-flash-lite`
+was then run across `sub_10` and the learned router evaluated end-to-end
+(`phase2/router_eval.py`).
+
+**5-head predictor CV AUC** (all genuinely predictive, well above the 0.5 floor):
+
+| Model | corpus base acc | CV AUC |
+|---|---|---|
+| deepseek/deepseek-v4-flash | 0.806 | 0.761 |
+| qwen/qwen3-235b-a22b-2507 | 0.753 | 0.750 |
+| Qwen/Qwen3-Coder-Next | 0.737 | 0.723 |
+| google/gemini-2.5-flash-lite | 0.755 | 0.711 |
+| openai/gpt-4o-mini | 0.580 | 0.701 |
+
+**End-to-end router vs oracle on `sub_10` (731 scorable, 5-model pool):**
+
+| | Accuracy | Cost/1k |
+|---|---|---|
+| 5-model oracle (cheapest-correct) | **0.832** | $0.064 |
+| Learned router, best τ (0.90) | **0.706** | $0.270 |
+| (base-3 learned router, prior finding) | 0.709 | — |
+
+**The result is a clean negative, and it relocates the bottleneck.** Adding the two
+diverse-cheap models lifted the *oracle* (0.806 → 0.832) but did **nothing** for the
+*router* (0.706, statistically identical to the base-3 router's 0.709). The τ sweep shows
+why: even at τ=0.90 the router sends only 25/731 queries to gemini and 2 to gpt-4o-mini —
+it escalates *within the base-3* (582 queries onto deepseek) rather than into the niche
+models. The queries these cheap models uniquely rescue are exactly the hard ones where
+every head is uncertain (AUC ~0.72), so a per-model P(correct) selector cannot confidently
+route to them. The gap to the oracle is now **12.6 points and it lives in the selector**,
+not the pool. (Note `gemini-2.5-flash-lite` scores only 0.529 standalone on `sub_10`; its
+entire value is complementary — precisely the value this selector cannot harvest.)
+
+## The lever that's left: fix the selector, not the pool
+
+Pool changes raise the ceiling; they do not move the router. The remaining levers are all
+selector-side: (a) **calibrate** the independent heads (Platt/isotonic) and use per-model τ
+so probabilities are comparable across models; (b) **learn to route directly** — train one
+model whose target is "the cheapest model that is actually correct," instead of five
+independent correctness heads; (c) **richer query features** than a 384-dim MiniLM
+embedding; (d) **output-side confidence** (self-consistency or logprobs from a cheap first
+pass) rather than predicting correctness from the prompt text alone. Until per-query
+model-correctness on hard items is more predictable, the oracle's complementarity stays
+out of reach regardless of what is added to the pool.
+
+### Superseded next step (now done)
+The 2026-08-22 update proposed running exactly this experiment against an oracle target of
+0.840. Executed: the reachable oracle on the live pool is 0.832, and the router captured
+none of the lift. The actionable direction is no longer "add models" but "fix the selector."
 
 ## Reproduce
 

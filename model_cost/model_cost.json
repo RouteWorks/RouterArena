@@ -370,5 +370,13 @@
   "anthropic/claude-sonnet-4.5": {
     "input_token_price_per_million": 3.0,
     "output_token_price_per_million": 15.0
+  },
+  "openai/gpt-4o-mini": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "google/gemini-2.5-flash-lite": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.4
   }
 }
