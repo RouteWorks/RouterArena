@@ -1,0 +1,1 @@
+{"pipeline_params":{"router_name":"cruq-single-gpt4omini","router_cls_name":"ExampleRouter","models":["openai/gpt-4o-mini"]}}

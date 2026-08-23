@@ -257,3 +257,34 @@ scorable subset deepseek is already a near-best generalist, so selector work her
 diminishing returns. Making real leaderboard progress needs the **official multi-scorer
 evaluator** run over the full set — which OOMs the dev machine, so it is the natural first
 use of an off-laptop (k8s) run. That, not more selector tuning, is the next lever.
+
+## Update (2026-08-23c): official evaluator on k8s — and why local official numbers are NOT trusted
+
+Built the official RouterArena evaluator as an off-laptop job (`deploy/routerarena-eval/`:
+Dockerfile + summarize + k8s Job). The official `llm_evaluation/run.py` crashes on macOS
+(multiprocessing / code-sandbox `resource_tracker` leak) but runs on Linux; the container/Job
+completes. A k8s Job in the `cruq` namespace succeeded end-to-end. So far so good.
+
+**But the local reproduction does not faithfully match RouterArena's official scoring, and this
+was caught by validating against a known reference.** Scoring the current #1 leaderboard router
+(`Paix2-router.json`, official 79.69% on full) through this harness gives **0.475 on sub_10**.
+The cause: the sub_10 prediction files' `global index` keys do not all match the evaluator's
+full-arrow `all_data`, so `_get_ground_truth` silently returns `None` and entire dataset families
+(AsDiv, FinQA, QANTA, WMT19, SuperGLUE, ...) score **0.000 for EVERY router**, including Paix2.
+`math_metric` scores those answers correctly in isolation; the failure is data plumbing, not the
+scorer. (Also learned along the way: the double-brace `\boxed{{}}` prompt is RouterArena's OWN
+canonical prompt from its eval config, not our bug.)
+
+**Consequences / what to trust:**
+- The "true official" per-model / oracle / domain-ceiling numbers computed locally are
+  **contaminated** and are discarded. Do not cite them.
+- The lightweight boxed-match grader remains a fair proxy for the ~590 MCQ items, and the
+  domain-router result on that metric (best arena-S 0.7082, cost-aware) stands.
+- The ONLY trustworthy leaderboard-comparable number is RouterArena's own `/evaluate` PR
+  workflow (their infra scores the submission correctly). A test submission is the next step
+  for a real number; local harness hardening (fix the sub_10↔full global-index join) is the
+  alternative if we want to iterate off-leaderboard.
+
+Method note: validating a new measurement harness against a known-good reference (here, the #1
+router's public score) before trusting its outputs is the check that prevented reporting
+contaminated numbers as truth.

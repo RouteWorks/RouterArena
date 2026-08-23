@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: routerarena-eval-gemini
+  namespace: cruq
+spec:
+  backoffLimit: 1
+  ttlSecondsAfterFinished: 3600
+  template:
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: dockerhub-secret
+      containers:
+        - name: eval
+          image: talentreviewai/routerarena-eval:v1
+          imagePullPolicy: Always
+          env:
+            - name: ROUTER
+              value: "cruq-gemini25fl"
+            - name: SPLIT
+              value: "sub_10"
+          resources:
+            requests: { memory: "2Gi", cpu: "1" }
+            limits: { memory: "6Gi", cpu: "4" }
