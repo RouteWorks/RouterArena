@@ -162,6 +162,66 @@ def build(ra, per_domain):
                             "prompt": _mcq(row["question"], row["choices"]), "gold": LETTERS[int(row["answer"])]},
             n0 + per_domain)
 
+    # --- widened coverage: previously-uncovered sub_10 domains (2026-08-24) ---
+    SHORT_INSTR = ("\n\nProvide the single best short answer (a name/entity/word) in "
+                   "\\boxed{X}. Keep the explanation within 2 sentences.")
+
+    # trivia (-> OpenTDB / QANTA quiz-bowl): short entity answers
+    cnt = 0
+    ds = load_dataset("mandarjoshi/trivia_qa", "rc.nocontext", split="validation", streaming=True)
+    for row in ds:
+        if cnt >= per_domain:
+            break
+        ans = (row.get("answer") or {}).get("value")
+        q = row.get("question")
+        if not ans or not q:
+            continue
+        if add(out, seen, ra, {"_q": q, "source": "TriviaQA", "domain": "trivia",
+                               "prompt": q + SHORT_INSTR, "gold": ans}, 10**9):
+            cnt += 1
+
+    # science_qa (-> OpenTDB Science / GeoBench): SciQ 4-option MCQ
+    cnt = 0
+    ds = load_dataset("allenai/sciq", split="train", streaming=True)
+    for i, row in enumerate(ds):
+        if cnt >= per_domain:
+            break
+        opts = [row["correct_answer"], row["distractor1"], row["distractor2"], row["distractor3"]]
+        # deterministic rotation so the answer is not always A (index by running count)
+        k = cnt % 4
+        opts = opts[-k:] + opts[:-k] if k else opts
+        gold = LETTERS[opts.index(row["correct_answer"])]
+        if add(out, seen, ra, {"_q": row["question"], "source": "SciQ", "domain": "science_qa",
+                               "prompt": _mcq(row["question"], opts), "gold": gold}, 10**9):
+            cnt += 1
+
+    # commonsense (-> SocialiQA / Ethics): CommonsenseQA MCQ
+    cnt = 0
+    ds = load_dataset("tau/commonsense_qa", split="validation", streaming=True)
+    for row in ds:
+        if cnt >= per_domain:
+            break
+        labels, texts = row["choices"]["label"], row["choices"]["text"]
+        gold = row.get("answerKey")
+        if gold not in labels:
+            continue
+        if add(out, seen, ra, {"_q": row["question"], "source": "CommonsenseQA", "domain": "commonsense",
+                               "prompt": _mcq(row["question"], texts), "gold": LETTERS[labels.index(gold)]}, 10**9):
+            cnt += 1
+
+    # word_sense (-> SuperGLUE-Wic): does a word share meaning across two sentences?
+    cnt = 0
+    ds = load_dataset("aps/super_glue", "wic", split="train", streaming=True)
+    for row in ds:
+        if cnt >= per_domain:
+            break
+        q = (f"Does the word \"{row['word']}\" have the same meaning in these two sentences?\n"
+             f"1) {row['sentence1']}\n2) {row['sentence2']}")
+        gold = "A" if row.get("label") == 1 else "B"  # 1 = same
+        if add(out, seen, ra, {"_q": q, "source": "SuperGLUE-Wic", "domain": "word_sense",
+                               "prompt": _mcq(q, ["yes, same meaning", "no, different meaning"]), "gold": gold}, 10**9):
+            cnt += 1
+
     return out
 
 

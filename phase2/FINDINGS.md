@@ -346,3 +346,36 @@ trivia, chess, music, ethics, SuperGLUE) are absent from the 19-domain corpus an
 misrouted, (3) per-domain best-model transfer noise. Closing the gap needs broader domain
 coverage in the corpus + a better classifier, not a different routing policy (both policies
 tested land at/below the best single model).
+
+## Update (2026-08-24b): widening corpus coverage did NOT help — transfer is the real cap
+
+Widened the corpus from 19 to 23 domains (`phase2/build_corpus_domains.py` now also builds
+`trivia` (TriviaQA), `science_qa` (SciQ), `commonsense` (CommonsenseQA), `word_sense`
+(SuperGLUE-Wic) — the largest sourceable, boxed-match-labelable sub_10 domains, ~158 OpenTDB/
+QANTA trivia items among them). Labeled the 160 new items x 5 models, retrained the classifier
++ table, rebuilt and re-scored the router under v3.
+
+**Result: arena-S 0.7325 — slightly WORSE than the 19-domain router's 0.7372.** Widening
+coverage regressed. Diagnosis: the new `trivia` domain routes to deepseek, because on the
+external trivia set (TriviaQA) deepseek is the per-domain best; but sub_10's actual trivia
+(OpenTDB) is better and far more cheaply served by qwen. The external per-domain best-model
+does not match RouterArena's per-domain best-model **even within the same nominal domain**,
+because the specific dataset/distribution differs (TriviaQA vs OpenTDB, SciQ vs OpenTDB-Science,
+CommonsenseQA vs SocialiQA). This is transfer failure, and it is a direct consequence of the
+"no training on RouterArena data" rule.
+
+**Conclusion for the domain-routing line of attack.** Across every variant tried — lightweight
+vs true metric, 19 vs 23 domains, cost-aware vs acc-max — the domain router lands at
+**arena-S ~0.737, tied with the best single model**, and never approaches the 0.778 per-dataset
+ceiling (let alone the 0.842 oracle). Adding coverage did not move it; the cap is not coverage
+but transfer: you cannot learn RouterArena's per-dataset model preferences from external data
+because even same-named domains differ in distribution. The 19-domain cost-aware router is kept
+as canonical (`cruq-domain-router.json`, acc 0.740 / cost $0.094 / arena-S 0.737: best-single
+accuracy at 40% of the cost — a real efficiency win, not a ceiling-capturing one).
+
+The honest state of the RouterArena effort: pool is not the bottleneck (oracle 0.85); the
+selector is, and every selector we can build under the no-train rule (lexical, per-model-P,
+calibrated, domain) tops out at best-single arena-S. Capturing the pool's complementarity would
+require per-query/per-dataset model-preference signal that the rules forbid learning — or an
+online signal (a cheap first-pass probe / self-consistency) not yet built. That, not more pool
+or corpus work, is the only remaining lever.
