@@ -417,3 +417,45 @@ signal: sample the single cheapest model (qwen) K times at temperature>0 and use
 agreement as the confidence — qwen x3 ($0.09) is cheaper than qwen+coder ($0.22). Requires
 re-running qwen K times on the split (live API), so it is spend-gated. If self-consistency is
 as predictive as cross-model agreement, it would lift the honest arena-S by cutting probe cost.
+
+## Update (2026-08-24d): self-consistency probe — the best router (acc 0.760, arena-S 0.746)
+
+Ran the spend-gated self-consistency experiment (`phase2/sample_qwen_sc.py` samples qwen K=5x
+at temp 0.7 on sub_10, 4045 calls, no cap hit; `phase2/analyze_sc.py` builds the cascade).
+Signal: fraction of the 5 qwen samples agreeing with the majority boxed answer; keep qwen's
+majority vote when consistency >= tau, else escalate to deepseek.
+
+**The self-consistency signal is very clean** (majority-correct by agreement band):
+
+| qwen self-consistency | queries | majority correct |
+|---|---|---|
+| 5/5 agree (=1.0) | 558 | 0.84 |
+| split (0.6-0.99) | 131 | 0.40 |
+| highly split (<0.6) | 82 | 0.29 |
+
+Unanimous agreement -> 84% correct; a split -> ~30%. Sweeping tau, the best operating point is
+tau=0.8 (keep 81%, escalate 19%). Scored under v3:
+
+| Router (sub_10) | Acc (v3) | Arena-S (honest) |
+|---|---|---|
+| best single (deepseek) | 0.749 | 0.736 |
+| domain router (cost-aware) | 0.740 | 0.738 |
+| cross-model cascade (qwen+coder) | 0.755 | 0.740 |
+| **self-consistency (qwen x5, tau=0.8)** | **0.760** | **0.746** |
+| domain-routing ceiling | 0.790 | 0.778 |
+| per-query oracle | 0.853 | 0.842 |
+
+**Self-consistency is the best router on BOTH accuracy and arena-S.** Two reasons it beats the
+cross-model cascade: (1) the majority VOTE of 5 qwen samples is more accurate than any single
+run (kept-query answers score higher than single-run qwen 0.729), and (2) a single cheap model
+sampled K times is a cleaner, cheaper confidence signal than two different models. Honest
+arena-S uses the full 5-probe + escalation cost ($0.237/1k); v3's recomputed cost undercounts a
+cascade, so its 0.748 is optimistic.
+
+**This closes the arc.** No prompt-based selector (lexical, per-model-P, calibrated, domain,
+even after widening coverage) could beat the best single model, because per-query difficulty is
+near-unpredictable from the prompt text. An INFERENCE-TIME signal breaks that ceiling: cross-model
+agreement first (0.755), and self-consistency best (0.760 acc / 0.746 arena-S). The pool's
+complementarity (oracle 0.842) is reachable only through such a signal, and the remaining gap is
+the escalation target's own accuracy and the probe-cost tax on arena-S. Cheaper/stronger probes
+(lower K, or a mid-tier verifier) are the tuning frontier from here.
