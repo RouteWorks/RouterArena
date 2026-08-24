@@ -320,3 +320,29 @@ missing-config bug) and also come out somewhat ABOVE the lightweight-grader prox
 **+5.4 pts arena-S** on the true metric (best single 0.736 → ceiling 0.778), with the oracle a
 further +6.4 above that. The trustworthy iteration metric now exists; next is to build the
 domain router's full prediction file and score it under v3, then push toward the ceiling.
+
+## Update (2026-08-24): domain router scored on the FIXED (v3) official metric
+
+Built the domain router's prediction file (`phase2/build_domain_prediction.py`: train the
+query->domain classifier + per-domain table on the external corpus, route each sub_10 query
+to the selected model, emit that model's cached output) and scored it with the fixed v3
+evaluator.
+
+| Router (sub_10, official v3) | Acc | Cost/1k | Arena-S |
+|---|---|---|---|
+| best single (deepseek / qwen) | 0.749 / 0.729 | $0.238 / $0.030 | 0.736 |
+| **domain router (cost-aware)** | **0.740** | **$0.094** | **0.737** |
+| domain router (acc-max) | 0.733 | $0.213 | 0.723 |
+| domain-routing ceiling | 0.790 | $0.141 | 0.778 |
+| per-query oracle | 0.853 | $0.067 | 0.842 |
+
+The cost-aware domain router lands at **arena-S 0.737 — a marginal win over the best single
+model, at deepseek-level accuracy for 40% of the cost** (routes 528/809 to cheap qwen, 257 to
+deepseek, 24 to coder). The acc-max table is WORSE (0.723): per-domain top-1 estimated on the
+corpus carries transfer noise onto sub_10, and it costs more. The router does NOT reach the
+0.778 ceiling; the cap is the same on the true metric as on the lightweight proxy: (1) the
+domain classifier is ~76% accurate, (2) ~40% of sub_10 domains (code, translation, reading,
+trivia, chess, music, ethics, SuperGLUE) are absent from the 19-domain corpus and get
+misrouted, (3) per-domain best-model transfer noise. Closing the gap needs broader domain
+coverage in the corpus + a better classifier, not a different routing policy (both policies
+tested land at/below the best single model).
