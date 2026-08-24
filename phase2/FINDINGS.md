@@ -379,3 +379,41 @@ calibrated, domain) tops out at best-single arena-S. Capturing the pool's comple
 require per-query/per-dataset model-preference signal that the rules forbid learning — or an
 online signal (a cheap first-pass probe / self-consistency) not yet built. That, not more pool
 or corpus work, is the only remaining lever.
+
+## Update (2026-08-24c): online-probe (cascade) router — first to beat best-single accuracy
+
+Built the inference-time-signal router the previous conclusion pointed to
+(`phase2/online_probe.py` measures configs; `phase2/build_probe_prediction.py` emits it).
+Mechanism: probe each query with two cheap models; if their boxed answers AGREE, keep the
+cheap answer (easy query); if they DISAGREE (uncertainty), escalate to the strong model. This
+uses no RouterArena data — the signal is model agreement at inference time — so it is legal.
+
+**The agreement signal is genuinely predictive: P(correct | qwen and coder agree) = 0.87**, vs a
+~0.73 base rate. Best config (probe qwen+coder → qwen on agree, else escalate to deepseek):
+
+| Router (sub_10, v3-official acc) | Acc | Cost/1k | Arena-S |
+|---|---|---|---|
+| best single (deepseek) | 0.749 | $0.238 | 0.736 |
+| domain router (cost-aware) | 0.740 | $0.094 | 0.737 |
+| **online-probe (qwen+coder cascade)** | **0.755** | $0.262* | **0.741*** |
+| domain-routing ceiling | 0.790 | $0.141 | 0.778 |
+| per-query oracle | 0.853 | $0.067 | 0.842 |
+
+`*` honest cascade cost (both probes + escalations), computed by online_probe.py. NOTE: the
+RouterArena single-model-per-row prediction format bills only the FINAL model at its own
+price, so v3's recomputed cost ($0.152) understates a cascade and gives an optimistic
+arena-S (0.7467). The honest self-assessment uses the summed probe+escalation cost.
+
+**This is the first router to EXCEED the best single model's accuracy** (0.749 -> 0.755): the
+inference-time agreement signal captures complementarity that no prompt-based selector (lexical,
+per-model-P, calibrated, domain) could — all of those topped out at best-single. It agrees on
+68% of queries (kept cheap, 87% correct) and escalates 32% to deepseek. Arena-S improves modestly
+(0.741 honest) because the two always-on probes add cost; the accuracy gain is the real signal
+that this architecture reaches into the pool's complementarity.
+
+### Next lever (spend-gated): self-consistency probe
+The probe cost is the drag on arena-S (two always-on cheap calls). Cheaper, possibly stronger
+signal: sample the single cheapest model (qwen) K times at temperature>0 and use answer
+agreement as the confidence — qwen x3 ($0.09) is cheaper than qwen+coder ($0.22). Requires
+re-running qwen K times on the split (live API), so it is spend-gated. If self-consistency is
+as predictive as cross-model agreement, it would lift the honest arena-S by cutting probe cost.
