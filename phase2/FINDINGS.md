@@ -478,3 +478,34 @@ $0.151/1k (36% cheaper than K=5) for near-identical quality. Full standings (hon
 best single 0.736 < domain 0.738 < cross-model cascade 0.740 < SC K=5 0.746 < SC K=4 0.7474.
 The remaining gap to the domain ceiling (0.778) / oracle (0.842) is the escalation model's own
 accuracy (deepseek 0.749) plus the residual probe tax; a stronger escalation tier is the next lever.
+
+## Update (2026-08-25): stronger escalation model — lifts accuracy, not arena-S
+
+Deepseek-flash scores only 0.476 on the 130 escalated (hard) queries, so stronger escalation
+tiers were tested (`phase2/run_escalation.py` runs candidates on ONLY those 130 queries;
+`build_esc_prediction.py` rebuilds the router; `compute_honest_esc.py` scores honestly). All
+scored under v3 (all 771 rows — after a bug where the image's `universal_model_names.py`
+predated the new slugs and silently SKIPPED the escalated rows, inflating a fake 0.816; caught
+by noticing "641 scored / escalated n=0" and rebuilding the image):
+
+| Escalation model | Acc (v3) | Cost/1k | Arena-S |
+|---|---|---|---|
+| **deepseek-v4-flash (current)** | 0.759 | $0.192 | **0.7474** |
+| deepseek-v4-pro | 0.770 | $0.474 | 0.7454 |
+| claude-sonnet-4.5 | 0.771 | $0.702 | 0.7399 |
+| gemini-2.5-pro | 0.750 | $4.257 | 0.6823 |
+
+**A stronger escalation model raises accuracy (+1.2 pts to 0.771) but LOWERS arena-S.** Even
+though escalation touches only 17% of queries, the strong models emit long reasoning
+(2200-2400 output tokens; gemini-2.5-pro at \$10/M output costs \$4.26/1k) and the cost
+outweighs the accuracy gain on the cost-weighted metric. gemini also under-scores (0.750)
+because it answers verbosely without a reliable `\boxed{}` for the extractor. deepseek-flash
+stays the best arena-S escalation; deepseek-v4-pro is the best if raw ACCURACY is the goal
+(0.770 at modest cost, arena-S 0.7454 ~= flash).
+
+**Standing (honest arena-S), final:** best single 0.736 < domain 0.738 < cross-model cascade
+0.740 < SC K=5 0.746 < **SC K=4 (deepseek-flash escalation) 0.7474** = the best. The remaining
+gap to oracle (0.842) is now intrinsic: the escalation tier that would raise accuracy costs more
+than the arena-S metric rewards. To go further one would need a strong model that is ALSO cheap
+and concise on hard queries (none of the tested tiers is), or a metric that weights accuracy
+more heavily than RouterArena's beta=0.1.

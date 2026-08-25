@@ -194,6 +194,8 @@ class ModelInference:
             "openai/gpt-4o-mini": "openrouter",
             "google/gemini-2.5-flash-lite": "openrouter",
             "anthropic/claude-sonnet-4.5": "openrouter",
+            "deepseek/deepseek-v4-pro": "openrouter",
+            "google/gemini-2.5-pro": "openrouter",
             "qwen/qwen3-235b-a22b-2507": "openrouter",
             "qwen/qwen3-next-80b-a3b-instruct": "openrouter",
             "Qwen/Qwen3-Coder-Next": "openrouter",
