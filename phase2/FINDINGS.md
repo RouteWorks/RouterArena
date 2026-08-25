@@ -459,3 +459,22 @@ agreement first (0.755), and self-consistency best (0.760 acc / 0.746 arena-S). 
 complementarity (oracle 0.842) is reachable only through such a signal, and the remaining gap is
 the escalation target's own accuracy and the probe-cost tax on arena-S. Cheaper/stronger probes
 (lower K, or a mid-tier verifier) are the tuning frontier from here.
+
+## Update (2026-08-25): lower K cuts probe cost — K=4 is the new best (arena-S 0.7474)
+
+The K=5 self-consistency probe's cost was the drag on arena-S. Since all 5 samples were
+cached, smaller K was tested for free (`USE_K` in `analyze_sc.py`, first-K samples). v3 scored:
+
+| Config | Acc (v3) | Cost/1k | Arena-S (honest) |
+|---|---|---|---|
+| K=2, tau=0.6 | 0.753 | $0.151 | 0.7444 |
+| **K=4, tau=0.6** | **0.759** | $0.192 | **0.7474** |
+| K=5, tau=0.8 | 0.760 | $0.237 | 0.7460 |
+
+**Dropping K from 5 to 4 IMPROVED honest arena-S** (0.7460 -> 0.7474): the fifth sample barely
+moved accuracy (0.7603 -> 0.7590) but added 23% probe cost. K=4/tau=0.6 is now the canonical
+self-consistency router (`cruq-sc-router.json`). K=2 is the efficiency pick — arena-S 0.7444 at
+$0.151/1k (36% cheaper than K=5) for near-identical quality. Full standings (honest arena-S):
+best single 0.736 < domain 0.738 < cross-model cascade 0.740 < SC K=5 0.746 < SC K=4 0.7474.
+The remaining gap to the domain ceiling (0.778) / oracle (0.842) is the escalation model's own
+accuracy (deepseek 0.749) plus the residual probe tax; a stronger escalation tier is the next lever.

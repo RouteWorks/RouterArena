@@ -28,10 +28,17 @@ def correct(gi, pb):
     if len(g) == 1: return p == g or pl == g
     return p == g or g in p
 
-# gather samples: gi -> list of (raw_boxed, norm_boxed, in_tok, out_tok)
-samp = collections.defaultdict(list)
+# gather samples: gi -> list of (raw_boxed, norm_boxed, in_tok, out_tok). Use only the
+# first K samples per query (K = env USE_K, default all) so we can retest smaller probes.
+import os
+USE_K = int(os.getenv("USE_K", "99"))
+raw = collections.defaultdict(list)
 for line in open(SC):
-    r = json.loads(line); samp[r["gi"]].append((str(r["boxed"]).strip(), norm(r["boxed"]), r["in"], r["out"]))
+    r = json.loads(line); raw[r["gi"]].append((r["s"], str(r["boxed"]).strip(), norm(r["boxed"]), r["in"], r["out"]))
+samp = collections.defaultdict(list)
+for g, rows in raw.items():
+    for s, rb, nb, i, o in sorted(rows)[:USE_K]:
+        samp[g].append((rb, nb, i, o))
 
 # per-model v3 accuracy + cost (deepseek escalation; qwen for reference)
 def load_scored(fn):
