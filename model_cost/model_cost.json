@@ -362,5 +362,9 @@
   "xiaomi/mimo-v2.5": {
     "input_token_price_per_million": 0.14,
     "output_token_price_per_million": 0.28
+  },
+  "google/gemma-4-31b-it": {
+    "input_token_price_per_million": 0.08,
+    "output_token_price_per_million": 0.35
   }
 }

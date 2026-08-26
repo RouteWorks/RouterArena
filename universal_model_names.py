@@ -133,6 +133,8 @@ universal_names = [
     "agnes-2.0-flash",
     "THUDM/GLM-4-9B-0414",
     "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+    # KT-ModelRouter pool additions
+    "google/gemma-4-31b-it",
 ]
 
 
@@ -150,6 +152,8 @@ mapping: dict[str, str] = {
     "openai/gpt-5-mini": "gpt-5-mini",
     "alibaba/qwen3-235b-a22b-instruct-2507": "qwen3-235b-a22b-instruct-2507",
     "alibaba/qwen3-30b-a3b-instruct-2507": "qwen3-30b-a3b-instruct-2507",
+    # KT-ModelRouter: provider-prefixed form used in our predictions file
+    "google/gemini-3-flash-preview": "gemini-3-flash-preview",
 }
 
 
