@@ -83,8 +83,13 @@ for e in data:
         # self-consistency can't apply, so keep qwen's actual answer rather than pay to
         # escalate. Cost = the K qwen probe calls, priced at qwen (honest).
         freeform += 1
-        gr = {"generated_answer": qwen_text.get(gi, ""), "success": True,
-              "token_usage": qtu, "model_used": QWEN, "provider": "openrouter", "error": None}
+        ans = qwen_text.get(gi, "")
+        # an empty answer with success=True fails the submission validator; mark the rare
+        # empty free-form response as an honest failure (scores 0) instead.
+        ok = bool(ans.strip())
+        gr = {"generated_answer": ans, "success": ok,
+              "token_usage": qtu, "model_used": QWEN, "provider": "openrouter",
+              "error": None if ok else "empty qwen response"}
         out.append({"global index": gi, "prompt": prompt, "prediction": QWEN,
                     "generated_result": gr, "cost": None, "accuracy": None, "for_optimality": False})
         continue
