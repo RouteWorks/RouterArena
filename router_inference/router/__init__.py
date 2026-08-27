@@ -12,6 +12,7 @@ from router_inference.router.llm_router import LLMRouter
 from router_inference.router.lynkr_router import LynkrRouter
 from router_inference.router.cruq_router import CruqRouter
 from router_inference.router.cruq_learned_router import CruqLearnedRouter
+from router_inference.router.cruq_sc_router import CruqSCRouter
 
 __all__ = [
     "BaseRouter",
@@ -23,4 +24,5 @@ __all__ = [
     "LynkrRouter",
     "CruqRouter",
     "CruqLearnedRouter",
+    "CruqSCRouter",
 ]

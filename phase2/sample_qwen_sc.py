@@ -24,7 +24,8 @@ def boxed(text):
     return ms[-1].strip() if ms else ""
 
 def sample_once(prompt, temp):
-    client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=os.getenv("OPENROUTER_API_KEY"))
+    client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=os.getenv("OPENROUTER_API_KEY"),
+                    default_headers={"HTTP-Referer": "https://cruq.ai/", "X-Title": "Cruq AI"})
     for a in range(5):
         try:
             r = client.chat.completions.create(model=MODEL, messages=[{"role": "user", "content": prompt}], temperature=temp)
