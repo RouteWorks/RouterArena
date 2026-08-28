@@ -10,7 +10,7 @@ import os
 import json
 import time
 import logging
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from openai import OpenAI
 import tiktoken
 
@@ -340,8 +340,13 @@ class ModelInference:
             api_key=openrouter_api_key,
         )
 
+        # OpenRouter requires vendor-prefixed slugs; some universal model
+        # names omit the prefix.
+        openrouter_slug = {
+            "gemini-3-flash-preview": "google/gemini-3-flash-preview",
+        }.get(model_name, model_name)
         response = client.chat.completions.create(
-            model=model_name, messages=[{"role": "user", "content": prompt}]
+            model=openrouter_slug, messages=[{"role": "user", "content": prompt}]
         )
 
         usage = getattr(response, "usage", None)
@@ -405,7 +410,7 @@ class ModelInference:
         self,
         provider: str,
         base_url: str,
-        api_key: str,
+        api_key: Optional[str],
         model_id: str,
         display_name: str,
         prompt: str,
@@ -413,7 +418,7 @@ class ModelInference:
         import openai
 
         client = openai.OpenAI(api_key=api_key, base_url=base_url, timeout=3600)
-        request_kwargs = {
+        request_kwargs: Dict[str, Any] = {
             "model": model_id,
             "messages": [{"role": "user", "content": prompt}],
         }

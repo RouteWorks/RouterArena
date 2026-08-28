@@ -332,8 +332,8 @@
     "output_token_price_per_million": 1.5
   },
   "MiniMax-M3": {
-    "input_token_price_per_million": 0.6,
-    "output_token_price_per_million": 2.4
+    "input_token_price_per_million": 0.60,
+    "output_token_price_per_million": 2.40
   },
   "agnes-2.0-flash": {
     "input_token_price_per_million": 0.03,

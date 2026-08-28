@@ -28,8 +28,12 @@ telemetry: https://github.com/ramkrishna2910/lemonade-router-swebench-mini
 
 import re
 from collections import Counter
+from typing import TYPE_CHECKING, Optional
 
 from router_inference.router.base_router import BaseRouter
+
+if TYPE_CHECKING:
+    from llm_inference.model_inference import ModelInference
 
 BOXED = re.compile(r"\\boxed\{([^{}]*)\}")
 
@@ -65,7 +69,7 @@ class LemonadeCascadeRouter(BaseRouter):
 
     def __init__(self, router_name: str):
         super().__init__(router_name)
-        self._inference = None
+        self._inference: Optional["ModelInference"] = None
 
     def _infer(self, model, query):
         if self._inference is None:
