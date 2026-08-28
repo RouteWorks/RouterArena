@@ -24,6 +24,10 @@ class ModelInference:
         """Initialize the model inference with API keys."""
         # Load API keys from environment
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
+        self.fireworks_api_key = os.getenv("FIREWORKS_API_KEY")
+        self.lemonade_base_url = os.getenv(
+            "LEMONADE_BASE_URL", "http://localhost:8000/api/v1"
+        )
         self.together_api_key = os.getenv("TOGETHER_API_KEY")
         self.anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
         self.google_api_key = os.getenv("GOOGLE_API_KEY")
@@ -67,6 +71,10 @@ class ModelInference:
             try:
                 if provider == "openai":
                     return self._call_openai(model_name, prompt)
+                elif provider == "fireworks":
+                    return self._call_fireworks(model_name, prompt)
+                elif provider == "lemonade":
+                    return self._call_lemonade(model_name, prompt)
                 elif provider == "together":
                     return self._call_together(model_name, prompt)
                 elif provider == "anthropic":
@@ -132,6 +140,16 @@ class ModelInference:
 
     def _get_provider(self, model_name: str) -> str:
         """Determine the API provider based on model name."""
+
+        if model_name.startswith("fireworks/"):
+            return "fireworks"
+        if model_name in ("deepseek/deepseek-v4-pro", "google/gemini-3.1-flash-lite",
+                          "z-ai/glm-4.7", "z-ai/glm-4.7-flash", "openai/gpt-oss-120b",
+                          "google/gemini-3-flash-preview"):
+            # served via OpenRouter in this fork
+            return "openrouter"
+        if model_name.startswith("lemonade/"):
+            return "lemonade"
 
         # Model to provider mapping - you can add more models here
         model_to_provider = {
@@ -381,6 +399,81 @@ class ModelInference:
             "model_used": model_name,
             "provider": "openai",
         }
+
+
+    def _call_openai_compatible(
+        self,
+        provider: str,
+        base_url: str,
+        api_key: str,
+        model_id: str,
+        display_name: str,
+        prompt: str,
+    ) -> Dict[str, Any]:
+        import openai
+
+        client = openai.OpenAI(api_key=api_key, base_url=base_url, timeout=3600)
+        request_kwargs = {"model": model_id,
+                          "messages": [{"role": "user", "content": prompt}]}
+        if provider == "lemonade":
+            # Reasoning-tuned local models otherwise spend the whole generation
+            # inside <think> and return content=None.
+            # 4096 bounds runaway generations without truncating long MCQ
+            # derivations; greedy decoding overrides any saved server-side
+            # sampling defaults so eval runs are deterministic.
+            request_kwargs["max_tokens"] = 4096
+            request_kwargs["temperature"] = 0.0
+            request_kwargs["extra_body"] = {
+                "chat_template_kwargs": {"enable_thinking": False}
+            }
+        response = client.chat.completions.create(**request_kwargs)
+        usage = getattr(response, "usage", None)
+        input_tokens = getattr(usage, "prompt_tokens", 0) if usage is not None else 0
+        completion_tokens = (
+            getattr(usage, "completion_tokens", 0) if usage is not None else 0
+        )
+        message = response.choices[0].message
+        content = message.content or getattr(message, "reasoning_content", None) or ""
+        return {
+            "response": content,
+            "success": bool(content),
+            "token_usage": {
+                "input_tokens": input_tokens,
+                "output_tokens": completion_tokens,
+                "total_tokens": input_tokens + completion_tokens,
+            },
+            "model_used": display_name,
+            "provider": provider,
+        }
+
+    def _call_fireworks(self, model_name: str, prompt: str) -> Dict[str, Any]:
+        """Fireworks AI (OpenAI-compatible). Names: fireworks/<model-id>."""
+        short = model_name.replace("fireworks/", "", 1)
+        model_id = (
+            short if short.startswith("accounts/") else f"accounts/fireworks/models/{short}"
+        )
+        return self._call_openai_compatible(
+            "fireworks",
+            "https://api.fireworks.ai/inference/v1",
+            self.fireworks_api_key,
+            model_id,
+            model_name,
+            prompt,
+        )
+
+    def _call_lemonade(self, model_name: str, prompt: str) -> Dict[str, Any]:
+        """Local Lemonade server (OpenAI-compatible). Names: lemonade/<model-id>.
+
+        Base URL from LEMONADE_BASE_URL (default http://localhost:8000/api/v1).
+        """
+        return self._call_openai_compatible(
+            "lemonade",
+            self.lemonade_base_url,
+            os.getenv("LEMONADE_API_KEY", "lemonade"),
+            model_name.replace("lemonade/", "", 1),
+            model_name,
+            prompt,
+        )
 
     def _call_together(self, model_name: str, prompt: str) -> Dict[str, Any]:
         """Call Together AI API."""

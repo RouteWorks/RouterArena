@@ -331,22 +331,6 @@
     "input_token_price_per_million": 0.4,
     "output_token_price_per_million": 1.5
   },
-  "MiniMax-M3": {
-    "input_token_price_per_million": 0.60,
-    "output_token_price_per_million": 2.40
-  },
-  "agnes-2.0-flash": {
-    "input_token_price_per_million": 0.03,
-    "output_token_price_per_million": 0.15
-  },
-  "THUDM/GLM-4-9B-0414": {
-    "input_token_price_per_million": 0.05,
-    "output_token_price_per_million": 0.61
-  },
-  "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
-    "input_token_price_per_million": 0.18,
-    "output_token_price_per_million": 0.85
-  },
   "grok-4.3": {
     "input_token_price_per_million": 1.25,
     "output_token_price_per_million": 2.5
@@ -355,12 +339,12 @@
     "input_token_price_per_million": 1.25,
     "output_token_price_per_million": 2.5
   },
-  "gpt-oss-20b": {
-    "input_token_price_per_million": 0.03,
-    "output_token_price_per_million": 0.13
+  "lemonade/Qwen3.8-27B-GGUF-UD-Q4_K_XL": {
+    "input_token_price_per_million": 0.01,
+    "output_token_price_per_million": 0.02
   },
-  "xiaomi/mimo-v2.5": {
-    "input_token_price_per_million": 0.14,
-    "output_token_price_per_million": 0.28
+  "lemonade/deepseek-v4-flash": {
+    "input_token_price_per_million": 0.02,
+    "output_token_price_per_million": 0.04
   }
 }
