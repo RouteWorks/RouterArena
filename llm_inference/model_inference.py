@@ -190,12 +190,6 @@ class ModelInference:
             "xiaomi/mimo-v2-flash": "openrouter",
             "xiaomi/mimo-v2-flash:free": "openrouter",
             "openai/gpt-oss-120b": "openrouter",
-            "openai/gpt-5-mini": "openrouter",
-            "openai/gpt-4o-mini": "openrouter",
-            "google/gemini-2.5-flash-lite": "openrouter",
-            "anthropic/claude-sonnet-4.5": "openrouter",
-            "deepseek/deepseek-v4-pro": "openrouter",
-            "google/gemini-2.5-pro": "openrouter",
             "qwen/qwen3-235b-a22b-2507": "openrouter",
             "qwen/qwen3-next-80b-a3b-instruct": "openrouter",
             "Qwen/Qwen3-Coder-Next": "openrouter",
@@ -325,13 +319,8 @@ class ModelInference:
         client = OpenAI(
             base_url="https://openrouter.ai/api/v1",
             api_key=openrouter_api_key,
-            default_headers={"HTTP-Referer": "https://cruq.ai/", "X-Title": "Cruq AI"},
         )
 
-        # Note: do NOT sort providers by throughput here. For deepseek-v4-flash the
-        # throughput-sorted provider (Alibaba) emits ~7x longer reasoning than the default
-        # (DeepInfra), which both slows escalation and inflates cost. The default provider
-        # matches the concise outputs of the validated sub_10 deepseek answers.
         response = client.chat.completions.create(
             model=model_name, messages=[{"role": "user", "content": prompt}]
         )

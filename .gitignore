@@ -41,6 +41,3 @@ tools/addlicense
 
 # Except for this one specific file
 !README.md
-
-# cruq Phase 2 data artifacts (regenerable)
-phase2/data/

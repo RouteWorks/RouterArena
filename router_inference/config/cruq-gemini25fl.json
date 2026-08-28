@@ -1,7 +1,0 @@
-{
-  "pipeline_params": {
-    "router_name": "cruq-gemini25fl",
-    "router_cls_name": "ExampleRouter",
-    "models": ["google/gemini-2.5-flash-lite"]
-  }
-}
