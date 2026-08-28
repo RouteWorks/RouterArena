@@ -57,7 +57,7 @@ def _token_f1(a, b):
     return 2 * inter / (len(ta) + len(tb)) if inter else 0.0
 
 
-class LemonadeCascadeRouter(BaseRouter):
+class LemonadeRouter(BaseRouter):
     """Live implementation: queries the two lemonade-served local models,
     then applies the frozen v5.1 vote/corroboration policy above. Requires a
     running lemonade server (LEMONADE_BASE_URL) and an OPENROUTER_API_KEY for

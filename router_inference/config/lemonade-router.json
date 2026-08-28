@@ -1,7 +1,7 @@
 {
   "pipeline_params": {
-    "router_name": "lemonade-cascade",
-    "router_cls_name": "LemonadeCascadeRouter",
+    "router_name": "lemonade-router",
+    "router_cls_name": "LemonadeRouter",
     "models": [
       "lemonade/deepseek-v4-flash",
       "lemonade/Qwen3.8-27B-GGUF-UD-Q4_K_XL",
