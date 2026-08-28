@@ -370,5 +370,9 @@
   "lemonade/Qwen3.8-27B-GGUF-UD-Q4_K_XL": {
     "input_token_price_per_million": 0.01,
     "output_token_price_per_million": 0.02
+  },
+  "lemonade/LFM2.5-Embedding-350M": {
+    "input_token_price_per_million": 0.001,
+    "output_token_price_per_million": 0.001
   }
 }

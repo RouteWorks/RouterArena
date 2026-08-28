@@ -5,6 +5,7 @@
     "models": [
       "lemonade/deepseek-v4-flash",
       "lemonade/Qwen3.8-27B-GGUF-UD-Q4_K_XL",
+      "lemonade/LFM2.5-Embedding-350M",
       "gemini-3-flash-preview",
       "deepseek/deepseek-v4-pro"
     ]
