@@ -26,7 +26,6 @@ their public list prices. Full methodology, calibration data, and runtime
 telemetry: https://github.com/ramkrishna2910/lemonade-router-swebench-mini
 """
 
-import os
 import re
 from collections import Counter
 
@@ -38,6 +37,11 @@ BOXED = re.compile(r"\\boxed\{([^{}]*)\}")
 def _letter(text):
     m = BOXED.findall(text or "")
     return m[-1].strip().upper()[:1] if m else None
+
+
+def _extract_free(text):
+    m = BOXED.findall(text or "")
+    return m[-1].strip() if m else (text or "").strip()[-200:]
 
 
 def _token_f1(a, b):
@@ -94,9 +98,11 @@ class LemonadeCascadeRouter(BaseRouter):
                             return model
             return self.CLOUD_G3FP
 
-        # free-answer: keep local when the two local models corroborate
-        a1 = (r_ds4.get("response") or "").strip()
-        a2 = (r_qwen.get("response") or "").strip()
+        # free-answer: corroboration is judged on the extracted final answers
+        # (boxed content when present), never on whole responses — otherwise
+        # contradictory answers with similar phrasing would false-agree.
+        a1 = _extract_free(r_ds4.get("response"))
+        a2 = _extract_free(r_qwen.get("response"))
         if a1 and a2 and (a1 == a2 or _token_f1(a1, a2) >= 0.5):
             return self.LOCAL_DS4
         return self.CLOUD_G3FP

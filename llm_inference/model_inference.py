@@ -143,10 +143,11 @@ class ModelInference:
 
         if model_name.startswith("fireworks/"):
             return "fireworks"
-        if model_name in ("deepseek/deepseek-v4-pro", "google/gemini-3.1-flash-lite",
-                          "z-ai/glm-4.7", "z-ai/glm-4.7-flash", "openai/gpt-oss-120b",
-                          "google/gemini-3-flash-preview"):
-            # served via OpenRouter in this fork
+        if model_name in ("deepseek/deepseek-v4-pro", "google/gemini-3-flash-preview"):
+            return "openrouter"
+        if model_name == "gemini-3-flash-preview" and not os.getenv("GOOGLE_API_KEY"):
+            # Falls back to OpenRouter when no direct Google credential is
+            # configured; existing GOOGLE_API_KEY setups keep the direct path.
             return "openrouter"
         if model_name.startswith("lemonade/"):
             return "lemonade"
@@ -400,7 +401,6 @@ class ModelInference:
             "provider": "openai",
         }
 
-
     def _call_openai_compatible(
         self,
         provider: str,
@@ -413,8 +413,10 @@ class ModelInference:
         import openai
 
         client = openai.OpenAI(api_key=api_key, base_url=base_url, timeout=3600)
-        request_kwargs = {"model": model_id,
-                          "messages": [{"role": "user", "content": prompt}]}
+        request_kwargs = {
+            "model": model_id,
+            "messages": [{"role": "user", "content": prompt}],
+        }
         if provider == "lemonade":
             # Reasoning-tuned local models otherwise spend the whole generation
             # inside <think> and return content=None.
@@ -450,7 +452,9 @@ class ModelInference:
         """Fireworks AI (OpenAI-compatible). Names: fireworks/<model-id>."""
         short = model_name.replace("fireworks/", "", 1)
         model_id = (
-            short if short.startswith("accounts/") else f"accounts/fireworks/models/{short}"
+            short
+            if short.startswith("accounts/")
+            else f"accounts/fireworks/models/{short}"
         )
         return self._call_openai_compatible(
             "fireworks",
