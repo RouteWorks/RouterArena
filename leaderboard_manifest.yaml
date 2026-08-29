@@ -202,6 +202,15 @@ routers:
       github_url: "https://github.com/KT-A-Autonomous-Tech-Team/ModelRouter"
       type: "open-source"
 
+  - readme_name: "cruq-router"
+    website_name: "cruq-router"
+    prediction: "cruq-router"
+    category_key: "cruq-router"
+    flip_key: "cruq-router"
+    website:
+      affiliation: "@nabaruns"
+      github_url: "https://github.com/nabaruns"
+
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
   - readme_name: "MIRT-BERT"

@@ -52,22 +52,23 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 | 13 | [Hybrid Router]() | 👤&nbsp;[@mikemao27](https://github.com/mikemao27) | 72.08 | 71.38 | $0.04 | 89.87 | 94.19 | 92.81 | — | 96.67 |
 | 14 | [R2-Router](https://arxiv.org/abs/2602.02823/) | 🎓&nbsp;UCF | 71.60 | 71.23 | $0.06 | 24.51 | 48.70 | 99.85 | — | 45.71 |
 | 15 | [LLM Router](https://github.com/ypollak2/llm-router)&nbsp;[[PyPI]](https://pypi.org/project/llm-routing/) | 👤&nbsp;[@ypollak2](https://github.com/ypollak2) | 71.26 | 72.05 | $0.20 | 18.01 | 20.46 | 89.13 | — | 30.00 |
-| 16 | [chuzom-solo-v32]() | 👤&nbsp;[@ypollak2](https://github.com/ypollak2) | 70.61 | 70.59 | $0.10 | — | — | — | — | 100.00 |
-| 17 | [Azure-Model-Router](https://ai.azure.com/catalog/models/model-router)&nbsp;[[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼&nbsp;Microsoft | 70.42 | 72.94 | $0.73 | — | — | — | — | 71.43 |
-| 18 | [Auto Router]() | 👤&nbsp;[@cxf2015](https://github.com/cxf2015) | 70.05 | 70.17 | $0.12 | 37.58 | 40.02 | 86.04 | — | 49.52 |
-| 19 | [Lynkr]() | 👤&nbsp;[@vishalveerareddy123](https://github.com/vishalveerareddy123) | 67.65 | 68.41 | $0.29 | 10.97 | 16.08 | 84.48 | — | 92.38 |
-| 20 | [MIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[Code]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.89 | 66.88 | $0.15 | 3.44 | 19.62 | 78.18 | 27.03 | 61.19 |
-| 21 | [NIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[Code]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.12 | 66.34 | $0.21 | 3.83 | 14.04 | 77.88 | 10.42 | 49.29 |
-| 22 | [AsiaInfo-Router]() | 👤&nbsp;[@Uncle-LL](https://github.com/Uncle-LL) | 65.87 | 75.20 | $8.54 | — | — | — | — | 69.52 |
-| 23 | [GPT‑5](https://openai.com/index/introducing-gpt-5/) | 💼&nbsp;OpenAI | 64.32 | 73.96 | $10.02 | — | — | — | — | — |
-| 24 | [CARROT](https://arxiv.org/abs/2502.03261)&nbsp;[[Code]](https://github.com/somerstep/CARROT)&nbsp;[[HF]](https://huggingface.co/CARROT-LLM-Routing) | 🎓&nbsp;UMich | 63.87 | 67.21 | $2.06 | 2.68 | 6.77 | 78.63 | 1.50 | 89.05 |
-| 25 | [Chayan](https://huggingface.co/adaptive-classifier/chayan)&nbsp;[[HF]](https://huggingface.co/adaptive-classifier/chayan) | 🎓&nbsp;Adaptive&nbsp;Classifier | 63.83 | 64.89 | $0.56 | 43.03 | 43.75 | 88.74 | — | — |
-| 26 | [RouterBench‑MLP](https://arxiv.org/pdf/2403.12031)&nbsp;[[Code]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Martian | 57.56 | 61.62 | $4.83 | 13.39 | 24.45 | 83.32 | 90.91 | 80.00 |
-| 27 | [NotDiamond](https://www.notdiamond.ai/) | 💼&nbsp;NotDiamond | 57.29 | 60.83 | $4.10 | 1.55 | 2.14 | 76.81 | — | 55.91 |
-| 28 | [GraphRouter](https://arxiv.org/abs/2410.03834)&nbsp;[[Code]](https://github.com/ulab-uiuc/GraphRouter) | 🎓&nbsp;UIUC | 57.22 | 57.00 | $0.34 | 4.73 | 38.33 | 74.25 | 2.70 | 94.29 |
-| 29 | [RouterBench‑KNN](https://arxiv.org/pdf/2403.12031)&nbsp;[[Code]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Martian | 55.48 | 58.69 | $4.27 | 13.09 | 25.49 | 78.77 | 1.33 | 83.33 |
-| 30 | [RouteLLM](https://arxiv.org/abs/2406.18665)&nbsp;[[Code]](https://github.com/lm-sys/RouteLLM)&nbsp;[[HF]](https://huggingface.co/routellm) | 🎓&nbsp;Berkeley | 48.07 | 47.04 | $0.27 | 99.72 | 99.63 | 68.76 | 0.40 | 100.00 |
-| 31 | [RouterDC](https://arxiv.org/abs/2409.19886)&nbsp;[[Code]](https://github.com/shuhao02/RouterDC) | 🎓&nbsp;SUSTech | 33.75 | 32.01 | $0.07 | 39.84 | 73.00 | 49.05 | 10.75 | 85.24 |
+| 16 | [cruq-router]() | 👤&nbsp;[@nabaruns](https://github.com/nabaruns) | 70.77 | 71.35 | $0.18 | — | — | — | — | 81.67 |
+| 17 | [chuzom-solo-v32]() | 👤&nbsp;[@ypollak2](https://github.com/ypollak2) | 70.61 | 70.59 | $0.10 | — | — | — | — | 100.00 |
+| 18 | [Azure-Model-Router](https://ai.azure.com/catalog/models/model-router)&nbsp;[[Web]](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/model-router) | 💼&nbsp;Microsoft | 70.42 | 72.94 | $0.73 | — | — | — | — | 71.43 |
+| 19 | [Auto Router]() | 👤&nbsp;[@cxf2015](https://github.com/cxf2015) | 70.05 | 70.17 | $0.12 | 37.58 | 40.02 | 86.04 | — | 49.52 |
+| 20 | [Lynkr]() | 👤&nbsp;[@vishalveerareddy123](https://github.com/vishalveerareddy123) | 67.65 | 68.41 | $0.29 | 10.97 | 16.08 | 84.48 | — | 92.38 |
+| 21 | [MIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[Code]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.89 | 66.88 | $0.15 | 3.44 | 19.62 | 78.18 | 27.03 | 61.19 |
+| 22 | [NIRT‑BERT](https://arxiv.org/pdf/2506.01048)&nbsp;[[Code]](https://github.com/Mercidaiha/IRT-Router) | 🎓&nbsp;USTC | 66.12 | 66.34 | $0.21 | 3.83 | 14.04 | 77.88 | 10.42 | 49.29 |
+| 23 | [AsiaInfo-Router]() | 👤&nbsp;[@Uncle-LL](https://github.com/Uncle-LL) | 65.87 | 75.20 | $8.54 | — | — | — | — | 69.52 |
+| 24 | [GPT‑5](https://openai.com/index/introducing-gpt-5/) | 💼&nbsp;OpenAI | 64.32 | 73.96 | $10.02 | — | — | — | — | — |
+| 25 | [CARROT](https://arxiv.org/abs/2502.03261)&nbsp;[[Code]](https://github.com/somerstep/CARROT)&nbsp;[[HF]](https://huggingface.co/CARROT-LLM-Routing) | 🎓&nbsp;UMich | 63.87 | 67.21 | $2.06 | 2.68 | 6.77 | 78.63 | 1.50 | 89.05 |
+| 26 | [Chayan](https://huggingface.co/adaptive-classifier/chayan)&nbsp;[[HF]](https://huggingface.co/adaptive-classifier/chayan) | 🎓&nbsp;Adaptive&nbsp;Classifier | 63.83 | 64.89 | $0.56 | 43.03 | 43.75 | 88.74 | — | — |
+| 27 | [RouterBench‑MLP](https://arxiv.org/pdf/2403.12031)&nbsp;[[Code]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Martian | 57.56 | 61.62 | $4.83 | 13.39 | 24.45 | 83.32 | 90.91 | 80.00 |
+| 28 | [NotDiamond](https://www.notdiamond.ai/) | 💼&nbsp;NotDiamond | 57.29 | 60.83 | $4.10 | 1.55 | 2.14 | 76.81 | — | 55.91 |
+| 29 | [GraphRouter](https://arxiv.org/abs/2410.03834)&nbsp;[[Code]](https://github.com/ulab-uiuc/GraphRouter) | 🎓&nbsp;UIUC | 57.22 | 57.00 | $0.34 | 4.73 | 38.33 | 74.25 | 2.70 | 94.29 |
+| 30 | [RouterBench‑KNN](https://arxiv.org/pdf/2403.12031)&nbsp;[[Code]](https://github.com/withmartian/routerbench)&nbsp;[[HF]](https://huggingface.co/datasets/withmartian/routerbench) | 🎓&nbsp;Martian | 55.48 | 58.69 | $4.27 | 13.09 | 25.49 | 78.77 | 1.33 | 83.33 |
+| 31 | [RouteLLM](https://arxiv.org/abs/2406.18665)&nbsp;[[Code]](https://github.com/lm-sys/RouteLLM)&nbsp;[[HF]](https://huggingface.co/routellm) | 🎓&nbsp;Berkeley | 48.07 | 47.04 | $0.27 | 99.72 | 99.63 | 68.76 | 0.40 | 100.00 |
+| 32 | [RouterDC](https://arxiv.org/abs/2409.19886)&nbsp;[[Code]](https://github.com/shuhao02/RouterDC) | 🎓&nbsp;SUSTech | 33.75 | 32.01 | $0.07 | 39.84 | 73.00 | 49.05 | 10.75 | 85.24 |
 
 🎓 Open-source  💼 Closed-source 
 
