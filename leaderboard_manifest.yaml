@@ -192,6 +192,16 @@ routers:
       affiliation: "@Uncle-LL"
       github_url: "https://github.com/Uncle-LL"
 
+  - readme_name: "KT-ModelRouter"
+    website_name: "KT-ModelRouter"
+    prediction: "KT-ModelRouter"
+    category_key: "kt-modelrouter"
+    flip_key: "kt-modelrouter"
+    website:
+      affiliation: "@DusanBaek"
+      github_url: "https://github.com/KT-A-Autonomous-Tech-Team/ModelRouter"
+      type: "open-source"
+
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
   - readme_name: "MIRT-BERT"
