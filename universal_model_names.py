@@ -41,6 +41,9 @@ universal_names = [
     "gemini-2.5-flash",
     "gemini-2.5-pro",
     "google/gemini-3.1-flash-lite",
+    "google/gemini-2.5-flash-lite",
+    "google/gemini-2.5-pro",
+    "anthropic/claude-sonnet-4.5",
     "gemini-3-flash-preview",
     # Mistral models
     "mistral-medium",
