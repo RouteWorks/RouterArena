@@ -71,7 +71,7 @@ def _token_f1(a, b):
     return 2 * inter / (len(ta) + len(tb)) if inter else 0.0
 
 
-class LemonadeRouter(BaseRouter):
+class LemonadeLiquidRouter(BaseRouter):
     """Live implementation: queries the two lemonade-served local generators,
     then applies the frozen v5.2 vote/corroboration policy above (including
     the lemonade-served embedding veto). Requires a running lemonade server
