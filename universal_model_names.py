@@ -9,6 +9,9 @@ files in ./router_evaluation/llm_inference/outputs/
 """
 
 universal_names = [
+    "lemonade/deepseek-v4-flash",
+    "lemonade/Qwen3.8-27B-GGUF-UD-Q4_K_XL",
+    "lemonade/LFM2.5-Embedding-350M",
     "gpt-3.5-turbo",
     "gpt-3.5-turbo-1106",
     "gpt-4",
