@@ -8,6 +8,8 @@ This module contains the list of universal model names that correspond to
 files in ./router_evaluation/llm_inference/outputs/
 """
 
+from __future__ import annotations
+
 universal_names = [
     "gpt-3.5-turbo",
     "gpt-3.5-turbo-1106",
@@ -160,6 +162,72 @@ mapping: dict[str, str] = {
 }
 
 
+def canonical_key(model_name: str) -> str:
+    """Fold a model name to a key that ignores cosmetic spelling differences.
+
+    The registries in this repo were written by many hands and disagree on two
+    purely cosmetic points: letter case (``Qwen/Qwen3-Coder-Next`` vs
+    ``qwen/qwen3-coder-next``) and the vendor separator (``qwen_qwen3-coder``
+    vs ``qwen/qwen3-coder``). Both spellings name the same model, but an exact
+    dict lookup treats them as different models -- and a model that fails to
+    resolve cannot be priced. See issue #193.
+
+    Folding is deliberately conservative: it normalises case and the separator
+    and nothing else. It does NOT strip vendor prefixes, because ``vendor/foo``
+    and a bare ``foo`` are not reliably the same model and the explicit
+    ``mapping`` table below already records the cases where they are.
+    """
+
+    return model_name.strip().lower().replace("_", "/")
+
+
+def _build_canonical_index() -> tuple[dict[str, str], dict[str, list[str]]]:
+    """Map canonical_key -> universal name, plus any keys that are ambiguous.
+
+    Two different universal names that fold to the same key, or an alias whose
+    key shadows a universal name and points somewhere else, make the fold
+    ambiguous. That is a registry bug rather than a submission bug, so it is
+    reported (see ``tools/check_model_names.py``) rather than raised at import
+    time -- importing this module must never be the thing that breaks a run.
+    """
+
+    index: dict[str, str] = {}
+    collisions: dict[str, set[str]] = {}
+
+    def add(key: str, target: str) -> None:
+        if key in index and index[key] != target:
+            collisions.setdefault(key, {index[key]}).add(target)
+            return  # first writer wins, matching lookup precedence below
+        index[key] = target
+
+    for name in universal_names:
+        add(canonical_key(name), name)
+    for alias, target in mapping.items():
+        add(canonical_key(alias), target)
+
+    return index, {key: sorted(names) for key, names in collisions.items()}
+
+
+canonical_index: dict[str, str]
+canonical_collisions: dict[str, list[str]]
+canonical_index, canonical_collisions = _build_canonical_index()
+
+
+def resolve_universal_name(model_name: str) -> str | None:
+    """Resolve a model name to its universal name, or None if unknown.
+
+    Tries, in order: the name as written, the explicit ``mapping`` table, then
+    the canonical fold. Returning None (rather than the input unchanged) lets
+    callers decide whether an unresolvable name is fatal.
+    """
+
+    if model_name in universal_names:
+        return model_name
+    if model_name in mapping:
+        return mapping[model_name]
+    return canonical_index.get(canonical_key(model_name))
+
+
 class ModelNameManager:
     """
     Manager for model names.
@@ -172,28 +240,34 @@ class ModelNameManager:
         self.missing_models = set()
 
     def get_universal_name_non_static(self, model_name: str) -> str:
-        """Convert a model name to its universal equivalent."""
+        """Convert a model name to its universal equivalent.
 
-        if model_name in universal_names:
-            return model_name
-        elif model_name in mapping:
-            return mapping[model_name]
-        else:
+        Non-fatal by design: unknown names are recorded in ``missing_models``
+        and returned unchanged, so a caller can survey a whole run before
+        deciding. Callers that must not proceed on an unknown model should use
+        the static :meth:`get_universal_name`, or check ``missing_models``
+        afterwards. See ``tools/check_model_names.py``.
+        """
+
+        resolved = resolve_universal_name(model_name)
+        if resolved is None:
             self.missing_models.add(model_name)
-            # raise ValueError(f"Model name {model_name} not found in universal_names or mapping")
+            return model_name
 
-        return model_name
+        return resolved
 
     @staticmethod
     def get_universal_name(model_name: str) -> str:
-        """Convert a model name to its universal equivalent."""
+        """Convert a model name to its universal equivalent.
 
-        if model_name in universal_names:
-            return model_name
-        elif model_name in mapping:
-            return mapping[model_name]
-        else:
-            # self.missing_models.add(model_name)
+        Raises ``ValueError`` if the name cannot be resolved, so that an
+        unpriceable model fails loudly rather than being scored around.
+        """
+
+        resolved = resolve_universal_name(model_name)
+        if resolved is None:
             raise ValueError(
                 f"Model name {model_name} not found in universal_names or mapping"
             )
+
+        return resolved
