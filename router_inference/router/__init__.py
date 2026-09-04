@@ -22,3 +22,5 @@ __all__ = [
     "LynkrRouter",
     "CruqSCRouter",
 ]
+
+from router_inference.router.shunt_session_cascade import ShuntSessionCascade

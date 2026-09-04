@@ -1,0 +1,17 @@
+{
+  "pipeline_params": {
+    "router_name": "shunt",
+    "router_cls_name": "ShuntSessionCascade",
+    "models": [
+      "deepseek/deepseek-v4-flash",
+      "deepseek/deepseek-v4-pro"
+    ],
+    "default_model": "deepseek/deepseek-v4-flash"
+  },
+  "description": "Shunt (https://github.com/KookaS/shunt, open-source) routing every query through its shipped `knn_semantic_cascade` strategy over a menu of 2 models (deepseek/deepseek-v4-flash, deepseek/deepseek-v4-pro), seeded from a labeled QA-domain verified-outcome corpus (MMLU + GSM8K prompts, deterministic graders, no LLM judge) measured at real provider cost for the menu models. RouterArena's stateless single-turn regime gives Shunt no verified-outcome channel (no repo to re-test, no confirmation step), so its verified-failure ladder is inert; the routing signal is the semantic neighbourhood instead — a prompt whose neighbours lack evidence that the cheap rung (deepseek/deepseek-v4-flash) succeeds is escalated to the rung the corpus evidence supports. Provider routing uses the native DeepSeek API when no OpenRouter route is configured for a menu model.",
+  "affiliation": "@KookaS",
+  "github": "https://github.com/KookaS/shunt",
+  "homepage": "https://github.com/KookaS/shunt",
+  "contact": "https://github.com/KookaS/shunt/issues",
+  "open_source": true
+}
