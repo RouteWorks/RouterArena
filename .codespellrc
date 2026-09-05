@@ -1,0 +1,6 @@
+[codespell]
+# The bundled QA seed is data content (real prompt/question text), exactly the
+# reason this repo's pre-commit already excludes router_inference/predictions/
+# and llm_inference/datasets/ from codespell. Skip it here so the bundled seed
+# can ship verbatim without weakening the dictionary repo-wide.
+skip = router_inference/router/shunt_seed/*.json

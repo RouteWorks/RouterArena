@@ -12,27 +12,61 @@ so Shunt's verified-failure escalation ladder is inert. With the default
 cells by default, ``swebench`` SWE-bench cells as an option); with
 ``session_cascade`` it reduces to the pool's cheapest live model.
 
+Reproducibility: this module runs against Shunt pinned at ``SHUNT_PIN``
+(installed from git — Shunt is not on PyPI). When the seeded ``qacalib`` corpus
+is shipped next to this file under ``router_inference/router/shunt_seed/`` (the
+PR bundles it), the engine reads the seed from THERE — so a clean checkout of
+this repo alone can rebuild the index and regenerate identical predictions,
+with no env vars and no other checkout. Without the bundled directory the
+module falls back to the env-resolved prior root (``SHUNT_ARENA_BENCH_ROOT``,
+else the parent of ``SHUNT_SRC``) that the deployer uses for its own runs.
+
 Imports: if the ``SHUNT_SRC`` env var is set, that directory is prepended to
 ``sys.path`` before ``import shunt`` (so the arena runner can drive a checkout);
-otherwise a normal ``import shunt`` (an installed Shunt) is attempted.
+otherwise a normal ``import shunt`` (an installed Shunt, at ``SHUNT_PIN``) is
+attempted.
 """
 
 import itertools
 import os
 import sys
+from typing import Any
 
 from router_inference.router.base_router import BaseRouter
+
+# The Shunt commit this submission was generated with (install: ``pip install
+# "git+https://github.com/KookaS/shunt@<SHUNT_PIN>"``).
+SHUNT_PIN = "7ee66af5ddcbd78886a58e5336b21ffc5291da56"
 
 # The full menu (spec `models`, cheapest-first): shunt ids the engine may route
 # to (the live pool restricts to those the Shunt registry serves) and the map
 # from the engine's shunt id back to the arena name predictions must carry.
-_MENU_SHUNT_IDS = ['deepseek-v4-flash', 'deepseek-v4-pro']
-_MODEL_TO_ARENA = {'deepseek-v4-flash': 'deepseek/deepseek-v4-flash', 'deepseek-v4-pro': 'deepseek/deepseek-v4-pro'}
+_MENU_SHUNT_IDS = ["deepseek-v4-flash", "deepseek-v4-pro"]
+_MODEL_TO_ARENA = {
+    "deepseek-v4-flash": "deepseek/deepseek-v4-flash",
+    "deepseek-v4-pro": "deepseek/deepseek-v4-pro",
+}
 # The strategy this module was rendered with and, under `knn_semantic_cascade`,
 # the prior config (the spec's `prior:` block — source choice + per-source paths
 # relative to the resolved prior root) that seeds the engine's outcome index.
-_STRATEGY = 'knn_semantic_cascade'
-_PRIOR = {'source': 'qacalib', 'swebench': {'results_csv': 'benchmark/routing/results.csv', 'challenges_json': 'benchmark/routing/data/challenges.json', 'default_arms': {'deepseek-v4-flash': 'high', 'deepseek-v4-pro': 'high'}}, 'qacalib': {'dir': 'qacalib', 'sample': 'sample.json', 'results': 'results.json', 'embeddings': 'embeddings.json'}}
+# Values are either strings or small nested dicts of strings, so `Any` is the
+# honest annotation (a tighter literal type would need the renderer to emit
+# typing per corpus).
+_STRATEGY = "knn_semantic_cascade"
+_PRIOR: dict[str, Any] = {
+    "source": "qacalib",
+    "swebench": {
+        "results_csv": "benchmark/routing/results.csv",
+        "challenges_json": "benchmark/routing/data/challenges.json",
+        "default_arms": {"deepseek-v4-flash": "high", "deepseek-v4-pro": "high"},
+    },
+    "qacalib": {
+        "dir": "qacalib",
+        "sample": "sample.json",
+        "results": "results.json",
+        "embeddings": "embeddings.json",
+    },
+}
 
 
 def _import_shunt():
@@ -45,7 +79,10 @@ def _import_shunt():
         raise RuntimeError(
             "could not import the Shunt package (SHUNT_SRC="
             + (repr(src) if src else "unset")
-            + "). Point SHUNT_SRC at a Shunt src/ checkout or install Shunt."
+            + "). Point SHUNT_SRC at a Shunt src/ checkout, or install the pinned "
+            + "commit: pip install 'git+https://github.com/KookaS/shunt@"
+            + SHUNT_PIN
+            + "'."
         ) from exc
     return sys.modules["shunt"]
 
@@ -66,9 +103,7 @@ class ShuntSessionCascade(BaseRouter):
             session_id=session_id, prompt_text=query
         )
         if chosen not in _MODEL_TO_ARENA:
-            raise ValueError(
-                "Shunt chose model %r which has no arena mapping" % chosen
-            )
+            raise ValueError("Shunt chose model %r which has no arena mapping" % chosen)
         return _MODEL_TO_ARENA[chosen]
 
     def _build_engine(self):
@@ -79,16 +114,25 @@ class ShuntSessionCascade(BaseRouter):
         # _build_seeded_index below); `session_cascade` is the fixed
         # cheapest-first pick and never embeds or queries an index, so its null
         # session manager / null outcome index are never reached.
-        shunt = _import_shunt()
+        _import_shunt()  # import-for-effect: fails fast with a pinned-install hint
         from shunt.models import ModelPool
         from shunt.router.engine import RouterEngine
         from shunt.router.policy import RouterPolicy
         from shunt.router.selection import SelectionRule
         from shunt.router.strategies import build_strategy
 
+        def _bundled_seed_dir():
+            # The PR-bundled QA seed (router_inference/router/shunt_seed/) is the
+            # reproduction path: a clean checkout of THIS repo rebuilds the index
+            # from it with no env vars. Present -> prefer it over the env root.
+            from pathlib import Path
+
+            bundled = Path(__file__).resolve().parent / "shunt_seed"
+            return bundled if bundled.is_dir() else None
+
         def _benchmark_root():
-            # The seeded corpus lives under the deployed prior root: the arena
-            # artifact dir for the qacalib (QA) source, a Shunt checkout holding
+            # Legacy/env fallback for the seeded corpus: the arena artifact dir
+            # for the qacalib (QA) source, a Shunt checkout holding
             # benchmark/routing for the swebench source. SHUNT_ARENA_BENCH_ROOT
             # pins an explicit root; otherwise SHUNT_SRC (always set by the
             # deployer) points at <shunt>/src.
@@ -117,10 +161,9 @@ class ShuntSessionCascade(BaseRouter):
             )
 
             source = _PRIOR.get("source") or "swebench"
-            root = _benchmark_root()
             if source == "qacalib":
                 qa = _PRIOR["qacalib"]
-                qadir = root / qa["dir"]
+                qadir = _bundled_seed_dir() or (_benchmark_root() / qa["dir"])
                 pairs = [(arena, shunt) for shunt, arena in _MODEL_TO_ARENA.items()]
                 report = load_qa_prior_cells(qadir, pairs)
                 cells = report.cells
@@ -130,12 +173,14 @@ class ShuntSessionCascade(BaseRouter):
                         "menu-model cells (rows seen: %d, nonterminal skipped: "
                         "%d); refusing to seed an empty outcome index (re-run "
                         "qacalib for the menu's models, or deploy with --strategy "
-                        "session_cascade)" % (qadir, report.rows_seen, report.skipped_nonterminal)
+                        "session_cascade)"
+                        % (qadir, report.rows_seen, report.skipped_nonterminal)
                     )
                 vectors = embedding_map_from_json(qadir / qa["embeddings"])
                 return build_prior_index(
                     cells, embedder, vectors=vectors, session_label="qa"
                 )
+            root = _benchmark_root()
             if source == "swebench":
                 swe = _PRIOR["swebench"]
                 report = load_prior_cells(
@@ -182,9 +227,7 @@ class ShuntSessionCascade(BaseRouter):
                 raise NotImplementedError
 
         pool = ModelPool()
-        live = [
-            name for name in _MENU_SHUNT_IDS if pool.get_model(name) is not None
-        ]
+        live = [name for name in _MENU_SHUNT_IDS if pool.get_model(name) is not None]
         if not live:
             raise RuntimeError(
                 "none of the menu shunt ids %r are present in the Shunt "
@@ -222,4 +265,3 @@ class ShuntSessionCascade(BaseRouter):
             escalation=policy.escalation.to_config(),
             task_key_resolver=None,
         )
-

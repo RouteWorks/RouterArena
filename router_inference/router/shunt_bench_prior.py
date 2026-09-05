@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: Copyright contributors to the Shunt project
+# SPDX-License-Identifier: Apache-2.0
 """Verified-outcome priors for the arena router's seeded kNN index.
 
 The seeded-kNN prior is a corpus of measured (prompt, model) outcome cells — the
@@ -33,9 +35,9 @@ loader stays importable where numpy is absent.
 Only CANONICAL default-arm rows seed the index. A menu model's measured default
 arm (``models.yaml`` ``reasoning.default_arm``; for ``deepseek-v4-flash`` /
 ``deepseek-v4-pro`` that is ``high``) is the behaviour the arena actually serves
-when it routes to that model, so an off-arm measurement (``nothink``, ``max``,
-``medium``, ...) is a DIFFERENT behaviour priced under the same id and must not
-vote as if it were the default.
+when it routes to that model, so an off-arm measurement (a no-reasoning arm,
+``max``, ``medium``, ...) is a DIFFERENT behaviour priced under the same id and
+must not vote as if it were the default.
 """
 
 from __future__ import annotations
@@ -96,7 +98,9 @@ class BenchmarkOutcomeIndex:
     engine consults neighbours instead of returning the cold-start default.
     """
 
-    def __init__(self, cells: list[PriorCell], embeddings: Any, *, session_label: str = "bench") -> None:
+    def __init__(
+        self, cells: list[PriorCell], embeddings: Any, *, session_label: str = "bench"
+    ) -> None:
         import numpy as np
 
         self._session_label = session_label
@@ -135,7 +139,7 @@ class BenchmarkOutcomeIndex:
         """Per-model ``(pass_rate, cell_count)`` offline aggregates for prior seeding."""
         counts: dict[str, int] = defaultdict(int)
         passes: dict[str, int] = defaultdict(int)
-        for model, outcome in zip(self._models, self._outcomes, strict=True):
+        for model, outcome in zip(self._models, self._outcomes):
             counts[model] += 1
             passes[model] += 1 if outcome else 0
         return {
@@ -277,7 +281,10 @@ def load_qa_prior_cells(
     base = Path(qacalib_dir)
     sample_path = base / "sample.json"
     results_path = base / "results.json"
-    for required, name in ((sample_path, "sample.json"), (results_path, "results.json")):
+    for required, name in (
+        (sample_path, "sample.json"),
+        (results_path, "results.json"),
+    ):
         if not required.exists():
             raise FileNotFoundError(
                 f"qacalib prior missing {name} under {base} — run the qacalib "
@@ -454,11 +461,9 @@ def build_prior_index(
             missing.append(cell.routing_text)
     if missing:
         embedded = _embed_many(missing, embedder)
-        by_text.update(zip(missing, embedded, strict=True))
+        by_text.update(zip(missing, embedded))
     embeddings = [by_text[cell.routing_text] for cell in cells]
-    return BenchmarkOutcomeIndex(
-        cells, embeddings, session_label=session_label
-    )
+    return BenchmarkOutcomeIndex(cells, embeddings, session_label=session_label)
 
 
 def _embed_many(texts: list[str], embedder: Any) -> list[Any]:
@@ -486,8 +491,13 @@ def _embed_many(texts: list[str], embedder: Any) -> list[Any]:
         try:
             if callable(embed):
                 raw = embed(text)
-            else:
+            elif callable(batch):
                 raw = list(batch([text]))[0]
+            else:  # pragma: no cover - guarded above, kept for mypy's narrowing
+                raise RuntimeError(
+                    "knn_semantic_cascade: the embedding backend lost its "
+                    "embed/embed_batch callable between the guard and the loop"
+                )
         except Exception as exc:  # noqa: BLE001 - surfaced with arena context
             raise RuntimeError(
                 "knn_semantic_cascade index build failed while embedding the "
