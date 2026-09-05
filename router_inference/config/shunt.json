@@ -1,0 +1,17 @@
+{
+  "pipeline_params": {
+    "router_name": "shunt",
+    "router_cls_name": "ShuntSessionCascade",
+    "models": [
+      "deepseek/deepseek-v4-flash",
+      "deepseek/deepseek-v4-pro"
+    ],
+    "default_model": "deepseek/deepseek-v4-flash"
+  },
+  "description": "Shunt (https://github.com/KookaS/shunt, open-source) running its shipped `session_cascade` strategy over its live pool (deepseek/deepseek-v4-flash, deepseek/deepseek-v4-pro) via the real RouterEngine. RouterArena's stateless single-turn regime gives Shunt no verified-outcome channel (no repo to re-test, no confirmation step), so the verified-failure escalation ladder never fires and the router stays on its cheapest live model (deepseek/deepseek-v4-flash) — the measured QA outcome that the cheap rung dominates. Provider routing uses the native DeepSeek API for the menu models.",
+  "affiliation": "@KookaS",
+  "github": "https://github.com/KookaS/shunt",
+  "homepage": "https://github.com/KookaS/shunt",
+  "contact": "https://github.com/KookaS/shunt/issues",
+  "open_source": true
+}
