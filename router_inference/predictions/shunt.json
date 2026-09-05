@@ -4505,14 +4505,14 @@
   {
     "global index": "MMLUPro_economics_6056",
     "prompt": "Please read the following multiple-choice questions and provide the most likely correct answer based on the options given.\n\nContext: None\n\nQuestion: Which of the following statements is true concerning variance decomposition analysis of VARs?\n\ni) Variance decompositions measure the impact of a unit shock to each of the variables on the VAR\n\nii) Variance decompositions can be thought of as measuring the proportion of the forecast error variance that is attributable to each variable\n\niii) The ordering of the variables is important for calculating impulse responses but not variance decompositions\n\niv) It is usual that most of the forecast error variance for a given variable is attributable to shocks to that variable\n\nOptions: \nA. (i), (ii) and (iv) only\nB. (ii) and (iii) only\nC. (i) and (ii) only\nD. (ii), (iii), and (iv) only\nE. (ii) and (iv) only\nF. (i) and (iii) only\nG. (iii) and (iv) only\nH. (i) and (iv) only\nI. (i), (ii), and (iii) only\nJ. (i), (ii), (iii), and (iv)\n\n\nProvide the correct letter choice in \\boxed{X}, where X is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
-    "prediction": "deepseek/deepseek-v4-pro",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": {
-      "generated_answer": "\\boxed{E}",
+      "generated_answer": "\\boxed{E}  \nStatements (ii) and (iv) are correct: variance decompositions measure the proportion of forecast error variance attributable to each variable, and own-variable shocks often account for most of that variance. Statement (i) describes impulse responses, not variance decompositions, and statement (iii) is false because ordering also matters for variance decompositions.",
       "success": true,
       "token_usage": {
         "input_tokens": 368,
-        "output_tokens": 487,
-        "total_tokens": 855
+        "output_tokens": 567,
+        "total_tokens": 935
       },
       "provider": "deepseek",
       "error": null
@@ -4638,14 +4638,14 @@
   {
     "global index": "MMLUPro_law_1007",
     "prompt": "Please read the following multiple-choice questions and provide the most likely correct answer based on the options given.\n\nContext: None\n\nQuestion: Rainbow Corporation has outstanding 1,000 shares of voting common stock and 1,000 shares of nonvoting preferred. The preferred has a liquidation preference equal to its par value of $100 per share plus a 3 percent noncumulative dividend. Rainbow submits to its stockholders a proposal to authorize a new class of preferred stock with redemption rights that would come ahead of the old preferred stock. At a shareholders' meeting, 700 common and 400 preferred vote in favor of the proposal. Which of the following statements is correct?\n\nOptions: \nA. The proposal is invalidly approved because a unanimous vote from both classes is required.\nB. The proposal is validly approved because the nonvoting preferred stock does not count towards the vote.\nC. The proposal is invalidly approved because a two-thirds vote of each class is required.\nD. The vote of the preferred stockholders does not matter because it was nonvoting stock.\nE. The proposal is validly approved because the common shareholders have the majority vote.\nF. The vote of the preferred stockholders does not matter because the proposal affects the common stock.\nG. The proposal is validly approved because the preferred stockholders who voted in favor have a liquidation preference.\nH. The proposal is invalidly approved because a majority of the outstanding shares did not approve.\nI. The proposal is invalidly approved because a majority of the preferred shareholders did not approve.\nJ. The proposal is validly approved because overall a majority of the outstanding shares did approve.\n\n\nProvide the correct letter choice in \\boxed{X}, where X is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
-    "prediction": "deepseek/deepseek-v4-pro",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": {
-      "generated_answer": "The proposal triggers a separate class vote for the preferred stock because it creates a new class with senior rights affecting the preferred. Approval requires a majority of the outstanding shares of each voting group, and only 400 of 1,000 preferred shares voted in favor. Therefore, the proposal was invalidly approved due to lack of majority preferred approval.\n\n\\boxed{I}",
+      "generated_answer": "\\boxed{I}",
       "success": true,
       "token_usage": {
         "input_tokens": 440,
-        "output_tokens": 7349,
-        "total_tokens": 7789
+        "output_tokens": 1861,
+        "total_tokens": 2301
       },
       "provider": "deepseek",
       "error": null

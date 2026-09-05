@@ -38,7 +38,7 @@
   {
     "global index": "ArcMMLU_16",
     "prompt": "Thoroughly examine the subsequent set of multiple-choice queries and select the option that most plausibly represents the accurate answer from those provided.\n\nSituation: None\n\nInquiry: Which statement regarding the SR protocol is inaccurate? ( )\n\nSelections: \nA. The receiver issues an individual acknowledgment for every packet that arrives without error.\nB. The sender retransmits solely those packets lacking an acknowledgment.\nC. It confines the sequence number of packets dispatched but not acknowledged.\nD. It does not operate as a pipelined protocol.\n\nIndicate the correct option letter in \\boxed{X}, where X represents the accurate choice. Limit the explanation or commentary to within three sentences.",
-    "prediction": "deepseek/deepseek-v4-pro",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1658,7 +1658,7 @@
   {
     "global index": "MMLUPro_law_1007",
     "prompt": "Kindly examine the ensuing multiple-choice inquiries and determine the most plausible correct option based on the alternatives presented.\n\nScenario: None\n\nInquiry: Rainbow Corporation possesses 1,000 shares of voting common stock alongside 1,000 shares of nonvoting preferred stock. The preferred stock includes a liquidation preference equivalent to its $100 per share par value plus a 3% noncumulative dividend. Rainbow proposes to its shareholders to authorize a new category of preferred stock with redemption rights that would take precedence over the existing preferred stock. During a shareholders' assembly, 700 common and 400 preferred shares are voted in favor of the proposal. Which assertion is correct?\n\nChoices: \nA. The proposal lacks valid approval as a unanimous vote from both categories is necessary.\nB. The proposal gains valid approval since the nonvoting preferred stock is excluded from the vote.\nC. The proposal lacks valid approval because a two-thirds vote from each category is required.\nD. The preferred stockholders' vote holds no significance as it was nonvoting stock.\nE. The proposal gains valid approval since the common shareholders possess the majority vote.\nF. The preferred stockholders' vote holds no significance as the proposal impacts the common stock.\nG. The proposal gains valid approval as the preferred stockholders favoring it possess a liquidation preference.\nH. The proposal lacks valid approval as a majority of the outstanding shares did not approve.\nI. The proposal lacks valid approval as a majority of the preferred shareholders did not approve.\nJ. The proposal gains valid approval as, in totality, a majority of the outstanding shares did approve.\n\nIndicate the correct letter choice in \\boxed{X}, where X represents the accurate letter choice. Maintain the explanation or feedback within 3 sentences.",
-    "prediction": "deepseek/deepseek-v4-pro",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1928,7 +1928,7 @@
   {
     "global index": "MMLUPro_psychology_2329",
     "prompt": "Kindly scrutinize the ensuing multiple-choice inquiries and determine the most plausible accurate selection from the provided choices.\n\nScenario: Absent\n\nInquiry: Which proof exists indicating specialized auditory detectors for human speech?\n\nAlternatives: \nA. Neurons within the auditory cortex mainly react to tactile inputs over auditory stimuli.\nB. Merely a diminutive fraction of neurons in the auditory cortex are tasked with interpreting speech sounds.\nC. 40% of auditory cortex neurons do not react to pure tones, but instead to intricate sounds like noise bursts or clicks.\nD. Neurons in the auditory cortex exhibit uniform responsiveness to every sound frequency.\nE. Auditory cortex neurons react to variations in light intensity.\nF. Auditory cortex neurons have been observed to respond solely to musical notes, not speech.\nG. Neurons in the auditory cortex demonstrate an intensified response to visual motion cues over sounds.\nH. All neurons within the auditory cortex react only to pure tones.\nI. Neurons in the auditory cortex respond to uncomplicated, consistent sounds.\nJ. Most neurons in the auditory cortex are adapted for detecting aquatic sounds.\n\nIndicate the accurate letter choice in \\boxed{X}, where X is the right letter choice. Maintain the explanation or feedback within 3 sentences.",
-    "prediction": "deepseek/deepseek-v4-pro",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1964,7 +1964,7 @@
   {
     "global index": "MMLUPro_psychology_2457",
     "prompt": "Kindly review the ensuing multiple-choice inquiries and select the most plausible correct response considering the provided alternatives.\n\nScenario: A graduate scholar formulated and executed a research endeavor for her dissertation, subsequently crafting a journal manuscript elucidating the investigation and its findings. The conceptual foundation for the study originated from her faculty advisor's work, who also furnished the facilities for the research. The faculty advisor desires to be named as the primary author upon the article's publication. In this scenario:\n\nChoices:\nA. The dean of the institution should resolve authorship.\nB. Authorship should be decided between the student and advisor via a coin toss.\nC. The student ought to report the advisor to the Ethics Committee.\nD. The student should abandon the project to avoid conflict.\nE. The student is responsible for determining authorship credit.\nF. The advisor should be acknowledged as the sole author.\nG. The student ought to be acknowledged as the chief author.\nH. The advisor is responsible for determining authorship credit.\nI. Both the student and advisor should be acknowledged as co-primary authors.\nJ. The advisor should be acknowledged as the chief author.\n\nIndicate the accurate letter choice in \\boxed{X}, where X signifies the accurate letter choice. Limit the explanation or feedback to 3 sentences.",
-    "prediction": "deepseek/deepseek-v4-pro",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2279,7 +2279,7 @@
   {
     "global index": "MedMCQA_853",
     "prompt": "Kindly peruse the subsequent multiple-selection inquiries and furnish the most plausible accurate response predicated on the alternatives presented.\n\nScenario: None\n\nInquiry: Bodily indication of critical aortic stenosis is:\n\nAlternatives: \nA. A tardy climaxing continuous systolic heart sound\nB. A postponed carotid pulse rise\nC. A diastolic murmur\nD. An initial snapping sound\n\nBestow the correct letter choice in \\boxed{X}, where X is the apt letter choice. Constrain the elucidation or commentary within 3 sentences.",
-    "prediction": "deepseek/deepseek-v4-pro",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3071,7 +3071,7 @@
   {
     "global index": "QANTA_Fine Arts_828",
     "prompt": "Kindly peruse the ensuing inquiry and furnish the precise response.\n\nBackdrop: None\n\nInquiry: David Rickert asserted that this particular venue was the scene of the \"most exceptional feat\" Jess Stacy ever accomplished.\n\nDeliver the precise response in \\boxed{X}, where X denotes the accurate and most prevalent answer to the inquiry. Confine the elucidation or critique to within 3 statements.",
-    "prediction": "deepseek/deepseek-v4-pro",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3224,7 +3224,7 @@
   {
     "global index": "QANTA_Literature_408",
     "prompt": "Kindly examine the subsequent inquiry and supply the accurate response.\n\nScenario: Unspecified\n\nInquiry: Within this book, a figure energetically shifts laterally while giving perplexing accounts and is reputedly capable of transforming black into white.\n\nDeliver the appropriate answer in the form of \\boxed{X}, where X represents the correct and most prevalent answer to the inquiry. Restrict your explanation or feedback to a maximum of three sentences.",
-    "prediction": "deepseek/deepseek-v4-pro",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3395,7 +3395,7 @@
   {
     "global index": "SuperGLUE-ClozeTest_17965",
     "prompt": "Peruse the subsequent excerpt and resolve the inquiry by selecting the optimal choice. Furnish solely the text of the accurate choice as your reply.\n\nExcerpt: (CNN) Protracted consumption of acetaminophen throughout gestation correlated with a doubled probability of attention-deficit hyperactivity disorder in offspring, as per research disseminated on Monday within the Pediatrics journal. Nonetheless, a duo of authorities contend that the evidence doesn't corroborate these assertions. Acetaminophen, also referred to as paracetamol, constitutes the primary component in Tylenol alongside myriad non-prescription and prescription medications, as stated by the US Food and Drug Administration. It is frequently recommended amid gestation for mitigating pain and fever, with an approximated 65% of expectant females in the United States utilizing the medication, as indicated by the US Centers for Disease Control and Prevention.\n@highlight\nInvestigators amassed information from nearly 95,000 maternals with progeny born betwixt 1999 and 2009\n@highlight\nExtended acetaminophen consumption during gestation is linked to over a twofold surge in ADHD risk among progeny\n@highlight\nThe evidence fails to substantiate their inferences, other specialists assert\nInquiry: No substantiation of a causal nexus between the medication and @placeholder was discerned, Ystrøm and his associates deduced.\n\nChoices: A. US Food and Drug Administration\nB. Acetaminophen\nC. Extended\nD. Pediatrics\nE. United States\nF. Tylenol\nG. ADHD\nH. US Centers for Disease Control and Prevention\n\nProvide the correct letter choice in \\boxed{G}, where G is the content of the correct option.",
-    "prediction": "deepseek/deepseek-v4-pro",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
