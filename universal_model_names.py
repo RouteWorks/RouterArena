@@ -36,6 +36,7 @@ universal_names = [
     "claude-3-7-sonnet-20250219",
     "claude-opus-4-1",
     "claude-opus-4-6",
+    "claude-sonnet-5",
     # Google models
     "gemini-2.0-flash-001",
     "gemini-2.5-flash",
@@ -52,6 +53,7 @@ universal_names = [
     "mistral-large-latest",
     "mistral-medium-latest",
     "mistral-small-latest",
+    "ministral-8b-latest",
     "open-mistral-7b",
     "open-mistral-nemo",
     # DeepSeek models
@@ -117,6 +119,7 @@ universal_names = [
     "qwen/qwen3.5-flash-02-23",
     "deepseek/deepseek-v4-flash",
     "moonshotai/kimi-k2.5",
+    "moonshotai/Kimi-K2.6",
     # OrcaRouter pool additions
     "claude-sonnet-4",
     "claude-haiku-4-5-20251001",
@@ -142,6 +145,11 @@ universal_names = [
 
 
 mapping: dict[str, str] = {
+    "o4-mini-2025-04-16": "o4-mini",
+    "gpt-5.5-2026-04-23": "gpt-5.5",
+    # NuRoute serves Nebius-hosted models under their HuggingFace ids.
+    "MiniMaxAI/MiniMax-M3": "MiniMax-M3",
+    "Qwen/Qwen3-30B-A3B-Instruct-2507": "qwen3-30b-a3b-instruct-2507",
     # this mapping is for the model names in your config file to be converted to universal model names that is supported in our pipeline.
     # OrcaRouter provider-prefixed → bare forms (used by arena-eval pipeline)
     "anthropic/claude-sonnet-4": "claude-sonnet-4",

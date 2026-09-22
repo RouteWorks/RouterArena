@@ -386,5 +386,17 @@
   "google/gemma-4-31b-it": {
     "input_token_price_per_million": 0.08,
     "output_token_price_per_million": 0.35
+  },
+  "moonshotai/Kimi-K2.6": {
+    "input_token_price_per_million": 0.5,
+    "output_token_price_per_million": 2.0
+  },
+  "claude-sonnet-5": {
+    "input_token_price_per_million": 3.0,
+    "output_token_price_per_million": 15.0
+  },
+  "ministral-8b-latest": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.15
   }
 }
