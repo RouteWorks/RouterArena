@@ -85,20 +85,24 @@ class KruschCascadeRouter(BaseRouter):
             return self.model_map.get("code", "Qwen/Qwen3-Coder-Next")
 
         # 4. Language translation, medical diagnosis, geography, open-ended trivia, entailment -> gemini-3.1-flash-lite
-        is_translation = "translate" in p or "translation" in p or any(
-            lang in p
-            for lang in (
-                "gujarati",
-                "german",
-                "chinese",
-                "czech",
-                "finnish",
-                "lithuanian",
-                "kazakh",
-                "russian",
-                "spanish",
-                "french",
-                "japanese",
+        is_translation = (
+            "translate" in p
+            or "translation" in p
+            or any(
+                lang in p
+                for lang in (
+                    "gujarati",
+                    "german",
+                    "chinese",
+                    "czech",
+                    "finnish",
+                    "lithuanian",
+                    "kazakh",
+                    "russian",
+                    "spanish",
+                    "french",
+                    "japanese",
+                )
             )
         )
         is_medical = any(
@@ -113,20 +117,21 @@ class KruschCascadeRouter(BaseRouter):
                 "disease",
             )
         )
-        is_geography = "geography" in p or "geographic" in p or any(
-            k in p
-            for k in (
-                "latitude",
-                "longitude",
-                "elevation",
-                "continent",
-                "capital of",
+        is_geography = (
+            "geography" in p
+            or "geographic" in p
+            or any(
+                k in p
+                for k in (
+                    "latitude",
+                    "longitude",
+                    "elevation",
+                    "continent",
+                    "capital of",
+                )
             )
         )
-        has_options = bool(
-            "options:" in p
-            or re.search(r"\n\s*[a-d]\.\s+\S+", p)
-        )
+        has_options = bool("options:" in p or re.search(r"\n\s*[a-d]\.\s+\S+", p))
         is_trivia = not has_options and any(
             k in p
             for k in (
