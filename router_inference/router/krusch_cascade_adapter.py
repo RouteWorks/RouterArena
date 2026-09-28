@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 """
-Krusch Cascade Router Adapter (5-Model Multi-Specialist Architecture).
+Krusch Cascade Router Adapter (Multi-Specialist Architecture).
 """
 
 import re
@@ -12,16 +12,14 @@ from router_inference.router.base_router import BaseRouter
 
 class KruschCascadeRouter(BaseRouter):
     """
-    Krusch Cascade Router multi-specialist architecture routing across 5 specialized
-    frontier and flash models over OpenRouter.
+    Krusch Cascade Router multi-specialist architecture routing across specialized
+    frontier and high-efficiency models based on intrinsic task semantics.
 
     Specialist Domains:
-    1. games_spatial (Qwen/Qwen3-Coder-Next): Chess, board positions, FEN/PGN.
-    2. code (Qwen/Qwen3-Coder-Next): Python functions, code synthesis, algorithms.
-    3. comprehension_rc (qwen/qwen3-235b-a22b-2507): Paragraph answer evaluation, reading comprehension.
-    4. reasoning_deep (deepseek/deepseek-v4-pro): Financial statements, balance sheets.
-    5. general_fast (google/gemini-3.1-flash-lite): Translation, geography, medical, open-ended trivia.
-    6. factual_stem (deepseek/deepseek-v4-flash): Factual knowledge, STEM sciences, arithmetic, ethics.
+    1. code & games_spatial (Qwen/Qwen3-Coder-Next): Python functions, code synthesis, algorithms, chess notation.
+    2. reasoning_deep (deepseek/deepseek-v4-pro): Financial statements, balance sheets, corporate accounting.
+    3. general_fast (google/gemini-3.1-flash-lite): Translation, geography, medical, open-ended trivia, entailment.
+    4. factual_stem (deepseek/deepseek-v4-flash): Default STEM sciences, arithmetic, factual knowledge.
     """
 
     def __init__(self, router_name: str = "krusch-cascade-router"):
@@ -33,7 +31,6 @@ class KruschCascadeRouter(BaseRouter):
             "reasoning_deep": "deepseek/deepseek-v4-pro",
             "code": "Qwen/Qwen3-Coder-Next",
             "games_spatial": "Qwen/Qwen3-Coder-Next",
-            "comprehension_rc": "qwen/qwen3-235b-a22b-2507",
         }
         for m in models:
             for role, def_m in list(self.model_map.items()):
@@ -42,22 +39,11 @@ class KruschCascadeRouter(BaseRouter):
 
     def _get_prediction(self, query: str) -> str:
         """
-        Sub-50ms deterministic multi-specialist routing across 5 models with >92% perturbation robustness.
+        Deterministic multi-specialist routing based on intrinsic query semantics.
         """
         p = query.strip().lower()
 
-        # 1. Reading comprehension / paragraph evaluation -> qwen3-235b-a22b-2507
-        if "paragraph" in p and any(
-            k in p
-            for k in (
-                "provided answer",
-                "evaluate",
-                "correct response",
-            )
-        ):
-            return self.model_map.get("comprehension_rc", "qwen/qwen3-235b-a22b-2507")
-
-        # 2. Financial statements / balance sheets -> deepseek-v4-pro
+        # 1. Financial statements / balance sheets -> deepseek-v4-pro
         if any(
             k in p
             for k in (
@@ -73,7 +59,7 @@ class KruschCascadeRouter(BaseRouter):
         ):
             return self.model_map.get("reasoning_deep", "deepseek/deepseek-v4-pro")
 
-        # 3. Chess & spatial board positions -> Qwen3-Coder-Next
+        # 2. Chess & spatial board positions -> Qwen3-Coder-Next
         is_chess = bool(
             "chess move" in p
             or "chess game" in p
@@ -84,25 +70,24 @@ class KruschCascadeRouter(BaseRouter):
         if is_chess:
             return self.model_map.get("games_spatial", "Qwen/Qwen3-Coder-Next")
 
-        # 4. Code generation & algorithms -> Qwen3-Coder-Next
+        # 3. Code generation & algorithms -> Qwen3-Coder-Next
         is_code = bool(
-            re.search(r"py[th]{2}[on]{1,2}", p)
-            or "```" in p
+            "```" in p
             or "def " in p
-            or "executable function" in p
+            or "return " in p
+            or "import " in p
+            or "python" in p
             or "source code" in p
+            or "function " in p
+            or "algorithm" in p
         )
         if is_code:
             return self.model_map.get("code", "Qwen/Qwen3-Coder-Next")
 
-        # 5. Language translation, medical diagnosis, geography, open-ended trivia, entailment
-        is_translation = any(
-            k in p
-            for k in ("translate from", "translate the following", "into english:")
-        ) or any(
-            k in p
-            for k in (
-                "translat",
+        # 4. Language translation, medical diagnosis, geography, open-ended trivia, entailment -> gemini-3.1-flash-lite
+        is_translation = "translate" in p or "translation" in p or any(
+            lang in p
+            for lang in (
                 "gujarati",
                 "german",
                 "chinese",
@@ -111,6 +96,9 @@ class KruschCascadeRouter(BaseRouter):
                 "lithuanian",
                 "kazakh",
                 "russian",
+                "spanish",
+                "french",
+                "japanese",
             )
         )
         is_medical = any(
@@ -125,24 +113,18 @@ class KruschCascadeRouter(BaseRouter):
                 "disease",
             )
         )
-        is_geography = bool(
-            re.search(r"geogra[ph]{1,2}", p)
-            or any(
-                k in p
-                for k in (
-                    "latitude",
-                    "longitude",
-                    "elevation",
-                    "continent",
-                    "capital of",
-                )
+        is_geography = "geography" in p or "geographic" in p or any(
+            k in p
+            for k in (
+                "latitude",
+                "longitude",
+                "elevation",
+                "continent",
+                "capital of",
             )
         )
         has_options = bool(
-            re.search(
-                r"\b(?:options|selections|choices|alternatives|optrions):\s*\n?\s*[a-d]\.",
-                p,
-            )
+            "options:" in p
             or re.search(r"\n\s*[a-d]\.\s+\S+", p)
         )
         is_trivia = not has_options and any(
@@ -163,10 +145,10 @@ class KruschCascadeRouter(BaseRouter):
                 "identify the nation",
             )
         )
-        is_entailment = "does sentence a imply" in p or "entailment" in p
+        is_entailment = "entailment" in p
 
         if is_translation or is_medical or is_geography or is_trivia or is_entailment:
             return self.model_map.get("general_fast", "google/gemini-3.1-flash-lite")
 
-        # 6. Default STEM / factual science / arithmetic / ethics -> deepseek-v4-flash
+        # 5. Default STEM / factual science / arithmetic -> deepseek-v4-flash
         return self.model_map.get("factual_stem", "deepseek/deepseek-v4-flash")

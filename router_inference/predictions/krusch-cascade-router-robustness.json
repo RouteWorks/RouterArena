@@ -524,7 +524,7 @@
   {
     "global index": "GeoBench_1002",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most plausible accurate response predicated on the alternatives presented.\n\nBackdrop: None\n\nInquiry: Which among the ensuing exemplifies sequent occupance most aptly?\n\nAlternatives: \nA. Neil Armstrong imprinting boot marks upon the lunar expanse\nB. Every ensuing cohort of an expatriate lineage exhibiting diminished fluency in the dialect of their forebears' native land\nC. The Bubonic Plague decimating a substantial segment of the populace in Europe\nD. The transference of real estate, like a domicile, from one lineage to its successive generation\nE. The contemporary employment of the Spanish tongue across the erstwhile domains of the Spanish Empire\n\nElect the appropriate letter choice in \\boxed{X}, where X denotes the correct letter selection. Limit the explication or critique to 3 statements.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -614,7 +614,7 @@
   {
     "global index": "GeoBench_766",
     "prompt": "Pleas rad the folowing multipple-choice qustions an provid the mos likely corect anser based on the optons gaven.\n\nContex: None\n\nQueston: The prcise locaton of retale servics is spacialy depndent on the relatonship betwen\n\nOptons: \nA. potenial cost-overun and projcted revnue\nB. conusmer demnd and locl suply\nC. varible cost an revnue srvaces\nD. infrstructure cots and recaptred revnue\nE. locl consmer demnd and geographc viablity\n\nProvde the corect leter chice in \\boxed{X}, wher X is the corect leter choise. Kep the explantion or feedbak witin 3 sentnces.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -695,7 +695,7 @@
   {
     "global index": "LiveCodeBench_118",
     "prompt": "gneerate an exectable Pyhton functio gnenerated from the gvien promt. Rturn the funtion boyd witout ivoking it at the fnial soluton. Quesiton:\nYuo are gvien a 0-indexed integar aray nmus of legnth n.\nWe wnat to gorup the idnices so for eahc indx i in the rnage [0, n - 1], it is asigned to exatly one group.\nA gorup asignment is vlaid if the folowing condtions hld:\n\nFor evrey group g, all idnices i asigned to gorup g have the sme value in nmus.\nFor any two grops g_1 and g_2, the diference betwen the nmuber of idnices asigned to g_1 and g_2 shoud not eceed 1.\n\nRturn an integar denoting the minimim nmuber of groups neded to craete a vlaid gorup asigment.\n \nEaxmple 1:\n\nInptu: nmus = [3,2,3,2,3]\nOtput: 2\nExplnation: One wy the idnices can be asigned to 2 grops is as folows, where the valus in squre bracktes are idnices:\ngorup 1 -> [0,2,4]\ngorup 2 -> [1,3]\nAll idnices are asigned to one gorup.\nIn gorup 1, nmus[0] == nmus[2] == nmus[4], so all idnices have the sme value.\nIn gorup 2, nmus[1] == nmus[3], so all idnices have the sme value.\nTeh nmuber of idnices asigned to gorup 1 is 3, and the nmuber of idnices asigned to gorup 2 is 2.\nTheir diference doesn't eceed 1.\nIt is not psosible to use feer than 2 grops bceause, in oder to use just 1 gorup, all idnices asigned to that gorup must have the sme value.\nHnce, the answr is 2.\nEaxmple 2:\n\nInptu: nmus = [10,10,10,3,1,1]\nOtput: 4\nExplnation: One wy the idnices can be asigned to 4 grops is as folows, where the valus in squre bracktes are idnices:\ngorup 1 -> [0]\ngorup 2 -> [1,2]\ngorup 3 -> [3]\ngorup 4 -> [4,5]\nThe gorup asigment above satisifes btoh condtions.\nIt can be shwon that it is not psosible to craete a vlaid asigment usng feer than 4 grops.\nHnce, the answr is 4.\n \nConstriants:\n\n1 <= nmus.lenght <= 10^5\n1 <= nmus[i] <= 10^9",
-    "prediction": "Qwen/Qwen3-Coder-Next",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -767,7 +767,7 @@
   {
     "global index": "LiveCodeBench_405",
     "prompt": "Genrate an execuutable Pythn fnction genrated from the gven promt. The fnction shuld take stdn as inpt and prnt the ouptut. Simpy cal the fnction aftr the definiton. Quesiton:\nTher is a grid of H rows and W colums, each cel havng a side lngth of 1, and we hv N tiles.\nThe i-th tile (1\\leq i\\leq N) is a rectnagle of sze A_i\\times B_i.\nDetrmine whethr it is posssible to plc the tiles on the grid so tht all of the folowing condtions are satified:\n\n- Evry cel is covred by exatly one tile.\n- It is fine to hav unusd tiles.\n- The tiles may be rotatd or flippd when plced. Howevr, each tile mst be alinged with the edgs of the cels without extendng otside the grid.\n\nInpt\n\nThe inpt is gven from Standrd Inpt in the folowing format:\nN H W\nA_1 B_1\nA_2 B_2\n\\ldots\nA_N B_N\n\nOupt\n\nIf it is posssible to plc the tiles on the grid so tht all of the condtions in the problm statemnt are satified, prnt Yes; othrwise, prnt No.\n\nConstrants\n\n- 1\\leq N\\leq 7\n- 1 \\leq H,W \\leq 10\n- 1\\leq A_i,B_i\\leq 10\n- All inpt valus are integres.\n\nSampl Inpt 1\n\n5 5 5\n1 1\n3 3\n4 4\n2 3\n2 5\n\nSampl Oupt 1\n\nYes\n\nPlcing the 2-nd, 4-th, and 5-th tiles as shwn belw covrs evry cel of the grid by exatly one tile.\n\nHnce, prnt Yes.\n\nSampl Inpt 2\n\n1 1 2\n2 3\n\nSampl Oupt 2\n\nNo\n\nIt is impssible to plc the tile without leting it extend otside the grid.\nHnce, prnt No.\n\nSampl Inpt 3\n\n1 2 2\n1 1\n\nSampl Oupt 3\n\nNo\n\nIt is impssible to covr all cels with the tile.\nHnce, prnt No.\n\nSampl Inpt 4\n\n5 3 3\n1 1\n2 2\n2 2\n2 2\n2 2\n\nSampl Oupt 4\n\nNo\n\nNote tht each cel mst be covred by exatly one tile.",
-    "prediction": "Qwen/Qwen3-Coder-Next",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -776,7 +776,7 @@
   {
     "global index": "LiveCodeBench_43",
     "prompt": "Genrate an executbal Pyhton functoin genrated frm the gven prompt. Rturn the functin bdy wthout invking it at the fnal soluton. Quesiton:\nYou are gven a psitive intger aray numbs.\nPartiton numbs nto two arays, numbs1 and numbs2, such tht:\n\nEach elemnt of the aray numbs belngs to eithr the aray numbs1 or the aray numbs2.\nBoth arays are non-empy.\nThe value of the partiton is minmized.\n\nThe value of the partiton is |max(numbs1) - min(numbs2)|.\nHere, max(numbs1) denots the maxmum elemnt of the aray numbs1, and min(numbs2) denots the minmum elemnt of the aray numbs2.\nRturn the intger denotng the value of such partiton.\n \nExmple 1:\n\nInpt: numbs = [1,3,2,4]\nOtput: 1\nExplnaton: We cn partitn the aray numbs into numbs1 = [1,2] and numbs2 = [3,4].\n- The maxmum elemnt of the aray numbs1 is equal to 2.\n- The minmum elemnt of the aray numbs2 is equal to 3.\nThe value of the partiton is |2 - 3| = 1. \nIt cn be proen that 1 is the minmum value out of all partitons.\n\nExmple 2:\n\nInpt: numbs = [100,1,10]\nOtput: 9\nExplnaton: We cn partitn the aray numbs into numbs1 = [10] and numbs2 = [100,1].\n- The maxmum elemnt of the aray numbs1 is equal to 10.\n- The minmum elemnt of the aray numbs2 is equal to 1.\nThe value of the partiton is |10 - 1| = 9.\nIt cn be proen that 9 is the minmum value out of all partitons.\n\n \nConstrints:\n\n2 <= numbs.lenght <= 10^5\n1 <= numbs[i] <= 10^9",
-    "prediction": "Qwen/Qwen3-Coder-Next",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -902,7 +902,7 @@
   {
     "global index": "MMLUPro_biology_2985",
     "prompt": "Plaese raed teh folowing multiple-choce questons an provide teh most likely corrcet answer bsaed on teh options givne.\n\nContext: Nne\n\nQuetion: Why r magnolias found bot in thee eastrn Unitd Staets an eastrn China, which blong to diffrent relams, an hardly anywher els?\n\nOptrions: \nA. Magnolias r found in these rgions as a rsult of ancint trade routes that distrbuted seeds between thee eastrn Unitd Staets an eastrn China.\nB. Magnolias r found bot in thee eastrn Unitd Staets an eastrn China due to the histrical geograhphic continutiy an warm moist climate of these rgions, which wer untouced by glaciation during the Cenozoic Era.\nC. The magnolias in these two rgions wer plantd by humans.\nD. Magnolias r found in these rgions due to the hgh biodiversty of bot rgions.\nE. The presnce of magnolias in these rgions is due to a shered climate zone that favrs their growth, despte the distnce.\nF. The distrbution of magnolias is due to the accidntal spread of seeds by human activties unrleated to intntional plantng.\nG. Magnolias r native to only these two rgions.\nH. Magnolias r found in these rgions because they wer transportd ther by migratry birds.\nI. Magnolias thrive in bot locatons due to simlar soil compositons found only in these two areas.\nJ. Magnolias r found in these rgions becasue they wer transportd ther by migratry birds.\n\nProvde the corrcet leter choce in \\boxed{X}, where X is the corrcet leter choce. Kp the explantion or feedbak within 3 sentnces.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -974,7 +974,7 @@
   {
     "global index": "MMLUPro_business_503",
     "prompt": "Kindly examine the subsequent multiple-choice inquiries and select the option that most plausibly represents the accurate solution based on the choices available.\n\nScenario: None\n\nInquiry: Imagine a company’s stock possesses the subsequent characteristics. It is traded on the London stock exchange and functions across Europe. The return on a UK 10-year government bond is 2.8%. According to historical figures, the stock will yield 8.6%. The stock's Beta value is 1.4, signifying it is 40% more volatile than the broader stock market. What is the anticipated return rate?\n\nSelections: \nA. 5.6\nB. 2.8\nC. 1.4\nD. 10.92\nE. 7.98\nF. 6.2\nG. 9.4\nH. 8.6\nI. 11.76\nJ. 12.34\n\nIndicate the accurate letter choice in \\boxed{X}, where X is the correct letter choice. Limit the explanation or feedback to 3 sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1100,7 +1100,7 @@
   {
     "global index": "MMLUPro_computer science_9200",
     "prompt": "Kindly examine the ensuing multiple-choice inquiries and select the most plausible correct response from the options presented.\n\nContext: Not Applicable\n\nInquiry: Assertion 1| The ensemble of all rectangles within a two-dimensional plane (inclusive of those not aligned with axes) is capable of fragmenting a collection of 5 points. Assertion 2| The VC-dimensionality of a k-Nearest Neighbour algorithm, particularly when k equals 1, is boundless.\n\nChoices: \nA. Correct, Correct\nB. Incorrect, Correct\nC. Conditional on the dataset, Correct\nD. Incorrect, Conditional on the dataset\nE. Conditional on the dataset, Conditional on the dataset\nF. Correct, Conditional on the dataset\nG. Correct, Incorrect\nH. Incorrect, Incorrect\nI. Conditional on the dataset, Incorrect\nJ. Correct, Insufficient data\n\nIndicate the accurate letter choice in \\boxed{X}, where X is the precise letter choice. Keep the explanation or feedback concise, limited to three sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1127,7 +1127,7 @@
   {
     "global index": "MMLUPro_computer science_9264",
     "prompt": "Kindly examine the subsequent multiple-choice inquiries and determine the most plausible accurate response from the given alternatives.\n\nContext: None\n\nQuestion: For any string x, the function denoted as x^M is recursively defined in this manner:\ne^M equals e, and\nif w represents a string while a is a single-character string, then\n(aw)^M transforms into aw^Ma.\nSuppose a is a single-character string, and x and y are any given strings. Which statement holds true?\n\nOptions: \nA. a^M equates to a\nB. (ax)^M is equivalent to (xa)^M\nC. (xy)^M equals y^Mx^M\nD. None of the above\n\nIndicate the correct option in \\boxed{X}, where X signifies the correct choice. Restrict the explanation or feedback to no more than three sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1361,7 +1361,7 @@
   {
     "global index": "MMLUPro_engineering_10428",
     "prompt": "Kindly examine these multiple-choice inquiries and select the most plausible right answer from the available choices.\n\nContext: None\n\nProblem: Employ Fourier transformation techniques to ascertain the temporal response of a circuit characterized by the system function [(j2\\omega) / (1 + 2j\\omega)], assuming the input signal is V(t) = cost. Given a sinusoidal input cost, the Fourier transform is \\pi[\\delta (\\omega + 1) + \\delta (\\omega - 1)].\n\nChoices: \nA. (4/5)cost - (2/5) sin t\nB. (3/4)cost - (1/4)sint\nC. (2/5)cost + (4/5) sin t\nD. cost + sint\nE. (3/5)cost + (1/5)sint\nF. (4/5)cost + (2/5) sin t\nG. (1/5)cost - (3/5)sint\nH. (1/2)cost + (1/2)sint\nI. (1/3)cost - (2/3)sint\nJ. (2/5)cost - (4/5) sin t\n\nSubmit the accurate letter selection in \\boxed{X}, where X denotes the precise letter answer. Limit any reasoning or feedback to no more than three sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1523,7 +1523,7 @@
   {
     "global index": "MMLUPro_history_4497",
     "prompt": "Kindly peruse the ensuing set of multiple-choice inquiries and offer the most plausible correct selection from the given possibilities.\n\nBackground: None\n\nInquiry: This query pertains to the subsequent details. Examine the enumeration of grievances below. Article 3: French citizens ought to acknowledge as statutory those decrees solely formulated by the national assembly and endorsed by the monarch. Article 11: Personal freedom, ownership entitlements, and the safety of individuals shall be articulated in a definitive, unambiguous, and irreversible way. All lettres de cachet are to be permanently eradicated, with certain adjustments at the discretion of the States General. Article 12: To eliminate perpetually any threat to the individual and property rights of the French populace, the jury system will be applied in all criminal proceedings, and in civil cases for fact-finding, throughout the judicial courts of the nation. Article 17: All disparities in sentencing shall be eradicated; offenses committed by citizens across different societal classes shall face equal punishment under uniform legal procedures and protocols. The States General shall endeavor to ensure that the repercussions of violations are confined to the perpetrator and not transferred to their innocent kin. Article 21: No levy shall be legitimate unless ratified by the representatives of the populace and sanctioned by the sovereign. —Cahiers of the Third Estate of Versailles, 1789 During the revolution's radical stage, which reform introduced by Robespierre was the LEAST advantageous to France's defense?\n\nChoices:\nA. Spreading revolutionary doctrines internationally\nB. Initiating the Reign of Terror\nC. Dismissing foreign envoys\nD. Pursuing a de-Christianization agenda\nE. Regulating prices and salaries\nF. Eradicating slavery in French territories\nG. Elevating soldiers based on battlefield performance\nH. Implementing strict food supply rationing\nI. Establishing a novel Republican Calendar\nJ. Mandating vast army enlistments\n\nIndicate the correct letter choice in \\boxed{X}, where X is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1685,7 +1685,7 @@
   {
     "global index": "MMLUPro_law_1462",
     "prompt": "Pleese raed teh folowing multple-choise questons and provde teh most likley corect answr based on teh optons gven.\n\nContext: None\n\nQueston: On Septeber 15, a card shp snt teh folowng faax to a prnting cmpany: \"Pleese delivr 100 dozn assrted Chrstmas crds, delivry by Novmber 1.\" On Octber 10, the prntng cmpany shiped 100 dozn assrted Thanksgivng crds to teh card shp, whch wre receved on Octber 12. Teh folowing day, the card shp snt teh folowng faax to teh prntng cmpany: \"Be advsed that yuor shipment is rejcted. Ordr stipulated Chrstmas crds, nt Thanksgivng crds.\" On Octber 15, teh prntng cmpany snt teh folowng faax to teh card shp: \"Wll ship 100 dozn assrted Chrstmas crds by Novmber 1. Pleese ship teh Thanksgivng crds bak to our warhouse and bill us for teh shiping chargs.\" Ths faax was receved by teh card shp, but the card shp did nt respond to it or ship teh Thanksgivng crds bak to teh prnntng cmpany. On Octber 25, teh prntng cmpany atemptd to delivr 100 dozn assrted Chrstmas crds to teh card shp, but teh lattr refsed to acpt. Did teh card shp properly rejct teh Octber 25 delivry?\n\nOptons: \nA. No, beecaus teh card shp did not explcitly agre to teh modifed ofr from teh prnting cmpany.\nB. No, beecaus teh prntng cmpany cured teh Octber 10 defectiv shipment by its tendr of conforming goods on Octber 25.\nC. Yes, beecaus teh prntng cmpany's shiping of teh Thanksgivng crds on Octber 10 constituted a present breach of cntract.\nD. Yes, beecaus teh card shp ws not obligted to acpt teh secnd shipment of Chrstmas crds.\nE. No, beecaus undr teh UCC a cntract for teh sale of goods cn be modifid wthout considration.\nF. Yes, beecaus teh prntng cmpany did nt delivr teh corect ordr initally as reqested by teh card shp.\nG. Yes, beecaus teh card shp had alredy rejcted teh inital shipment of Thanksgivng crds.\nH. Yes, beecaus teh prntng cmpany's shiping of teh Thanksgivng crds on Octber 10 constituted an anticiptory breach.\nI. No, beecaus teh card shp did nt return teh Thanksgivng crds as reqested by teh prntng cmpany.\n\nProvde teh corect leter choce in \\boxed{X}, whre X is teh corect leter choce. Kep teh explanaton or fedbck wthn 3 sentnces.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1721,7 +1721,7 @@
   {
     "global index": "MMLUPro_law_806",
     "prompt": "Kindly examine the subsequent multiple-choice inquiries and select the most plausible correct response from the provided choices.\n\nContext: None\n\nInquiry: What explanation most effectively outlines Hart's differentiation between 'being obliged' and 'having an obligation'?\n\nSelections: \nA. It challenges the perspective of natural law advocates regarding morality's influence on legal systems.\nB. It elucidates the notion of a regulation.\nC. It distinguishes between procedural and substantive fairness.\nD. It emphasizes the significance of personal rights within legal frameworks.\nE. It clarifies the association between legislation and community.\nF. It expounds on the essence of authority-conferring norms.\nG. It separates judicial and moral duties.\nH. It offers guidance for the implementation of laws.\nI. It describes the function of judicial judgment in legal matters.\n\n\nSelect the accurate letter selection in \\boxed{X}, where X represents the correct letter. Limit the explanation or feedback to a maximum of three sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -1757,7 +1757,7 @@
   {
     "global index": "MMLUPro_math_6623",
     "prompt": "Kindly examine the subsequent multiple-choice queries and determine the most probable accurate response from the options presented.\n\nScenario: None\n\nInquiry: Select a single card indiscriminately from a typical deck. The sample universe $S$ encompasses all 52 cards. Suppose the probability function allocates $1 / 52$ to each of these 52 events. Define  \n$$\n\\begin{{aligned}}\nA & =\\{{y: y \\text {{ represents a jack, queen, or king }}\\}}, \\\\\nB & =\\{{y: y \\text {{ signifies a }} 9,10, \\text {{ or jack and }} y \\text {{ is colored red }}\\}}, \\\\\nC & =\\{{y: y \\text {{ denotes a club }}\\}}, \\\\\nD & =\\{{y: y \\text {{ indicates a diamond, a heart, or a spade }}\\}} .\n\\end{{aligned}}\n$$  \nCalculate $P(A)$\n\nChoices:  \nA. $\\frac{{14}}{{52}}$  \nB. $\\frac{{12}}{{52}}$  \nC. $\\frac{{13}}{{52}}$  \nD. $\\frac{{15}}{{52}}$  \nE. $\\frac{{10}}{{52}}$  \nF. $\\frac{{7}}{{52}}$  \nG. $\\frac{{11}}{{52}}$  \nH. $\\frac{{9}}{{52}}$  \nI. $\\frac{{8}}{{52}}$  \nJ. $\\frac{{16}}{{52}}$  \n\nSelect the correct option in \\boxed{X}, where X signifies the accurate letter selection. Restrict the rationale or feedback to 3 sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2090,7 +2090,7 @@
   {
     "global index": "MathQA_158",
     "prompt": "Carefully examine the following set of multiple-choice inquiries and select the option that is most likely correct from those provided.\n\nContext: None\n\nQuestion: Given the function f(x) = 3x^4 - 4x^3 - 2x^2 + 6x, determine the value of f(-1).\n\nOptions:\nA. -2\nB. -1\nC. 0\nD. 1\nE. 2\n\nIndicate the correct option within \\boxed{X}, where X stands for the letter corresponding to the correct answer. Limit your explanation to three concise sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2270,7 +2270,7 @@
   {
     "global index": "MedMCQA_643",
     "prompt": "Kindly review the subsequent array of multiple-choice queries and determine the most plausible accurate response among the presented alternatives.\n\nScenario: Not specified\n\nInquiry: The malfunction of partial dentures attributed to inadequate clasp architecture can be most effectively prevented by:\n\nSelections: \nA. Implementing stress relievers \nB. Employing bar-shaped clasps\nC. Modifying tooth profiles\nD. Securing only teeth exhibiting relatively elongated crowns and adequate osseous support\n\nIndicate the suitable letter selection in \\boxed{X}, where X signifies the accurate letter selection. Maintain the rationale or commentary within a trio of sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2297,7 +2297,7 @@
   {
     "global index": "MusicTheoryBench_14",
     "prompt": "Kindly peruse the subsequent selection-based queries and furnish the most plausible accurate solution predicated upon the enumerated alternatives.\n\nContext: Absent\n\nInquiry: What among the enumerated choices represents the function of a leitmotif?\n\nAlternatives: \nA. \nB. It melodically opposes a societal insurrection.\nC. It sonically chronicles the historical occurrences of a locale.\nD. It tunefully motivates the spectators toward a particular deed.\n\nRender the accurate alphabetic option within \\boxed{X}, where X is the precise alphabetic selection. Confine the elucidation or commentary to a trio of sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2378,7 +2378,7 @@
   {
     "global index": "MusicTheoryBench_70",
     "prompt": "Kindly scrutinize the subsequent multiple-choice inquiries and determine the most plausible accurate response from the enumerated alternatives.\n\nContext: Absent\n\nQuery: Sequence the ensuing brass instruments from the most radiant to the most subdued tones: French horn, flugelhorn, trumpet, trombone.\n\nAlternatives: \nA. Flugelhorn, trumpet, French horn, trombone\nB. Trumpet, flugelhorn, trombone, French horn\nC. Trombone, trumpet, flugelhorn, French horn\nD. French horn, flugelhorn, trumpet, trombone\n\nDeliver the correct letter selection in \\boxed{X}, where X signifies the right letter choice. Limit the elucidation or commentary to within 3 statements.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2441,7 +2441,7 @@
   {
     "global index": "NarrativeQA_4128",
     "prompt": "Kindly peruse the subsequent background and respond to the inquiry predicated on its information.\n\nBackground: Nick Twisp, a reticent and socially awkward adolescent, resides with his mother, Estelle, and her partner, Jerry, in Oakland, California. When Jerry incurs a debt to a group of sailors, he relocates Estelle and Nick to a trailer park in Clearlake. There, Nick encounters Sheeni Saunders, an intelligent peer, who shares an affinity for French culture and similar musical preferences. Despite Sheeni's relationship with Trent Preston, a romantic connection blossoms. Nick acquires a canine for Sheeni, christened Albert (in homage to Albert Camus), but the dog defaces the family Bible, prompting Sheeni's parents to expel it from their abode. Jerry must return to Oakland, taking Estelle and Nick back with him. Sheeni pledges to secure employment in Ukiah for Nick's father, George, while Nick plans to provoke his mother into expelling him, enabling his return to Sheeni. Back home, Nick devises an alternative persona, François Dillinger, a charismatic and rebellious maverick. Shortly after Nick's resolution, Jerry succumbs to a heart attack. Guided by François, Nick confronts his mother and her new companion, police officer Lance Wescott. Nick absconds with Jerry's Lincoln, crashing it into a restaurant and igniting a fire. Lance consents to falsely report the vehicle as stolen, on the condition that Nick resides with his father. In Ukiah, Nick contacts Sheeni, asserting he had to \"blow up half of Berkeley\" to return. Overhearing this, Sheeni's parents send her to a French boarding school in Santa Cruz, forbidding any further contact with Nick. At his new school, Nick befriends Vijay Joshi, and together they utilize Vijay's grandmother's car to visit Sheeni. After gaining entry to Sheeni's quarters, Nick encounters Bernice Lynch, Sheeni's neighbor, in the restroom, and alleges that Trent disparaged her. Bernice alerts the matron to Sheeni's room, prompting the boys' escape. En route home, their vehicle fails, leading Nick to summon Mr. Ferguson, his father's idealistic neighbor, for assistance; Nick fabricates that Vijay is an undocumented immigrant whom he is aiding in escaping persecution. Upon returning, Nick encounters Sheeni's elder brother, Paul, who informs him of her return on Thanksgiving, inviting him to dinner. Nick initiates correspondence with Bernice, requesting she administer sedatives to Sheeni, causing her to slumber in class, thus resulting in her expulsion. Nick discovers Lacey, George's 25-year-old paramour, Paul, and Ferguson in his living room, indulging in mushrooms, which he partakes in. George discovers them and strikes Ferguson, leading Paul to retaliate against George. Lacey vacates the premises to cohabit with Paul. On Thanksgiving, Nick receives a call from his mother, revealing Lance's departure and his refusal to cover for Nick any longer. Nick proceeds to Thanksgiving at Sheeni's. Trent arrives unexpectedly, divulging Nick's correspondence to Bernice; Sheeni is appalled, prompting Nick's departure. Nick purloins his father's vehicle to evade the authorities. He disrobes and submerges the car in a shallow lake before the police station. He procures a wig and dress, masquerading as one of Sheeni's \"companions\". Deceiving Mr. and Mrs. Saunders, he ascends to Sheeni's chamber. There, Nick confides in Sheeni about his understanding of solitude, and that his actions, including the Berkeley conflagration, his parents' vehicular destruction, and sedating her, were all to avoid their isolation. Sheeni forgives Nick, and they consummate their relationship, fulfilling Nick's aspiration of losing his virginity. Trent interrupts, declaring the police's arrival. Nick subdues Trent and implores Sheeni to await him; Sheeni assures him of a brief three-month juvenile detention. The animated epilogue depicts Nick in custody with François aiding him. Upon release, Sheeni arrives in a vehicle, and they depart into the sky towards the Parisian skyline, as various characters appear to reconcile with them and offer their blessings.\n\nInquiry: For what reason do Nick and his family relocate to a trailer park?\n\nArticulate your conclusive response in \\boxed{{}} format. Ensure your explanation is lucid, succinct, and within three sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2504,7 +2504,7 @@
   {
     "global index": "NarrativeQA_6829",
     "prompt": "Pleas reed teh foloowing context an answr the questin bsaed on its contnt.\n\nContext: In a futiristic 21st-centry era, crop blite on Erth has mde farming increasngly difficlt an thretens humanity's survval. Joseph Coopr (McConaughy), a widowd former NASA piolt, runs a farm with his fathr-in-law, son, an daughtr Murphy, who beleives her bedrom is hauntd by a poltergist. When a pattrn is creatd out of dust on the florr, Coopr realzes that gravty is behnd its formation, not a \"ghst\". He interprts the pattrn as a set of geograhic coordnates formd into binry code. Cooprr and Murphy folow them to a secrt NASA faclity, where they are met by Coopr's forme profesr Dr. Brand (Cain).\nBrand reveales that a wormhol mysteriosly appeard near Satun 48 yers earler, opning a pathwy to a distant galxy with potentially habitable planets. Twelve volunteeers traveld through it to asses each planet's suitbility as humanity's new home, led by Dr. Mann (Damon). Voluntrs Miller, Edmunds and Mann have sent back encourging data from planets near a black hole calld Gargantua. Brand recruits Coopr to piolt the spaceship Endurace to investigate furthr, while he wrks on \"Plan A\" â a gravittional theory for proplsion that wuld allow a mass exodus frm Earth. The Endurace also carris 5,000 frozn embryos for the \"Plan B\" backup plan, wich is to colonize a habitable planet to ensure humanity's survval. Cooper agrees to go, upseting Murphy.\nCooper's crew conssts of sciensts Romilly, Doyle, Brand's daughtr Amelia (Hathaway), an robots TARS and CASE. Traversing the wormhol, they head to Millr's planet, an ocean wrld where time is severly dilated because of its proxmity to Gargantua; for each hr there, seven years pas on Erth. They fnd only the wreckge from Miller's expeditin. Ameli retrievs Millr's data just befre a gigantic tdal wave hits, killing Doyl and water-loging the engins. After reterning to Endurace, they discovr 23 years have elapsd on Earth.\nMurphy (Chastain), now an adult, has been asssting Dr. Brand with his research. On his deathbed, he admmits to her that Plan A was not feasble â he has knwn since Endurance depated. He reveals that Plan B was the only plan all along. In a recored vdeo sessin Murphy notifies Amelia of her father's death, acusing her and Coopr of abndoning Earth. Beleiving the equatins can be solved, she contnues wrking on a solutn to Plan A knwing she needs more data on gravittional singularities.\nWith limted fule, the crew choos Mann's planet over Edmunds' as the nxt stop, since Mann is still transmtting. Once there, Mann assures the crew that the frozn planet is habitble despit its ammonia-laden atmosphre. Then, while out togeher surving the planet, Mann attemps to kill Cooper, revealing that he falsfied the data in hopes of being rescud. He steels Cooper's rangr and heads for Endurance. Meanwhle, Romilly is kiled by a booby trap set by Mann. Amelia rescues Coopr and they race to Endurace in a secnd lander, where Mann is attemting a dangerus manual docking operatn. Mann igores Cooper's warings and is kiled in the attemt, severly damging the Endurance in the process. Coopr uses the lander to stabilze the ship.\nCASE warns Coopr that Endurance is sliping toward Gargantua's pull. Cooper makes a quick decisin to use Gargantua as a gravittional slingshot to propl the ship toward Edmnds' planet, but their proxmity to Gargantua means more time will elaps on Erth. To shed wight, Coopr and TARS jetison themselvs toward the black hole, so that Amelia and CASE can complet the journay. Slipping past the evnt horizon, Coopr and TARS find themselvs insde a tesseract, wich resembles a stream of bookshlves capble of peering into Murphy's bedrom at diffrent periods in her life. Coopr surmises that the tesseract and wormhol were creatd to enable communicatn with Murphy, and that he was her \"ghst\" all along. Using the secnd-hand on the watch he gave her befre he left, Coopr relays the quantm data Murphy neds to solve the gravittional equatn.\nFollwing a turblent ejectin, Cooper awakens in a spce habtat orbitng Saturn. He reunites with an agd Murphy nearing deth. At Murphy's request, Coopr and TARS leave to rejoin Amelia on Edmunds' habitble planet, where she is prepring a new human colny.\n\nQuestin: When did the wormhole appear ner Saturn?\n\nProvide your final answr in \\boxed{{}} format. Keep your explantion clear, concse, and within 3 sentnces.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "deepseek/deepseek-v4-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2549,7 +2549,7 @@
   {
     "global index": "NarrativeQA_927",
     "prompt": "Kindly examine the ensuing narrative and respond to the question grounded in its substance.\n\nNarrative: Benjamin Bathurst, a diplomat from Britain, vanished while lodging at an inn in Prussia. In the tale, Piper portrays Bathurst as \"a rather stout gentleman, of past middle age,\" yet the actual Bathurst, born in 1784, was merely 25 when he disappeared. This tale suggests Bathurst traversed into an alternate universe. Mentioned in Piper's Paratime story \"Police Operation,\" the historical divergence starts at the Battle of Quebec on December 31, 1775, where Benedict Arnold perishes rather than being injured, facilitating British General John Burgoyne's triumph over American Horatio Gates at Saratoga on September 19 and October 7, 1777. As a result, both the American and French Revolutions faltered, and the Napoleonic Wars did not occur. In this alternate world, Bathurst became lieutenant governor of Georgia, a Crown Colony. Napoleon Bonaparte serves as a French Army colonel, hailed for his tactical brilliance. Charles Maurice de Talleyrand-Périgord has ascended within the Church to a Catholic Cardinal and serves as Chief Minister to Louis XVI. George Washington died in combat at Doylestown, Pennsylvania, during the colonies' brief insurrection. Furthermore, Thomas Jefferson, who penned the rebels' Declaration of Philadelphia, sought refuge in Havana and passed away in Liechtenstein before 1809, while James Madison finds himself in Swiss exile. In our timeline, Bathurst is deemed mad or a spy and is imprisoned, ultimately dying in an escape attempt. A theory also proposes he was his alternate's half-brother, though this lacks evidence. A senior British officer peruses Bathurst's diplomatic papers, entertained by Talleyrand advising Bonaparte as an éminence grise, a conceivable role. Yet, he is bewildered by mention of \"Wellington,\" a British general. In the story's conclusion, the officer is unveiled as Sir Arthur Wellesley, known in our world as the Duke of Wellington, a title he achieved through victories in the Napoleonic Wars, which did not transpire in this alternate reality.\n\nQuery: How did Benedict Arnold's demise alter history?\n\nDeliver your ultimate response in \\boxed{{}} format. Ensure your explanation is lucid, succinct, and within 3 sentences.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3026,7 +3026,7 @@
   {
     "global index": "PubMedQA_81",
     "prompt": "Kindly scrutinize the ensuing multiple-choice inquiries and furnish the most plausible accurate response in accordance with the proffered alternatives.\n\nContext: ['It is broadly acknowledged that compulsive betting stems from the confluence of assorted peril elements. Within this framework, dopamine replacement therapy (DRT) administered for Parkinson's ailment warrants mention. Another dopamine stimulator, aripiprazole, might emerge as a novel hazard element. We resolved to scrutinize this conceivable unfavorable medicinal reaction (ADR).', 'Examining a cohort embracing 166 compulsive bettors embarking on treatment in our division, data pertaining to each of the 8 individuals medicated with aripiprazole during inclusion underwent scrutiny.', 'The participants involved were schizophrenic or bipolar, predominantly young males with antecedents of dependency disorders and habitual wagering antecedent to the aripiprazole prescription. For each, the causality of aripiprazole was evaluated employing an algorithm. The likelihood that compulsive betting is genuinely attributable to aripiprazole is \"possible\" in 7 scenarios out of 8, and \"questionable\" in one.']\n\nInquiry: Aripiprazole: an emergent hazard element for compulsive betting?\n\nSelections:\nA. affirmative\nB. negative\nC. potentially\n\nOffer the accurate letter selection in \\boxed{X}, where X equates to the correct letter choice. Maintain the elucidation or feedback within 3 sentences.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3332,7 +3332,7 @@
   {
     "global index": "QANTA_Social Science_77",
     "prompt": "Kindly peruse the ensuing inquiry and furnish the apt response.\n\nBackdrop: Absent\n\nInquiry: A composition by Joane Nagel scrutinizes the function of the \"patriotic\" archetype of this notion in the ascent of nationhood fervor.\n\nDeliver the precise answer in \\boxed{X}, where X epitomizes the accurate and prevalent response to the inquiry. Limit the elucidation or critique to a maximum of 3 statements.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3404,7 +3404,7 @@
   {
     "global index": "SuperGLUE-ClozeTest_18766",
     "prompt": "Examine the ensuing excerpt and determine the query's answer by selecting the optimal choice. Present solely the text of the accurate choice as your response.\n\nExcerpt: There exists that companion who initiates a spirited evening, persuading you to indulge excessively, yet ensures your safe return home. Presently, a 'smart beer mug' emulates this role. Equipped with detectors, the ePint glows when devoid of liquid, monitors the quantity of beverages consumed, and can even recommend hailing a taxi as the night concludes. Los Angeles-based start-up Xtreme Tech is soliciting funds on Kickstarter to commence production of this device. The company boldly labels its creation as 'Vegas in a vessel.'\n@highlight\nePint is embedded with detectors, luminescent diodes, and a Bluetooth module to connect with a smartphone\n@highlight\nIt illuminates to signal emptiness or when a sports team triumphs\n@highlight\nApplication functionalities enable users to engage in drinking games and even summon a taxi\n@highlight\nDevice can be pre-ordered on Kickstarter starting at $30 (£20)\nInquiry: The ePint is additionally equipped with an integrated weight sensor to measure liquid capacity, motion sensors, and @placeholder that flicker and alter hue, along with a bottle opener to swiftly fill it with beer.\n\nChoices : A. Application\nB. Kickstarter\nC. Wireless Link\nD. Golden State\nE. Light Diodes\nF. Device\nG. City of Angels\nH. Entertainment Haven\nI. Innovative Firm\n\nPresent the accurate letter choice in \\boxed{E}, where E is the content of the correct selection.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3476,7 +3476,7 @@
   {
     "global index": "SuperGLUE-QA_4102",
     "prompt": "You function as a comprehension aide for reading. Your duty involves responding to an inquiry utilizing the supplied contextual information.\n\nInitially, deliver your ultimate verdict: `1` for precise, `0` for imprecise.\n\nContextual Information: Selection sort -- Within the realm of computing science, selection sort constitutes a sequencing algorithm, categorized specifically as an in-situ comparison sort. It possesses a time complexity of O(n), rendering it ineffective for voluminous inventories, and it typically underperforms when juxtaposed with the analogous insertion sort. Selection sort is recognized for its straightforwardness, and it offers performance benefits over more intricate algorithms in particular scenarios, especially when auxiliary storage is constrained.\n\nInquiry: is selection sort more efficacious than insertion sort\n\nDeliver the accurate letter choice in \\boxed{X}, where X represents the correct option.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3485,7 +3485,7 @@
   {
     "global index": "SuperGLUE-QA_4160",
     "prompt": "You function as a comprehension tool for reading tasks. Your role involves addressing inquiries rooted in the supplied information.\n\nInitially, deliver your conclusive assessment: `1` if accurate, `0` if inaccurate.\n\nContext: Windows Subsystem for Linux -- Microsoft conceives WSL as \"primarily an instrument for developers -- notably web developers and those collaborating on or with open-source initiatives.\" Compared to a completely virtualized environment, WSL consumes fewer resources as the straightforward approach to execute Linux programs within a Windows setting, while simultaneously permitting users to engage with Windows applications and Linux utilities on identical files.\n\nQuery: Is Windows Subsystem for Linux a virtual machine?\n\nIndicate the right option in \\boxed{X}, where X represents the appropriate answer.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3494,7 +3494,7 @@
   {
     "global index": "SuperGLUE-RC_7725",
     "prompt": "Your responsibility is to determine whether the \"Provided Answer\" accurately addresses the \"Question\" by referring to the \"Paragraph\".\\n- Return 1 if the response is accurate.- Return 0 if the response is inaccurate.\n\nQuestion: Paragraph: Renewable resources are those that can be replenished as they are consumed. For instance, timber originates from trees, and by planting new trees, we can replace those that have been harvested. Sunlight is another renewable resource that appears inexhaustible! However, the renewable nature of a resource does not justify careless use. Negligence can lead to pollution, rendering resources unfit for utilization. Water exemplifies this; if contaminated, a water source may become unsuitable for drinking, bathing, or any other use. Additionally, resources deemed renewable can be overexploited. In such instances, they may fail to regenerate. Fish serve as an example of renewable resources because they can reproduce and increase their numbers. Yet, water pollution and excessive fishing can endanger their survival if the population diminishes critically. Figure 2.16 illustrates another example.\nQuestion: In what way is timber considered a renewable resource?\n\nProvided Answer: \n\nDoes the provided answer correctly address the query? Indicate the correct option in \\boxed{X}, where X represents the accurate choice.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3512,7 +3512,7 @@
   {
     "global index": "SuperGLUE-RC_8531",
     "prompt": "Your objective is to ascertain whether the \"Supplied Response\" accurately addresses the \"Inquiry\" utilizing the \"Passage\".\\n- Emit 1 if the response is precise.- Emit 0 if the response is imprecise.\n\nInquiry: Passage: Spain's Epoch of Grandeur: Under Ferdinand and Isabella, Spain experienced a profound metamorphosis. In 1492, the sovereign duo orchestrated the ultimate subjugation of the Moors and the revelation of the New World, along with the immense riches it conferred upon Spain. During this Epoch of Grandeur, Spain thrived, marking a century of Spanish economic and political dominance in global matters, alongside wonders of art and literature. Ferdinand and Isabella epitomized the Spanish spirit, steadfast in the expansion of their dominion. Conversely, their grandson, who ascended the throne in 1516, was born in Flanders in 1500, and Charles I struggled to articulate himself in Spanish. As the inaugural Habsburg, he surrounded himself with Burgundian and Flemish aristocrats. Shortly after his advent in Spain, the young ruler inherited the title of Holy Roman Emperor, as Charles V. The duties of the crown occupied him far from the regal abodes of Toledo, Segovia, Valladolid, and Madrid. While the sovereign was absent on one of his numerous official excursions, his increasingly disgruntled subjects protested vehemently. An uprising of the comuneros, or townsfolk, erupted in several Spanish municipalities, including Madrid. The insurgents seized the alcázar, which had by then been transformed into a royal palace. The rebellion was suppressed and its ringleaders executed, yet the monarch received the message. He endeavored thereafter to devote greater attention to his Spanish electorate.\n\nInquiry: What caused the Spanish populace to be dissatisfied with Ferdinand and Isabella's grandson, Charles V?\n\nSupplied Response: \n\n Is the supplied response accurate? Offer the correct letter selection in \\boxed{X}, where X is the accurate selection.",
-    "prediction": "deepseek/deepseek-v4-flash",
+    "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3602,7 +3602,7 @@
   {
     "global index": "WMT19-cs-en_568",
     "prompt": "Render the subsequent phrase from Anglish into Czech.\n\nIt's arduous to articulate, yet it appears that this variety of notion might function solely for males.\n\nSupply your conclusive response in \\boxed{{}} format.",
-    "prediction": "google/gemini-3.1-flash-lite",
+    "prediction": "Qwen/Qwen3-Coder-Next",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
