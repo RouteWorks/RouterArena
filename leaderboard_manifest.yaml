@@ -165,15 +165,6 @@ routers:
       affiliation: "@vishalveerareddy123"
       github_url: "https://github.com/vishalveerareddy123"
 
-  - readme_name: "Paix2"
-    website_name: "Paix2"
-    prediction: "Paix2-router"
-    category_key: "paix2"
-    flip_key: "paix2"
-    website:
-      affiliation: "@xufan866"
-      github_url: "https://github.com/xufan866"
-
   - readme_name: "Divyam"
     website_name: "Divyam"
     prediction: "divyam-router"
