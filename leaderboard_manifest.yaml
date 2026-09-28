@@ -119,7 +119,7 @@ routers:
 
   - readme_name: "LLM Router"
     website_name: "LLM Router"
-    prediction: "llm-router"
+    prediction: "llm-router-g3"
     category_key: "llm-router"
     flip_key: "llm-router"
     website:
