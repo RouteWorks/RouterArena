@@ -386,5 +386,13 @@
   "google/gemma-4-31b-it": {
     "input_token_price_per_million": 0.08,
     "output_token_price_per_million": 0.35
+  },
+  "openai/gpt-6-luna": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.5
+  },
+  "deepseek/deepseek-v4.1-flash": {
+    "input_token_price_per_million": 0.03,
+    "output_token_price_per_million": 0.6
   }
 }
