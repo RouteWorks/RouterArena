@@ -193,6 +193,7 @@ class ModelInference:
             "qwen/qwen3-235b-a22b-2507": "openrouter",
             "openai/gpt-6-luna": "openrouter",
             "deepseek/deepseek-v4.1-flash": "openrouter",
+            "deepseek/deepseek-v4-flash-0731": "openrouter",
             "google/gemma-4-31b-it": "openrouter",
             "qwen/qwen3-next-80b-a3b-instruct": "openrouter",
             "Qwen/Qwen3-Coder-Next": "openrouter",
