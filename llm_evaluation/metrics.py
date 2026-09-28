@@ -1127,7 +1127,10 @@ def _calculate_fragmentation_penalty(pred_tokens, gt_tokens):
     if min_chunks == total_matches:
         penalty = 0.0  # 完全连续匹配，无惩罚
     else:
-        penalty = 0.5 * (min_chunks / total_matches) ** 2
+        # Chunks are counted over the full token sequence (repeats included) but
+        # total_matches counts distinct words, so the ratio can exceed 1. Cap the
+        # penalty so the score stays within [0, 1] (see issue #210).
+        penalty = min(1.0, 0.5 * (min_chunks / total_matches) ** 2)
 
     return penalty
 

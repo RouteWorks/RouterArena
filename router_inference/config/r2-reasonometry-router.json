@@ -1,0 +1,12 @@
+{
+  "pipeline_params": {
+    "router_name": "R**2: Reasonometry Router v8.4",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-235b-a22b-2507"
+    ],
+    "default_model": "gemini-3-flash-preview",
+    "description": "Frozen prompt-only structural motif router. Each benchmark row contains the full completion and native token usage from an actual OpenRouter call, reconciled to its OpenRouter generation record. Five zero-usage Gemini failures on Google AI Studio were regenerated using the same selected Gemini model through Google Vertex."
+  }
+}

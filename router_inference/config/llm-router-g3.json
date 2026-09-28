@@ -1,0 +1,13 @@
+{
+ "pipeline_params": {
+  "router_name": "llm-router-g3",
+  "router_cls_name": "KNNRetrievalRouter",
+  "models": [
+   "gemini-3-flash-preview"
+  ],
+  "description": "Single-model policy selected by measurement. Twenty-six RouterArena-priced models were screened on an external corpus of 27 public datasets, audited SHA-256 exact plus MinHash near-duplicate against all 9,613 RouterArena evaluation questions at zero overlap. Five routing mechanisms were built and each lost to a well-chosen constant on held-out data: cluster-to-model maps, a binary escalation classifier, instance-level retrieval, per-model difficulty heads, and a local LLM judge. This submission reports the constant those experiments identified rather than a router the evidence does not support. No RouterArena prompt, answer, label or outcome informs the selection."
+ },
+ "router": "llm-router-g3",
+ "router_name": "llm-router-g3",
+ "description": "llm-router by Yali Pollak - measurement-selected single-model policy."
+}
