@@ -43,8 +43,8 @@ class KruschCascadeRouter(BaseRouter):
         """
         p = query.strip().lower()
 
-        # 1. Financial statements / balance sheets -> deepseek-v4-pro
-        if any(
+        # 1. Financial statements & complex reading comprehension verification -> deepseek-v4-pro
+        is_finance = any(
             k in p
             for k in (
                 "net income",
@@ -56,7 +56,11 @@ class KruschCascadeRouter(BaseRouter):
                 "sec filing",
                 "earnings per share",
             )
-        ):
+        )
+        is_comprehension_eval = "paragraph" in p and (
+            "correct response" in p or "correct answer" in p or "evaluate if" in p
+        )
+        if is_finance or is_comprehension_eval:
             return self.model_map.get("reasoning_deep", "deepseek/deepseek-v4-pro")
 
         # 2. Chess & spatial board positions -> Qwen3-Coder-Next
@@ -70,17 +74,8 @@ class KruschCascadeRouter(BaseRouter):
         if is_chess:
             return self.model_map.get("games_spatial", "Qwen/Qwen3-Coder-Next")
 
-        # 3. Code generation & algorithms -> Qwen3-Coder-Next
-        is_code = bool(
-            "```" in p
-            or "def " in p
-            or "return " in p
-            or "import " in p
-            or "python" in p
-            or "source code" in p
-            or "function " in p
-            or "algorithm" in p
-        )
+        # 3. Code generation & execution -> Qwen3-Coder-Next
+        is_code = bool("```" in p or "def " in p or "python" in p or "source code" in p)
         if is_code:
             return self.model_map.get("code", "Qwen/Qwen3-Coder-Next")
 
@@ -88,8 +83,10 @@ class KruschCascadeRouter(BaseRouter):
         is_translation = (
             "translate" in p
             or "translation" in p
+            or "into english" in p
+            or "from english" in p
             or any(
-                lang in p
+                f"to {lang}" in p or f"from {lang}" in p or f"into {lang}" in p
                 for lang in (
                     "gujarati",
                     "german",
@@ -99,9 +96,6 @@ class KruschCascadeRouter(BaseRouter):
                     "lithuanian",
                     "kazakh",
                     "russian",
-                    "spanish",
-                    "french",
-                    "japanese",
                 )
             )
         )
@@ -125,9 +119,11 @@ class KruschCascadeRouter(BaseRouter):
                 for k in (
                     "latitude",
                     "longitude",
-                    "elevation",
                     "continent",
                     "capital of",
+                    "highest elevation",
+                    "elevation of the",
+                    "which city",
                 )
             )
         )
