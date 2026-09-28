@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
 # SPDX-License-Identifier: Apache-2.0
 
-"""Ko-Agent Router adapter.
+"""AINative Router adapter.
 
 Task-group routing policy fit only on an external calibration set (public source benchmarks with every
 RouterArena item removed; leakage-checked). The policy, signal code and kNN index are hash-frozen
@@ -24,7 +24,7 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 
 
-class KoAgentRouter(BaseRouter):
+class AINativeRouter(BaseRouter):
     def __init__(self, router_name: str):
         super().__init__(router_name)
         from arena_router.router import ArenaRouter as _Impl

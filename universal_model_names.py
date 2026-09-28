@@ -138,7 +138,7 @@ universal_names = [
     "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
     # KT-ModelRouter pool additions
     "google/gemma-4-31b-it",
-    # Ko-Agent Router pool additions (OpenRouter-served)
+    # AINative Router pool additions (OpenRouter-served)
     "openai/gpt-6-luna",
     "deepseek/deepseek-v4.1-flash",
     "deepseek/deepseek-v4-flash-0731",

@@ -11,7 +11,7 @@ from router_inference.router.chuzom_solo_v32 import ChuzomSoloV32Router
 from router_inference.router.llm_router import LLMRouter
 from router_inference.router.lynkr_router import LynkrRouter
 from router_inference.router.cruq_sc_router import CruqSCRouter
-from router_inference.router.ko_agent_router import KoAgentRouter
+from router_inference.router.ainative_router import AINativeRouter
 
 __all__ = [
     "BaseRouter",
@@ -22,5 +22,5 @@ __all__ = [
     "ChuzomSoloV32Router",
     "LynkrRouter",
     "CruqSCRouter",
-    "KoAgentRouter",
+    "AINativeRouter",
 ]
