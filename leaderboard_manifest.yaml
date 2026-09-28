@@ -202,6 +202,26 @@ routers:
       affiliation: "@nabaruns"
       github_url: "https://github.com/nabaruns"
 
+  - readme_name: 'R\*\*2: Reasonometry Router'
+    website_name: "R**2: Reasonometry Router"
+    prediction: "r2-reasonometry-router"
+    category_key: "r2-reasonometry"
+    flip_key: "r2-reasonometry"
+    website:
+      affiliation: "@sashakolpakov"
+      github_url: "https://github.com/sashakolpakov"
+      type: "closed-source"
+
+  - readme_name: "SapientAI Auto Router"
+    website_name: "SapientAI Auto Router"
+    prediction: "PSAI-Auto-Router"
+    category_key: "psai-auto-router"
+    flip_key: "psai-auto-router"
+    website:
+      affiliation: "Publicis Sapient"
+      github_url: "https://github.com/subhajeet-sapient"
+      type: "closed-source"
+
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
   - readme_name: "MIRT-BERT"
