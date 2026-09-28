@@ -3,12 +3,10 @@
 
 """AINative Router adapter.
 
-Task-group routing policy fit only on an external calibration set (public source benchmarks with every
-RouterArena item removed; leakage-checked). The policy, signal code and kNN index are hash-frozen
-(artifacts/FREEZE.json) before any RouterArena query is routed; the router verifies the hashes at load.
-
-Signals: task group from the public eval-config template head (kNN over calibration prompts when the head
-is paraphrased). No RouterArena query, answer, label, or other submission's predictions are used.
+Content-only routing: the question body (first/last paragraph dropped, field labels and option letters stripped) is
+classified into a content category by a classifier trained only on external calibration data, and each category maps
+to a model chosen on that data. The router reads no RouterArena files; policy and classifier are hash-frozen
+(artifacts/FREEZE.json) and verified at load.
 """
 
 import os

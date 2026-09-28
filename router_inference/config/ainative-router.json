@@ -10,6 +10,6 @@
       "qwen/qwen3-235b-a22b-2507",
       "deepseek/deepseek-v4-flash-0731"
     ],
-    "description": "AINative Router: task-group routing policy (per-cell model assignment + lambda sweep on Arena Score) fit only on a 2,179-query external calibration set built from the same public source benchmarks with all RouterArena items removed (exact, template-stripped MiniLM >=0.85, and source-ID checks). v2 adds deepseek/deepseek-v4-flash-0731 to the pool; accepted on a fresh 2,177-query held-out calibration extension (same construction, disjoint from RouterArena and from the fit set). Policy/signals hash-frozen before routing RouterArena. Per-row provenance (requested_model, model_used, provider, request_id, invoked_at) recorded."
+    "description": "AINative Router: content-only routing. The question body (first/last paragraph dropped, field labels and option letters stripped generically) is embedded with all-MiniLM-L6-v2 and classified into 11 content categories by a logistic regression trained only on an external 6,409-query calibration set (same public sources, all RouterArena items removed); each category maps to the model with the best accuracy-cost trade-off on that set (sources weighted equally). No RouterArena template strings, config files, labels or proportions are used. Classifier/policy hash-frozen before routing. Per-row provenance (requested_model, model_used, provider, request_id, invoked_at) recorded."
   }
 }
