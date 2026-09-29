@@ -16,6 +16,7 @@ import os
 import json
 import argparse
 import glob
+import threading
 from typing import Dict, List, Any, Optional
 import sys
 
@@ -87,6 +88,10 @@ class ModelEvaluator:
             str, Any
         ] = {}  # Store existing results for incremental evaluation
         self.cost_config: Dict[str, Any] = {}  # Store cost configuration
+        # Model names charged at the maximum price because no price profile
+        # matched them -> number of rows.
+        self.unpriced_models: Dict[str, int] = {}
+        self._unpriced_lock = threading.Lock()
         self.num_workers = num_workers
 
         # Load dataset configurations
@@ -207,21 +212,39 @@ class ModelEvaluator:
             self.cost_config = {}
 
     def _lookup_cost_info(self, model_name: str):
-        """Find the pricing entry for a model name, trying an exact match first
-        and then a substring fallback (historical behaviour). Returns the cost
-        dict, or None if no price is known."""
+        """Find the pricing entry for a model name by exact match on a model id
+        or alias (see model_cost/model_profiles.yaml). Returns the cost dict, or
+        None if no price is known.
+
+        There is deliberately no fuzzy/substring fallback: it used to let a name
+        pick up whichever price key happened to be a substring of it."""
         if not self.cost_config or not model_name:
             return None
         # Remove _batch suffix if present for cost lookup
         cost_lookup_name = (
             model_name[:-6] if model_name.endswith("_batch") else model_name
         )
-        if cost_lookup_name in self.cost_config:
-            return self.cost_config[cost_lookup_name]
-        for config_name in self.cost_config.keys():
-            if config_name in cost_lookup_name or cost_lookup_name in config_name:
-                return self.cost_config[config_name]
-        return None
+        return self.cost_config.get(cost_lookup_name)
+
+    def max_price_info(self) -> Dict[str, float]:
+        """The highest input and output prices in the cost table. Used to charge
+        rows whose model has no price profile, so an unregistered or misspelled
+        model is never cheaper than a registered one."""
+        if not self.cost_config:
+            return {
+                "input_token_price_per_million": 0.0,
+                "output_token_price_per_million": 0.0,
+            }
+        return {
+            "input_token_price_per_million": max(
+                float(v.get("input_token_price_per_million", 0.0))
+                for v in self.cost_config.values()
+            ),
+            "output_token_price_per_million": max(
+                float(v.get("output_token_price_per_million", 0.0))
+                for v in self.cost_config.values()
+            ),
+        }
 
     def has_price(self, model_name: str) -> bool:
         """Whether a price is known for this model name. Used to decide whether a
@@ -248,14 +271,22 @@ class ModelEvaluator:
         cost_info = self._lookup_cost_info(model_name)
 
         if not cost_info:
-            print(
-                f"Warning: No cost configuration found for model {model_name} (lookup: {cost_lookup_name})"
-            )
-            if len(self.cost_config) > 0:
-                print(
-                    f"Available cost config keys (first 10): {list(self.cost_config.keys())[:10]}"
+            # Unmatched model: charge the highest price in the table rather than
+            # dropping the cost, and warn once per model name.
+            cost_info = self.max_price_info()
+            with self._unpriced_lock:
+                first_time = cost_lookup_name not in self.unpriced_models
+                self.unpriced_models[cost_lookup_name] = (
+                    self.unpriced_models.get(cost_lookup_name, 0) + 1
                 )
-            return 0.0
+            if first_time:
+                print(
+                    f"Warning: No price profile for model {cost_lookup_name!r}; "
+                    "charging the maximum price "
+                    f"(${cost_info['input_token_price_per_million']}/"
+                    f"${cost_info['output_token_price_per_million']} per 1M tokens). "
+                    "Add it to model_cost/model_profiles.yaml."
+                )
 
         # Calculate cost
         input_tokens = token_usage.get("input_tokens", 0) or 0

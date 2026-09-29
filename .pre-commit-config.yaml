@@ -66,6 +66,13 @@ repos:
       entry: tools/addlicense.sh
       pass_filenames: true
       files: '\.py$'
+    - id: model-cost-in-sync
+      name: model_cost.json is generated from model_profiles.yaml
+      language: python
+      entry: python scripts/pricing/build_model_cost.py --check
+      additional_dependencies: [pyyaml]
+      pass_filenames: false
+      files: '^(model_cost/|scripts/pricing/)'
 # Add mypy hooks for both local runs and CI (manual stage)
 - repo: local
   hooks:
