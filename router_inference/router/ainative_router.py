@@ -28,9 +28,11 @@ class AINativeRouter(BaseRouter):
         from arena_router.router import ArenaRouter as _Impl
 
         self._impl = _Impl()
-        unknown = set(self._impl.policy.models) - set(self.models)
+        # 정책 선택지는 "model" 또는 "model@<reasoning>" (추론 강도 변형). 예측 파일에는 기본 모델명만 기록하고,
+        # 추론 설정은 각 행의 generated_result.request_params 에 기록된다.
+        unknown = {m.split("@")[0] for m in self._impl.policy.models} - set(self.models)
         if unknown:
             raise ValueError(f"policy models not in config: {unknown}")
 
     def _get_prediction(self, query: str) -> str:
-        return self._impl.route(query)
+        return self._impl.route(query).split("@")[0]

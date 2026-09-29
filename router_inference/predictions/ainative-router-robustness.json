@@ -1883,7 +1883,7 @@
   {
     "global index": "MMLUPro_physics_7893",
     "prompt": "Carefully examine the multiple-choice inquiries and select the option that most plausibly represents the accurate response from those presented.\n\nScenario: Not applicable\n\nInquiry: Suppose you devised a scientific notion suggesting an attraction exists between every entity. Under what circumstances would this notion be validated as accurate?\n\nChoices:\nA. When the notion forecasts forthcoming observations.\nB. Instantly upon proposing the notion.\nC. Once the notion advances into a law.\nD. The notion can never be definitively proven right, merely \"not yet disproven.\"\nE. When it is universally acknowledged as a truth by scientists.\nF. The initial instance a bowling ball descends upon release, affirming your idea.\nG. After conducting your experiment numerous times.\nH. When both you and a multitude of others have verified the hypothesis.\nI. Following a single triumphant experiment that endorses your idea.\nJ. Upon the notion's publication in an academic journal.\n\nSelect the appropriate letter in \\boxed{X}, indicating the correct selection. Limit the explanation to a maximum of three statements.",
-    "prediction": "deepseek/deepseek-v4.1-flash",
+    "prediction": "google/gemma-4-31b-it",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2594,7 +2594,7 @@
   {
     "global index": "OpenTDB_Celebrities_1456",
     "prompt": "pleese raed the folowing mltiple-choice qestions adn provide teh most likely corect answr bsed on th optins given.\n\nContex: None\n\nQestion: What was teh caus of Marily Monroe's suciide?\n\nOptons:  \nA. Drug Ovrdose  \nB. House Fir  \nC. Gunsot  \nD. Knfe Atack  \n\nProvd the corect leter choce in \\boxed{X}, wher X is teh corect leter choce. Keeep teh explnation or feedbak within 3 senteces.",
-    "prediction": "deepseek/deepseek-v4.1-flash",
+    "prediction": "google/gemma-4-31b-it",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -2891,7 +2891,7 @@
   {
     "global index": "PubMedQA_362",
     "prompt": "Kindly examine the subsequent multiple-choice queries and select the most plausible correct response from the given alternatives.\n\nContext: ['Debate persists over the best approach to handling the residual testicular tissue linked to vanishing testes syndrome. Some specialists in urology argue for the necessity of surgical investigation, while others consider it superfluous. These divergent views arise from inconsistent findings regarding living germ cell components in the testicular remnants. To gain deeper insight into the condition's pathology and the need for surgical action, we analyzed our experiences with the occurrence of living germ cell parts in the remaining testicular tissue.', 'A review approved by an institutional review board was conducted retrospectively on all consecutive cases undergoing exploration for a nonpalpable testis at Eastern Virginia Medical School and Geisinger Medical Center from 1994 to 2006. Patients exhibiting spermatic vessels and a vas deferens emerging from an intact internal inguinal ring were included in the study.', 'Fifty-six individuals had their testicular remnants removed. Ages ranged between 11 and 216 months. Viable germ cell components were found in 8 specimens (14%). Additionally, 4 patients (7%) displayed seminiferous tubules without germ cell components.']\n\nQuestion: Is surgical intervention warranted for histological assessment of the testicular remnant in the context of vanishing testes syndrome?\n\nOptions: \nA. yes\nB. no\nC. maybe\n\nChoose the appropriate letter in \\boxed{X}, where X indicates the correct choice. Keep the explanation brief, limited to 3 sentences.",
-    "prediction": "deepseek/deepseek-v4.1-flash",
+    "prediction": "google/gemma-4-31b-it",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3323,7 +3323,7 @@
   {
     "global index": "QANTA_Social Science_2",
     "prompt": "Kindly examine the subsequent inquiry and deliver the accurate response.\n\nContext: None\n\nInquiry: An injunctive communication has the potential to prevent an adverse consequence of this phenomenon via the \"boomerang effect.\"\n\nSubmit the right answer in \\boxed{X}, where X represents the accurate and most frequent solution to the inquiry. Retain the explanation or commentary within 3 sentences.",
-    "prediction": "deepseek/deepseek-v4.1-flash",
+    "prediction": "google/gemini-3-flash-preview",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3431,7 +3431,7 @@
   {
     "global index": "SuperGLUE-Entailment_522",
     "prompt": "yoU are a Natrual Launguage Infernece xprt. Analyse the givn \"Premise\" an \"HypoThesis\".\n\nYo must detrmine if teh Prmise entales the Hypothsis. Frist, xplain ur reasoning in 1 or 2 sntences on why the Hypothsis can or canot be infrred frm the Premise. then, provde ur fnal judgemnt: `0.0` for entailment, `1.0` for no entailmnt.\n\nQueston: Premise: Frm Mane to Hwaii, thousands of studnts planed to stag walkouts Wednesay to protst gun vilence, 1 month aftr the dedly shoting insde a hgh school in Parkland, Flrida., Hypothesis: Frm Mane to Hwaii, thousnds of studnts planed to stag walkouts Wednesay to protst gun vilence, 2 months aftr the dedly shoting insde a hgh school in Parkland, Flrida.\n\nProvde the corect leter choce in \\boxed{X}, whre X is the corect choce.",
-    "prediction": "deepseek/deepseek-v4.1-flash",
+    "prediction": "google/gemma-4-31b-it",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3575,7 +3575,7 @@
   {
     "global index": "SuperGLUE-Wsc_20370",
     "prompt": "In teh \"Text\" belwo, dos the pronoun (\"span2_text\") refre to teh noun pharse (\"span1_text\")?\n\nAnswer wth only \"Yes\" or \"No\".\n\nText: Papa loked down at the chidlren 's faecs , os puzzeled and sd now. It was bad enugh tat they had to be diened so mnay thngs beacuse he coudn't aford them.\n span2_text: tehy\n span1_text: chidlren\n\nProvde the corrcet leter chioce in \\boxed{X}, wheer X is the corrcet choic.",
-    "prediction": "deepseek/deepseek-v4.1-flash",
+    "prediction": "google/gemma-4-31b-it",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
@@ -3728,7 +3728,7 @@
   {
     "global index": "WMT19-lt-en_269",
     "prompt": "Convert the sentence given below into Lithuanian language.\n\nGlance Behind You (with Busta Rhymes & Michael Jackson)\n\nPresent your ultimate response encased in \\boxed{{}}.",
-    "prediction": "deepseek/deepseek-v4-flash-0731",
+    "prediction": "deepseek/deepseek-v4.1-flash",
     "generated_result": null,
     "cost": null,
     "accuracy": null,
