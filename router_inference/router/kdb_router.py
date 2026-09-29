@@ -38,7 +38,9 @@ class KDBRouter(BaseRouter):
 
         with open(_CFG) as f:
             cfg = json.load(f)
-        self._embed = SentenceTransformer(cfg["embed_model"], revision=cfg["embed_revision"])
+        self._embed = SentenceTransformer(
+            cfg["embed_model"], revision=cfg["embed_revision"]
+        )
         self._classes = cfg["classes"]
         self._coef = np.array(cfg["coef"])
         self._intercept = np.array(cfg["intercept"])
@@ -46,7 +48,9 @@ class KDBRouter(BaseRouter):
         self._default = cfg["default"]
 
     def route_option(self, query: str) -> str:
-        x = self._embed.encode([routing_text(query)], normalize_embeddings=True, show_progress_bar=False)[0]
+        x = self._embed.encode(
+            [routing_text(query)], normalize_embeddings=True, show_progress_bar=False
+        )[0]
         cat = self._classes[int(np.argmax(self._coef @ x + self._intercept))]
         return self._policy.get(cat, self._default)
 
