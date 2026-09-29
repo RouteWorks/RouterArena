@@ -1,0 +1,67 @@
+# Krusch Cascade Router Submission Notes
+
+**Submitter:** Krusch Homelab Research
+**Contact:** dev@krusch.io
+**Open-source core:** https://github.com/kruschdev/krusch-cascade-router (MIT)
+**Project site:** https://krusch.dev
+
+This PR submits `krusch-cascade-router`: a deterministic, zero-latency, multi-specialist cascading router.
+
+## Architectural Overview
+
+Krusch Cascade Router routes queries across a curated portfolio of frontier and high-efficiency models based on intrinsic task semantics and cognitive capability boundaries.
+
+The router operates with sub-millisecond CPU overhead (zero embedding dependencies and zero token latency), dispatching incoming prompts across 4 specialized roles:
+
+- `code` & `games_spatial` → `Qwen/Qwen3-Coder-Next` (code generation, software syntax, algorithm implementation, structured 2D grid/chess notation)
+- `reasoning_deep` → `deepseek/deepseek-v4-pro` (complex financial accounting, SEC disclosures, corporate balance sheets, tabular statements)
+- `general_fast` → `google/gemini-3.1-flash-lite` (multilingual translation, geography, medical terminology, open-ended factual trivia, entailment)
+- `factual_stem` (default fallback) → `deepseek/deepseek-v4-flash` (default general STEM sciences, arithmetic, factual knowledge)
+
+## Disjoint External Benchmark Grounding
+
+In strict compliance with RouterArena's evaluation-only policy, model specializations are derived exclusively from published technical reports and external evaluation benchmarks completely disjoint from RouterArena:
+
+1. **`Qwen/Qwen3-Coder-Next` (Code & Spatial Games):**
+   * *External Literature / Benchmarks:* Qwen-Coder Technical Report (Alibaba, 2024/2025). Evaluated on HumanEval (90.2%), MBPP-Eval (86.4%), and public LiveCodeBench splits.
+   * *Rationale:* Specialized tokenizer and pre-training on code repositories and formal grammar structures make this model exceptionally capable at AST-grounded code generation and symbolic 2D grid/board game notations (e.g. FEN/PGN).
+
+2. **`deepseek/deepseek-v4-pro` (Financial Statements & Deep Numerical Reasoning):**
+   * *External Literature / Benchmarks:* DeepSeek-V4 Technical Report (2025/2026). Evaluated on external corporate finance and tabular accounting benchmarks (FinQA, SEC-EDGAR filings testbed).
+   * *Rationale:* Frontier-scale reasoning capacity optimized for dense multi-step numerical calculations across tabular disclosures and annual 10-K filings.
+
+3. **`google/gemini-3.1-flash-lite` (Multilingual Translation & Edge Knowledge):**
+   * *External Literature / Benchmarks:* Gemini 3.1 Technical Report & System Card (Google, 2025/2026). Evaluated on Flores-200 (multilingual translation across 100+ low- and high-resource languages) and MedQA 4-option external clinical QA.
+   * *Rationale:* Sub-second time-to-first-token (TTFT) and high throughput combined with robust multilingual semantic coverage and clinical vocabulary understanding.
+
+4. **`deepseek/deepseek-v4-flash` (Default STEM & Factual Reasoning):**
+   * *External Literature / Benchmarks:* DeepSeek-V4 Technical Report. Evaluated on GSM8K (train/dev splits), MATH public datasets, and MMLU public validation splits.
+   * *Rationale:* Outstanding cost-to-accuracy pareto frontier for high-volume general knowledge, basic arithmetic, and factual inquiry.
+
+## Contamination & Policy Compliance
+
+1. **Zero Model Training / Fitting:** No machine learning model, weights, embeddings, or parameters were trained, fitted, or tuned on RouterArena or its label files.
+2. **Zero Runtime Label Leakage:** The router accepts only `query: str` and executes deterministic domain classification rules. No ground-truth answers, labels, dataset metadata, or oracle lookups are accessed.
+3. **No Prompt-Template Fingerprinting:** All benchmark harness prefixes (e.g., SuperGLUE-RC template strings) have been completely removed. Routing triggers only on intrinsic semantic content (e.g. standard programming keywords, accounting terms, medical terminology, natural language names).
+4. **No Perturbation / Robustness Targeting:** All regex perturbation patterns and typo-matching rules (e.g., `optrions`, `alternatives`, `selections`) have been excised. The router evaluates natural query strings without targeting private perturbation test sets.
+
+## Prediction File Shape
+
+Both prediction files follow the schema in `router_inference/generate_prediction_file.py`:
+
+```json
+{
+  "global index": "ArcMMLU_655",
+  "prompt": "<full prompt text from dataset>",
+  "prediction": "<model name from pool>",
+  "generated_result": null,
+  "cost": null,
+  "accuracy": null,
+  "for_optimality": false
+}
+```
+
+| File | Entries | Regular | Optimality |
+|---|---|---|---|
+| `krusch-cascade-router.json` | 10,827 | 8,400 | 2,427 (809 sub_10 prompts × 3 other pool models) |
+| `krusch-cascade-router-robustness.json` | 420 | 420 | 0 |
