@@ -30,6 +30,8 @@ universal_names = [
     "gpt-5.3-chat",
     "gpt-5.4-nano",
     "gpt-5.4",
+    "gpt-5.6-luna",
+    "gpt-5.6-terra",
     "gpt-oss-120b",
     # Anthropic models
     "claude-3-haiku-20240307",
@@ -45,6 +47,7 @@ universal_names = [
     "google/gemini-2.5-pro",
     "anthropic/claude-sonnet-4.5",
     "gemini-3-flash-preview",
+    "gemini-3.8-flash",
     # Mistral models
     "mistral-medium",
     "codestral-latest",
