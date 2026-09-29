@@ -9,6 +9,6 @@
       "google/gemma-4-31b-it",
       "openai/gpt-6-luna"
     ],
-    "description": "KDB Router: content-only, cost-first routing (question body -> content category via MiniLM + logistic regression trained on an external calibration set -> model / reasoning setting). No RouterArena templates, config files, labels or proportions used. Same author and pipeline as ainative-router (#213); differs by assigning multiple-choice to openai/gpt-6-luna."
+    "description": "KDB Router: content-only, cost-first routing (question body -> content category via MiniLM + logistic regression trained on an external calibration set -> model / reasoning setting). No RouterArena templates, config files, labels or proportions used."
   }
 }
