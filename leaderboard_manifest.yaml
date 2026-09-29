@@ -173,6 +173,7 @@ routers:
     website:
       affiliation: "@samikd"
       github_url: "https://github.com/samikd"
+      type: "closed-source"
 
   - readme_name: "AsiaInfo-Router"
     website_name: "AsiaInfo-Router"
@@ -182,6 +183,7 @@ routers:
     website:
       affiliation: "@Uncle-LL"
       github_url: "https://github.com/Uncle-LL"
+      type: "closed-source"
 
   - readme_name: "KT-ModelRouter"
     website_name: "KT-ModelRouter"
