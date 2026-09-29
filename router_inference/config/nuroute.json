@@ -1,0 +1,22 @@
+{
+  "pipeline_params": {
+    "router_name": "nuroute",
+    "router_cls_name": "NuRouteRouter",
+    "fallback_model": "moonshotai/Kimi-K2.6",
+    "models": [
+      "MiniMax-M3",
+      "claude-sonnet-5",
+      "gpt-5.5",
+      "ministral-8b-latest",
+      "moonshotai/Kimi-K2.6",
+      "o4-mini",
+      "qwen3-30b-a3b-instruct-2507"
+    ],
+    "model_aliases": {
+      "MiniMaxAI/MiniMax-M3": "MiniMax-M3",
+      "gpt-5.5-2026-04-23": "gpt-5.5",
+      "o4-mini-2025-04-16": "o4-mini",
+      "Qwen/Qwen3-30B-A3B-Instruct-2507": "qwen3-30b-a3b-instruct-2507"
+    }
+  }
+}
