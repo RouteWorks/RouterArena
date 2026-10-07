@@ -9,8 +9,10 @@ are made by --help. Response parsing uses the OpenAI chat-completion contract;
 a successful live Kilo response must be verified by the operator before a run.
 """
 
+from __future__ import annotations
+
 import argparse
-from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
+from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 import fcntl
 import hashlib
 import importlib
@@ -22,6 +24,7 @@ import sys
 import tempfile
 import threading
 import time
+from typing import Any
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -123,7 +126,7 @@ def fetch(endpoint, key, row, timeout, split):
 def completion_response(body):
     if body.lstrip().startswith("{"):
         return json.loads(body)
-    response = {"object": "chat.completion", "choices": []}
+    response: dict[str, Any] = {"object": "chat.completion", "choices": []}
     content = []
     finish_reason = None
     done = False
@@ -233,7 +236,7 @@ def prediction(row, event, split, allowed):
         for name in ("prompt_tokens", "completion_tokens", "total_tokens")
     )
     token_usage = None
-    if valid_usage and usage["completion_tokens"] > 0:
+    if isinstance(usage, dict) and valid_usage and usage["completion_tokens"] > 0:
         token_usage = {
             "input_tokens": usage["prompt_tokens"],
             "output_tokens": usage["completion_tokens"],
@@ -368,8 +371,8 @@ def run(args):
     stop = threading.Event()
     signal.signal(signal.SIGINT, lambda *_: stop.set())
     signal.signal(signal.SIGTERM, lambda *_: stop.set())
-    completed = {}
-    attempts = {}
+    completed: dict[str, dict[str, Any]] = {}
+    attempts: dict[str, int] = {}
     failed = False
     with checkpoint.open("a+", encoding="utf-8") as journal:
         try:
@@ -458,7 +461,7 @@ def run(args):
                 flush=True,
             )
         work = iter(remaining)
-        pending = {}
+        pending: dict[Future[dict[str, Any]], dict[str, Any]] = {}
         with ThreadPoolExecutor(max_workers=args.concurrency) as executor:
             while True:
                 while not stop.is_set() and len(pending) < args.concurrency:
