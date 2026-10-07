@@ -279,6 +279,9 @@ Official submission requires 8,400 full rows and 420 robustness rows. Local
 evaluation follows Step 4 below; it needs the evaluation dependencies and ground
 truth, and LiveCodeBench executes generated code, so use an isolated environment.
 
+Use `--num-workers 1` if `filelock` reports an unsafe fork during parallel grading.
+Regrade the unchanged answers; do not regenerate them.
+
 ## 4. Run Router Evaluation
 
 As the last step, run the evaluation script:
