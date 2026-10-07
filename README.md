@@ -257,6 +257,17 @@ Successful generations are never retried, even when their answers are incorrect.
 Every explicit retry remains in the journal, including transport errors.
 Final rows retain the first success or the last captured generation failure.
 
+To explicitly retry every failed generation once, including empty answers, use:
+
+```bash
+python scripts/submit_kilo_auto_efficient.py full --retry-failed-generations --concurrency 4
+```
+
+Each invocation makes one additional attempt per failed query, beyond the provider-only cap.
+Successful generations remain unchanged, including incorrect answers.
+The journal marks these attempts with `retry_policy: "failed_generation"`.
+This flag does not establish that an empty answer was a provider error.
+
 Use `--limit 1 --concurrency 1` for a one-request smoke run; it produces an
 explicitly incomplete file and that response is reused on the subsequent full
 run. Exported JSON is rebuilt from the journal on resume, so evaluate only after

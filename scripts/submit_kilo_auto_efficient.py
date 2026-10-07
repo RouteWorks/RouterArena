@@ -402,15 +402,22 @@ def run(args):
                     or isinstance(attempt, bool)
                 ):
                     raise ValueError("Checkpoint contains an invalid index or attempt")
-                if (
-                    attempt != attempts.get(index, 0) + 1
-                    or attempt > MAX_PROVIDER_ATTEMPTS
+                if attempt != attempts.get(index, 0) + 1 or (
+                    attempt > MAX_PROVIDER_ATTEMPTS
+                    and event.get("retry_policy") != "failed_generation"
                 ):
                     raise ValueError(
                         "Checkpoint attempts are not sequential or exceed the retry cap"
                     )
-                if index in completed and not provider_error_retryable(
-                    completed[index]
+                explicitly_retried_failure = (
+                    event.get("retry_policy") == "failed_generation"
+                    and index in completed
+                    and completed[index]["generated_result"]["success"] is False
+                )
+                if (
+                    index in completed
+                    and not provider_error_retryable(completed[index])
+                    and not explicitly_retried_failure
                 ):
                     raise ValueError(
                         "Checkpoint retries a successful or non-provider-error result"
@@ -436,7 +443,7 @@ def run(args):
                     "Prediction file exists without a checkpoint; refusing to overwrite it"
                 )
             append_event(journal, header)
-        if args.retry_provider_errors:
+        if args.retry_provider_errors or args.retry_failed_generations:
             if len(completed) != expected:
                 raise ValueError(
                     "Finish the first pass before retrying provider errors"
@@ -444,8 +451,16 @@ def run(args):
             remaining = [
                 row
                 for row in rows
-                if provider_error_retryable(completed[row["global index"]])
-                and attempts[row["global index"]] < MAX_PROVIDER_ATTEMPTS
+                if (
+                    args.retry_failed_generations
+                    and completed[row["global index"]]["generated_result"]["success"]
+                    is False
+                )
+                or (
+                    args.retry_provider_errors
+                    and provider_error_retryable(completed[row["global index"]])
+                    and attempts[row["global index"]] < MAX_PROVIDER_ATTEMPTS
+                )
             ]
         else:
             remaining = [row for row in rows if row["global index"] not in completed]
@@ -480,6 +495,8 @@ def run(args):
                     try:
                         event = future.result()
                         event["attempt"] = attempts.get(row["global index"], 0) + 1
+                        if args.retry_failed_generations:
+                            event["retry_policy"] = "failed_generation"
                         # Persist even malformed/unsupported responses before parsing.
                         # A parsing failure must be investigated, not paid for again.
                         append_event(journal, event)
@@ -492,9 +509,9 @@ def run(args):
                                 "captured_attempts"
                             ] = event["attempt"]
                     except Exception as exc:
-                        if args.retry_provider_errors and isinstance(
-                            exc, CompletionTransportError
-                        ):
+                        if (
+                            args.retry_provider_errors or args.retry_failed_generations
+                        ) and isinstance(exc, CompletionTransportError):
                             index = row["global index"]
                             attempt = attempts[index] + 1
                             append_event(
@@ -502,6 +519,11 @@ def run(args):
                                 {
                                     "global_index": index,
                                     "attempt": attempt,
+                                    **(
+                                        {"retry_policy": "failed_generation"}
+                                        if args.retry_failed_generations
+                                        else {}
+                                    ),
                                     "transport_error": {
                                         "message": str(exc),
                                         "http_status": exc.status,
@@ -562,14 +584,22 @@ def main():
         type=int,
         help="Run at most this many unfinished rows; output will be partial",
     )
-    parser.add_argument(
+    retry_group = parser.add_mutually_exclusive_group()
+    retry_group.add_argument(
         "--retry-provider-errors",
         action="store_true",
         help="Retry only provider failures, up to three captured attempts per query",
     )
+    retry_group.add_argument(
+        "--retry-failed-generations",
+        action="store_true",
+        help="Explicitly make one additional attempt for every failed generation, including empty answers",
+    )
     args = parser.parse_args()
-    if args.retry_provider_errors and args.split != "full":
-        parser.error("Provider-error retries apply only to the full split")
+    if (
+        args.retry_provider_errors or args.retry_failed_generations
+    ) and args.split != "full":
+        parser.error("Generation retries apply only to the full split")
     if (
         args.concurrency < 1
         or args.timeout <= 0
