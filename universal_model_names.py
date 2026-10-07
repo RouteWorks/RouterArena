@@ -138,6 +138,18 @@ universal_names = [
     "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
     # KT-ModelRouter pool additions
     "google/gemma-4-31b-it",
+    # Kilo Auto Efficient production pool (2026-10-07; preserve gateway IDs)
+    "anthropic/claude-sonnet-5",
+    "deepseek/deepseek-v4.1-flash",
+    "meta/muse-spark-1.3-contributor",
+    "minimax/minimax-m3",
+    "moonshotai/kimi-k3",
+    "openai/gpt-5.6-luna",
+    "thinkingmachines/inkling",
+    "x-ai/grok-4.6",
+    "xiaomi/mimo-v2.5-pro",
+    "z-ai/glm-5.3",
+    "z-ai/glm-5.3-flash",
 ]
 
 
@@ -157,6 +169,8 @@ mapping: dict[str, str] = {
     "alibaba/qwen3-30b-a3b-instruct-2507": "qwen3-30b-a3b-instruct-2507",
     # KT-ModelRouter: provider-prefixed form used in our predictions file
     "google/gemini-3-flash-preview": "gemini-3-flash-preview",
+    # Kilo gateway response spelling observed in the 2026-10-07 live smoke
+    "zai/glm-5.3-flash": "z-ai/glm-5.3-flash",
 }
 
 

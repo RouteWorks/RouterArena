@@ -194,6 +194,91 @@ The script loads your prediction file, makes API calls using the models specifie
 > [!NOTE]
 > - For robustness evaluation, we only measure the model-selection flip ratio after adding noise to the original prompt, so no additional LLM inference is required for this stage.
 
+### Kilo Auto Efficient: combined routing and generation
+
+The standalone driver uses Kilo's public OpenAI-compatible endpoint with
+`model: "kilo-auto/efficient"`. It does not train or tune on RouterArena.
+Prepare the official datasets from the repository root first:
+
+```bash
+python -m pip install 'datasets>=4.0.0' 'pandas>=2.3.2'
+python scripts/process_datasets/prep_datasets.py
+```
+
+The preparation script downloads RouterArena and LiveCodeBench data. The driver
+itself uses only Python's standard library and this repository's model registry.
+Set `KILO_API_KEY` securely in the environment; do not put it in a command, config,
+or prediction file. To bill authorized organization credits, optionally set
+`KILO_ORGANIZATION_ID` securely in the environment; it is sent only as the
+`x-kilocode-organizationid` request header, not recorded in submission metadata.
+The endpoint is also supplied through the environment:
+
+```bash
+export KILO_API_URL=https://api.kilo.ai/api/gateway/chat/completions
+python scripts/submit_kilo_auto_efficient.py full --concurrency 4
+python scripts/submit_kilo_auto_efficient.py robustness --concurrency 4
+```
+
+Each request sends the prepared prompt unchanged as one user message.
+Streaming transport avoids the gateway's non-streaming header timeout.
+The driver does not override temperature, token limits, seeds, or reasoning settings.
+Routing decisions use the response's concrete `model`, not the router alias.
+Unknown or out-of-pool models stop the run; the driver does not guess aliases.
+Full submissions contain the returned answer and authoritative token usage.
+
+Robustness streams close after the first concrete model appears.
+Partial inference can still incur costs; the submission omits `generated_result`.
+Completion duration is not routing-only latency.
+The stock evaluator excludes classifier overhead, robustness calls, and discarded retry attempts.
+
+Provider errors, empty answers, and missing usable usage remain `success: false` rows.
+The driver records each failure and does not omit the row.
+If final usage is missing or unusable, `token_usage` stays null.
+The driver does not invent tokens; the stock evaluator cannot account for those costs.
+
+Raw completions, stream events, and early selection chunks are checkpointed in
+`cached_results/kilo-auto-efficient/<split>.jsonl`. Rerun the same command to
+resume without repeating checkpointed calls. Do not edit the dataset or pool
+during a run. A request without a valid model selection stops new work.
+In-flight calls are drained and checkpointed. Preserve the journal with
+the submission for auditing. A forced process/VM termination can lose an
+in-flight response and therefore cause another paid request on resume.
+
+After the full first pass, explicitly retry provider errors:
+
+```bash
+python scripts/submit_kilo_auto_efficient.py full --retry-provider-errors --concurrency 4
+```
+
+Each pass makes one additional attempt per eligible query, up to three captured
+attempts in total. Only explicit timeouts and HTTP 429/500/502/503/504 errors qualify.
+Empty answers and missing usage alone do not qualify. Correctness scores are never read.
+Successful generations are never retried, even when their answers are incorrect.
+Every explicit retry remains in the journal, including transport errors.
+Final rows retain the first success or the last captured generation failure.
+
+Use `--limit 1 --concurrency 1` for a one-request smoke run; it produces an
+explicitly incomplete file and that response is reused on the subsequent full
+run. Exported JSON is rebuilt from the journal on resume, so evaluate only after
+generation finishes. Do not run the stock LLM inference script afterward:
+it would bypass Kilo's router and generate again.
+
+All eleven concrete models also use `ModelInference`'s Kilo provider.
+For separate model inference, set `KILO_API_KEY` and optionally `KILO_ORGANIZATION_ID`.
+That path calls the concrete model without Auto Efficient's selected reasoning settings.
+This submission does not use that path.
+
+Validate the completed files:
+
+```bash
+python router_inference/check_config_prediction_files.py kilo-auto-efficient full --check-generated-result
+python router_inference/check_config_prediction_files.py kilo-auto-efficient robustness
+```
+
+Official submission requires 8,400 full rows and 420 robustness rows. Local
+evaluation follows Step 4 below; it needs the evaluation dependencies and ground
+truth, and LiveCodeBench executes generated code, so use an isolated environment.
+
 ## 4. Run Router Evaluation
 
 As the last step, run the evaluation script:

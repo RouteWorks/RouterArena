@@ -83,6 +83,8 @@ class ModelInference:
                     return self._call_perplexity(model_name, prompt)
                 elif provider == "openrouter":
                     return self._call_openrouter(model_name, prompt)
+                elif provider == "kilo":
+                    return self._call_kilo(model_name, prompt)
                 elif provider == "replicate":
                     return self._call_replicate(model_name, prompt)
                 elif provider == "aws":
@@ -198,6 +200,18 @@ class ModelInference:
             "mistralai/devstral-2512:free": "openrouter",
             "meta-llama/llama-3.3-70b-instruct": "openrouter",
             "meta-llama/llama-3.1-405b-instruct": "openrouter",
+            # Kilo Auto Efficient's concrete production pool
+            "anthropic/claude-sonnet-5": "kilo",
+            "deepseek/deepseek-v4.1-flash": "kilo",
+            "meta/muse-spark-1.3-contributor": "kilo",
+            "minimax/minimax-m3": "kilo",
+            "moonshotai/kimi-k3": "kilo",
+            "openai/gpt-5.6-luna": "kilo",
+            "thinkingmachines/inkling": "kilo",
+            "x-ai/grok-4.6": "kilo",
+            "xiaomi/mimo-v2.5-pro": "kilo",
+            "z-ai/glm-5.3": "kilo",
+            "z-ai/glm-5.3-flash": "kilo",
             # Replicate
             "meta/codellama-34b-instruct": "replicate",
             # AWS Bedrock
@@ -311,6 +325,73 @@ class ModelInference:
             },
             "model_used": model_name,
             "provider": "replicate",
+        }
+
+    def _call_kilo(self, model_name: str, prompt: str) -> Dict[str, Any]:
+        """Generate with a concrete Kilo model, without invoking the router."""
+        from universal_model_names import ModelNameManager
+
+        api_key = os.getenv("KILO_API_KEY")
+        if not api_key:
+            raise ValueError("KILO_API_KEY is required for Kilo model inference")
+        headers = {}
+        organization_id = os.getenv("KILO_ORGANIZATION_ID")
+        if organization_id:
+            headers["x-kilocode-organizationid"] = organization_id
+        content = []
+        usage = None
+        served_model = None
+        finish_reason = None
+        with OpenAI(
+            base_url="https://api.kilo.ai/api/gateway",
+            api_key=api_key,
+            timeout=600,
+            max_retries=0,
+        ) as client:
+            stream = client.chat.completions.create(
+                model=model_name,
+                messages=[{"role": "user", "content": prompt}],
+                stream=True,
+                stream_options={"include_usage": True},
+                extra_headers=headers,
+            )
+            with stream:
+                for chunk in stream:
+                    if chunk.model:
+                        served_model = chunk.model
+                    if chunk.usage is not None:
+                        usage = chunk.usage
+                    for choice in chunk.choices:
+                        if choice.index != 0:
+                            continue
+                        if choice.delta.content is not None:
+                            content.append(choice.delta.content)
+                        if choice.finish_reason is not None:
+                            finish_reason = choice.finish_reason
+        if not served_model:
+            raise ValueError("Kilo stream did not identify the served model")
+        answer = "".join(content)
+        success = (
+            bool(answer.strip()) and usage is not None and usage.completion_tokens > 0
+        )
+        return {
+            "response": answer,
+            "success": success,
+            "token_usage": {
+                "input_tokens": usage.prompt_tokens,
+                "output_tokens": usage.completion_tokens,
+                "total_tokens": usage.total_tokens,
+            }
+            if usage is not None
+            else None,
+            "model_used": ModelNameManager.get_universal_name(served_model),
+            "response_model": served_model,
+            "usage_raw": usage.model_dump() if usage is not None else None,
+            "finish_reason": finish_reason,
+            "provider": "kilo",
+            "error": None
+            if success
+            else "Provider omitted an answer or usable token accounting",
         }
 
     def _call_openrouter(self, model_name: str, prompt: str) -> Dict[str, Any]:
