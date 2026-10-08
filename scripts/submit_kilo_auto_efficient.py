@@ -333,6 +333,13 @@ def provider_error_retryable(result):
             error.get("type") == "timeout"
             or error.get("code")
             in (429, 500, 502, 503, 504, "429", "500", "502", "503", "504")
+            or error.get("statusCode")
+            in (429, 500, 502, 503, 504, "429", "500", "502", "503", "504")
+            or (
+                error.get("code") == "error"
+                and error.get("name") == "AI_InvalidResponseDataError"
+                and error.get("statusCode") is None
+            )
         )
     )
 

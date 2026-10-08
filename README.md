@@ -304,8 +304,9 @@ python scripts/submit_kilo_auto_efficient.py full --retry-provider-errors --conc
 
 Each pass makes one additional attempt per eligible query.
 Repeat provider-only passes until those requests succeed.
-Only explicit timeouts and HTTP 429/500/502/503/504 errors qualify.
-The provider can report these codes as numbers or decimal strings.
+Explicit provider timeouts and HTTP 429/500/502/503/504 errors qualify.
+The provider can report these codes as numbers, decimal strings, or a `statusCode` field.
+Serialized `AI_InvalidResponseDataError` stream failures also qualify when no contradictory HTTP status exists.
 Empty answers and missing usage alone do not qualify.
 Correctness scores are never read.
 Successful generations are never retried, even when their answers are incorrect.

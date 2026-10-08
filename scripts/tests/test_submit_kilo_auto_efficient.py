@@ -97,6 +97,42 @@ class ProviderRetryPolicyTest(unittest.TestCase):
                 }
                 self.assertTrue(DRIVER.provider_error_retryable(result))
 
+    def test_symbolic_upstream_errors_use_status_and_protocol_error_evidence(self):
+        for error in (
+            {"code": "server_error", "statusCode": 500, "isRetryable": True},
+            {"code": "server_error", "statusCode": "503"},
+            {"code": "error", "name": "AI_InvalidResponseDataError"},
+        ):
+            with self.subTest(error=error):
+                self.assertTrue(
+                    DRIVER.provider_error_retryable(
+                        {
+                            "generated_result": {
+                                "success": False,
+                                "generation_error": error,
+                            }
+                        }
+                    )
+                )
+
+    def test_generic_and_non_retryable_symbolic_errors_remain_excluded(self):
+        for error in (
+            {"code": "error", "name": "Error"},
+            {"code": "server_error", "statusCode": 400},
+            {"code": "error", "name": "AI_InvalidResponseDataError", "statusCode": 401},
+        ):
+            with self.subTest(error=error):
+                self.assertFalse(
+                    DRIVER.provider_error_retryable(
+                        {
+                            "generated_result": {
+                                "success": False,
+                                "generation_error": error,
+                            }
+                        }
+                    )
+                )
+
     def test_successful_answers_remain_locked_despite_error_metadata(self):
         result = {
             "generated_result": {

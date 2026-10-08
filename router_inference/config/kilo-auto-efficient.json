@@ -40,7 +40,7 @@
       "~moonshotai/kimi-latest": "moonshotai/kimi-k3",
       "~z-ai/glm-latest": "z-ai/glm-5.3"
     },
-    "retry_policy": "Retry only explicit provider timeouts or HTTP 429/500/502/503/504 errors until they succeed. Keep the first successful generation, including incorrect answers. Do not retry empty answers or missing usage without provider-error evidence. Preserve prompts, production settings, and every captured attempt. Do not consult correctness scores during retries.",
+    "retry_policy": "Retry explicit provider timeouts, HTTP 429/500/502/503/504 reported through code or statusCode, and serialized AI_InvalidResponseDataError upstream stream failures without a contradictory HTTP status. Numeric and decimal-string status codes are equivalent. Keep the first successful generation, including incorrect answers. Do not retry empty answers or missing usage without provider-error evidence or separately recorded operator approval. Preserve prompts, production settings, and every captured attempt. Do not consult correctness scores during retries.",
     "evaluation_limitations": [
       "RouterArena computes generation cost from generated_result.token_usage at the selected or actually served model's registered input/output rates. It does not include classifier or other routing overhead; these costs must be disclosed separately and must not be represented as fabricated generation tokens.",
       "The registered prices are uncached USD rates per million tokens from the production catalog snapshot. RouterArena does not account for separate input-cache read/write prices or per-request and web-search charges.",
