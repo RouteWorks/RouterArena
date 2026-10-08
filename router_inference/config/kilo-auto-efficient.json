@@ -3,7 +3,7 @@
     "router_name": "kilo-auto-efficient",
     "models": [
       "anthropic/claude-haiku-5.5",
-      "deepseek/deepseek-v4-flash-0731",
+      "deepseek/deepseek-v4.1-flash",
       "meta/muse-spark-1.3-contributor",
       "moonshotai/kimi-k3",
       "openai/gpt-6-luna",
@@ -19,13 +19,13 @@
     "pricing_source": "https://api.kilo.ai/api/gateway/models",
     "pricing_snapshot_date": "2026-10-08",
     "description": "Kilo Auto Efficient, queried through the production gateway without RouterArena training or tuning. The pool preserves the gateway's provider-prefixed model IDs; predictions must record the selected model rather than substitute a cached model. Generate submissions with the standalone driver, not the stock router-class generator.",
-    "routing_table_version": "registry-91938e10-variants",
+    "routing_table_version": "registry-cdf46fd6-variants",
     "classifier_model": "~typesafe/jev-latest",
     "fallback_model": "z-ai/glm-5.3-flash",
     "fallback_policy": "Include the gateway's successful fallback responses unchanged. A routing timeout is not permission to retry a successful generation. The gateway falls back after its 5-second routing deadline; preserve the actual served model and answer.",
     "production_model_pool": [
       "~anthropic/claude-haiku-latest",
-      "~deepseek/deepseek-v4-flash-latest",
+      "deepseek/deepseek-v4.1-flash",
       "~moonshotai/kimi-latest",
       "~openai/gpt-luna-latest",
       "~z-ai/glm-latest",
@@ -36,25 +36,11 @@
     ],
     "alias_targets_observed": {
       "~anthropic/claude-haiku-latest": "anthropic/claude-haiku-5.5",
-      "~deepseek/deepseek-v4-flash-latest": "deepseek/deepseek-v4-flash-0731",
       "~openai/gpt-luna-latest": "openai/gpt-6-luna",
       "~moonshotai/kimi-latest": "moonshotai/kimi-k3",
       "~z-ai/glm-latest": "z-ai/glm-5.3"
     },
     "retry_policy": "Retry only explicit provider timeouts or HTTP 429/500/502/503/504 errors until they succeed. Keep the first successful generation, including incorrect answers. Do not retry empty answers or missing usage without provider-error evidence. Preserve prompts, production settings, and every captured attempt. Do not consult correctness scores during retries.",
-    "approved_incomplete_response_retries": [
-      {
-        "global_index": "GeoBench_866",
-        "failure": "Content-filtered refusal with zero reported token accounting",
-        "original_response_id": "gen_01M4DWY8K45J0G3KD86SSJ8RKW"
-      },
-      {
-        "global_index": "MusicTheoryBench_261",
-        "failure": "Reasoning-only stream without an answer or usable token accounting",
-        "original_response_id": "gen_01M4DW5KNT3HXBMN0KSDMX9K8J"
-      }
-    ],
-    "incomplete_response_retry_policy": "The operator explicitly approved retries for only these two incomplete responses. Preserve their original attempts, unchanged prompts and generation settings. Keep every successful answer unchanged. Do not consult correctness scores. Disclose this exception and excluded retry costs in the submission.",
     "evaluation_limitations": [
       "RouterArena computes generation cost from generated_result.token_usage at the selected or actually served model's registered input/output rates. It does not include classifier or other routing overhead; these costs must be disclosed separately and must not be represented as fabricated generation tokens.",
       "The registered prices are uncached USD rates per million tokens from the production catalog snapshot. RouterArena does not account for separate input-cache read/write prices or per-request and web-search charges.",

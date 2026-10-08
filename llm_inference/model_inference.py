@@ -202,7 +202,7 @@ class ModelInference:
             "meta-llama/llama-3.1-405b-instruct": "openrouter",
             # Kilo Auto Efficient's concrete production pool
             "anthropic/claude-haiku-5.5": "kilo",
-            "deepseek/deepseek-v4-flash-0731": "kilo",
+            "deepseek/deepseek-v4.1-flash": "kilo",
             "meta/muse-spark-1.3-contributor": "kilo",
             "moonshotai/kimi-k3": "kilo",
             "openai/gpt-6-luna": "kilo",

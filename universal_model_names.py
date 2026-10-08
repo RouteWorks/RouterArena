@@ -140,7 +140,7 @@ universal_names = [
     "google/gemma-4-31b-it",
     # Kilo Auto Efficient production pool (2026-10-08; concrete response IDs)
     "anthropic/claude-haiku-5.5",
-    "deepseek/deepseek-v4-flash-0731",
+    "deepseek/deepseek-v4.1-flash",
     "meta/muse-spark-1.3-contributor",
     "moonshotai/kimi-k3",
     "openai/gpt-6-luna",

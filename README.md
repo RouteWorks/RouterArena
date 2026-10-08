@@ -312,17 +312,14 @@ Successful generations are never retried, even when their answers are incorrect.
 Every explicit retry remains in the journal, including transport errors.
 Final rows retain the first success or the last captured generation failure.
 
-Only explicit operator approval permits incomplete-response exceptions:
-
-```bash
-python scripts/submit_kilo_auto_efficient.py full --retry-provider-errors --concurrency 4 --order-seed 841 --retry-approved-indices GeoBench_866 MusicTheoryBench_261
-```
+Only explicit operator approval permits incomplete-response exceptions.
+Pass `--retry-approved-indices` with the exact approved global indices.
 
 The exception applies only to failed empty-answer or missing-usage rows at the listed indices.
 Successful answers and other failure types remain locked.
 Repeat the same approved indices on every subsequent full checkpoint replay.
 The journal records the retry basis and preserves each original response.
-This submission discloses its two approved exceptions in the config.
+Disclose any approved exceptions in the submission config.
 No prompt, generation setting, or correctness-based selection changes.
 
 Use `--limit 1 --concurrency 1` for a one-request smoke run; it produces an
