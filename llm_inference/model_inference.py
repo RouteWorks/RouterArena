@@ -204,10 +204,12 @@ class ModelInference:
             "anthropic/claude-haiku-5.5": "kilo",
             "deepseek/deepseek-v4-flash-0731": "kilo",
             "meta/muse-spark-1.3-contributor": "kilo",
+            "moonshotai/kimi-k3": "kilo",
             "openai/gpt-6-luna": "kilo",
             "qwen/qwen3.8-flash": "kilo",
             "qwen/qwen3.8-max-0902": "kilo",
             "xiaomi/mimo-v2.6-pro": "kilo",
+            "z-ai/glm-5.3": "kilo",
             "z-ai/glm-5.3-flash": "kilo",
             # Replicate
             "meta/codellama-34b-instruct": "replicate",

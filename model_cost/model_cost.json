@@ -407,6 +407,14 @@
     "input_token_price_per_million": 2.0,
     "output_token_price_per_million": 6.0
   },
+  "moonshotai/kimi-k3": {
+    "input_token_price_per_million": 3.0,
+    "output_token_price_per_million": 15.0
+  },
+  "z-ai/glm-5.3": {
+    "input_token_price_per_million": 1.4,
+    "output_token_price_per_million": 4.4
+  },
   "xiaomi/mimo-v2.6-pro": {
     "input_token_price_per_million": 0.43,
     "output_token_price_per_million": 0.87

@@ -142,10 +142,12 @@ universal_names = [
     "anthropic/claude-haiku-5.5",
     "deepseek/deepseek-v4-flash-0731",
     "meta/muse-spark-1.3-contributor",
+    "moonshotai/kimi-k3",
     "openai/gpt-6-luna",
     "qwen/qwen3.8-flash",
     "qwen/qwen3.8-max-0902",
     "xiaomi/mimo-v2.6-pro",
+    "z-ai/glm-5.3",
     "z-ai/glm-5.3-flash",
 ]
 
@@ -169,6 +171,7 @@ mapping: dict[str, str] = {
     # Kilo's Vercel provider uses Alibaba IDs for the same Qwen model suffix.
     "alibaba/qwen3.8-flash": "qwen/qwen3.8-flash",
     "alibaba/qwen3.8-max-0902": "qwen/qwen3.8-max-0902",
+    "zai/glm-5.3": "z-ai/glm-5.3",
     "zai/glm-5.3-flash": "z-ai/glm-5.3-flash",
 }
 

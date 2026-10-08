@@ -223,6 +223,20 @@ python scripts/submit_kilo_auto_efficient.py full --concurrency 4
 python scripts/submit_kilo_auto_efficient.py robustness --concurrency 4
 ```
 
+To ramp concurrency, use timed outcome windows:
+
+```bash
+python scripts/submit_kilo_auto_efficient.py full --concurrency 16 --adaptive-concurrency --order-seed 841
+```
+
+The order seed changes scheduling only, not the generation seed.
+Supply the same order seed on every resume and provider retry.
+The ramp doubles concurrency after healthy 45-second windows with at least eight outcomes.
+It reduces concurrency when provider errors or successful fallback responses exceed its thresholds.
+Two consecutive low-gain windows stop the ramp at the preceding concurrency.
+Slow requests remain active across windows; they do not block the ramp.
+The final `adaptive:` report identifies the concurrency to retain on resume.
+
 Each request sends the prepared prompt unchanged as one user message.
 Streaming transport avoids the gateway's non-streaming header timeout.
 The driver does not override temperature, token limits, seeds, or reasoning settings.
@@ -237,9 +251,16 @@ The registry uses these exact naming maps:
 
 - `alibaba/qwen3.8-flash` maps to `qwen/qwen3.8-flash`.
 - `alibaba/qwen3.8-max-0902` maps to `qwen/qwen3.8-max-0902`.
+- `zai/glm-5.3` maps to `z-ai/glm-5.3`.
+- `zai/glm-5.3-flash` maps to `z-ai/glm-5.3-flash`.
 
-The maps preserve the model version and variant.
+The maps preserve the exact model suffix.
 Generation metadata and the raw journal preserve the original response ID.
+
+The current production table selects reasoning variants.
+The driver preserves those server choices without changing generation settings or reusing cached base-model answers.
+The response exposes the base model ID.
+RouterArena's model-only robustness score does not distinguish reasoning variants.
 
 Robustness streams close after the first concrete model appears.
 Partial inference can still incur costs; the submission omits `generated_result`.
@@ -267,6 +288,13 @@ In-flight calls are drained and checkpointed. Preserve the journal with
 the submission for auditing. A forced process/VM termination can lose an
 in-flight response and therefore cause another paid request on resume.
 
+An initial HTTP 429/500/502/503/504 transport error remains an unfinished query with an audited attempt.
+The driver does not invent a selected model, answer, or token usage.
+Nonadaptive batches drain active calls and return exit code 75.
+Adaptive mode reduces concurrency and continues unrelated queries.
+Resume unfinished queries at the reported concurrency.
+Other transport errors require investigation before the driver can resume.
+
 After the full first pass, explicitly retry provider errors:
 
 ```bash
@@ -288,7 +316,7 @@ run. Exported JSON is rebuilt from the journal on resume, so evaluate only after
 generation finishes. Do not run the stock LLM inference script afterward:
 it would bypass Kilo's router and generate again.
 
-All eight concrete models also use `ModelInference`'s Kilo provider.
+Registered concrete models also use `ModelInference`'s Kilo provider.
 For separate model inference, set `KILO_API_KEY` and optionally `KILO_ORGANIZATION_ID`.
 That path calls the concrete model without Auto Efficient's selected reasoning settings.
 This submission does not use that path.
