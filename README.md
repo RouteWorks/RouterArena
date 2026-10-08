@@ -233,6 +233,7 @@ The order seed changes scheduling only, not the generation seed.
 Supply the same order seed on every resume and provider retry.
 The ramp doubles concurrency after healthy 45-second windows with at least eight outcomes.
 It reduces concurrency when provider errors or successful fallback responses exceed its thresholds.
+After a transient error or fallback limit, two error-free and fallback-free windows restart the ramp.
 Two consecutive low-gain windows stop the ramp at the preceding concurrency.
 Slow requests remain active across windows; they do not block the ramp.
 The final `adaptive:` report identifies the concurrency to retain on resume.

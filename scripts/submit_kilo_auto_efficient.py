@@ -347,6 +347,7 @@ class AdaptiveConcurrency:
         self.previous_throughput = None
         self.doubling_from = None
         self.low_gain_windows = 0
+        self.healthy_windows = 0
         self.window_started = time.monotonic()
         self.window_completed = 0
         self.provider_errors = 0
@@ -411,6 +412,26 @@ class AdaptiveConcurrency:
             return
         previous = self.concurrency
         throughput = self.throughput(now)
+        transient_limit = self.limit_reason in (
+            "provider_error_rate",
+            "fallback_rate",
+        ) or (
+            self.limit_reason is not None
+            and self.limit_reason.startswith("transport_http_")
+        )
+        if not self.ramping and transient_limit:
+            self.healthy_windows = (
+                self.healthy_windows + 1
+                if self.provider_errors == 0 and self.fallback_responses == 0
+                else 0
+            )
+            if self.healthy_windows >= 2 and self.concurrency < self.capacity:
+                self.ramping = True
+                self.limit_reason = None
+                self.transport_limited = False
+                self.previous_throughput = None
+                self.low_gain_windows = 0
+                self.healthy_windows = 0
         if self.provider_errors / self.window_completed >= 0.05:
             self.limit_reason = "provider_error_rate"
             self.concurrency = max(1, previous // 2)
