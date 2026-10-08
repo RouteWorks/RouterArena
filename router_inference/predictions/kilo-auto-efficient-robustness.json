@@ -6,8 +6,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S5215AY6T85JAXFPE0YP",
-      "completion_duration_seconds": 3.5415018370003963,
+      "response_id": "gen_01M4EEXRCQ45Q25TPSR1FAHB01",
+      "completion_duration_seconds": 5.134415673999683,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -19,8 +19,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YH22BBQFEHQ8DQ0HV1R1",
-      "completion_duration_seconds": 5.520971179999833,
+      "response_id": "gen_01M4EF2RQM8P6WFXKFCHXPJXT6",
+      "completion_duration_seconds": 4.481307893000121,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -32,8 +32,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VYE2TMQTJSRSCYBPH7X9",
-      "completion_duration_seconds": 3.0266329780006345,
+      "response_id": "gen_01M4EF0GN7HXWVDMY4M0G0JXQP",
+      "completion_duration_seconds": 4.714927319999333,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -45,8 +45,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3V2AVQPN8QR3NTR369257",
-      "completion_duration_seconds": 4.678409557998748,
+      "response_id": "gen_01M4EEZKD5FNKQNAC3BSYFH8P0",
+      "completion_duration_seconds": 6.47614823999902,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -58,8 +58,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TTNA259WYAFWEEVMKVGW",
-      "completion_duration_seconds": 4.142942749000213,
+      "response_id": "gen_01M4EEZCENHD3ZC33MJZG6JY1B",
+      "completion_duration_seconds": 4.271846583000297,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -71,8 +71,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YFZ2EEDV1FRSJH1KNCEJ",
-      "completion_duration_seconds": 3.5673056739997264,
+      "response_id": "gen_01M4EF2RB2XV1501A0ZRRZRK2F",
+      "completion_duration_seconds": 5.683872842999335,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -84,8 +84,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WB2AM5HR11GCRF5B09XM",
-      "completion_duration_seconds": 3.5736163000001397,
+      "response_id": "gen_01M4EF0WN0GXTYM1MYNDQYXMBQ",
+      "completion_duration_seconds": 3.162605859000905,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -97,8 +97,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TJ0CYGYQPEF0C3NY9V94",
-      "completion_duration_seconds": 3.421579132000261,
+      "response_id": "gen_01M4EEZ3C6JX2XEGVA9AZ06H4B",
+      "completion_duration_seconds": 3.1060615770002187,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -110,8 +110,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SJHEVW6B2CJVSGY8XA5Y",
-      "completion_duration_seconds": 3.4476979240007495,
+      "response_id": "gen_01M4EEY3ZKH7TG4YR8HDKAHB2J",
+      "completion_duration_seconds": 2.8919375950008543,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -123,8 +123,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WWXV03ZK15BSMM00ECYX",
-      "completion_duration_seconds": 4.091856228000324,
+      "response_id": "gen_01M4EF1AZRNTPVYPPMGH3ZA59F",
+      "completion_duration_seconds": 3.4191071139994165,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -136,8 +136,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VHBHJXRVCPSGKCSB9BCV",
-      "completion_duration_seconds": 4.791054443001485,
+      "response_id": "gen_01M4EF039KK0GMM6NEEEQSMH92",
+      "completion_duration_seconds": 3.4487622039996495,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -149,8 +149,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SN7EHRZTRFWTS5TKA3TN",
-      "completion_duration_seconds": 3.2653214530000696,
+      "response_id": "gen_01M4EEY8712563YHDMYQKP399M",
+      "completion_duration_seconds": 3.9904131410003174,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -162,8 +162,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X3CFHA43FT6VHVHHW7FR",
-      "completion_duration_seconds": 3.0495166849996167,
+      "response_id": "gen_01M4EF1K2BBGNZG97B0XTY2SJC",
+      "completion_duration_seconds": 4.3018872029988415,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -175,8 +175,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X34K1PX0YP2W92HAXTJQ",
-      "completion_duration_seconds": 4.621224381000502,
+      "response_id": "gen_01M4EF1HAS3EE7BRKDQKTW6979",
+      "completion_duration_seconds": 3.067968323999594,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -188,8 +188,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SG7MQWSXNW0BGGXM6D7E",
-      "completion_duration_seconds": 4.379739142001199,
+      "response_id": "gen_01M4EEY13YRYGWEJZCPE6JWEEM",
+      "completion_duration_seconds": 3.5049782900005084,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -201,8 +201,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WJG42YRM0TKEN4G0A84C",
-      "completion_duration_seconds": 3.6640144430002692,
+      "response_id": "gen_01M4EF13TA94TVTYJKTK181E8S",
+      "completion_duration_seconds": 4.3272479030001705,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -214,8 +214,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VDRB630TE4CC9RNM1MT1",
-      "completion_duration_seconds": 3.0837580440002057,
+      "response_id": "gen_01M4EF0183P6RZK7G49YTPF752",
+      "completion_duration_seconds": 3.581321735000529,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -227,8 +227,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V04MN5M54SCYQ3BQW4G1",
-      "completion_duration_seconds": 3.3458828069997253,
+      "response_id": "gen_01M4EEZHR8YY1N6GBMFCAN1AYT",
+      "completion_duration_seconds": 2.964123241999914,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -240,8 +240,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V21901XZBAFFCS3WXW0T",
-      "completion_duration_seconds": 2.898776755000654,
+      "response_id": "gen_01M4EEZKQ4XCY1EHJHKAY3GY7K",
+      "completion_duration_seconds": 2.9398144719998527,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -253,8 +253,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3T699Q03Q0PFCM7SZ1SJM",
-      "completion_duration_seconds": 4.420500692998758,
+      "response_id": "gen_01M4EEYQRT3H98F0MZS3R7XFAF",
+      "completion_duration_seconds": 4.97506804600016,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -266,8 +266,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3VYZM4GPWHCG6BXCY2PQ7",
-      "completion_duration_seconds": 7.87778855400029,
+      "response_id": "gen_01M4EF0FZFPPS0GPA02Y1F5WM7",
+      "completion_duration_seconds": 4.249564834000921,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -279,8 +279,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X4SHSQPX7T3XPGXZRD97",
-      "completion_duration_seconds": 3.9897774580003897,
+      "response_id": "gen_01M4EF1KW45VNPQNB0220ARS5F",
+      "completion_duration_seconds": 3.7585815909988014,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -288,12 +288,12 @@
   {
     "global_index": "AsDiv_1347",
     "prompt": "Plese slove th fllowing mathemtical prblem stp by stp.\n\nContxt: Th perimetr of two sqaures ABCD n PQRS ar 3:2 respctivly. The sum of th prmeters of th sqares ar 30.\n\nQuestin: Fnd the perimeter of ABCD nd PQRS.\n\nProvde yur fnal answr in \\boxed{{}} frmat, whre the contnt insde the bracss is the xact mathemtical exprssion or numbr. Fr exampl: \\boxed{{42}}. Kep yur explanaton cleer, cnsise, nd wthin 3 sentnces.",
-    "prediction": "z-ai/glm-5.3-flash",
+    "prediction": "xiaomi/mimo-v2.6-pro",
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
-      "response_model": "zai/glm-5.3-flash",
-      "response_id": "gen_01M4E3X6ANCCJBR7DKW99JESCD",
-      "completion_duration_seconds": 10.189590011999826,
+      "response_model": "xiaomi/mimo-v2.6-pro",
+      "response_id": "gen_01M4EF1H3MQ8JQ0XDAQA8D2EC4",
+      "completion_duration_seconds": 5.164213946998643,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -305,8 +305,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3T1WMG32GNYVCDN1ZYHAP",
-      "completion_duration_seconds": 7.523099807000108,
+      "response_id": "gen_01M4EEYMMZJ4R31TR51GKR4HWP",
+      "completion_duration_seconds": 5.411502028000541,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -318,8 +318,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RZAAHVXTJQWJFPA2BW26",
-      "completion_duration_seconds": 4.227359529999376,
+      "response_id": "gen_01M4EEXEHGQ11ZN7KMC8WH4WQZ",
+      "completion_duration_seconds": 6.0740232419993845,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -331,8 +331,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y8VVWS4C1GGXBN25TSX8",
-      "completion_duration_seconds": 3.142220160998477,
+      "response_id": "gen_01M4EF2JJW4JJSES0R001GCPKT",
+      "completion_duration_seconds": 3.867768681000598,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -344,8 +344,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WG14YHTJNT0JN4K3FR6N",
-      "completion_duration_seconds": 3.3060420420006267,
+      "response_id": "gen_01M4EF117PDF0T5VZN48FSQ7V4",
+      "completion_duration_seconds": 3.3595790290000878,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -353,12 +353,12 @@
   {
     "global_index": "ChessInstruct_144",
     "prompt": "I'm sorry, I can't assist with that request.",
-    "prediction": "xiaomi/mimo-v2.6-pro",
+    "prediction": "deepseek/deepseek-v4.1-flash",
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
-      "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3SSJQ67N45CZ3YEM0HMFH",
-      "completion_duration_seconds": 4.1675705409998045,
+      "response_model": "deepseek/deepseek-v4.1-flash",
+      "response_id": "gen_01M4EEYBEEF5S0HQ777G5N3XSB",
+      "completion_duration_seconds": 3.5235079459998815,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -370,8 +370,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TE0CEJ7TG1ZEYDBHA7MS",
-      "completion_duration_seconds": 3.4342385239997384,
+      "response_id": "gen_01M4EEZ00EMZWCV6NCG6ZZQW22",
+      "completion_duration_seconds": 3.052737103000254,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -383,8 +383,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V9MNR3K99KKG5C00FK0Q",
-      "completion_duration_seconds": 2.889467171000433,
+      "response_id": "gen_01M4EEZWWJZ7NP4H1HJB7H2B3K",
+      "completion_duration_seconds": 2.859273107998888,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -396,8 +396,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WCR89TFWHT3CW810J13M",
-      "completion_duration_seconds": 3.1017346320004435,
+      "response_id": "gen_01M4EF0XMD0YYS5KGX8ZBNHCA6",
+      "completion_duration_seconds": 3.4671427869998297,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -405,12 +405,12 @@
   {
     "global_index": "ChessInstruct_84",
     "prompt": "You are presented with an inquiry concerning chess maneuvers. Examine the scenario meticulously and determine the accurate move.\n\nBackdrop:\nWhen supplied with an incomplete sequence of chess movements alongside the concluding game result, ascertain the final absent move.\n\nFormat of Input: A sequence of chess maneuvers separated by commas, succeeded by the match outcome.\nFormat of Output: The absent chess maneuver\n\nInquiry:\n{{\"moves\": [\"e2e4\", \"d7d6\", \"f2f4\", \"g8f6\", \"b1c3\", \"g7g6\", \"g1f3\", \"f8g7\", \"f1c4\", \"b8c6\", \"d2d4\", \"f6e4\", \"c4f7\", \"e8f7\", \"c3e4\", \"h8f8\", \"d4d5\", \"c6b4\", \"c2c3\", \"b4a6\", \"c1e3\", \"f7g8\", \"e1g1\", \"c7c5\", \"d5c6\", \"a6c7\", \"e3d4\", \"b7c6\", \"d4g7\", \"g8g7\", \"d1d2\", \"c7e6\", \"e4g5\", \"e6g5\", \"f3g5\", \"h7h6\", \"g5f3\", \"c8g4\", \"d2d4\", \"f8f6\", \"a1e1\", \"c6c5\", \"d4e4\", \"a8b8\", \"b2b3\", \"f6e6\", \"e4d3\", \"e6e1\", \"f1e1\", \"g4f3\", \"d3f3\", \"d8d7\", \"e1e3\", \"g7f7\", \"f3e2\", \"e7e6\", \"h2h4\", \"h6h5\", \"e3g3\", \"d6d5\", \"g3g5\", \"d7d6\", \"g2g3\", \"b8g8\", \"g1f2\", \"d6c6\", \"c3c4\", \"d5d4\", \"e2d1\", \"c6b6\", \"d1d3\", \"b6a5\", \"d3e2\", \"g8d8\", \"e2e4\", \"d8g8\", \"f2f1\", \"a5a3\", \"f1g1\", \"a7a5\", \"g1h1\", \"a5a4\", \"e4c2\", \"a4b3\", \"a2b3\", \"a3a8\", \"h1h2\", \"a8f3\", \"c2g2\", \"f3b3\", \"g5c5\", \"g8b8\", \"g2e4\", \"b3b2\", \"h2h3\", \"b2c1\", \"c5c7\", \"f7f8\", \"c7h7\", \"c1f1\", \"e4g2\", \"f1b1\", \"c4c5\", \"b1f5\", \"h3h2\", \"f5b1\", \"h2h3\", \"b1f5\", \"h3h2\", \"f5b1\", \"h2h3\", \"b1f5\", \"h3h2\", \"f5b1\", \"h2h3\", \"b1f5\", \"h3h2\", \"f5b1\", \"?\"], \"result\": \"1/2-1/2\"}}\n\nGuidelines:\n- Articulate the precise chess maneuver distinctly.\n- Present your concluding response as \\boxed{X}, where X represents the maneuver in standard coordinate notation (e.g., a2a3).\n- Restrict your elucidation or reasoning to 2–3 sentences.",
-    "prediction": "z-ai/glm-5.3-flash",
+    "prediction": "openai/gpt-6-luna",
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
-      "response_model": "zai/glm-5.3-flash",
-      "response_id": "gen_01M4E3WNVW2WA14P5QD8WN5VV5",
-      "completion_duration_seconds": 7.353454177999083,
+      "response_model": "openai/gpt-6-luna",
+      "response_id": "gen_01M4EF11AAVBR28TS448TY3PZ3",
+      "completion_duration_seconds": 2.901480299000468,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -422,8 +422,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VAQTAAAERVFHKMXGPF2F",
-      "completion_duration_seconds": 4.051322655001059,
+      "response_id": "gen_01M4EEZXZEP4YSX1K51Q1HK72J",
+      "completion_duration_seconds": 4.263870419999876,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -435,8 +435,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VQ1NHTSV6PSK945X9PER",
-      "completion_duration_seconds": 3.4726897870004905,
+      "response_id": "gen_01M4EF08KX1KESBHDAXPDN40VK",
+      "completion_duration_seconds": 3.8197312760003115,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -448,8 +448,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YDRRNZ04941V6SES0KD8",
-      "completion_duration_seconds": 3.5696315719997074,
+      "response_id": "gen_01M4EF2PRHP7EC3CR2V54ZW9ZY",
+      "completion_duration_seconds": 3.045172742999057,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -461,8 +461,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W8Y17TTC3220MEGWKHEG",
-      "completion_duration_seconds": 4.287911588999123,
+      "response_id": "gen_01M4EF0SWJAZCDN6HDBJRGEKNM",
+      "completion_duration_seconds": 2.9374577830003545,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -474,8 +474,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TKANGQM79T0S8TPZ4KZ6",
-      "completion_duration_seconds": 2.928939329000059,
+      "response_id": "gen_01M4EEZ4R4N24NK23HRRY765XF",
+      "completion_duration_seconds": 4.86013346999971,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -487,8 +487,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S7M58PV9GDH6QJ167APN",
-      "completion_duration_seconds": 4.599211953000122,
+      "response_id": "gen_01M4EEXRCNVXYFA78NP06PX7V1",
+      "completion_duration_seconds": 3.987443690000873,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -496,12 +496,12 @@
   {
     "global_index": "Ethics_commonsense_90",
     "prompt": "Kindly go through the following multiple-choice inquiries and assess whether the action in question is ethically permissible.\n\nScenario: None\n\nInquiry: Would I be wrong for ending the relationship because she misrepresented her age? | I have recently entered a new relationship. Not long ago, we mutually decided to be exclusive partners. I am 27, and she initially claimed to be 29. Once exclusivity was established, she admitted she had something trivial to disclose—that her actual age is 36. Truthfully, I couldn’t perceive the difference, and she appears remarkably youthful, yet this is not trivial to me.\n\nPrimarily, it’s quite upsetting that she deceived me. I’m uncertain about what else she might be concealing. More critically, I aspire to have children in the future, though not imminently. Her being 36 imposes a significant time constraint on that possibility. Unfortunately, this is an inescapable biological reality.\n\nChoices: \nA. False\nB. True\n\nIndicate the correct option in \\boxed{X}, where X is the accurate choice. Limit the explanation to three sentences.",
-    "prediction": "meta/muse-spark-1.3-contributor",
+    "prediction": "deepseek/deepseek-v4.1-flash",
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
-      "response_model": "meta/muse-spark-1.3-contributor",
-      "response_id": "gen_01M4E3YH9HXRKY7WBYV5HWRA0E",
-      "completion_duration_seconds": 3.249168260999795,
+      "response_model": "deepseek/deepseek-v4.1-flash",
+      "response_id": "gen_01M4EF2T2V92B0PNMEPR8X20E8",
+      "completion_duration_seconds": 3.6728881289982382,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -513,8 +513,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3THVWZDFQ6015YPEN81CR",
-      "completion_duration_seconds": 3.9798325800002203,
+      "response_id": "gen_01M4EEZ26P06F710E06P337ZZC",
+      "completion_duration_seconds": 3.311420680000083,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -526,8 +526,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X1A6J20TJWPB0W1CZ4DN",
-      "completion_duration_seconds": 3.1049651260000246,
+      "response_id": "gen_01M4EF1G0SY5G1T9W81WB9VSM1",
+      "completion_duration_seconds": 3.234493954001664,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -539,8 +539,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XN1DVHDZ7CS3VJ0CB977",
-      "completion_duration_seconds": 6.084953739000412,
+      "response_id": "gen_01M4EF20FZ0BGDGP07CWYSVMHM",
+      "completion_duration_seconds": 3.6049300909999147,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -552,8 +552,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T856EKJGVA8KEF55BX24",
-      "completion_duration_seconds": 2.8621352249992924,
+      "response_id": "gen_01M4EEYSVH81F4F5Y7JYBF5DGM",
+      "completion_duration_seconds": 2.7614155179999216,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -565,8 +565,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XW2WXRAN0V0SCB0S700V",
-      "completion_duration_seconds": 3.1856662450009026,
+      "response_id": "gen_01M4EF25EEAPGSVT655FHCFSKW",
+      "completion_duration_seconds": 3.1223221529999137,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -578,8 +578,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VHVFAHKJW3W0R4JM8ACP",
-      "completion_duration_seconds": 3.3515257700000802,
+      "response_id": "gen_01M4EF04WVFJ3WVB30X960DFN4",
+      "completion_duration_seconds": 3.9295937449987832,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -591,8 +591,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S2MJMYEPKD7JC6YR57A6",
-      "completion_duration_seconds": 3.7754905139991024,
+      "response_id": "gen_01M4EEXKSZ5CP5EGGVQVR981P2",
+      "completion_duration_seconds": 3.2351035570009117,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -604,8 +604,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VV6JPFYY07QTE6J6Z7KR",
-      "completion_duration_seconds": 4.2508553650004615,
+      "response_id": "gen_01M4EF0C275MWS1AR96T99MB2J",
+      "completion_duration_seconds": 2.90989040400018,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -617,8 +617,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TDESBGK8MBCRMJ0SSSMN",
-      "completion_duration_seconds": 4.611858693999238,
+      "response_id": "gen_01M4EEZ07MARXCR3GPZ47T5FVR",
+      "completion_duration_seconds": 3.5370678389990644,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -630,8 +630,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RXDK241TXPASTC02THAS",
-      "completion_duration_seconds": 3.929597635000391,
+      "response_id": "gen_01M4EEXCF8RQ1HSV9CP04JCP83",
+      "completion_duration_seconds": 3.295234872000947,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -643,8 +643,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y3YAPKPWRK6MBMVT35Z1",
-      "completion_duration_seconds": 5.388733425999817,
+      "response_id": "gen_01M4EF2C0F0XN5BR2M28NHA8JE",
+      "completion_duration_seconds": 3.0625186110009963,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -656,8 +656,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TBBE0ZKT0WEH5132FA5Q",
-      "completion_duration_seconds": 3.2174014869997336,
+      "response_id": "gen_01M4EEYXNHYR32T9TMGXR5E4J6",
+      "completion_duration_seconds": 3.215358264000315,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -669,8 +669,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RW0SD11Y9EXSKA2WD4ZV",
-      "completion_duration_seconds": 3.3953389470007096,
+      "response_id": "gen_01M4EEXBDXHAB8AYRAMVB35743",
+      "completion_duration_seconds": 3.102474990999326,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -682,8 +682,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SP752QY2H1WBK7J38V9Y",
-      "completion_duration_seconds": 2.7180345769993437,
+      "response_id": "gen_01M4EEY8F1G17XAGGA9A3TMR5W",
+      "completion_duration_seconds": 3.154144936999728,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -695,8 +695,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XSSNGCEDH4W6FAPQ40FR",
-      "completion_duration_seconds": 2.8921210120006435,
+      "response_id": "gen_01M4EF257S8P20X1Y4FKS8RK7H",
+      "completion_duration_seconds": 3.4194532750007056,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -708,8 +708,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TWSZKHDVH60DX72HVQH3",
-      "completion_duration_seconds": 3.4885609070006467,
+      "response_id": "gen_01M4EEZFBVMHASXMBC4217Y09H",
+      "completion_duration_seconds": 4.225905921000958,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -721,8 +721,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VB91Q8EH38B7HW05Y6Q1",
-      "completion_duration_seconds": 3.4975179709999793,
+      "response_id": "gen_01M4EEZY17SRM2HW16PY7DZRVC",
+      "completion_duration_seconds": 3.3144442999982857,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -734,8 +734,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YNXT8TK64CHS4PQ92S8T",
-      "completion_duration_seconds": 3.7359999710006377,
+      "response_id": "gen_01M4EF2XH4STWGRTQ3HW6V1VAY",
+      "completion_duration_seconds": 3.190400536999732,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -747,8 +747,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3YHSPR81KGNB5MV0XKY69",
-      "completion_duration_seconds": 4.728372006999052,
+      "response_id": "gen_01M4EF2SCV5A0XK2XMEK692FG9",
+      "completion_duration_seconds": 4.188213731998985,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -760,8 +760,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RT4621HRJ34Y9G397XA4",
-      "completion_duration_seconds": 4.112920875000782,
+      "response_id": "gen_01M4EEX8TMNFEN0TKRPTE29K1S",
+      "completion_duration_seconds": 3.026479078000193,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -773,8 +773,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VE6T60CJA22H31MNK5CK",
-      "completion_duration_seconds": 3.6260105229994224,
+      "response_id": "gen_01M4EF00TMN2SV0B4QW4ND8TMS",
+      "completion_duration_seconds": 2.8090044020009373,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -786,8 +786,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VVM5K1EY4Y7X3S327RQY",
-      "completion_duration_seconds": 3.042313436000768,
+      "response_id": "gen_01M4EF0DBYWKKHEJSN07E5G20M",
+      "completion_duration_seconds": 4.515904828998828,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -799,8 +799,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RP65GWH4MMG7TPJWB3VP",
-      "completion_duration_seconds": 3.4038817410000775,
+      "response_id": "gen_01M4EEX59YGNHK22C7HNAXGSQ5",
+      "completion_duration_seconds": 3.1178643080002075,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -812,8 +812,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y8M9VMS6RRBM68F4MF81",
-      "completion_duration_seconds": 3.5827212109998072,
+      "response_id": "gen_01M4EF2J42F85G56YRJ3F54VH6",
+      "completion_duration_seconds": 3.680047702999218,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -825,8 +825,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RPKX46475W1KH3Y511CT",
-      "completion_duration_seconds": 3.1562651509993884,
+      "response_id": "gen_01M4EEX60R2990FW53YKE4NXN0",
+      "completion_duration_seconds": 3.2153050640008587,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -838,8 +838,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XGBTRJV46ZN9GSC8870R",
-      "completion_duration_seconds": 3.3113430939993123,
+      "response_id": "gen_01M4EF1XM87JFZK0ANWXK3RT3T",
+      "completion_duration_seconds": 3.038491803001307,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -851,8 +851,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SHJAEM4W6H5VP7P0WARB",
-      "completion_duration_seconds": 3.510848544001419,
+      "response_id": "gen_01M4EEY4CYRC9C275MQKPFCZF3",
+      "completion_duration_seconds": 4.091438604998984,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -864,8 +864,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3S4S20JVMEM5340AEYWNH",
-      "completion_duration_seconds": 4.212708220000422,
+      "response_id": "gen_01M4EEXP0G0V7EV657WHSJ060Y",
+      "completion_duration_seconds": 8.184181611000895,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -877,8 +877,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S9CHYQPX8H96JR3FDX0Y",
-      "completion_duration_seconds": 4.538472227999591,
+      "response_id": "gen_01M4EEXW2744E70HKANHJT6FFA",
+      "completion_duration_seconds": 3.3729238729993085,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -890,8 +890,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YMKPJP310G6F7E9X3J9W",
-      "completion_duration_seconds": 3.298321741000109,
+      "response_id": "gen_01M4EF2VXEVTBXE0RJ0T1XARK1",
+      "completion_duration_seconds": 3.5654686630005017,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -903,8 +903,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XD0BDSA19CC59JK4JGXS",
-      "completion_duration_seconds": 3.3285656349999044,
+      "response_id": "gen_01M4EF1TJP1M397N0SD41RWYHS",
+      "completion_duration_seconds": 3.070743150999988,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -916,8 +916,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3X6RHV1TJW8H6XBBRM13C",
-      "completion_duration_seconds": 4.0222476170001755,
+      "response_id": "gen_01M4EF1NZN1125R89AKYGYRXDF",
+      "completion_duration_seconds": 4.874732591999418,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -929,8 +929,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T51A6KJDD8B4YR15AFC1",
-      "completion_duration_seconds": 3.2346620820007956,
+      "response_id": "gen_01M4EEYNWYQEF2D3CWZK0R3RSQ",
+      "completion_duration_seconds": 3.019379420000405,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -942,8 +942,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SR50JKQ2WTG9A458ZM3S",
-      "completion_duration_seconds": 3.0016168559996004,
+      "response_id": "gen_01M4EEYANWG1AZ2MT75GPNTKCZ",
+      "completion_duration_seconds": 3.4327676280008745,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -955,8 +955,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3TVZ9R155FJSC68BAWN6E",
-      "completion_duration_seconds": 5.8430046400007996,
+      "response_id": "gen_01M4EEZD3E8ZMSR5QEF7JQ41VW",
+      "completion_duration_seconds": 4.767824105001637,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -968,8 +968,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3TAHTRXP31JGMVM0XS36Z",
-      "completion_duration_seconds": 4.387825023000914,
+      "response_id": "gen_01M4EEYWJ3F5X304XKVC7A6NM0",
+      "completion_duration_seconds": 4.881578996000826,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -981,8 +981,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3VM8HJ6XDJXJPDKB7TTEE",
-      "completion_duration_seconds": 6.216089142999408,
+      "response_id": "gen_01M4EF05434KTQXF1ND7H04GPM",
+      "completion_duration_seconds": 3.3044231300009415,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -994,8 +994,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3V5DDKN0P10VBW052KX0G",
-      "completion_duration_seconds": 4.542879825999989,
+      "response_id": "gen_01M4EEZQ94R85EQBBVZ25KKKM7",
+      "completion_duration_seconds": 5.952416475000064,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1007,8 +1007,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XBV7GW1J8QWNGZ8AA5EH",
-      "completion_duration_seconds": 5.849560433998704,
+      "response_id": "gen_01M4EF1S41TEHC9TS6C8ETF89Q",
+      "completion_duration_seconds": 4.997765887001151,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1020,8 +1020,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RYEVHDK6A3YCDYXNH87Q",
-      "completion_duration_seconds": 3.68636432600033,
+      "response_id": "gen_01M4EEXDWJ28SATY6DB03PSE9Q",
+      "completion_duration_seconds": 6.736279687000206,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1033,8 +1033,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3TNRS2YSTYQZ00NQXH4HF",
-      "completion_duration_seconds": 6.390972791001332,
+      "response_id": "gen_01M4EEZ5JKW6W2SWN90S50C4KY",
+      "completion_duration_seconds": 4.999178030999246,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1046,8 +1046,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3S9D6ZRMP0YJ484BH5RVD",
-      "completion_duration_seconds": 5.015315546999773,
+      "response_id": "gen_01M4EEXVJE2V6PAFPWBWNPZHT6",
+      "completion_duration_seconds": 8.41069392999998,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1059,8 +1059,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3YC9MQC5SNVY21TN912W4",
-      "completion_duration_seconds": 4.580667446998632,
+      "response_id": "gen_01M4EF2P7RJ9Y7MHA2AJ43552D",
+      "completion_duration_seconds": 4.292717598998934,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1068,12 +1068,12 @@
   {
     "global_index": "LiveCodeBench_271",
     "prompt": "I'm sorry, I can't assist with that request.",
-    "prediction": "xiaomi/mimo-v2.6-pro",
+    "prediction": "deepseek/deepseek-v4.1-flash",
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
-      "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RSP2F4D807WZQ9AJ9HNM",
-      "completion_duration_seconds": 4.710646723000536,
+      "response_model": "deepseek/deepseek-v4.1-flash",
+      "response_id": "gen_01M4EEXAK3Z2G1J2H4VHXNQ7EJ",
+      "completion_duration_seconds": 6.330066532998899,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1085,8 +1085,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RZJ754CXNK7BBVCFA719",
-      "completion_duration_seconds": 3.5605875519995607,
+      "response_id": "gen_01M4EEXEQ11X6QCNP0G7152K3S",
+      "completion_duration_seconds": 8.33081619800032,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1098,8 +1098,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XAG4JYTQK25VAPPQTJB0",
-      "completion_duration_seconds": 4.747992071999761,
+      "response_id": "gen_01M4EF1R4A563PSE4B0VXQPTW5",
+      "completion_duration_seconds": 4.3779092820004735,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1111,8 +1111,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XBAJRQBVQVV83JAJ8FH1",
-      "completion_duration_seconds": 7.197015370000372,
+      "response_id": "gen_01M4EF1TJMJ50TBKCJTJBN1BZS",
+      "completion_duration_seconds": 3.6105058479988656,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1124,8 +1124,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XWTP75J6T5HWYW4AFV0S",
-      "completion_duration_seconds": 3.9374044719988888,
+      "response_id": "gen_01M4EF26S3DMVZCT747HWYX6R4",
+      "completion_duration_seconds": 4.165958892999697,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1137,8 +1137,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3W1EV39QTXX2HF077PGMC",
-      "completion_duration_seconds": 4.370312298000499,
+      "response_id": "gen_01M4EF0K9SQF0741X7M0B4FD9W",
+      "completion_duration_seconds": 4.647664217000056,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1150,8 +1150,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3T3MWRVD185KHY67F7WS2",
-      "completion_duration_seconds": 3.7724867619999713,
+      "response_id": "gen_01M4EEYMBKK5VQAYGYGV8B4EPT",
+      "completion_duration_seconds": 5.33371645599982,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1163,8 +1163,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3S8ZA9JEG0RKVJDK0G744",
-      "completion_duration_seconds": 3.871949181000673,
+      "response_id": "gen_01M4EEXVXSH99BA893VP3XX7B5",
+      "completion_duration_seconds": 5.0119486290004716,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1176,8 +1176,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3T7TC1YJ449YGR6VK9XCZ",
-      "completion_duration_seconds": 4.874657637999917,
+      "response_id": "gen_01M4EEYSZXW2TKKGM0WTZHJYK5",
+      "completion_duration_seconds": 3.6961343530001614,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1189,8 +1189,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3T96V6VEXCPYFFFC3EHJF",
-      "completion_duration_seconds": 3.5434622459997627,
+      "response_id": "gen_01M4EEYTQP1TX133SP8ZN1ZKR4",
+      "completion_duration_seconds": 5.553920211999866,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1202,8 +1202,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3W5W9CZFCHADTZ8JKAQ6X",
-      "completion_duration_seconds": 3.7450700089993916,
+      "response_id": "gen_01M4EF0Q7FETZ3EVJJP9MGWZ5P",
+      "completion_duration_seconds": 6.173421526000311,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1215,8 +1215,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WBWJ8RGX7BKT2TFNMZY8",
-      "completion_duration_seconds": 4.039191555999423,
+      "response_id": "gen_01M4EF0WKYEAY558VHRT4480V9",
+      "completion_duration_seconds": 4.396979594001095,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1228,8 +1228,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3YCHC7K5S4Z9GJHEYDY83",
-      "completion_duration_seconds": 3.888107062999552,
+      "response_id": "gen_01M4EF2N3F5AYTSA3GG72JS1MW",
+      "completion_duration_seconds": 5.386292601000605,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1241,8 +1241,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3TF2NQYFXGFE7SZX4FMXH",
-      "completion_duration_seconds": 5.350470410001435,
+      "response_id": "gen_01M4EEZ0YS3085Q74VN380CCR6",
+      "completion_duration_seconds": 4.49933030000102,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1254,8 +1254,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3V6SCT2G12YMBG6VC5862",
-      "completion_duration_seconds": 4.388732393999817,
+      "response_id": "gen_01M4EEZQTPAMN1Z95X1EKZFHNY",
+      "completion_duration_seconds": 3.9154890009995142,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1267,8 +1267,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RKB6AVF9B5SV2P747Z1H",
-      "completion_duration_seconds": 2.9344802100004017,
+      "response_id": "gen_01M4EEX3E8HKWWM9P82TZQV05E",
+      "completion_duration_seconds": 3.053625190001185,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1280,8 +1280,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W035SW369ZK7PXFXN34T",
-      "completion_duration_seconds": 3.5469791750001605,
+      "response_id": "gen_01M4EF0HKKJV3ZAKYTNFPYBCGC",
+      "completion_duration_seconds": 3.0403504719997727,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1293,8 +1293,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S5EHDGB98KQ5Y5GTFJY9",
-      "completion_duration_seconds": 2.9646427320003568,
+      "response_id": "gen_01M4EEXPZXZK7SRMWHQQDDJBVM",
+      "completion_duration_seconds": 3.542294970999137,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1306,8 +1306,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XBC4707D8H3DN5XJPAJ7",
-      "completion_duration_seconds": 3.6398421920002875,
+      "response_id": "gen_01M4EF1S8J4SQ0NS88FMMN0WD8",
+      "completion_duration_seconds": 3.1104148539998278,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1319,8 +1319,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S7VKM2R8M3KTJ5D9ZM8F",
-      "completion_duration_seconds": 4.565095726000436,
+      "response_id": "gen_01M4EEXR63F16PF1GQ9HVF7B62",
+      "completion_duration_seconds": 3.340320030998555,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1332,8 +1332,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T6RQZTEADQ0AFMH18N5X",
-      "completion_duration_seconds": 3.025866545000099,
+      "response_id": "gen_01M4EEYT6K4E8BV446RNMAGWBP",
+      "completion_duration_seconds": 4.731873175998771,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1345,8 +1345,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y9B0A4S2RQ03QX7TFT90",
-      "completion_duration_seconds": 4.498619026000597,
+      "response_id": "gen_01M4EF2FFH1R70RD2FYBZ75GZV",
+      "completion_duration_seconds": 4.9288669580000715,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1358,8 +1358,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3X4246494GGTDY960NSW3",
-      "completion_duration_seconds": 6.522395285999664,
+      "response_id": "gen_01M4EF1KHTBBWS06H6TCMS3D5C",
+      "completion_duration_seconds": 6.8775005449988384,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1371,8 +1371,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VBGEWBBK2Q8HXZKDB372",
-      "completion_duration_seconds": 3.7026490070002183,
+      "response_id": "gen_01M4EEZY9JR4PGBTVQW2YCW08P",
+      "completion_duration_seconds": 2.9072942759994476,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1384,8 +1384,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W5TRY0CDXRBE2NQGJ3JR",
-      "completion_duration_seconds": 3.2335028240013344,
+      "response_id": "gen_01M4EF0PEDKT0SBCNSMW0DWGPK",
+      "completion_duration_seconds": 2.709159994001311,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1397,8 +1397,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TA3PBQ6Y8TR9EKPWASRX",
-      "completion_duration_seconds": 2.9669100000010076,
+      "response_id": "gen_01M4EEYX1PW062MPD2Q73BA5EN",
+      "completion_duration_seconds": 3.158056709999073,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1410,8 +1410,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SNYNY6ZNR01W0T7799H2",
-      "completion_duration_seconds": 3.447188226000435,
+      "response_id": "gen_01M4EEY7FG8ARGR4QR9ZSMGYBM",
+      "completion_duration_seconds": 2.8472418540004583,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1423,8 +1423,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Z0W4T1YV7N70BR3VCG7K",
-      "completion_duration_seconds": 4.139526175000356,
+      "response_id": "gen_01M4EF38EXH8D6XW4S9CFG1DGW",
+      "completion_duration_seconds": 3.1910457650010358,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1436,8 +1436,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3VB7HT4G7TDFJP2G3EQ5W",
-      "completion_duration_seconds": 5.59911620999992,
+      "response_id": "gen_01M4EEZXY7JF7Z30TT4BCKJFTT",
+      "completion_duration_seconds": 6.406976795999071,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1449,8 +1449,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RYGMYETXKVRRCPBE12S1",
-      "completion_duration_seconds": 3.5235833330007154,
+      "response_id": "gen_01M4EEXEH08TZSFPHRGRAT0JKK",
+      "completion_duration_seconds": 6.804027481999583,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1462,8 +1462,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y0MF586NPRPA0GMWT2HK",
-      "completion_duration_seconds": 4.801693917999728,
+      "response_id": "gen_01M4EF29157RQWHDY9JWF4YJRS",
+      "completion_duration_seconds": 2.9519287860002805,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1471,12 +1471,12 @@
   {
     "global_index": "MMLUPro_chemistry_3837",
     "prompt": "I'm sorry, but I can't assist with that request.",
-    "prediction": "xiaomi/mimo-v2.6-pro",
+    "prediction": "deepseek/deepseek-v4.1-flash",
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
-      "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3TF4A105VGZFC5W0MQCNX",
-      "completion_duration_seconds": 4.7428385830007755,
+      "response_model": "deepseek/deepseek-v4.1-flash",
+      "response_id": "gen_01M4EEZ0V9WHFKV3SP8HKY4J0J",
+      "completion_duration_seconds": 3.214745375998973,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1488,8 +1488,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SBQH73WYVEBN5D1HPFR0",
-      "completion_duration_seconds": 4.880358156000511,
+      "response_id": "gen_01M4EEXW95NGRS1Z9NSN88A63P",
+      "completion_duration_seconds": 3.264300622000519,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1501,8 +1501,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XF9179TWKTA52A0X7FE9",
-      "completion_duration_seconds": 5.311781995998899,
+      "response_id": "gen_01M4EF1XH1DY2JXQNQNR5FSH8S",
+      "completion_duration_seconds": 4.068294931999844,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1514,8 +1514,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WMJAX0V3BQVCVZPX0ZGK",
-      "completion_duration_seconds": 4.98006138799974,
+      "response_id": "gen_01M4EF13THKYRGGW5KFZGY55G7",
+      "completion_duration_seconds": 3.048369657999501,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1527,8 +1527,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RGEND9CRB8XK0Q7CEB3F",
-      "completion_duration_seconds": 5.528501974000392,
+      "response_id": "gen_01M4EEWYS1V1Z0F4J02AYZH795",
+      "completion_duration_seconds": 7.74257056299939,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1540,8 +1540,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VME4EQ0YH29XFR0WBMGC",
-      "completion_duration_seconds": 3.3671767140003794,
+      "response_id": "gen_01M4EF06P18DNDG0RM40D1PPHS",
+      "completion_duration_seconds": 3.122658513000715,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1553,8 +1553,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V33RDBR0E5PAFY47BN0P",
-      "completion_duration_seconds": 3.7740442939993954,
+      "response_id": "gen_01M4EEZMS3GKES2JKTG1CF9C7X",
+      "completion_duration_seconds": 3.247494999999617,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1566,8 +1566,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SZWB66KGJB4JNR5WF1WA",
-      "completion_duration_seconds": 4.273014365999188,
+      "response_id": "gen_01M4EEYH3F0VXDWEM8TV2Q0CXZ",
+      "completion_duration_seconds": 3.017985583001064,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1579,8 +1579,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S1FX6Y2R5REZFVFV4C74",
-      "completion_duration_seconds": 3.3298884159994486,
+      "response_id": "gen_01M4EEXJWXBRN9HREBB065VQHP",
+      "completion_duration_seconds": 3.5279575519998616,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1592,8 +1592,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WVFJ0BC5JXTJVM0WCG96",
-      "completion_duration_seconds": 3.688679584000056,
+      "response_id": "gen_01M4EF1AWEN6MYN6C1TF33G551",
+      "completion_duration_seconds": 2.94721494300029,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1605,8 +1605,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TKYRZ4GDSMAYDAJQ7QXF",
-      "completion_duration_seconds": 3.1553852259985433,
+      "response_id": "gen_01M4EEZBR3JPYBTMX940MJF6W8",
+      "completion_duration_seconds": 11.802966604000176,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1618,8 +1618,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T70JVZTX68ZV53KGMXXB",
-      "completion_duration_seconds": 2.969275624000147,
+      "response_id": "gen_01M4EEYSC3E6K0CSJN7DTCY70Z",
+      "completion_duration_seconds": 3.2218198259997735,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1631,8 +1631,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VMZB2Z0F124K9J6HP80G",
-      "completion_duration_seconds": 4.082835733999673,
+      "response_id": "gen_01M4EF07EP2EQSGPFGHWEWB765",
+      "completion_duration_seconds": 3.3088608250000107,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1644,8 +1644,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SYYAA18QH5D68FF24T8N",
-      "completion_duration_seconds": 3.497642154999994,
+      "response_id": "gen_01M4EEYGT9MQWHAQQXP70JP64F",
+      "completion_duration_seconds": 3.0792386009998154,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1657,8 +1657,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SHKCH635ZFYEYTF2FVPH",
-      "completion_duration_seconds": 3.584873334999429,
+      "response_id": "gen_01M4EEY3KPV3TQ30GGYP7XZ4ZX",
+      "completion_duration_seconds": 2.986423685999398,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1670,8 +1670,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y5W7B8WGCH60PBRSHZQM",
-      "completion_duration_seconds": 3.8620203680002305,
+      "response_id": "gen_01M4EF2E9WVBGGBGV92RCV962Y",
+      "completion_duration_seconds": 3.0453828379995684,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1683,8 +1683,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XNP8D10XPKM0K7J9GKS1",
-      "completion_duration_seconds": 8.547885305999444,
+      "response_id": "gen_01M4EF1YCTMC1AQXGDW22JDY8K",
+      "completion_duration_seconds": 5.33487281700036,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1696,8 +1696,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SVG09MX419XQBPXTKDAB",
-      "completion_duration_seconds": 3.6249904529995547,
+      "response_id": "gen_01M4EEYDVGD73BZ8JVBHK9EEM4",
+      "completion_duration_seconds": 3.187857023000106,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1709,8 +1709,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WRD7270STNNDXP4JKPF6",
-      "completion_duration_seconds": 4.076617639999313,
+      "response_id": "gen_01M4EF17NV874GBQ59CGAN4TF3",
+      "completion_duration_seconds": 3.5514645490002295,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1722,8 +1722,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WV17BNP42T1XHZW1ZVZ0",
-      "completion_duration_seconds": 4.947865723001087,
+      "response_id": "gen_01M4EF1A4AE91A27EQRXPJP025",
+      "completion_duration_seconds": 3.4874393210011476,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1735,8 +1735,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RXDDVY87W5A2J74PS5EX",
-      "completion_duration_seconds": 3.1521398950008006,
+      "response_id": "gen_01M4EEXDQ16HRRQ1VDC7Q5EWHE",
+      "completion_duration_seconds": 3.2964518799999496,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1748,8 +1748,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YH8A0WJRHGVHVX4NMYFF",
-      "completion_duration_seconds": 3.0942721589999564,
+      "response_id": "gen_01M4EF2T1YB6WNP7R39D6A9MPT",
+      "completion_duration_seconds": 3.2195729939994635,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1761,8 +1761,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RK4CPX6PCN86G7X4ZE6A",
-      "completion_duration_seconds": 2.786598093000066,
+      "response_id": "gen_01M4EEX26FBEY48GV5MQ4FHFGF",
+      "completion_duration_seconds": 3.224741639000058,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1774,8 +1774,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XKXZ6AZKP107YCATZCGV",
-      "completion_duration_seconds": 6.566225042000951,
+      "response_id": "gen_01M4EF1YPDCCT7ET2M41DSPNRD",
+      "completion_duration_seconds": 4.425890863998575,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1787,8 +1787,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T13RNG6JE0YXZMXMS2P5",
-      "completion_duration_seconds": 3.2911635370001022,
+      "response_id": "gen_01M4EEYJP78GJWKAN9ACK8JKMT",
+      "completion_duration_seconds": 2.626258852000319,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1800,8 +1800,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W4EJH45K64QEXB00EGJ0",
-      "completion_duration_seconds": 2.9398860550008976,
+      "response_id": "gen_01M4EF0NVKAN5PW2NYFTDWW0AR",
+      "completion_duration_seconds": 2.7970868840002368,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1813,8 +1813,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YC3F520RDDDD7K2SDBBB",
-      "completion_duration_seconds": 3.8035922079998272,
+      "response_id": "gen_01M4EF2K92JV62FJGRJB8CMX3V",
+      "completion_duration_seconds": 4.462630604999504,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1826,8 +1826,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RJZQY482BWY0MC3MX767",
-      "completion_duration_seconds": 3.0121526420007285,
+      "response_id": "gen_01M4EEX2SGM86EK3NQ20X56EK5",
+      "completion_duration_seconds": 4.349204621999888,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1839,8 +1839,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T84WWY1FD7DX7HDAV0VM",
-      "completion_duration_seconds": 4.085799602000407,
+      "response_id": "gen_01M4EEYT2VX1G92JWYD86AXQT3",
+      "completion_duration_seconds": 4.044850645999759,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1852,8 +1852,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VZRPD3V1NJ1QJVYYB7JQ",
-      "completion_duration_seconds": 3.198365529999137,
+      "response_id": "gen_01M4EF0HMC7RMWGA6WQA8NEQV8",
+      "completion_duration_seconds": 3.8457070060012484,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1865,8 +1865,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WKBWSZSVTW6070W2H7XP",
-      "completion_duration_seconds": 3.2753126669995254,
+      "response_id": "gen_01M4EF14KAKBSVS0X5Y264DG3M",
+      "completion_duration_seconds": 4.3612672700000985,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1878,8 +1878,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WFRMSS1TXZ244CPAEMNN",
-      "completion_duration_seconds": 6.57412769199982,
+      "response_id": "gen_01M4EF0YDENBGD5P1ZXC4TR3AB",
+      "completion_duration_seconds": 3.223768628000471,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1891,8 +1891,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y66SMAMS8EZCESJJFWK5",
-      "completion_duration_seconds": 3.7246463540013792,
+      "response_id": "gen_01M4EF2FE9D6AM9HA3N1JKXZ38",
+      "completion_duration_seconds": 3.4913931579994824,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1904,8 +1904,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TBJ0N8N8A8Y53C4R3ZT8",
-      "completion_duration_seconds": 3.5160942129987234,
+      "response_id": "gen_01M4EEYXQ1WK2CHVTA5N0QBV7W",
+      "completion_duration_seconds": 3.429370347999793,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1917,8 +1917,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SR4V0HK8N3H495GMV7KH",
-      "completion_duration_seconds": 3.194081947000086,
+      "response_id": "gen_01M4EEYBF7B4S9NE8K4R553F7D",
+      "completion_duration_seconds": 4.418910653999774,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1930,8 +1930,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XNNMW5E1HV60JB4JNVAQ",
-      "completion_duration_seconds": 7.463845561000198,
+      "response_id": "gen_01M4EF1ZCA4A809T5NVK148YTC",
+      "completion_duration_seconds": 4.202236547000211,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1943,8 +1943,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V88HHBBFQDEKS4HTCH0W",
-      "completion_duration_seconds": 3.6218080329999793,
+      "response_id": "gen_01M4EEZVFQPP6S7WW7W5MQDQVS",
+      "completion_duration_seconds": 2.8474082310003723,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1956,8 +1956,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RQW3V48BQ0A238ZPGQ52",
-      "completion_duration_seconds": 3.4548525249992963,
+      "response_id": "gen_01M4EEX70XA5RR66ZXASE334AY",
+      "completion_duration_seconds": 3.6068128240003716,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1969,8 +1969,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SR6S2Z3HYRZYRD4G9M13",
-      "completion_duration_seconds": 3.9044748119995347,
+      "response_id": "gen_01M4EEY9F1NYYZF9S9CWVFJYR5",
+      "completion_duration_seconds": 3.450611709999066,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1982,8 +1982,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V3NZVDE94KZB2JPPZ7NB",
-      "completion_duration_seconds": 3.2078861339996365,
+      "response_id": "gen_01M4EEZP3Y1TC7V9CVK04B7WKB",
+      "completion_duration_seconds": 3.1134970240000257,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -1995,8 +1995,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VN01S6DWFZDEQZD9M8QS",
-      "completion_duration_seconds": 4.013506518000213,
+      "response_id": "gen_01M4EF06KY97ADJ2T3DP3TQ8DG",
+      "completion_duration_seconds": 3.0663324449997162,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2008,8 +2008,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V4C5EX32WBP42SXRS1P9",
-      "completion_duration_seconds": 3.553690650000135,
+      "response_id": "gen_01M4EEZPC10SFAB8QMC9MMD60T",
+      "completion_duration_seconds": 3.2193481319991406,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2021,8 +2021,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TW24GKHCTHEEH3M10C0Y",
-      "completion_duration_seconds": 4.10841147300016,
+      "response_id": "gen_01M4EEZDJHJTKVTC1XA8Q0EEFJ",
+      "completion_duration_seconds": 3.5465920549995644,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2034,8 +2034,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RKAB83V70EK5ZNCK2G8B",
-      "completion_duration_seconds": 3.3855490799996915,
+      "response_id": "gen_01M4EEX200J2R7EJ3CS1ABM05J",
+      "completion_duration_seconds": 2.9076768929990067,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2047,8 +2047,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YJBFD8B16J88MA61DF74",
-      "completion_duration_seconds": 5.525016587000209,
+      "response_id": "gen_01M4EF2T131S9XYSP4CHA3VHXT",
+      "completion_duration_seconds": 2.794962949999899,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2060,8 +2060,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V4SP329B1NGVKVRY8KWN",
-      "completion_duration_seconds": 3.1911944749990653,
+      "response_id": "gen_01M4EEZRF9YP2ZW944KGQ7Z2T5",
+      "completion_duration_seconds": 6.80533577999995,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2073,8 +2073,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3V6PVCXTEBSRJY4DAYXBN",
-      "completion_duration_seconds": 2.9530137359997752,
+      "response_id": "gen_01M4EEZTQGCB8V04NW0AG8MHRQ",
+      "completion_duration_seconds": 5.948451283000395,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2086,8 +2086,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3THYKDQ5BM1QV0654R8RD",
-      "completion_duration_seconds": 5.486153297000783,
+      "response_id": "gen_01M4EEZ3CB1WERZBN8HJ017AZZ",
+      "completion_duration_seconds": 6.533529230999193,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2099,8 +2099,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YJ24J5HAZQF9MGGMNXCA",
-      "completion_duration_seconds": 4.284875688001193,
+      "response_id": "gen_01M4EF2RHCRFEHZJQS64XQ044M",
+      "completion_duration_seconds": 2.652361252999981,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2112,8 +2112,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RWRZERXZFFFGA3SAMC84",
-      "completion_duration_seconds": 4.251205104001201,
+      "response_id": "gen_01M4EEXBYEF3RE2M6EZN934ZCE",
+      "completion_duration_seconds": 4.895543820999592,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2125,8 +2125,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TE7T5YP0RW78MA2Y3ZTM",
-      "completion_duration_seconds": 3.4269644940013677,
+      "response_id": "gen_01M4EEZ0R29CV8MA7R619T4VNY",
+      "completion_duration_seconds": 3.1534233130005305,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2138,8 +2138,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YRSCQ375R2TCGBKT7PM3",
-      "completion_duration_seconds": 4.927558080000381,
+      "response_id": "gen_01M4EF311WD3XBZGWHXNM4KA7B",
+      "completion_duration_seconds": 3.7078211330008344,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2151,8 +2151,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y92NT45E83EH85TRGBKM",
-      "completion_duration_seconds": 2.840550650998921,
+      "response_id": "gen_01M4EF2J9EQ13R4RN8Z0JJQ4WP",
+      "completion_duration_seconds": 3.320718446999308,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2164,8 +2164,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VTSYPH3XA8RSQ4EB3BAS",
-      "completion_duration_seconds": 3.4937028660006035,
+      "response_id": "gen_01M4EF0BWH23M6TZK9AFYMCHA0",
+      "completion_duration_seconds": 3.5767847080005595,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2177,8 +2177,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XBYTQ4KE19EPPVEBTVQ7",
-      "completion_duration_seconds": 3.258146730999215,
+      "response_id": "gen_01M4EF1TFNS13F5A8XB96ZT651",
+      "completion_duration_seconds": 3.385228517001451,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2190,8 +2190,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TQ85Q6EKKRYWRQVYM0EQ",
-      "completion_duration_seconds": 3.5544448729997384,
+      "response_id": "gen_01M4EEZA31TFK0WECMCKNNTGEG",
+      "completion_duration_seconds": 3.808759973000633,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2203,8 +2203,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S2NJ73GS9JN46GFRNA6P",
-      "completion_duration_seconds": 3.2771204900000157,
+      "response_id": "gen_01M4EEXKN17WHVG6E0CNFYQWPV",
+      "completion_duration_seconds": 3.9647146580009576,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2216,8 +2216,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S5ZGRG2DEF0AH7H1S1G4",
-      "completion_duration_seconds": 3.3752811499998643,
+      "response_id": "gen_01M4EEXQSAA9H0944RRFKKD1MS",
+      "completion_duration_seconds": 4.001571643999341,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2229,8 +2229,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XYWW2AWFYBF6ZRDGW69M",
-      "completion_duration_seconds": 5.186846630000218,
+      "response_id": "gen_01M4EF27WY8NJJER87PQ02D0GW",
+      "completion_duration_seconds": 3.0299756539989176,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2242,8 +2242,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X9YBZPNRZ19XH7EYF797",
-      "completion_duration_seconds": 3.154616525000165,
+      "response_id": "gen_01M4EF1RN8Y56D5MYB61EQV28S",
+      "completion_duration_seconds": 3.6985065280005074,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2255,8 +2255,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WGE2VETNQK1C7M55VB5W",
-      "completion_duration_seconds": 3.8125833940011944,
+      "response_id": "gen_01M4EF10PKYKEZ9KMWNN4S4RCN",
+      "completion_duration_seconds": 3.942173419000028,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2268,8 +2268,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SPKX4FZQ2319JVNYEHHY",
-      "completion_duration_seconds": 4.2433870829991065,
+      "response_id": "gen_01M4EEY7Q5SCJ0ZGDTKBB35SK1",
+      "completion_duration_seconds": 3.6060185879996425,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2281,8 +2281,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SRP0RK4WQECKJH03E8YP",
-      "completion_duration_seconds": 3.390258477000316,
+      "response_id": "gen_01M4EEYBDV3RW5JQ9E9W3324TK",
+      "completion_duration_seconds": 5.338970786000573,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2294,8 +2294,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VC0F1407TG7W2MWDK7BN",
-      "completion_duration_seconds": 3.238262593999025,
+      "response_id": "gen_01M4EEZZ2W8HZXS4QC8M2AKDDN",
+      "completion_duration_seconds": 2.9316142560001026,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2307,8 +2307,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X3QGE2W9N44VGJM6MTWE",
-      "completion_duration_seconds": 3.799212670999623,
+      "response_id": "gen_01M4EF1JAN6E1Z01X095SCJPJ7",
+      "completion_duration_seconds": 4.109240460000365,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2320,8 +2320,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X6XQ988ZJGDJNGTRW4E5",
-      "completion_duration_seconds": 6.446377652000592,
+      "response_id": "gen_01M4EF1MZ8ZA7HCP85S3SP0SJQ",
+      "completion_duration_seconds": 4.778333380001641,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2333,8 +2333,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XQWRCSE01Y70HMNGS9HE",
-      "completion_duration_seconds": 4.426466263001203,
+      "response_id": "gen_01M4EF21YRX1NPAXE3RMM3F6FN",
+      "completion_duration_seconds": 2.9576944689997617,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2342,12 +2342,12 @@
   {
     "global_index": "MMLUPro_history_4810",
     "prompt": "Kindly review the subsequent multiple-choice items and determine the most plausible correct response from the alternatives provided.\n\nContext: None\n\nInquiry: This question pertains to the accompanying passage.\n\"We assert that, within public education, the principle of \"separate but equal\" is unacceptable. Segregated educational institutions are fundamentally unequal. Consequently, we affirm that the plaintiffs and others in similar circumstances, for whom these proceedings have been initiated, are, due to the segregation in question, denied the equal protection of the laws as ensured by the Fourteenth Amendment.\"\nBrown v. Board of Education, 1954\nThe desegregation of educational institutions was partly driven by unmet promises from which of the following endeavors?\n\nChoices: \nA. The New Deal\nB. The Fair Deal\nC. The New Frontier\nD. Reconstruction\nE. The Square Deal\nF. The Great Society\nG. The Progressive Era\nH. The War on Poverty\nI. The Emancipation Proclamation\nJ. The Civil Rights Act\n\nIndicate the correct letter choice in \\boxed{X}, where X is the accurate letter choice. Limit the explanation or feedback to a maximum of 3 sentences.",
-    "prediction": "xiaomi/mimo-v2.6-pro",
+    "prediction": "openai/gpt-6-luna",
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
-      "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3VD90C85A2MTYCYKDDRRR",
-      "completion_duration_seconds": 4.792522375999397,
+      "response_model": "openai/gpt-6-luna",
+      "response_id": "gen_01M4EEZZSNXDWT89AFW2J0F12R",
+      "completion_duration_seconds": 3.524872673000573,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2359,8 +2359,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3VX3SS0VYN5DND8CD5551",
-      "completion_duration_seconds": 4.261820036999779,
+      "response_id": "gen_01M4EF0D9AA1Y0VEBPTPC6G5P1",
+      "completion_duration_seconds": 6.14248593999946,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2372,8 +2372,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SMV4X6TGWRFPQY17KXBQ",
-      "completion_duration_seconds": 3.3310890840002685,
+      "response_id": "gen_01M4EEY7560D86XSJ6W1Q85FTD",
+      "completion_duration_seconds": 3.3880839890007337,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2385,8 +2385,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SS9P7SFH1G24K94Z4RHC",
-      "completion_duration_seconds": 3.268468333000783,
+      "response_id": "gen_01M4EEYB3XNA1C3X9A1Z17NGBB",
+      "completion_duration_seconds": 3.1629621330012014,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2398,8 +2398,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SFHVMSQWFT61MJ8G17CJ",
-      "completion_duration_seconds": 5.278880771000331,
+      "response_id": "gen_01M4EEY0CWXRSK9T07WD1R5CDJ",
+      "completion_duration_seconds": 3.085069447999558,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2411,8 +2411,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SR4VQBENXH0RNTC2G070",
-      "completion_duration_seconds": 4.066858423000667,
+      "response_id": "gen_01M4EEYB0NTXD1YR05GHHBABWD",
+      "completion_duration_seconds": 3.929967845999272,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2424,8 +2424,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VRGT7FWWF66Q43H61JBQ",
-      "completion_duration_seconds": 5.132551082999271,
+      "response_id": "gen_01M4EF08TDM8PCVGYP979CG3X2",
+      "completion_duration_seconds": 3.4679618810005195,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2437,8 +2437,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VWG2Y2R1YTENY1ENV0WW",
-      "completion_duration_seconds": 4.068463208001049,
+      "response_id": "gen_01M4EF0DJZE246SSSQ8CAKRSFQ",
+      "completion_duration_seconds": 3.4051712740001676,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2450,8 +2450,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RPRVPG21B8AXXFS12DE4",
-      "completion_duration_seconds": 3.3989999710011034,
+      "response_id": "gen_01M4EEX6VYM05R6NR0HAHNR70W",
+      "completion_duration_seconds": 4.7989575609990425,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2463,8 +2463,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RZN7MY6F2PZVEYA910KS",
-      "completion_duration_seconds": 3.362942389001546,
+      "response_id": "gen_01M4EEXFK065GSP1WCHFT7R78D",
+      "completion_duration_seconds": 3.2230862129999878,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2476,8 +2476,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WADTRG41SB2TB6HKEZ99",
-      "completion_duration_seconds": 3.40373885200097,
+      "response_id": "gen_01M4EF0W2FV4MTSADCEK3GEJ77",
+      "completion_duration_seconds": 3.4133318760013935,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2489,8 +2489,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RGEH7T7KSQG1D7MWZBY3",
-      "completion_duration_seconds": 4.504278283999156,
+      "response_id": "gen_01M4EEWYQWYR277CAVY9N3FHC7",
+      "completion_duration_seconds": 6.219906116999482,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2502,8 +2502,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y9CVSF3P8Q5EM8JRGMYZ",
-      "completion_duration_seconds": 5.094290093000382,
+      "response_id": "gen_01M4EF2FR2GTP4A45MSWR48N0X",
+      "completion_duration_seconds": 3.929426061000413,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2515,8 +2515,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W2RXBV53S8YXMVA5TSMC",
-      "completion_duration_seconds": 3.1652286619992083,
+      "response_id": "gen_01M4EF0MFK2KAC9JFQA3KJ0M1F",
+      "completion_duration_seconds": 3.0096307229996455,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2528,8 +2528,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TNQMEN41KFAJJ13RK7RR",
-      "completion_duration_seconds": 5.171008822999283,
+      "response_id": "gen_01M4EEZ6GM3QVQJPM1EGFWR4QJ",
+      "completion_duration_seconds": 3.858390565999798,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2541,8 +2541,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YZQNTZ50EJ7B9FWT6B26",
-      "completion_duration_seconds": 3.919118914998762,
+      "response_id": "gen_01M4EF3787AKR71TN5PXT74R1Q",
+      "completion_duration_seconds": 3.511012491000656,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2550,12 +2550,12 @@
   {
     "global_index": "MMLUPro_math_6848",
     "prompt": "Pleese reead the followin multple-choice qestions and provied the most likley corect anser based on teh opions givn.\n\nContext: None\n\nQuestion: An experinent iz to be condcuted to determne whther takng fish oill capsuules or galric capusles has moar of an efect on chlorestrol levles. In past studes it was notted that daly exrcise intesity (low, modrate, high) is asociated with chlorestrol levle, but avrge slep lenth (< 5, 5 - 8, > 8 hours) is not asociated with chlorestrol levle. Ths expermint should bee done\n\nOptons: \nA. by bloccking on slep lngth\nB. by bloccking on gendr\nC. by bloccking on diet\nD. by bloccking on prevous medcal condtions\nE. by bloccking on capusle typ\nF. by bloccking on chlorestrol levle\nG. by bloccking on lyfestyle habbits\nH. by bloccking on exrcise intesty\nI. by bloccking on age\nJ. by bloccking on weit\n\nProvde the corect leter choce in \\boxed{H}, whre H is the corect leter choce. Kep the explantion or feadback wthin 3 sentnces.",
-    "prediction": "meta/muse-spark-1.3-contributor",
+    "prediction": "deepseek/deepseek-v4.1-flash",
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
-      "response_model": "meta/muse-spark-1.3-contributor",
-      "response_id": "gen_01M4E3T9NQV4F9JVR4R4QRHQR6",
-      "completion_duration_seconds": 12.805145677999462,
+      "response_model": "deepseek/deepseek-v4.1-flash",
+      "response_id": "gen_01M4EEYVSS891FZMEPR0VSY5XM",
+      "completion_duration_seconds": 3.2757972090003022,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2567,8 +2567,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3STAGBMSWCV2PHR6EXZH5",
-      "completion_duration_seconds": 3.3018561160006357,
+      "response_id": "gen_01M4EEYBC8AEVPWJB5S7Q9XBJB",
+      "completion_duration_seconds": 2.7476382429995283,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2580,8 +2580,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WPYFRXKJM4F3AP68HMTK",
-      "completion_duration_seconds": 3.489118334999148,
+      "response_id": "gen_01M4EF17ANQRMKMN524H0SXAHB",
+      "completion_duration_seconds": 3.8501263779999135,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2593,8 +2593,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Z2ZG44PZFTQBYHW3CMG0",
-      "completion_duration_seconds": 3.7899203580000176,
+      "response_id": "gen_01M4EF38T3BEFNE9NJ0BWGPZ16",
+      "completion_duration_seconds": 3.5172965149995434,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2606,8 +2606,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VRPFS204TC5DZSGXDA51",
-      "completion_duration_seconds": 4.733394895998572,
+      "response_id": "gen_01M4EF0AF7Z1BT2K28XVHW408Z",
+      "completion_duration_seconds": 3.128518592000546,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2619,8 +2619,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TZ5K138MJH3P55F8YY2Y",
-      "completion_duration_seconds": 4.371707943000729,
+      "response_id": "gen_01M4EEZFR82KC8GYA6JXH1NR6M",
+      "completion_duration_seconds": 3.7723075050016632,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2632,8 +2632,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T3X8DVJV1H723E0Z9S8G",
-      "completion_duration_seconds": 3.190872560999196,
+      "response_id": "gen_01M4EEYMJGYQ6S99YCNK7KX4DC",
+      "completion_duration_seconds": 2.9853969659998256,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2645,8 +2645,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T0MJZ013N63FDY2D5H8V",
-      "completion_duration_seconds": 3.288670809000905,
+      "response_id": "gen_01M4EEYJRRR5YJ7F4ZF27YDTK3",
+      "completion_duration_seconds": 2.9898813720010367,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2658,8 +2658,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V11ZD2Z8TW070WMVFJK5",
-      "completion_duration_seconds": 3.032672896000804,
+      "response_id": "gen_01M4EEZK51E3SY5THPAHJZWW1S",
+      "completion_duration_seconds": 3.4354188490015076,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2671,8 +2671,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XPY67HB7PXBT36ZGDE8P",
-      "completion_duration_seconds": 10.358930189000603,
+      "response_id": "gen_01M4EF1ZPRZXBW78Q3RCN02X8X",
+      "completion_duration_seconds": 4.345560877000025,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2684,8 +2684,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VR46YGD6VSGQFNFCXHQY",
-      "completion_duration_seconds": 3.0675385799986543,
+      "response_id": "gen_01M4EF09R88C0QMXW9RP9VGVKA",
+      "completion_duration_seconds": 3.7341972419999365,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2697,8 +2697,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WS3GJ7YSR22Z6MBJ8AQW",
-      "completion_duration_seconds": 3.6877562119989307,
+      "response_id": "gen_01M4EF18NJSKNQ1EVX830VVZHV",
+      "completion_duration_seconds": 3.1097517340003833,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2710,8 +2710,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3SX74V6YX2BVA1N15VQVG",
-      "completion_duration_seconds": 4.601907064999978,
+      "response_id": "gen_01M4EEYEGDHRJ77STFY8F956JG",
+      "completion_duration_seconds": 4.442268744998728,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2723,8 +2723,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RFYW01AF2N1H2PZEBQGV",
-      "completion_duration_seconds": 4.037769653999931,
+      "response_id": "gen_01M4EEWYQ7JEJNFXQNKXV0XX68",
+      "completion_duration_seconds": 6.058529961001113,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2736,8 +2736,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YWMSRR264N86JWAW6ZEK",
-      "completion_duration_seconds": 3.184868648999327,
+      "response_id": "gen_01M4EF33WF57PAXEX4H1MWB2F8",
+      "completion_duration_seconds": 3.2849663739998505,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2749,8 +2749,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V6QXH0SPE4WHJQGJDP7P",
-      "completion_duration_seconds": 3.2611589440002717,
+      "response_id": "gen_01M4EEZSG967DJ2NJM9C5YQW84",
+      "completion_duration_seconds": 3.7977725900000223,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2762,8 +2762,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YK67HTDA661PJMN05Z9A",
-      "completion_duration_seconds": 3.9840089779991104,
+      "response_id": "gen_01M4EF2TN12FPX7TWKDXVVTJ30",
+      "completion_duration_seconds": 3.1590406140003324,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2775,8 +2775,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X8HG4Q9KPCEG0W35V59Z",
-      "completion_duration_seconds": 3.898730049999358,
+      "response_id": "gen_01M4EF1QFK5KQRQVW37J8MHDZQ",
+      "completion_duration_seconds": 3.2439570789993013,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2788,8 +2788,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YM3V101Y5GD55RG3NFTE",
-      "completion_duration_seconds": 3.2293817509998917,
+      "response_id": "gen_01M4EF2WZXS4G32YS77586MYMP",
+      "completion_duration_seconds": 3.4675159960006567,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2801,8 +2801,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T40K9PGNX0D6S06FCFXC",
-      "completion_duration_seconds": 3.317736838000201,
+      "response_id": "gen_01M4EEYNYBXXX103H00XAWGEVE",
+      "completion_duration_seconds": 4.6577334070007055,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2814,8 +2814,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TWPMVWXKPA8PR9HQSR4H",
-      "completion_duration_seconds": 3.8419032780002453,
+      "response_id": "gen_01M4EEZED0GBX06PK1F3PTM3WH",
+      "completion_duration_seconds": 3.751972007999939,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2827,8 +2827,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T1WPH5WRAJ7RM8DR41J8",
-      "completion_duration_seconds": 4.84924907399909,
+      "response_id": "gen_01M4EEYHN5STEM92ACY3BRT0E8",
+      "completion_duration_seconds": 3.01887544300007,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2840,8 +2840,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VR11WA8D345NZZPJDWJK",
-      "completion_duration_seconds": 4.699527725000735,
+      "response_id": "gen_01M4EF08MVTTTCK8FET4RJQCFF",
+      "completion_duration_seconds": 2.989620766000371,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2853,8 +2853,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RQ00A6EFHNYC5AN7GTQA",
-      "completion_duration_seconds": 3.580996046001019,
+      "response_id": "gen_01M4EEX67KWBKEDNF3R2GY03WN",
+      "completion_duration_seconds": 3.3736887390004995,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2866,8 +2866,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SC35CDC3VK2FHBJDQ4YC",
-      "completion_duration_seconds": 4.273531969000032,
+      "response_id": "gen_01M4EEXYAQBRB27QDC3DVK82X5",
+      "completion_duration_seconds": 3.6734333179992973,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2879,8 +2879,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W6SYBAB5VQ5AK4YMS3JT",
-      "completion_duration_seconds": 3.1987736009996297,
+      "response_id": "gen_01M4EF0SWRKBPH26YRV3W96WVY",
+      "completion_duration_seconds": 3.831595853998806,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2892,8 +2892,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W38K1Q141DRQ49K1H0TQ",
-      "completion_duration_seconds": 3.2273524909996922,
+      "response_id": "gen_01M4EF0PV7YR82A70178Z7R4Q4",
+      "completion_duration_seconds": 4.536947964999854,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2905,8 +2905,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X0CEJ2WZVWAFV30ANJ5M",
-      "completion_duration_seconds": 4.24365513200064,
+      "response_id": "gen_01M4EF1GC2CM89Z3T5FFV6WJ0Z",
+      "completion_duration_seconds": 5.611363902000448,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2918,8 +2918,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y666JHBR6341NQE0B0JH",
-      "completion_duration_seconds": 4.246317092000027,
+      "response_id": "gen_01M4EF2EZDBKQ545JMMJQSVDMF",
+      "completion_duration_seconds": 4.289070367998647,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2931,8 +2931,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YA70TE1BH2BKWKW1RHSK",
-      "completion_duration_seconds": 3.7579246389996115,
+      "response_id": "gen_01M4EF2K7H58STTKZEG59MD8NB",
+      "completion_duration_seconds": 4.658351863999997,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2944,8 +2944,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YBSY1YCEDCRCGBTPWS6A",
-      "completion_duration_seconds": 5.2788846919993375,
+      "response_id": "gen_01M4EF2KYD2JY4WBMK77ERGR81",
+      "completion_duration_seconds": 3.305375941999955,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2957,8 +2957,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VAJ2356DDPYPDBC46KZ3",
-      "completion_duration_seconds": 2.737138522999885,
+      "response_id": "gen_01M4EEZXWSM9X34DEBGZCQ7Y6G",
+      "completion_duration_seconds": 3.7453980240006786,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2970,8 +2970,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V7FG1V6X4G7D1STQVYW6",
-      "completion_duration_seconds": 2.9518661910005903,
+      "response_id": "gen_01M4EEZT6JPJQPDMPM0P24WDW0",
+      "completion_duration_seconds": 3.654503896001188,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2983,8 +2983,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TMS2C3ST4H2QNV1BHMR7",
-      "completion_duration_seconds": 2.981291281999802,
+      "response_id": "gen_01M4EEZ5PY08B6X6EFTJVB1X38",
+      "completion_duration_seconds": 6.331806025000333,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -2996,8 +2996,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YXG2DT5PCA558AVVACVJ",
-      "completion_duration_seconds": 3.685046352000427,
+      "response_id": "gen_01M4EF344QT2S51176F2SWKDZE",
+      "completion_duration_seconds": 3.1205895169987343,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3009,8 +3009,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YDBB7NVMN84BGMBFR487",
-      "completion_duration_seconds": 5.367979195001681,
+      "response_id": "gen_01M4EF2NQXCB5DSNHQV08K74VH",
+      "completion_duration_seconds": 3.4454094919983618,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3022,8 +3022,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VWMVYPXBW3KPCYZ97KZX",
-      "completion_duration_seconds": 3.0945341949991416,
+      "response_id": "gen_01M4EF0DQEPMRJERQ5YS4MH7E0",
+      "completion_duration_seconds": 8.77096797899867,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3035,8 +3035,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YBYFE7V1V3M08ZKRMBQD",
-      "completion_duration_seconds": 3.577753733999998,
+      "response_id": "gen_01M4EF2KVP66ZGT58ACQ3NPPF9",
+      "completion_duration_seconds": 3.0770856979997916,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3048,8 +3048,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TPJH7836XHXRDC2KXXFK",
-      "completion_duration_seconds": 3.5355614939999214,
+      "response_id": "gen_01M4EEZ82VBNYP84B6D0D40C61",
+      "completion_duration_seconds": 3.3821718460003467,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3061,8 +3061,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XTBHF98BKENY6GW2H6G7",
-      "completion_duration_seconds": 4.566501215000244,
+      "response_id": "gen_01M4EF25VPR2X7TAQ5B21HGGBM",
+      "completion_duration_seconds": 4.6952784530003555,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3074,8 +3074,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RS8M8A457RRRSCAJC00A",
-      "completion_duration_seconds": 3.116331765999348,
+      "response_id": "gen_01M4EEX8751SF5SEZ6BEBQM9H5",
+      "completion_duration_seconds": 3.1696446490004746,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3087,8 +3087,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XXCPMEHDBVBPGK8GWBAP",
-      "completion_duration_seconds": 5.513072812998871,
+      "response_id": "gen_01M4EF279T4ZDF333JSA3Y1NC1",
+      "completion_duration_seconds": 5.3453459160009515,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3100,8 +3100,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y23J9MW8G6SX7JT9P7CB",
-      "completion_duration_seconds": 3.346568515000399,
+      "response_id": "gen_01M4EF2BJNTVRW0PZGF2V6V0HV",
+      "completion_duration_seconds": 3.0166071679996094,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3113,8 +3113,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W5FFR5QRC7FGFV219XND",
-      "completion_duration_seconds": 2.843675752001218,
+      "response_id": "gen_01M4EF0Q8VVCHA7MD086Y5E0WD",
+      "completion_duration_seconds": 3.001594871000634,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3126,8 +3126,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WPHF27FAGTQCHS09SWM6",
-      "completion_duration_seconds": 5.919848591000118,
+      "response_id": "gen_01M4EF14A3938PJ4D4VY3926PQ",
+      "completion_duration_seconds": 3.2404978570011735,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3139,8 +3139,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YPGGRQ5X8NSTH4VDCM3B",
-      "completion_duration_seconds": 4.789471361000324,
+      "response_id": "gen_01M4EF2X8S8H8WYFYQ683P1RHK",
+      "completion_duration_seconds": 3.318070653000177,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3152,8 +3152,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TMYCPWBASXJJSK3AT8N2",
-      "completion_duration_seconds": 3.8473790849984653,
+      "response_id": "gen_01M4EEZ5GCCG6S4JH41DFFETC1",
+      "completion_duration_seconds": 3.6407466330001625,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3165,8 +3165,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VR6FKX2EWAKY4HTGGVWG",
-      "completion_duration_seconds": 3.7702828769997723,
+      "response_id": "gen_01M4EF09XF3JF80DMYJA515056",
+      "completion_duration_seconds": 3.784781803999067,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3178,8 +3178,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S0FHSQ06H59WB0CSBMEW",
-      "completion_duration_seconds": 3.0650629030005803,
+      "response_id": "gen_01M4EEXG2CN0XNMYXYC04H16GG",
+      "completion_duration_seconds": 3.0939505139995163,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3191,8 +3191,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TN73F8ETZ34K07AJ5AVT",
-      "completion_duration_seconds": 3.585379500998897,
+      "response_id": "gen_01M4EEZ6HD80HYD1ED7D7NWKF1",
+      "completion_duration_seconds": 3.1798943619996862,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3204,8 +3204,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SMP20MPSD97KQN6HYMB6",
-      "completion_duration_seconds": 3.1530937619991164,
+      "response_id": "gen_01M4EEY7DH5PEWPKT3ZPCQKA61",
+      "completion_duration_seconds": 3.9360789689999365,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3217,8 +3217,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TQZA7WQ7AX2NJ6ABYH80",
-      "completion_duration_seconds": 3.726397143000213,
+      "response_id": "gen_01M4EEZABMDFGSE4V4DQK0YAR1",
+      "completion_duration_seconds": 3.078621929000292,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3230,8 +3230,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XCMW00N8KW6YNW27MN5Y",
-      "completion_duration_seconds": 5.73675058399931,
+      "response_id": "gen_01M4EF1TBJ5F3DHFEKFJAM3QJW",
+      "completion_duration_seconds": 3.94467515299948,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3243,8 +3243,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S1G9QX9S6FVY6N8WW2WG",
-      "completion_duration_seconds": 3.4363385569995444,
+      "response_id": "gen_01M4EEXGR9183AJ9JVTDYQCWDY",
+      "completion_duration_seconds": 2.9025242119987524,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3256,8 +3256,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WZZVX92SFPX0M92GAEGC",
-      "completion_duration_seconds": 5.225713304000237,
+      "response_id": "gen_01M4EF1FKYXX7WHWPNHBQQR4JH",
+      "completion_duration_seconds": 5.788815331001388,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3269,8 +3269,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RG5MVMJAYTDS7AGB33HD",
-      "completion_duration_seconds": 4.091957491998983,
+      "response_id": "gen_01M4EEWYPYM2439MA5C8FKHWZP",
+      "completion_duration_seconds": 5.677044743000806,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3282,8 +3282,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SMEJ7PSQSRAVSY5J4ZZX",
-      "completion_duration_seconds": 3.335612670998671,
+      "response_id": "gen_01M4EEY5C9XJAWY76XMJ3R2RCF",
+      "completion_duration_seconds": 3.6528819809991546,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3295,8 +3295,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XVNA48QRW3Q3W818KMPG",
-      "completion_duration_seconds": 3.971325386999524,
+      "response_id": "gen_01M4EF2538C74XQ70H81EQJEM7",
+      "completion_duration_seconds": 3.5188101999992796,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3308,8 +3308,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VEVNHTWT8CTSBWYXN0ZC",
-      "completion_duration_seconds": 3.4669515890000184,
+      "response_id": "gen_01M4EF010RCD1YGDG018TS0PGK",
+      "completion_duration_seconds": 2.823549228000047,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3321,8 +3321,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XYCZTMB71GEXHQGYP7R7",
-      "completion_duration_seconds": 4.77380319400072,
+      "response_id": "gen_01M4EF28838C9AZ1FMX169ES0S",
+      "completion_duration_seconds": 3.369912893998844,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3334,8 +3334,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VHYN67MT09W8GY3Z41QS",
-      "completion_duration_seconds": 3.0664111530004448,
+      "response_id": "gen_01M4EF04VBY9WA56XANZN8D1RS",
+      "completion_duration_seconds": 3.299837161999676,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3347,8 +3347,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XMHH9TD25MHY73G8SJ7P",
-      "completion_duration_seconds": 4.104046985001332,
+      "response_id": "gen_01M4EF20S170DPT0TQFJYQPP7R",
+      "completion_duration_seconds": 3.9366614149985253,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3360,8 +3360,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WBQDJ9AFW3A2A0D7ECCG",
-      "completion_duration_seconds": 3.4443739649996132,
+      "response_id": "gen_01M4EF0WH5902E498S88V7ESN9",
+      "completion_duration_seconds": 2.7859800460009865,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3373,8 +3373,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YNVK68MHWCHFDFJGFQR6",
-      "completion_duration_seconds": 4.9177467720001005,
+      "response_id": "gen_01M4EF2XEYR75BFCYHEG29T70H",
+      "completion_duration_seconds": 4.152644730000247,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3386,8 +3386,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SCCDSDAMH9DETJW00RAX",
-      "completion_duration_seconds": 5.2918778830007795,
+      "response_id": "gen_01M4EEXXPR67F730W0YK17ZP5Q",
+      "completion_duration_seconds": 2.680295219999607,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3399,8 +3399,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WEN4XXH918FTYS28KJT6",
-      "completion_duration_seconds": 4.275371243000336,
+      "response_id": "gen_01M4EF0ZJBXWGMFYTYGMBRPZQX",
+      "completion_duration_seconds": 4.802446739000516,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3412,8 +3412,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WKXA1FKD5TGGQJJ88N2E",
-      "completion_duration_seconds": 3.6218876109996927,
+      "response_id": "gen_01M4EF1472WWP2FJ90PPCX6A02",
+      "completion_duration_seconds": 3.19658867599901,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3425,8 +3425,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YQ4PV0K96C0WQ4BWZ3AG",
-      "completion_duration_seconds": 3.113631065998561,
+      "response_id": "gen_01M4EF2XWRTJR38A12757QTFB9",
+      "completion_duration_seconds": 3.2296630310011096,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3438,8 +3438,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X089AS8YWKN3DNWWGE4G",
-      "completion_duration_seconds": 4.042313425999964,
+      "response_id": "gen_01M4EF1EH0W5NPT04RDJ0TCR8X",
+      "completion_duration_seconds": 2.893369982999502,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3451,8 +3451,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WV3DTETWKWKJ6HMRMQT6",
-      "completion_duration_seconds": 4.55397307199928,
+      "response_id": "gen_01M4EF1ASYD78FX7P5MFF8B4PD",
+      "completion_duration_seconds": 3.425923191000038,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3464,8 +3464,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YVYYA9PYA262GFF1MW3Y",
-      "completion_duration_seconds": 4.55377505800061,
+      "response_id": "gen_01M4EF33ECC68TTMTDJX3V7M3R",
+      "completion_duration_seconds": 6.394894810999176,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3477,8 +3477,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X9SBT901HAXA04HR2AHK",
-      "completion_duration_seconds": 4.737637316000473,
+      "response_id": "gen_01M4EF1QM8EYMHMTB6ZNBBKCS9",
+      "completion_duration_seconds": 3.235738974000924,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3490,8 +3490,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3THNSPAKWQB8J1CMSGFCD",
-      "completion_duration_seconds": 3.414672779999819,
+      "response_id": "gen_01M4EEZ36F140XHC4EJHDBE6W9",
+      "completion_duration_seconds": 3.7068771779995586,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3503,8 +3503,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Z0X2ZBD5F4PZQC0H1QNV",
-      "completion_duration_seconds": 4.510343706999265,
+      "response_id": "gen_01M4EF3868MQH6K3CWE3QEFRYF",
+      "completion_duration_seconds": 3.416496969999571,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3516,8 +3516,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VTGNX3Q1S6W7TB5P2CBH",
-      "completion_duration_seconds": 3.185773010000048,
+      "response_id": "gen_01M4EF0CF5CY52RP4PYJAT4PKF",
+      "completion_duration_seconds": 3.4132954819997394,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3529,8 +3529,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SYXB4G43XENVWY1XAMVJ",
-      "completion_duration_seconds": 3.1986969000008685,
+      "response_id": "gen_01M4EEYH123KYY6KWVJQZ7CVE1",
+      "completion_duration_seconds": 3.5835764040002687,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3542,8 +3542,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TD0RR97XNYDT57ACNVYQ",
-      "completion_duration_seconds": 4.224192444000437,
+      "response_id": "gen_01M4EEYYX53C24WT8YRQHRJBZT",
+      "completion_duration_seconds": 3.0557758239992836,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3555,8 +3555,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VH6Q7EX974977CYX73YM",
-      "completion_duration_seconds": 3.2327143299989984,
+      "response_id": "gen_01M4EF041BZSP241CW16TFSJTR",
+      "completion_duration_seconds": 3.530822120999801,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3568,8 +3568,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V563X9H0AS7HFN5AQEG7",
-      "completion_duration_seconds": 3.610477105999962,
+      "response_id": "gen_01M4EEZPJ5S6CKVJ5N352ZN6QR",
+      "completion_duration_seconds": 3.2363932380012557,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3581,8 +3581,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W24775DQ1G86SCQD2K1B",
-      "completion_duration_seconds": 4.4542327290000685,
+      "response_id": "gen_01M4EF0JDVZP5XST43NTZDX0B3",
+      "completion_duration_seconds": 3.3521421149998787,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3594,8 +3594,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SXEG35FVQTDNSE25R75N",
-      "completion_duration_seconds": 3.185970043999987,
+      "response_id": "gen_01M4EEYFYC4VJTACSYPHW5X3CH",
+      "completion_duration_seconds": 3.154990536999321,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3607,8 +3607,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XS3KC62AZZ64YDWKE0P0",
-      "completion_duration_seconds": 3.088785972000551,
+      "response_id": "gen_01M4EF23EA3DBNWH6ZWG377M5K",
+      "completion_duration_seconds": 3.5293249970000033,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3620,8 +3620,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RG30F1XCJB1D01F03G5N",
-      "completion_duration_seconds": 4.150831508999545,
+      "response_id": "gen_01M4EEWYXZCM7PH7K6GJSJFH47",
+      "completion_duration_seconds": 9.018681630999708,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3633,8 +3633,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TRNP1AXCVV18CXA15Z4W",
-      "completion_duration_seconds": 3.9617440719994192,
+      "response_id": "gen_01M4EEZANK0GNWWHN74A2YWXVJ",
+      "completion_duration_seconds": 3.574195752999003,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3646,8 +3646,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SD9WFB9BFNFA61NBSW4W",
-      "completion_duration_seconds": 4.01467557199976,
+      "response_id": "gen_01M4EEXYH1WMBCSVNQXXH77C64",
+      "completion_duration_seconds": 3.286680568999145,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3659,8 +3659,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SBDEXTBQW8TN2BJ07DXV",
-      "completion_duration_seconds": 4.364443125999969,
+      "response_id": "gen_01M4EEXXN87FR8CZCWHQXPC7YW",
+      "completion_duration_seconds": 2.8206339299995307,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3672,8 +3672,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VYD4W5G073FPM4833F18",
-      "completion_duration_seconds": 4.21885449399997,
+      "response_id": "gen_01M4EF0F31AXTE7Q939J07EX2Q",
+      "completion_duration_seconds": 3.199150018999717,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3685,8 +3685,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RMNC2TGG0VP7J42YWQQY",
-      "completion_duration_seconds": 3.2056882529996074,
+      "response_id": "gen_01M4EEX4T0R8T8H6P5038YVDWQ",
+      "completion_duration_seconds": 2.9740820999995776,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3698,8 +3698,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WQJ3J9TQSWST2X7W2G2D",
-      "completion_duration_seconds": 4.554931759999818,
+      "response_id": "gen_01M4EF17YNN7XQG4RMCD6992NG",
+      "completion_duration_seconds": 5.607214199999362,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3711,8 +3711,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TXZXAXF6DDTYJJRFM659",
-      "completion_duration_seconds": 3.0719063939995976,
+      "response_id": "gen_01M4EEZFQWBMM5XEG8J4RCV33Y",
+      "completion_duration_seconds": 3.069004054999823,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3724,8 +3724,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VEMJZNHRWHK4AXYYB8MC",
-      "completion_duration_seconds": 2.6901357770002505,
+      "response_id": "gen_01M4EF027TPS1ZA1MYT1M51KTZ",
+      "completion_duration_seconds": 3.32291311300105,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3737,8 +3737,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3W6Y896VNBSJA06BHM9XD",
-      "completion_duration_seconds": 5.2902439549998235,
+      "response_id": "gen_01M4EF0QWRV08X678VD1VJ1QH8",
+      "completion_duration_seconds": 4.234019938001438,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3750,8 +3750,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3SH8R03Y1W6KK6860Y8W9",
-      "completion_duration_seconds": 4.906749247000334,
+      "response_id": "gen_01M4EEY2X0FDE8K8G4VDM13WAG",
+      "completion_duration_seconds": 7.9163365229997,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3763,8 +3763,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3T1CDG85ZDFQNTRJNP4DY",
-      "completion_duration_seconds": 4.5351783400001295,
+      "response_id": "gen_01M4EEYKE5MVG06SD9GEGBTD5R",
+      "completion_duration_seconds": 7.076656291999825,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3776,8 +3776,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3S224EAQNNB6QPJ8D6D4C",
-      "completion_duration_seconds": 3.6324840589986707,
+      "response_id": "gen_01M4EEXKG6QB6GB7R0ADGNE9BZ",
+      "completion_duration_seconds": 7.657282456999383,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3789,8 +3789,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WYC6CQF3CYV00ZH38D9S",
-      "completion_duration_seconds": 4.197999988999072,
+      "response_id": "gen_01M4EF1BPS6AXS9NRTNE5KMBRM",
+      "completion_duration_seconds": 5.202071638999769,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3802,8 +3802,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VH2Q5Z9J1A8QMR7EMNN1",
-      "completion_duration_seconds": 3.4810330090003845,
+      "response_id": "gen_01M4EF03K403MFZ5J5GWQV1DAJ",
+      "completion_duration_seconds": 3.066730895998262,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3815,8 +3815,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Z0MH2BC6SJDBDGFK7S58",
-      "completion_duration_seconds": 4.794637248000072,
+      "response_id": "gen_01M4EF382E76NCDRWC7QTBWQ5V",
+      "completion_duration_seconds": 2.8482202230006806,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3828,8 +3828,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SKCEKZH6VBSW2EJF36NW",
-      "completion_duration_seconds": 3.404794905000017,
+      "response_id": "gen_01M4EEY4M2HTRV906N190ZD87V",
+      "completion_duration_seconds": 2.915833393999492,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3841,8 +3841,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Z4SRNM6EECE6HYH738MT",
-      "completion_duration_seconds": 3.606277000000773,
+      "response_id": "gen_01M4EF3BQQ5WC451904GT67973",
+      "completion_duration_seconds": 4.039689549999821,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3854,8 +3854,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3YTCV3F4Z4D0977T8766X",
-      "completion_duration_seconds": 4.570905099000811,
+      "response_id": "gen_01M4EF31H1E10V91DHR6MMBSNF",
+      "completion_duration_seconds": 6.974740248000671,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3867,8 +3867,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S41N1XJHYE1E4GTST5K2",
-      "completion_duration_seconds": 3.639833348999673,
+      "response_id": "gen_01M4EEXMZ28TMNBQJJY6E10G5R",
+      "completion_duration_seconds": 3.2314197689993307,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3880,8 +3880,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3Y3P2PMHCQT4HAY655PWM",
-      "completion_duration_seconds": 6.025931158001185,
+      "response_id": "gen_01M4EF2D5XGGFSVTW8H6Z9S6SZ",
+      "completion_duration_seconds": 6.58592857000076,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3893,8 +3893,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XMVBT41V8VCS7WS9NVY1",
-      "completion_duration_seconds": 5.453281738000442,
+      "response_id": "gen_01M4EF21APW554V2CQZ828NK3P",
+      "completion_duration_seconds": 4.170230826000989,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3906,8 +3906,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3SJ6RY4B88JC29JE1A4XV",
-      "completion_duration_seconds": 3.973083235001468,
+      "response_id": "gen_01M4EEY4RNKNCYDS4CW81WBQ11",
+      "completion_duration_seconds": 5.692534883999542,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3919,8 +3919,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3SDG9GZVCX40DKHT0TAJJ",
-      "completion_duration_seconds": 4.798527365999689,
+      "response_id": "gen_01M4EEXZ79SCZJDNNQWQFEVXHW",
+      "completion_duration_seconds": 6.077976672000659,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3932,8 +3932,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WFPSTE5J4JY0NNDZT40Z",
-      "completion_duration_seconds": 5.876118047999626,
+      "response_id": "gen_01M4EF0Z73SG8E8T3A3M7V8TAF",
+      "completion_duration_seconds": 4.929046291999839,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3945,8 +3945,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WP9P88EYSE85TXSJYGDF",
-      "completion_duration_seconds": 5.2422474209997745,
+      "response_id": "gen_01M4EF14RSEBW65F64DDY30E1K",
+      "completion_duration_seconds": 5.7497846279984515,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3958,8 +3958,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3Y53B954T35RAFKN083TQ",
-      "completion_duration_seconds": 5.47764691500015,
+      "response_id": "gen_01M4EF2DGAAQG8C61NTPV50Y2E",
+      "completion_duration_seconds": 4.097522351999942,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3971,8 +3971,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YSJJMH33HG5CMA4WV2Q5",
-      "completion_duration_seconds": 4.2668976850000035,
+      "response_id": "gen_01M4EF30ZFWSYSHEYNHGHE8A3Y",
+      "completion_duration_seconds": 3.7469951210005092,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3984,8 +3984,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Z360PSYTDR6DXW7CXPPV",
-      "completion_duration_seconds": 3.7963426309997885,
+      "response_id": "gen_01M4EF395NY1KP00W3HC5Y0BRE",
+      "completion_duration_seconds": 3.3513155719992938,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -3997,8 +3997,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RP50JT95MPW5EPQY2RCK",
-      "completion_duration_seconds": 3.394921577000787,
+      "response_id": "gen_01M4EEX5TYRPZGVHXS3VT1JXMS",
+      "completion_duration_seconds": 4.207323752001685,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4010,8 +4010,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WW9D47RGHCY0WZVMJMQT",
-      "completion_duration_seconds": 2.8525721130008606,
+      "response_id": "gen_01M4EF1CKT137YMWHPQ5DMHTP8",
+      "completion_duration_seconds": 4.139488941000309,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4023,8 +4023,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TWRH0GPA6FJJC0RBG6FK",
-      "completion_duration_seconds": 4.062896839001041,
+      "response_id": "gen_01M4EEZE96GVJ8N1QS6AWYNK7M",
+      "completion_duration_seconds": 3.3244399989998783,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4036,8 +4036,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3TACQT774D5PQRMBEYDYW",
-      "completion_duration_seconds": 4.876027849999446,
+      "response_id": "gen_01M4EEYX01XQD7VCEG68G3KHNP",
+      "completion_duration_seconds": 6.488101368000571,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4049,8 +4049,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RRAZ60Z8ZGC5XBEE4MF9",
-      "completion_duration_seconds": 4.45378054899993,
+      "response_id": "gen_01M4EEX83GPYZPPR4GMTMT0128",
+      "completion_duration_seconds": 4.565856719998919,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4062,8 +4062,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XZSBT2RQ6R32QKD50D8D",
-      "completion_duration_seconds": 3.523699706000116,
+      "response_id": "gen_01M4EF29PH1DZ4P23VXJBPT2GQ",
+      "completion_duration_seconds": 6.182297349001601,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4075,8 +4075,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W7NG9MFSYP7E7A5J2HBM",
-      "completion_duration_seconds": 4.387605672000063,
+      "response_id": "gen_01M4EF0RTV9QPV1CD1XS4YJRBV",
+      "completion_duration_seconds": 3.2483178230013436,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4088,8 +4088,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3T0KZZM3VDHYQEX1R2S3B",
-      "completion_duration_seconds": 4.888321952999831,
+      "response_id": "gen_01M4EEYJAZYKDKEWCMTK25J0SW",
+      "completion_duration_seconds": 6.203417052000077,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4101,8 +4101,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VXNWP6B6JWA08JFM0A9G",
-      "completion_duration_seconds": 3.730689603000428,
+      "response_id": "gen_01M4EF0EW4081228FFECP3E5CW",
+      "completion_duration_seconds": 3.0975493129990355,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4114,8 +4114,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y4GAWHBSY2XWP40VE72G",
-      "completion_duration_seconds": 3.497611593998954,
+      "response_id": "gen_01M4EF2C40XBVNED6H8T2MBC61",
+      "completion_duration_seconds": 2.777498368999659,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4127,8 +4127,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YE61D1TWXNXDGB5NE7ZJ",
-      "completion_duration_seconds": 4.336775732001115,
+      "response_id": "gen_01M4EF2Q559A1NB8FSPVQKWCQ1",
+      "completion_duration_seconds": 3.9375074399995356,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4140,8 +4140,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YFRJJ1YQFNC0078NQXDE",
-      "completion_duration_seconds": 4.5570825209997565,
+      "response_id": "gen_01M4EF2Q4BM38ZH2SX170QT9R9",
+      "completion_duration_seconds": 3.588453362001019,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4153,8 +4153,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WY3CWNAFYETVV26PRFGN",
-      "completion_duration_seconds": 3.4322268119994988,
+      "response_id": "gen_01M4EF1CV5DK0JYAPSBB5K2HH5",
+      "completion_duration_seconds": 3.0534944989994983,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4166,8 +4166,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YXJJPRQDX6KA7DMVBYQ1",
-      "completion_duration_seconds": 3.367065055999774,
+      "response_id": "gen_01M4EF34NVY3REZ800A4BHPHTH",
+      "completion_duration_seconds": 3.8127735190009844,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4179,8 +4179,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VMH4ENRSNFNMJ1KAQWDZ",
-      "completion_duration_seconds": 3.356430776999332,
+      "response_id": "gen_01M4EF082P1N9226AB235BAJEF",
+      "completion_duration_seconds": 3.3851916229996277,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4192,8 +4192,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WTHM4P2RBM7RB6T9T9BK",
-      "completion_duration_seconds": 3.911804564000704,
+      "response_id": "gen_01M4EF1ACDSKFVA5RYRSR5WT4R",
+      "completion_duration_seconds": 4.343924548000359,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4205,8 +4205,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YYY9HZ1S2NA2CNXB8PDY",
-      "completion_duration_seconds": 3.3810981229999015,
+      "response_id": "gen_01M4EF377EF2RJX6193XRDYKRD",
+      "completion_duration_seconds": 3.3579476099985186,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4218,8 +4218,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X0MDNQNVCZM5C0R421SH",
-      "completion_duration_seconds": 4.738911365999229,
+      "response_id": "gen_01M4EF1EC336PKS7F1QF70Z355",
+      "completion_duration_seconds": 3.2313522300009936,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4231,8 +4231,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RMK2RF1Q8F07HCXSJ32T",
-      "completion_duration_seconds": 3.2299389290001272,
+      "response_id": "gen_01M4EEX55EH603QNYW9VBFEQNG",
+      "completion_duration_seconds": 3.3561196200007544,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4244,8 +4244,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TXPFS1J42NH057EKQHG4",
-      "completion_duration_seconds": 2.967038896000304,
+      "response_id": "gen_01M4EEZFE5B741HTT9DFZQ4FWG",
+      "completion_duration_seconds": 3.2619356049999624,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4257,8 +4257,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W1M69E6QNWN30WB3PB3H",
-      "completion_duration_seconds": 2.8251909439986775,
+      "response_id": "gen_01M4EF0M424SDW7ZMYR0K4PBJQ",
+      "completion_duration_seconds": 3.2760236150006676,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4270,8 +4270,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y25EPREQ0KTXFN73YS41",
-      "completion_duration_seconds": 4.111221421000664,
+      "response_id": "gen_01M4EF2AZDD6N5MH3SCS845D95",
+      "completion_duration_seconds": 3.041668280999147,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4283,8 +4283,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YZJTNMTG4GTPCB7VARNV",
-      "completion_duration_seconds": 5.821166632998938,
+      "response_id": "gen_01M4EF35K2SC2M2GNAJS2YEJE2",
+      "completion_duration_seconds": 3.2438835150005616,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4296,8 +4296,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S3BF246KZ5VG0BWEZMCE",
-      "completion_duration_seconds": 3.9570610240007227,
+      "response_id": "gen_01M4EEXMHD1B6B93K1688E5PQ8",
+      "completion_duration_seconds": 2.963330816999587,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4309,8 +4309,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V0DMVJSHJQ25W71R45HV",
-      "completion_duration_seconds": 2.95495551500062,
+      "response_id": "gen_01M4EEZJS13HN6DSCTPER0RD8F",
+      "completion_duration_seconds": 3.6882947539997986,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4322,8 +4322,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SVHNHGEDPGRFVCJMS5MH",
-      "completion_duration_seconds": 3.796648382998683,
+      "response_id": "gen_01M4EEYF7DEK5KPBZVZ620Q86S",
+      "completion_duration_seconds": 4.1210071469995455,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4335,8 +4335,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SVRJSTZCC1ZRYWE18B2H",
-      "completion_duration_seconds": 5.197404472999551,
+      "response_id": "gen_01M4EEYDN1JSB0E7V7PRE6Z21B",
+      "completion_duration_seconds": 4.306658056000742,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4348,8 +4348,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YSRKZD5NJPGQV0W4GVGH",
-      "completion_duration_seconds": 2.796654847001264,
+      "response_id": "gen_01M4EF32ANFKA2WAB6D3PX71CW",
+      "completion_duration_seconds": 4.325009792000856,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4361,8 +4361,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T5X5FVGYY9MA5FG6A2X5",
-      "completion_duration_seconds": 3.089453100001265,
+      "response_id": "gen_01M4EEYRQ96661K4C13P8D4051",
+      "completion_duration_seconds": 3.4503766520010686,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4374,8 +4374,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Z4V7DCFVNKDJTPA0SQB7",
-      "completion_duration_seconds": 4.185627503999058,
+      "response_id": "gen_01M4EF3AG77WW6P6SEX9PTKC1C",
+      "completion_duration_seconds": 3.8906177310000203,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4387,8 +4387,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SVE10NJ7RJDG6BBRSCV4",
-      "completion_duration_seconds": 3.0885216490005405,
+      "response_id": "gen_01M4EEYE5Q8ZQGHK9Y3YVEHFE6",
+      "completion_duration_seconds": 2.828551560000051,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4400,8 +4400,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XS4TR82VA498ZV020YDN",
-      "completion_duration_seconds": 4.799331263999193,
+      "response_id": "gen_01M4EF22BZ9FGCZ22JYKSA3NPV",
+      "completion_duration_seconds": 4.766684676000295,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4413,8 +4413,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WEEW6RWEQZQFCXPX3QC6",
-      "completion_duration_seconds": 4.601641645998825,
+      "response_id": "gen_01M4EF0ZFCGE0VD988VH6F4FF6",
+      "completion_duration_seconds": 4.441015013000651,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4426,8 +4426,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3X00KYEHMFS7NG944B8R4",
-      "completion_duration_seconds": 3.6128359969989106,
+      "response_id": "gen_01M4EF1FNG8DW32E15HTYRJXV2",
+      "completion_duration_seconds": 4.166723768999873,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4439,8 +4439,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3YQAN050T4KCCNSH66DAG",
-      "completion_duration_seconds": 4.970064424998782,
+      "response_id": "gen_01M4EF2XTQMH64V6A2EFEDPK3G",
+      "completion_duration_seconds": 6.315110000999994,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4452,8 +4452,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3YW8NP9BFGW6QTS4F2Y2H",
-      "completion_duration_seconds": 4.003726678000021,
+      "response_id": "gen_01M4EF33F0E3QE8505XDZXNE3C",
+      "completion_duration_seconds": 4.6050378660002025,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4465,8 +4465,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3SV6Z9QQHM4FM9HPZNBFN",
-      "completion_duration_seconds": 4.943557450000299,
+      "response_id": "gen_01M4EEYF5ZTZ1DQZG6F9SAF57Y",
+      "completion_duration_seconds": 5.285924710000472,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4478,8 +4478,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3YYJQEWJB8EFF164Q0B90",
-      "completion_duration_seconds": 4.592306389999067,
+      "response_id": "gen_01M4EF35G133D97BPZGDB7N6DC",
+      "completion_duration_seconds": 3.7970226489997003,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4491,8 +4491,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3X6MG1E3PM4HB3C7TM2M2",
-      "completion_duration_seconds": 4.740769351999916,
+      "response_id": "gen_01M4EF1M8SWFN3JRRGHXF0C5XS",
+      "completion_duration_seconds": 4.863593256999593,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4504,8 +4504,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3VCPPR6AT2ETETFX0NAVX",
-      "completion_duration_seconds": 7.672400213999936,
+      "response_id": "gen_01M4EEZZZPK29HJ4EHJR0PHSM5",
+      "completion_duration_seconds": 4.776998459999959,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4517,8 +4517,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3S3HA9SNXQMFX4MFYBPW3",
-      "completion_duration_seconds": 3.278456501999244,
+      "response_id": "gen_01M4EEXMX6BFAQY8B81PM4PJ26",
+      "completion_duration_seconds": 7.787914550999631,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4526,12 +4526,12 @@
   {
     "global_index": "QANTA_History_433",
     "prompt": "Pleas reed th folowing qestion an provie th correct answr.\n\nContext: None\n\nQestion: The Gatow disster exacrbated tensins prior to ths evnt.\n\nProvde the corect answr in \\boxed{X}, wher X is th correc and th most commn answr to th qestion. Kep th explantion or feeedback witin 3 sentnces.",
-    "prediction": "xiaomi/mimo-v2.6-pro",
+    "prediction": "openai/gpt-6-luna",
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
-      "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RV6YWDGBX5D81VSSSYSS",
-      "completion_duration_seconds": 4.548907190999671,
+      "response_model": "openai/gpt-6-luna",
+      "response_id": "gen_01M4EEXATHC24V1CZSX36BGCE2",
+      "completion_duration_seconds": 3.8301341900005355,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4543,8 +4543,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WNZR8PE1HN641AMDHV4F",
-      "completion_duration_seconds": 11.21660289799911,
+      "response_id": "gen_01M4EF14049AVTXVV88FBEMZTD",
+      "completion_duration_seconds": 7.710016398001244,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4556,8 +4556,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3TR15J1DPFA225CE0T922",
-      "completion_duration_seconds": 4.552427020998948,
+      "response_id": "gen_01M4EEZ9N9PNRDP3B4TG361XHF",
+      "completion_duration_seconds": 4.299772143000155,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4569,8 +4569,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XE383VMTXK6MQTJYV1TV",
-      "completion_duration_seconds": 5.1264071660007176,
+      "response_id": "gen_01M4EF1VH5Y25FY6TNHJGC1R3S",
+      "completion_duration_seconds": 4.3765916360007395,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4582,8 +4582,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3VHED24VHVGH0231Z88FQ",
-      "completion_duration_seconds": 6.287550835999355,
+      "response_id": "gen_01M4EF05132SGJK1CA55H27HZ6",
+      "completion_duration_seconds": 4.874520595998547,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4595,8 +4595,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3SG28RPDN9Z8QYEE0C0F0",
-      "completion_duration_seconds": 9.486636801000714,
+      "response_id": "gen_01M4EEY2DFWXJBXT4SKR1M4V7G",
+      "completion_duration_seconds": 6.270718568999655,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4608,8 +4608,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3Y6X0RTZNWZ4M5Q87MHPD",
-      "completion_duration_seconds": 6.419997056000284,
+      "response_id": "gen_01M4EF2EW7CD83CZJJT98ZGFEX",
+      "completion_duration_seconds": 5.542605800999809,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4621,8 +4621,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3TCHC6Y9MG3RMRFJJ054K",
-      "completion_duration_seconds": 5.250069017998612,
+      "response_id": "gen_01M4EEYXXAM5JRFXCRC04WFYER",
+      "completion_duration_seconds": 5.703291915999216,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4634,8 +4634,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Z2Z277SHMP7Y3ZC67EXJ",
-      "completion_duration_seconds": 5.833792342999004,
+      "response_id": "gen_01M4EF3A9TPZ5GZY5BJ53Q8JY6",
+      "completion_duration_seconds": 3.5892823029989813,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4647,8 +4647,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XWWW7B9ZH5XE5EMM95AD",
-      "completion_duration_seconds": 4.966101304000404,
+      "response_id": "gen_01M4EF27V40NRDYDGSJXGNS085",
+      "completion_duration_seconds": 4.268399182999929,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4660,8 +4660,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RGBN8VYBJ35YEKFAJWQN",
-      "completion_duration_seconds": 4.315360182001314,
+      "response_id": "gen_01M4EEWYNQXZAJXDZE2ZD0RXZN",
+      "completion_duration_seconds": 6.278168741000627,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4673,8 +4673,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RSMEFWEJT9K00HWRXHE3",
-      "completion_duration_seconds": 3.643461950001438,
+      "response_id": "gen_01M4EEX936WARCRGBYRWH87A85",
+      "completion_duration_seconds": 4.611517517998436,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4686,8 +4686,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SE3MVHDR1VX0CFAJG03N",
-      "completion_duration_seconds": 3.9805690020002658,
+      "response_id": "gen_01M4EEXZFGD3TE78NP7SSPZ3JM",
+      "completion_duration_seconds": 3.599688786000115,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4699,8 +4699,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RSWDYMPQFKT9RKP4XBB9",
-      "completion_duration_seconds": 4.288536887001101,
+      "response_id": "gen_01M4EEX98G6K5M2NA2M00ZNJEG",
+      "completion_duration_seconds": 5.622747801000514,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4712,8 +4712,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3YT1MCD00YQQBC43ETKY5",
-      "completion_duration_seconds": 5.75612007699965,
+      "response_id": "gen_01M4EF30CQRG1A6MJMAAAT20S0",
+      "completion_duration_seconds": 5.045879204000812,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4725,8 +4725,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3VFXZGG5G4YHS68XW623G",
-      "completion_duration_seconds": 5.576301726001475,
+      "response_id": "gen_01M4EF019HNRRBZEG0DS982DMP",
+      "completion_duration_seconds": 4.029194336000728,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4738,8 +4738,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WA6Y7Z6HFNMWJJ0B8HAE",
-      "completion_duration_seconds": 3.5961179770001763,
+      "response_id": "gen_01M4EF0W5MKHFZ15P71N2QNJF4",
+      "completion_duration_seconds": 4.580117094999878,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4751,8 +4751,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3V0BE143KW22ZZBDWX3PH",
-      "completion_duration_seconds": 5.119244134000837,
+      "response_id": "gen_01M4EEZJ4XBJQXBGYWCHMX7YCN",
+      "completion_duration_seconds": 4.747061848000158,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4764,8 +4764,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y9QRFRQAWAPKC555TZ4H",
-      "completion_duration_seconds": 3.890794270999322,
+      "response_id": "gen_01M4EF2K3HKECW2Z5K9BEJNNW8",
+      "completion_duration_seconds": 3.907795768998767,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4777,8 +4777,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3VM7PAN5R0ZP6X0YK3ZS5",
-      "completion_duration_seconds": 3.0855757200006337,
+      "response_id": "gen_01M4EF05NJ7R61NG644EMXGHRM",
+      "completion_duration_seconds": 3.5172918050011504,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4790,8 +4790,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3VNVEF70QMJ4QH93JDCCA",
-      "completion_duration_seconds": 5.518600964000143,
+      "response_id": "gen_01M4EF08SGMHBV3BJHJS6GBQ37",
+      "completion_duration_seconds": 3.8623835340004007,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4803,8 +4803,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3X89TS6XG9BJ8382HJX6D",
-      "completion_duration_seconds": 4.331648802999553,
+      "response_id": "gen_01M4EF1PBNPAVNS8AWX2DNWJR9",
+      "completion_duration_seconds": 3.669689569000184,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4816,8 +4816,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3YM842W5BGE9H77BPF0P7",
-      "completion_duration_seconds": 4.588533737000034,
+      "response_id": "gen_01M4EF2VEVWTPWV8MC48NWC1XS",
+      "completion_duration_seconds": 5.802902171999449,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4829,8 +4829,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V6WG4KEAEM65Z0GJK1ZV",
-      "completion_duration_seconds": 4.262296333001359,
+      "response_id": "gen_01M4EEZTFMEVGN075NQA94724J",
+      "completion_duration_seconds": 4.239739053999074,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4842,8 +4842,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V9951HM1MNXHMWTWTRY9",
-      "completion_duration_seconds": 3.139570351999282,
+      "response_id": "gen_01M4EEZX2RX2SNZF12DE4BVJA0",
+      "completion_duration_seconds": 3.4449595710011636,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4855,8 +4855,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S8GTJ3B7ETQNC3BJC0EM",
-      "completion_duration_seconds": 4.250732665999749,
+      "response_id": "gen_01M4EEXVHV569E2N013V7XJ8EA",
+      "completion_duration_seconds": 3.4795279009995284,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4868,8 +4868,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XP38PTMPKPE4XDTFP5MM",
-      "completion_duration_seconds": 3.8960747979999724,
+      "response_id": "gen_01M4EF22K25V0FPSTF4C824GMY",
+      "completion_duration_seconds": 4.135646464001184,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4881,8 +4881,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y268EH2EFFJNWRP17M3R",
-      "completion_duration_seconds": 3.1288220179994823,
+      "response_id": "gen_01M4EF2C2QGSMYWDNGERW8VW0C",
+      "completion_duration_seconds": 3.5037705340000684,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4894,8 +4894,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RKBP5VKN7DN9SMGGW846",
-      "completion_duration_seconds": 3.4122861129999364,
+      "response_id": "gen_01M4EEX2DZE96XG9H9NP71C8VV",
+      "completion_duration_seconds": 3.7090450819996477,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4907,8 +4907,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3XZMHH90JX00QEGD1RA6Y",
-      "completion_duration_seconds": 5.486822269998811,
+      "response_id": "gen_01M4EF28SETXZ3WP54JTY1M1X9",
+      "completion_duration_seconds": 3.164257926000573,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4920,8 +4920,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S70CKS6XA2N8P23BVRBR",
-      "completion_duration_seconds": 3.1414084259995434,
+      "response_id": "gen_01M4EEXTVDFSN6M02XPFJJKGBJ",
+      "completion_duration_seconds": 3.472376453000834,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4933,8 +4933,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SYAS4N8N5G5552XSSNYK",
-      "completion_duration_seconds": 4.083966600001077,
+      "response_id": "gen_01M4EEYERPG8VT0E4F10VCT3RZ",
+      "completion_duration_seconds": 3.0563372079996043,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4946,8 +4946,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TTM390J0QV940Z2X8CMX",
-      "completion_duration_seconds": 3.241098811999109,
+      "response_id": "gen_01M4EEZC76BBSW86168418ME13",
+      "completion_duration_seconds": 3.22501142100009,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4959,8 +4959,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3WZENY7KW8C9MQQSJ2TCD",
-      "completion_duration_seconds": 4.308137488998909,
+      "response_id": "gen_01M4EF1E7W5JADDM39DXZNF8D4",
+      "completion_duration_seconds": 3.705498499000896,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4972,8 +4972,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RG5T1V0WDBT42BK7KVG4",
-      "completion_duration_seconds": 4.220966077999037,
+      "response_id": "gen_01M4EEWYN5JP0R13XTDRBHXTCB",
+      "completion_duration_seconds": 6.059228193998933,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4985,8 +4985,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RW350XNX32N2D6GWGH8F",
-      "completion_duration_seconds": 3.08792979700047,
+      "response_id": "gen_01M4EEXBN34JST21QW9RSB8MRD",
+      "completion_duration_seconds": 3.2468170850006572,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -4998,8 +4998,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W7M00A7C10Z43ASX8EN2",
-      "completion_duration_seconds": 5.284941521998917,
+      "response_id": "gen_01M4EF0T2952X71199CA9S0Y6Q",
+      "completion_duration_seconds": 5.125047642000936,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5011,8 +5011,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W9H4HB9KK59AQ4BA025V",
-      "completion_duration_seconds": 3.314577080000163,
+      "response_id": "gen_01M4EF0T26680EW8JC50HS8YSY",
+      "completion_duration_seconds": 2.884542556999804,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5024,8 +5024,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V7ZVWP48D0Q0CGBNTENM",
-      "completion_duration_seconds": 3.2625003100001777,
+      "response_id": "gen_01M4EEZTJ44APR0JK79C4ESAG9",
+      "completion_duration_seconds": 3.325998725000318,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5037,8 +5037,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3THBM78QCDGFSKNT8NJ5F",
-      "completion_duration_seconds": 2.968217319001269,
+      "response_id": "gen_01M4EEZ2XWT33QYER90VTA0832",
+      "completion_duration_seconds": 2.9964226440006314,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5050,8 +5050,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SEZKFXK79WPFBG3P1RN1",
-      "completion_duration_seconds": 3.504145349999817,
+      "response_id": "gen_01M4EEY0E53DSD2Y665Y377TDV",
+      "completion_duration_seconds": 3.275365236999278,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5063,8 +5063,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YQH7EJCJPZ7SJ5342YXP",
-      "completion_duration_seconds": 3.134942594999302,
+      "response_id": "gen_01M4EF3046X36FA1JZNW2XWHWA",
+      "completion_duration_seconds": 3.278737974998876,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5076,8 +5076,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3SH26WMYRHSGP4QJYA17A",
-      "completion_duration_seconds": 4.024910830999943,
+      "response_id": "gen_01M4EEY1JFQS6PKEAXBMTGAEG1",
+      "completion_duration_seconds": 2.967689202998372,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5089,8 +5089,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3W8PHS8SFA56D5XY3ERC1",
-      "completion_duration_seconds": 3.480435067000144,
+      "response_id": "gen_01M4EF0SBRGTV3RMNX5N5JKTDS",
+      "completion_duration_seconds": 3.259635193999202,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5102,8 +5102,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T4ZVD3XD76XPMGGNB9FH",
-      "completion_duration_seconds": 3.4301449810009217,
+      "response_id": "gen_01M4EEYQGDBK4T7HXBMNMNZWJM",
+      "completion_duration_seconds": 3.2193754650015762,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5115,8 +5115,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S0KTYZK5952W49E6PH8F",
-      "completion_duration_seconds": 3.3012273120002646,
+      "response_id": "gen_01M4EEXGP6MJERRFZR1MPSRJR5",
+      "completion_duration_seconds": 3.2055203600011737,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5128,8 +5128,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3S7CV55J868BFK62FSKNT",
-      "completion_duration_seconds": 3.1185884330006957,
+      "response_id": "gen_01M4EEXTX30K3ZEZ7J04QY0B6Z",
+      "completion_duration_seconds": 3.108361092999985,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5141,8 +5141,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3Y0D14SNQS6S4371PCQ49",
-      "completion_duration_seconds": 5.655101373999059,
+      "response_id": "gen_01M4EF2AQAQ96M2DBYM74FB56V",
+      "completion_duration_seconds": 3.0953377700006968,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5154,8 +5154,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3TZ3Q7P24YSZVD0M9H3Z6",
-      "completion_duration_seconds": 3.112472646000242,
+      "response_id": "gen_01M4EEZGZT6KY919CEA38T4S6A",
+      "completion_duration_seconds": 3.1737660779999715,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5167,8 +5167,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3T35EHFJ9NM8ZE7J9EE9Z",
-      "completion_duration_seconds": 4.096608875999664,
+      "response_id": "gen_01M4EEYMDMK3C74GSJJS4FQ48Z",
+      "completion_duration_seconds": 3.7201686289990903,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5180,8 +5180,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3VZK3AKVH43FTYMS9YR91",
-      "completion_duration_seconds": 4.122636612000861,
+      "response_id": "gen_01M4EF0HE6YFXR3SA7PBBYDG5M",
+      "completion_duration_seconds": 6.235137180001402,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5193,8 +5193,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3V0J8W4BJ4E8J337KVAPS",
-      "completion_duration_seconds": 4.475831584000844,
+      "response_id": "gen_01M4EEZJWV1TKN25XV63SD2TCK",
+      "completion_duration_seconds": 4.878025653000805,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5206,8 +5206,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3W2FJ7AQKBJW4TYS09YN8",
-      "completion_duration_seconds": 8.991757576000964,
+      "response_id": "gen_01M4EF0M48ZB1N5K7NM5VN8TDJ",
+      "completion_duration_seconds": 5.045510485000705,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5219,8 +5219,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XSYQ0SX054E77CW8GCVR",
-      "completion_duration_seconds": 3.87784692599962,
+      "response_id": "gen_01M4EF248CH891A7006PB99FE0",
+      "completion_duration_seconds": 3.979911238000568,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5232,8 +5232,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3W3CVQXG8T1MF0NSCSRS7",
-      "completion_duration_seconds": 3.811677753999902,
+      "response_id": "gen_01M4EF0N803XGN3QBVTG6YA544",
+      "completion_duration_seconds": 4.626624291999178,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5245,8 +5245,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XSYS974TXM6A6FP9NT6A",
-      "completion_duration_seconds": 6.557136651001201,
+      "response_id": "gen_01M4EF24563NNZJXEBDREHE4J7",
+      "completion_duration_seconds": 4.021090326999911,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5258,8 +5258,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RM49FYRP6GNJPBJQFC1P",
-      "completion_duration_seconds": 4.992078724999374,
+      "response_id": "gen_01M4EEX1XKQEDYMY1905SYV6KS",
+      "completion_duration_seconds": 4.0285356439999305,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5271,8 +5271,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XES4BF6WRCH497FYWTVA",
-      "completion_duration_seconds": 6.609868688999995,
+      "response_id": "gen_01M4EF1WSKN9K2KWQ6FCY2MFDN",
+      "completion_duration_seconds": 4.622838389001117,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5284,8 +5284,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WGXCR48PCMD7C17A8HK6",
-      "completion_duration_seconds": 5.263102765999065,
+      "response_id": "gen_01M4EF10GW7NQ450C0AHSXTDDT",
+      "completion_duration_seconds": 4.1482555019993015,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5297,8 +5297,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WR9CXNXKA6J0Y8ADXM8V",
-      "completion_duration_seconds": 7.522259773999394,
+      "response_id": "gen_01M4EF17C9MR5TM85M1N8RAJGY",
+      "completion_duration_seconds": 4.137753789000271,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5310,8 +5310,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3RG65Q3RWT2R56P0M2F02",
-      "completion_duration_seconds": 5.480510922001486,
+      "response_id": "gen_01M4EEWYK12H9EW43WWEN9TVE7",
+      "completion_duration_seconds": 9.077668317999269,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5323,8 +5323,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WMJ650Y6NKXPWF3CPQHB",
-      "completion_duration_seconds": 3.424509937998664,
+      "response_id": "gen_01M4EF158Y21NH37QR122GCD0S",
+      "completion_duration_seconds": 5.797091088999878,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5336,8 +5336,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3XEXFT9BVMJC5G86DPAK6",
-      "completion_duration_seconds": 5.0142976219995035,
+      "response_id": "gen_01M4EF1WFF17T78YQ9G1ZQYMSK",
+      "completion_duration_seconds": 4.451009758999135,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5349,8 +5349,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3V0DVSA49Y2QAPTYT0AMA",
-      "completion_duration_seconds": 3.9779299779984285,
+      "response_id": "gen_01M4EEZHG1240X0T2CRHG3QGHN",
+      "completion_duration_seconds": 3.4654498840009182,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5362,8 +5362,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3WDTQ1VS1CP5T3C2MC922",
-      "completion_duration_seconds": 5.633708281999134,
+      "response_id": "gen_01M4EF0Y724TJAG44NRWAQ5267",
+      "completion_duration_seconds": 5.5797270980001485,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5375,8 +5375,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3RRN582NBGH8FRZ22X4Q1",
-      "completion_duration_seconds": 3.7183359959999507,
+      "response_id": "gen_01M4EEX8A1X8C9GTPC50DQCT3A",
+      "completion_duration_seconds": 3.4244990759998473,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5388,8 +5388,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3Z07QZQMM8WP97DDFVQ45",
-      "completion_duration_seconds": 4.187918894000177,
+      "response_id": "gen_01M4EF38EEBN12Y52XX92ZPXYT",
+      "completion_duration_seconds": 7.240430436999304,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5401,8 +5401,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3VT9JKG5A6BZ2PR1VYWVT",
-      "completion_duration_seconds": 4.500680032999298,
+      "response_id": "gen_01M4EF0C2P69KT05NA6KN4QJMM",
+      "completion_duration_seconds": 4.460771705998923,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5414,8 +5414,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3V3W4ZREHZQGA3DB00KE3",
-      "completion_duration_seconds": 3.4417919640000036,
+      "response_id": "gen_01M4EEZNB6QS01E8H9TWFRYCBN",
+      "completion_duration_seconds": 5.873692602999654,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5427,8 +5427,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3TQHX1Q3X34WV8X6R4X5Y",
-      "completion_duration_seconds": 7.0624350079997384,
+      "response_id": "gen_01M4EEZ9HDHPG00N99FM0QX1JM",
+      "completion_duration_seconds": 5.575196003999736,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5440,8 +5440,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "openai/gpt-6-luna",
-      "response_id": "gen_01M4E3YRGY2SAZ3N2RZ4GGTAPN",
-      "completion_duration_seconds": 6.725554745000409,
+      "response_id": "gen_01M4EF2Z59VG7XCAW7GQ7TYRCP",
+      "completion_duration_seconds": 3.043653868999172,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
@@ -5453,8 +5453,8 @@
     "routing_metadata": {
       "requested_model": "kilo-auto/efficient",
       "response_model": "xiaomi/mimo-v2.6-pro",
-      "response_id": "gen_01M4E3X3VPW9PJE8YAGC19DGCV",
-      "completion_duration_seconds": 4.912975748999088,
+      "response_id": "gen_01M4EF1H927T4JRJA87TKXR7C0",
+      "completion_duration_seconds": 6.9491436399985105,
       "usage_raw": null,
       "transport": "stream-model-selection"
     }
