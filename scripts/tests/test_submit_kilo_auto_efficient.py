@@ -14,6 +14,8 @@ from unittest.mock import patch
 
 SOURCE = Path(__file__).resolve().parents[2] / "scripts/submit_kilo_auto_efficient.py"
 SPEC = importlib.util.spec_from_file_location("kilo_submission", SOURCE)
+if SPEC is None or SPEC.loader is None:
+    raise ImportError(f"Cannot load submission driver: {SOURCE}")
 DRIVER = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(DRIVER)
 
