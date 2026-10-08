@@ -211,10 +211,14 @@ Set `KILO_API_KEY` securely in the environment; do not put it in a command, conf
 or prediction file. To bill authorized organization credits, optionally set
 `KILO_ORGANIZATION_ID` securely in the environment; it is sent only as the
 `x-kilocode-organizationid` request header, not recorded in submission metadata.
-The endpoint is also supplied through the environment:
+Set a unique `KILO_RUN_ID` for each new run.
+Keep that identifier unchanged when you resume or retry the run.
+Start each new run in a workspace with no previous predictions or checkpoints.
+Set the endpoint through the environment:
 
 ```bash
 export KILO_API_URL=https://api.kilo.ai/api/gateway/chat/completions
+export KILO_RUN_ID=routerarena-20261008-a
 python scripts/submit_kilo_auto_efficient.py full --concurrency 4
 python scripts/submit_kilo_auto_efficient.py robustness --concurrency 4
 ```
@@ -225,6 +229,17 @@ The driver does not override temperature, token limits, seeds, or reasoning sett
 Routing decisions use the response's concrete `model`, not the router alias.
 Unknown or out-of-pool models stop the run; the driver does not guess aliases.
 Full submissions contain the returned answer and authoritative token usage.
+Each query has a fresh run-scoped session.
+The session stays fixed across retries and does not reuse a previous run's classifier cache.
+
+The gateway's Vercel provider returns Alibaba IDs for Qwen models.
+The registry uses these exact naming maps:
+
+- `alibaba/qwen3.8-flash` maps to `qwen/qwen3.8-flash`.
+- `alibaba/qwen3.8-max-0902` maps to `qwen/qwen3.8-max-0902`.
+
+The maps preserve the model version and variant.
+Generation metadata and the raw journal preserve the original response ID.
 
 Robustness streams close after the first concrete model appears.
 Partial inference can still incur costs; the submission omits `generated_result`.
@@ -235,6 +250,14 @@ Provider errors, empty answers, and missing usable usage remain `success: false`
 The driver records each failure and does not omit the row.
 If final usage is missing or unusable, `token_usage` stays null.
 The driver does not invent tokens; the stock evaluator cannot account for those costs.
+
+Include the gateway's successful static fallback responses without retrying them.
+The current fallback is `z-ai/glm-5.3-flash`.
+The gateway uses it when its routing request fails or exceeds five seconds.
+The configured submission pool includes this model, although the ranked production pool does not.
+
+An older checkpoint can add only its declared static fallback to the accepted model names.
+The driver preserves the original journal header and every captured response.
 
 Raw completions, stream events, and early selection chunks are checkpointed in
 `cached_results/kilo-auto-efficient/<split>.jsonl`. Rerun the same command to
@@ -250,23 +273,14 @@ After the full first pass, explicitly retry provider errors:
 python scripts/submit_kilo_auto_efficient.py full --retry-provider-errors --concurrency 4
 ```
 
-Each pass makes one additional attempt per eligible query, up to three captured
-attempts in total. Only explicit timeouts and HTTP 429/500/502/503/504 errors qualify.
-Empty answers and missing usage alone do not qualify. Correctness scores are never read.
+Each pass makes one additional attempt per eligible query.
+Repeat provider-only passes until those requests succeed.
+Only explicit timeouts and HTTP 429/500/502/503/504 errors qualify.
+Empty answers and missing usage alone do not qualify.
+Correctness scores are never read.
 Successful generations are never retried, even when their answers are incorrect.
 Every explicit retry remains in the journal, including transport errors.
 Final rows retain the first success or the last captured generation failure.
-
-To explicitly retry every failed generation once, including empty answers, use:
-
-```bash
-python scripts/submit_kilo_auto_efficient.py full --retry-failed-generations --concurrency 4
-```
-
-Each invocation makes one additional attempt per failed query, beyond the provider-only cap.
-Successful generations remain unchanged, including incorrect answers.
-The journal marks these attempts with `retry_policy: "failed_generation"`.
-This flag does not establish that an empty answer was a provider error.
 
 Use `--limit 1 --concurrency 1` for a one-request smoke run; it produces an
 explicitly incomplete file and that response is reused on the subsequent full
@@ -274,7 +288,7 @@ run. Exported JSON is rebuilt from the journal on resume, so evaluate only after
 generation finishes. Do not run the stock LLM inference script afterward:
 it would bypass Kilo's router and generate again.
 
-All eleven concrete models also use `ModelInference`'s Kilo provider.
+All eight concrete models also use `ModelInference`'s Kilo provider.
 For separate model inference, set `KILO_API_KEY` and optionally `KILO_ORGANIZATION_ID`.
 That path calls the concrete model without Auto Efficient's selected reasoning settings.
 This submission does not use that path.
