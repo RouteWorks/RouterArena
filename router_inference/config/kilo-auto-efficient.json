@@ -42,6 +42,19 @@
       "~z-ai/glm-latest": "z-ai/glm-5.3"
     },
     "retry_policy": "Retry only explicit provider timeouts or HTTP 429/500/502/503/504 errors until they succeed. Keep the first successful generation, including incorrect answers. Do not retry empty answers or missing usage without provider-error evidence. Preserve prompts, production settings, and every captured attempt. Do not consult correctness scores during retries.",
+    "approved_incomplete_response_retries": [
+      {
+        "global_index": "GeoBench_866",
+        "failure": "Content-filtered refusal with zero reported token accounting",
+        "original_response_id": "gen_01M4DWY8K45J0G3KD86SSJ8RKW"
+      },
+      {
+        "global_index": "MusicTheoryBench_261",
+        "failure": "Reasoning-only stream without an answer or usable token accounting",
+        "original_response_id": "gen_01M4DW5KNT3HXBMN0KSDMX9K8J"
+      }
+    ],
+    "incomplete_response_retry_policy": "The operator explicitly approved retries for only these two incomplete responses. Preserve their original attempts, unchanged prompts and generation settings. Keep every successful answer unchanged. Do not consult correctness scores. Disclose this exception and excluded retry costs in the submission.",
     "evaluation_limitations": [
       "RouterArena computes generation cost from generated_result.token_usage at the selected or actually served model's registered input/output rates. It does not include classifier or other routing overhead; these costs must be disclosed separately and must not be represented as fabricated generation tokens.",
       "The registered prices are uncached USD rates per million tokens from the production catalog snapshot. RouterArena does not account for separate input-cache read/write prices or per-request and web-search charges.",

@@ -305,11 +305,25 @@ python scripts/submit_kilo_auto_efficient.py full --retry-provider-errors --conc
 Each pass makes one additional attempt per eligible query.
 Repeat provider-only passes until those requests succeed.
 Only explicit timeouts and HTTP 429/500/502/503/504 errors qualify.
+The provider can report these codes as numbers or decimal strings.
 Empty answers and missing usage alone do not qualify.
 Correctness scores are never read.
 Successful generations are never retried, even when their answers are incorrect.
 Every explicit retry remains in the journal, including transport errors.
 Final rows retain the first success or the last captured generation failure.
+
+Only explicit operator approval permits incomplete-response exceptions:
+
+```bash
+python scripts/submit_kilo_auto_efficient.py full --retry-provider-errors --concurrency 4 --order-seed 841 --retry-approved-indices GeoBench_866 MusicTheoryBench_261
+```
+
+The exception applies only to failed empty-answer or missing-usage rows at the listed indices.
+Successful answers and other failure types remain locked.
+Repeat the same approved indices on every subsequent full checkpoint replay.
+The journal records the retry basis and preserves each original response.
+This submission discloses its two approved exceptions in the config.
+No prompt, generation setting, or correctness-based selection changes.
 
 Use `--limit 1 --concurrency 1` for a one-request smoke run; it produces an
 explicitly incomplete file and that response is reused on the subsequent full

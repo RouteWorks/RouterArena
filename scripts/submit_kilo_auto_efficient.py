@@ -331,8 +331,22 @@ def provider_error_retryable(result):
         and isinstance(error, dict)
         and (
             error.get("type") == "timeout"
-            or error.get("code") in (429, 500, 502, 503, 504)
+            or error.get("code")
+            in (429, 500, 502, 503, 504, "429", "500", "502", "503", "504")
         )
+    )
+
+
+def retryable_result(result, approved_indices):
+    if provider_error_retryable(result):
+        return True
+    generation = result.get("generated_result") or {}
+    error = generation.get("generation_error") or {}
+    return (
+        result.get("global_index") in approved_indices
+        and generation.get("success") is False
+        and isinstance(error, dict)
+        and error.get("type") in ("empty_answer", "missing_usage")
     )
 
 
@@ -508,6 +522,9 @@ def run(args):
     }
     if not allowed:
         raise ValueError("Configured model pool is empty")
+    approved_indices = set(args.retry_approved_indices)
+    if not approved_indices.issubset(by_index):
+        raise ValueError("Approved retry indices are not in the official dataset")
     header = {
         "format_version": 1,
         "split": args.split,
@@ -573,11 +590,11 @@ def run(args):
                     raise ValueError("Checkpoint contains an invalid index or attempt")
                 if attempt != attempts.get(index, 0) + 1:
                     raise ValueError("Checkpoint attempts are not sequential")
-                if index in completed and not provider_error_retryable(
-                    completed[index]
+                if index in completed and not retryable_result(
+                    completed[index], approved_indices
                 ):
                     raise ValueError(
-                        "Checkpoint retries a successful or non-provider-error result"
+                        "Checkpoint retries a successful or unapproved failed result"
                     )
                 if "transport_error" in event:
                     transport_error = event["transport_error"]
@@ -614,7 +631,7 @@ def run(args):
             remaining = [
                 row
                 for row in scheduled_rows
-                if provider_error_retryable(completed[row["global index"]])
+                if retryable_result(completed[row["global index"]], approved_indices)
             ]
         else:
             remaining = [
@@ -670,6 +687,14 @@ def run(args):
                     try:
                         event = future.result()
                         event["attempt"] = attempts.get(row["global index"], 0) + 1
+                        if args.retry_provider_errors:
+                            event["retry_basis"] = (
+                                "provider_error"
+                                if provider_error_retryable(
+                                    completed[row["global index"]]
+                                )
+                                else "explicit_approved_incomplete_response"
+                            )
                         # Persist even malformed/unsupported responses before parsing.
                         # A parsing failure must be investigated, not paid for again.
                         append_event(journal, event)
@@ -788,8 +813,17 @@ def main():
         action="store_true",
         help="Retry only explicit provider errors; keep every successful generation",
     )
+    parser.add_argument(
+        "--retry-approved-indices",
+        nargs="+",
+        default=[],
+        metavar="INDEX",
+        help="Explicitly approved empty-answer or missing-usage failures; never successful rows",
+    )
     args = parser.parse_args()
-    if args.retry_provider_errors and args.split != "full":
+    if (
+        args.retry_provider_errors or args.retry_approved_indices
+    ) and args.split != "full":
         parser.error("Generation retries apply only to the full split")
     if (
         args.concurrency < 1
