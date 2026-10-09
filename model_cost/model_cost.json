@@ -386,5 +386,25 @@
   "google/gemma-4-31b-it": {
     "input_token_price_per_million": 0.08,
     "output_token_price_per_million": 0.35
+  },
+  "deepseek-ai/DeepSeek-V4-Flash-0731": {
+    "input_token_price_per_million": 0.14,
+    "output_token_price_per_million": 0.28
+  },
+  "gpt-5.6-luna": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 1.2
+  },
+  "ministral-8b-latest": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.15
+  },
+  "moonshotai/Kimi-K2.6": {
+    "input_token_price_per_million": 0.95,
+    "output_token_price_per_million": 4.0
+  },
+  "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B": {
+    "input_token_price_per_million": 0.06,
+    "output_token_price_per_million": 0.24
   }
 }
