@@ -1,0 +1,14 @@
+{
+  "pipeline_params": {
+    "router_name": "KT-ModelRouter",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "deepseek/deepseek-v4-flash",
+      "deepseek/deepseek-v4-pro",
+      "google/gemma-4-31b-it",
+      "google/gemini-3-flash-preview",
+      "qwen/qwen3-235b-a22b-2507"
+    ],
+    "description": "KT ModelRouter -- routes each query across a 5-model pool (deepseek-v4-flash, deepseek-v4-pro, gemma-4-31b-it, gemini-3-flash-preview, qwen3-235b-a22b-2507) using an internally trained routing policy."
+  }
+}

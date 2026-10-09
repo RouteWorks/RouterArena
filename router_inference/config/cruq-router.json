@@ -1,0 +1,1 @@
+{"pipeline_params":{"router_name":"cruq-router","router_cls_name":"CruqSCRouter","models":["qwen/qwen3-235b-a22b-2507","deepseek/deepseek-v4-flash"],"k":4,"tau":0.6,"probe_model":"qwen/qwen3-235b-a22b-2507","escalate_model":"deepseek/deepseek-v4-flash"}}

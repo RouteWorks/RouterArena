@@ -1,0 +1,18 @@
+{
+  "pipeline_params": {
+    "router_name": "sqwish-fvcta8",
+    "router_cls_name": "SqwishRouter",
+    "models": [
+      "deepseek/deepseek-v4-flash",
+      "gemini-3.1-pro-preview",
+      "google/gemini-3.1-flash-lite",
+      "gpt-5.4-mini",
+      "gpt-oss-120b",
+      "gpt-oss-20b",
+      "qwen/qwen3-235b-a22b-2507",
+      "qwen/qwen3-next-80b-a3b-instruct",
+      "xiaomi/mimo-v2.5"
+    ],
+    "description": "Sqwish Router jointly selects among 16 model-budget actions over nine models. A 10-member ensemble predicts per-action quality from task features and full model fingerprints, then applies a cost-aware utility rule with an uncertainty penalty. A separately trained low-success classifier, fitted only on Sqwish's offline synthetic generation corpus and no RouterArena answers, model outcomes, scores or labels, diverts predicted-unsolved tasks to the cheap backup arm gpt-oss-20b when that arm is admissible. The same frozen selector, diversion rule and admissibility mask are applied to the full and robustness splits. Budget is a first-class routing action implemented through an ordinal generation-control lever covering reasoning effort, verbosity, answer style and output cap; its full cost is captured by the reported token usage. No RouterArena answers, model outcomes, scores or labels were used to fit or tune the router."
+  }
+}

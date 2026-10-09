@@ -23,7 +23,7 @@ routers:
   # --- Routers submitted to RouterArena (derived data regenerated) ---
   - readme_name: "Sqwish Router"
     website_name: "Sqwish Router"
-    prediction: "sqwish-router"
+    prediction: "sqwish-fvcta8"
     category_key: "sqwish-router"
     flip_key: "sqwish-router"
     website:
@@ -119,18 +119,21 @@ routers:
 
   - readme_name: "LLM Router"
     website_name: "LLM Router"
-    prediction: "llm-router"
+    prediction: "llm-router-g3"
     category_key: "llm-router"
     flip_key: "llm-router"
     website:
       affiliation: "@ypollak2"
       github_url: "https://github.com/ypollak2"
 
-  - readme_name: "Nadir-Tumbler"
-    website_name: "Nadir-Tumbler"
-    prediction: "nadir-tumbler"
-    category_key: "nadir-tumbler"
-    flip_key: "nadir-tumbler"
+  # nadir-caliper (#173) supersedes nadir-tumbler (#159); regenerated from the
+  # true-grok-4.3-priced prediction file. Website's old "Nadir-Tumbler" row is
+  # replaced on the next sync.
+  - readme_name: "nadir-caliper"
+    website_name: "nadir-caliper"
+    prediction: "nadir-caliper"
+    category_key: "nadir-caliper"
+    flip_key: "nadir-caliper"
     website:
       affiliation: "@doramirdor"
       github_url: "https://github.com/doramirdor"
@@ -161,6 +164,65 @@ routers:
     website:
       affiliation: "@vishalveerareddy123"
       github_url: "https://github.com/vishalveerareddy123"
+
+  - readme_name: "Divyam"
+    website_name: "Divyam"
+    prediction: "divyam-router"
+    category_key: "divyam"
+    flip_key: "divyam"
+    website:
+      affiliation: "@samikd"
+      github_url: "https://github.com/samikd"
+      type: "closed-source"
+
+  - readme_name: "AsiaInfo-Router"
+    website_name: "AsiaInfo-Router"
+    prediction: "AsiaInfo-Router"
+    category_key: "asiainfo"
+    flip_key: "asiainfo"
+    website:
+      affiliation: "@Uncle-LL"
+      github_url: "https://github.com/Uncle-LL"
+      type: "closed-source"
+
+  - readme_name: "KT-ModelRouter"
+    website_name: "KT-ModelRouter"
+    prediction: "KT-ModelRouter"
+    category_key: "kt-modelrouter"
+    flip_key: "kt-modelrouter"
+    website:
+      affiliation: "@DusanBaek"
+      github_url: "https://github.com/KT-A-Autonomous-Tech-Team/ModelRouter"
+      type: "open-source"
+
+  - readme_name: "cruq-router"
+    website_name: "cruq-router"
+    prediction: "cruq-router"
+    category_key: "cruq-router"
+    flip_key: "cruq-router"
+    website:
+      affiliation: "@nabaruns"
+      github_url: "https://github.com/nabaruns"
+
+  - readme_name: 'R\*\*2: Reasonometry Router'
+    website_name: "R**2: Reasonometry Router"
+    prediction: "r2-reasonometry-router"
+    category_key: "r2-reasonometry"
+    flip_key: "r2-reasonometry"
+    website:
+      affiliation: "@sashakolpakov"
+      github_url: "https://github.com/sashakolpakov"
+      type: "closed-source"
+
+  - readme_name: "SapientAI Auto Router"
+    website_name: "SapientAI Auto Router"
+    prediction: "PSAI-Auto-Router"
+    category_key: "psai-auto-router"
+    flip_key: "psai-auto-router"
+    website:
+      affiliation: "Publicis Sapient"
+      github_url: "https://github.com/subhajeet-sapient"
+      type: "closed-source"
 
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---

@@ -41,6 +41,9 @@ universal_names = [
     "gemini-2.5-flash",
     "gemini-2.5-pro",
     "google/gemini-3.1-flash-lite",
+    "google/gemini-2.5-flash-lite",
+    "google/gemini-2.5-pro",
+    "anthropic/claude-sonnet-4.5",
     "gemini-3-flash-preview",
     # Mistral models
     "mistral-medium",
@@ -89,6 +92,7 @@ universal_names = [
     # xAI models
     "grok-4",
     "grok-4-1-fast-reasoning",
+    "grok-4.3",
     # R2-Router
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-next-80b-a3b-instruct",
@@ -124,6 +128,16 @@ universal_names = [
     # Lynkr pool additions (all served via OpenRouter)
     "openai/gpt-oss-120b",
     "z-ai/glm-4.7",
+    # Sqwish Router pool additions (OpenRouter-served)
+    "gpt-oss-20b",
+    "xiaomi/mimo-v2.5",
+    # Paix2-router pool additions
+    "MiniMax-M3",
+    "agnes-2.0-flash",
+    "THUDM/GLM-4-9B-0414",
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+    # KT-ModelRouter pool additions
+    "google/gemma-4-31b-it",
 ]
 
 
@@ -141,6 +155,8 @@ mapping: dict[str, str] = {
     "openai/gpt-5-mini": "gpt-5-mini",
     "alibaba/qwen3-235b-a22b-instruct-2507": "qwen3-235b-a22b-instruct-2507",
     "alibaba/qwen3-30b-a3b-instruct-2507": "qwen3-30b-a3b-instruct-2507",
+    # KT-ModelRouter: provider-prefixed form used in our predictions file
+    "google/gemini-3-flash-preview": "gemini-3-flash-preview",
 }
 
 
