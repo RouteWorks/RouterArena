@@ -1,0 +1,13 @@
+{
+  "pipeline_params": {
+    "router_name": "dalpha-llm-router",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "gemini-3.8-flash",
+      "gemini-3-flash-preview",
+      "gpt-6-luna",
+      "anthropic/claude-haiku-5.5"
+    ],
+    "description": "Dalpha LLM Router -- routes each query across a 4-model pool (gemini-3.8-flash at thinking_level=low, gemini-3-flash-preview with thinking off, gpt-6-luna at reasoning_effort=high, claude-haiku-5.5) using a zero-shot query classifier and a routing table calibrated on external data only. No RouterArena data was used to build or tune the router."
+  }
+}
