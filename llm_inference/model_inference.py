@@ -33,6 +33,7 @@ class ModelInference:
         self.deepseek_api_key = os.getenv("DEEPSEEK_API_KEY")
         self.perplexity_api_key = os.getenv("PERPLEXITY_API_KEY")
         self.replicate_api_key = os.getenv("REPLICATE_API_KEY")
+        self.groq_api_key = os.getenv("GROQ_API_KEY")
 
         # AWS credentials
         self.aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
@@ -97,7 +98,8 @@ class ModelInference:
                     return self._call_agnes(model_name, prompt)
                 elif provider == "siliconflow":
                     return self._call_siliconflow(model_name, prompt)
-
+                elif provider == "groq":
+                    return self._call_groq(model_name, prompt)
                 else:
                     # Default to Together API for most open-source models
                     return self._call_together(model_name, prompt)
@@ -217,6 +219,12 @@ class ModelInference:
             # Siliconflow
             "THUDM/GLM-4-9B-0414": "siliconflow",
             "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": "siliconflow",
+            # Groq
+            "llama-3.3-70b-versatile": "groq",
+            "llama-3.1-8b-instant": "groq",
+            "llama-3.1-70b-versatile": "groq",
+            "mixtral-8x7b-32768": "groq",
+            "gemma2-9b-it": "groq",
         }
 
         # Check if exact model name is in mapping
@@ -920,3 +928,42 @@ class ModelInference:
                 "model_used": model_name,
                 "provider": "aws",
             }
+
+    def _call_groq(self, model_name: str, prompt: str) -> Dict[str, Any]:
+        """Call Groq API."""
+        import openai
+
+        # Groq uses OpenAI-compatible API
+        client = openai.OpenAI(
+            api_key=self.groq_api_key, base_url="https://api.groq.com/openai/v1"
+        )
+
+        response = client.chat.completions.create(
+            model=model_name,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=2048,
+            temperature=0.7,
+        )
+
+        usage = getattr(response, "usage", None)
+        input_tokens = getattr(usage, "prompt_tokens", 0) if usage is not None else 0
+        completion_tokens = (
+            getattr(usage, "completion_tokens", 0) if usage is not None else 0
+        )
+        total_tokens = (
+            getattr(usage, "total_tokens", 0)
+            if usage is not None
+            else input_tokens + completion_tokens
+        )
+
+        return {
+            "response": response.choices[0].message.content,
+            "success": True,
+            "token_usage": {
+                "input_tokens": input_tokens,
+                "output_tokens": completion_tokens,
+                "total_tokens": total_tokens,
+            },
+            "model_used": model_name,
+            "provider": "groq",
+        }
