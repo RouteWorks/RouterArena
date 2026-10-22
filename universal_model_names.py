@@ -9,6 +9,11 @@ files in ./router_evaluation/llm_inference/outputs/
 """
 
 universal_names = [
+    "z-ai/glm-5.3@low",
+    "z-ai/glm-5.3@high",
+    "z-ai/glm-5.3-flash@default",
+    "deepseek/deepseek-v4.1-flash@low",
+    "deepseek/deepseek-v4.1-flash@high",
     "gpt-3.5-turbo",
     "gpt-3.5-turbo-1106",
     "gpt-4",

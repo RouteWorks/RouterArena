@@ -386,5 +386,25 @@
   "google/gemma-4-31b-it": {
     "input_token_price_per_million": 0.08,
     "output_token_price_per_million": 0.35
+  },
+  "z-ai/glm-5.3@low": {
+    "input_token_price_per_million": 0.079,
+    "output_token_price_per_million": 1.4
+  },
+  "z-ai/glm-5.3@high": {
+    "input_token_price_per_million": 0.079,
+    "output_token_price_per_million": 1.4
+  },
+  "z-ai/glm-5.3-flash@default": {
+    "input_token_price_per_million": 0.041,
+    "output_token_price_per_million": 0.077
+  },
+  "deepseek/deepseek-v4.1-flash@low": {
+    "input_token_price_per_million": 0.09,
+    "output_token_price_per_million": 0.18
+  },
+  "deepseek/deepseek-v4.1-flash@high": {
+    "input_token_price_per_million": 0.09,
+    "output_token_price_per_million": 0.18
   }
 }
