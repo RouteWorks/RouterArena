@@ -1,0 +1,15 @@
+{
+  "pipeline_params": {
+    "router_name": "compass-corerouter",
+    "router_cls_name": "CompassCoreRouter",
+    "models": [
+      "qwen/qwen3-235b-a22b-2507",
+      "deepseek/deepseek-v4-pro"
+    ],
+    "router_version": "answer-aware-cascade-native-clef-flash-critic-tau090",
+    "first_model": "qwen/qwen3-235b-a22b-2507",
+    "escalate_model": "deepseek/deepseek-v4-pro",
+    "critic_threshold": 0.9,
+    "cost_accounting": "escalated rows include the first Qwen call's dollar cost; see generated_result.cascade_accounting"
+  }
+}
