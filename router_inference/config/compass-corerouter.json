@@ -1,0 +1,16 @@
+{
+  "pipeline_params": {
+    "router_name": "compass-corerouter",
+    "router_cls_name": "CompassCoreRouter",
+    "models": [
+      "qwen/qwen3-235b-a22b-2507",
+      "google/gemma-4-31b-it",
+      "gemini-3-flash-preview",
+      "deepseek/deepseek-v4-flash"
+    ],
+    "router_version": "corerouter-v2-hybrid-agreement (preregistration amendment 1, variant C)",
+    "policy": "per-category model pick fitted on twin data; where the pick is gemini-3-flash-preview, Qwen3-235B and Gemma-4-31B answer first and Gemini is called only when their final answers disagree",
+    "preregistration": "https://github.com/wmlba/compass-corerouter-preregistration (amendment d87c282, locked-test read dd9be74)",
+    "cost_accounting": "every call is charged on the returned row: other calls' dollar cost is added as returned-model input-price tokens; see generated_result.cascade_accounting"
+  }
+}
