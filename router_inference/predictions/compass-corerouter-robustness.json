@@ -751,16 +751,16 @@
   {
     "global index": "ArcMMLU_685",
     "prompt": "Kindly peruse the ensuing multiple-selection inquiries and furnish the most probable accurate response predicated on the options proffered.\n\nContext: Absent\n\nInquiry: which of the succeeding exploration methods became ensnared in a fruitless route? ( )\n\nAlternatives: \nA. Extensive First exploration  \nB. Profound First exploration  \nC. A star \nD. Dual directional exploration  \n\nPresent the precise letter selection in \\boxed{X}, where X symbolizes the accurate letter choice. Confine elucidation or commentary to a maximum of 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The correct answer is B. Profound First exploration, as it is likely a mistranslation or misnomer for \"Depth-First Search,\" which can get stuck in infinite paths or suboptimal routes in certain graphs. Unlike A* or bidirectional search, depth-first search does not guarantee the shortest path and may explore fruitless branches extensively. \n\n\\boxed{B}",
+      "generated_answer": "\\boxed{B}\n\nProfound First exploration (Depth-First Search) can become ensnared in a fruitless route if it explores an infinite branch or a very deep path that does not contain the goal. Without a depth limit, it may continue indefinitely along one trajectory without ever backtracking to explore more promising alternatives.",
       "success": true,
       "token_usage": {
-        "input_tokens": 583,
-        "output_tokens": 78,
-        "total_tokens": 661
+        "input_tokens": 211,
+        "output_tokens": 64,
+        "total_tokens": 275
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -781,10 +781,19 @@
               "total_tokens": 189
             },
             "cost_usd": 3.2670000000000004e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 112,
+              "output_tokens": 64,
+              "total_tokens": 176
+            },
+            "cost_usd": 0.000248
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 461,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 99,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -1324,16 +1333,16 @@
   {
     "global index": "ChessInstruct_42",
     "prompt": "You are presented with a query regarding chess maneuvers. Scrutinize the scenario meticulously and furnish the precise maneuver.\n\nScenario:\nWith all chess maneuvers provided, proclaim the conclusive tally of the match.\n\nInput Configuration: A sequence of chess maneuvers separated by commas.\n\nInquiry:\n{{\"maneuvers\": [\"e2e4\", \"c7c6\", \"d2d4\", \"d7d5\", \"e4d5\", \"c6d5\", \"c2c4\", \"g8f6\", \"b1c3\", \"b8c6\", \"g1f3\", \"c8g4\", \"c1e3\", \"e7e6\", \"c4c5\", \"f8e7\", \"h2h3\", \"g4h5\", \"f1d3\", \"a8c8\", \"a1b1\", \"e8g8\", \"e1g1\", \"h5f3\", \"d1f3\", \"e6e5\", \"d4e5\", \"c6e5\", \"f3f5\", \"e5d3\", \"f5d3\", \"e7c5\", \"f1d1\", \"f8e8\", \"e3c5\", \"c8c5\", \"b2b4\", \"c5c8\", \"d3d4\", \"h7h6\", \"a2a3\", \"a7a6\", \"g2g3\", \"g8f8\", \"g1g2\", \"c8c4\", \"d4d3\", \"c4c7\", \"d3d4\", \"b7b5\", \"d4d3\", \"d5d4\", \"c3e2\", \"d8d5\", \"g2g1\", \"c7c4\", \"b1c1\", \"f6e4\", \"d3f3\", \"c4c1\", \"e2c1\", \"d5c4\", \"c1d3\", \"e4g5\", \"f3f5\", \"g7g6\", \"f5f6\", \"f8g8\", \"h3h4\", \"g5e4\", \"f6f3\", \"g8g7\", \"g1g2\", \"e4c3\", \"d1d2\", \"c3b1\", \"d2e2\", \"e8e2\", \"f3e2\", \"c4c6\", \"e2f3\", \"c6d6\", \"h4h5\", \"b1d2\", \"f3e2\", \"d6c6\", \"g2g1\", \"d2f3\", \"g1f1\", \"g6h5\", \"d3e5\", \"f3d2\", \"f1e1\", \"c6c1\", \"e2d1\", \"c1d1\", \"e1d1\", \"d2b1\", \"d1c2\", \"b1a3\", \"c2d3\", \"g7f6\", \"e5c6\", \"a3c4\", \"d3d4\", \"f6g5\", \"c6d8\", \"f7f5\", \"d8f7\", \"g5f6\", \"f7h6\", \"c4d6\", \"d4d5\", \"d6e4\", \"g3g4\", \"e4c3\", \"d5d4\", \"f5g4\", \"d4c3\", \"f6g6\", \"h6g8\", \"h5h4\", \"g8e7\", \"g6g5\", \"c3d2\", \"h4h3\", \"d2e2\", \"h3h2\", \"f2f4\", \"g5f4\", \"e7d5\", \"f4g3\", \"d5e3\", \"h2h1r\", \"e3f5\", \"g3h3\", \"e2f2\", \"h1b1\", \"f2e2\", \"g4g3\", \"f5e3\", \"g3g2\", \"e3d5\", \"h3g3\", \"d5f6\", \"b1b4\", \"f6d7\", \"b4e4\", \"e2d3\", \"e4f4\", \"d7b8\", \"a6a5\", \"d3c2\", \"a5a4\", \"b8c6\", \"g2g1q\", \"c6e5\", \"g1g2\", \"c2d3\", \"f4e4\", \"e5f3\", \"g2e2\", \"d3c3\", \"b5b4\"]}}\n\nDirectives:\n- Articulate the precise chess maneuver unambiguously.\n- Present your conclusive response as \\boxed{X}, wherein X symbolizes the maneuver in standard coordinate notation (e.g., a2a3).\n- Confine your elaboration or rationale to 2–3 statements.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The given sequence of moves represents a full game in algebraic notation using coordinate moves. After meticulously following all the maneuvers, the final move in the list is **b5b4**, which is the last action taken on the board.\n\nThis move does not result in checkmate or stalemate immediately, but considering the context and the final position, the game concludes with this move as Black advances the b-pawn.\n\nThe precise final maneuver is therefore:\n\n\\boxed{b5b4}",
+      "generated_answer": "The provided chess sequence follows a long game that transitions into a complex endgame. Tracking the final moves: White's king is at c3 and Black's queen is at e2. Black's last move was b5-b4, putting the White king in check. The White king must move to escape the check. Analyzing the position at the end of the input (`...g2e2, d3c3, b5b4`), the White king on c3 is under attack by the pawn on b4. The only legal and logical square for the king to move to continue the game or respond to the check, based on standard engine/database continuations for this specific historical or synthetic line, is c3c4 (though in many contexts this sequence leads to a specific result). Following the instruction to provide the next maneuver based on the board state:\n\nThe White king is in check on c3 from the pawn on b4; the most direct maneuver to address the configuration is the king moving to the only available forward square.\n\n\\boxed{c3c4}",
       "success": true,
       "token_usage": {
-        "input_tokens": 2976,
-        "output_tokens": 99,
-        "total_tokens": 3075
+        "input_tokens": 1556,
+        "output_tokens": 223,
+        "total_tokens": 1779
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -1354,10 +1363,19 @@
               "total_tokens": 1245
             },
             "cost_usd": 0.000132
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 1113,
+              "output_tokens": 223,
+              "total_tokens": 1336
+            },
+            "cost_usd": 0.0012255
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 1860,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 443,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -1368,16 +1386,16 @@
   {
     "global index": "ChessInstruct_58",
     "prompt": "You're tasked with evaluating a chess query. Scrutinize the scenario with precision and determine the optimal move.\n\nScenario:\nTaking into account all provided chess maneuvers, declare the conclusive outcome of the match.\n\nInput Structure: Moves are presented in a sequence, separated by commas.\n\nInquiry:\n{{\"moves\": [\"e2e4\", \"d7d6\", \"d2d4\", \"f7f5\", \"f2f3\", \"e7e5\", \"d4e5\", \"f5e4\", \"b1c3\", \"b8c6\", \"f1b5\", \"d6e5\", \"d1d8\", \"e8d8\", \"c1g5\", \"g8f6\", \"e1c1\", \"d8e8\", \"c3e4\", \"f8e7\", \"b5c6\", \"b7c6\", \"e4f2\", \"h7h6\", \"g5d2\", \"e8f7\", \"g1e2\", \"h8e8\", \"e2g3\", \"e7c5\", \"f2d3\", \"c5d6\", \"d1e1\", \"c8a6\", \"d3f2\", \"a6b5\", \"b2b3\", \"d6a3\", \"c1b1\", \"a8d8\", \"e1d1\", \"b5a6\", \"g3e4\", \"a3e7\", \"d2e3\", \"f6d7\", \"c2c4\", \"a6b7\", \"d1d2\", \"a7a6\", \"h1d1\", \"d7f6\", \"e3c5\", \"d8d2\", \"d1d2\", \"e7d8\", \"b1b2\", \"b7c8\", \"b2a3\", \"f6h5\", \"f2d3\", \"f7g6\", \"d3e5\", \"e8e5\", \"d2d8\", \"c8f5\", \"c5d4\", \"e5a5\", \"a3b4\", \"a5a2\", \"g2g4\", \"f5g4\", \"f3g4\", \"h5f4\", \"d4e3\", \"f4e6\", \"d8d2\", \"a2a1\", \"e4c5\", \"a1e1\", \"e3f2\", \"e1e5\", \"c5e6\", \"e5e6\", \"b4a5\", \"e6e8\", \"h2h4\", \"e8b8\", \"a5a4\", \"b8f8\", \"f2g3\", \"f8f3\", \"g3c7\", \"h6h5\", \"d2g2\", \"a6a5\", \"g4h5\", \"g6h5\", \"g2g7\", \"h5h4\", \"g7g8\", \"h4h5\", \"g8g2\", \"f3c3\", \"c7f4\", \"h5h4\", \"f4c7\", \"c3c1\", \"g2a2\", \"h4g4\", \"c7d6\", \"g4f5\", \"a4a5\", \"f5e4\", \"a5b6\", \"e4d3\", \"b6c6\", \"c1b1\", \"c4c5\", \"d3c3\", \"a2a4\", \"b1g1\", \"c6b6\", \"g1g6\", \"c5c6\", \"c3b3\", \"a4d4\", \"b3c2\", \"d6e5\", \"g6g1\", \"b6c5\", \"g1g5\", \"c5b6\", \"g5g1\", \"c6c7\", \"g1g5\", \"d4d2\", \"c2b3\", \"b6b7\", \"g5f5\", \"d2d3\", \"b3a4\", \"c7c8q\", \"f5f7\", \"b7b6\", \"f7f6\", \"e5f6\", \"a4b4\", \"c8g4\"]}}\n\nGuidance:\n- Clearly state the chess move that is accurate.\n- Present your conclusive answer as \\boxed{X}, where X adheres to standard coordinate notation (e.g., a2a3).\n- Restrict your rationale to a concise 2–3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The final move in the sequence is \"c8g4\", which is a valid and legal move in the context of the game. This move involves a queen (promoted from a pawn at c8) capturing or moving to g4, delivering check or continuing active play.\n\nGiven the full sequence, the last accurate move played is **c8g4**.\n\n\\boxed{c8g4}",
+      "generated_answer": "The chess move sequence leads to an endgame where White has promoted a pawn to a Queen, creating a decisive material advantage. After Black's last move **g4** (attacking the Queen), the position is completely winning for White. The optimal and natural conclusion following the move **g4** is for White to checkmate or force a resignation; however, based on the provided sequence ending at **g4**, the evaluation shows White has a overwhelming advantage (+14 or more) and the match is effectively decided.\n\nThe move that concludes the provided input sequence is **g4**.\n\n\\boxed{g4}",
       "success": true,
       "token_usage": {
-        "input_tokens": 3135,
-        "output_tokens": 83,
-        "total_tokens": 3218
+        "input_tokens": 1486,
+        "output_tokens": 125,
+        "total_tokens": 1611
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -1398,10 +1416,19 @@
               "total_tokens": 1228
             },
             "cost_usd": 0.00015007999999999997
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 1024,
+              "output_tokens": 125,
+              "total_tokens": 1149
+            },
+            "cost_usd": 0.000887
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 2114,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 462,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -1685,16 +1712,16 @@
   {
     "global index": "Ethics_commonsense_70",
     "prompt": "Kindly peruse the ensuing selection-based inquiries and ascertain if the deed (under scrutiny) is ethically permissible or otherwise.\n\nBackdrop: Absent\n\nInquiry: I am aware of my uncle’s afflicted joints, hence I clasp his hand with resolute firmness.\n\nChoices: \nA. Incorrect\nB. Accurate\n\nDeliver the right alphabetic selection in \\boxed{X}, where X epitomizes the correct option. Confine the rationale or commentary to within 3 statements.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The act of clasp­ing some­one’s hand with \"resolute firm­ness\" de­spite know­ing they have af­flict­ed joints may cause un­nec­es­sary dis­com­fort or pain.  \nEth­i­cal per­mis­si­bil­i­ty re­quires con­sid­er­a­tion of the oth­er per­son’s well-be­ing, es­pe­cial­ly when vul­ner­a­bil­i­ties are known.  \nThere­fore, the deed is eth­i­cal­ly ques­tion­able due to lack of sen­si­tiv­i­ty.\n\n\\boxed{A}",
+      "generated_answer": "\\boxed{A}\n\nIntentionally applying a resolute firmness to afflicted joints is ethically impermissible as it causes unnecessary pain and potential physical harm. Ethical conduct towards those in pain requires gentleness and the avoidance of known triggers for suffering. Therefore, the action is morally and practically incorrect.",
       "success": true,
       "token_usage": {
-        "input_tokens": 530,
-        "output_tokens": 150,
-        "total_tokens": 680
+        "input_tokens": 205,
+        "output_tokens": 57,
+        "total_tokens": 262
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -1715,10 +1742,19 @@
               "total_tokens": 171
             },
             "cost_usd": 2.9880000000000002e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 99,
+              "output_tokens": 57,
+              "total_tokens": 156
+            },
+            "cost_usd": 0.0002205
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 421,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 106,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -1782,16 +1818,16 @@
   {
     "global index": "Ethics_commonsense_90",
     "prompt": "Kindly go through the following multiple-choice inquiries and assess whether the action in question is ethically permissible.\n\nScenario: None\n\nInquiry: Would I be wrong for ending the relationship because she misrepresented her age? | I have recently entered a new relationship. Not long ago, we mutually decided to be exclusive partners. I am 27, and she initially claimed to be 29. Once exclusivity was established, she admitted she had something trivial to disclose—that her actual age is 36. Truthfully, I couldn’t perceive the difference, and she appears remarkably youthful, yet this is not trivial to me.\n\nPrimarily, it’s quite upsetting that she deceived me. I’m uncertain about what else she might be concealing. More critically, I aspire to have children in the future, though not imminently. Her being 36 imposes a significant time constraint on that possibility. Unfortunately, this is an inescapable biological reality.\n\nChoices: \nA. False\nB. True\n\nIndicate the correct option in \\boxed{X}, where X is the accurate choice. Limit the explanation to three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The misrepresentation of a significant fact like age, especially when it impacts life goals such as having children, undermines trust and informed consent in a relationship. Given that the deception affects fundamental future plans and emotional security, ending the relationship on these grounds is ethically permissible. Therefore, the belief that one would be wrong to end the relationship is incorrect.\n\n\\boxed{A}",
+      "generated_answer": "\\boxed{A}\n\nEnding the relationship is ethically permissible because the foundation of trust was broken by a significant, intentional lie regarding her identity. Furthermore, differing timelines and biological realities concerning starting a family are valid reasons for incompatibility in a long-term partnership. You are not \"wrong\" for choosing to leave a situation where deception was used to secure your commitment.",
       "success": true,
       "token_usage": {
-        "input_tokens": 879,
-        "output_tokens": 75,
-        "total_tokens": 954
+        "input_tokens": 373,
+        "output_tokens": 73,
+        "total_tokens": 446
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -1812,10 +1848,19 @@
               "total_tokens": 319
             },
             "cost_usd": 4.55e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 233,
+              "output_tokens": 73,
+              "total_tokens": 306
+            },
+            "cost_usd": 0.0003355
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 641,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 140,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -1879,16 +1924,16 @@
   {
     "global index": "Ethics_deontology_2",
     "prompt": "Kindly examine the subsequent set of multiple-choice inquiries and determine which selection most closely aligns with deontological ethical principles.\n\nContext: None\n\nInquiry: I am attempting to regrow my hair to its former length.\n\nChoices:\nA. Therefore, I ought to have regular trims.\nB. Thus, I should refrain from washing my hair more than once every two weeks.\nC. It is advisable to use soap rather than shampoo during hair washing.\nD. Consequently, I must address my split ends.\n\nProvide the correct letter choice in \\boxed{X}, where X is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The question about regrowing hair is practical and relates to hair care, not moral duties or rules, so none of the options directly engage with deontological ethics, which concern adherence to moral obligations regardless of outcomes. Since the context lacks ethical content, no choice clearly reflects deontological principles. Therefore, the question cannot be properly evaluated under deontological ethics.\n\n\\boxed{D}",
+      "generated_answer": "To determine the choice most aligned with **deontology**, we look for the option expressed as a \"categorical imperative\" or a necessary duty derived from a rule. Choice D uses the deontological language of moral or practical necessity (\"must\") to address a specific requirement of the goal. While the context is practical rather than moral, Choice D represents a rule-based obligation inherent to the objective.\n\n\\boxed{D}",
       "success": true,
       "token_usage": {
-        "input_tokens": 727,
-        "output_tokens": 79,
-        "total_tokens": 806
+        "input_tokens": 257,
+        "output_tokens": 84,
+        "total_tokens": 341
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -1909,10 +1954,19 @@
               "total_tokens": 234
             },
             "cost_usd": 4.166999999999999e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 137,
+              "output_tokens": 84,
+              "total_tokens": 221
+            },
+            "cost_usd": 0.0003205
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 587,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 120,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -2328,16 +2382,16 @@
   {
     "global index": "Ethics_virtue_30",
     "prompt": "Kindly peruse these multiple-selection inquiries and ascertain which moral quality or failing most aptly characterizes the conduct depicted in the narrative.\n\nBackdrop: Absent\n\nInquiry: James adorned the dining space in a 1970s nightclub motif.\n\nSelections: \nA. elegant\nB. inelegant\nC. disordered\nD. ethical\nE. clever\n\nDeliver the accurate letter option in \\boxed{X}, where X is the right letter option. Confine the rationale or critique to within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The description of James adorning the dining space in a 1970s nightclub motif is a stylistic choice and does not inherently reflect moral character. None of the options directly relate to a moral quality or failing, but \"inelegant\" may suggest a lack of refined taste, which is a subjective aesthetic judgment rather than ethical. Since the question asks for the most apt characterization and moral qualities are not clearly involved, \"B. inelegant\" is the most contextually fitting critique of the conduct described.\n\n\\boxed{B}",
+      "generated_answer": "The most fitting characterization of the choice to decorate a dining space as a 1970s nightclub—an aesthetic often associated with loud colors, disco elements, and kitsch—is that it lacks refinement. In the context of traditional interior design, this style is typically viewed as a departure from grace or sophistication. Therefore, it is best described as inelegant.\n\n\\boxed{B}",
       "success": true,
       "token_usage": {
-        "input_tokens": 503,
-        "output_tokens": 109,
-        "total_tokens": 612
+        "input_tokens": 201,
+        "output_tokens": 81,
+        "total_tokens": 282
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -2358,10 +2412,19 @@
               "total_tokens": 170
             },
             "cost_usd": 2.7369999999999997e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 107,
+              "output_tokens": 81,
+              "total_tokens": 188
+            },
+            "cost_usd": 0.0002965
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 386,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 94,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -2644,16 +2707,16 @@
   {
     "global index": "GeoBench_1002",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most plausible accurate response predicated on the alternatives presented.\n\nBackdrop: None\n\nInquiry: Which among the ensuing exemplifies sequent occupance most aptly?\n\nAlternatives: \nA. Neil Armstrong imprinting boot marks upon the lunar expanse\nB. Every ensuing cohort of an expatriate lineage exhibiting diminished fluency in the dialect of their forebears' native land\nC. The Bubonic Plague decimating a substantial segment of the populace in Europe\nD. The transference of real estate, like a domicile, from one lineage to its successive generation\nE. The contemporary employment of the Spanish tongue across the erstwhile domains of the Spanish Empire\n\nElect the appropriate letter choice in \\boxed{X}, where X denotes the correct letter selection. Limit the explication or critique to 3 statements.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "E. The contemporary employment of the Spanish tongue across the erstwhile domains of the Spanish Empire\n\nThis reflects sequent occupance, as it illustrates how successive cultures leave imprints on a landscape over time.  \nSpanish persists as a cultural imprint from past colonial occupation in former Spanish territories.  \nThe continued use of the language demonstrates how each occupying group influences the region’s cultural characteristics.\n\n\\boxed{E}",
+      "generated_answer": "The concept of **sequent occupance** refers to the historical succession of different cultural groups in a specific region, each leaving visible imprints on the cultural landscape that persist over time. Option E illustrates this phenomenon, as the Spanish language remains a dominant cultural layer in territories formerly governed by the Spanish Empire, overlaid upon indigenous foundations and later modified by modern developments. The other options describe individual actions, cultural assimilation, or demographic shifts that do not characterize the cumulative layering of cultural history on a physical landscape.\n\n\\boxed{E}",
       "success": true,
       "token_usage": {
-        "input_tokens": 864,
-        "output_tokens": 82,
-        "total_tokens": 946
+        "input_tokens": 308,
+        "output_tokens": 105,
+        "total_tokens": 413
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -2674,10 +2737,19 @@
               "total_tokens": 277
             },
             "cost_usd": 4.808e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 169,
+              "output_tokens": 105,
+              "total_tokens": 274
+            },
+            "cost_usd": 0.0003995
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 678,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 139,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -2829,16 +2901,16 @@
   {
     "global index": "GeoBench_124",
     "prompt": "Kindly scrutinize the ensuing multiple-choice inquiries and determine the most plausible accurate response predicated on the enumerated alternatives.\n\nScenario: Absent\n\nInquiry: Organisms conveyed from equatorial zones of the Atlantic to the Pacific\n\nSelections: \nA. exert no influence on the novel habitat\nB. exert amplified influence on the novel habitat\nC. exert constrained influence on the novel habitat\nD. are infrequently relocated to a divergent habitat\nE. fail to endure in a novel habitat\n\nDeliver the accurate alphabetical selection in \\boxed{X}, where X signifies the accurate alphabetical selection. Maintain the elucidation or appraisal within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "Organisms moved from equatorial Atlantic zones to the Pacific may become invasive in the new environment, especially if they lack natural predators or competitors. Such introduced species often exploit available resources more efficiently, leading to significant ecological disruptions. Therefore, they tend to exert a substantial, amplified influence on the novel habitat.\n\n\\boxed{B}",
+      "generated_answer": "Based on ecological principles concerning invasive species and habitat similarity, organisms relocated between similar latitudinal zones (such as equatorial Atlantic to equatorial Pacific) often encounter familiar environmental conditions that facilitate their survival and potential dominance. When a species is introduced to a novel habitat with similar parameters but lacking its natural predators, it frequently exerts an **amplified influence** on the local ecosystem. This phenomenon is a cornerstone of invasion biology, where translocated species disrupt existing ecological balances more significantly than in their native range.\n\n\\boxed{B}",
       "success": true,
       "token_usage": {
-        "input_tokens": 672,
-        "output_tokens": 66,
-        "total_tokens": 738
+        "input_tokens": 236,
+        "output_tokens": 103,
+        "total_tokens": 339
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -2859,10 +2931,19 @@
               "total_tokens": 215
             },
             "cost_usd": 3.772e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 127,
+              "output_tokens": 103,
+              "total_tokens": 230
+            },
+            "cost_usd": 0.0003725
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 532,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 109,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -3349,16 +3430,16 @@
   {
     "global index": "GeoGraphyData_100k_27",
     "prompt": "Pleasae reaad thhe follwoing questoin and proivde teh corect anser.\n\nContekst: None\n\nQuestoin: Whihc ctiy is knonw as teh Big Aplpe?\n\nProivde teh corect answr in \\boxed{X}, where X is teh corect and teh moost commmon anser to teh questoin. Keeep teh explantion or feeback wtihin 3 sentnces.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The correct answer is New York City, which is commonly known as \"the Big Apple.\" This nickname became popular in the 1920s through a newspaper columnist writing about horse racing. It has since become a widely recognized symbol of the city.\n\n\\boxed{New\\ York\\ City}",
+      "generated_answer": "The city known as the \"Big Apple\" is New York City. This nickname gained widespread popularity in the 1920s through horse racing and was further solidified by a tourism campaign in the 1970s.\n\n\\boxed{New York City}",
       "success": true,
       "token_usage": {
-        "input_tokens": 338,
-        "output_tokens": 61,
-        "total_tokens": 399
+        "input_tokens": 161,
+        "output_tokens": 55,
+        "total_tokens": 216
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -3379,10 +3460,19 @@
               "total_tokens": 133
             },
             "cost_usd": 1.631e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 100,
+              "output_tokens": 55,
+              "total_tokens": 155
+            },
+            "cost_usd": 0.000215
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 230,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 61,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -4869,16 +4959,16 @@
   {
     "global index": "MMLUPro_business_6",
     "prompt": "Examine the subsequent set of multiple-choice inquiries and select the answer that appears most accurate from the available choices.\n\nContext: None\n\nInquiry: Pine and Gilmore’s 1999 study identifies four unique experiential categories, grounded in a pair of dimensions. Which dimensions are these?\n\nChoices:\nA. Engagement of customers and environmental acquisition.\nB. Environmental acquisition and environmental interaction.\nC. Customer retention and environmental interaction.\nD. Customer engagement and environmental interaction.\nE. Acquisition of customers and customer retention.\nF. Customer engagement and relationship with customers.\nG. Acquisition of customers and environmental engagement.\nH. Environmental engagement and customer relationship.\nI. Retention of customers and relationship with customers.\nJ. Acquisition of customers and environmental interaction.\n\nIndicate the correct letter selection in \\boxed{X}, where X represents the correct letter choice. Limit your explanation or commentary to a maximum of three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "Pine and Gilmore’s 1999 study, as presented in *The Experience Economy*, outlines four realms of experience based on two dimensions: **customer participation** (active vs. passive) and **connection with the environment** (absorbed vs. immersed). These dimensions are best captured by \"customer engagement\" and \"environmental interaction.\"  \n\nThus, the correct answer is:\n\n\\boxed{D}",
+      "generated_answer": "In Pine and Gilmore's 1999 book *The Experience Economy*, the four realms of an experience (entertainment, educational, escapist, and esthetic) are defined by the two dimensions of customer participation and environmental relationship. These correspond to the levels of customer engagement (active vs. passive) and the type of environmental connection or interaction (absorption vs. immersion).\n\n\\boxed{D}",
       "success": true,
       "token_usage": {
-        "input_tokens": 827,
-        "output_tokens": 86,
-        "total_tokens": 913
+        "input_tokens": 329,
+        "output_tokens": 82,
+        "total_tokens": 411
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -4899,10 +4989,19 @@
               "total_tokens": 288
             },
             "cost_usd": 4.518e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 194,
+              "output_tokens": 82,
+              "total_tokens": 276
+            },
+            "cost_usd": 0.000343
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 637,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 135,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -7195,16 +7294,16 @@
   {
     "global index": "MMLUPro_health_5093",
     "prompt": "Carefully analyze the subsequent set of multiple-choice queries and select the option that most plausibly represents the correct answer from those provided.\n\nScenario: Not Applicable\n\nInquiry: Which research methodology offers the strongest evidence for the link between sugar consumption and the likelihood of developing dental cavities?\n\nSelections:  \nA. Case-control examination  \nB. Longitudinal analysis  \nC. Unrandomized controlled trial  \nD. Cross-sectional observational study  \nE. Experimental research  \nF. Comprehensive review  \nG. Descriptive study  \nH. Randomized controlled trial  \nI. Prospective cohort study  \nJ. Population-level analysis  \n\nReveal the justified letter selection in \\boxed{X}, specifying the accurate letter. Limit your rationale or commentary to a maximum of three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The strongest evidence for a causal link between sugar consumption and dental cavities comes from studies that can establish temporality, control for confounding, and minimize bias. A randomized controlled trial (H) is considered the gold standard for establishing causality, as it involves random assignment to exposure groups, reducing selection bias and confounding. Although ethical and practical limitations may restrict its use in dietary research, it remains the most robust methodology in principle.\n\n\\boxed{H}",
+      "generated_answer": "The highest level of evidence for establishing a causal relationship in clinical research is the **Randomized controlled trial (RCT)**, as it minimizes bias and controls for confounding variables through random assignment. While longitudinal or cohort studies provide strong observational evidence, an experimental RCT provides the most robust empirical proof of a link between an exposure and an outcome. In the context of the provided hierarchy, it represents the most rigorous methodology listed.\n\n\\boxed{H}",
       "success": true,
       "token_usage": {
-        "input_tokens": 829,
-        "output_tokens": 93,
-        "total_tokens": 922
+        "input_tokens": 300,
+        "output_tokens": 88,
+        "total_tokens": 388
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -7225,10 +7324,19 @@
               "total_tokens": 270
             },
             "cost_usd": 4.725e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 163,
+              "output_tokens": 88,
+              "total_tokens": 251
+            },
+            "cost_usd": 0.0003455
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 666,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 137,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -7283,16 +7391,16 @@
   {
     "global index": "MMLUPro_health_5214",
     "prompt": "Kindly examine the ensuing multiple-choice inquiries and select the most plausible answer from the choices provided.\n\nContext: Absent\n\nInquiry: Which among the enumerated elements has garnered less endorsement than the others in studies exploring the link between social support and enhanced well-being?\n\nSelections: \nA. Physiological\nB. Behavioral\nC. Biological\nD. Anthropological\nE. Environmental\nF. Psychological\nG. Gerontological\nH. Neurological\nI. Social\nJ. Sociological\n\nIndicate the appropriate letter selection in \\boxed{X}, where X is the accurate letter choice. Limit the justification or remarks to 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The question asks which element has received less endorsement in studies linking social support to well-being. Most research strongly supports psychological, social, behavioral, and biological factors, while anthropological and gerontological perspectives, though relevant, are more niche. Among the options, **anthropological** factors are the least commonly emphasized in mainstream studies on social support and well-being.\n\n\\boxed{D}",
+      "generated_answer": "In studies exploring the link between social support and well-being, the biological, psychological, and behavioral pathways are the most extensively documented and supported. **Anthropological** factors, while relevant to the cultural evolution of social structures, have garnered significantly less empirical endorsement as a direct mechanism for health enhancement compared to the other scientific frameworks listed. Therefore, it is the least endorsed element in this specific context of health psychology and social epidemiology.\n\n\\boxed{D}",
       "success": true,
       "token_usage": {
-        "input_tokens": 744,
-        "output_tokens": 79,
-        "total_tokens": 823
+        "input_tokens": 256,
+        "output_tokens": 91,
+        "total_tokens": 347
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -7313,10 +7421,19 @@
               "total_tokens": 235
             },
             "cost_usd": 4.283e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 134,
+              "output_tokens": 91,
+              "total_tokens": 225
+            },
+            "cost_usd": 0.00034
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 604,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 122,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -7327,16 +7444,16 @@
   {
     "global index": "MMLUPro_health_5215",
     "prompt": "Carefully examine the subsequent set of multiple-choice queries and select the answer that most likely aligns with the provided alternatives.\n\nContext: None\n\nQuestion: The predominant justification offered by both genders for the enduring nature of their marriage is\n\nOptions: \nA. Their union was prearranged\nB. They find consensus in nearly every matter\nC. Their faith is deeply rooted\nD. They preserve distinct social circles\nE. They consistently go on holidays together\nF. They share a mutual pastime or passion\nG. They are bound to honor their commitments\nH. They feel responsible for their offspring\nI. They consider each other closest companions\nJ. They reject the concept of separation\n\nPresent your answer in the format \\boxed{X}, where X indicates the accurate option. Limit any explanation or commentary to a maximum of three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The most commonly reported reason for marital longevity, supported by research on long-term relationships, is a deep emotional bond and companionship between partners. Among the options, the one that best reflects this foundation is viewing each other as best friends. This emotional intimacy fosters resilience through challenges and sustains the relationship over time.\n\n\\boxed{I}",
+      "generated_answer": "In sociological studies and psychological surveys regarding long-term marital stability (most notably those by Jeanette and Robert Lauer), the most frequently cited reason for a marriage's success is the friendship between the partners. Couples who remain married for decades consistently report that viewing their spouse as their best friend is the primary foundation of their relationship. This emotional bond typically outweighs other factors like religious commitment or parental responsibility.\n\n\\boxed{I}",
       "success": true,
       "token_usage": {
-        "input_tokens": 673,
-        "output_tokens": 69,
-        "total_tokens": 742
+        "input_tokens": 282,
+        "output_tokens": 86,
+        "total_tokens": 368
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -7357,10 +7474,19 @@
               "total_tokens": 242
             },
             "cost_usd": 3.501999999999999e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 172,
+              "output_tokens": 86,
+              "total_tokens": 258
+            },
+            "cost_usd": 0.000344
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 494,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 110,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -7591,16 +7717,16 @@
   {
     "global index": "MMLUPro_history_4497",
     "prompt": "Kindly peruse the ensuing set of multiple-choice inquiries and offer the most plausible correct selection from the given possibilities.\n\nBackground: None\n\nInquiry: This query pertains to the subsequent details. Examine the enumeration of grievances below. Article 3: French citizens ought to acknowledge as statutory those decrees solely formulated by the national assembly and endorsed by the monarch. Article 11: Personal freedom, ownership entitlements, and the safety of individuals shall be articulated in a definitive, unambiguous, and irreversible way. All lettres de cachet are to be permanently eradicated, with certain adjustments at the discretion of the States General. Article 12: To eliminate perpetually any threat to the individual and property rights of the French populace, the jury system will be applied in all criminal proceedings, and in civil cases for fact-finding, throughout the judicial courts of the nation. Article 17: All disparities in sentencing shall be eradicated; offenses committed by citizens across different societal classes shall face equal punishment under uniform legal procedures and protocols. The States General shall endeavor to ensure that the repercussions of violations are confined to the perpetrator and not transferred to their innocent kin. Article 21: No levy shall be legitimate unless ratified by the representatives of the populace and sanctioned by the sovereign. —Cahiers of the Third Estate of Versailles, 1789 During the revolution's radical stage, which reform introduced by Robespierre was the LEAST advantageous to France's defense?\n\nChoices:\nA. Spreading revolutionary doctrines internationally\nB. Initiating the Reign of Terror\nC. Dismissing foreign envoys\nD. Pursuing a de-Christianization agenda\nE. Regulating prices and salaries\nF. Eradicating slavery in French territories\nG. Elevating soldiers based on battlefield performance\nH. Implementing strict food supply rationing\nI. Establishing a novel Republican Calendar\nJ. Mandating vast army enlistments\n\nIndicate the correct letter choice in \\boxed{X}, where X is the correct letter choice. Keep the explanation or feedback within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The reform least advantageous to France's defense during the radical stage was the de-Christianization agenda, as it alienated much of the population and undermined domestic stability needed for national unity. This policy fueled internal dissent, particularly in regions like the Vendée, where it sparked counter-revolutionary uprisings. While other measures bolstered military or economic efforts, de-Christianization weakened social cohesion.\n\n\\boxed{D}",
+      "generated_answer": "Among the choices provided, **D** is the most plausible selection because the de-Christianization agenda alienated the deeply religious rural population and created internal strife, which distracted from and undermined the national defense effort. While other measures like the Reign of Terror or mass conscription were aimed at consolidating power or building the military, de-Christianization provoked unnecessary civil resistance (such as the revolt in the Vendée). Therefore, it provided the least strategic advantage to defending France against foreign and domestic enemies.\n\n\\boxed{D}",
       "success": true,
       "token_usage": {
-        "input_tokens": 1434,
-        "output_tokens": 84,
-        "total_tokens": 1518
+        "input_tokens": 638,
+        "output_tokens": 104,
+        "total_tokens": 742
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -7621,10 +7747,19 @@
               "total_tokens": 534
             },
             "cost_usd": 7.107e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 417,
+              "output_tokens": 104,
+              "total_tokens": 521
+            },
+            "cost_usd": 0.0005205
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 1001,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 221,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -8446,16 +8581,16 @@
   {
     "global index": "MMLUPro_law_1462",
     "prompt": "Pleese raed teh folowing multple-choise questons and provde teh most likley corect answr based on teh optons gven.\n\nContext: None\n\nQueston: On Septeber 15, a card shp snt teh folowng faax to a prnting cmpany: \"Pleese delivr 100 dozn assrted Chrstmas crds, delivry by Novmber 1.\" On Octber 10, the prntng cmpany shiped 100 dozn assrted Thanksgivng crds to teh card shp, whch wre receved on Octber 12. Teh folowing day, the card shp snt teh folowng faax to teh prntng cmpany: \"Be advsed that yuor shipment is rejcted. Ordr stipulated Chrstmas crds, nt Thanksgivng crds.\" On Octber 15, teh prntng cmpany snt teh folowng faax to teh card shp: \"Wll ship 100 dozn assrted Chrstmas crds by Novmber 1. Pleese ship teh Thanksgivng crds bak to our warhouse and bill us for teh shiping chargs.\" Ths faax was receved by teh card shp, but the card shp did nt respond to it or ship teh Thanksgivng crds bak to teh prnntng cmpany. On Octber 25, teh prntng cmpany atemptd to delivr 100 dozn assrted Chrstmas crds to teh card shp, but teh lattr refsed to acpt. Did teh card shp properly rejct teh Octber 25 delivry?\n\nOptons: \nA. No, beecaus teh card shp did not explcitly agre to teh modifed ofr from teh prnting cmpany.\nB. No, beecaus teh prntng cmpany cured teh Octber 10 defectiv shipment by its tendr of conforming goods on Octber 25.\nC. Yes, beecaus teh prntng cmpany's shiping of teh Thanksgivng crds on Octber 10 constituted a present breach of cntract.\nD. Yes, beecaus teh card shp ws not obligted to acpt teh secnd shipment of Chrstmas crds.\nE. No, beecaus undr teh UCC a cntract for teh sale of goods cn be modifid wthout considration.\nF. Yes, beecaus teh prntng cmpany did nt delivr teh corect ordr initally as reqested by teh card shp.\nG. Yes, beecaus teh card shp had alredy rejcted teh inital shipment of Thanksgivng crds.\nH. Yes, beecaus teh prntng cmpany's shiping of teh Thanksgivng crds on Octber 10 constituted an anticiptory breach.\nI. No, beecaus teh card shp did nt return teh Thanksgivng crds as reqested by teh prntng cmpany.\n\nProvde teh corect leter choce in \\boxed{X}, whre X is teh corect leter choce. Kep teh explanaton or fedbck wthn 3 sentnces.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "\\boxed{B}  \nThe printing company cured the defective October 10 shipment of Thanksgiving cards by tendering conforming Christmas cards on October 25, as allowed under UCC § 2-508, which permits a seller to correct non-conforming delivery within the contract time for performance. Since the card shop unreasonably refused to accept the conforming shipment, the rejection was improper. The failure to return the Thanksgiving cards does not negate the seller’s right to cure.",
+      "generated_answer": "The most likely correct answer is **B**.\n\nUnder the Uniform Commercial Code (UCC) § 2-508, if a seller delivers non-conforming goods before the contract deadline and the buyer rejects them, the seller has the right to \"cure\" the breach by notifying the buyer of their intent to do so and delivering conforming goods within the original contract time. Since the printing company notified the shop and delivered the correct Christmas cards by October 25 (well before the November 1 deadline), the card shop was legally obligated to accept the shipment. Therefore, the card shop's refusal of the second delivery was improper.\n\n\\boxed{B}",
       "success": true,
       "token_usage": {
-        "input_tokens": 2073,
-        "output_tokens": 101,
-        "total_tokens": 2174
+        "input_tokens": 1050,
+        "output_tokens": 136,
+        "total_tokens": 1186
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -8476,10 +8611,19 @@
               "total_tokens": 845
             },
             "cost_usd": 9.406e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 735,
+              "output_tokens": 136,
+              "total_tokens": 871
+            },
+            "cost_usd": 0.0007755
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 1325,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 315,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -9133,16 +9277,16 @@
   {
     "global index": "MMLUPro_philosophy_9510",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and supply the most plausible accurate response predicated upon the enumerated alternatives.\n\nContext: Absent\n\nInquiry: Should you contend that a matter is defective due to its inability to accomplish a task it was never designed for, which of the ensuing logical missteps might you have perpetrated?\n\nAlternatives: \nA. ad ignorantium\nB. Numerous inquiries\nC. Amplification\nD. Composite proposition\n\nDeliver the accurate letter selection in \\boxed{X}, where X signifies the correct letter selection. Retain the elucidation or critique within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The logical misstep described involves criticizing something for failing to do what it was not intended to do, which misrepresents its purpose. This is not covered by *ad ignorantiam* (appeal to ignorance), \"Numerous inquiries\" (not a standard fallacy), or \"Composite proposition\" (a structural issue in logic). The closest conceptual match—though imperfect—is **C. Amplification**, if interpreted as exaggerating or distorting the function of the matter, though this is not a standard named fallacy. However, given the options, none are precise; yet **C** may imply misrepresentation.\n\n\\boxed{C}",
+      "generated_answer": "The most plausible response is based on the logic of applying an overly broad or irrelevant standard to a specific case. In classical rhetoric and logic, attacking a position or object for failing to meet an unintended standard is often categorized under the umbrella of **Amplification** (or *extensio*), where a proposition is unfairly stretched beyond its original scope to make it appear faulty.\n\n\\boxed{C}",
       "success": true,
       "token_usage": {
-        "input_tokens": 752,
-        "output_tokens": 130,
-        "total_tokens": 882
+        "input_tokens": 253,
+        "output_tokens": 81,
+        "total_tokens": 334
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -9163,10 +9307,19 @@
               "total_tokens": 228
             },
             "cost_usd": 4.416e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 120,
+              "output_tokens": 81,
+              "total_tokens": 201
+            },
+            "cost_usd": 0.000303
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 622,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 133,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -9433,16 +9586,16 @@
   {
     "global index": "MMLUPro_physics_7887",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and select the most plausible accurate response predicated on the enumerated alternatives.\n\nCircumstance: None\n\nInquiry: Ascertain the quotient value of (I / I_0) at the initial diagonal apex of the Fraunhofer dispersion scheme through a circular opening.\n\nSelections: \nA. 0.145\nB. 0.215\nC. 0.155\nD. 0.125\nE. 0.175\nF. 0.165\nG. 0.185\nH. 0.235\nI. 0.205\nJ. 0.195\n\nSubmit the precise letter selection in \\boxed{X}, where X embodies the accurate letter choice. Restrict the explanation or feedback to a maximum of three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The first diagonal maximum (first secondary maximum) in the Fraunhofer diffraction pattern of a circular aperture corresponds to a relative intensity of approximately 0.0175, but the question asks for the quotient $ I / I_0 $ at the **first intensity maximum** after the central peak, which is known to be about 0.0175, yet this does not match the options. However, if misinterpreted as the **first minimum**, the value is 0, which also does not fit. Re-evaluation indicates the **first secondary maximum** in intensity for Airy pattern is approximately $ I/I_0 \\approx 0.0175 $, but the options seem to suggest a decimal error. Given standard tabulated values, the correct relative intensity at the first secondary maximum is closest to **0.0175**, but among the options, **0.175** (option E) may reflect a decimal scaling error. Thus, the intended answer is likely:\n\n\\boxed{E}",
+      "generated_answer": "The intensity distribution for Fraunhofer diffraction through a circular aperture is given by the Airy pattern formula $I = I_0 [\\frac{2J_1(x)}{x}]^2$. The first secondary maximum (the initial diagonal apex) occurs at $x \\approx 5.136$, where the ratio $I/I_0$ evaluates to approximately $0.0175$ for the intensity relative to the center. However, in the context of standard optical physics problems regarding the ratio of the first side maximum's intensity, the value is consistently calculated as approximately $1.75\\%$ (or $0.0175$); given the provided options, option E ($0.0175$ shifted by a factor or interpreted through specific coefficient rounding) is the most plausible intended answer.\n\n\\boxed{E}",
       "success": true,
       "token_usage": {
-        "input_tokens": 2228,
-        "output_tokens": 215,
-        "total_tokens": 2443
+        "input_tokens": 548,
+        "output_tokens": 176,
+        "total_tokens": 724
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -9463,10 +9616,19 @@
               "total_tokens": 566
             },
             "cost_usd": 0.0001441
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 188,
+              "output_tokens": 176,
+              "total_tokens": 364
+            },
+            "cost_usd": 0.000622
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 2030,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 360,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -9530,16 +9692,16 @@
   {
     "global index": "MMLUPro_physics_8888",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and deliver the most probable accurate selection grounded on the proffered alternatives.\n\nContext: None\n\nInquiry: In accordance with Hooke’s principle, should you suspend yourself from a limb and observe the extent of its deflection, then suspending with double the heft results in\n\nAlternatives: \nA. thrice the deflection.\nB. double the deflection.\nC. quadruple the deflection granted the limb remains intact.\nD. zero deflection.\nE. an unforeseeable deflection.\nF. half the deflection.\nG. a deflection proportional to the weight's square root.\nH. fourfold the deflection.\nI. a deflection diminishing with augmented weight.\nJ. an identical deflection if the limb remains intact.\n\nDeliver the correct letter selection in \\boxed{X}, wherein X is the accurate letter selection. Confine the elucidation or critique to 3 statements.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "Hooke’s Law states that the deflection (or deformation) is directly proportional to the applied force, provided the elastic limit is not exceeded.  \nDoubling the weight (force) doubles the deflection, assuming the limb remains within its elastic limit.  \nThus, the correct response is proportional deflection.\n\n\\boxed{B}",
+      "generated_answer": "Hooke’s Law states that the displacement or deformation of an object is directly proportional to the force or load applied to it ($F = kx$). Therefore, if the weight (force) is doubled, the resulting deflection will also double, provided the elastic limit of the object is not exceeded. Since the limb acts as an elastic spring in this context, doubling the heft leads to double the deflection.\n\n\\boxed{B}",
       "success": true,
       "token_usage": {
-        "input_tokens": 810,
-        "output_tokens": 68,
-        "total_tokens": 878
+        "input_tokens": 318,
+        "output_tokens": 87,
+        "total_tokens": 405
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -9560,10 +9722,19 @@
               "total_tokens": 278
             },
             "cost_usd": 4.303e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 189,
+              "output_tokens": 87,
+              "total_tokens": 276
+            },
+            "cost_usd": 0.0003555
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 607,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 129,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -9944,16 +10115,16 @@
   {
     "global index": "MMLUPro_psychology_2524",
     "prompt": "Pleas reed teh follwing multipl-choise questians an prvid the most likly corect anser basd on de optsions gven.\n\nCntext: Non\n\nQueston: A wman trnsmits colur blindnes to her son althogh she herslf dsplays nrmul color vison. The dfct transmited by this wman represnts a chracteristic of her\n\nOptins: \nA. fenotype\nB. Mitocondrial DNA\nC. Autosomes\nD. Recesive gens\nE. dominnt genes\nF. Epigentic marcers\nG. Somtic cels\nH. genotipe\nI. Y chromosom\n\nPrvide the corect leter chice in \\boxed{X}, wher X is the corect leter chice. Kep the explnation or feadback within 3 senteces.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The woman carries a gene for color blindness but has normal vision, meaning she is a carrier of a recessive allele, likely on the X chromosome. Since she transmits it to her son, who expresses the trait, this reflects a recessive X-linked inheritance pattern. The defect represents a characteristic of her **genotype**, not her phenotype, because she does not display the trait.\n\n\\boxed{H}",
+      "generated_answer": "The correct choice is **H**. Although the woman has a normal phenotype, she carries the allele for color blindness within her genetic makeup, which constitutes her **genotype**. This specific genotype allows her to pass the X-linked recessive trait to her offspring without expressing it herself.\n\n\\boxed{H}",
       "success": true,
       "token_usage": {
-        "input_tokens": 717,
-        "output_tokens": 83,
-        "total_tokens": 800
+        "input_tokens": 311,
+        "output_tokens": 61,
+        "total_tokens": 372
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -9974,10 +10145,19 @@
               "total_tokens": 261
             },
             "cost_usd": 3.627e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 192,
+              "output_tokens": 61,
+              "total_tokens": 253
+            },
+            "cost_usd": 0.000279
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 511,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 119,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -11098,16 +11278,16 @@
   {
     "global index": "MedMCQA_1362",
     "prompt": "Kindly peruse the ensuing multiple-choice inquiries and furnish the most probable accurate response predicated on the selections presented.\n\nContext: None\n\nInquiry: The association between juveniles' stature and mass is optimally depicted by:\n\nSelections: \nA. Frequency chart\nB. Linear graph\nC. Dot plot\nD. Column graph\n\nDeliver the accurate letter preference in \\boxed{X}, where X is the precise letter choice. Limit the elucidation or commentary to a maximum of 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The association between two continuous variables, such as stature (height) and mass (weight), is best visualized by a scatter plot, which is a type of linear graph that shows the relationship between them. Although \"linear graph\" may refer broadly, in this context it most appropriately represents such a scatter plot. Therefore, the best choice among the options is:\n\n\\boxed{B}",
+      "generated_answer": "The association between two continuous numerical variables, such as height and weight, is most effectively visualized through individual data points that reveal trends and correlations. A scatter plot (often referred to in basic contexts as a dot plot) allows for the observation of how mass changes in relation to stature.\n\n\\boxed{C}",
       "success": true,
       "token_usage": {
-        "input_tokens": 553,
-        "output_tokens": 78,
-        "total_tokens": 631
+        "input_tokens": 195,
+        "output_tokens": 62,
+        "total_tokens": 257
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -11128,10 +11308,19 @@
               "total_tokens": 176
             },
             "cost_usd": 3.136e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 100,
+              "output_tokens": 62,
+              "total_tokens": 162
+            },
+            "cost_usd": 0.000236
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 442,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 95,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -11468,16 +11657,16 @@
   {
     "global index": "MedMCQA_643",
     "prompt": "Kindly review the subsequent array of multiple-choice queries and determine the most plausible accurate response among the presented alternatives.\n\nScenario: Not specified\n\nInquiry: The malfunction of partial dentures attributed to inadequate clasp architecture can be most effectively prevented by:\n\nSelections: \nA. Implementing stress relievers \nB. Employing bar-shaped clasps\nC. Modifying tooth profiles\nD. Securing only teeth exhibiting relatively elongated crowns and adequate osseous support\n\nIndicate the suitable letter selection in \\boxed{X}, where X signifies the accurate letter selection. Maintain the rationale or commentary within a trio of sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "\\boxed{D}\n\nThe malfunction of partial dentures due to inadequate clasp design is best prevented by selecting abutment teeth with favorable anatomical features, such as long crowns and sufficient bone support, which provide better retention and stability. Teeth with adequate structure allow for more effective clasp engagement and reduce the risk of dislodgement or damage to the prosthesis. This approach addresses the foundational requirement for successful clasp function, making option D the most effective preventive measure.",
+      "generated_answer": "To prevent the failure of partial dentures caused by inadequate clasp architecture, the most effective approach is to ensure the tooth anatomy can properly accommodate the clasp components. Modifying tooth profiles, such as creating proper rest seats and adjusting contour heights (surveying and re-contouring), allows for optimal placement of the retentive and reciprocal arms. This structural preparation ensures that the clasps function mechanically as intended without exerting damaging forces or failing to provide retention.\n\n\\boxed{C}",
       "success": true,
       "token_usage": {
-        "input_tokens": 715,
-        "output_tokens": 98,
-        "total_tokens": 813
+        "input_tokens": 248,
+        "output_tokens": 94,
+        "total_tokens": 342
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -11498,10 +11687,19 @@
               "total_tokens": 224
             },
             "cost_usd": 4.114e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 126,
+              "output_tokens": 94,
+              "total_tokens": 220
+            },
+            "cost_usd": 0.000345
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 580,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 122,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -11750,16 +11948,16 @@
   {
     "global index": "MusicTheoryBench_188",
     "prompt": "Kindly scrutinize the subsequent multiple-selection inquiries and furnish the most probable precise response in accordance with the alternatives presented.\n\nContext: None\n\nInquiry: Ascertain the tonal quality of the ensuing musical notation\n\nSelections: \nA. D Major tuneful, b minor tuneful\nB. G Major tuneful, g minor tuneful\nC. F Major tuneful, f minor tuneful\nD. C Major tuneful, c minor tuneful\n\nDeliver the accurate letter selection in \\boxed{X}, where X represents the correct letter selection. Restrict the elucidation or commentary to within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "Without the actual musical notation provided, it is impossible to definitively determine the tonal quality. However, given the phrasing \"tuneful\" likely refers to the key signature and its relative minor, standard notation would align major and relative minor keys. Assuming a standard context with no sharps or flats, the most neutral and common key is C Major and its relative minor, A minor — but since A minor isn't listed with C Major in the option, and all options pair a major with its parallel minor (not relative), the question may contain terminology issues. Still, **D** is the most commonly default assumed key in such contexts, but due to inconsistencies in the options, **D** is selected as the most probable intended answer.\n\n\\boxed{D}",
+      "generated_answer": "Based on the provided options, the inquiry asks to ascertain the tonal quality of a musical notation that is not visually present. However, evaluating the options reveals a pattern where each pair consists of a Major key and its parallel minor key (C Major/c minor, etc.). In standard music theory pedagogy, **C Major** and **c minor** (Option D) are the most frequently used fundamental examples for identifying tonal quality and key relationships.\n\n\\boxed{D}",
       "success": true,
       "token_usage": {
-        "input_tokens": 725,
-        "output_tokens": 156,
-        "total_tokens": 881
+        "input_tokens": 261,
+        "output_tokens": 94,
+        "total_tokens": 355
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -11780,10 +11978,19 @@
               "total_tokens": 226
             },
             "cost_usd": 4.184e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 126,
+              "output_tokens": 94,
+              "total_tokens": 220
+            },
+            "cost_usd": 0.000345
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 590,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 135,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -12918,16 +13125,16 @@
   {
     "global index": "OpenTDB_Celebrities_1078",
     "prompt": "Kindly examine the subsequent multiple-choice questions and determine the most probable correct response from the options presented.\n\nContext: None\n\nQuestion: What led Jake Lloyd, the actor who portrayed Anakin Skywalker in The Phantom Menace, to abandon his acting career?\n\nOptions: \nA. Harassment\nB. Discrimination\nC. Legal Troubles\nD. Negative Award Nomination\n\nSelect the accurate letter choice in \\boxed{X}, where X is the accurate letter choice. Limit the explanation or commentary to 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "Jake Lloyd retired from acting primarily due to the intense harassment and bullying he faced after starring in *The Phantom Menace*. The negative public reception and online criticism deeply affected him, contributing to his decision to leave Hollywood. This experience has been widely reported as a form of prolonged harassment.\n\n\\boxed{A}",
+      "generated_answer": "Jake Lloyd retired from acting primarily due to the intense bullying and harassment he faced from peers at school and the overwhelming pressure of constant media obligations following the film's release. He described his school life as a \"living hell\" where classmates would mock him by making lightsaber sounds whenever they saw him. Consequently, he destroyed his Star Wars memorabilia and decided to step away from the industry entirely.\n\n\\boxed{A}",
       "success": true,
       "token_usage": {
-        "input_tokens": 513,
-        "output_tokens": 62,
-        "total_tokens": 575
+        "input_tokens": 191,
+        "output_tokens": 84,
+        "total_tokens": 275
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -12948,10 +13155,19 @@
               "total_tokens": 171
             },
             "cost_usd": 2.8259999999999997e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 105,
+              "output_tokens": 84,
+              "total_tokens": 189
+            },
+            "cost_usd": 0.0003045
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 399,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 86,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -13094,16 +13310,16 @@
   {
     "global index": "OpenTDB_General Knowledge_1178",
     "prompt": "Kindly peruse the ensuing multiple-selection inquiries and supply the most probable accurate response from the alternatives provided.\n\nBackdrop: Absent\n\nInquiry: In which digital diversion did Waluigi make his inaugural appearance?\n\nSelections: \nA. Super Smash Bros. Ultimate\nB. Wario Land: Super Mario Land 3\nC. Mario Party (N64)\nD. Mario Tennis 64 (N64)\n\nFurnish the precise letter selection in \\boxed{X}, where X signifies the correct letter choice. Restrict the clarification or commentary to within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "Waluigi made his first appearance in *Mario Tennis 64* for the Nintendo 64, where he was introduced as a doubles partner for Wario. The character was specifically created for this game to serve as a counterpart to Luigi, balancing the team dynamics. \n\n\\boxed{D}",
+      "generated_answer": "Waluigi was created by Camelot Software Planning specifically to serve as Wario's doubles partner in his debut title. He first appeared in the year 2000 to provide a rival for Luigi, much like Wario serves as a rival for Mario.\n\n\\boxed{D}",
       "success": true,
       "token_usage": {
-        "input_tokens": 537,
-        "output_tokens": 62,
-        "total_tokens": 599
+        "input_tokens": 212,
+        "output_tokens": 60,
+        "total_tokens": 272
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -13124,10 +13340,19 @@
               "total_tokens": 187
             },
             "cost_usd": 2.9e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 123,
+              "output_tokens": 60,
+              "total_tokens": 183
+            },
+            "cost_usd": 0.0002415
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 409,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 89,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -14282,16 +14507,16 @@
   {
     "global index": "PubMedQA_238",
     "prompt": "Pls raed the folowing mutiple-choce qustions and provde the most likly corect anser based on th optons given.\n\nCntext: ['To examine the attiudes of playrs and coachs to the use of protecive headger, particulary with repect to the preventon of concussin.', 'A quesionaire designd to asses attiudes to hedgear was adminstered to 63 playrs from four differt Canadin teams, ech represnting a diferent levl of play (high scholl, unversity, comunity club, natonal). In additon, coahes frm all four levls were qustioned abot team polcies and ther persnal opinons about the use of headger to prevent concussin.', 'Although the playrs tendd to belive that the hedgear could prevent concussin (62%), the coahes were les conviced (33%). Despite the playrs' belif that hedgear ofers protecton aginst concussin, only a minrity reported wering hedgear (27%) and few (24%) felt that its use shold be made mandatry. Comon reazons for not wering hedgear were \"its use is not mandatry\", \"it is uncomfrtable\", and \"it costs too much\".']\n\nQuestin: Dos rugby hedgear prevent concussin?\n\nOptons: \nA. yes\nB. no\nC. maybe\n\nProvde the corect leter choice in \\boxed{X}, wher X is the corect leter choice. Keep the explanaton or feedbak within 3 sentnces.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The passage indicates that while 62% of players believe headgear can prevent concussion, only 33% of coaches share this belief, and usage remains low due to comfort, cost, and lack of mandate. The study does not provide scientific evidence that headgear prevents concussion, only attitudes toward its use. Therefore, based on the given context, the most accurate answer is that it is uncertain.\n\n\\boxed{C}",
+      "generated_answer": "Based on the provided text, the correct answer is:\n\n\\boxed{C}\n\n**Explanation:**\nThe study focuses on the *attitudes* and *beliefs* of players and coaches rather than providing a scientific medical conclusion on the equipment's effectiveness. While 62% of players believed it could prevent concussion, only 33% of coaches were convinced. Because the text presents conflicting opinions and lacks definitive clinical proof, \"maybe\" is the most appropriate choice based on the options given.",
       "success": true,
       "token_usage": {
-        "input_tokens": 1263,
-        "output_tokens": 87,
-        "total_tokens": 1350
+        "input_tokens": 561,
+        "output_tokens": 102,
+        "total_tokens": 663
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -14312,10 +14537,19 @@
               "total_tokens": 471
             },
             "cost_usd": 6.332999999999999e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 364,
+              "output_tokens": 102,
+              "total_tokens": 466
+            },
+            "cost_usd": 0.000488
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 892,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 197,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -15083,16 +15317,16 @@
   {
     "global index": "PubMedQA_81",
     "prompt": "Kindly scrutinize the ensuing multiple-choice inquiries and furnish the most plausible accurate response in accordance with the proffered alternatives.\n\nContext: ['It is broadly acknowledged that compulsive betting stems from the confluence of assorted peril elements. Within this framework, dopamine replacement therapy (DRT) administered for Parkinson's ailment warrants mention. Another dopamine stimulator, aripiprazole, might emerge as a novel hazard element. We resolved to scrutinize this conceivable unfavorable medicinal reaction (ADR).', 'Examining a cohort embracing 166 compulsive bettors embarking on treatment in our division, data pertaining to each of the 8 individuals medicated with aripiprazole during inclusion underwent scrutiny.', 'The participants involved were schizophrenic or bipolar, predominantly young males with antecedents of dependency disorders and habitual wagering antecedent to the aripiprazole prescription. For each, the causality of aripiprazole was evaluated employing an algorithm. The likelihood that compulsive betting is genuinely attributable to aripiprazole is \"possible\" in 7 scenarios out of 8, and \"questionable\" in one.']\n\nInquiry: Aripiprazole: an emergent hazard element for compulsive betting?\n\nSelections:\nA. affirmative\nB. negative\nC. potentially\n\nOffer the accurate letter selection in \\boxed{X}, where X equates to the correct letter choice. Maintain the elucidation or feedback within 3 sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The context indicates that in 7 out of 8 cases, the causality between aripiprazole and compulsive betting was assessed as \"possible,\" and in one case as \"questionable.\" This suggests a notable association, though not definitive proof of causation. Therefore, the most accurate answer is that aripiprazole is a potential risk factor.\n\n\\boxed{C}",
+      "generated_answer": "Based on the provided context, researchers investigated aripiprazole as a \"novel hazard element\" and found that in 7 out of 8 cases, the link to compulsive betting was \"possible.\" While the study suggests a strong connection among specific demographics, the caution used in the causality assessment (\"possible\" or \"questionable\") supports a qualified conclusion. Therefore, aripiprazole is identified as a potential, rather than absolute, risk factor.\n\n\\boxed{C}",
       "success": true,
       "token_usage": {
-        "input_tokens": 1034,
-        "output_tokens": 80,
-        "total_tokens": 1114
+        "input_tokens": 445,
+        "output_tokens": 96,
+        "total_tokens": 541
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -15113,10 +15347,19 @@
               "total_tokens": 374
             },
             "cost_usd": 5.1519999999999995e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 282,
+              "output_tokens": 96,
+              "total_tokens": 378
+            },
+            "cost_usd": 0.000429
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 726,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 163,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -15489,16 +15732,16 @@
   {
     "global index": "QANTA_Geography_1555",
     "prompt": "Kindly examine the subsequent inquiry and furnish the accurate response.\n\nBackdrop: Absent\n\nInquiry: Individuals from Wales established a colony in this locality, naming it Y Wladfa (pronounced oh lad-vah).\n\nDeliver the precise solution in \\boxed{X}, where X represents the right and most prevalent answer to the inquiry. Contain elucidation or commentary to within three sentences.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The Welsh established a colony in Patagonia, Argentina, in the 19th century, naming it Y Wladfa, which means \"The Colony\" in Welsh. This settlement began in 1865 along the coast of the Chubut Province, where Welsh traditions, language, and culture have been preserved to this day. The region remains the most prominent center of Welsh heritage outside of Wales.\n\n\\boxed{Patagonia}",
+      "generated_answer": "The colony of **Y Wladfa** was established in the **Patagonia** region of **Argentina**, specifically within the Chubut Province. Founded in 1865, the settlement was intended to preserve Welsh culture and language away from English influence. To this day, a distinct dialect known as Patagonian Welsh is still spoken in the region.\n\n\\boxed{Patagonia}",
       "success": true,
       "token_usage": {
-        "input_tokens": 429,
-        "output_tokens": 92,
-        "total_tokens": 521
+        "input_tokens": 157,
+        "output_tokens": 79,
+        "total_tokens": 236
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -15519,10 +15762,19 @@
               "total_tokens": 138
             },
             "cost_usd": 2.427e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 77,
+              "output_tokens": 79,
+              "total_tokens": 156
+            },
+            "cost_usd": 0.0002755
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 342,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 80,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -17650,16 +17902,16 @@
   {
     "global index": "SuperGLUE-RC_7725",
     "prompt": "Your responsibility is to determine whether the \"Provided Answer\" accurately addresses the \"Question\" by referring to the \"Paragraph\".\\n- Return 1 if the response is accurate.- Return 0 if the response is inaccurate.\n\nQuestion: Paragraph: Renewable resources are those that can be replenished as they are consumed. For instance, timber originates from trees, and by planting new trees, we can replace those that have been harvested. Sunlight is another renewable resource that appears inexhaustible! However, the renewable nature of a resource does not justify careless use. Negligence can lead to pollution, rendering resources unfit for utilization. Water exemplifies this; if contaminated, a water source may become unsuitable for drinking, bathing, or any other use. Additionally, resources deemed renewable can be overexploited. In such instances, they may fail to regenerate. Fish serve as an example of renewable resources because they can reproduce and increase their numbers. Yet, water pollution and excessive fishing can endanger their survival if the population diminishes critically. Figure 2.16 illustrates another example.\nQuestion: In what way is timber considered a renewable resource?\n\nProvided Answer: \n\nDoes the provided answer correctly address the query? Indicate the correct option in \\boxed{X}, where X represents the accurate choice.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "The question asks: **\"In what way is timber considered a renewable resource?\"**\n\nFrom the **Paragraph**, we learn:  \n\"Timber originates from trees, and by planting new trees, we can replace those that have been harvested.\"\n\nThis indicates that timber is renewable because **trees can be replanted and regrown**, allowing the resource to be replenished.\n\nSince the **Provided Answer** is missing (it's blank), it does **not** address the question at all.\n\nTherefore, the response is **inaccurate**.\n\n\\boxed{0}",
+      "generated_answer": "To determine if the \"Provided Answer\" accurately addresses the \"Question\" based on the \"Paragraph,\" we must evaluate the information provided:\n\n1.  **Analyze the Paragraph:** The text states, \"timber originates from trees, and by planting new trees, we can replace those that have been harvested.\" This explicitly defines why timber is considered renewable.\n2.  **Analyze the Question:** \"In what way is timber considered a renewable resource?\"\n3.  **Analyze the Provided Answer:** The provided answer is empty (blank). \n\nBecause the provided answer contains no information, it fails to address the question or reflect the information found in the paragraph.\n\n\\boxed{0}",
       "success": true,
       "token_usage": {
-        "input_tokens": 782,
-        "output_tokens": 115,
-        "total_tokens": 897
+        "input_tokens": 392,
+        "output_tokens": 139,
+        "total_tokens": 531
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -17680,10 +17932,19 @@
               "total_tokens": 312
             },
             "cost_usd": 3.6299999999999995e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 258,
+              "output_tokens": 139,
+              "total_tokens": 397
+            },
+            "cost_usd": 0.000546
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 512,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 134,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },
@@ -17773,16 +18034,16 @@
   {
     "global index": "SuperGLUE-Wic_19695",
     "prompt": "Reflect on the term \"average\" within these two statements. Is its significance identical in both? Respond solely with \"Yes\" or \"No\".\n\nStatement 1: When calculating the average of 10, 20, and 24, the result is 18.\nStatement 2: Over a span of weeks, my work hours average 40.\n\nProvide the accurate option in \\boxed{X}, where X represents the right selection.",
-    "prediction": "qwen/qwen3-235b-a22b-2507",
+    "prediction": "gemini-3-flash-preview",
     "generated_result": {
-      "generated_answer": "\\boxed{No}",
+      "generated_answer": "In Statement 1, \"average\" refers to a precise **arithmetic mean** calculated from a specific, finite set of numbers ($10+20+24 \\div 3 = 18$).\n\nIn Statement 2, \"average\" refers to a **statistical mean or rate of consistency** over an indefinite period, often implying that some weeks are higher and some are lower, representing a general trend or behavioral norm rather than a closed mathematical set.\n\nWhile both involve the concept of a mean, their significance differs in application: one is a discrete mathematical calculation, and the other is a descriptive measure of frequency or habit.\n\n\\boxed{No}",
       "success": true,
       "token_usage": {
-        "input_tokens": 635,
-        "output_tokens": 6,
-        "total_tokens": 641
+        "input_tokens": 190,
+        "output_tokens": 136,
+        "total_tokens": 326
       },
-      "provider": "self-hosted-vllm-original-bf16",
+      "provider": "google-api-ledgered-batch",
       "error": null,
       "cascade_accounting": {
         "calls": [
@@ -17803,10 +18064,19 @@
               "total_tokens": 193
             },
             "cost_usd": 3.784999999999999e-05
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "token_usage": {
+              "input_tokens": 98,
+              "output_tokens": 136,
+              "total_tokens": 234
+            },
+            "cost_usd": 0.000457
           }
         ],
-        "returned": "qwen/qwen3-235b-a22b-2507",
-        "other_calls_cost_added_as_input_tokens": 534,
+        "returned": "gemini-3-flash-preview",
+        "other_calls_cost_added_as_input_tokens": 92,
         "note": "token_usage = returned model's usage + every other call's dollar cost expressed in returned-model input-price tokens"
       }
     },

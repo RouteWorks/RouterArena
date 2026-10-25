@@ -9,9 +9,9 @@
       "deepseek/deepseek-v4-flash",
       "qwen/qwen3-next-80b-a3b-instruct"
     ],
-    "router_version": "corerouter-v2-hybrid-agreement-prompt-only",
+    "router_version": "corerouter-v2-hybrid-agreement-critic-veto-prompt-only",
     "routing_input": "prompt text only: a TF-IDF + logistic-regression task classifier trained on our own practice prompts predicts the task type",
-    "policy": "per-task model pick fitted on our own practice data (5-fold CV, lambda 0.02); where the pick is gemini-3-flash-preview, Qwen3-235B and Gemma-4-31B answer first and Gemini is called only when their final answers disagree",
+    "policy": "per-task model pick fitted on our own practice data (5-fold CV, lambda 0.02); where the pick is gemini-3-flash-preview, Qwen3-235B and Gemma-4-31B answer first; Gemini is called when their final answers disagree, or when they agree but a self-hosted answer critic (fine-tuned on our own practice data; it reads only the prompt and our models' answers) scores the shared answer below 0.5",
     "cost_accounting": "every call is charged on the returned row: other calls' dollar cost is added as returned-model input-price tokens; see generated_result.cascade_accounting"
   }
 }
