@@ -4,10 +4,10 @@
     "router_cls_name": "external_prediction_file",
     "models": [
       "gemini-3.8-flash",
-      "gemini-3-flash-preview",
-      "gpt-6-luna",
-      "anthropic/claude-haiku-5.5"
+      "google/gemma-4-31b-it",
+      "anthropic/claude-haiku-5.5",
+      "deepseek/deepseek-v4-pro"
     ],
-    "description": "Dalpha LLM Router -- routes each query across a 4-model pool (gemini-3.8-flash at thinking_level=low, gemini-3-flash-preview with thinking off, gpt-6-luna at reasoning_effort=high, claude-haiku-5.5) using a zero-shot query classifier and a routing table calibrated on external data only. No RouterArena data was used to build or tune the router."
+    "description": "Dalpha LLM Router -- routes each query across a 4-model pool (gemini-3.8-flash at thinking_level=low, gemma-4-31b-it, claude-haiku-5.5, deepseek-v4-pro with thinking off) using a zero-shot query classifier and a per-task routing table calibrated on external data only (public source benchmarks, items disjoint from RouterArena). No RouterArena data was used to build or tune the router."
   }
 }
