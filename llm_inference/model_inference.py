@@ -12,6 +12,7 @@ import time
 import logging
 from typing import Dict, Any
 from openai import OpenAI
+import re
 import tiktoken
 
 logger = logging.getLogger(__name__)
@@ -194,6 +195,7 @@ class ModelInference:
             "qwen/qwen3-next-80b-a3b-instruct": "openrouter",
             "Qwen/Qwen3-Coder-Next": "openrouter",
             "deepseek/deepseek-v4-flash": "openrouter",
+            "deepseek/deepseek-v4.1-flash-1017-reasoning-low": "openrouter",
             "x-ai/grok-4.1-fast": "openrouter",
             "mistralai/devstral-2512:free": "openrouter",
             "meta-llama/llama-3.3-70b-instruct": "openrouter",
@@ -321,8 +323,20 @@ class ModelInference:
             api_key=openrouter_api_key,
         )
 
+        # "<model>-reasoning-<effort>" selects the same model with an explicit
+        # OpenRouter reasoning effort (e.g. deepseek/deepseek-v4.1-flash-1017-reasoning-low).
+        api_model, extra_body = model_name, None
+        match = re.fullmatch(
+            r"(.+)-reasoning-(none|minimal|low|medium|high)", model_name
+        )
+        if match:
+            api_model = match.group(1)
+            extra_body = {"reasoning": {"effort": match.group(2)}}
+
         response = client.chat.completions.create(
-            model=model_name, messages=[{"role": "user", "content": prompt}]
+            model=api_model,
+            messages=[{"role": "user", "content": prompt}],
+            extra_body=extra_body,
         )
 
         usage = getattr(response, "usage", None)

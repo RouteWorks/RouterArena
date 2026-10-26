@@ -117,6 +117,9 @@ universal_names = [
     "qwen/qwen3.5-flash-02-23",
     "deepseek/deepseek-v4-flash",
     "moonshotai/kimi-k2.5",
+    # CoreRouter v2 pool addition: DeepSeek V4.1 Flash 1017 via OpenRouter with reasoning effort "low"
+    # (the "-reasoning-<effort>" suffix is applied in model_inference.py)
+    "deepseek/deepseek-v4.1-flash-1017-reasoning-low",
     # OrcaRouter pool additions
     "claude-sonnet-4",
     "claude-haiku-4-5-20251001",

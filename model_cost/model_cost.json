@@ -386,5 +386,9 @@
   "google/gemma-4-31b-it": {
     "input_token_price_per_million": 0.08,
     "output_token_price_per_million": 0.35
+  },
+  "deepseek/deepseek-v4.1-flash-1017-reasoning-low": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
   }
 }

@@ -7,11 +7,12 @@
       "google/gemma-4-31b-it",
       "gemini-3-flash-preview",
       "deepseek/deepseek-v4-flash",
-      "qwen/qwen3-next-80b-a3b-instruct"
+      "qwen/qwen3-next-80b-a3b-instruct",
+      "deepseek/deepseek-v4.1-flash-1017-reasoning-low"
     ],
-    "router_version": "corerouter-v2-hybrid-agreement-critic-veto-prompt-only",
+    "router_version": "corerouter-v2-hybrid-agreement-critic-veto-reasoning-tier-prompt-only",
     "routing_input": "prompt text only: a TF-IDF + logistic-regression task classifier trained on our own practice prompts predicts the task type",
-    "policy": "per-task model pick fitted on our own practice data (5-fold CV, lambda 0.02); where the pick is gemini-3-flash-preview, Qwen3-235B and Gemma-4-31B answer first; Gemini is called when their final answers disagree, or when they agree but a self-hosted answer critic (fine-tuned on our own practice data; it reads only the prompt and our models' answers) scores the shared answer below 0.5",
+    "policy": "per-task model pick fitted on our own practice data (5-fold CV, lambda 0.02); where the pick is gemini-3-flash-preview, Qwen3-235B and Gemma-4-31B answer first; Gemini is called when their final answers disagree, or when they agree but a self-hosted answer critic (fine-tuned on our own practice data; it reads only the prompt and our models' answers) scores the shared answer below 0.5; for the MMLU-Pro task type the escalation model is DeepSeek V4.1 Flash 1017 with reasoning effort low instead of Gemini, and the AIME and MATH task types go to it directly (choices fitted by the same cross-validation on our own practice data)",
     "cost_accounting": "every call is charged on the returned row: other calls' dollar cost is added as returned-model input-price tokens; see generated_result.cascade_accounting"
   }
 }
