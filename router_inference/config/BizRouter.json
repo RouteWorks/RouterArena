@@ -1,0 +1,35 @@
+{
+  "pipeline_params": {
+    "router_name": "BizRouter",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "MiniMax-M3",
+      "anthropic/claude-opus-5.5",
+      "anthropic/claude-sonnet-5.5",
+      "claude-haiku-4.5",
+      "gemini-2.5-flash-lite",
+      "gemini-3-flash-preview",
+      "google/gemini-3.1-flash-lite",
+      "google/gemini-3.5-flash-lite",
+      "google/gemini-3.7-flash",
+      "google/gemini-3.8-flash",
+      "google/gemma-4-31b-it",
+      "gpt-5.4",
+      "gpt-5.4-mini",
+      "gpt-5.4-nano",
+      "moonshotai/kimi-k3",
+      "openai/gpt-5.6-luna",
+      "openai/gpt-5.6-sol",
+      "openai/gpt-5.6-terra",
+      "openai/gpt-6-luna",
+      "openai/gpt-6-sol",
+      "openai/gpt-6.1-sol",
+      "upstage/solar-mini",
+      "upstage/solar-pro-2",
+      "upstage/solar-pro3",
+      "upstage/solar-pro4",
+      "z-ai/glm-5.3-flash"
+    ],
+    "description": "BizRouter Smart Routing (balanced strategy): a 26-model pool ranked per request from measured capability evidence (taxonomy cells) and list prices; one production API call per prompt, 2026-10-13. Not trained, fitted or tuned on RouterArena data."
+  }
+}

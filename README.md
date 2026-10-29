@@ -29,7 +29,10 @@ RouterArena bridges this gap by providing an open evaluation platform and benchm
 *We aim for RouterArena to serve as a foundation for the community to evaluate, understand, and advance LLM routing systems.*
 
 > [!IMPORTANT]
-> **RouterArena is an evaluation-only dataset.** Submissions that train, fit, or tune any router component on RouterArena data (including the label files) will be rejected, and any accepted submission found in violation will be withdrawn.
+> **RouterArena is an evaluation-only dataset.** Submissions that train, fit, or tune any router component on RouterArena data (including the label files) will be rejected, and any accepted submission found in violation will be withdrawn. This includes:
+> - **Routing by dataset or template.** Routing must depend on the query's own content, not on which RouterArena dataset it comes from: for example, not by matching the instruction text the evaluation harness adds to each dataset, and not by reading `config/eval_config/`.
+> - **Building router data from RouterArena's templates or configs.** Calibration or training prompts must not be rendered with RouterArena's prompt templates or config files.
+> - **Reusing other submissions' answers.** Every row must come from the router's own model calls. Answers copied from other submissions' prediction files are not accepted.
 
 # Current Leaderboard
 
@@ -37,12 +40,12 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 
 | Rank | Router | Affiliation | Acc-Cost Arena | Accuracy | Cost/1K Queries | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
 |------|--------------------|-----------------------------|--------|----------|---------|-----------------|--------------|----------------|---------|------------|
-| 🥇 | [KT-ModelRouter](https://github.com/KT-A-Autonomous-Tech-Team/ModelRouter) | 👤&nbsp;[@DusanBaek](https://github.com/DusanBaek) | 76.28 | 78.14 | $0.27 | — | — | — | — | 80.48 |
-| 🥈 | [Sqwish Router](https://www.sqwish.ai/) | 👤&nbsp;[@namitha-sqwish](https://github.com/namitha-sqwish) | 76.21 | 79.76 | $0.70 | 9.04 | 23.49 | 94.07 | — | 51.67 |
-| 🥉 | [Divyam]() | 👤&nbsp;[@samikd](https://github.com/samikd) | 75.85 | 78.59 | $0.48 | 4.93 | 16.03 | 93.43 | — | 98.33 |
-| 4 | [Cross-Router]() | 👤&nbsp;[@JiaHg](https://github.com/JiaHg) | 75.75 | 78.14 | $0.40 | 17.66 | 45.49 | 90.31 | — | 67.14 |
-| 5 | [LLM Router](https://github.com/ypollak2/llm-router)&nbsp;[[PyPI]](https://pypi.org/project/llm-routing/) | 👤&nbsp;[@ypollak2](https://github.com/ypollak2) | 75.69 | 78.44 | $0.49 | — | — | — | — | 100.00 |
-| 6 | [R\*\*2: Reasonometry Router]() | 👤&nbsp;[@sashakolpakov](https://github.com/sashakolpakov) | 75.53 | 78.11 | $0.45 | — | — | — | — | 93.57 |
+| 🥇 | [Divyam](https://divyam.ai) | 👤&nbsp;[@samikd](https://github.com/samikd) | 76.88 | 80.43 | $0.65 | 6.57 | 16.91 | 92.85 | — | 75.71 |
+| 🥈 | [KT-ModelRouter](https://github.com/KT-A-Autonomous-Tech-Team/ModelRouter) | 👤&nbsp;[@DusanBaek](https://github.com/DusanBaek) | 76.28 | 78.14 | $0.27 | — | — | — | — | 80.48 |
+| 🥉 | [Sqwish Router](https://www.sqwish.ai/) | 👤&nbsp;[@namitha-sqwish](https://github.com/namitha-sqwish) | 76.21 | 79.76 | $0.70 | 9.04 | 23.49 | 94.07 | — | 51.67 |
+| 4 | [R\*\*2: Reasonometry Router]() | 👤&nbsp;[@sashakolpakov](https://github.com/sashakolpakov) | 76.13 | 78.94 | $0.48 | — | — | — | — | 99.76 |
+| 5 | [Cross-Router]() | 👤&nbsp;[@JiaHg](https://github.com/JiaHg) | 75.75 | 78.14 | $0.40 | 17.66 | 45.49 | 90.31 | — | 67.14 |
+| 6 | [LLM Router](https://github.com/ypollak2/llm-router)&nbsp;[[PyPI]](https://pypi.org/project/llm-routing/) | 👤&nbsp;[@ypollak2](https://github.com/ypollak2) | 75.69 | 78.44 | $0.49 | — | — | — | — | 100.00 |
 | 7 | [SapientAI Auto Router]() | 💼&nbsp;Publicis Sapient | 75.41 | 77.89 | $0.43 | 5.93 | 19.99 | 92.00 | — | 73.33 |
 | 8 | [vLLM‑SR](https://vllm-semantic-router.com/)&nbsp;[[Code]](https://github.com/vllm-project/semantic-router)&nbsp;[[HF]](https://huggingface.co/llm-semantic-router) | 🎓&nbsp;vLLM SR Team | 74.86 | 77.18 | $0.42 | 16.81 | 25.10 | 89.37 | — | 67.62 |
 | 9 | [nadir-caliper]() | 👤&nbsp;[@doramirdor](https://github.com/doramirdor) | 74.55 | 75.84 | $0.22 | — | — | — | — | 79.76 |
