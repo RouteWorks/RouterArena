@@ -386,5 +386,9 @@
   "google/gemma-4-31b-it": {
     "input_token_price_per_million": 0.08,
     "output_token_price_per_million": 0.35
+  },
+  "gemini-3.8-flash": {
+    "input_token_price_per_million": 0.75,
+    "output_token_price_per_million": 3.75
   }
 }
