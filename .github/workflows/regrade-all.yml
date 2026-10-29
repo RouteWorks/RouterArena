@@ -33,18 +33,18 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -n "$ROUTERS" ]]; then
-            names="$ROUTERS"
+            read -r -a names <<< "$ROUTERS"
           else
-            names=$(find router_inference/predictions -maxdepth 1 -name '*.json' ! -name '*-robustness.json' \
-              -exec basename {} .json \; | sort)
+            mapfile -t names < <(find router_inference/predictions -maxdepth 1 -name '*.json' \
+              ! -name '*-robustness.json' -exec basename {} .json \; | sort)
           fi
-          for name in $names; do
+          for name in "${names[@]}"; do
             if [[ ! -f "router_inference/predictions/${name}.json" ]]; then
               echo "No prediction file for router: $name" >&2
               exit 1
             fi
           done
-          echo "routers=$(printf '%s\n' $names | jq -R . | jq -cs .)" >> "$GITHUB_OUTPUT"
+          echo "routers=$(printf '%s\n' "${names[@]}" | jq -R . | jq -cs .)" >> "$GITHUB_OUTPUT"
 
   regrade:
     needs: list-routers
