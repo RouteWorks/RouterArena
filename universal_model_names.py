@@ -9,6 +9,11 @@ files in ./router_evaluation/llm_inference/outputs/
 """
 
 universal_names = [
+    "deepseek-ai/DeepSeek-V4-Flash-0731",
+    "gpt-5.6-luna",
+    "ministral-8b-latest",
+    "moonshotai/Kimi-K2.6",
+    "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
     "gpt-3.5-turbo",
     "gpt-3.5-turbo-1106",
     "gpt-4",
