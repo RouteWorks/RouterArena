@@ -386,5 +386,21 @@
   "google/gemma-4-31b-it": {
     "input_token_price_per_million": 0.08,
     "output_token_price_per_million": 0.35
+  },
+  "lingdt-3.0-flash": {
+    "input_token_price_per_million": 0.021,
+    "output_token_price_per_million": 0.062
+  },
+  "anthropic/claude-haiku-5.5": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.5
+  },
+  "glm-5.3-flash": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.50
+  },
+  "google/gemini-3.8-flash": {
+    "input_token_price_per_million": 0.75,
+    "output_token_price_per_million": 3.75
   }
 }
