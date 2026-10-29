@@ -1,0 +1,112 @@
+name: Re-grade routers
+
+# Re-grades merged prediction files with the current evaluator (scorers and price table),
+# one router per job. LiveCodeBench grading executes submitted code, so this runs on
+# GitHub's runners rather than locally. Each job uploads the re-graded prediction file
+# (per-row accuracy and cost) and its metrics as an artifact; a maintainer then opens
+# one PR with the results.
+
+on:
+  workflow_dispatch:
+    inputs:
+      routers:
+        description: "Space-separated router names (default: every prediction file on the branch)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  list-routers:
+    runs-on: ubuntu-latest
+    outputs:
+      routers: ${{ steps.list.outputs.routers }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: List routers to re-grade
+        id: list
+        shell: bash
+        env:
+          ROUTERS: ${{ inputs.routers }}
+        run: |
+          set -euo pipefail
+          if [[ -n "$ROUTERS" ]]; then
+            names="$ROUTERS"
+          else
+            names=$(find router_inference/predictions -maxdepth 1 -name '*.json' ! -name '*-robustness.json' \
+              -exec basename {} .json \; | sort)
+          fi
+          for name in $names; do
+            if [[ ! -f "router_inference/predictions/${name}.json" ]]; then
+              echo "No prediction file for router: $name" >&2
+              exit 1
+            fi
+          done
+          echo "routers=$(printf '%s\n' $names | jq -R . | jq -cs .)" >> "$GITHUB_OUTPUT"
+
+  regrade:
+    needs: list-routers
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        router: ${{ fromJSON(needs.list-routers.outputs.routers) }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Free up disk space on the runner
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: false
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install uv
+
+      - name: Prepare dataset
+        run: |
+          set -euo pipefail
+          mkdir -p dataset
+          uv run python scripts/process_datasets/prep_datasets.py
+
+      - name: Enable swap space
+        run: |
+          sudo fallocate -l 10G /swapfile10g
+          sudo chmod 600 /swapfile10g
+          sudo mkswap /swapfile10g
+          sudo swapon /swapfile10g
+
+      - name: Re-grade the full split
+        env:
+          ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
+          ROUTER: ${{ matrix.router }}
+        run: |
+          set -euo pipefail
+          uv run python llm_evaluation/run.py "$ROUTER" full --force --save-interval 0
+          mkdir -p regrade-out
+          cp "router_inference/predictions/${ROUTER}.json" regrade-out/
+          cp metrics.json "regrade-out/${ROUTER}.metrics.json"
+
+      - name: Upload re-graded files
+        uses: actions/upload-artifact@v4
+        with:
+          name: regrade-${{ matrix.router }}
+          path: regrade-out/
+          retention-days: 14
