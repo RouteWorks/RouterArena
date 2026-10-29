@@ -28,6 +28,11 @@ from typing import Dict, Any, List, Set, Tuple, Optional
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 
 from universal_model_names import ModelNameManager
+from global_utils.router_usage import (
+    ROUTER_USAGE_FIELD,
+    router_usage_models,
+    validate_router_usage,
+)
 
 # Expected dataset sizes (robustness derived from dataset length)
 EXPECTED_SIZES = {
@@ -170,6 +175,7 @@ def check_model_costs(
         model_prediction = prediction.get("prediction")
         if model_prediction:
             used_models.add(model_prediction)
+        used_models.update(router_usage_models(prediction.get(ROUTER_USAGE_FIELD)))
 
     # Also include models from config
     config_models = config.get("pipeline_params", {}).get("models", [])
@@ -387,6 +393,13 @@ def check_prediction_fields(
                 f"Entry {i}: global_index '{pred_global_index}' not found in dataset"
             )
             continue
+
+        # Router calls the router made itself (optional; see global_utils/router_usage.py)
+        if ROUTER_USAGE_FIELD in prediction:
+            for problem in validate_router_usage(prediction[ROUTER_USAGE_FIELD]):
+                errors.append(
+                    f"Entry {i} (global_index: {pred_global_index}): {problem}"
+                )
 
         # Check prompt - try both "prompt" and "prompt_formatted" fields
         pred_prompt = prediction.get("prompt") or prediction.get("prompt_formatted")

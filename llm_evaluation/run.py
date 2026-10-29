@@ -27,6 +27,7 @@ import math
 from typing import Dict, Any, List, Optional, Tuple, Set
 from universal_model_names import ModelNameManager
 from global_utils.robustness import compute_robustness_score
+from global_utils.router_usage import ROUTER_USAGE_FIELD, router_usage_cost
 from parallel_evaluation import ParallelEvaluationManager
 
 # Add parent directory to path for imports
@@ -315,6 +316,38 @@ def get_livecodebench_ground_truth(global_index: str) -> Optional[Dict[str, Any]
         return None
 
 
+def compute_row_cost(
+    prediction: Dict[str, Any],
+    evaluator: ModelEvaluator,
+    universal_model_name: str,
+) -> Tuple[float, float]:
+    """Return (answer cost, router-call cost) in USD for one prediction row.
+
+    The answer is billed at the model the provider actually served
+    (generated_result.model_used) when it has a known price, so retired/redirected
+    slugs are billed at the model that truly answered rather than the requested
+    alias. For example the retired `grok-4-1-fast-reasoning` slug is redirected by
+    xAI to grok-4.3, which is both stronger and ~5-6x more expensive; billing it at
+    the alias's old price understates cost. Otherwise it falls back to the router's
+    selected model (universal name, to respect universal_model_names.py mappings).
+    See #166.
+
+    Router calls (the row's `router_usage`, see global_utils/router_usage.py) are
+    billed at their own models' prices.
+    """
+    generated_result = prediction.get("generated_result") or {}
+    token_usage = generated_result.get("token_usage", {})
+    cost_model_name = universal_model_name
+    actual_model = generated_result.get("model_used")
+    if actual_model and evaluator.has_price(actual_model):
+        cost_model_name = actual_model
+    answer_cost = evaluator.calculate_inference_cost(cost_model_name, token_usage)
+    router_cost = router_usage_cost(
+        prediction.get(ROUTER_USAGE_FIELD), evaluator.calculate_inference_cost
+    )
+    return answer_cost, router_cost
+
+
 def evaluate_single_prediction(
     prediction: Dict[str, Any],
     ground_truth_map: Dict[str, Dict[str, Any]],
@@ -429,28 +462,15 @@ def evaluate_single_prediction(
                 generated_answer, ground_truth, scorer_func, dataset_name
             )
 
-        # Calculate inference cost.
-        # Prefer the model the provider actually served (generated_result.model_used)
-        # when it has a known price, so retired/redirected slugs are billed at the
-        # model that truly answered rather than the requested alias. For example the
-        # retired `grok-4-1-fast-reasoning` slug is redirected by xAI to grok-4.3,
-        # which is both stronger and ~5-6x more expensive; billing it at the alias's
-        # old price understates cost. Fall back to the router's selected model
-        # (universal name, to respect universal_model_names.py mappings) when the
-        # provider did not report an actual model or its price is unknown. See #166.
-        token_usage = generated_result.get("token_usage", {})
-        cost_model_name = universal_model_name
-        actual_model = generated_result.get("model_used")
-        if actual_model and evaluator.has_price(actual_model):
-            cost_model_name = actual_model
-        inference_cost = evaluator.calculate_inference_cost(
-            cost_model_name,
-            token_usage,
+        answer_cost, router_cost = compute_row_cost(
+            prediction, evaluator, universal_model_name
         )
 
         # Update the prediction with evaluation results
         prediction["accuracy"] = score
-        prediction["cost"] = inference_cost
+        prediction["cost"] = answer_cost + router_cost
+        if router_cost:
+            prediction["router_cost"] = router_cost
 
         return True
 
