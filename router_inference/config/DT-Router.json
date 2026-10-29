@@ -7,7 +7,7 @@
       "glm-5.3-flash",
       "google/gemini-3.8-flash"
     ],
-    "description": "DT_Router is a closed-source model router developed by Ant Digital Technologies.",
+    "description": "DT-Router is a closed-source model router developed by Ant Digital Technologies.",
     "affiliation": "Ant Digital Technologies",
     "router_homepage": "https://antdigital.com/products",
     "github_url": "https://github.com/antgroup/DTRouter"
