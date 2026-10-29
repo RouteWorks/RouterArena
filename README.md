@@ -40,10 +40,10 @@ For more details, please see our [website](https://routeworks.github.io/leaderbo
 
 | Rank | Router | Affiliation | Acc-Cost Arena | Accuracy | Cost/1K Queries | Optimal Selection | Optimal Cost | Optimal Accuracy | Latency | Robustness |
 |------|--------------------|-----------------------------|--------|----------|---------|-----------------|--------------|----------------|---------|------------|
-| 🥇 | [KT-ModelRouter](https://github.com/KT-A-Autonomous-Tech-Team/ModelRouter) | 👤&nbsp;[@DusanBaek](https://github.com/DusanBaek) | 76.28 | 78.14 | $0.27 | — | — | — | — | 80.48 |
-| 🥈 | [Sqwish Router](https://www.sqwish.ai/) | 👤&nbsp;[@namitha-sqwish](https://github.com/namitha-sqwish) | 76.21 | 79.76 | $0.70 | 9.04 | 23.49 | 94.07 | — | 51.67 |
-| 🥉 | [R\*\*2: Reasonometry Router]() | 👤&nbsp;[@sashakolpakov](https://github.com/sashakolpakov) | 76.13 | 78.94 | $0.48 | — | — | — | — | 99.76 |
-| 4 | [Divyam]() | 👤&nbsp;[@samikd](https://github.com/samikd) | 75.85 | 78.59 | $0.48 | 4.93 | 16.03 | 93.43 | — | 98.33 |
+| 🥇 | [Divyam](https://divyam.ai) | 👤&nbsp;[@samikd](https://github.com/samikd) | 76.88 | 80.43 | $0.65 | 6.57 | 16.91 | 92.85 | — | 75.71 |
+| 🥈 | [KT-ModelRouter](https://github.com/KT-A-Autonomous-Tech-Team/ModelRouter) | 👤&nbsp;[@DusanBaek](https://github.com/DusanBaek) | 76.28 | 78.14 | $0.27 | — | — | — | — | 80.48 |
+| 🥉 | [Sqwish Router](https://www.sqwish.ai/) | 👤&nbsp;[@namitha-sqwish](https://github.com/namitha-sqwish) | 76.21 | 79.76 | $0.70 | 9.04 | 23.49 | 94.07 | — | 51.67 |
+| 4 | [R\*\*2: Reasonometry Router]() | 👤&nbsp;[@sashakolpakov](https://github.com/sashakolpakov) | 76.13 | 78.94 | $0.48 | — | — | — | — | 99.76 |
 | 5 | [Cross-Router]() | 👤&nbsp;[@JiaHg](https://github.com/JiaHg) | 75.75 | 78.14 | $0.40 | 17.66 | 45.49 | 90.31 | — | 67.14 |
 | 6 | [LLM Router](https://github.com/ypollak2/llm-router)&nbsp;[[PyPI]](https://pypi.org/project/llm-routing/) | 👤&nbsp;[@ypollak2](https://github.com/ypollak2) | 75.69 | 78.44 | $0.49 | — | — | — | — | 100.00 |
 | 7 | [SapientAI Auto Router]() | 💼&nbsp;Publicis Sapient | 75.41 | 77.89 | $0.43 | 5.93 | 19.99 | 92.00 | — | 73.33 |
