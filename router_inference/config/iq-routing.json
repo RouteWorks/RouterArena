@@ -1,0 +1,14 @@
+{
+  "pipeline_params": {
+    "router_name": "iq-routing",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "gemini-3-flash-preview",
+      "gemini-3.8-flash",
+      "gpt-5-nano",
+      "gpt-5.6-luna",
+      "gpt-5.6-terra"
+    ],
+    "description": "IQ Routing (iq-routing.com), closed-source production gateway; judge-based complexity routing over a fixed model pool"
+  }
+}
