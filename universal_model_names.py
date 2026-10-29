@@ -138,6 +138,11 @@ universal_names = [
     "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
     # KT-ModelRouter pool additions
     "google/gemma-4-31b-it",
+    # DT-Router candidate models
+    "lingdt-3.0-flash",
+    "anthropic/claude-haiku-5.5",
+    "glm-5.3-flash",
+    "google/gemini-3.8-flash",
 ]
 
 
