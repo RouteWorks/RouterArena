@@ -13,6 +13,10 @@ on:
         description: "Space-separated router names (default: every prediction file on the branch)"
         required: false
         default: ""
+      num_workers:
+        description: "Evaluator worker threads per job (16 exhausted runner memory)"
+        required: false
+        default: "4"
 
 permissions:
   contents: read
@@ -97,9 +101,14 @@ jobs:
         env:
           ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
           ROUTER: ${{ matrix.router }}
+          NUM_WORKERS: ${{ inputs.num_workers || '4' }}
         run: |
           set -euo pipefail
-          uv run python llm_evaluation/run.py "$ROUTER" full --force --save-interval 0
+          # Log memory and swap use every 30 s, so a runner that dies shows why.
+          (while sleep 30; do free -m | awk 'NR==2{u=$3} NR==3{s=$3} END{print "mem used " u " MB, swap used " s " MB"}'; done) &
+          memlog=$!
+          uv run python llm_evaluation/run.py "$ROUTER" full --force --num-workers "$NUM_WORKERS"
+          kill "$memlog"
           mkdir -p regrade-out
           cp "router_inference/predictions/${ROUTER}.json" regrade-out/
           cp metrics.json "regrade-out/${ROUTER}.metrics.json"
