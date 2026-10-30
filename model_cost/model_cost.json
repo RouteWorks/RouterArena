@@ -399,8 +399,96 @@
     "input_token_price_per_million": 0.15,
     "output_token_price_per_million": 0.50
   },
+  "gemini-3.8-flash": {
+    "input_token_price_per_million": 0.75,
+    "output_token_price_per_million": 3.75
+  },
+  "google/gemini-3.7-flash": {
+    "input_token_price_per_million": 0.75,
+    "output_token_price_per_million": 3.75
+  },
   "google/gemini-3.8-flash": {
     "input_token_price_per_million": 0.75,
     "output_token_price_per_million": 3.75
+  },
+  "google/gemini-3.5-flash-lite": {
+    "input_token_price_per_million": 0.3,
+    "output_token_price_per_million": 2.5
+  },
+  "openai/gpt-5.6-luna": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 1.2
+  },
+  "openai/gpt-5.6-terra": {
+    "input_token_price_per_million": 2.0,
+    "output_token_price_per_million": 12.0
+  },
+  "openai/gpt-5.6-sol": {
+    "input_token_price_per_million": 4.0,
+    "output_token_price_per_million": 20.0
+  },
+  "openai/gpt-6-luna": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.5
+  },
+  "openai/gpt-6-sol": {
+    "input_token_price_per_million": 2.0,
+    "output_token_price_per_million": 10.0
+  },
+  "openai/gpt-6.1-sol": {
+    "input_token_price_per_million": 2.0,
+    "output_token_price_per_million": 10.0
+  },
+  "anthropic/claude-sonnet-5.5": {
+    "input_token_price_per_million": 2.0,
+    "output_token_price_per_million": 10.0
+  },
+  "anthropic/claude-opus-5.5": {
+    "input_token_price_per_million": 4.0,
+    "output_token_price_per_million": 20.0
+  },
+  "moonshotai/kimi-k3": {
+    "input_token_price_per_million": 3.0,
+    "output_token_price_per_million": 15.0
+  },
+  "z-ai/glm-5.3-flash": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.5
+  },
+  "upstage/solar-mini": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.15
+  },
+  "upstage/solar-pro-2": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "upstage/solar-pro3": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "upstage/solar-pro4": {
+    "input_token_price_per_million": 0.3,
+    "output_token_price_per_million": 1.2
+  },
+  "deepseek-ai/DeepSeek-V4-Flash-0731": {
+    "input_token_price_per_million": 0.14,
+    "output_token_price_per_million": 0.28
+  },
+  "gpt-5.6-luna": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 1.2
+  },
+  "ministral-8b-latest": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.15
+  },
+  "moonshotai/Kimi-K2.6": {
+    "input_token_price_per_million": 0.95,
+    "output_token_price_per_million": 4.0
+  },
+  "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B": {
+    "input_token_price_per_million": 0.06,
+    "output_token_price_per_million": 0.24
   }
 }
