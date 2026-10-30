@@ -223,7 +223,7 @@ To get your router on the leaderboard, you can open a Pull Request with your rou
    - When the PR is ready for evaluation, call `/evaluate` in the PR comment to trigger the evaluation workflow. See an example [here](https://github.com/RouteWorks/RouterArena/pull/71#issuecomment-3904936480).
    - The automated workflow will:
      - Validate your submission
-     - Run evaluation on the full dataset
+     - Run evaluation on the full dataset with the evaluation code on `main`. Only the three files above are taken from your branch, plus any new models you add to `model_cost/model_cost.json` and `universal_model_names.py` (models already listed keep their price on `main`)
      - Post results as a comment on your PR
      - Update the leaderboard upon approval
 

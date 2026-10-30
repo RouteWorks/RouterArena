@@ -4,12 +4,13 @@ on:
   issue_comment:
     types: [created]
 
+# Grading runs code from the submission (LiveCodeBench answers are executed), so the
+# evaluate job gets a read-only token and stores no credentials. The jobs that can
+# comment on the PR or update its check never run submission code.
+permissions: {}
+
 jobs:
-  evaluate-router:
-    concurrency:
-      group: evaluate-router-pr-${{ github.event.issue.number }}
-      cancel-in-progress: false
-    timeout-minutes: 120
+  start:
     if: >-
       github.event.issue.pull_request &&
       startsWith(github.event.comment.body, '/evaluate') &&
@@ -22,10 +23,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       checks: write
-      contents: read
       pull-requests: write
-    env:
-      UV_PROJECT_ENVIRONMENT: ${{ github.workspace }}/.venv
+    outputs:
+      head_sha: ${{ steps.pr.outputs.head_sha }}
+      base_ref: ${{ steps.pr.outputs.base_ref }}
+      base_sha: ${{ steps.pr.outputs.base_sha }}
+      number: ${{ steps.pr.outputs.number }}
+      check_id: ${{ steps.checkrun.outputs.id }}
     steps:
       - name: Acknowledge /evaluate command
         uses: actions/github-script@v8
@@ -73,32 +77,52 @@ jobs:
             });
             core.setOutput('id', String(result.data.id));
 
+  evaluate:
+    needs: start
+    concurrency:
+      group: evaluate-router-pr-${{ github.event.issue.number }}
+      cancel-in-progress: false
+    timeout-minutes: 120
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      router: ${{ steps.detect.outputs.router }}
+      split: ${{ steps.detect.outputs.split }}
+      evaluator_commit: ${{ steps.base.outputs.commit }}
+    env:
+      UV_PROJECT_ENVIRONMENT: ${{ github.workspace }}/.venv
+    steps:
       - name: Checkout base repository (for evaluation scripts)
+        id: base
         uses: actions/checkout@v5
         with:
-          ref: ${{ steps.pr.outputs.base_ref }}
+          ref: ${{ needs.start.outputs.base_ref }}
           path: base
           clean: false
           fetch-depth: 0
+          persist-credentials: false
 
-      - name: Checkout PR branch (for prediction file only)
+      - name: Checkout PR branch (to detect the router; never executed)
         uses: actions/checkout@v5
         with:
-          ref: ${{ steps.pr.outputs.head_sha }}
+          ref: ${{ needs.start.outputs.head_sha }}
           path: pr
           clean: false
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Detect changed prediction file
         id: detect
         shell: bash
         working-directory: pr
+        env:
+          BASE_REF: ${{ needs.start.outputs.base_ref }}
+          BASE_SHA: ${{ needs.start.outputs.base_sha }}
         run: |
           set -euo pipefail
           # Compare against the upstream base branch
           # This ensures each router submission is evaluated independently
-          BASE_REF="${{ steps.pr.outputs.base_ref }}"
-          BASE_SHA="${{ steps.pr.outputs.base_sha }}"
 
           if [[ -z "$BASE_SHA" ]]; then
             echo "Error: Could not determine PR base SHA" >&2
@@ -158,6 +182,12 @@ jobs:
             exit 1
           fi
 
+          # The name reaches later shell and script steps, so keep it to safe characters.
+          if [[ ! "$router_name" =~ ^[A-Za-z0-9._-]+$ ]]; then
+            echo "Router name may only use letters, digits, '.', '_' and '-': $router_name" >&2
+            exit 1
+          fi
+
           ROUTER_NAME="$router_name"
           echo "router=$ROUTER_NAME" >> "$GITHUB_OUTPUT"
 
@@ -167,7 +197,7 @@ jobs:
             echo "Error: Prediction file not found at $PREDICTION_FILE" >&2
             exit 1
           fi
-          ENTRY_COUNT=$(python3 -c "import json; print(len(json.load(open('$PREDICTION_FILE'))))")
+          ENTRY_COUNT=$(python3 -I -c "import json; print(len(json.load(open('$PREDICTION_FILE'))))")
           echo "Prediction file contains $ENTRY_COUNT entries"
 
           if [[ "$ENTRY_COUNT" -eq 8400 ]]; then
@@ -182,10 +212,13 @@ jobs:
 
       - name: Show detected router
         if: ${{ steps.detect.outputs.router != '' }}
+        env:
+          ROUTER: ${{ steps.detect.outputs.router }}
+          SPLIT: ${{ steps.detect.outputs.split }}
         run: |
           set -euo pipefail
-          echo "Detected router submission: ${{ steps.detect.outputs.router }}"
-          echo "Detected split: ${{ steps.detect.outputs.split }}"
+          echo "Detected router submission: $ROUTER"
+          echo "Detected split: $SPLIT"
 
       - name: Free up disk space on the runner
         if: ${{ steps.detect.outputs.router != '' }}
@@ -227,19 +260,6 @@ jobs:
           mkdir -p dataset
           uv run python scripts/process_datasets/prep_datasets.py
 
-      - name: Copy PR prediction file to base workspace
-        if: ${{ steps.detect.outputs.router != '' }}
-        run: |
-          set -euo pipefail
-          ROUTER_NAME="${{ steps.detect.outputs.router }}"
-          # Copy prediction file from PR to base workspace
-          mkdir -p base/router_inference/predictions
-          cp "pr/router_inference/predictions/${ROUTER_NAME}.json" \
-             "base/router_inference/predictions/${ROUTER_NAME}.json"
-          cp "pr/router_inference/predictions/${ROUTER_NAME}-robustness.json" \
-             "base/router_inference/predictions/${ROUTER_NAME}-robustness.json"
-          echo "Copied prediction file from PR to base workspace"
-
       - name: Enable Swap Space
         run: |
           # Create a new 10GB swap file (using a unique name to avoid conflicts)
@@ -255,35 +275,89 @@ jobs:
         working-directory: base
         env:
           ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/base/dataset
+          PR_NUMBER: ${{ needs.start.outputs.number }}
+          ROUTER: ${{ steps.detect.outputs.router }}
+          SPLIT: ${{ steps.detect.outputs.split }}
+          BASE_SHA: ${{ needs.start.outputs.base_sha }}
         run: |
           set -euo pipefail
-          # Uses base repo's evaluation script (safe - not from PR)
-          BASE_SHA="${{ steps.pr.outputs.base_sha }}"
+          # Grades with this checkout's validator and evaluator; the script copies only
+          # the submission's prediction, config and new model files from the PR.
           uv run python automation/process_pr_submission.py \
-            --pr "${{ steps.pr.outputs.number }}" \
-            --router "${{ steps.detect.outputs.router }}" \
-            --split "${{ steps.detect.outputs.split }}" \
-            --base-ref "$BASE_SHA" 2>&1 | tee evaluation_output.txt
+            --pr "$PR_NUMBER" \
+            --router "$ROUTER" \
+            --split "$SPLIT" \
+            --base-ref "$BASE_SHA" \
+            --eval-ref HEAD 2>&1 | tee evaluation_output.txt
+
+      - name: Upload metrics
+        if: ${{ steps.evaluate.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: evaluation-metrics
+          path: base/metrics.json
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Cleanup workspace
+        if: always()
+        run: |
+          rm -rf base/ pr/
+
+  report:
+    needs: [start, evaluate]
+    if: ${{ always() && needs.start.result == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+    steps:
+      - name: Download metrics
+        if: ${{ needs.evaluate.result == 'success' && needs.evaluate.outputs.router != '' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: evaluation-metrics
+          path: metrics
 
       - name: Post evaluation results as PR comment
-        if: ${{ steps.detect.outputs.router != '' && steps.evaluate.outcome == 'success' }}
+        id: post
+        if: ${{ needs.evaluate.result == 'success' && needs.evaluate.outputs.router != '' }}
         uses: actions/github-script@v8
+        env:
+          ROUTER: ${{ needs.evaluate.outputs.router }}
+          SPLIT: ${{ needs.evaluate.outputs.split }}
+          BASE_REF: ${{ needs.start.outputs.base_ref }}
+          EVALUATOR_COMMIT: ${{ needs.evaluate.outputs.evaluator_commit }}
         with:
           script: |
             const fs = require('fs');
             const path = require('path');
 
             let comment = '## Router Evaluation Results\n\n';
-            comment += `**Router:** \`${{ steps.detect.outputs.router }}\`\n`;
-            comment += `**Dataset Split:** \`${{ steps.detect.outputs.split }}\`\n\n`;
+            comment += `**Router:** \`${process.env.ROUTER}\`\n`;
+            comment += `**Dataset Split:** \`${process.env.SPLIT}\`\n`;
+            comment += `**Evaluator:** \`${process.env.BASE_REF}\` @ ${process.env.EVALUATOR_COMMIT.slice(0, 7)}\n\n`;
 
             // Read metrics from metrics.json file (required - no fallback)
-            const metricsPath = path.join('base', 'metrics.json');
+            const metricsPath = path.join('metrics', 'metrics.json');
             if (!fs.existsSync(metricsPath)) {
               throw new Error(`metrics.json not found at ${metricsPath}. Evaluation must produce metrics.json file.`);
             }
 
+            // The evaluate job ran submission code, so accept only numbers from its output.
             const metrics = JSON.parse(fs.readFileSync(metricsPath, 'utf8'));
+            const checkNumbers = (obj, keys) => {
+              for (const key of keys) {
+                if (obj[key] !== undefined && !Number.isFinite(obj[key])) {
+                  throw new Error(`metrics.json: ${key} is not a number`);
+                }
+              }
+            };
+            checkNumbers(metrics, ['arena_score', 'accuracy', 'total_cost', 'avg_cost_per_query',
+              'avg_cost_per_1000', 'num_queries', 'abnormal_count', 'robustness_score']);
+            if (metrics.optimality) {
+              checkNumbers(metrics.optimality, ['opt_sel', 'opt_cost', 'opt_acc']);
+            }
             comment += '### RouterArena Metrics\n\n';
             comment += '| Metric | Value |\n';
             comment += '|--------|-------|\n';
@@ -333,7 +407,7 @@ jobs:
             console.log('Successfully posted evaluation results as PR comment');
 
       - name: React with success
-        if: ${{ steps.detect.outputs.router != '' && steps.evaluate.outcome == 'success' }}
+        if: ${{ steps.post.outcome == 'success' }}
         uses: actions/github-script@v8
         with:
           script: |
@@ -345,12 +419,13 @@ jobs:
             });
 
       - name: Complete PR check
-        if: ${{ always() && steps.checkrun.outputs.id != '' }}
+        if: ${{ always() && needs.start.outputs.check_id != '' }}
         uses: actions/github-script@v8
         env:
-          DETECTED_ROUTER: ${{ steps.detect.outputs.router }}
-          DETECT_OUTCOME: ${{ steps.detect.outcome }}
-          EVALUATE_OUTCOME: ${{ steps.evaluate.outcome }}
+          DETECTED_ROUTER: ${{ needs.evaluate.outputs.router }}
+          EVALUATE_RESULT: ${{ needs.evaluate.result }}
+          POST_OUTCOME: ${{ steps.post.outcome }}
+          CHECK_ID: ${{ needs.start.outputs.check_id }}
         with:
           script: |
             let conclusion = 'success';
@@ -358,28 +433,27 @@ jobs:
             let summary = 'Router evaluation finished successfully.';
 
             if (!process.env.DETECTED_ROUTER) {
-              conclusion = process.env.DETECT_OUTCOME === 'success' ? 'neutral' : 'failure';
-              title = process.env.DETECT_OUTCOME === 'success' ? 'No router file detected' : 'Evaluation setup failed';
-              summary = process.env.DETECT_OUTCOME === 'success'
+              conclusion = process.env.EVALUATE_RESULT === 'success' ? 'neutral' : 'failure';
+              title = process.env.EVALUATE_RESULT === 'success' ? 'No router file detected' : 'Evaluation setup failed';
+              summary = process.env.EVALUATE_RESULT === 'success'
                 ? 'No changed prediction file was detected for this PR, so evaluation was skipped.'
                 : 'Failed while detecting prediction files for this PR.';
-            } else if (process.env.EVALUATE_OUTCOME !== 'success') {
+            } else if (process.env.EVALUATE_RESULT !== 'success') {
               conclusion = 'failure';
               title = 'Evaluation failed';
               summary = 'The evaluation step failed. Check this workflow run logs for details.';
+            } else if (process.env.POST_OUTCOME !== 'success') {
+              conclusion = 'failure';
+              title = 'Could not report results';
+              summary = 'The evaluation finished, but its results could not be posted. Check this workflow run logs for details.';
             }
 
             await github.rest.checks.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              check_run_id: Number('${{ steps.checkrun.outputs.id }}'),
+              check_run_id: Number(process.env.CHECK_ID),
               status: 'completed',
               conclusion,
               completed_at: new Date().toISOString(),
               output: { title, summary }
             });
-
-      - name: Cleanup workspace
-        if: always()
-        run: |
-          rm -rf base/ pr/
