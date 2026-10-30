@@ -7577,7 +7577,7 @@
       "error": null
     },
     "cost": 0.000703466,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -7748,7 +7748,7 @@
       "error": null
     },
     "cost": 0.000476853,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8660,7 +8660,7 @@
       "error": null
     },
     "cost": 0.0021037,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -9344,7 +9344,7 @@
       "error": null
     },
     "cost": 7.0984e-05,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -9553,7 +9553,7 @@
       "error": null
     },
     "cost": 0.00198045,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -9895,7 +9895,7 @@
       "error": null
     },
     "cost": 0.00325195,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -10142,7 +10142,7 @@
       "error": null
     },
     "cost": 0.00187525,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -10484,7 +10484,7 @@
       "error": null
     },
     "cost": 0.0017774499999999999,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -10636,7 +10636,7 @@
       "error": null
     },
     "cost": 0.00266175,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11985,7 +11985,7 @@
       "error": null
     },
     "cost": 0.00103035,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -12137,7 +12137,7 @@
       "error": null
     },
     "cost": 0.0007356499999999999,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13144,7 +13144,7 @@
       "error": null
     },
     "cost": 0.0028990499999999994,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13220,7 +13220,7 @@
       "error": null
     },
     "cost": 0.00383615,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13676,7 +13676,7 @@
       "error": null
     },
     "cost": 0.0024736,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -14417,7 +14417,7 @@
       "error": null
     },
     "cost": 0.0037896999999999996,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -33569,7 +33569,7 @@
       "error": null
     },
     "cost": 0.0001716,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -66762,7 +66762,7 @@
       "error": null
     },
     "cost": 0.007754,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -67199,7 +67199,7 @@
       "error": null
     },
     "cost": 0.00769795,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -84128,7 +84128,7 @@
       "error": null
     },
     "cost": 0.002405,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -102140,7 +102140,7 @@
       "error": null
     },
     "cost": 0.0019652000000000003,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -113255,7 +113255,7 @@
       "error": null
     },
     "cost": 0.0007564500000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -113901,7 +113901,7 @@
       "error": null
     },
     "cost": 0.00036395,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -115839,7 +115839,7 @@
       "error": null
     },
     "cost": 0.00017590000000000002,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -118271,7 +118271,7 @@
       "error": null
     },
     "cost": 0.0009886,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -118917,7 +118917,7 @@
       "error": null
     },
     "cost": 0.00057065,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -123876,7 +123876,7 @@
       "error": null
     },
     "cost": 0.0032190499999999998,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -125301,7 +125301,7 @@
       "error": null
     },
     "cost": 0.0012074499999999999,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -133072,7 +133072,7 @@
       "error": null
     },
     "cost": 0.0006254499999999999,
-    "accuracy": 0.0,
+    "accuracy": 0.16666666666666666,
     "for_optimality": false
   },
   {
@@ -133110,7 +133110,7 @@
       "error": null
     },
     "cost": 0.000853,
-    "accuracy": 0.0,
+    "accuracy": 0.23529411764705882,
     "for_optimality": false
   },
   {
@@ -133224,7 +133224,7 @@
       "error": null
     },
     "cost": 0.00088975,
-    "accuracy": 0.0,
+    "accuracy": 0.8611111111111112,
     "for_optimality": false
   },
   {
@@ -133585,7 +133585,7 @@
       "error": null
     },
     "cost": 0.00069855,
-    "accuracy": 0.0,
+    "accuracy": 0.8095238095238094,
     "for_optimality": false
   },
   {
@@ -136454,7 +136454,7 @@
       "error": null
     },
     "cost": 0.0008179999999999999,
-    "accuracy": 0.0,
+    "accuracy": 0.19209039548022597,
     "for_optimality": false
   },
   {
@@ -136815,7 +136815,7 @@
       "error": null
     },
     "cost": 0.0007370499999999999,
-    "accuracy": 0.0,
+    "accuracy": 0.2366666666666667,
     "for_optimality": false
   },
   {
@@ -137309,7 +137309,7 @@
       "error": null
     },
     "cost": 0.0007203499999999999,
-    "accuracy": 0.0,
+    "accuracy": 0.22222222222222224,
     "for_optimality": false
   },
   {
@@ -137366,7 +137366,7 @@
       "error": null
     },
     "cost": 0.0010867,
-    "accuracy": 0.0,
+    "accuracy": 0.33333333333333337,
     "for_optimality": false
   },
   {
@@ -137385,7 +137385,7 @@
       "error": null
     },
     "cost": 0.0009714999999999998,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -138753,7 +138753,7 @@
       "error": null
     },
     "cost": 0.00079105,
-    "accuracy": 0.0,
+    "accuracy": 0.08571428571428572,
     "for_optimality": false
   },
   {
@@ -138848,7 +138848,7 @@
       "error": null
     },
     "cost": 0.0005691,
-    "accuracy": 0.0,
+    "accuracy": 0.7698412698412699,
     "for_optimality": false
   },
   {
@@ -139855,7 +139855,7 @@
       "error": null
     },
     "cost": 0.0008539000000000001,
-    "accuracy": 0.0,
+    "accuracy": 0.14838709677419357,
     "for_optimality": false
   },
   {
@@ -140045,7 +140045,7 @@
       "error": null
     },
     "cost": 0.0007002,
-    "accuracy": 0.0,
+    "accuracy": 0.1722222222222222,
     "for_optimality": false
   },
   {
@@ -142097,7 +142097,7 @@
       "error": null
     },
     "cost": 0.0004637,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -147208,7 +147208,7 @@
       "error": null
     },
     "cost": 0.00026734999999999997,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -148139,7 +148139,7 @@
       "error": null
     },
     "cost": 0.00101615,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -148329,7 +148329,7 @@
       "error": null
     },
     "cost": 0.00036795,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -148557,7 +148557,7 @@
       "error": null
     },
     "cost": 0.00034275,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -150248,7 +150248,7 @@
       "error": null
     },
     "cost": 0.00040375000000000003,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -150286,7 +150286,7 @@
       "error": null
     },
     "cost": 0.0003053,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -151445,7 +151445,7 @@
       "error": null
     },
     "cost": 0.00018175,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -152851,7 +152851,7 @@
       "error": null
     },
     "cost": 0.0008407,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -152889,7 +152889,7 @@
       "error": null
     },
     "cost": 0.0003541,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -159994,7 +159994,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0005006,
+    "cost": 0.033280000000000004,
     "accuracy": 1.0,
     "for_optimality": true
   },
@@ -160963,7 +160963,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00026084999999999997,
+    "cost": 0.0172975,
     "accuracy": 1.0,
     "for_optimality": true
   },
@@ -161077,7 +161077,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00027785,
+    "cost": 0.0184125,
     "accuracy": 1.0,
     "for_optimality": true
   },
@@ -161134,7 +161134,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00043275,
+    "cost": 0.028717499999999997,
     "accuracy": 1.0,
     "for_optimality": true
   },
@@ -161989,7 +161989,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00053055,
+    "cost": 0.0350225,
     "accuracy": 1.0,
     "for_optimality": true
   },
@@ -162256,7 +162256,7 @@
       "error": null
     },
     "cost": 0.00249285,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -162388,7 +162388,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0008448,
+    "cost": 0.05577,
     "accuracy": 1.0,
     "for_optimality": true
   },
@@ -162502,8 +162502,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00015705,
-    "accuracy": 0.0,
+    "cost": 0.0101875,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -163072,8 +163072,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00231865,
-    "accuracy": 0.0,
+    "cost": 0.15414,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -163186,8 +163186,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0034866,
-    "accuracy": 0.0,
+    "cost": 0.231975,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -163776,7 +163776,7 @@
       "error": null
     },
     "cost": 0.00010131099999999999,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -163813,7 +163813,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0033383,
+    "cost": 0.22174000000000002,
     "accuracy": 0.0,
     "for_optimality": true
   },
@@ -164098,8 +164098,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00052075,
-    "accuracy": 0.0,
+    "cost": 0.0345875,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -164953,8 +164953,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0014255,
-    "accuracy": 1.0,
+    "cost": 0.0946775,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -167290,7 +167290,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00025604999999999996,
+    "cost": 0.016955,
     "accuracy": 1.0,
     "for_optimality": true
   },
@@ -167575,7 +167575,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00013514999999999998,
+    "cost": 0.008919999999999999,
     "accuracy": 1.0,
     "for_optimality": true
   },
@@ -168202,7 +168202,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0006319,
+    "cost": 0.041914999999999994,
     "accuracy": 1.0,
     "for_optimality": true
   },
@@ -174016,7 +174016,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0011939,
+    "cost": 0.079165,
     "accuracy": 1.0,
     "for_optimality": true
   },
@@ -175555,7 +175555,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00111745,
+    "cost": 0.07422250000000001,
     "accuracy": 1.0,
     "for_optimality": true
   },
@@ -177265,8 +177265,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0016973000000000001,
-    "accuracy": 0.9965277777777778,
+    "cost": 0.11311000000000002,
+    "accuracy": 0.796,
     "for_optimality": true
   },
   {
@@ -181369,8 +181369,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0042568499999999995,
-    "accuracy": 0.0,
+    "cost": 0.2835325,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188893,7 +188893,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00150305,
+    "cost": 0.1000225,
     "accuracy": 0.0,
     "for_optimality": true
   },
@@ -190603,8 +190603,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0008673,
-    "accuracy": 1.0,
+    "cost": 0.05771,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -194251,7 +194251,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.008422049999999999,
+    "cost": 0.56051,
     "accuracy": 0.0,
     "for_optimality": true
   },
@@ -194308,7 +194308,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0064909500000000005,
+    "cost": 0.4313825,
     "accuracy": 0.0,
     "for_optimality": true
   },
@@ -194365,7 +194365,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00568335,
+    "cost": 0.3782225,
     "accuracy": 0.0,
     "for_optimality": true
   },
@@ -194479,7 +194479,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0062362500000000005,
+    "cost": 0.4150525,
     "accuracy": 0.0,
     "for_optimality": true
   },
@@ -194764,7 +194764,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00069835,
+    "cost": 0.045745,
     "accuracy": 0.0,
     "for_optimality": true
   },
@@ -198868,8 +198868,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0008514999999999999,
-    "accuracy": 0.8166666666666667,
+    "cost": 0.05585,
+    "accuracy": 0.3181818181818181,
     "for_optimality": true
   },
   {
@@ -198982,8 +198982,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00060155,
-    "accuracy": 0.125,
+    "cost": 0.039205000000000004,
+    "accuracy": 0.4666666666666667,
     "for_optimality": true
   },
   {
