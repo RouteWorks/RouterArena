@@ -2,7 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 # Model price profiles: the source of truth for model_cost/model_cost.json.
-# One entry per model. After editing, regenerate the JSON with:
+# One entry per model, keyed by its OpenRouter id when OpenRouter lists the model.
+# Every other spelling a submission uses (provider prefix, date, effort suffix such as
+# @high) is an alias. After editing, regenerate the JSON with:
 #   python scripts/pricing/build_model_cost.py
 #
 # Fields
@@ -11,145 +13,230 @@
 #   as_of                       date the price was recorded
 #   source                      URL of the published price (required for new models)
 #   note                        free text, e.g. known conflicts to resolve
+#   openrouter_id               OpenRouter id to sync from, when the key isn't one
+#   sync                        false keeps the price fixed (retired or never-listed models)
 #
-# Prices are fixed for now; a market sync will update them later. A model name that
-# matches no id or alias is charged the highest input and output price in this file.
+# Profiles keyed by an OpenRouter id (or with openrouter_id) take OpenRouter's list price
+# when a maintainer runs:
+#   python scripts/pricing/sync_openrouter.py
+# which also records the prices used in model_cost/price_snapshots/<date>.json. A model
+# name that matches no id or alias is charged the highest price in this file.
 
 models:
-  "google/gemma-3n-e4b-it":
-    price: {input: 0.02, output: 0.04}
+  "agnes-2.0-flash":
+    price: {input: 0.03, output: 0.15}
     as_of: "2026-09-27"
     source: null
-  "gemini-3-pro-preview":
-    price: {input: 2.0, output: 12.0}
-    as_of: "2026-09-27"
-    source: null
-  "gemini-3-flash-preview":
-    price: {input: 0.5, output: 3}
-    aliases: ["google/gemini-3-flash-preview"]
-    as_of: "2026-09-27"
-    source: null
-  "o4-mini":
-    price: {input: 1.1, output: 4.4}
-    aliases: ["o4-mini-2025-04-16"]
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5.1":
-    price: {input: 1.25, output: 10.0}
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5.2":
-    price: {input: 1.75, output: 14.0}
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5.1-None":
-    price: {input: 1.25, output: 10.0}
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5-mini":
-    price: {input: 0.25, output: 2.0}
-    aliases: ["openai/gpt-5-mini"]
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5-nano":
-    price: {input: 0.05, output: 0.4}
-    aliases: ["gpt-5-nano-2025-08-07"]
-    as_of: "2026-09-27"
-    source: null
-  "deepseek-reasoner":
-    price: {input: 0.28, output: 0.42}
-    as_of: "2026-09-27"
-    source: null
-  "gemini-3.0-pro":
-    price: {input: 2.0, output: 12.0}
-    as_of: "2026-09-27"
-    source: null
-  "test":
-    price: {input: 1.0, output: 2.0}
-    as_of: "2026-09-27"
-    source: null
-  "claude-sonnet-4-5":
-    price: {input: 3.0, output: 15.0}
-    aliases: ["anthropic/claude-sonnet-4.5"]
-    as_of: "2026-09-27"
-    source: null
-  "claude-3-haiku-20240307":
+    note: "Not listed on OpenRouter."
+    sync: false
+  "anthropic/claude-3-haiku":
     price: {input: 0.25, output: 1.25}
+    aliases: ["claude-3-haiku-20240307"]
     as_of: "2026-09-27"
     source: null
-  "gpt-4o-mini":
-    price: {input: 0.15, output: 0.6}
-    aliases: ["openai/gpt-4o-mini"]
+    note: "claude-3-haiku-20240307: retired from OpenRouter; kept at its last listed price."
+    sync: false
+  "anthropic/claude-haiku-4.5":
+    price: {input: 1, output: 5}
+    aliases: ["anthropic/claude-haiku-4-5-20251001", "claude-haiku-4-5", "claude-haiku-4-5-20251001", "claude-haiku-4.5"]
     as_of: "2026-09-27"
     source: null
-  "glm-4.5-air":
-    price: {input: 0.1, output: 0.3}
+    note: "Unified spellings; previous prices: claude-haiku-4-5 0.8/4."
+  "anthropic/claude-haiku-5.5":
+    price: {input: 0.1, output: 0.5}
+    as_of: null
+    source: null
+  "anthropic/claude-opus-4.1":
+    price: {input: 15, output: 75}
+    aliases: ["claude-opus-4-1"]
     as_of: "2026-09-27"
     source: null
-  "glm-4.6":
-    price: {input: 0.28, output: 1.12}
+  "anthropic/claude-opus-4.6":
+    price: {input: 5, output: 25}
+    aliases: ["claude-opus-4-6"]
     as_of: "2026-09-27"
     source: null
-  "glm-4-air-250414":
-    price: {input: 0.07, output: 0.07}
-    aliases: ["glm-4-air"]
+  "anthropic/claude-opus-4.7":
+    price: {input: 5, output: 25}
+    aliases: ["claude-opus-4-7"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/anthropic/claude-opus-4.7"
+  "anthropic/claude-opus-5.5":
+    price: {input: 4, output: 20}
+    as_of: null
+    source: null
+  "anthropic/claude-sonnet-4":
+    price: {input: 3, output: 15}
+    aliases: ["claude-sonnet-4"]
     as_of: "2026-09-27"
     source: null
-    note: "Alias glm-4-air was previously matched by substring; kept at this price."
-  "qwen_qwen3-vl-235b-a22b-thinking":
-    price: {input: 0.3, output: 1.2}
+    note: "anthropic/claude-sonnet-4: retired from OpenRouter; kept at its last listed price."
+    sync: false
+  "anthropic/claude-sonnet-4.5":
+    price: {input: 3, output: 15}
+    aliases: ["anthropic/claude-sonnet-4-5", "claude-sonnet-4-5"]
     as_of: "2026-09-27"
     source: null
-  "gemini-2.5-flash":
-    price: {input: 0.3, output: 2.5}
+  "anthropic/claude-sonnet-5.5":
+    price: {input: 2, output: 10}
+    as_of: null
+    source: null
+  "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B":
+    price: {input: 0.18, output: 0.85}
     as_of: "2026-09-27"
     source: null
+    note: "Not listed on OpenRouter."
+    sync: false
+  "deepseek-v3.1":
+    price: {input: 1.23, output: 4.94}
+    as_of: "2026-09-27"
+    source: null
+  "deepseek/deepseek-chat":
+    price: {input: 0.2574, output: 1.0287}
+    aliases: ["deepseek-chat"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/deepseek/deepseek-chat"
+  "deepseek/deepseek-reasoner":
+    price: {input: 0.28, output: 0.42}
+    aliases: ["deepseek-reasoner"]
+    as_of: "2026-09-27"
+    source: null
+    note: "DeepSeek's API name; the model behind it changed over time, so it is not synced."
+    sync: false
+  "deepseek/deepseek-v3.2":
+    price: {input: 0.26, output: 0.38}
+    aliases: ["deepseek-v3.2"]
+    as_of: "2026-09-27"
+    source: null
+  "deepseek/deepseek-v4-flash":
+    price: {input: 0.091, output: 0.182}
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/deepseek/deepseek-v4-flash"
+  "deepseek/deepseek-v4-flash-0731":
+    price: {input: 0.119, output: 0.238}
+    aliases: ["deepseek-ai/DeepSeek-V4-Flash-0731"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/deepseek/deepseek-v4-flash-0731"
+  "deepseek/deepseek-v4-pro":
+    price: {input: 1.6, output: 3.2}
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/deepseek/deepseek-v4-pro"
+  "deepseek/deepseek-v4.1-flash":
+    price: {input: 0.045, output: 0.5}
+    aliases: ["deepseek/deepseek-v4.1-flash@high", "deepseek/deepseek-v4.1-flash@low"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/deepseek/deepseek-v4.1-flash"
   "gemini-2.0-flash-001":
     price: {input: 0.1, output: 0.4}
     as_of: "2026-09-27"
     source: null
-  "qwen_qwen3-vl-32b-instruct":
-    price: {input: 0.5, output: 1.5}
+  "gemini-3-pro-preview":
+    price: {input: 2, output: 12}
     as_of: "2026-09-27"
     source: null
-  "qwen_qwen3-vl-235b-a22b-instruct":
-    price: {input: 0.2, output: 1.2}
+  "gemini-3.0-pro":
+    price: {input: 2, output: 12}
     as_of: "2026-09-27"
     source: null
-  "qwen_qwen3-coder":
-    price: {input: 0.22, output: 0.95}
+  "glm-4-air":
+    price: {input: 0.07, output: 0.07}
+    aliases: ["glm-4-air-250414"]
     as_of: "2026-09-27"
     source: null
-  "x-ai_grok-code-fast-1":
-    price: {input: 0.2, output: 1.5}
+    note: "Alias glm-4-air was previously matched by substring; kept at this price."
+    sync: false
+  "google/gemini-2.5-flash":
+    price: {input: 0.3, output: 2.5}
+    aliases: ["gemini-2.5-flash"]
     as_of: "2026-09-27"
     source: null
-  "xiaomi_mimo-v2-flash:free":
-    price: {input: 0.1, output: 0.3}
+  "google/gemini-2.5-flash-lite":
+    price: {input: 0.1, output: 0.4}
+    aliases: ["gemini-2.5-flash-lite"]
     as_of: "2026-09-27"
     source: null
-  "qwen/qwen3-next-80b-a3b-instruct":
-    price: {input: 0.09, output: 1.1}
+  "google/gemini-2.5-pro":
+    price: {input: 1.25, output: 10}
     as_of: "2026-09-27"
     source: null
-  "x-ai_grok-4.1-fast":
-    price: {input: 0.2, output: 0.5}
+  "google/gemini-3-flash-preview":
+    price: {input: 0.5, output: 3}
+    aliases: ["gemini-3-flash-preview"]
     as_of: "2026-09-27"
     source: null
-  "mistralai_devstral-2512:free":
-    price: {input: 0.05, output: 0.22}
+  "google/gemini-3.1-flash-lite":
+    price: {input: 0.25, output: 1.5}
     as_of: "2026-09-27"
     source: null
-  "meta-llama_llama-3.3-70b-instruct":
+  "google/gemini-3.1-flash-lite-preview":
+    price: {input: 0.25, output: 1.5}
+    aliases: ["gemini-3.1-flash-lite-preview"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/google/gemini-3.1-flash-lite-preview"
+  "google/gemini-3.1-pro-preview":
+    price: {input: 2, output: 12}
+    aliases: ["gemini-3.1-pro-preview"]
+    as_of: "2026-09-27"
+    source: null
+  "google/gemini-3.5-flash-lite":
+    price: {input: 0.3, output: 2.5}
+    as_of: null
+    source: null
+  "google/gemini-3.7-flash":
+    price: {input: 0.75, output: 3.75}
+    as_of: null
+    source: null
+  "google/gemini-3.8-flash":
+    price: {input: 0.825, output: 4.125}
+    aliases: ["gemini-3.8-flash"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/google/gemini-3.8-flash"
+  "google/gemma-3n-e4b-it":
+    price: {input: 0.02, output: 0.04}
+    as_of: "2026-09-27"
+    source: null
+  "google/gemma-4-31b-it":
+    price: {input: 0.2, output: 0.4}
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/google/gemma-4-31b-it"
+  "gpt-5-chat":
+    price: {input: 1.25, output: 10}
+    as_of: "2026-09-27"
+    source: null
+  "gpt-5.3-chat":
+    price: {input: 1.75, output: 14}
+    as_of: "2026-09-27"
+    source: null
+  "grok-4":
+    price: {input: 5.5, output: 27.5}
+    as_of: "2026-09-27"
+    source: null
+  "inclusionai/ling-3.0-flash":
+    price: {input: 0.021, output: 0.063}
+    aliases: ["lingdt-3.0-flash"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/inclusionai/ling-3.0-flash"
+    note: "lingdt-3.0-flash: priced as its public base model, per its submitter (#241)."
+  "llama-4-maverick-17b-128e-instruct-fp8":
+    price: {input: 0.25, output: 1}
+    as_of: "2026-09-27"
+    source: null
+  "meta-llama/llama-3.3-70b-instruct":
     price: {input: 0.1, output: 0.32}
+    aliases: ["meta-llama_llama-3.3-70b-instruct"]
     as_of: "2026-09-27"
     source: null
   "meta-llama_llama-3.1-405b-instruct":
     price: {input: 3.5, output: 3.5}
     as_of: "2026-09-27"
     source: null
-  "mistralai/ministral-3b-2512":
-    price: {input: 0.1, output: 0.1}
+  "minimax/minimax-m3":
+    price: {input: 0.3, output: 1.2}
+    aliases: ["MiniMax-M3", "MiniMaxAI/MiniMax-M3"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/minimax/minimax-m3"
+  "mistralai/ministral-3-14b-2512":
+    price: {input: 0.2, output: 0.2}
     as_of: "2026-09-27"
     source: null
   "mistralai/ministral-3-3b-2512":
@@ -160,230 +247,281 @@ models:
     price: {input: 0.15, output: 0.15}
     as_of: "2026-09-27"
     source: null
-  "mistralai/ministral-3-14b-2512":
-    price: {input: 0.2, output: 0.2}
+  "mistralai/ministral-3b-2512":
+    price: {input: 0.1, output: 0.1}
     as_of: "2026-09-27"
     source: null
-  "qwen/qwen3-30b-a3b-instruct-2507":
-    price: {input: 0.08, output: 0.33}
-    as_of: "2026-09-27"
+  "mistralai/ministral-8b-2512":
+    price: {input: 0.15, output: 0.15}
+    aliases: ["ministral-8b-latest"]
+    as_of: null
     source: null
-    note: "Conflict: also profiled as qwen3-30b-a3b-instruct-2507 at 0.15/0.60. Unify at market sync."
-  "Qwen/Qwen3-Coder-Next":
-    price: {input: 0.07, output: 0.3}
-    as_of: "2026-09-27"
-    source: null
-  "qwen/qwen3-coder-30b-a3b-instruct":
-    price: {input: 0.07, output: 0.27}
+  "mistralai_devstral-2512:free":
+    price: {input: 0.05, output: 0.22}
     as_of: "2026-09-27"
     source: null
   "moonshotai/kimi-k2.5":
-    price: {input: 0.6, output: 3.0}
+    price: {input: 0.5, output: 2.5}
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/moonshotai/kimi-k2.5"
+  "moonshotai/kimi-k2.6":
+    price: {input: 0.65, output: 3.41}
+    aliases: ["moonshotai/Kimi-K2.6"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/moonshotai/kimi-k2.6"
+  "moonshotai/kimi-k3":
+    price: {input: 0.192, output: 15}
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/moonshotai/kimi-k3"
+  "nvidia/nemotron-3-nano-30b-a3b":
+    price: {input: 0.06, output: 0.24}
+    aliases: ["nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B"]
+    as_of: null
+    source: null
+    note: "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B: same model, Hugging Face spelling."
+  "o4-mini":
+    price: {input: 1.1, output: 4.4}
+    aliases: ["o4-mini-2025-04-16"]
     as_of: "2026-09-27"
     source: null
-  "z-ai/glm-5":
-    price: {input: 1.0, output: 3.2}
+  "openai/gpt-4.1":
+    price: {input: 2, output: 8}
+    aliases: ["gpt-4.1"]
     as_of: "2026-09-27"
     source: null
-  "google/gemini-3.1-flash-lite":
-    price: {input: 0.25, output: 1.5}
-    as_of: "2026-09-27"
-    source: null
-  "claude-opus-4-7":
-    price: {input: 15.0, output: 75.0}
-    as_of: "2026-09-27"
-    source: null
-  "claude-haiku-4-5":
-    price: {input: 0.8, output: 4.0}
-    as_of: "2026-09-27"
-    source: null
-    note: "Conflict: same model as claude-haiku-4-5-20251001 (1.00/5.00). Kept separate so current scores do not move. Unify at market sync."
-  "gpt-5.5":
-    price: {input: 5.0, output: 30.0}
-    aliases: ["gpt-5.5-2026-04-23"]
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5.4-mini":
+  "openai/gpt-4.1-mini":
     price: {input: 0.4, output: 1.6}
+    aliases: ["gpt-4.1-mini"]
     as_of: "2026-09-27"
     source: null
-  "gpt-4.1":
-    price: {input: 2.0, output: 8.0}
-    as_of: "2026-09-27"
-    source: null
-  "gemini-3.1-pro-preview":
-    price: {input: 2.0, output: 12.0}
-    as_of: "2026-09-27"
-    source: null
-  "gemini-3.1-flash-lite-preview":
+  "openai/gpt-4.1-nano":
     price: {input: 0.1, output: 0.4}
+    aliases: ["gpt-4.1-nano"]
     as_of: "2026-09-27"
     source: null
-  "deepseek/deepseek-v4-pro":
-    price: {input: 0.435, output: 0.87}
+  "openai/gpt-4o":
+    price: {input: 2.5, output: 10}
+    aliases: ["gpt-4o"]
     as_of: "2026-09-27"
     source: null
+  "openai/gpt-4o-mini":
+    price: {input: 0.15, output: 0.6}
+    aliases: ["gpt-4o-mini"]
+    as_of: "2026-09-27"
+    source: null
+  "openai/gpt-5":
+    price: {input: 1.25, output: 10}
+    aliases: ["gpt-5"]
+    as_of: "2026-09-27"
+    source: null
+  "openai/gpt-5-mini":
+    price: {input: 0.25, output: 2}
+    aliases: ["gpt-5-mini"]
+    as_of: "2026-09-27"
+    source: null
+  "openai/gpt-5-nano":
+    price: {input: 0.05, output: 0.4}
+    aliases: ["gpt-5-nano", "gpt-5-nano-2025-08-07"]
+    as_of: "2026-09-27"
+    source: null
+  "openai/gpt-5.1":
+    price: {input: 1.25, output: 10}
+    aliases: ["gpt-5.1", "gpt-5.1-None"]
+    as_of: "2026-09-27"
+    source: null
+  "openai/gpt-5.2":
+    price: {input: 1.75, output: 14}
+    aliases: ["gpt-5.2"]
+    as_of: "2026-09-27"
+    source: null
+  "openai/gpt-5.2-chat":
+    price: {input: 1.75, output: 14}
+    aliases: ["gpt-5.2-chat"]
+    as_of: "2026-09-27"
+    source: null
+  "openai/gpt-5.4":
+    price: {input: 2.5, output: 15}
+    aliases: ["gpt-5.4"]
+    as_of: "2026-09-27"
+    source: null
+  "openai/gpt-5.4-mini":
+    price: {input: 0.75, output: 4.5}
+    aliases: ["gpt-5.4-mini"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/openai/gpt-5.4-mini"
+  "openai/gpt-5.4-nano":
+    price: {input: 0.2, output: 1.25}
+    aliases: ["gpt-5.4-nano"]
+    as_of: "2026-09-27"
+    source: null
+  "openai/gpt-5.5":
+    price: {input: 5, output: 30}
+    aliases: ["gpt-5.5", "gpt-5.5-2026-04-23"]
+    as_of: "2026-09-27"
+    source: null
+  "openai/gpt-5.6-luna":
+    price: {input: 0.2, output: 1.2}
+    aliases: ["gpt-5.6-luna"]
+    as_of: null
+    source: null
+  "openai/gpt-5.6-sol":
+    price: {input: 4, output: 20}
+    as_of: null
+    source: null
+  "openai/gpt-5.6-terra":
+    price: {input: 2, output: 12}
+    as_of: null
+    source: null
+  "openai/gpt-6-luna":
+    price: {input: 0.1, output: 0.5}
+    as_of: null
+    source: null
+  "openai/gpt-6-sol":
+    price: {input: 2, output: 10}
+    as_of: null
+    source: null
+  "openai/gpt-6.1-sol":
+    price: {input: 2, output: 10}
+    as_of: null
+    source: null
+  "openai/gpt-oss-120b":
+    price: {input: 0.15, output: 0.6}
+    aliases: ["gpt-oss-120b", "openai_gpt-oss-120b"]
+    as_of: "2026-09-27"
+    source: null
+  "openai/gpt-oss-20b":
+    price: {input: 0.018, output: 0.09}
+    aliases: ["gpt-oss-20b"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/openai/gpt-oss-20b"
+  "qwen/qwen3-235b-a22b-2507":
+    price: {input: 0.09, output: 0.55}
+    aliases: ["alibaba/qwen3-235b-a22b-instruct-2507", "qwen3-235b-a22b-instruct-2507", "qwen_qwen3-235b-a22b-2507"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/qwen/qwen3-235b-a22b-2507"
+    note: "Unified spellings; previous prices: qwen3-235b-a22b-instruct-2507 0.5/2. alibaba/qwen3-235b-a22b-instruct-2507: same model, Alibaba's spelling."
+  "qwen/qwen3-30b-a3b-instruct-2507":
+    price: {input: 0.1, output: 0.3}
+    aliases: ["alibaba/qwen3-30b-a3b-instruct-2507", "qwen3-30b-a3b-instruct-2507"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/qwen/qwen3-30b-a3b-instruct-2507"
+    note: "Unified spellings; previous prices: qwen/qwen3-30b-a3b-instruct-2507 0.08/0.33."
+  "qwen/qwen3-coder":
+    price: {input: 0.3, output: 1}
+    aliases: ["qwen_qwen3-coder"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/qwen/qwen3-coder"
+  "qwen/qwen3-coder-30b-a3b-instruct":
+    price: {input: 0.07, output: 0.28}
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/qwen/qwen3-coder-30b-a3b-instruct"
+  "qwen/qwen3-coder-next":
+    price: {input: 0.12, output: 0.8}
+    aliases: ["Qwen/Qwen3-Coder-Next"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/qwen/qwen3-coder-next"
+  "qwen/qwen3-next-80b-a3b-instruct":
+    price: {input: 0.09, output: 1.1}
+    as_of: "2026-09-27"
+    source: null
+  "qwen/qwen3-vl-235b-a22b-instruct":
+    price: {input: 0.21, output: 1.9}
+    aliases: ["qwen_qwen3-vl-235b-a22b-instruct"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/qwen/qwen3-vl-235b-a22b-instruct"
+  "qwen/qwen3.5-9b":
+    price: {input: 0.17, output: 0.25}
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/qwen/qwen3.5-9b"
   "qwen/qwen3.5-flash-02-23":
     price: {input: 0.065, output: 0.26}
     as_of: "2026-09-27"
     source: null
-  "deepseek/deepseek-v4-flash":
-    price: {input: 0.14, output: 0.28}
+  "qwen_qwen3-vl-235b-a22b-thinking":
+    price: {input: 0.3, output: 1.2}
     as_of: "2026-09-27"
     source: null
-  "qwen/qwen3-235b-a22b-2507":
-    price: {input: 0.071, output: 0.1}
-    aliases: ["qwen_qwen3-235b-a22b-2507"]
+  "qwen_qwen3-vl-32b-instruct":
+    price: {input: 0.5, output: 1.5}
     as_of: "2026-09-27"
     source: null
-    note: "Conflict: also profiled as qwen3-235b-a22b-instruct-2507 at 0.50/2.00 (charged to OrcaRouter). Dropped unused duplicate price 0.071/0.463 (qwen_qwen3-235b-a22b-2507). Unify at market sync."
-  "qwen/qwen3.5-9b":
-    price: {input: 0.05, output: 0.15}
-    as_of: "2026-09-27"
-    source: null
-  "deepseek/deepseek-v3.2":
-    price: {input: 0.26, output: 0.38}
-    aliases: ["deepseek-v3.2"]
-    as_of: "2026-09-27"
-    source: null
-    note: "Dropped unused duplicate price 0.28/0.42 (deepseek-v3.2)."
-  "openai/gpt-4o":
-    price: {input: 2.5, output: 10.0}
-    aliases: ["gpt-4o"]
-    as_of: "2026-09-27"
-    source: null
-  "claude-haiku-4-5-20251001":
-    price: {input: 1.0, output: 5.0}
-    aliases: ["claude-haiku-4.5"]
-    as_of: "2026-09-27"
-    source: null
-    note: "Conflict: also profiled as claude-haiku-4-5 at 0.80/4.00 (charged to Nadir Router). Unify at market sync."
-  "claude-sonnet-4":
-    price: {input: 3.0, output: 15.0}
-    as_of: "2026-09-27"
-    source: null
-  "deepseek-chat":
-    price: {input: 0.27, output: 1.1}
-    as_of: "2026-09-27"
-    source: null
-  "qwen3-235b-a22b-instruct-2507":
-    price: {input: 0.5, output: 2.0}
-    as_of: "2026-09-27"
-    source: null
-    note: "Conflict: same model as qwen/qwen3-235b-a22b-2507 (0.071/0.10). Kept separate so current scores do not move. Unify at market sync."
-  "qwen3-30b-a3b-instruct-2507":
-    price: {input: 0.15, output: 0.6}
-    as_of: "2026-09-27"
-    source: null
-    note: "Conflict: same model as qwen/qwen3-30b-a3b-instruct-2507 (0.08/0.33). Kept separate so current scores do not move. Unify at market sync."
-  "gpt-4.1-mini":
-    price: {input: 0.4, output: 1.6}
-    as_of: "2026-09-27"
-    source: null
-  "gpt-4.1-nano":
-    price: {input: 0.1, output: 0.4}
-    as_of: "2026-09-27"
-    source: null
-  "deepseek-v3.1":
-    price: {input: 1.23, output: 4.94}
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5":
-    price: {input: 1.25, output: 10.0}
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5-chat":
-    price: {input: 1.25, output: 10.0}
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5.2-chat":
-    price: {input: 1.75, output: 14.0}
-    as_of: "2026-09-27"
-    source: null
-  "gpt-oss-120b":
-    price: {input: 0.15, output: 0.6}
-    aliases: ["openai_gpt-oss-120b", "openai/gpt-oss-120b"]
-    as_of: "2026-09-27"
-    source: null
-    note: "Dropped unused duplicate price 0.039/0.19 (openai_gpt-oss-120b)."
-  "llama-4-maverick-17b-128e-instruct-fp8":
-    price: {input: 0.25, output: 1.0}
-    as_of: "2026-09-27"
-    source: null
-  "grok-4":
-    price: {input: 5.5, output: 27.5}
-    as_of: "2026-09-27"
-    source: null
-  "claude-opus-4-1":
-    price: {input: 15.0, output: 75.0}
-    as_of: "2026-09-27"
-    source: null
-  "claude-opus-4-6":
-    price: {input: 5.0, output: 25.0}
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5.4-nano":
-    price: {input: 0.2, output: 1.25}
-    as_of: "2026-09-27"
-    source: null
-  "grok-4-1-fast-reasoning":
-    price: {input: 0.2, output: 0.5}
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5.3-chat":
-    price: {input: 1.75, output: 14.0}
-    as_of: "2026-09-27"
-    source: null
-  "gpt-5.4":
-    price: {input: 2.5, output: 15.0}
-    as_of: "2026-09-27"
-    source: null
-  "z-ai/glm-4.7":
-    price: {input: 0.4, output: 1.5}
-    aliases: ["z-ai_glm-4.7"]
-    as_of: "2026-09-27"
-    source: null
-  "MiniMax-M3":
-    price: {input: 0.6, output: 2.4}
-    aliases: ["MiniMaxAI/MiniMax-M3"]
-    as_of: "2026-09-27"
-    source: null
-  "agnes-2.0-flash":
-    price: {input: 0.03, output: 0.15}
+  "test":
+    price: {input: 1, output: 2}
     as_of: "2026-09-27"
     source: null
   "THUDM/GLM-4-9B-0414":
     price: {input: 0.05, output: 0.61}
     as_of: "2026-09-27"
     source: null
-  "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B":
-    price: {input: 0.18, output: 0.85}
+    note: "Not listed on OpenRouter."
+    sync: false
+  "upstage/solar-mini":
+    price: {input: 0.15, output: 0.15}
+    as_of: null
+    source: null
+  "upstage/solar-pro-2":
+    price: {input: 0.15, output: 0.6}
+    as_of: null
+    source: null
+  "upstage/solar-pro3":
+    price: {input: 0.15, output: 0.6}
+    as_of: null
+    source: null
+  "upstage/solar-pro4":
+    price: {input: 0.15, output: 0.6}
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/upstage/solar-pro4"
+  "x-ai/grok-4.1-fast":
+    price: {input: 0.2, output: 0.5}
+    aliases: ["grok-4-1-fast-reasoning", "x-ai_grok-4.1-fast"]
     as_of: "2026-09-27"
     source: null
+    note: "grok-4-1-fast-reasoning: retired from OpenRouter; kept at its last listed price."
+    sync: false
   "x-ai/grok-4.3":
     price: {input: 1.25, output: 2.5}
     aliases: ["grok-4.3"]
     as_of: "2026-09-27"
     source: null
-  "gpt-oss-20b":
-    price: {input: 0.03, output: 0.13}
-    aliases: ["openai/gpt-oss-20b"]
+  "x-ai_grok-code-fast-1":
+    price: {input: 0.2, output: 1.5}
     as_of: "2026-09-27"
     source: null
   "xiaomi/mimo-v2.5":
-    price: {input: 0.14, output: 0.28}
+    price: {input: 0.4, output: 2}
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/xiaomi/mimo-v2.5"
+  "xiaomi_mimo-v2-flash:free":
+    price: {input: 0.1, output: 0.3}
     as_of: "2026-09-27"
     source: null
-  "google/gemini-2.5-flash-lite":
-    price: {input: 0.1, output: 0.4}
-    aliases: ["gemini-2.5-flash-lite"]
+  "z-ai/glm-4.5-air":
+    price: {input: 0.13, output: 0.85}
+    aliases: ["glm-4.5-air"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/z-ai/glm-4.5-air"
+  "z-ai/glm-4.6":
+    price: {input: 0.5, output: 2}
+    aliases: ["glm-4.6"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/z-ai/glm-4.6"
+  "z-ai/glm-4.7":
+    price: {input: 0.6, output: 2.2}
+    aliases: ["z-ai_glm-4.7"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/z-ai/glm-4.7"
+  "z-ai/glm-5":
+    price: {input: 1, output: 3.2}
     as_of: "2026-09-27"
     source: null
-  "google/gemini-2.5-pro":
-    price: {input: 1.25, output: 10.0}
-    as_of: "2026-09-27"
-    source: null
-  "google/gemma-4-31b-it":
-    price: {input: 0.08, output: 0.35}
-    as_of: "2026-09-27"
-    source: null
+  "z-ai/glm-5.3":
+    price: {input: 0.0699, output: 1.4}
+    aliases: ["z-ai/glm-5.3@high", "z-ai/glm-5.3@low"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/z-ai/glm-5.3"
+  "z-ai/glm-5.3-flash":
+    price: {input: 0.0149, output: 0.1543}
+    aliases: ["glm-5.3-flash", "z-ai/glm-5.3-flash@default"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/z-ai/glm-5.3-flash"
+    note: "Unified spellings; previous prices: glm-5.3-flash 0.15/0.5; z-ai/glm-5.3-flash 0.15/0.5."

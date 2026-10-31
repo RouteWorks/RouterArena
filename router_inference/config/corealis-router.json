@@ -1,0 +1,15 @@
+{
+  "pipeline_params": {
+    "router_name": "corealis-router",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "z-ai/glm-5.3@low",
+      "z-ai/glm-5.3@high",
+      "z-ai/glm-5.3-flash@default",
+      "deepseek/deepseek-v4.1-flash@low",
+      "deepseek/deepseek-v4.1-flash@high"
+    ],
+    "description": "Corealis Router, from Corealis Consulting AG. A small router model (typesafe/jev-1.14) reads each request and picks one of three models (GLM-5.3, GLM-5.3 Flash, DeepSeek V4.1 Flash), then how much the chosen model thinks (the @low/@high/@default suffix is the reasoning effort). The router is prompted, not trained: neutral instructions ('pick the cheapest model that will answer it correctly') and model descriptions written from size and price only. No RouterArena answers, scores or labels were used to fit the router. Disclosure: before this frozen version, we scored two earlier versions of our own router on a random quarter of RouterArena and on half of Arena-Hard v2.0, and chose this general version over the earlier one partly on those results; we also read other routers' published prediction files. Nothing was tuned per question or per dataset. This submission is the version live in production on 2026-10-22 (table 2d3cc58302f0), run once on all 8,400 prompts through OpenRouter; 78 empty answers (thinking limit reached) are kept as failed. Robustness picks are a genuine re-run of the same router on the 420 perturbed prompts.",
+    "contact_email": "tim.schmid@corealis.ch"
+  }
+}
