@@ -7634,7 +7634,7 @@
       "error": null
     },
     "cost": 0.00062202,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -7748,7 +7748,7 @@
       "error": null
     },
     "cost": 0.0006525400000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -7843,7 +7843,7 @@
       "error": null
     },
     "cost": 0.0010400600000000002,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8014,7 +8014,7 @@
       "error": null
     },
     "cost": 0.0006269200000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8052,7 +8052,7 @@
       "error": null
     },
     "cost": 0.0007407399999999999,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8166,7 +8166,7 @@
       "error": null
     },
     "cost": 0.0007609,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8185,7 +8185,7 @@
       "error": null
     },
     "cost": 0.00119224,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8413,7 +8413,7 @@
       "error": null
     },
     "cost": 0.0004170600000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8546,7 +8546,7 @@
       "error": null
     },
     "cost": 0.00101234,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8565,7 +8565,7 @@
       "error": null
     },
     "cost": 0.010531920000000002,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8660,7 +8660,7 @@
       "error": null
     },
     "cost": 0.0008113000000000002,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8679,7 +8679,7 @@
       "error": null
     },
     "cost": 0.0012924800000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8717,7 +8717,7 @@
       "error": null
     },
     "cost": 0.0018559800000000003,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8793,7 +8793,7 @@
       "error": null
     },
     "cost": 0.00075474,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -9135,7 +9135,7 @@
       "error": null
     },
     "cost": 0.0007784000000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -9496,7 +9496,7 @@
       "error": null
     },
     "cost": 0.0005922000000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -9515,7 +9515,7 @@
       "error": null
     },
     "cost": 0.00038346,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -10028,7 +10028,7 @@
       "error": null
     },
     "cost": 0.00036470000000000003,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -10085,7 +10085,7 @@
       "error": null
     },
     "cost": 0.00066556,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -10142,7 +10142,7 @@
       "error": null
     },
     "cost": 0.00030534000000000003,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -10940,7 +10940,7 @@
       "error": null
     },
     "cost": 0.0010537800000000003,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11263,7 +11263,7 @@
       "error": null
     },
     "cost": 0.00043162000000000007,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11301,7 +11301,7 @@
       "error": null
     },
     "cost": 0.0031372600000000002,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11358,7 +11358,7 @@
       "error": null
     },
     "cost": 0.0008321600000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11396,7 +11396,7 @@
       "error": null
     },
     "cost": 0.0018503800000000002,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11415,7 +11415,7 @@
       "error": null
     },
     "cost": 0.00047894,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11700,7 +11700,7 @@
       "error": null
     },
     "cost": 0.0008813000000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11757,7 +11757,7 @@
       "error": null
     },
     "cost": 0.00046102000000000003,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11833,7 +11833,7 @@
       "error": null
     },
     "cost": 0.00016030000000000002,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11871,7 +11871,7 @@
       "error": null
     },
     "cost": 0.0002884,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -12004,7 +12004,7 @@
       "error": null
     },
     "cost": 0.00037436,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -12327,7 +12327,7 @@
       "error": null
     },
     "cost": 0.00216482,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13144,7 +13144,7 @@
       "error": null
     },
     "cost": 0.0010593800000000002,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13410,7 +13410,7 @@
       "error": null
     },
     "cost": 0.00052108,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13448,7 +13448,7 @@
       "error": null
     },
     "cost": 0.0006311200000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13619,7 +13619,7 @@
       "error": null
     },
     "cost": 0.0008363600000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13657,7 +13657,7 @@
       "error": null
     },
     "cost": 0.00031710000000000006,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13695,7 +13695,7 @@
       "error": null
     },
     "cost": 0.00029498,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13771,7 +13771,7 @@
       "error": null
     },
     "cost": 0.00023646000000000002,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -14417,7 +14417,7 @@
       "error": null
     },
     "cost": 0.0014918400000000001,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -14816,7 +14816,7 @@
       "error": null
     },
     "cost": 0.00025606,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -137005,7 +137005,7 @@
       "error": null
     },
     "cost": 8.218e-05,
-    "accuracy": -0.03260869565217392,
+    "accuracy": 0.0,
     "for_optimality": false
   },
   {
@@ -161135,7 +161135,7 @@
       "error": null
     },
     "cost": 0.000838,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -161211,7 +161211,7 @@
       "error": null
     },
     "cost": 0.001423,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -161230,7 +161230,7 @@
       "error": null
     },
     "cost": 0.00211236,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -161249,7 +161249,7 @@
       "error": null
     },
     "cost": 0.00116725,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -161268,7 +161268,7 @@
       "error": null
     },
     "cost": 0.005322225,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -161287,7 +161287,7 @@
       "error": null
     },
     "cost": 0.001455,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -161363,7 +161363,7 @@
       "error": null
     },
     "cost": 0.00109925,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -161382,7 +161382,7 @@
       "error": null
     },
     "cost": 0.001739565,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -161705,7 +161705,7 @@
       "error": null
     },
     "cost": 0.0011764999999999998,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -161724,7 +161724,7 @@
       "error": null
     },
     "cost": 0.001175805,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -161990,7 +161990,7 @@
       "error": null
     },
     "cost": 0.002955825,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -162389,7 +162389,7 @@
       "error": null
     },
     "cost": 0.00103125,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -185626,7 +185626,7 @@
       "error": null
     },
     "cost": 0.00137895,
-    "accuracy": -0.14814814814814814,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {

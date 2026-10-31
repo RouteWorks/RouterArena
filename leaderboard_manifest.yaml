@@ -224,6 +224,26 @@ routers:
       github_url: "https://github.com/subhajeet-sapient"
       type: "closed-source"
 
+  - readme_name: "BizRouter"
+    website_name: "BizRouter"
+    prediction: "BizRouter"
+    category_key: "bizrouter"
+    flip_key: "bizrouter"
+    website:
+      affiliation: "BizRouter"
+      github_url: "https://bizrouter.ai"
+      type: "closed-source"
+
+  - readme_name: "NuRoute Artemis"
+    website_name: "NuRoute Artemis"
+    prediction: "nuroutev2-artemis"
+    category_key: "nuroute-artemis"
+    flip_key: "nuroute-artemis"
+    website:
+      affiliation: "NuRoute"
+      github_url: "https://nuroute.ai"
+      type: "closed-source"
+
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
   - readme_name: "MIRT-BERT"

@@ -18,8 +18,10 @@ Typical usage:
 
 Key features:
 
-* Fetches the pull request head and creates an isolated git worktree so that the
-  current working copy stays untouched.
+* Grades with the base repository's code, never the pull request's: it creates an
+  isolated git worktree of ``<remote>/main`` (so the current working copy stays
+  untouched) and copies in only the submission's data files from the pull request
+  (prediction, robustness and config files, plus the model names and prices it adds).
 * Runs the existing validation and evaluation scripts via ``uv run``.
 * Saves evaluation summaries and the evaluated prediction file under
   ``pr_evaluations/pr-<PR_NUMBER>/`` for auditing.
@@ -33,6 +35,7 @@ GitHub token with read access to the repository is only needed if the default
 
 from __future__ import annotations
 
+import ast
 import math
 import argparse
 import json
@@ -51,6 +54,15 @@ from global_utils.robustness import compute_robustness_score
 REPO_ROOT = Path(__file__).resolve().parents[1]
 WORKTREES_DIR = REPO_ROOT / ".pr_worktrees"
 ARTIFACTS_DIR = REPO_ROOT / "pr_evaluations"
+
+# The only files taken from a pull request; everything else comes from the base branch.
+SUBMISSION_FILES = (
+    "router_inference/predictions/{router}.json",
+    "router_inference/predictions/{router}-robustness.json",
+    "router_inference/config/{router}.json",
+)
+MODEL_COST_PATH = "model_cost/model_cost.json"
+MODEL_NAMES_PATH = "universal_model_names.py"
 
 
 class CommandError(RuntimeError):
@@ -105,12 +117,19 @@ def run_command(
 
 
 def ensure_worktree(
-    pr_number: int, remote: str, *, keep_existing: bool = False
+    pr_number: int, remote: str, eval_ref: str, *, keep_existing: bool = False
 ) -> tuple[Path, str]:
-    """Fetch a PR head and materialise it as a git worktree."""
+    """Fetch a PR head and create a worktree of the evaluation code to grade it in.
+
+    The worktree is checked out at ``eval_ref``, so the validator, evaluator and
+    dependencies come from the base repository, never from the pull request. The PR
+    head is only fetched to a local branch, from which ``stage_submission`` copies
+    the submission's data files.
+    """
 
     branch_name = f"pr-{pr_number}"
-    fetch_ref = f"pull/{pr_number}/head:{branch_name}"
+    # "+" lets the fetch replace a branch left from an earlier run after a force-push.
+    fetch_ref = f"+pull/{pr_number}/head:{branch_name}"
     # Ensure the base branch is up-to-date for later diffs.
     run_command(["git", "fetch", remote, "main"], cwd=REPO_ROOT)
     run_command(["git", "fetch", remote, fetch_ref], cwd=REPO_ROOT)
@@ -129,8 +148,9 @@ def ensure_worktree(
             "worktree",
             "add",
             "--force",
+            "--detach",
             str(worktree_path),
-            branch_name,
+            eval_ref,
         ],
         cwd=REPO_ROOT,
     )
@@ -155,7 +175,7 @@ def cleanup_worktree(worktree_path: Path, branch_name: str, *, keep: bool) -> No
 
 
 def ensure_prediction_file_added(
-    worktree_path: Path, base_ref: str, router_name: str, *, robustness: bool = False
+    pr_ref: str, base_ref: str, router_name: str, *, robustness: bool = False
 ) -> None:
     """Verify the PR adds or modifies a prediction file for the specified router."""
 
@@ -168,14 +188,14 @@ def ensure_prediction_file_added(
         "git",
         "diff",
         "--name-status",
-        f"{base_ref}...HEAD",
+        f"{base_ref}...{pr_ref}",
         "--",
         str(target_path),
     ]
 
     completed = subprocess.run(
         diff_cmd,
-        cwd=worktree_path,
+        cwd=REPO_ROOT,
         check=True,
         text=True,
         capture_output=True,
@@ -195,6 +215,187 @@ def ensure_prediction_file_added(
             """
         ).strip()
     )
+
+
+def read_file_at(ref: str, path: str) -> Optional[bytes]:
+    """Return a file's contents at ``ref``, or None if it doesn't exist there.
+
+    Reads the git blob directly, so nothing from the pull request is checked out,
+    and refuses anything other than a regular file (a symlink, for example).
+    """
+
+    listing = subprocess.run(
+        ["git", "ls-tree", ref, "--", path],
+        cwd=REPO_ROOT,
+        check=True,
+        text=True,
+        capture_output=True,
+    ).stdout.split()
+    if not listing:
+        return None
+    mode, kind = listing[0], listing[1]
+    if kind != "blob" or mode not in ("100644", "100755"):
+        raise RuntimeError(f"{path} at {ref} is not a regular file.")
+    return subprocess.run(
+        ["git", "cat-file", "blob", f"{ref}:{path}"],
+        cwd=REPO_ROOT,
+        check=True,
+        capture_output=True,
+    ).stdout
+
+
+def literal_assignments(source: str, names: tuple[str, ...]) -> dict[str, object]:
+    """Evaluate top-level ``name = <literal>`` assignments without running the code."""
+
+    values: dict[str, object] = {}
+    for node in ast.parse(source).body:
+        if isinstance(node, ast.Assign) and len(node.targets) == 1:
+            target, value = node.targets[0], node.value
+        elif isinstance(node, ast.AnnAssign) and node.value is not None:
+            target, value = node.target, node.value
+        else:
+            continue
+        if isinstance(target, ast.Name) and target.id in names:
+            values[target.id] = ast.literal_eval(value)
+    return values
+
+
+def stage_model_prices(worktree_path: Path, pr_ref: str, base_ref: str) -> None:
+    """Add prices for the models the PR introduces; priced models keep their price.
+
+    Only entries the PR itself adds or edits count, so a PR branched from an older
+    base doesn't undo price changes made on the base branch since.
+    """
+
+    content = read_file_at(pr_ref, MODEL_COST_PATH)
+    if content is None:
+        return
+    pr_prices = json.loads(content)
+    if not isinstance(pr_prices, dict):
+        raise ValueError(f"{MODEL_COST_PATH} in the pull request is not a JSON object.")
+    merge_base = subprocess.run(
+        ["git", "merge-base", base_ref, pr_ref],
+        cwd=REPO_ROOT,
+        check=True,
+        text=True,
+        capture_output=True,
+    ).stdout.strip()
+    before = json.loads(read_file_at(merge_base, MODEL_COST_PATH) or b"{}")
+    pr_edits = {
+        model: price for model, price in pr_prices.items() if before.get(model) != price
+    }
+
+    cost_path = worktree_path / MODEL_COST_PATH
+    prices = json.loads(cost_path.read_text(encoding="utf-8"))
+    added = {model: price for model, price in pr_edits.items() if model not in prices}
+    changed = sorted(
+        model
+        for model, price in pr_edits.items()
+        if model in prices and price != prices[model]
+    )
+    if changed:
+        print(
+            f"⚠ The PR changes the price of {len(changed)} existing model(s); "
+            f"evaluating with the base branch's price: {', '.join(changed)}"
+        )
+    if added:
+        prices.update(added)
+        cost_path.write_text(json.dumps(prices, indent=2) + "\n", encoding="utf-8")
+        print(
+            f"  Added prices for {len(added)} new model(s): {', '.join(sorted(added))}"
+        )
+
+
+def stage_model_names(worktree_path: Path, pr_ref: str) -> None:
+    """Register the model names and name mappings the PR adds.
+
+    The PR's ``universal_model_names.py`` is parsed, not imported, so none of its
+    code runs; ``universal_names`` and ``mapping`` must be plain literals.
+    """
+
+    content = read_file_at(pr_ref, MODEL_NAMES_PATH)
+    if content is None:
+        return
+    keys = ("universal_names", "mapping")
+    try:
+        pr_values = literal_assignments(content.decode("utf-8"), keys)
+    except (SyntaxError, ValueError, UnicodeDecodeError) as error:
+        raise RuntimeError(
+            f"Could not read {MODEL_NAMES_PATH} from the pull request; universal_names "
+            f"and mapping must be plain literals ({error})."
+        ) from error
+    pr_names = pr_values.get("universal_names", [])
+    pr_mapping = pr_values.get("mapping", {})
+    if not (
+        isinstance(pr_names, list)
+        and all(isinstance(name, str) for name in pr_names)
+        and isinstance(pr_mapping, dict)
+        and all(
+            isinstance(k, str) and isinstance(v, str) for k, v in pr_mapping.items()
+        )
+    ):
+        raise RuntimeError(
+            f"{MODEL_NAMES_PATH} in the pull request must define universal_names as a "
+            "list of strings and mapping as a dict of strings."
+        )
+
+    names_path = worktree_path / MODEL_NAMES_PATH
+    base_values = literal_assignments(names_path.read_text(encoding="utf-8"), keys)
+    base_names = base_values.get("universal_names", [])
+    base_mapping = base_values.get("mapping", {})
+    assert isinstance(base_names, list) and isinstance(base_mapping, dict)
+    new_names = [name for name in pr_names if name not in base_names]
+    new_mapping = {k: v for k, v in pr_mapping.items() if k not in base_mapping}
+    if not (new_names or new_mapping):
+        return
+    with names_path.open("a", encoding="utf-8") as handle:
+        handle.write("\n# Added from the pull request under evaluation.\n")
+        handle.write(f"universal_names.extend({new_names!r})\n")
+        handle.write(f"mapping.update({new_mapping!r})\n")
+    print(
+        f"  Added {len(new_names)} model name(s) and {len(new_mapping)} name mapping(s)"
+    )
+
+
+def stage_submission(
+    worktree_path: Path, pr_ref: str, base_ref: str, router_name: str
+) -> None:
+    """Copy a submission's data files from the pull request into the worktree.
+
+    Only the router's prediction, robustness and config files are copied as they
+    are, plus the model names and prices the PR adds. Every other file the PR
+    changes is evaluated with the base branch's version and listed in the log.
+    """
+
+    staged = {template.format(router=router_name) for template in SUBMISSION_FILES}
+    for path in sorted(staged):
+        content = read_file_at(pr_ref, path)
+        if content is None:
+            continue
+        destination = worktree_path / path
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(content)
+        print(f"  Copied {path}")
+
+    stage_model_prices(worktree_path, pr_ref, base_ref)
+    stage_model_names(worktree_path, pr_ref)
+
+    changed = subprocess.run(
+        ["git", "diff", "--name-only", f"{base_ref}...{pr_ref}"],
+        cwd=REPO_ROOT,
+        check=True,
+        text=True,
+        capture_output=True,
+    ).stdout.splitlines()
+    ignored = [
+        path
+        for path in changed
+        if path not in staged | {MODEL_COST_PATH, MODEL_NAMES_PATH}
+    ]
+    if ignored:
+        print("⚠ Changed in the PR but not used for evaluation:")
+        for path in ignored:
+            print(f"    {path}")
 
 
 def find_dataset_source() -> Optional[Path]:
@@ -450,6 +651,12 @@ def main(argv: Optional[list[str]] = None) -> int:
         help="Git ref to diff against when validating submissions (default: <remote>/main).",
     )
     parser.add_argument(
+        "--eval-ref",
+        default=None,
+        help="Commit whose validator and evaluator grade the submission "
+        "(default: <remote>/main).",
+    )
+    parser.add_argument(
         "--allow-existing-prediction",
         action="store_true",
         help="Skip the check that enforces adding a new prediction file in this PR.",
@@ -461,20 +668,30 @@ def main(argv: Optional[list[str]] = None) -> int:
     branch_name = ""
 
     base_ref = args.base_ref or f"{args.remote}/main"
+    eval_ref = args.eval_ref or f"{args.remote}/main"
 
     try:
         worktree_path, branch_name = ensure_worktree(
-            args.pr, args.remote, keep_existing=args.keep_worktree
+            args.pr, args.remote, eval_ref, keep_existing=args.keep_worktree
         )
-        print(f"✔ Created worktree at {worktree_path}")
+        evaluator_commit = run_command(
+            ["git", "rev-parse", "HEAD"], cwd=worktree_path, capture=True
+        ).stdout.strip()
+        print(
+            f"✔ Created worktree at {worktree_path} "
+            f"(evaluator: {eval_ref} @ {evaluator_commit})"
+        )
 
         sync_dataset_into_worktree(worktree_path)
 
         if not args.allow_existing_prediction:
-            ensure_prediction_file_added(worktree_path, base_ref, args.router)
+            ensure_prediction_file_added(branch_name, base_ref, args.router)
             ensure_prediction_file_added(
-                worktree_path, base_ref, args.router, robustness=True
+                branch_name, base_ref, args.router, robustness=True
             )
+
+        print("▶ Copying the submission's files from the pull request...", flush=True)
+        stage_submission(worktree_path, branch_name, base_ref, args.router)
 
         if not args.skip_sync:
             print("▶ Syncing dependencies with uv...", flush=True)
@@ -598,6 +815,7 @@ def main(argv: Optional[list[str]] = None) -> int:
             "router": args.router,
             "split": args.split,
             "worktree": str(worktree_path),
+            "evaluator_commit": evaluator_commit,
             "validation_stdout": validation_result.stdout
             if validation_result.stdout
             else "",

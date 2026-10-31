@@ -1,0 +1,14 @@
+{
+  "pipeline_params": {
+    "router_name": "nuroutev2-artemis",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "deepseek-ai/DeepSeek-V4-Flash-0731",
+      "gpt-5.6-luna",
+      "ministral-8b-latest",
+      "moonshotai/Kimi-K2.6",
+      "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B"
+    ],
+    "description": "NuRoute Artemis Task (https://nuroute.ai) -- routes each query across NuRoute's production model pool: it estimates the query's task types, reads each model's expected quality and cost for them from a capability matrix, and picks the model with the best quality-for-cost trade-off (Balanced preset). Predictions come from NuRoute's production API with model \"auto\"; not trained or tuned on RouterArena data."
+  }
+}
