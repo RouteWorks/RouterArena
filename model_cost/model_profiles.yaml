@@ -19,8 +19,9 @@
 # Profiles keyed by an OpenRouter id (or with openrouter_id) take OpenRouter's list price
 # when a maintainer runs:
 #   python scripts/pricing/sync_openrouter.py
-# which also records the prices used in model_cost/price_snapshots/<date>.json. A model
-# name that matches no id or alias is charged the highest price in this file.
+# which also records the prices used in model_cost/price_snapshots/<date>.json. The
+# price-sync workflow runs it every other day and opens a PR when a price changes. A
+# model name that matches no id or alias is charged the highest price in this file.
 
 models:
   "agnes-2.0-flash":
