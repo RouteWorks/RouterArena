@@ -15,6 +15,9 @@
 #   note                        free text, e.g. known conflicts to resolve
 #   openrouter_id               OpenRouter id to sync from, when the key isn't one
 #   sync                        false keeps the price fixed (retired or never-listed models)
+#   local                       a model the router runs itself: {base: <profile>, bits: N}
+#                               or {active_params_b: N, bits: N}; priced by the rule in
+#                               local_pricing.yaml (python scripts/pricing/local_price.py --write)
 #
 # Profiles keyed by an OpenRouter id (or with openrouter_id) take OpenRouter's list price
 # when a maintainer runs:
