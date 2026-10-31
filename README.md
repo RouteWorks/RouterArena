@@ -218,6 +218,10 @@ To get your router on the leaderboard, you can open a Pull Request with your rou
    - `router_inference/config/<router_name>.json` - Your router configuration
    - `router_inference/predictions/<router_name>.json` - Your prediction file with `generated_result` fields populated
    - `router_inference/predictions/<router_name>-robustness.json` - Your prediction file for robustness evaluation, no `generated_result` fields needed
+
+   > [!NOTE]
+   > **Routers that call LLMs themselves.** If your router calls an LLM to make its decision (a routing model, a classifier, voters, a critic, or the earlier steps of a cascade), record each call in the row's `router_usage` list as `{"model": ..., "input_tokens": ..., "output_tokens": ...}`, with an optional `purpose`. Count reasoning tokens in `output_tokens`. The evaluator adds these calls to the row's cost at each model's price. Check your total with `uv run python scripts/pricing/compute_cost.py <router_name>`.
+
 2. **Open a Pull Request to `main` branch and call `/evaluate` in the PR comment**
    - When the PR is ready for evaluation, call `/evaluate` in the PR comment to trigger the evaluation workflow. See an example [here](https://github.com/RouteWorks/RouterArena/pull/71#issuecomment-3904936480).
    - The automated workflow will:
