@@ -7634,7 +7634,7 @@
       "error": null
     },
     "cost": 0.0020721000000000003,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -7729,7 +7729,7 @@
       "error": null
     },
     "cost": 0.00105765,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8014,7 +8014,7 @@
       "error": null
     },
     "cost": 0.0014585999999999998,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8090,7 +8090,7 @@
       "error": null
     },
     "cost": 0.0014878499999999998,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8109,7 +8109,7 @@
       "error": null
     },
     "cost": 0.001176,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8166,7 +8166,7 @@
       "error": null
     },
     "cost": 0.0020991,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8546,7 +8546,7 @@
       "error": null
     },
     "cost": 0.0029286,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -8793,7 +8793,7 @@
       "error": null
     },
     "cost": 0.0015794999999999997,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -9135,7 +9135,7 @@
       "error": null
     },
     "cost": 0.0019947,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -9515,7 +9515,7 @@
       "error": null
     },
     "cost": 0.0013044,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -10085,7 +10085,7 @@
       "error": null
     },
     "cost": 0.00168855,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -10142,7 +10142,7 @@
       "error": null
     },
     "cost": 0.00142695,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -10522,7 +10522,7 @@
       "error": null
     },
     "cost": 0.0020448,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -10940,7 +10940,7 @@
       "error": null
     },
     "cost": 0.0019565999999999997,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11111,7 +11111,7 @@
       "error": null
     },
     "cost": 0.00242685,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11358,7 +11358,7 @@
       "error": null
     },
     "cost": 0.00171495,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11396,7 +11396,7 @@
       "error": null
     },
     "cost": 0.00271815,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11833,7 +11833,7 @@
       "error": null
     },
     "cost": 0.0005930999999999999,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11852,7 +11852,7 @@
       "error": null
     },
     "cost": 0.00214545,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -11871,7 +11871,7 @@
       "error": null
     },
     "cost": 0.0011577,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -12327,7 +12327,7 @@
       "error": null
     },
     "cost": 0.0026807999999999997,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -12422,7 +12422,7 @@
       "error": null
     },
     "cost": 0.0009855,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -12497,8 +12497,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.018327500000000004,
-    "accuracy": 0.0,
+    "cost": 0.022887199999999996,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -12954,7 +12954,7 @@
       "error": null
     },
     "cost": 0.0012554999999999999,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13144,7 +13144,7 @@
       "error": null
     },
     "cost": 0.0023544,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13353,7 +13353,7 @@
       "error": null
     },
     "cost": 0.0008937,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13562,7 +13562,7 @@
       "error": null
     },
     "cost": 0.0013054499999999999,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13619,7 +13619,7 @@
       "error": null
     },
     "cost": 0.00107445,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13657,7 +13657,7 @@
       "error": null
     },
     "cost": 0.0008235,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -13771,7 +13771,7 @@
       "error": null
     },
     "cost": 0.0009849,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -14816,7 +14816,7 @@
       "error": null
     },
     "cost": 0.00091455,
-    "accuracy": 0.0,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -33910,8 +33910,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00011655,
-    "accuracy": 0.0,
+    "cost": 0.00016439999999999998,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -67236,8 +67236,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0057880499999999994,
-    "accuracy": 0.0,
+    "cost": 0.004530299999999999,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -120949,7 +120949,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.00024045,
+    "cost": 0.00309375,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -123970,8 +123970,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 7.125e-05,
-    "accuracy": 0.0,
+    "cost": 0.00024660000000000003,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -158265,8 +158265,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 8.204999999999999e-05,
-    "accuracy": 0.0,
+    "cost": 0.000552,
+    "accuracy": 1.0,
     "for_optimality": false
   },
   {
@@ -165105,7 +165105,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0003036,
+    "cost": 0.0041914,
     "accuracy": 0.0,
     "for_optimality": true
   },
@@ -171717,8 +171717,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0024178,
-    "accuracy": 0.0,
+    "cost": 0.0057223,
+    "accuracy": 0.7757936507936507,
     "for_optimality": true
   },
   {
@@ -171869,8 +171869,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0008757,
-    "accuracy": 0.0,
+    "cost": 0.0070075,
+    "accuracy": 0.8301228695996831,
     "for_optimality": true
   },
   {
@@ -173085,8 +173085,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0004081,
-    "accuracy": 0.0,
+    "cost": 0.0008022000000000001,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -175251,7 +175251,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.024671600000000002,
+    "cost": 0.0587936,
     "accuracy": 0.0,
     "for_optimality": true
   },
@@ -179013,8 +179013,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0983628,
-    "accuracy": 0.0,
+    "cost": 0.006978300000000001,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -182832,7 +182832,7 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": 0.0035973,
+    "cost": 0.0047211,
     "accuracy": 0.0,
     "for_optimality": true
   },
@@ -184181,8 +184181,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0009462999999999999,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184219,8 +184219,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0011924000000000001,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184257,8 +184257,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0011523000000000002,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184295,8 +184295,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0006355,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184333,8 +184333,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0022842,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184371,8 +184371,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0014487000000000002,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184409,8 +184409,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.000763,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -184447,8 +184447,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0030831,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -184485,8 +184485,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0008360000000000002,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184523,8 +184523,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010028,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184561,8 +184561,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0008873,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184599,8 +184599,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0006583,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184637,8 +184637,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0018119000000000002,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184675,8 +184675,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0008183999999999999,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184713,8 +184713,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0028496999999999997,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184751,8 +184751,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0034577,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -184789,8 +184789,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0014601,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184827,8 +184827,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0035399999999999997,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184865,8 +184865,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.011765800000000002,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -184903,8 +184903,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0003787,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -184941,8 +184941,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0162372,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -184979,8 +184979,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0007896000000000001,
+    "accuracy": 0.9444444444444444,
     "for_optimality": true
   },
   {
@@ -185017,8 +185017,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0006626,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -185055,8 +185055,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0005535,
+    "accuracy": 0.2692307692307693,
     "for_optimality": true
   },
   {
@@ -185093,8 +185093,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0014957,
+    "accuracy": 0.40476190476190466,
     "for_optimality": true
   },
   {
@@ -185131,8 +185131,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0009791000000000001,
+    "accuracy": 0.6666666666666666,
     "for_optimality": true
   },
   {
@@ -185169,8 +185169,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0011532,
+    "accuracy": 0.875,
     "for_optimality": true
   },
   {
@@ -185207,8 +185207,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0022415,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -185245,8 +185245,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.000678,
+    "accuracy": 0.10333333333333335,
     "for_optimality": true
   },
   {
@@ -185283,8 +185283,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0011178000000000002,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -185321,8 +185321,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0013858,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -185359,8 +185359,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0009837000000000001,
+    "accuracy": 0.7000000000000001,
     "for_optimality": true
   },
   {
@@ -185397,8 +185397,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0009987,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -185435,8 +185435,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0011175,
+    "accuracy": 0.875,
     "for_optimality": true
   },
   {
@@ -185473,8 +185473,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0007517,
+    "accuracy": 0.8151260504201682,
     "for_optimality": true
   },
   {
@@ -185511,8 +185511,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010601,
+    "accuracy": 0.5251690458302029,
     "for_optimality": true
   },
   {
@@ -185549,8 +185549,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0013387,
+    "accuracy": 0.4345604808414726,
     "for_optimality": true
   },
   {
@@ -185587,8 +185587,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0011762,
+    "accuracy": 0.1717171717171717,
     "for_optimality": true
   },
   {
@@ -185607,7 +185607,7 @@
       "error": null
     },
     "cost": 0.000169699,
-    "accuracy": -0.14285714285714288,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -185625,8 +185625,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0023718,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -185663,8 +185663,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010115,
+    "accuracy": 0.7,
     "for_optimality": true
   },
   {
@@ -185701,8 +185701,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0013452999999999998,
+    "accuracy": 0.98,
     "for_optimality": true
   },
   {
@@ -185739,8 +185739,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.000905,
+    "accuracy": 0.2751937984496124,
     "for_optimality": true
   },
   {
@@ -185777,8 +185777,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0023035,
+    "accuracy": 0.8166666666666667,
     "for_optimality": true
   },
   {
@@ -185815,8 +185815,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0059305,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -185853,8 +185853,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0014537,
+    "accuracy": 0.4666666666666667,
     "for_optimality": true
   },
   {
@@ -185891,8 +185891,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0009374,
+    "accuracy": 0.56,
     "for_optimality": true
   },
   {
@@ -185929,8 +185929,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0013103,
+    "accuracy": 0.1382113821138211,
     "for_optimality": true
   },
   {
@@ -185967,8 +185967,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0018596,
+    "accuracy": 0.22764227642276422,
     "for_optimality": true
   },
   {
@@ -186005,8 +186005,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0007947,
+    "accuracy": 0.06965174129353234,
     "for_optimality": true
   },
   {
@@ -186043,8 +186043,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0008822,
+    "accuracy": 0.23484848484848483,
     "for_optimality": true
   },
   {
@@ -186081,8 +186081,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0007289,
+    "accuracy": 0.1,
     "for_optimality": true
   },
   {
@@ -186119,8 +186119,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0005746999999999999,
+    "accuracy": 0.875,
     "for_optimality": true
   },
   {
@@ -186157,8 +186157,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0014859,
+    "accuracy": 0.15185185185185185,
     "for_optimality": true
   },
   {
@@ -186195,8 +186195,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0011543999999999999,
+    "accuracy": 0.1642857142857143,
     "for_optimality": true
   },
   {
@@ -186233,8 +186233,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0007389,
+    "accuracy": 0.17405405405405402,
     "for_optimality": true
   },
   {
@@ -186271,8 +186271,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0006462,
+    "accuracy": 0.10606060606060608,
     "for_optimality": true
   },
   {
@@ -186309,8 +186309,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010903,
+    "accuracy": 0.18279569892473116,
     "for_optimality": true
   },
   {
@@ -186347,8 +186347,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0013047,
+    "accuracy": 0.2916666666666667,
     "for_optimality": true
   },
   {
@@ -186385,8 +186385,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0016455000000000003,
+    "accuracy": 0.2613677049767275,
     "for_optimality": true
   },
   {
@@ -186423,8 +186423,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0013568,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186461,8 +186461,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0006826,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186499,8 +186499,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0012237,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186537,8 +186537,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0016813,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186575,8 +186575,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.001162,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186613,8 +186613,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0003861,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186651,8 +186651,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.000898,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186689,8 +186689,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0009307,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186727,8 +186727,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0005911,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186765,8 +186765,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0005131000000000001,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186803,8 +186803,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.000783,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186841,8 +186841,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010669999999999998,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186879,8 +186879,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010036,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186917,8 +186917,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0022539,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -186955,8 +186955,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0022538000000000002,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -186993,8 +186993,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0097483,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187031,8 +187031,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0187048,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187069,8 +187069,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0014464,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187107,8 +187107,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010179000000000002,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -187145,8 +187145,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0025297,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187183,8 +187183,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0013135,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187221,8 +187221,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0246124,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187259,8 +187259,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0733958,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187297,8 +187297,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0047129,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187335,8 +187335,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0017572999999999998,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187373,8 +187373,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0101924,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187411,8 +187411,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.024618400000000002,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187449,8 +187449,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0086467,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187487,8 +187487,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0983424,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187525,8 +187525,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.002653,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187563,8 +187563,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0123344,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -187601,8 +187601,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0006605,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -187639,8 +187639,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.00028670000000000003,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -187677,8 +187677,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.00023489999999999996,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -187715,8 +187715,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.00043959999999999995,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -187753,8 +187753,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0019261,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -187791,8 +187791,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0012461,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -187829,8 +187829,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0021195,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -187867,8 +187867,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0012554999999999999,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -187905,8 +187905,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0032887000000000003,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -187943,8 +187943,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010318,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -187981,8 +187981,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0014928,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188019,8 +188019,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0015768,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188057,8 +188057,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0244923,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -188095,8 +188095,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0014884,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188133,8 +188133,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0087854,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188171,8 +188171,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0017428,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188209,8 +188209,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0016745,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188247,8 +188247,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0017718,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -188285,8 +188285,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0041955000000000004,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188323,8 +188323,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0037625999999999996,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188361,8 +188361,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0023606,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188399,8 +188399,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.015403899999999998,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -188437,8 +188437,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0063979,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -188475,8 +188475,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0036870999999999996,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -188513,8 +188513,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0033729999999999997,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -188551,8 +188551,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0104558,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188589,8 +188589,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0030501,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -188627,8 +188627,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0021368,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188665,8 +188665,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.004882,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188703,8 +188703,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0011308999999999998,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188741,8 +188741,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010422,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188779,8 +188779,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0030675999999999998,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188817,8 +188817,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0035518,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -188855,8 +188855,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0073498,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -188893,8 +188893,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0011748,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -188931,8 +188931,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0016339,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -188969,8 +188969,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0027381000000000003,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189007,8 +189007,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.000962,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189045,8 +189045,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.00040290000000000004,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189083,8 +189083,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0006484,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189121,8 +189121,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0008946999999999999,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189159,8 +189159,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0006998,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189197,8 +189197,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0011966,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189235,8 +189235,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0005577,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189273,8 +189273,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0022554000000000003,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189311,8 +189311,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.00043369999999999997,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189349,8 +189349,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0007449000000000001,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189387,8 +189387,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0007745,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189425,8 +189425,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0009461000000000001,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189463,8 +189463,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010612,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189501,8 +189501,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010674999999999999,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189539,8 +189539,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0006608,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189577,8 +189577,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.00046479999999999997,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189615,8 +189615,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0006602000000000001,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189653,8 +189653,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0012307999999999998,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189691,8 +189691,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0008373,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189729,8 +189729,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -189767,8 +189767,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0008242999999999999,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189805,8 +189805,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0010796,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189843,8 +189843,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0015045,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189881,8 +189881,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.00047190000000000003,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -189919,8 +189919,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0020973999999999997,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189957,8 +189957,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0007992,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -189995,8 +189995,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0027804,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -190033,8 +190033,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0021239,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -190071,8 +190071,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0028764,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -190109,8 +190109,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0005081,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -190147,8 +190147,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0007886000000000001,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -190185,8 +190185,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.000546,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -190223,8 +190223,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0017247999999999999,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -190261,8 +190261,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0008988000000000001,
+    "accuracy": 1.0,
     "for_optimality": true
   },
   {
@@ -190299,8 +190299,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0007417999999999999,
+    "accuracy": 0.0,
     "for_optimality": true
   },
   {
@@ -190337,8 +190337,8 @@
       "provider": "openrouter",
       "error": null
     },
-    "cost": null,
-    "accuracy": null,
+    "cost": 0.0045204,
+    "accuracy": 1.0,
     "for_optimality": true
   }
 ]
