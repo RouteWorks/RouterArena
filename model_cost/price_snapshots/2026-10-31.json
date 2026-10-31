@@ -1,306 +1,457 @@
 {
   "date": "2026-10-31",
-  "source": "https://openrouter.ai/api/v1/models",
+  "source": "https://openrouter.ai/api/v1/models/<id>/endpoints",
+  "rule": "standard price: the lab's own standard-tier price, else the median over hosts (no 4-bit); promotional discounts undone",
   "prices": {
     "anthropic/claude-haiku-4.5": {
       "input": 1.0,
-      "output": 5.0
+      "output": 5.0,
+      "basis": "Anthropic (the lab's own price)",
+      "discount_removed": 0.0
     },
     "anthropic/claude-haiku-5.5": {
       "input": 0.1,
-      "output": 0.5
+      "output": 0.5,
+      "basis": "Anthropic (the lab's own price)",
+      "discount_removed": 0.0
     },
     "anthropic/claude-opus-4.1": {
       "input": 15.0,
-      "output": 75.0
+      "output": 75.0,
+      "basis": "median of 1 host(s)",
+      "discount_removed": 0.0
     },
     "anthropic/claude-opus-4.6": {
       "input": 5.0,
-      "output": 25.0
+      "output": 25.0,
+      "basis": "Anthropic (the lab's own price)",
+      "discount_removed": 0.0
     },
     "anthropic/claude-opus-4.7": {
       "input": 5.0,
-      "output": 25.0
+      "output": 25.0,
+      "basis": "Anthropic (the lab's own price)",
+      "discount_removed": 0.0
     },
     "anthropic/claude-opus-5.5": {
       "input": 4.0,
-      "output": 20.0
+      "output": 20.0,
+      "basis": "Anthropic (the lab's own price)",
+      "discount_removed": 0.0
     },
     "anthropic/claude-sonnet-4.5": {
       "input": 3.0,
-      "output": 15.0
+      "output": 15.0,
+      "basis": "Anthropic (the lab's own price)",
+      "discount_removed": 0.0
     },
     "anthropic/claude-sonnet-5.5": {
       "input": 2.0,
-      "output": 10.0
+      "output": 10.0,
+      "basis": "Anthropic (the lab's own price)",
+      "discount_removed": 0.0
     },
     "deepseek/deepseek-chat": {
-      "input": 0.2574,
-      "output": 1.0287
+      "input": 0.286,
+      "output": 1.143,
+      "basis": "median of 1 host(s)",
+      "discount_removed": 0.1
     },
     "deepseek/deepseek-v3.2": {
-      "input": 0.26,
-      "output": 0.38
+      "input": 0.295,
+      "output": 0.88,
+      "basis": "median of 8 host(s)",
+      "discount_removed": 0.28
     },
     "deepseek/deepseek-v4-flash": {
-      "input": 0.091,
-      "output": 0.182
+      "input": 0.14,
+      "output": 0.28,
+      "basis": "median of 13 host(s)",
+      "discount_removed": 0.715
     },
     "deepseek/deepseek-v4-flash-0731": {
-      "input": 0.119,
-      "output": 0.238
+      "input": 0.176,
+      "output": 0.528,
+      "basis": "median of 19 host(s)",
+      "discount_removed": 0.899
     },
     "deepseek/deepseek-v4-pro": {
       "input": 1.6,
-      "output": 3.2
+      "output": 3.2,
+      "basis": "median of 13 host(s)",
+      "discount_removed": 0.6923
     },
     "deepseek/deepseek-v4.1-flash": {
-      "input": 0.045,
-      "output": 0.5
+      "input": 0.3,
+      "output": 1.2,
+      "basis": "median of 30 host(s)",
+      "discount_removed": 0.851
     },
     "google/gemini-2.5-flash": {
       "input": 0.3,
-      "output": 2.5
+      "output": 2.5,
+      "basis": "Google AI Studio (the lab's own price)",
+      "discount_removed": 0.0
     },
     "google/gemini-2.5-flash-lite": {
       "input": 0.1,
-      "output": 0.4
+      "output": 0.4,
+      "basis": "Google AI Studio (the lab's own price)",
+      "discount_removed": 0.0
     },
     "google/gemini-2.5-pro": {
       "input": 1.25,
-      "output": 10.0
+      "output": 10.0,
+      "basis": "Google AI Studio (the lab's own price)",
+      "discount_removed": 0.0
     },
     "google/gemini-3-flash-preview": {
       "input": 0.5,
-      "output": 3.0
+      "output": 3.0,
+      "basis": "Google AI Studio (the lab's own price)",
+      "discount_removed": 0.0
     },
     "google/gemini-3.1-flash-lite": {
       "input": 0.25,
-      "output": 1.5
+      "output": 1.5,
+      "basis": "Google AI Studio (the lab's own price)",
+      "discount_removed": 0.0
     },
     "google/gemini-3.1-flash-lite-preview": {
       "input": 0.25,
-      "output": 1.5
+      "output": 1.5,
+      "basis": "Google AI Studio (the lab's own price)",
+      "discount_removed": 0.0
     },
     "google/gemini-3.1-pro-preview": {
       "input": 2.0,
-      "output": 12.0
+      "output": 12.0,
+      "basis": "Google (the lab's own price)",
+      "discount_removed": 0.0
     },
     "google/gemini-3.5-flash-lite": {
       "input": 0.3,
-      "output": 2.5
+      "output": 2.5,
+      "basis": "Google AI Studio (the lab's own price)",
+      "discount_removed": 0.0
     },
     "google/gemini-3.7-flash": {
-      "input": 0.75,
-      "output": 3.75
+      "input": 1.5,
+      "output": 7.5,
+      "basis": "Google AI Studio (the lab's own price)",
+      "discount_removed": 0.5
     },
     "google/gemini-3.8-flash": {
-      "input": 0.825,
-      "output": 4.125
+      "input": 1.5,
+      "output": 7.5,
+      "basis": "Google AI Studio (the lab's own price)",
+      "discount_removed": 0.5
     },
     "google/gemma-4-31b-it": {
-      "input": 0.2,
-      "output": 0.4
+      "input": 0.15,
+      "output": 0.4,
+      "basis": "median of 7 host(s)",
+      "discount_removed": 0.05
     },
     "inclusionai/ling-3.0-flash": {
-      "input": 0.021,
-      "output": 0.063
+      "input": 0.06,
+      "output": 0.18,
+      "basis": "median of 1 host(s)",
+      "discount_removed": 0.65
     },
     "meta-llama/llama-3.3-70b-instruct": {
-      "input": 0.1,
-      "output": 0.32
+      "input": 0.4415,
+      "output": 0.715,
+      "basis": "median of 10 host(s)",
+      "discount_removed": 0.25
     },
     "minimax/minimax-m3": {
       "input": 0.3,
-      "output": 1.2
+      "output": 1.2,
+      "basis": "median of 9 host(s)",
+      "discount_removed": 0.5
     },
     "mistralai/ministral-3b-2512": {
       "input": 0.1,
-      "output": 0.1
+      "output": 0.1,
+      "basis": "Mistral (the lab's own price)",
+      "discount_removed": 0.0
     },
     "mistralai/ministral-8b-2512": {
       "input": 0.15,
-      "output": 0.15
+      "output": 0.15,
+      "basis": "Mistral (the lab's own price)",
+      "discount_removed": 0.0
     },
     "moonshotai/kimi-k2.5": {
-      "input": 0.5,
-      "output": 2.5
+      "input": 0.6,
+      "output": 3.0,
+      "basis": "median of 3 host(s)",
+      "discount_removed": 0.05
     },
     "moonshotai/kimi-k2.6": {
-      "input": 0.65,
-      "output": 3.41
+      "input": 0.95,
+      "output": 4.0,
+      "basis": "Moonshot AI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "moonshotai/kimi-k3": {
-      "input": 0.192,
-      "output": 15.0
+      "input": 3.0,
+      "output": 15.0,
+      "basis": "Moonshot AI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "nvidia/nemotron-3-nano-30b-a3b": {
       "input": 0.06,
-      "output": 0.24
+      "output": 0.24,
+      "basis": "median of 1 host(s)",
+      "discount_removed": 0.0
     },
     "openai/gpt-4.1": {
       "input": 2.0,
-      "output": 8.0
+      "output": 8.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-4.1-mini": {
       "input": 0.4,
-      "output": 1.6
+      "output": 1.6,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-4.1-nano": {
-      "input": 0.1,
-      "output": 0.4
+      "input": 0.105,
+      "output": 0.42,
+      "basis": "median of 2 host(s)",
+      "discount_removed": 0.0
     },
     "openai/gpt-4o": {
       "input": 2.5,
-      "output": 10.0
+      "output": 10.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-4o-mini": {
       "input": 0.15,
-      "output": 0.6
+      "output": 0.6,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5": {
       "input": 1.25,
-      "output": 10.0
+      "output": 10.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5-mini": {
       "input": 0.25,
-      "output": 2.0
+      "output": 2.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5-nano": {
       "input": 0.05,
-      "output": 0.4
+      "output": 0.4,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5.1": {
       "input": 1.25,
-      "output": 10.0
+      "output": 10.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5.2": {
       "input": 1.75,
-      "output": 14.0
+      "output": 14.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5.2-chat": {
       "input": 1.75,
-      "output": 14.0
+      "output": 14.0,
+      "basis": "median of 1 host(s)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5.4": {
       "input": 2.5,
-      "output": 15.0
+      "output": 15.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5.4-mini": {
       "input": 0.75,
-      "output": 4.5
+      "output": 4.5,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5.4-nano": {
       "input": 0.2,
-      "output": 1.25
+      "output": 1.25,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5.5": {
       "input": 5.0,
-      "output": 30.0
+      "output": 30.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5.6-luna": {
       "input": 0.2,
-      "output": 1.2
+      "output": 1.2,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5.6-sol": {
       "input": 4.0,
-      "output": 20.0
+      "output": 20.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-5.6-terra": {
       "input": 2.0,
-      "output": 12.0
+      "output": 12.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-6-luna": {
       "input": 0.1,
-      "output": 0.5
+      "output": 0.5,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-6-sol": {
       "input": 2.0,
-      "output": 10.0
+      "output": 10.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-6.1-sol": {
       "input": 2.0,
-      "output": 10.0
+      "output": 10.0,
+      "basis": "OpenAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "openai/gpt-oss-120b": {
       "input": 0.15,
-      "output": 0.6
+      "output": 0.6,
+      "basis": "median of 16 host(s)",
+      "discount_removed": 0.0
     },
     "openai/gpt-oss-20b": {
-      "input": 0.018,
-      "output": 0.09
+      "input": 0.04,
+      "output": 0.15,
+      "basis": "median of 7 host(s)",
+      "discount_removed": 0.0
     },
     "qwen/qwen3-235b-a22b-2507": {
-      "input": 0.09,
-      "output": 0.55
+      "input": 0.145,
+      "output": 0.775,
+      "basis": "median of 4 host(s)",
+      "discount_removed": 0.75
     },
     "qwen/qwen3-30b-a3b-instruct-2507": {
-      "input": 0.1,
-      "output": 0.3
+      "input": 0.09,
+      "output": 0.3,
+      "basis": "median of 3 host(s)",
+      "discount_removed": 0.0
     },
     "qwen/qwen3-coder": {
-      "input": 0.3,
-      "output": 1.0
+      "input": 0.35,
+      "output": 1.5,
+      "basis": "median of 1 host(s)",
+      "discount_removed": 0.0
     },
     "qwen/qwen3-coder-30b-a3b-instruct": {
-      "input": 0.07,
-      "output": 0.28
+      "input": 0.11,
+      "output": 0.44,
+      "basis": "median of 2 host(s)",
+      "discount_removed": 0.0
     },
     "qwen/qwen3-coder-next": {
       "input": 0.12,
-      "output": 0.8
+      "output": 0.8,
+      "basis": "median of 1 host(s)",
+      "discount_removed": 0.0
     },
     "qwen/qwen3-next-80b-a3b-instruct": {
-      "input": 0.09,
-      "output": 1.1
+      "input": 0.095,
+      "output": 1.1,
+      "basis": "median of 2 host(s)",
+      "discount_removed": 0.0
     },
     "qwen/qwen3-vl-235b-a22b-instruct": {
       "input": 0.21,
-      "output": 1.9
+      "output": 1.9,
+      "basis": "median of 3 host(s)",
+      "discount_removed": 0.0
     },
     "qwen/qwen3.5-9b": {
-      "input": 0.17,
-      "output": 0.25
+      "input": 0.1,
+      "output": 0.15,
+      "basis": "median of 5 host(s)",
+      "discount_removed": 0.0
     },
     "qwen/qwen3.5-flash-02-23": {
       "input": 0.065,
-      "output": 0.26
+      "output": 0.26,
+      "basis": "Alibaba (the lab's own price)",
+      "discount_removed": 0.0
     },
     "upstage/solar-pro4": {
-      "input": 0.15,
-      "output": 0.6
+      "input": 0.3,
+      "output": 1.2,
+      "basis": "Upstage (the lab's own price)",
+      "discount_removed": 0.5
     },
     "x-ai/grok-4.3": {
       "input": 1.25,
-      "output": 2.5
+      "output": 2.5,
+      "basis": "xAI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "xiaomi/mimo-v2.5": {
       "input": 0.4,
-      "output": 2.0
+      "output": 2.0,
+      "basis": "median of 1 host(s)",
+      "discount_removed": 0.0
     },
     "z-ai/glm-4.5-air": {
-      "input": 0.13,
-      "output": 0.85
+      "input": 0.2,
+      "output": 1.1,
+      "basis": "Z.AI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "z-ai/glm-4.6": {
-      "input": 0.5,
-      "output": 2.0
+      "input": 0.6,
+      "output": 2.2,
+      "basis": "Z.AI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "z-ai/glm-4.7": {
       "input": 0.6,
-      "output": 2.2
+      "output": 2.2,
+      "basis": "Z.AI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "z-ai/glm-5": {
       "input": 1.0,
-      "output": 3.2
+      "output": 3.2,
+      "basis": "Z.AI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "z-ai/glm-5.3": {
-      "input": 0.0699,
-      "output": 1.4
+      "input": 1.4,
+      "output": 4.4,
+      "basis": "Z.AI (the lab's own price)",
+      "discount_removed": 0.0
     },
     "z-ai/glm-5.3-flash": {
-      "input": 0.0149,
-      "output": 0.1543
+      "input": 0.15,
+      "output": 0.5,
+      "basis": "Z.AI (the lab's own price)",
+      "discount_removed": 0.0
     }
   }
 }
