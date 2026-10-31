@@ -1,251 +1,115 @@
 {
-  "google/gemma-3n-e4b-it": {
-    "input_token_price_per_million": 0.02,
-    "output_token_price_per_million": 0.04
+  "agnes-2.0-flash": {
+    "input_token_price_per_million": 0.03,
+    "output_token_price_per_million": 0.15
   },
-  "gemini-3-pro-preview": {
-    "input_token_price_per_million": 2.0,
-    "output_token_price_per_million": 12.0
-  },
-  "gemini-3-flash-preview": {
-    "input_token_price_per_million": 0.5,
-    "output_token_price_per_million": 3
-  },
-  "google/gemini-3-flash-preview": {
-    "input_token_price_per_million": 0.5,
-    "output_token_price_per_million": 3
-  },
-  "o4-mini": {
-    "input_token_price_per_million": 1.1,
-    "output_token_price_per_million": 4.4
-  },
-  "o4-mini-2025-04-16": {
-    "input_token_price_per_million": 1.1,
-    "output_token_price_per_million": 4.4
-  },
-  "gpt-5.1": {
-    "input_token_price_per_million": 1.25,
-    "output_token_price_per_million": 10.0
-  },
-  "gpt-5.2": {
-    "input_token_price_per_million": 1.75,
-    "output_token_price_per_million": 14.0
-  },
-  "gpt-5.1-None": {
-    "input_token_price_per_million": 1.25,
-    "output_token_price_per_million": 10.0
-  },
-  "gpt-5-mini": {
+  "anthropic/claude-3-haiku": {
     "input_token_price_per_million": 0.25,
-    "output_token_price_per_million": 2.0
-  },
-  "openai/gpt-5-mini": {
-    "input_token_price_per_million": 0.25,
-    "output_token_price_per_million": 2.0
-  },
-  "gpt-5-nano": {
-    "input_token_price_per_million": 0.05,
-    "output_token_price_per_million": 0.4
-  },
-  "gpt-5-nano-2025-08-07": {
-    "input_token_price_per_million": 0.05,
-    "output_token_price_per_million": 0.4
-  },
-  "deepseek-reasoner": {
-    "input_token_price_per_million": 0.28,
-    "output_token_price_per_million": 0.42
-  },
-  "gemini-3.0-pro": {
-    "input_token_price_per_million": 2.0,
-    "output_token_price_per_million": 12.0
-  },
-  "test": {
-    "input_token_price_per_million": 1.0,
-    "output_token_price_per_million": 2.0
-  },
-  "claude-sonnet-4-5": {
-    "input_token_price_per_million": 3.0,
-    "output_token_price_per_million": 15.0
-  },
-  "anthropic/claude-sonnet-4.5": {
-    "input_token_price_per_million": 3.0,
-    "output_token_price_per_million": 15.0
+    "output_token_price_per_million": 1.25
   },
   "claude-3-haiku-20240307": {
     "input_token_price_per_million": 0.25,
     "output_token_price_per_million": 1.25
   },
-  "gpt-4o-mini": {
-    "input_token_price_per_million": 0.15,
-    "output_token_price_per_million": 0.6
+  "anthropic/claude-haiku-4.5": {
+    "input_token_price_per_million": 1,
+    "output_token_price_per_million": 5
   },
-  "openai/gpt-4o-mini": {
-    "input_token_price_per_million": 0.15,
-    "output_token_price_per_million": 0.6
-  },
-  "glm-4.5-air": {
-    "input_token_price_per_million": 0.1,
-    "output_token_price_per_million": 0.3
-  },
-  "glm-4.6": {
-    "input_token_price_per_million": 0.28,
-    "output_token_price_per_million": 1.12
-  },
-  "glm-4-air-250414": {
-    "input_token_price_per_million": 0.07,
-    "output_token_price_per_million": 0.07
-  },
-  "glm-4-air": {
-    "input_token_price_per_million": 0.07,
-    "output_token_price_per_million": 0.07
-  },
-  "qwen_qwen3-vl-235b-a22b-thinking": {
-    "input_token_price_per_million": 0.3,
-    "output_token_price_per_million": 1.2
-  },
-  "gemini-2.5-flash": {
-    "input_token_price_per_million": 0.3,
-    "output_token_price_per_million": 2.5
-  },
-  "gemini-2.0-flash-001": {
-    "input_token_price_per_million": 0.1,
-    "output_token_price_per_million": 0.4
-  },
-  "qwen_qwen3-vl-32b-instruct": {
-    "input_token_price_per_million": 0.5,
-    "output_token_price_per_million": 1.5
-  },
-  "qwen_qwen3-vl-235b-a22b-instruct": {
-    "input_token_price_per_million": 0.2,
-    "output_token_price_per_million": 1.2
-  },
-  "qwen_qwen3-coder": {
-    "input_token_price_per_million": 0.22,
-    "output_token_price_per_million": 0.95
-  },
-  "x-ai_grok-code-fast-1": {
-    "input_token_price_per_million": 0.2,
-    "output_token_price_per_million": 1.5
-  },
-  "xiaomi_mimo-v2-flash:free": {
-    "input_token_price_per_million": 0.1,
-    "output_token_price_per_million": 0.3
-  },
-  "qwen/qwen3-next-80b-a3b-instruct": {
-    "input_token_price_per_million": 0.09,
-    "output_token_price_per_million": 1.1
-  },
-  "x-ai_grok-4.1-fast": {
-    "input_token_price_per_million": 0.2,
-    "output_token_price_per_million": 0.5
-  },
-  "mistralai_devstral-2512:free": {
-    "input_token_price_per_million": 0.05,
-    "output_token_price_per_million": 0.22
-  },
-  "meta-llama_llama-3.3-70b-instruct": {
-    "input_token_price_per_million": 0.1,
-    "output_token_price_per_million": 0.32
-  },
-  "meta-llama_llama-3.1-405b-instruct": {
-    "input_token_price_per_million": 3.5,
-    "output_token_price_per_million": 3.5
-  },
-  "mistralai/ministral-3b-2512": {
-    "input_token_price_per_million": 0.1,
-    "output_token_price_per_million": 0.1
-  },
-  "mistralai/ministral-3-3b-2512": {
-    "input_token_price_per_million": 0.1,
-    "output_token_price_per_million": 0.1
-  },
-  "mistralai/ministral-3-8b-2512": {
-    "input_token_price_per_million": 0.15,
-    "output_token_price_per_million": 0.15
-  },
-  "mistralai/ministral-3-14b-2512": {
-    "input_token_price_per_million": 0.2,
-    "output_token_price_per_million": 0.2
-  },
-  "qwen/qwen3-30b-a3b-instruct-2507": {
-    "input_token_price_per_million": 0.08,
-    "output_token_price_per_million": 0.33
-  },
-  "Qwen/Qwen3-Coder-Next": {
-    "input_token_price_per_million": 0.07,
-    "output_token_price_per_million": 0.3
-  },
-  "qwen/qwen3-coder-30b-a3b-instruct": {
-    "input_token_price_per_million": 0.07,
-    "output_token_price_per_million": 0.27
-  },
-  "moonshotai/kimi-k2.5": {
-    "input_token_price_per_million": 0.6,
-    "output_token_price_per_million": 3.0
-  },
-  "z-ai/glm-5": {
-    "input_token_price_per_million": 1.0,
-    "output_token_price_per_million": 3.2
-  },
-  "google/gemini-3.1-flash-lite": {
-    "input_token_price_per_million": 0.25,
-    "output_token_price_per_million": 1.5
-  },
-  "claude-opus-4-7": {
-    "input_token_price_per_million": 15.0,
-    "output_token_price_per_million": 75.0
+  "anthropic/claude-haiku-4-5-20251001": {
+    "input_token_price_per_million": 1,
+    "output_token_price_per_million": 5
   },
   "claude-haiku-4-5": {
-    "input_token_price_per_million": 0.8,
-    "output_token_price_per_million": 4.0
+    "input_token_price_per_million": 1,
+    "output_token_price_per_million": 5
   },
-  "gpt-5.5": {
-    "input_token_price_per_million": 5.0,
-    "output_token_price_per_million": 30.0
+  "claude-haiku-4-5-20251001": {
+    "input_token_price_per_million": 1,
+    "output_token_price_per_million": 5
   },
-  "gpt-5.5-2026-04-23": {
-    "input_token_price_per_million": 5.0,
-    "output_token_price_per_million": 30.0
+  "claude-haiku-4.5": {
+    "input_token_price_per_million": 1,
+    "output_token_price_per_million": 5
   },
-  "gpt-5.4-mini": {
-    "input_token_price_per_million": 0.4,
-    "output_token_price_per_million": 1.6
-  },
-  "gpt-4.1": {
-    "input_token_price_per_million": 2.0,
-    "output_token_price_per_million": 8.0
-  },
-  "gemini-3.1-pro-preview": {
-    "input_token_price_per_million": 2.0,
-    "output_token_price_per_million": 12.0
-  },
-  "gemini-3.1-flash-lite-preview": {
+  "anthropic/claude-haiku-5.5": {
     "input_token_price_per_million": 0.1,
-    "output_token_price_per_million": 0.4
+    "output_token_price_per_million": 0.5
   },
-  "deepseek/deepseek-v4-pro": {
-    "input_token_price_per_million": 0.435,
-    "output_token_price_per_million": 0.87
+  "anthropic/claude-opus-4.1": {
+    "input_token_price_per_million": 15,
+    "output_token_price_per_million": 75
   },
-  "qwen/qwen3.5-flash-02-23": {
-    "input_token_price_per_million": 0.065,
-    "output_token_price_per_million": 0.26
+  "claude-opus-4-1": {
+    "input_token_price_per_million": 15,
+    "output_token_price_per_million": 75
   },
-  "deepseek/deepseek-v4-flash": {
-    "input_token_price_per_million": 0.14,
-    "output_token_price_per_million": 0.28
+  "anthropic/claude-opus-4.6": {
+    "input_token_price_per_million": 5,
+    "output_token_price_per_million": 25
   },
-  "qwen/qwen3-235b-a22b-2507": {
-    "input_token_price_per_million": 0.071,
-    "output_token_price_per_million": 0.1
+  "claude-opus-4-6": {
+    "input_token_price_per_million": 5,
+    "output_token_price_per_million": 25
   },
-  "qwen_qwen3-235b-a22b-2507": {
-    "input_token_price_per_million": 0.071,
-    "output_token_price_per_million": 0.1
+  "anthropic/claude-opus-4.7": {
+    "input_token_price_per_million": 15,
+    "output_token_price_per_million": 75
   },
-  "qwen/qwen3.5-9b": {
-    "input_token_price_per_million": 0.05,
-    "output_token_price_per_million": 0.15
+  "claude-opus-4-7": {
+    "input_token_price_per_million": 15,
+    "output_token_price_per_million": 75
+  },
+  "anthropic/claude-opus-5.5": {
+    "input_token_price_per_million": 4,
+    "output_token_price_per_million": 20
+  },
+  "anthropic/claude-sonnet-4": {
+    "input_token_price_per_million": 3,
+    "output_token_price_per_million": 15
+  },
+  "claude-sonnet-4": {
+    "input_token_price_per_million": 3,
+    "output_token_price_per_million": 15
+  },
+  "anthropic/claude-sonnet-4.5": {
+    "input_token_price_per_million": 3,
+    "output_token_price_per_million": 15
+  },
+  "anthropic/claude-sonnet-4-5": {
+    "input_token_price_per_million": 3,
+    "output_token_price_per_million": 15
+  },
+  "claude-sonnet-4-5": {
+    "input_token_price_per_million": 3,
+    "output_token_price_per_million": 15
+  },
+  "anthropic/claude-sonnet-5.5": {
+    "input_token_price_per_million": 2,
+    "output_token_price_per_million": 10
+  },
+  "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+    "input_token_price_per_million": 0.18,
+    "output_token_price_per_million": 0.85
+  },
+  "deepseek-v3.1": {
+    "input_token_price_per_million": 1.23,
+    "output_token_price_per_million": 4.94
+  },
+  "deepseek/deepseek-chat": {
+    "input_token_price_per_million": 0.27,
+    "output_token_price_per_million": 1.1
+  },
+  "deepseek-chat": {
+    "input_token_price_per_million": 0.27,
+    "output_token_price_per_million": 1.1
+  },
+  "deepseek/deepseek-reasoner": {
+    "input_token_price_per_million": 0.28,
+    "output_token_price_per_million": 0.42
+  },
+  "deepseek-reasoner": {
+    "input_token_price_per_million": 0.28,
+    "output_token_price_per_million": 0.42
   },
   "deepseek/deepseek-v3.2": {
     "input_token_price_per_million": 0.26,
@@ -255,153 +119,61 @@
     "input_token_price_per_million": 0.26,
     "output_token_price_per_million": 0.38
   },
-  "openai/gpt-4o": {
-    "input_token_price_per_million": 2.5,
-    "output_token_price_per_million": 10.0
+  "deepseek/deepseek-v4-flash": {
+    "input_token_price_per_million": 0.14,
+    "output_token_price_per_million": 0.28
   },
-  "gpt-4o": {
-    "input_token_price_per_million": 2.5,
-    "output_token_price_per_million": 10.0
+  "deepseek/deepseek-v4-flash-0731": {
+    "input_token_price_per_million": 0.14,
+    "output_token_price_per_million": 0.28
   },
-  "claude-haiku-4-5-20251001": {
-    "input_token_price_per_million": 1.0,
-    "output_token_price_per_million": 5.0
+  "deepseek-ai/DeepSeek-V4-Flash-0731": {
+    "input_token_price_per_million": 0.14,
+    "output_token_price_per_million": 0.28
   },
-  "claude-haiku-4.5": {
-    "input_token_price_per_million": 1.0,
-    "output_token_price_per_million": 5.0
+  "deepseek/deepseek-v4-pro": {
+    "input_token_price_per_million": 0.435,
+    "output_token_price_per_million": 0.87
   },
-  "claude-sonnet-4": {
-    "input_token_price_per_million": 3.0,
-    "output_token_price_per_million": 15.0
+  "deepseek/deepseek-v4.1-flash": {
+    "input_token_price_per_million": 0.09,
+    "output_token_price_per_million": 0.18
   },
-  "deepseek-chat": {
-    "input_token_price_per_million": 0.27,
-    "output_token_price_per_million": 1.1
+  "deepseek/deepseek-v4.1-flash@high": {
+    "input_token_price_per_million": 0.09,
+    "output_token_price_per_million": 0.18
   },
-  "qwen3-235b-a22b-instruct-2507": {
-    "input_token_price_per_million": 0.5,
-    "output_token_price_per_million": 2.0
+  "deepseek/deepseek-v4.1-flash@low": {
+    "input_token_price_per_million": 0.09,
+    "output_token_price_per_million": 0.18
   },
-  "qwen3-30b-a3b-instruct-2507": {
-    "input_token_price_per_million": 0.15,
-    "output_token_price_per_million": 0.6
-  },
-  "gpt-4.1-mini": {
-    "input_token_price_per_million": 0.4,
-    "output_token_price_per_million": 1.6
-  },
-  "gpt-4.1-nano": {
+  "gemini-2.0-flash-001": {
     "input_token_price_per_million": 0.1,
     "output_token_price_per_million": 0.4
   },
-  "deepseek-v3.1": {
-    "input_token_price_per_million": 1.23,
-    "output_token_price_per_million": 4.94
+  "gemini-3-pro-preview": {
+    "input_token_price_per_million": 2,
+    "output_token_price_per_million": 12
   },
-  "gpt-5": {
-    "input_token_price_per_million": 1.25,
-    "output_token_price_per_million": 10.0
+  "gemini-3.0-pro": {
+    "input_token_price_per_million": 2,
+    "output_token_price_per_million": 12
   },
-  "gpt-5-chat": {
-    "input_token_price_per_million": 1.25,
-    "output_token_price_per_million": 10.0
+  "glm-4-air": {
+    "input_token_price_per_million": 0.07,
+    "output_token_price_per_million": 0.07
   },
-  "gpt-5.2-chat": {
-    "input_token_price_per_million": 1.75,
-    "output_token_price_per_million": 14.0
+  "glm-4-air-250414": {
+    "input_token_price_per_million": 0.07,
+    "output_token_price_per_million": 0.07
   },
-  "gpt-oss-120b": {
-    "input_token_price_per_million": 0.15,
-    "output_token_price_per_million": 0.6
-  },
-  "openai_gpt-oss-120b": {
-    "input_token_price_per_million": 0.15,
-    "output_token_price_per_million": 0.6
-  },
-  "openai/gpt-oss-120b": {
-    "input_token_price_per_million": 0.15,
-    "output_token_price_per_million": 0.6
-  },
-  "llama-4-maverick-17b-128e-instruct-fp8": {
-    "input_token_price_per_million": 0.25,
-    "output_token_price_per_million": 1.0
-  },
-  "grok-4": {
-    "input_token_price_per_million": 5.5,
-    "output_token_price_per_million": 27.5
-  },
-  "claude-opus-4-1": {
-    "input_token_price_per_million": 15.0,
-    "output_token_price_per_million": 75.0
-  },
-  "claude-opus-4-6": {
-    "input_token_price_per_million": 5.0,
-    "output_token_price_per_million": 25.0
-  },
-  "gpt-5.4-nano": {
-    "input_token_price_per_million": 0.2,
-    "output_token_price_per_million": 1.25
-  },
-  "grok-4-1-fast-reasoning": {
-    "input_token_price_per_million": 0.2,
-    "output_token_price_per_million": 0.5
-  },
-  "gpt-5.3-chat": {
-    "input_token_price_per_million": 1.75,
-    "output_token_price_per_million": 14.0
-  },
-  "gpt-5.4": {
-    "input_token_price_per_million": 2.5,
-    "output_token_price_per_million": 15.0
-  },
-  "z-ai/glm-4.7": {
-    "input_token_price_per_million": 0.4,
-    "output_token_price_per_million": 1.5
-  },
-  "z-ai_glm-4.7": {
-    "input_token_price_per_million": 0.4,
-    "output_token_price_per_million": 1.5
-  },
-  "MiniMax-M3": {
-    "input_token_price_per_million": 0.6,
-    "output_token_price_per_million": 2.4
-  },
-  "MiniMaxAI/MiniMax-M3": {
-    "input_token_price_per_million": 0.6,
-    "output_token_price_per_million": 2.4
-  },
-  "agnes-2.0-flash": {
-    "input_token_price_per_million": 0.03,
-    "output_token_price_per_million": 0.15
-  },
-  "THUDM/GLM-4-9B-0414": {
-    "input_token_price_per_million": 0.05,
-    "output_token_price_per_million": 0.61
-  },
-  "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
-    "input_token_price_per_million": 0.18,
-    "output_token_price_per_million": 0.85
-  },
-  "x-ai/grok-4.3": {
-    "input_token_price_per_million": 1.25,
+  "google/gemini-2.5-flash": {
+    "input_token_price_per_million": 0.3,
     "output_token_price_per_million": 2.5
   },
-  "grok-4.3": {
-    "input_token_price_per_million": 1.25,
+  "gemini-2.5-flash": {
+    "input_token_price_per_million": 0.3,
     "output_token_price_per_million": 2.5
-  },
-  "gpt-oss-20b": {
-    "input_token_price_per_million": 0.03,
-    "output_token_price_per_million": 0.13
-  },
-  "openai/gpt-oss-20b": {
-    "input_token_price_per_million": 0.03,
-    "output_token_price_per_million": 0.13
-  },
-  "xiaomi/mimo-v2.5": {
-    "input_token_price_per_million": 0.14,
-    "output_token_price_per_million": 0.28
   },
   "google/gemini-2.5-flash-lite": {
     "input_token_price_per_million": 0.1,
@@ -413,10 +185,530 @@
   },
   "google/gemini-2.5-pro": {
     "input_token_price_per_million": 1.25,
-    "output_token_price_per_million": 10.0
+    "output_token_price_per_million": 10
+  },
+  "google/gemini-3-flash-preview": {
+    "input_token_price_per_million": 0.5,
+    "output_token_price_per_million": 3
+  },
+  "gemini-3-flash-preview": {
+    "input_token_price_per_million": 0.5,
+    "output_token_price_per_million": 3
+  },
+  "google/gemini-3.1-flash-lite": {
+    "input_token_price_per_million": 0.25,
+    "output_token_price_per_million": 1.5
+  },
+  "google/gemini-3.1-flash-lite-preview": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.4
+  },
+  "gemini-3.1-flash-lite-preview": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.4
+  },
+  "google/gemini-3.1-pro-preview": {
+    "input_token_price_per_million": 2,
+    "output_token_price_per_million": 12
+  },
+  "gemini-3.1-pro-preview": {
+    "input_token_price_per_million": 2,
+    "output_token_price_per_million": 12
+  },
+  "google/gemini-3.5-flash-lite": {
+    "input_token_price_per_million": 0.3,
+    "output_token_price_per_million": 2.5
+  },
+  "google/gemini-3.7-flash": {
+    "input_token_price_per_million": 0.75,
+    "output_token_price_per_million": 3.75
+  },
+  "google/gemini-3.8-flash": {
+    "input_token_price_per_million": 0.75,
+    "output_token_price_per_million": 3.75
+  },
+  "gemini-3.8-flash": {
+    "input_token_price_per_million": 0.75,
+    "output_token_price_per_million": 3.75
+  },
+  "google/gemma-3n-e4b-it": {
+    "input_token_price_per_million": 0.02,
+    "output_token_price_per_million": 0.04
   },
   "google/gemma-4-31b-it": {
     "input_token_price_per_million": 0.08,
     "output_token_price_per_million": 0.35
+  },
+  "gpt-5-chat": {
+    "input_token_price_per_million": 1.25,
+    "output_token_price_per_million": 10
+  },
+  "gpt-5.3-chat": {
+    "input_token_price_per_million": 1.75,
+    "output_token_price_per_million": 14
+  },
+  "grok-4": {
+    "input_token_price_per_million": 5.5,
+    "output_token_price_per_million": 27.5
+  },
+  "inclusionai/ling-3.0-flash": {
+    "input_token_price_per_million": 0.021,
+    "output_token_price_per_million": 0.062
+  },
+  "lingdt-3.0-flash": {
+    "input_token_price_per_million": 0.021,
+    "output_token_price_per_million": 0.062
+  },
+  "llama-4-maverick-17b-128e-instruct-fp8": {
+    "input_token_price_per_million": 0.25,
+    "output_token_price_per_million": 1
+  },
+  "meta-llama/llama-3.3-70b-instruct": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.32
+  },
+  "meta-llama_llama-3.3-70b-instruct": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.32
+  },
+  "meta-llama_llama-3.1-405b-instruct": {
+    "input_token_price_per_million": 3.5,
+    "output_token_price_per_million": 3.5
+  },
+  "minimax/minimax-m3": {
+    "input_token_price_per_million": 0.6,
+    "output_token_price_per_million": 2.4
+  },
+  "MiniMax-M3": {
+    "input_token_price_per_million": 0.6,
+    "output_token_price_per_million": 2.4
+  },
+  "MiniMaxAI/MiniMax-M3": {
+    "input_token_price_per_million": 0.6,
+    "output_token_price_per_million": 2.4
+  },
+  "mistralai/ministral-3-14b-2512": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 0.2
+  },
+  "mistralai/ministral-3-3b-2512": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.1
+  },
+  "mistralai/ministral-3-8b-2512": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.15
+  },
+  "mistralai/ministral-3b-2512": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.1
+  },
+  "mistralai/ministral-8b-2512": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.15
+  },
+  "ministral-8b-latest": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.15
+  },
+  "mistralai_devstral-2512:free": {
+    "input_token_price_per_million": 0.05,
+    "output_token_price_per_million": 0.22
+  },
+  "moonshotai/kimi-k2.5": {
+    "input_token_price_per_million": 0.6,
+    "output_token_price_per_million": 3
+  },
+  "moonshotai/kimi-k2.6": {
+    "input_token_price_per_million": 0.95,
+    "output_token_price_per_million": 4
+  },
+  "moonshotai/Kimi-K2.6": {
+    "input_token_price_per_million": 0.95,
+    "output_token_price_per_million": 4
+  },
+  "moonshotai/kimi-k3": {
+    "input_token_price_per_million": 3,
+    "output_token_price_per_million": 15
+  },
+  "nvidia/nemotron-3-nano-30b-a3b": {
+    "input_token_price_per_million": 0.06,
+    "output_token_price_per_million": 0.24
+  },
+  "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B": {
+    "input_token_price_per_million": 0.06,
+    "output_token_price_per_million": 0.24
+  },
+  "o4-mini": {
+    "input_token_price_per_million": 1.1,
+    "output_token_price_per_million": 4.4
+  },
+  "o4-mini-2025-04-16": {
+    "input_token_price_per_million": 1.1,
+    "output_token_price_per_million": 4.4
+  },
+  "openai/gpt-4.1": {
+    "input_token_price_per_million": 2,
+    "output_token_price_per_million": 8
+  },
+  "gpt-4.1": {
+    "input_token_price_per_million": 2,
+    "output_token_price_per_million": 8
+  },
+  "openai/gpt-4.1-mini": {
+    "input_token_price_per_million": 0.4,
+    "output_token_price_per_million": 1.6
+  },
+  "gpt-4.1-mini": {
+    "input_token_price_per_million": 0.4,
+    "output_token_price_per_million": 1.6
+  },
+  "openai/gpt-4.1-nano": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.4
+  },
+  "gpt-4.1-nano": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.4
+  },
+  "openai/gpt-4o": {
+    "input_token_price_per_million": 2.5,
+    "output_token_price_per_million": 10
+  },
+  "gpt-4o": {
+    "input_token_price_per_million": 2.5,
+    "output_token_price_per_million": 10
+  },
+  "openai/gpt-4o-mini": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "gpt-4o-mini": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "openai/gpt-5": {
+    "input_token_price_per_million": 1.25,
+    "output_token_price_per_million": 10
+  },
+  "gpt-5": {
+    "input_token_price_per_million": 1.25,
+    "output_token_price_per_million": 10
+  },
+  "openai/gpt-5-mini": {
+    "input_token_price_per_million": 0.25,
+    "output_token_price_per_million": 2
+  },
+  "gpt-5-mini": {
+    "input_token_price_per_million": 0.25,
+    "output_token_price_per_million": 2
+  },
+  "openai/gpt-5-nano": {
+    "input_token_price_per_million": 0.05,
+    "output_token_price_per_million": 0.4
+  },
+  "gpt-5-nano": {
+    "input_token_price_per_million": 0.05,
+    "output_token_price_per_million": 0.4
+  },
+  "gpt-5-nano-2025-08-07": {
+    "input_token_price_per_million": 0.05,
+    "output_token_price_per_million": 0.4
+  },
+  "openai/gpt-5.1": {
+    "input_token_price_per_million": 1.25,
+    "output_token_price_per_million": 10
+  },
+  "gpt-5.1": {
+    "input_token_price_per_million": 1.25,
+    "output_token_price_per_million": 10
+  },
+  "gpt-5.1-None": {
+    "input_token_price_per_million": 1.25,
+    "output_token_price_per_million": 10
+  },
+  "openai/gpt-5.2": {
+    "input_token_price_per_million": 1.75,
+    "output_token_price_per_million": 14
+  },
+  "gpt-5.2": {
+    "input_token_price_per_million": 1.75,
+    "output_token_price_per_million": 14
+  },
+  "openai/gpt-5.2-chat": {
+    "input_token_price_per_million": 1.75,
+    "output_token_price_per_million": 14
+  },
+  "gpt-5.2-chat": {
+    "input_token_price_per_million": 1.75,
+    "output_token_price_per_million": 14
+  },
+  "openai/gpt-5.4": {
+    "input_token_price_per_million": 2.5,
+    "output_token_price_per_million": 15
+  },
+  "gpt-5.4": {
+    "input_token_price_per_million": 2.5,
+    "output_token_price_per_million": 15
+  },
+  "openai/gpt-5.4-mini": {
+    "input_token_price_per_million": 0.4,
+    "output_token_price_per_million": 1.6
+  },
+  "gpt-5.4-mini": {
+    "input_token_price_per_million": 0.4,
+    "output_token_price_per_million": 1.6
+  },
+  "openai/gpt-5.4-nano": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 1.25
+  },
+  "gpt-5.4-nano": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 1.25
+  },
+  "openai/gpt-5.5": {
+    "input_token_price_per_million": 5,
+    "output_token_price_per_million": 30
+  },
+  "gpt-5.5": {
+    "input_token_price_per_million": 5,
+    "output_token_price_per_million": 30
+  },
+  "gpt-5.5-2026-04-23": {
+    "input_token_price_per_million": 5,
+    "output_token_price_per_million": 30
+  },
+  "openai/gpt-5.6-luna": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 1.2
+  },
+  "gpt-5.6-luna": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 1.2
+  },
+  "openai/gpt-5.6-sol": {
+    "input_token_price_per_million": 4,
+    "output_token_price_per_million": 20
+  },
+  "openai/gpt-5.6-terra": {
+    "input_token_price_per_million": 2,
+    "output_token_price_per_million": 12
+  },
+  "openai/gpt-6-luna": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.5
+  },
+  "openai/gpt-6-sol": {
+    "input_token_price_per_million": 2,
+    "output_token_price_per_million": 10
+  },
+  "openai/gpt-6.1-sol": {
+    "input_token_price_per_million": 2,
+    "output_token_price_per_million": 10
+  },
+  "openai/gpt-oss-120b": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "gpt-oss-120b": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "openai_gpt-oss-120b": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "openai/gpt-oss-20b": {
+    "input_token_price_per_million": 0.03,
+    "output_token_price_per_million": 0.13
+  },
+  "gpt-oss-20b": {
+    "input_token_price_per_million": 0.03,
+    "output_token_price_per_million": 0.13
+  },
+  "qwen/qwen3-235b-a22b-2507": {
+    "input_token_price_per_million": 0.071,
+    "output_token_price_per_million": 0.1
+  },
+  "alibaba/qwen3-235b-a22b-instruct-2507": {
+    "input_token_price_per_million": 0.071,
+    "output_token_price_per_million": 0.1
+  },
+  "qwen3-235b-a22b-instruct-2507": {
+    "input_token_price_per_million": 0.071,
+    "output_token_price_per_million": 0.1
+  },
+  "qwen_qwen3-235b-a22b-2507": {
+    "input_token_price_per_million": 0.071,
+    "output_token_price_per_million": 0.1
+  },
+  "qwen/qwen3-30b-a3b-instruct-2507": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "alibaba/qwen3-30b-a3b-instruct-2507": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "qwen3-30b-a3b-instruct-2507": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "qwen/qwen3-coder": {
+    "input_token_price_per_million": 0.22,
+    "output_token_price_per_million": 0.95
+  },
+  "qwen_qwen3-coder": {
+    "input_token_price_per_million": 0.22,
+    "output_token_price_per_million": 0.95
+  },
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+    "input_token_price_per_million": 0.07,
+    "output_token_price_per_million": 0.27
+  },
+  "qwen/qwen3-coder-next": {
+    "input_token_price_per_million": 0.07,
+    "output_token_price_per_million": 0.3
+  },
+  "Qwen/Qwen3-Coder-Next": {
+    "input_token_price_per_million": 0.07,
+    "output_token_price_per_million": 0.3
+  },
+  "qwen/qwen3-next-80b-a3b-instruct": {
+    "input_token_price_per_million": 0.09,
+    "output_token_price_per_million": 1.1
+  },
+  "qwen/qwen3-vl-235b-a22b-instruct": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 1.2
+  },
+  "qwen_qwen3-vl-235b-a22b-instruct": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 1.2
+  },
+  "qwen/qwen3.5-9b": {
+    "input_token_price_per_million": 0.05,
+    "output_token_price_per_million": 0.15
+  },
+  "qwen/qwen3.5-flash-02-23": {
+    "input_token_price_per_million": 0.065,
+    "output_token_price_per_million": 0.26
+  },
+  "qwen_qwen3-vl-235b-a22b-thinking": {
+    "input_token_price_per_million": 0.3,
+    "output_token_price_per_million": 1.2
+  },
+  "qwen_qwen3-vl-32b-instruct": {
+    "input_token_price_per_million": 0.5,
+    "output_token_price_per_million": 1.5
+  },
+  "test": {
+    "input_token_price_per_million": 1,
+    "output_token_price_per_million": 2
+  },
+  "THUDM/GLM-4-9B-0414": {
+    "input_token_price_per_million": 0.05,
+    "output_token_price_per_million": 0.61
+  },
+  "upstage/solar-mini": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.15
+  },
+  "upstage/solar-pro-2": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "upstage/solar-pro3": {
+    "input_token_price_per_million": 0.15,
+    "output_token_price_per_million": 0.6
+  },
+  "upstage/solar-pro4": {
+    "input_token_price_per_million": 0.3,
+    "output_token_price_per_million": 1.2
+  },
+  "x-ai/grok-4.1-fast": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 0.5
+  },
+  "grok-4-1-fast-reasoning": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 0.5
+  },
+  "x-ai_grok-4.1-fast": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 0.5
+  },
+  "x-ai/grok-4.3": {
+    "input_token_price_per_million": 1.25,
+    "output_token_price_per_million": 2.5
+  },
+  "grok-4.3": {
+    "input_token_price_per_million": 1.25,
+    "output_token_price_per_million": 2.5
+  },
+  "x-ai_grok-code-fast-1": {
+    "input_token_price_per_million": 0.2,
+    "output_token_price_per_million": 1.5
+  },
+  "xiaomi/mimo-v2.5": {
+    "input_token_price_per_million": 0.14,
+    "output_token_price_per_million": 0.28
+  },
+  "xiaomi_mimo-v2-flash:free": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.3
+  },
+  "z-ai/glm-4.5-air": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.3
+  },
+  "glm-4.5-air": {
+    "input_token_price_per_million": 0.1,
+    "output_token_price_per_million": 0.3
+  },
+  "z-ai/glm-4.6": {
+    "input_token_price_per_million": 0.28,
+    "output_token_price_per_million": 1.12
+  },
+  "glm-4.6": {
+    "input_token_price_per_million": 0.28,
+    "output_token_price_per_million": 1.12
+  },
+  "z-ai/glm-4.7": {
+    "input_token_price_per_million": 0.4,
+    "output_token_price_per_million": 1.5
+  },
+  "z-ai_glm-4.7": {
+    "input_token_price_per_million": 0.4,
+    "output_token_price_per_million": 1.5
+  },
+  "z-ai/glm-5": {
+    "input_token_price_per_million": 1,
+    "output_token_price_per_million": 3.2
+  },
+  "z-ai/glm-5.3": {
+    "input_token_price_per_million": 0.079,
+    "output_token_price_per_million": 1.4
+  },
+  "z-ai/glm-5.3@high": {
+    "input_token_price_per_million": 0.079,
+    "output_token_price_per_million": 1.4
+  },
+  "z-ai/glm-5.3@low": {
+    "input_token_price_per_million": 0.079,
+    "output_token_price_per_million": 1.4
+  },
+  "z-ai/glm-5.3-flash": {
+    "input_token_price_per_million": 0.041,
+    "output_token_price_per_million": 0.077
+  },
+  "glm-5.3-flash": {
+    "input_token_price_per_million": 0.041,
+    "output_token_price_per_million": 0.077
+  },
+  "z-ai/glm-5.3-flash@default": {
+    "input_token_price_per_million": 0.041,
+    "output_token_price_per_million": 0.077
   }
 }

@@ -25,6 +25,13 @@ from typing import Optional, Any, Dict
 # Global storage for original references used by reliability_guard
 originals: Dict[str, Any] = {}
 
+# Address-space headroom for each forked test process, on top of what it inherits from the
+# evaluator. Unbounded allocations in generated code otherwise exhaust the evaluation host.
+# Set ROUTERARENA_LCB_MEMORY_HEADROOM_BYTES=0 to disable the limit.
+LCB_MEMORY_HEADROOM_BYTES = int(
+    os.environ.get("ROUTERARENA_LCB_MEMORY_HEADROOM_BYTES", str(2 * 1024**3))
+)
+
 
 def has_code(response):
     pattern = r"```(?:[a-zA-Z]*)\n(.*?)```"
@@ -302,13 +309,23 @@ def run_test_func(completion, is_extracted, test_input, test_output):
         return True, result_output
 
 
+# `if __name__ == "__main__":` and `if __name__ == '__main__':` are the same
+# guard; either quote style (and either operand order) must run the program.
+MAIN_GUARD = re.compile(
+    r"""__name__\s*==\s*(['"])__main__\1|(['"])__main__\2\s*==\s*__name__"""
+)
+
+
 def run_test_std(completion, test_input, test_output):
-    sys.stdin = StringIO(test_input)
+    # A StringIO has no .buffer, so solutions reading sys.stdin.buffer would fail.
+    sys.stdin = io.TextIOWrapper(
+        io.BytesIO(test_input.encode("utf-8")), encoding="utf-8", newline="\n"
+    )
 
     output = StringIO()
     sys.stdout = output
 
-    if '__name__ == "__main__"' in completion:
+    if MAIN_GUARD.search(completion):
         # Simulate that the code is being run as the main script
         completion = '__name__ = "__main__"\n' + completion
 
@@ -340,11 +357,38 @@ def unsafe_lcb_runTests(problem, completion, timeout, runtime_debug, is_extracte
     return result
 
 
+def limit_test_memory(headroom_bytes: int) -> None:
+    """Cap this process's address space at its current size plus ``headroom_bytes``.
+
+    Linux only; elsewhere, or when ``headroom_bytes`` is not positive, this does nothing.
+    Must run before ``reliability_guard``, which hides the ``resource`` module.
+    """
+    if headroom_bytes <= 0:
+        return
+    try:
+        import resource
+
+        with open("/proc/self/status") as status:
+            current = next(
+                int(line.split()[1]) * 1024
+                for line in status
+                if line.startswith("VmSize:")
+            )
+        limit = current + headroom_bytes
+        _, hard = resource.getrlimit(resource.RLIMIT_AS)
+        if hard != resource.RLIM_INFINITY:
+            limit = min(limit, hard)
+        resource.setrlimit(resource.RLIMIT_AS, (limit, limit))
+    except (ImportError, OSError, StopIteration, ValueError):
+        pass
+
+
 def run_tests_for_one_example(
     test_cases, completion, result_list, runtime_debug, is_extracted
 ):
     time_elapsed = float("inf")
     test_type = test_cases[0]["testtype"]
+    limit_test_memory(LCB_MEMORY_HEADROOM_BYTES)
     reliability_guard()
     for _i, test_case in enumerate(test_cases):
         output_error = ""
