@@ -1006,9 +1006,11 @@ def run_robustness_only(router_name: str, robustness_path: Optional[str]) -> Non
     logger.info("Robustness metrics saved to %s", metrics_path)
 
 
-def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) -> None:
+def router_metrics(
+    predictions: List[Dict[str, Any]], router_name: str
+) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     """
-    Compute router-level metrics (accuracy, cost, RouterArena score, etc.) and display them.
+    Compute router-level metrics (accuracy, cost, RouterArena score, optimality).
 
     Separates regular and optimality entries:
     - Regular entries (for_optimality=False): Used for RouterArena score
@@ -1017,6 +1019,10 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
     Args:
         predictions: List of prediction dictionaries with evaluation results
         router_name: Name of the router
+
+    Returns:
+        (metrics, details): ``metrics`` is what gets saved to metrics.json;
+        ``details`` holds counts and the optimality result used only for logging.
     """
     # Separate regular and optimality predictions
     regular_predictions = [p for p in predictions if not p.get("for_optimality", False)]
@@ -1090,74 +1096,6 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
     # Compute RouterArena score using average cost per 1000 queries and average accuracy
     arena_score = compute_arena_score(avg_cost_per_1000, avg_accuracy)
 
-    # Print RouterArena score results
-    logger.info("\n" + "=" * 80)
-    logger.info(f"Router: {router_name}")
-    logger.info("=" * 80)
-    logger.info(f"Total Queries (Regular): {num_queries}")
-    if optimality_predictions:
-        logger.info(
-            f"Optimality Entries: {len(optimality_predictions)} (excluded from RouterArena score)"
-        )
-    logger.info(f"Queries with Accuracy: {len(accuracies)}")
-    logger.info(f"Queries with Valid Cost: {valid_cost_count}")
-    logger.info(
-        f"Abnormal Entries (no valid generation, scored as 0): {abnormal_count}"
-    )
-    logger.info(f"Average Accuracy: {avg_accuracy:.4f}")
-    logger.info(f"Total Cost: ${total_cost:.6f}")
-    if num_queries > 0:
-        logger.info(f"Average Cost per Query: ${total_cost / num_queries:.6f}")
-    else:
-        logger.info("Average Cost per Query: $0.00")
-    logger.info(f"Average Cost per 1K Queries: ${avg_cost_per_1000:.4f}")
-    logger.info(f"RouterArena Score: {arena_score:.4f}")
-
-    # Compute optimality scores if we have optimality entries (compute once, reuse for logging and metrics)
-    optimality_scores = None
-    if optimality_predictions:
-        logger.info("\n" + "-" * 80)
-        logger.info("Computing Optimality Scores...")
-        logger.info("-" * 80)
-        try:
-            optimality_scores = compute_optimality_from_predictions(
-                predictions, router_name
-            )
-            if optimality_scores:
-                logger.info(
-                    f"Opt.Sel (Optimal Selection): {optimality_scores['opt_sel']:.4f}\n"
-                    f"Opt.Cost (Optimal Cost Ratio): {optimality_scores['opt_cost']:.4f}\n"
-                    f"Opt.Acc (Optimal Accuracy Ratio): {optimality_scores['opt_acc']:.4f}\n"
-                    f"Queries Evaluated for Optimality: {optimality_scores['queries_with_optimal_data']}/{optimality_scores['num_sub10_queries']}"
-                )
-
-                # Print optimality scores in JSON format for easy parsing by automation
-                logger.info(
-                    "\nOptimality Scores: "
-                    + json.dumps(
-                        {
-                            "opt_sel": optimality_scores["opt_sel"],
-                            "opt_cost": optimality_scores["opt_cost"],
-                            "opt_acc": optimality_scores["opt_acc"],
-                            "queries_with_optimal_data": optimality_scores[
-                                "queries_with_optimal_data"
-                            ],
-                            "num_sub10_queries": optimality_scores["num_sub10_queries"],
-                        }
-                    )
-                )
-        except Exception as e:
-            logger.warning(f"Could not compute optimality scores: {e}")
-            logger.warning(
-                "This is expected if optimality entries were not generated during prediction file creation."
-            )
-
-    logger.info(
-        "\nPLEASE NOTE: The sub_10 dataset is a subset of the full dataset and is used for testing purposes. It is generally easier than the full dataset."
-    )
-    logger.info("=" * 80 + "\n")
-
-    # Save metrics to metrics.json for automation/workflows
     metrics_dict = {
         "arena_score": arena_score,
         "accuracy": avg_accuracy,
@@ -1167,16 +1105,105 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
         "num_queries": num_queries,
         "abnormal_count": abnormal_count,
     }
+    details: Dict[str, Any] = {
+        "num_accuracies": len(accuracies),
+        "valid_cost_count": valid_cost_count,
+        "num_optimality_entries": len(optimality_predictions),
+        "optimality_scores": None,
+        "optimality_error": None,
+    }
 
-    # Add optimality scores if available (reuse previously computed result)
-    if optimality_scores:
-        metrics_dict["optimality"] = {
-            "opt_sel": optimality_scores["opt_sel"],
-            "opt_cost": optimality_scores["opt_cost"],
-            "opt_acc": optimality_scores["opt_acc"],
-            "queries_with_optimal_data": optimality_scores["queries_with_optimal_data"],
-            "num_sub10_queries": optimality_scores["num_sub10_queries"],
-        }
+    # Compute optimality scores if we have optimality entries
+    if optimality_predictions:
+        try:
+            optimality_scores = compute_optimality_from_predictions(
+                predictions, router_name
+            )
+        except Exception as e:
+            details["optimality_error"] = e
+            optimality_scores = None
+        details["optimality_scores"] = optimality_scores
+        if optimality_scores:
+            metrics_dict["optimality"] = {
+                "opt_sel": optimality_scores["opt_sel"],
+                "opt_cost": optimality_scores["opt_cost"],
+                "opt_acc": optimality_scores["opt_acc"],
+                "queries_with_optimal_data": optimality_scores[
+                    "queries_with_optimal_data"
+                ],
+                "num_sub10_queries": optimality_scores["num_sub10_queries"],
+            }
+
+    return metrics_dict, details
+
+
+def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) -> None:
+    """
+    Compute router-level metrics (see ``router_metrics``), display them and save
+    them to metrics.json.
+
+    Args:
+        predictions: List of prediction dictionaries with evaluation results
+        router_name: Name of the router
+    """
+    metrics_dict, details = router_metrics(predictions, router_name)
+    num_queries = metrics_dict["num_queries"]
+    total_cost = metrics_dict["total_cost"]
+
+    # Print RouterArena score results
+    logger.info("\n" + "=" * 80)
+    logger.info(f"Router: {router_name}")
+    logger.info("=" * 80)
+    logger.info(f"Total Queries (Regular): {num_queries}")
+    if details["num_optimality_entries"]:
+        logger.info(
+            f"Optimality Entries: {details['num_optimality_entries']} (excluded from RouterArena score)"
+        )
+    logger.info(f"Queries with Accuracy: {details['num_accuracies']}")
+    logger.info(f"Queries with Valid Cost: {details['valid_cost_count']}")
+    logger.info(
+        f"Abnormal Entries (no valid generation, scored as 0): {metrics_dict['abnormal_count']}"
+    )
+    logger.info(f"Average Accuracy: {metrics_dict['accuracy']:.4f}")
+    logger.info(f"Total Cost: ${total_cost:.6f}")
+    if num_queries > 0:
+        logger.info(f"Average Cost per Query: ${total_cost / num_queries:.6f}")
+    else:
+        logger.info("Average Cost per Query: $0.00")
+    logger.info(
+        f"Average Cost per 1K Queries: ${metrics_dict['avg_cost_per_1000']:.4f}"
+    )
+    logger.info(f"RouterArena Score: {metrics_dict['arena_score']:.4f}")
+
+    if details["num_optimality_entries"]:
+        logger.info("\n" + "-" * 80)
+        logger.info("Computing Optimality Scores...")
+        logger.info("-" * 80)
+        optimality_scores = details["optimality_scores"]
+        if details["optimality_error"] is not None:
+            logger.warning(
+                f"Could not compute optimality scores: {details['optimality_error']}"
+            )
+            logger.warning(
+                "This is expected if optimality entries were not generated during prediction file creation."
+            )
+        elif optimality_scores:
+            logger.info(
+                f"Opt.Sel (Optimal Selection): {optimality_scores['opt_sel']:.4f}\n"
+                f"Opt.Cost (Optimal Cost Ratio): {optimality_scores['opt_cost']:.4f}\n"
+                f"Opt.Acc (Optimal Accuracy Ratio): {optimality_scores['opt_acc']:.4f}\n"
+                f"Queries Evaluated for Optimality: {optimality_scores['queries_with_optimal_data']}/{optimality_scores['num_sub10_queries']}"
+            )
+
+            # Print optimality scores in JSON format for easy parsing by automation
+            logger.info(
+                "\nOptimality Scores: " + json.dumps(metrics_dict["optimality"])
+            )
+
+    logger.info(
+        "\nPLEASE NOTE: The sub_10 dataset is a subset of the full dataset and is used for testing purposes. It is generally easier than the full dataset."
+    )
+    logger.info("=" * 80 + "\n")
 
     # Save to metrics.json
     metrics_path = "./metrics.json"
