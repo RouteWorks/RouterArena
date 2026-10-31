@@ -30,16 +30,6 @@ routers:
       affiliation: "@namitha-sqwish"
       github_url: "https://github.com/namitha-sqwish"
 
-  - readme_name: "AgentForge Router"
-    website_name: "AgentForge Router"
-    prediction: "agentforge-router"
-    category_key: "agentforge"
-    flip_key: "agentforge"
-    website:
-      affiliation: "@YangY-Z"
-      github_url: "https://github.com/YangY-Z"
-      type: "open-source"
-
   - readme_name: "Nadir Router"
     website_name: "Nadir Router"
     prediction: "nadir-cascade-v2"
@@ -71,12 +61,6 @@ routers:
     prediction: "azure-model-router"
     category_key: "azure"
     flip_key: "azure"
-
-  - readme_name: "R2-Router"
-    website_name: "R2-Router"
-    prediction: "r2-router"
-    category_key: "r2-router"
-    flip_key: "r2-router"
 
   - readme_name: "Auto Router"
     website_name: "Auto Router"
