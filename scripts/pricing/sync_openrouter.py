@@ -16,7 +16,7 @@ the OpenRouter prices of every resolved model, so each change point is kept as h
 (``--always-snapshot`` writes one even when nothing changed).
 
 Syncing changes the price table only. Leaderboard costs change when a maintainer re-prices
-the routers, as a separate step.
+the routers, as a separate step (scripts/pricing/reprice.py).
 
 Usage:
     python scripts/pricing/sync_openrouter.py                    # fetch, update, write
