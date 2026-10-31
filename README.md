@@ -32,7 +32,7 @@ RouterArena bridges this gap by providing an open evaluation platform and benchm
 > **RouterArena is an evaluation-only dataset.** Submissions that train, fit, or tune any router component on RouterArena data (including the label files) will be rejected, and any accepted submission found in violation will be withdrawn. This includes:
 > - **Routing by dataset or template.** Routing must depend on the query's own content, not on which RouterArena dataset it comes from: for example, not by matching the instruction text the evaluation harness adds to each dataset, and not by reading `config/eval_config/`.
 > - **Building router data from RouterArena's templates or configs.** Calibration or training prompts must not be rendered with RouterArena's prompt templates or config files.
-> - **Reusing other submissions' answers.** Every row must come from the router's own model calls. Answers copied from other submissions' prediction files are not accepted.
+> - **Reusing other submissions' answers.** Every row must come from the router's own model calls, or unchanged from RouterArena's official cached answers in `cached_results/`. Answers copied from other submissions' prediction files are not accepted. A router that uses the official cache must still choose the model for each query from that query alone; the cached answers and their scores must not inform the choice.
 
 # Current Leaderboard
 
