@@ -237561,7 +237561,7 @@
   },
   {
     "accuracy": 1.0,
-    "cost": 8.344e-05,
+    "cost": 0.00012532,
     "for_optimality": false,
     "generated_result": {
       "error": null,
@@ -240991,7 +240991,7 @@
   },
   {
     "accuracy": 1.0,
-    "cost": 9.816e-05,
+    "cost": 0.00014748000000000002,
     "for_optimality": false,
     "generated_result": {
       "error": null,
@@ -244541,7 +244541,7 @@
   },
   {
     "accuracy": 1.0,
-    "cost": 8.497e-05,
+    "cost": 0.000127785,
     "for_optimality": false,
     "generated_result": {
       "error": null,
@@ -244731,7 +244731,7 @@
   },
   {
     "accuracy": 1.0,
-    "cost": 7.612e-05,
+    "cost": 0.00011486,
     "for_optimality": false,
     "generated_result": {
       "error": null,
