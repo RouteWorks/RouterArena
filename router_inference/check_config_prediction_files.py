@@ -176,49 +176,46 @@ def check_model_costs(
     for model in config_models:
         used_models.add(model)
 
-    # Check each model has cost configuration
+    # Check each model has a price profile (exact id or alias match only; see
+    # model_cost/model_profiles.yaml). A model without one is not rejected: the
+    # evaluator charges it the highest price in the table, so we warn loudly.
     missing_costs = []
-    for model_name in used_models:
+    for model_name in sorted(used_models):
         try:
             # Convert to universal name for cost lookup
             universal_name = model_manager.get_universal_name(model_name)
+        except Exception:
+            universal_name = model_name
 
-            # Remove _batch suffix if present
-            cost_lookup_name = universal_name
-            if universal_name.endswith("_batch"):
-                cost_lookup_name = universal_name[:-6]
+        # Remove _batch suffix if present
+        cost_lookup_name = universal_name
+        if universal_name.endswith("_batch"):
+            cost_lookup_name = universal_name[:-6]
 
-            # Check if cost exists (exact match or partial match)
-            has_cost = False
-            if cost_lookup_name in cost_config:
-                has_cost = True
-            else:
-                # Try partial matches
-                for config_name in cost_config.keys():
-                    if (
-                        config_name in cost_lookup_name
-                        or cost_lookup_name in config_name
-                    ):
-                        has_cost = True
-                        break
-
-            if not has_cost:
-                missing_costs.append(f"{model_name} (universal: {cost_lookup_name})")
-        except Exception as e:
-            # If we can't convert, try original name
-            if model_name not in cost_config:
-                missing_costs.append(f"{model_name} (conversion failed: {str(e)})")
+        if cost_lookup_name not in cost_config:
+            missing_costs.append(f"{model_name} (looked up as: {cost_lookup_name})")
 
     if missing_costs:
-        errors.append(f"Missing cost configuration for {len(missing_costs)} model(s):")
+        max_in = max(
+            float(v.get("input_token_price_per_million", 0.0))
+            for v in cost_config.values()
+        )
+        max_out = max(
+            float(v.get("output_token_price_per_million", 0.0))
+            for v in cost_config.values()
+        )
+        errors.append(f"No price profile for {len(missing_costs)} model(s):")
         for model in missing_costs:
             errors.append(f"  - {model}")
         errors.append(
-            "\nPlease add cost configuration to model_cost/model_cost.json or update "
-            "your router config to use models with existing cost configurations."
+            f"These rows will be charged the maximum price (${max_in}/${max_out} per "
+            "1M tokens). To avoid that, add a profile (with a source link) to "
+            "model_cost/model_profiles.yaml and run "
+            "`python scripts/pricing/build_model_cost.py`."
         )
 
-    return len(missing_costs) == 0, errors
+    # Missing prices are a warning, not a failure.
+    return True, errors
 
 
 # Model slugs that upstream providers have retired and silently redirect to a
@@ -659,7 +656,10 @@ def main():
     try:
         if predictions is not None and config is not None:
             cost_valid, cost_errors = check_model_costs(predictions, config)
-            if cost_valid:
+            if cost_valid and cost_errors:
+                for warning in cost_errors:
+                    print(f"  ⚠ {warning}")
+            elif cost_valid:
                 cost_config = load_cost_config()
                 print(
                     f"✓ All models have cost configurations ({len(cost_config)} models in cost file)"

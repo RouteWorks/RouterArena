@@ -362,14 +362,18 @@ def evaluate_single_prediction(
         )
         return False
 
-    # Convert to universal model name
+    # Convert to universal model name. An unknown name is still graded (the score
+    # does not depend on it) and is charged the maximum price below, so a router
+    # cannot drop rows from its results by naming an unregistered model.
     try:
         universal_model_name = ModelNameManager.get_universal_name(model_name)
     except Exception as e:
-        logger.error(
-            f"Error converting model name '{model_name}' to universal name: {e}"
+        # Logged once per name by the evaluator and summarised after the run.
+        logger.debug(
+            f"Unknown model name '{model_name}' ({e}); evaluating it anyway "
+            "and charging the maximum price."
         )
-        return False
+        universal_model_name = model_name
 
     # Determine dataset name from global_index
     dataset_name = evaluator.determine_dataset_from_global_index(global_index)
@@ -586,6 +590,18 @@ def process_router_predictions(
     logger.info(
         f"Predictions saved to: ./router_inference/predictions/{router_name}.json"
     )
+    if evaluator.unpriced_models:
+        max_price = evaluator.max_price_info()
+        logger.warning(
+            "Charged at the maximum price "
+            f"(${max_price['input_token_price_per_million']}/"
+            f"${max_price['output_token_price_per_million']} per 1M tokens) "
+            "because no price profile matched:"
+        )
+        for name, rows in sorted(
+            evaluator.unpriced_models.items(), key=lambda kv: -kv[1]
+        ):
+            logger.warning(f"  {name}: {rows} rows")
     logger.info("=" * 60)
 
     # Compute and display router-level metrics

@@ -140,16 +140,17 @@ Create a config file in `./router_inference/config/<router_name>.json`. An examp
 }
 ```
 
-For each model in your config, add an entry with the pricing per million tokens in this format at [`model_cost/model_cost.json`](./model_cost/model_cost.json):
+Every model in your config needs a price. Prices live in [`model_cost/model_profiles.yaml`](./model_cost/model_profiles.yaml): one entry per model, keyed by its OpenRouter id, with the other spellings of the same model as aliases. If your model is listed under another spelling, add yours to its `aliases`. For a new model, add an entry with its price per million tokens and a link to the published price:
 
-```json
-{
-  "gpt-4o-mini": {
-    "input_token_price_per_million": 0.15,
-    "output_token_price_per_million": 0.6
-  },
-}
+```yaml
+  "openai/gpt-4o-mini":
+    price: {input: 0.15, output: 0.6}
+    aliases: ["gpt-4o-mini"]
+    as_of: "2026-10-31"
+    source: "https://openrouter.ai/openai/gpt-4o-mini"
 ```
+
+Then regenerate [`model_cost/model_cost.json`](./model_cost/model_cost.json), which the evaluator reads, with `python scripts/pricing/build_model_cost.py`. A model name with no entry is charged the highest price in the table.
 
 > [!NOTE]
 > Ensure all models in your above config files are listed in [`./universal_model_names.py`](./universal_model_names.py). If you add a new model, you must also add the API inference endpoint in [`llm_inference/model_inference.py`](./llm_inference/model_inference.py).
@@ -221,7 +222,7 @@ To get your router on the leaderboard, you can open a Pull Request with your rou
    - When the PR is ready for evaluation, call `/evaluate` in the PR comment to trigger the evaluation workflow. See an example [here](https://github.com/RouteWorks/RouterArena/pull/71#issuecomment-3904936480).
    - The automated workflow will:
      - Validate your submission
-     - Run evaluation on the full dataset with the evaluation code on `main`. Only the three files above are taken from your branch, plus any new models you add to `model_cost/model_cost.json` and `universal_model_names.py` (models already listed keep their price on `main`)
+     - Run evaluation on the full dataset with the evaluation code on `main`. Only the three files above are taken from your branch, plus any new models you add to the price table (`model_cost/model_profiles.yaml` and the generated `model_cost/model_cost.json`) and `universal_model_names.py` (models already listed keep their price on `main`)
      - Post results as a comment on your PR
      - Update the leaderboard upon approval
 
