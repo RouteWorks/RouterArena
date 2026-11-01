@@ -27,6 +27,7 @@ import math
 from typing import Dict, Any, List, Optional, Tuple, Set
 from universal_model_names import ModelNameManager
 from global_utils.robustness import compute_robustness_score
+from global_utils.router_usage import ROUTER_USAGE_FIELD, router_usage_cost
 from parallel_evaluation import ParallelEvaluationManager
 
 # Add parent directory to path for imports
@@ -315,6 +316,38 @@ def get_livecodebench_ground_truth(global_index: str) -> Optional[Dict[str, Any]
         return None
 
 
+def compute_row_cost(
+    prediction: Dict[str, Any],
+    evaluator: ModelEvaluator,
+    universal_model_name: str,
+) -> Tuple[float, float]:
+    """Return (answer cost, router-call cost) in USD for one prediction row.
+
+    The answer is billed at the model the provider actually served
+    (generated_result.model_used) when it has a known price, so retired/redirected
+    slugs are billed at the model that truly answered rather than the requested
+    alias. For example the retired `grok-4-1-fast-reasoning` slug is redirected by
+    xAI to grok-4.3, which is both stronger and ~5-6x more expensive; billing it at
+    the alias's old price understates cost. Otherwise it falls back to the router's
+    selected model (universal name, to respect universal_model_names.py mappings).
+    See #166.
+
+    Router calls (the row's `router_usage`, see global_utils/router_usage.py) are
+    billed at their own models' prices.
+    """
+    generated_result = prediction.get("generated_result") or {}
+    token_usage = generated_result.get("token_usage", {})
+    cost_model_name = universal_model_name
+    actual_model = generated_result.get("model_used")
+    if actual_model and evaluator.has_price(actual_model):
+        cost_model_name = actual_model
+    answer_cost = evaluator.calculate_inference_cost(cost_model_name, token_usage)
+    router_cost = router_usage_cost(
+        prediction.get(ROUTER_USAGE_FIELD), evaluator.calculate_inference_cost
+    )
+    return answer_cost, router_cost
+
+
 def evaluate_single_prediction(
     prediction: Dict[str, Any],
     ground_truth_map: Dict[str, Dict[str, Any]],
@@ -362,14 +395,18 @@ def evaluate_single_prediction(
         )
         return False
 
-    # Convert to universal model name
+    # Convert to universal model name. An unknown name is still graded (the score
+    # does not depend on it) and is charged the maximum price below, so a router
+    # cannot drop rows from its results by naming an unregistered model.
     try:
         universal_model_name = ModelNameManager.get_universal_name(model_name)
     except Exception as e:
-        logger.error(
-            f"Error converting model name '{model_name}' to universal name: {e}"
+        # Logged once per name by the evaluator and summarised after the run.
+        logger.debug(
+            f"Unknown model name '{model_name}' ({e}); evaluating it anyway "
+            "and charging the maximum price."
         )
-        return False
+        universal_model_name = model_name
 
     # Determine dataset name from global_index
     dataset_name = evaluator.determine_dataset_from_global_index(global_index)
@@ -425,28 +462,15 @@ def evaluate_single_prediction(
                 generated_answer, ground_truth, scorer_func, dataset_name
             )
 
-        # Calculate inference cost.
-        # Prefer the model the provider actually served (generated_result.model_used)
-        # when it has a known price, so retired/redirected slugs are billed at the
-        # model that truly answered rather than the requested alias. For example the
-        # retired `grok-4-1-fast-reasoning` slug is redirected by xAI to grok-4.3,
-        # which is both stronger and ~5-6x more expensive; billing it at the alias's
-        # old price understates cost. Fall back to the router's selected model
-        # (universal name, to respect universal_model_names.py mappings) when the
-        # provider did not report an actual model or its price is unknown. See #166.
-        token_usage = generated_result.get("token_usage", {})
-        cost_model_name = universal_model_name
-        actual_model = generated_result.get("model_used")
-        if actual_model and evaluator.has_price(actual_model):
-            cost_model_name = actual_model
-        inference_cost = evaluator.calculate_inference_cost(
-            cost_model_name,
-            token_usage,
+        answer_cost, router_cost = compute_row_cost(
+            prediction, evaluator, universal_model_name
         )
 
         # Update the prediction with evaluation results
         prediction["accuracy"] = score
-        prediction["cost"] = inference_cost
+        prediction["cost"] = answer_cost + router_cost
+        if router_cost:
+            prediction["router_cost"] = router_cost
 
         return True
 
@@ -586,6 +610,18 @@ def process_router_predictions(
     logger.info(
         f"Predictions saved to: ./router_inference/predictions/{router_name}.json"
     )
+    if evaluator.unpriced_models:
+        max_price = evaluator.max_price_info()
+        logger.warning(
+            "Charged at the maximum price "
+            f"(${max_price['input_token_price_per_million']}/"
+            f"${max_price['output_token_price_per_million']} per 1M tokens) "
+            "because no price profile matched:"
+        )
+        for name, rows in sorted(
+            evaluator.unpriced_models.items(), key=lambda kv: -kv[1]
+        ):
+            logger.warning(f"  {name}: {rows} rows")
     logger.info("=" * 60)
 
     # Compute and display router-level metrics
@@ -970,9 +1006,11 @@ def run_robustness_only(router_name: str, robustness_path: Optional[str]) -> Non
     logger.info("Robustness metrics saved to %s", metrics_path)
 
 
-def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) -> None:
+def router_metrics(
+    predictions: List[Dict[str, Any]], router_name: str
+) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     """
-    Compute router-level metrics (accuracy, cost, RouterArena score, etc.) and display them.
+    Compute router-level metrics (accuracy, cost, RouterArena score, optimality).
 
     Separates regular and optimality entries:
     - Regular entries (for_optimality=False): Used for RouterArena score
@@ -981,6 +1019,10 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
     Args:
         predictions: List of prediction dictionaries with evaluation results
         router_name: Name of the router
+
+    Returns:
+        (metrics, details): ``metrics`` is what gets saved to metrics.json;
+        ``details`` holds counts and the optimality result used only for logging.
     """
     # Separate regular and optimality predictions
     regular_predictions = [p for p in predictions if not p.get("for_optimality", False)]
@@ -1054,74 +1096,6 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
     # Compute RouterArena score using average cost per 1000 queries and average accuracy
     arena_score = compute_arena_score(avg_cost_per_1000, avg_accuracy)
 
-    # Print RouterArena score results
-    logger.info("\n" + "=" * 80)
-    logger.info(f"Router: {router_name}")
-    logger.info("=" * 80)
-    logger.info(f"Total Queries (Regular): {num_queries}")
-    if optimality_predictions:
-        logger.info(
-            f"Optimality Entries: {len(optimality_predictions)} (excluded from RouterArena score)"
-        )
-    logger.info(f"Queries with Accuracy: {len(accuracies)}")
-    logger.info(f"Queries with Valid Cost: {valid_cost_count}")
-    logger.info(
-        f"Abnormal Entries (no valid generation, scored as 0): {abnormal_count}"
-    )
-    logger.info(f"Average Accuracy: {avg_accuracy:.4f}")
-    logger.info(f"Total Cost: ${total_cost:.6f}")
-    if num_queries > 0:
-        logger.info(f"Average Cost per Query: ${total_cost / num_queries:.6f}")
-    else:
-        logger.info("Average Cost per Query: $0.00")
-    logger.info(f"Average Cost per 1K Queries: ${avg_cost_per_1000:.4f}")
-    logger.info(f"RouterArena Score: {arena_score:.4f}")
-
-    # Compute optimality scores if we have optimality entries (compute once, reuse for logging and metrics)
-    optimality_scores = None
-    if optimality_predictions:
-        logger.info("\n" + "-" * 80)
-        logger.info("Computing Optimality Scores...")
-        logger.info("-" * 80)
-        try:
-            optimality_scores = compute_optimality_from_predictions(
-                predictions, router_name
-            )
-            if optimality_scores:
-                logger.info(
-                    f"Opt.Sel (Optimal Selection): {optimality_scores['opt_sel']:.4f}\n"
-                    f"Opt.Cost (Optimal Cost Ratio): {optimality_scores['opt_cost']:.4f}\n"
-                    f"Opt.Acc (Optimal Accuracy Ratio): {optimality_scores['opt_acc']:.4f}\n"
-                    f"Queries Evaluated for Optimality: {optimality_scores['queries_with_optimal_data']}/{optimality_scores['num_sub10_queries']}"
-                )
-
-                # Print optimality scores in JSON format for easy parsing by automation
-                logger.info(
-                    "\nOptimality Scores: "
-                    + json.dumps(
-                        {
-                            "opt_sel": optimality_scores["opt_sel"],
-                            "opt_cost": optimality_scores["opt_cost"],
-                            "opt_acc": optimality_scores["opt_acc"],
-                            "queries_with_optimal_data": optimality_scores[
-                                "queries_with_optimal_data"
-                            ],
-                            "num_sub10_queries": optimality_scores["num_sub10_queries"],
-                        }
-                    )
-                )
-        except Exception as e:
-            logger.warning(f"Could not compute optimality scores: {e}")
-            logger.warning(
-                "This is expected if optimality entries were not generated during prediction file creation."
-            )
-
-    logger.info(
-        "\nPLEASE NOTE: The sub_10 dataset is a subset of the full dataset and is used for testing purposes. It is generally easier than the full dataset."
-    )
-    logger.info("=" * 80 + "\n")
-
-    # Save metrics to metrics.json for automation/workflows
     metrics_dict = {
         "arena_score": arena_score,
         "accuracy": avg_accuracy,
@@ -1131,16 +1105,105 @@ def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) 
         "num_queries": num_queries,
         "abnormal_count": abnormal_count,
     }
+    details: Dict[str, Any] = {
+        "num_accuracies": len(accuracies),
+        "valid_cost_count": valid_cost_count,
+        "num_optimality_entries": len(optimality_predictions),
+        "optimality_scores": None,
+        "optimality_error": None,
+    }
 
-    # Add optimality scores if available (reuse previously computed result)
-    if optimality_scores:
-        metrics_dict["optimality"] = {
-            "opt_sel": optimality_scores["opt_sel"],
-            "opt_cost": optimality_scores["opt_cost"],
-            "opt_acc": optimality_scores["opt_acc"],
-            "queries_with_optimal_data": optimality_scores["queries_with_optimal_data"],
-            "num_sub10_queries": optimality_scores["num_sub10_queries"],
-        }
+    # Compute optimality scores if we have optimality entries
+    if optimality_predictions:
+        try:
+            optimality_scores = compute_optimality_from_predictions(
+                predictions, router_name
+            )
+        except Exception as e:
+            details["optimality_error"] = e
+            optimality_scores = None
+        details["optimality_scores"] = optimality_scores
+        if optimality_scores:
+            metrics_dict["optimality"] = {
+                "opt_sel": optimality_scores["opt_sel"],
+                "opt_cost": optimality_scores["opt_cost"],
+                "opt_acc": optimality_scores["opt_acc"],
+                "queries_with_optimal_data": optimality_scores[
+                    "queries_with_optimal_data"
+                ],
+                "num_sub10_queries": optimality_scores["num_sub10_queries"],
+            }
+
+    return metrics_dict, details
+
+
+def compute_router_metrics(predictions: List[Dict[str, Any]], router_name: str) -> None:
+    """
+    Compute router-level metrics (see ``router_metrics``), display them and save
+    them to metrics.json.
+
+    Args:
+        predictions: List of prediction dictionaries with evaluation results
+        router_name: Name of the router
+    """
+    metrics_dict, details = router_metrics(predictions, router_name)
+    num_queries = metrics_dict["num_queries"]
+    total_cost = metrics_dict["total_cost"]
+
+    # Print RouterArena score results
+    logger.info("\n" + "=" * 80)
+    logger.info(f"Router: {router_name}")
+    logger.info("=" * 80)
+    logger.info(f"Total Queries (Regular): {num_queries}")
+    if details["num_optimality_entries"]:
+        logger.info(
+            f"Optimality Entries: {details['num_optimality_entries']} (excluded from RouterArena score)"
+        )
+    logger.info(f"Queries with Accuracy: {details['num_accuracies']}")
+    logger.info(f"Queries with Valid Cost: {details['valid_cost_count']}")
+    logger.info(
+        f"Abnormal Entries (no valid generation, scored as 0): {metrics_dict['abnormal_count']}"
+    )
+    logger.info(f"Average Accuracy: {metrics_dict['accuracy']:.4f}")
+    logger.info(f"Total Cost: ${total_cost:.6f}")
+    if num_queries > 0:
+        logger.info(f"Average Cost per Query: ${total_cost / num_queries:.6f}")
+    else:
+        logger.info("Average Cost per Query: $0.00")
+    logger.info(
+        f"Average Cost per 1K Queries: ${metrics_dict['avg_cost_per_1000']:.4f}"
+    )
+    logger.info(f"RouterArena Score: {metrics_dict['arena_score']:.4f}")
+
+    if details["num_optimality_entries"]:
+        logger.info("\n" + "-" * 80)
+        logger.info("Computing Optimality Scores...")
+        logger.info("-" * 80)
+        optimality_scores = details["optimality_scores"]
+        if details["optimality_error"] is not None:
+            logger.warning(
+                f"Could not compute optimality scores: {details['optimality_error']}"
+            )
+            logger.warning(
+                "This is expected if optimality entries were not generated during prediction file creation."
+            )
+        elif optimality_scores:
+            logger.info(
+                f"Opt.Sel (Optimal Selection): {optimality_scores['opt_sel']:.4f}\n"
+                f"Opt.Cost (Optimal Cost Ratio): {optimality_scores['opt_cost']:.4f}\n"
+                f"Opt.Acc (Optimal Accuracy Ratio): {optimality_scores['opt_acc']:.4f}\n"
+                f"Queries Evaluated for Optimality: {optimality_scores['queries_with_optimal_data']}/{optimality_scores['num_sub10_queries']}"
+            )
+
+            # Print optimality scores in JSON format for easy parsing by automation
+            logger.info(
+                "\nOptimality Scores: " + json.dumps(metrics_dict["optimality"])
+            )
+
+    logger.info(
+        "\nPLEASE NOTE: The sub_10 dataset is a subset of the full dataset and is used for testing purposes. It is generally easier than the full dataset."
+    )
+    logger.info("=" * 80 + "\n")
 
     # Save to metrics.json
     metrics_path = "./metrics.json"

@@ -30,16 +30,6 @@ routers:
       affiliation: "@namitha-sqwish"
       github_url: "https://github.com/namitha-sqwish"
 
-  - readme_name: "AgentForge Router"
-    website_name: "AgentForge Router"
-    prediction: "agentforge-router"
-    category_key: "agentforge"
-    flip_key: "agentforge"
-    website:
-      affiliation: "@YangY-Z"
-      github_url: "https://github.com/YangY-Z"
-      type: "open-source"
-
   - readme_name: "Nadir Router"
     website_name: "Nadir Router"
     prediction: "nadir-cascade-v2"
@@ -71,12 +61,6 @@ routers:
     prediction: "azure-model-router"
     category_key: "azure"
     flip_key: "azure"
-
-  - readme_name: "R2-Router"
-    website_name: "R2-Router"
-    prediction: "r2-router"
-    category_key: "r2-router"
-    flip_key: "r2-router"
 
   - readme_name: "Auto Router"
     website_name: "Auto Router"
@@ -119,7 +103,7 @@ routers:
 
   - readme_name: "LLM Router"
     website_name: "LLM Router"
-    prediction: "llm-router"
+    prediction: "llm-router-g3"
     category_key: "llm-router"
     flip_key: "llm-router"
     website:
@@ -165,15 +149,6 @@ routers:
       affiliation: "@vishalveerareddy123"
       github_url: "https://github.com/vishalveerareddy123"
 
-  - readme_name: "Paix2"
-    website_name: "Paix2"
-    prediction: "Paix2-router"
-    category_key: "paix2"
-    flip_key: "paix2"
-    website:
-      affiliation: "@xufan866"
-      github_url: "https://github.com/xufan866"
-
   - readme_name: "Divyam"
     website_name: "Divyam"
     prediction: "divyam-router"
@@ -182,6 +157,7 @@ routers:
     website:
       affiliation: "@samikd"
       github_url: "https://github.com/samikd"
+      type: "closed-source"
 
   - readme_name: "AsiaInfo-Router"
     website_name: "AsiaInfo-Router"
@@ -191,6 +167,7 @@ routers:
     website:
       affiliation: "@Uncle-LL"
       github_url: "https://github.com/Uncle-LL"
+      type: "closed-source"
 
   - readme_name: "KT-ModelRouter"
     website_name: "KT-ModelRouter"
@@ -210,6 +187,46 @@ routers:
     website:
       affiliation: "@nabaruns"
       github_url: "https://github.com/nabaruns"
+
+  - readme_name: 'R\*\*2: Reasonometry Router'
+    website_name: "R**2: Reasonometry Router"
+    prediction: "r2-reasonometry-router"
+    category_key: "r2-reasonometry"
+    flip_key: "r2-reasonometry"
+    website:
+      affiliation: "@sashakolpakov"
+      github_url: "https://github.com/sashakolpakov"
+      type: "closed-source"
+
+  - readme_name: "SapientAI Auto Router"
+    website_name: "SapientAI Auto Router"
+    prediction: "PSAI-Auto-Router"
+    category_key: "psai-auto-router"
+    flip_key: "psai-auto-router"
+    website:
+      affiliation: "Publicis Sapient"
+      github_url: "https://github.com/subhajeet-sapient"
+      type: "closed-source"
+
+  - readme_name: "BizRouter"
+    website_name: "BizRouter"
+    prediction: "BizRouter"
+    category_key: "bizrouter"
+    flip_key: "bizrouter"
+    website:
+      affiliation: "BizRouter"
+      github_url: "https://bizrouter.ai"
+      type: "closed-source"
+
+  - readme_name: "NuRoute Artemis"
+    website_name: "NuRoute Artemis"
+    prediction: "nuroutev2-artemis"
+    category_key: "nuroute-artemis"
+    flip_key: "nuroute-artemis"
+    website:
+      affiliation: "NuRoute"
+      github_url: "https://nuroute.ai"
+      type: "closed-source"
 
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---

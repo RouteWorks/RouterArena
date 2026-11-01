@@ -1,0 +1,12 @@
+{
+  "pipeline_params": {
+    "default_model": "gemini-3-flash-preview",
+    "description": "Frozen externally learned router. Every row contains the full completion and native token usage from an actual OpenRouter call. RouterArena prompts and outcomes were not used to fit or select routes.",
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-235b-a22b-2507"
+    ],
+    "router_cls_name": "external_prediction_file",
+    "router_name": "R**2: Reasonometry Router"
+  }
+}
