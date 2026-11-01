@@ -370,6 +370,7 @@ models:
     source: null
   "openai/gpt-5.6-terra":
     price: {input: 2, output: 12}
+    aliases: ["gpt-5.6-terra"]
     as_of: null
     source: null
   "openai/gpt-6-luna":
