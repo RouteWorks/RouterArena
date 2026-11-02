@@ -455,6 +455,12 @@ models:
     source: null
     note: "Not listed on OpenRouter."
     sync: false
+  "typesafe/jev-1.14":
+    price: {input: 0.042, output: 0}
+    as_of: "2026-11-02"
+    source: "https://openrouter.ai/typesafe/jev-1.14"
+    note: "TypeSafe's decision model, served by TypeSafe through OpenRouter's Decisions API (https://openrouter.ai/api/v1/models/typesafe/jev-1.14/endpoints); output is free. Missing from OpenRouter's /api/v1/models list, so the sync can't read it."
+    sync: false
   "upstage/solar-mini":
     price: {input: 0.15, output: 0.15}
     as_of: null
