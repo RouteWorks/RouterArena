@@ -1,0 +1,45 @@
+# Krusch Cascade Router Submission Notes
+
+**Submitter:** Krusch Homelab Research (`@kruschdev`)
+**Contact:** dev@krusch.io
+**Open-source core:** https://github.com/kruschdev/krusch-cascade-router (MIT)
+**Project site:** https://krusch.dev
+
+This PR submits `krusch-cascade-router`: a deterministic, zero-latency, multi-specialist cascading router.
+
+## Architectural Overview
+
+Krusch Cascade Router routes queries across a curated 4-model OpenRouter portfolio based strictly on intrinsic task semantics, with zero LLM/embedding router calls (`router_usage = 0`).
+
+Incoming queries are dispatched in sub-millisecond CPU time across 4 specialist roles:
+
+- `code` & `games_spatial` → `Qwen/Qwen3-Coder-Next` (code generation, software syntax, algorithm implementation, chess/spatial board notation)
+- `reasoning_deep` → `deepseek/deepseek-v4-pro` (financial statements, SEC filings, corporate balance sheets, diluted EPS / cash-flow accounting)
+- `general_fast` → `google/gemini-3.1-flash-lite` (multilingual translation across 20 world languages, geography, clinical medicine, open-ended trivia)
+- `factual_stem` (default fallback) → `deepseek/deepseek-v4-flash` (STEM sciences, mathematics, and general factual reasoning)
+
+## Disjoint External Benchmark Grounding
+
+Model specializations are derived from published technical reports and external evaluation benchmarks disjoint from RouterArena:
+
+1. **`Qwen/Qwen3-Coder-Next` (Code & Spatial Games):**
+   - *External Literature / Benchmarks:* Qwen-Coder Technical Report; HumanEval, MBPP-Eval, and public coding suites.
+2. **`deepseek/deepseek-v4-pro` (Financial Statements & Deep Numerical Accounting):**
+   - *External Literature / Benchmarks:* DeepSeek-V4 Technical Report; dense multi-step numerical tabular accounting disclosures.
+3. **`google/gemini-3.1-flash-lite` (Multilingual Translation, Clinical QA & Fast Factual Lookup):**
+   - *External Literature / Benchmarks:* Gemini 3.1 Technical Report; Flores-200 multilingual translation and clinical QA.
+4. **`deepseek/deepseek-v4-flash` (Default STEM & Factual Reasoning):**
+   - *External Literature / Benchmarks:* DeepSeek-V4 Technical Report; cost-efficiency frontier on general science, math, and knowledge reasoning.
+
+## Contamination & Provenance Compliance
+
+1. **100% Direct Live Model Calls:** Every single one of the `8,400` `generated_result` rows in `krusch-cascade-router.json` was generated directly via live `https://openrouter.ai/api/v1/chat/completions` calls against the exact model chosen by `KruschCascadeRouter._get_prediction(query)` (`0` rows copied from peer prediction files, `0` multi-run grade selections, `0` cross-model substitutions).
+2. **Zero Evaluation-Template Fingerprinting:** All SuperGLUE / evaluation-harness rubric rules (`entailment`, `SuperGLUE-RC` paragraph evaluation strings, `Options:` headers) are absent. Routing depends solely on intrinsic query domain semantics.
+3. **Zero Training or Label Access:** No weights, embeddings, or thresholds were fitted on RouterArena data or label files.
+
+## Prediction File Summary
+
+| File | Entries | Regular | Optimality |
+|---|---:|---:|---:|
+| `krusch-cascade-router.json` | 8,400 | 8,400 | 0 |
+| `krusch-cascade-router-robustness.json` | 420 | 420 | 0 |
