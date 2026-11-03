@@ -3,7 +3,7 @@
     "router_name": "opengateway-og-auto",
     "router_cls_name": "external_prediction_file",
     "models": [
-      "deepseek/deepseek-v4.1-flash",
+      "deepseek/deepseek-v4.1-flash@low",
       "google/gemini-3.7-flash",
       "google/gemini-3.8-flash",
       "z-ai/glm-5.3-flash"
