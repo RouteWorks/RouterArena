@@ -1,6 +1,6 @@
 {
-  "name": "AsiaInfoSec-Token-ERP-Router",
-  "author": "AsiaInfoSec Token-ERP Team",
+  "name": "AsiaInfoSec-AI-XPort-Router",
+  "author": "AsiaInfoSec AI-XPort Team",
   "models": [
     "Qwen/Qwen3-Coder-Next",
     "claude-3-haiku-20240307",
