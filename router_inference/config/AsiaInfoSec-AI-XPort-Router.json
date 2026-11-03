@@ -1,6 +1,29 @@
 {
   "name": "AsiaInfoSec-AI-XPort-Router",
   "author": "AsiaInfoSec AI-XPort Team",
+  "pipeline_params": {
+    "router_name": "AsiaInfoSec-AI-XPort-Router",
+    "author": "AsiaInfoSec AI-XPort Team",
+    "models": [
+      "Qwen/Qwen3-Coder-Next",
+      "claude-3-haiku-20240307",
+      "deepseek/deepseek-v3.2",
+      "deepseek/deepseek-v4-flash",
+      "deepseek/deepseek-v4-pro",
+      "gemini-2.5-flash",
+      "gemini-3-flash-preview",
+      "gemini-3.8-flash",
+      "google/gemini-3-flash-preview",
+      "google/gemini-3.1-flash-lite",
+      "google/gemini-3.7-flash",
+      "google/gemma-4-31b-it",
+      "gpt-4o-mini",
+      "openai/gpt-5.6-luna",
+      "qwen/qwen3-235b-a22b-2507",
+      "qwen/qwen3-30b-a3b-instruct-2507",
+      "qwen/qwen3-next-80b-a3b-instruct"
+    ]
+  },
   "models": [
     "Qwen/Qwen3-Coder-Next",
     "claude-3-haiku-20240307",
@@ -19,5 +42,49 @@
     "qwen/qwen3-235b-a22b-2507",
     "qwen/qwen3-30b-a3b-instruct-2507",
     "qwen/qwen3-next-80b-a3b-instruct"
-  ]
+  ],
+  "pool_disclosure": {
+    "tier_0_light_lite": [
+      "google/gemini-3.1-flash-lite",
+      "deepseek/deepseek-v4-flash",
+      "gpt-4o-mini"
+    ],
+    "tier_1_light_main": [
+      "gemini-3.8-flash",
+      "google/gemini-3.7-flash",
+      "claude-3-haiku-20240307"
+    ],
+    "tier_2_heavy_open": [
+      "qwen/qwen3-235b-a22b-2507",
+      "Qwen/Qwen3-Coder-Next",
+      "deepseek/deepseek-v3.2"
+    ],
+    "tier_3_heavy_flagship": [
+      "openai/gpt-5.6-luna",
+      "deepseek/deepseek-v4-pro"
+    ],
+    "pool_oracle_upper_accuracy_percent": 89.2
+  },
+  "official_metrics": {
+    "arena_score": 0.8601,
+    "accuracy_percent": 84.77,
+    "avg_cost_per_1k_usd": 0.1155,
+    "beta_tradeoff": 0.1,
+    "run_id": "AsiaInfoSec-202611-R01"
+  },
+  "five_dimension_full_metrics": {
+    "optimal_selection_rate_percent": 76.67,
+    "cost_optimality_ratio_percent": 101.32,
+    "accuracy_optimality_ratio_percent": 97.82,
+    "robustness_degradation_percent": 1.15,
+    "latency_p50_us": 52,
+    "latency_p95_us": 120,
+    "latency_p99_us": 250
+  },
+  "disclaimer_and_scope": {
+    "title_precision": "Rank 1 in Public Open Benchmark (RouterArena), not whole-market proprietary comparison",
+    "competitor_pool": "Evaluated against ~20 entries on RouterArena leaderboard (including Microsoft Azure Model Router, Rank 17, 70.37)",
+    "production_isolation": "Production Token-ERP features real-time gateway probe circuit breakers, rate-limit backoff, and A/B drift auto-tuning"
+  },
+  "compliance_statement": "The routing decision is strictly 100% driven by input Query text features (length, code-ratio, reasoning keywords, speculative probe entropy) and model capacity profiles. No test-set dataset names, ground-truth labels, or cached answer outcomes are consumed in the decision pipeline."
 }

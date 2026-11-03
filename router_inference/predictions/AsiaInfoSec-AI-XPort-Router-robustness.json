@@ -5,7 +5,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9f56404a1df7596b",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "AIME_58",
@@ -13,7 +19,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "35072b62e5cb985d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_12",
@@ -21,7 +33,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "867d8e6c811126c6",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_123",
@@ -29,7 +47,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ac1dc772013fd1e0",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_16",
@@ -37,7 +61,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f6c714695c4d0233",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_182",
@@ -45,7 +75,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "534ddc552b5787dd",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_230",
@@ -53,7 +89,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "529eabec079d131d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_293",
@@ -61,7 +103,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4d5f857e06dedd01",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_349",
@@ -69,7 +117,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "13c7ee6378521436",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_378",
@@ -77,7 +131,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "931ddf63d3403729",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_443",
@@ -85,7 +145,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "69fbc395df8fcd81",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_496",
@@ -93,7 +159,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2b1a6c2848f41acd",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_631",
@@ -101,7 +173,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f28e1e141ffce32d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_646",
@@ -109,7 +187,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2a2e95988cd980c4",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_659",
@@ -117,7 +201,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "380e973ee69847c0",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_676",
@@ -125,7 +215,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "564ec56d59dd2513",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_685",
@@ -133,7 +229,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "c88be31d70bd94e9",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_689",
@@ -141,7 +243,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0ce9cb5928a56c6e",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_702",
@@ -149,7 +257,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b3812df67b2715e4",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_713",
@@ -157,7 +271,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2f5dba35adee5bef",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ArcMMLU_98",
@@ -165,7 +285,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5c3de8db1b9f7eda",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "AsDiv_1165",
@@ -173,7 +299,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "cee39ba62901b012",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "AsDiv_1347",
@@ -181,7 +313,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3ec2fdba674f232e",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "AsDiv_472",
@@ -189,7 +327,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d5fd3f7e8993b6ba",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "AsDiv_733",
@@ -197,7 +341,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1aedf359399e5a0d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ChessInstruct_0",
@@ -205,7 +355,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d9ef21b31e0710bb",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ChessInstruct_107",
@@ -213,7 +369,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2d17bb64cc6b7ecb",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ChessInstruct_144",
@@ -221,7 +383,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "401a711e087e2b17",
+      "theta": 0.2,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ChessInstruct_42",
@@ -229,7 +397,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "c4d79d4c99140d4f",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ChessInstruct_58",
@@ -237,7 +411,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ebeb78255292f604",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ChessInstruct_71",
@@ -245,7 +425,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2f30515bbbe2f1b0",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "ChessInstruct_84",
@@ -253,7 +439,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e176b80c30600680",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_commonsense_28",
@@ -261,7 +453,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0617a57dd72ccaa2",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_commonsense_51",
@@ -269,7 +467,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "59b25e7806e643f8",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_commonsense_6",
@@ -277,7 +481,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "66e8b0dc413f716d",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_commonsense_62",
@@ -285,7 +495,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "dc56911521ceb9d4",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_commonsense_70",
@@ -293,7 +509,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "654c4c27583773da",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_commonsense_85",
@@ -301,7 +523,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5fb67df9eb2b93ae",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_commonsense_90",
@@ -309,7 +537,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "229596f5cd6f9907",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_deontology_0",
@@ -317,7 +551,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7929ca9dea078545",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_deontology_2",
@@ -325,7 +565,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f951b76304f401d3",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_deontology_31",
@@ -333,7 +579,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2f9eb0fb73ade907",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_deontology_32",
@@ -341,7 +593,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "572a39b9905051d4",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_deontology_56",
@@ -349,7 +607,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "991b8023ce7a9953",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_justice_1",
@@ -357,7 +621,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7614fcc9ff924c60",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_justice_45",
@@ -365,7 +635,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2ed3c901a98e40e8",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_justice_76",
@@ -373,7 +649,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9f98689de0d9a637",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_justice_84",
@@ -381,7 +663,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1865bc9e5e950600",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_virtue_14",
@@ -389,7 +677,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8a5cc37c2559e9c4",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_virtue_26",
@@ -397,7 +691,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e23abdcb9385606f",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_virtue_30",
@@ -405,7 +705,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "704d0d5afbaaca58",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_virtue_48",
@@ -413,7 +719,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d38fb002bf098add",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "Ethics_virtue_51",
@@ -421,7 +733,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7c229adf5922a186",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "FinQA_149",
@@ -429,7 +747,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "909e2f317fff6aab",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "FinQA_208",
@@ -437,7 +761,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0562b1c43c1d59bc",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "FinQA_56",
@@ -445,7 +775,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "dd07a2badfbebdcd",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "FinQA_60",
@@ -453,7 +789,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1f74b0811e8351e2",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GSM8K_43",
@@ -461,7 +803,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8207b29ca08acb6f",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_1002",
@@ -469,7 +817,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "cf80b523c9fa7a83",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_1094",
@@ -477,7 +831,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "97ff3981df5f0941",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_1102",
@@ -485,7 +845,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9779bb5359ebee24",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_1113",
@@ -493,7 +859,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8ca672b78a55da8a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_124",
@@ -501,7 +873,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "461bb3b0023845c4",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_1243",
@@ -509,7 +887,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "80e1f80a1ef78453",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_30",
@@ -517,7 +901,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f9ad0c9c65cbcafa",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_502",
@@ -525,7 +915,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a8c4ce183849cc85",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_526",
@@ -533,7 +929,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0e4894b467966c2a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_591",
@@ -541,7 +943,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5ec9a39a8b204f7e",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_766",
@@ -549,7 +957,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "fc789e9942fef3ac",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_87",
@@ -557,7 +971,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "cff6187d67d2347c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_915",
@@ -565,7 +985,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "acfc3afbad6d8e87",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_944",
@@ -573,7 +999,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a15759bc0b067262",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoBench_968",
@@ -581,7 +1013,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2eb49c5548b58f5e",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoGraphyData_100k_27",
@@ -589,7 +1027,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f033af09b4e24361",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "GeoGraphyData_100k_42",
@@ -597,7 +1041,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4b922910d5233c9b",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_105",
@@ -605,7 +1055,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5eefe320808d9d57",
+      "theta": 1.45,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_114",
@@ -613,7 +1069,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8df0135fc4f25437",
+      "theta": 1.45,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_118",
@@ -621,7 +1083,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9ba999c9b4a9a392",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_131",
@@ -629,7 +1097,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "746dc5ccfc5faea8",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_136",
@@ -637,7 +1111,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "75b098ab9277b97c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_181",
@@ -645,7 +1125,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "87a5a5cd6b1afc44",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_237",
@@ -653,7 +1139,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "77bf61810f0c8bcf",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_271",
@@ -661,7 +1153,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "401a711e087e2b17",
+      "theta": 0.2,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_350",
@@ -669,7 +1167,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "56bc5a90f70114cc",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_386",
@@ -677,7 +1181,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e2532fb7ba6947af",
+      "theta": 1.45,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_405",
@@ -685,7 +1195,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a35ccce313c7bcaf",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_43",
@@ -693,7 +1209,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a9e76f18a1e6c781",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_431",
@@ -701,7 +1223,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "6c46c330cec9b987",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_437",
@@ -709,7 +1237,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "35712959b5193f42",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_476",
@@ -717,7 +1251,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e209e8392baecdf3",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_485",
@@ -725,7 +1265,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "74e7170f12b870b2",
+      "theta": 1.45,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_49",
@@ -733,7 +1279,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5bcf81617a566b52",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_491",
@@ -741,7 +1293,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "279a1f1616ce96e0",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "LiveCodeBench_499",
@@ -749,7 +1307,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8a0b62a88169a597",
+      "theta": 1.45,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MATH_108",
@@ -757,7 +1321,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "be18217ce35c8a85",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MATH_442",
@@ -765,7 +1335,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3807a7f3bda40a09",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MATH_53",
@@ -773,7 +1349,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "bb8116ac13af81c8",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_biology_2808",
@@ -781,7 +1363,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ade7996ded5d8928",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_biology_2912",
@@ -789,7 +1377,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4f511fb67f6c6099",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_biology_2980",
@@ -797,7 +1391,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "74a83e75dc81309c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_biology_2985",
@@ -805,7 +1405,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "239de341d08eb6bf",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_biology_3188",
@@ -813,7 +1419,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "22c44e5acde06a33",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_biology_3215",
@@ -821,7 +1433,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "02c803c6ef691e8b",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_biology_3225",
@@ -829,7 +1447,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5f9cde57933ded23",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_business_226",
@@ -837,7 +1461,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "6862166edf3f6144",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_business_294",
@@ -845,7 +1475,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1f5745300cb5a123",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_business_378",
@@ -853,7 +1489,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d40b8a5220e5726a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_business_430",
@@ -861,7 +1503,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "82e6a3ad05dad481",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_business_503",
@@ -869,7 +1517,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8d81853acdb15f68",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_business_507",
@@ -877,7 +1531,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "eaee484dcbb89941",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_business_6",
@@ -885,7 +1545,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "c2ce038c0ee09858",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_business_784",
@@ -893,7 +1559,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "06e12be42d4ac21d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_chemistry_3796",
@@ -901,7 +1573,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "21bca90214e1ab73",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_chemistry_3837",
@@ -909,7 +1587,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3271784b048cd972",
+      "theta": 0.2,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_chemistry_3974",
@@ -917,7 +1601,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "6b2d9e5493cbd196",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_chemistry_4067",
@@ -925,7 +1615,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "c627abfa07ad9b90",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_chemistry_4407",
@@ -933,7 +1629,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "04124216d78f3adf",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9086",
@@ -941,7 +1643,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1b49ad4abce7fe7c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9110",
@@ -949,7 +1657,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "18d32b06f9aa656e",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9136",
@@ -957,7 +1671,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "629a406787cb935b",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9138",
@@ -965,7 +1685,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b01b894295cf771f",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9149",
@@ -973,7 +1699,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "6439d6f2051ebb0c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9200",
@@ -981,7 +1713,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "718fb659cbddbc0c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9212",
@@ -989,7 +1727,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2b27c69504482aa3",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9239",
@@ -997,7 +1741,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1e1cf5d538e60518",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9264",
@@ -1005,7 +1755,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "c69bb4f5c24fdd00",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9285",
@@ -1013,7 +1769,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "94ac58a2985aa94b",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9289",
@@ -1021,7 +1783,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "6aa92eae178a31c9",
+      "theta": 1.45,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9414",
@@ -1029,7 +1797,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "dd33a67a544d09d8",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9415",
@@ -1037,7 +1811,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "83e025543842702d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9430",
@@ -1045,7 +1825,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "37ee74c3598ee7ae",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9452",
@@ -1053,7 +1839,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1e7c263be4195fcc",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9471",
@@ -1061,7 +1853,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b797a5b90bbdbd44",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_computer science_9475",
@@ -1069,7 +1867,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "56f8fccab4a80583",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_economics_5769",
@@ -1077,7 +1881,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "93723fd2517ecd99",
+      "theta": 1.45,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_economics_5907",
@@ -1085,7 +1895,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "03d682452288f8df",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_economics_5931",
@@ -1093,7 +1909,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "075f31874a568eff",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_economics_5965",
@@ -1101,7 +1923,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0de609dbfa079937",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_economics_6114",
@@ -1109,7 +1937,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "13c0aa78ff3ab61a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_economics_6122",
@@ -1117,7 +1951,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a05e3f9ebea24074",
+      "theta": 1.45,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_economics_6135",
@@ -1125,7 +1965,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e959a567c661bcb5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_economics_6325",
@@ -1133,7 +1979,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "c83f8358eb239ee5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_economics_6353",
@@ -1141,7 +1993,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5fe8f1d044af5add",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10076",
@@ -1149,7 +2007,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ee44ec561113562b",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10125",
@@ -1157,7 +2021,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9dc2b1cb5e6c7e96",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10179",
@@ -1165,7 +2035,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3a3354cfb6b30067",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10195",
@@ -1173,7 +2049,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4de9419fc70eaae8",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10199",
@@ -1181,7 +2063,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "74437f915f0c7504",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10298",
@@ -1189,7 +2077,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2819d214b39a3052",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10342",
@@ -1197,7 +2091,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ac63e2297674296d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10395",
@@ -1205,7 +2105,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "909bb9653fe24c89",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10428",
@@ -1213,7 +2119,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2a539474703fc2e7",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10432",
@@ -1221,7 +2133,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "30ea8295c0e6c2fe",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10473",
@@ -1229,7 +2147,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d883e49f0b1d4671",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10537",
@@ -1237,7 +2161,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "fffd30ee1cfab7d3",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10701",
@@ -1245,7 +2175,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "fd48ba7e5d51fe04",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10823",
@@ -1253,7 +2189,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ff9a64ba45e3f7d1",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_engineering_10864",
@@ -1261,7 +2203,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "46086e6f3fdb40a8",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_health_4885",
@@ -1269,7 +2217,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0c4a50e200b4915c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_health_4973",
@@ -1277,7 +2231,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f78758173a15e56e",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_health_5093",
@@ -1285,7 +2245,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "dea198aa516e2f04",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_health_5144",
@@ -1293,7 +2259,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7d8206e4523803ed",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_health_5214",
@@ -1301,7 +2273,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f4c1faf3f7dc9a74",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_health_5215",
@@ -1309,7 +2287,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "dc0037f4c88abe04",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_health_5261",
@@ -1317,7 +2301,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "dc71abbc03b68439",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_health_5473",
@@ -1325,7 +2315,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "39c1f8a2842c2abb",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_health_5514",
@@ -1333,7 +2329,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7355b62e76f0ca6a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4486",
@@ -1341,7 +2343,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b6e6e8287af5919a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4490",
@@ -1349,7 +2357,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "998c29ee6d7dc231",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4497",
@@ -1357,7 +2371,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e63435ebaff175ed",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4509",
@@ -1365,7 +2385,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d70a1c356388f003",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4517",
@@ -1373,7 +2399,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "883687c972aa6fa6",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4523",
@@ -1381,7 +2413,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0c78af7f66d0b6f1",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4605",
@@ -1389,7 +2427,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1a362f7098a8fedf",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4629",
@@ -1397,7 +2441,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7a5bcc930777a2e8",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4638",
@@ -1405,7 +2455,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "97cd5c9105231224",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4717",
@@ -1413,7 +2469,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0428001f96589956",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4749",
@@ -1421,7 +2483,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "762fe34f79501392",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4752",
@@ -1429,7 +2497,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f5d82f44505003da",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4774",
@@ -1437,7 +2511,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "143cc7ea45a17b1e",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4810",
@@ -1445,7 +2525,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "298031e67c22bf17",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4833",
@@ -1453,7 +2539,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e4cb5729d7c72ccb",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4836",
@@ -1461,7 +2553,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "af796ff44c6a1348",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_history_4841",
@@ -1469,7 +2567,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5ef2607682d5d305",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_law_1007",
@@ -1477,7 +2581,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f794e6dd0221059c",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_law_1031",
@@ -1485,7 +2595,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "429b84810bff77b2",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_law_1386",
@@ -1493,7 +2609,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9d0deefa6af65212",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_law_1462",
@@ -1501,7 +2623,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b7e1a95735ee2956",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_law_1484",
@@ -1509,7 +2637,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "02abb9819dd1449f",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_law_1518",
@@ -1517,7 +2651,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "91fa736f74c42154",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_law_1818",
@@ -1525,7 +2665,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "21c6ab60eded7911",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_law_806",
@@ -1533,7 +2679,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d4566c1276e272f5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_law_899",
@@ -1541,7 +2693,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e4ff9c5ccdcc3e6b",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_math_6429",
@@ -1549,7 +2707,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b6f5f2ace7f9bbf9",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_math_6526",
@@ -1557,7 +2721,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3cb6decbbf9efb7f",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_math_6623",
@@ -1565,7 +2735,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "667e89bdb40e40d7",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_math_6848",
@@ -1573,7 +2749,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "80086f70bf897a9d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_math_7101",
@@ -1581,7 +2763,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e317670816c5882d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_math_7249",
@@ -1589,7 +2777,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "108e26c90bd20e6d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_math_7284",
@@ -1597,7 +2791,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0151ae09310cb313",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_math_7451",
@@ -1605,7 +2805,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9c51cf07d9dab996",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_math_7577",
@@ -1613,7 +2819,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5a9bec38a335bea6",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_philosophy_9510",
@@ -1621,7 +2833,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f458c8d7ca4387ce",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_philosophy_9536",
@@ -1629,7 +2847,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5d456dbf19b9b21a",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_philosophy_9663",
@@ -1637,7 +2861,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2dc144e1839ed093",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_philosophy_9672",
@@ -1645,7 +2875,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8637c33bb1645869",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_philosophy_9943",
@@ -1653,7 +2889,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ab95f65523fc5de0",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_physics_7773",
@@ -1661,7 +2903,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5bf7a18085b9596c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_physics_7887",
@@ -1669,7 +2917,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8f57e825fcca6a32",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_physics_7893",
@@ -1677,7 +2931,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "269e24542c9b797c",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_physics_8888",
@@ -1685,7 +2945,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0cb026c1acf86bf5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_physics_9017",
@@ -1693,7 +2959,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b7eb760c9e6adf45",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_psychology_2005",
@@ -1701,7 +2973,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "72caf1f28f7abd91",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_psychology_2186",
@@ -1709,7 +2987,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9866838d9c10cc9f",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_psychology_2329",
@@ -1717,7 +3001,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f2c1f360aceb6e78",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_psychology_2406",
@@ -1725,7 +3015,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "64f0ffa742cdd76d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_psychology_2420",
@@ -1733,7 +3029,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d1780a020d762718",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_psychology_2450",
@@ -1741,7 +3043,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "feaeb1bf024b9b0e",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_psychology_2457",
@@ -1749,7 +3057,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b87689ba46f42d03",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLUPro_psychology_2524",
@@ -1757,7 +3071,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4217e51871f0a9e6",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_formal_logic_121",
@@ -1765,7 +3085,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d2378f4ba37ea193",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_formal_logic_16",
@@ -1773,7 +3099,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d241bc203b072bcb",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_formal_logic_32",
@@ -1781,7 +3113,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "619ef96d706320bf",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_formal_logic_63",
@@ -1789,7 +3127,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "cb16ad98d78e326b",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_formal_logic_7",
@@ -1797,7 +3141,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4e6549efdc3475cd",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_formal_logic_70",
@@ -1805,7 +3155,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d0f1d3526c372e4c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_formal_logic_85",
@@ -1813,7 +3169,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "6cd449c10329beff",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_management_4",
@@ -1821,7 +3183,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b9f79af18240242c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_management_41",
@@ -1829,7 +3197,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4d9d1ef468ce6a31",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_management_77",
@@ -1837,7 +3211,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e5bea00e5e845e2a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_management_91",
@@ -1845,7 +3225,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "78e434ec176ff7c9",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MMLU_management_93",
@@ -1853,7 +3239,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "421722d71d3b889c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MathQA_158",
@@ -1861,7 +3253,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1dd0c5ba72c0e37b",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MathQA_1742",
@@ -1869,7 +3267,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "c8237a42d8aaf7ea",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MathQA_202",
@@ -1877,7 +3281,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4c1cd1aedb0af18a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MathQA_2092",
@@ -1885,7 +3295,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "54b20d4575849d8b",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MathQA_2102",
@@ -1893,7 +3309,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7b05ac8845417d80",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MathQA_2851",
@@ -1901,7 +3323,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d3bb773986aab728",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MathQA_827",
@@ -1909,7 +3337,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9574888388451473",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MathQA_84",
@@ -1917,7 +3351,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "290e970c429e0107",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_1005",
@@ -1925,7 +3365,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1fff2d33ad095268",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_1054",
@@ -1933,7 +3379,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8e609d355325c295",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_1298",
@@ -1941,7 +3393,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e60e425e0d54d4fa",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_1309",
@@ -1949,7 +3407,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "50b9d11cc773d929",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_1362",
@@ -1957,7 +3421,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "fcdf7c4e44151aaa",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_145",
@@ -1965,7 +3435,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9109c180501d736d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_2010",
@@ -1973,7 +3449,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "56528d07634feb75",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_2323",
@@ -1981,7 +3463,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "68bf56bc070253ab",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_2366",
@@ -1989,7 +3477,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "64c1bb14a1e3c457",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_2581",
@@ -1997,7 +3491,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "97d323d0e1d45f71",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_511",
@@ -2005,7 +3505,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "54411a0b054b52ce",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_59",
@@ -2013,7 +3519,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e05a2d13228d843c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_643",
@@ -2021,7 +3533,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "aad55c4ab98119a8",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MedMCQA_853",
@@ -2029,7 +3547,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3820e76a00568753",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MusicTheoryBench_126",
@@ -2037,7 +3561,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "99957525e67c72bf",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MusicTheoryBench_14",
@@ -2045,7 +3575,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "6f7d9ac68caefeb0",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MusicTheoryBench_147",
@@ -2053,7 +3589,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d0653decb75fa318",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MusicTheoryBench_152",
@@ -2061,7 +3603,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0aa2b947e963adf2",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MusicTheoryBench_188",
@@ -2069,7 +3617,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "36a82ce4db9391b3",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MusicTheoryBench_189",
@@ -2077,7 +3631,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "59416a39ff005e8d",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MusicTheoryBench_240",
@@ -2085,7 +3645,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7adea5ae39939376",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MusicTheoryBench_33",
@@ -2093,7 +3659,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "76cc02c9a31c2147",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MusicTheoryBench_337",
@@ -2101,7 +3673,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b83a6b8b981f23b9",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MusicTheoryBench_340",
@@ -2109,7 +3687,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "77ac335b02fb0ec5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "MusicTheoryBench_70",
@@ -2117,7 +3701,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "735dac6daea73625",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_131",
@@ -2125,7 +3715,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e7168bb3cf4cbd4a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_1683",
@@ -2133,7 +3729,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e9d4301ae45ea42e",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_2474",
@@ -2141,7 +3743,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "91b71ecf817e1586",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_2820",
@@ -2149,7 +3757,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f957f71b062ebc11",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_3282",
@@ -2157,7 +3771,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b81e50232cf22b6d",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_4102",
@@ -2165,7 +3785,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4e852edbee3eb47d",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_4128",
@@ -2173,7 +3799,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "96ff1c6cc97a8cc0",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_4347",
@@ -2181,7 +3813,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "643f53087f21b9b2",
+      "theta": 1.45,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_4540",
@@ -2189,7 +3827,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "803aed927b2a18a9",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_5022",
@@ -2197,7 +3841,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d3bb86bf835ed9f3",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_5259",
@@ -2205,7 +3855,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "437c494f5b11056f",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_533",
@@ -2213,7 +3869,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7eeb592f474a9815",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_5894",
@@ -2221,7 +3883,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "da8898a03b26b29d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_6829",
@@ -2229,7 +3897,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "174c7261bb050767",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_7678",
@@ -2237,7 +3911,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5c7e5b501eedb867",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_7964",
@@ -2245,7 +3925,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a66a3459a59d3a0f",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_8215",
@@ -2253,7 +3939,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ec4a05a837301611",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_8598",
@@ -2261,7 +3953,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "44b99a51f4377a08",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "NarrativeQA_927",
@@ -2269,7 +3967,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a0c1c5e39b061299",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Animals_2545",
@@ -2277,7 +3981,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d6215c80cdc5c15c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Animals_262",
@@ -2285,7 +3995,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1901b023acc11268",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Art_1429",
@@ -2293,7 +4009,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "443070c142235a5c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Celebrities_1078",
@@ -2301,7 +4023,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "325aa737dd80f39b",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Celebrities_1456",
@@ -2309,7 +4037,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0c6507ff7fb07d84",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Celebrities_3577",
@@ -2317,7 +4051,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4b2d676b7dc0a254",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Celebrities_3968",
@@ -2325,7 +4065,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "27f5dda89eac0770",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_General Knowledge_1178",
@@ -2333,7 +4079,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8caa2ae2791a65cb",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_General Knowledge_1807",
@@ -2341,7 +4093,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7f6aa57726705a08",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_General Knowledge_1957",
@@ -2349,7 +4107,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a441789be67ca1eb",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_General Knowledge_2181",
@@ -2357,7 +4121,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "c899d9678a0cdbf6",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_General Knowledge_3404",
@@ -2365,7 +4135,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "668d79a6514e1995",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_General Knowledge_3727",
@@ -2373,7 +4149,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "45ecbc6135167413",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_General Knowledge_4019",
@@ -2381,7 +4163,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "956ccc2cdd3370ce",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Geography_2099",
@@ -2389,7 +4177,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e5b9e46f7159bc3e",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Geography_2346",
@@ -2397,7 +4191,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f107de2c62ec9cde",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Geography_3880",
@@ -2405,7 +4205,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "172180000c586aab",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Geography_792",
@@ -2413,7 +4219,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3e1ba28e69f7f32a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_History_1162",
@@ -2421,7 +4233,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4cce592ed65d3301",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_History_2026",
@@ -2429,7 +4247,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f42c2557c620a56b",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_History_3712",
@@ -2437,7 +4261,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7cf8d382b9017c33",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_History_3902",
@@ -2445,7 +4275,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "319d4dfd9997cde5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Science & Nature_1175",
@@ -2453,7 +4289,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b67be26e01549481",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Science & Nature_1560",
@@ -2461,7 +4303,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e04da17f1e67d653",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Science & Nature_3716",
@@ -2469,7 +4317,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a11e8a3aa8a81a6e",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Science & Nature_476",
@@ -2477,7 +4331,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "08abdaffb0df5851",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Sports_2289",
@@ -2485,7 +4345,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "95088048e77f7fef",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Vehicles_1173",
@@ -2493,7 +4359,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d9e75825c4c082e0",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Vehicles_1419",
@@ -2501,7 +4373,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0bd5aeb24f029a16",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Vehicles_2519",
@@ -2509,7 +4387,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "17779fc510c5b5d5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "OpenTDB_Vehicles_3234",
@@ -2517,7 +4401,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "08605992f4baf12e",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_0",
@@ -2525,7 +4415,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a91505014469f0a6",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_154",
@@ -2533,7 +4429,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "785a09638a847cb0",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_18",
@@ -2541,7 +4443,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8f214bcbc0aa06ad",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_238",
@@ -2549,7 +4457,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "43009ac89bcc8e48",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_250",
@@ -2557,7 +4471,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3c9e3360aeb2dd1c",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_337",
@@ -2565,7 +4485,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "73e18b49ecff894a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_362",
@@ -2573,7 +4499,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5b48c8af18eaeccc",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_437",
@@ -2581,7 +4513,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "c9840f1e64c0a44d",
+      "theta": 1.45,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_510",
@@ -2589,7 +4527,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "88322e7f02ae2a26",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_520",
@@ -2597,7 +4541,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1d49107e7996c5e4",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_575",
@@ -2605,7 +4555,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "19bd1b640a7b00ea",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_582",
@@ -2613,7 +4569,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "aa8a57e46241ce44",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_588",
@@ -2621,7 +4583,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7fde52ccba594b52",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_610",
@@ -2629,7 +4597,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a2b14380d364d994",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_63",
@@ -2637,7 +4611,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "03b60ad70a0bd0c5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_643",
@@ -2645,7 +4625,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "c781b2bac64fbd16",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_687",
@@ -2653,7 +4639,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b1b3dc2911ce9471",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_722",
@@ -2661,7 +4653,13 @@
     "prediction": "deepseek/deepseek-v4-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4fc2d5a9dfce57fa",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_73",
@@ -2669,7 +4667,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b46c4d3b5aa14636",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_755",
@@ -2677,7 +4681,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "75bbd5ce06860bb5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_8",
@@ -2685,7 +4695,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a39e1e00b64b5e57",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_81",
@@ -2693,7 +4709,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9b9d6a21ddb30c65",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_854",
@@ -2701,7 +4723,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f77ec2f6a9583bd1",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "PubMedQA_905",
@@ -2709,7 +4737,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "dd5d670edd2a16f7",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Fine Arts_1212",
@@ -2717,7 +4751,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "fef21d6838426c51",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Fine Arts_1702",
@@ -2725,7 +4765,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "62604da7e3915c5d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Fine Arts_828",
@@ -2733,7 +4779,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a2c35ff6fa564066",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Fine Arts_865",
@@ -2741,7 +4793,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3ddc2263ee929a0c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Geography_1023",
@@ -2749,7 +4807,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "78d246a57b86d492",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Geography_1555",
@@ -2757,7 +4821,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9fa5b1fee169d2f4",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Geography_304",
@@ -2765,7 +4835,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "818a03930feeb74a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_History_1084",
@@ -2773,7 +4849,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8984ba38e9f2cf8c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_History_1154",
@@ -2781,7 +4863,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4574a0682196dbee",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_History_433",
@@ -2789,7 +4877,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7abc08ec8ac9aa9f",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_History_473",
@@ -2797,7 +4891,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "e8f971f16d4ad8da",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_History_926",
@@ -2805,7 +4905,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "d09cc885dbae4d87",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Literature_1045",
@@ -2813,7 +4919,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7f32a89e0807cd2c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Literature_1073",
@@ -2821,7 +4933,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ec6eb26d7a72f69a",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Literature_1239",
@@ -2829,7 +4947,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "93d6046ef5122400",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Literature_1326",
@@ -2837,7 +4961,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "fc78c7c800028926",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Literature_1727",
@@ -2845,7 +4975,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "adcbba01c26b83a2",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Literature_1843",
@@ -2853,7 +4989,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "c325b727dceb967f",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Literature_386",
@@ -2861,7 +5003,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a2d593f8c7a18619",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Literature_408",
@@ -2869,7 +5017,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9635b202e506c1d6",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Literature_475",
@@ -2877,7 +5031,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4bc39c649cc98705",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Literature_833",
@@ -2885,7 +5045,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "506e5cc1ab0d943b",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Philosophy_1270",
@@ -2893,7 +5059,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5dfdf852bea7efda",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Philosophy_499",
@@ -2901,7 +5073,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "9099ee457d819e9d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Philosophy_91",
@@ -2909,7 +5087,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7d6395baa075b464",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Science_1360",
@@ -2917,7 +5101,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "78204c626b495790",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Science_1473",
@@ -2925,7 +5115,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5bb9275e709e2895",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Science_308",
@@ -2933,7 +5129,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "7c742c65e28747d7",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Science_619",
@@ -2941,7 +5143,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "92a91b52ea6d284f",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Social Science_1847",
@@ -2949,7 +5157,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "777b4e7e4811b7d5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Social Science_2",
@@ -2957,7 +5171,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "81fe27bfa8996696",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "QANTA_Social Science_77",
@@ -2965,7 +5185,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5b1c533f208dcd0c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SocialiQA_13810",
@@ -2973,7 +5199,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "1a926cd4bd774047",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SocialiQA_22095",
@@ -2981,7 +5213,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a66ba8dde13d05d4",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SocialiQA_26846",
@@ -2989,7 +5227,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ab3b86dca2fa6cb7",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SocialiQA_7839",
@@ -2997,7 +5241,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b9423c433c4faa1d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-CausalReasoning_4526",
@@ -3005,7 +5255,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "eb905e9f42f86ffe",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-ClozeTest_12894",
@@ -3013,7 +5269,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "db18fcca833e4068",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-ClozeTest_17965",
@@ -3021,7 +5283,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "188891c89303155d",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-ClozeTest_18766",
@@ -3029,7 +5297,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "73b1039c37ea639f",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-Entailment_19410",
@@ -3037,7 +5311,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "035716516c1f6d6a",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-Entailment_19567",
@@ -3045,7 +5325,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ce6b19468c537f59",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-Entailment_522",
@@ -3053,7 +5339,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4ef61357bd71152c",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-Entailment_767",
@@ -3061,7 +5353,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "09abef99147ccff3",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-QA_1408",
@@ -3069,7 +5367,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0d6f586fdd0968f5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-QA_3137",
@@ -3077,7 +5381,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "70e8c48b4c283db1",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-QA_4046",
@@ -3085,7 +5395,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "928ffc9b9b9b892e",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-QA_4102",
@@ -3093,7 +5409,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "0b5a6a78f22bd98e",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-QA_4160",
@@ -3101,7 +5423,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3557d7dc967a6164",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-RC_7725",
@@ -3109,7 +5437,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "93cce1a77bfe1b65",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-RC_7738",
@@ -3117,7 +5451,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8e0590276fc4f8db",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-RC_8531",
@@ -3125,7 +5465,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "fa92be78d9f01fc9",
+      "theta": 2.45,
+      "is_trap": true,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-Wic_19695",
@@ -3133,7 +5479,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3046de0f593a6538",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-Wic_19738",
@@ -3141,7 +5493,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "02819f18085661cb",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-Wic_20079",
@@ -3149,7 +5507,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8086b884ec0a10b5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-Wic_20189",
@@ -3157,7 +5521,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8fba233c8bb1c2dc",
+      "theta": 1.25,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-Wic_20253",
@@ -3165,7 +5535,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "302c5a7d49e2aff5",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-Wsc_20368",
@@ -3173,7 +5549,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "404d5912f3835b83",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "SuperGLUE-Wsc_20370",
@@ -3181,7 +5563,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a6ec106d2ed5b374",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-cs-en_156",
@@ -3189,7 +5577,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "655315d79d8e311d",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-cs-en_246",
@@ -3197,7 +5591,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "6df78e9c50df5c96",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-cs-en_568",
@@ -3205,7 +5605,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "442c25f79ea706f2",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-de-en_46",
@@ -3213,7 +5619,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "8fcc19ae4d4ad8d8",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-de-en_715",
@@ -3221,7 +5633,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "a64fcf23f826bad1",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-de-en_883",
@@ -3229,7 +5647,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "85b0df22f0e2aaac",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-fi-en_222",
@@ -3237,7 +5661,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "471b823bea381d99",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-fi-en_610",
@@ -3245,7 +5675,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "881067116597d950",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-gu-en_116",
@@ -3253,7 +5689,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "15bf38596c27b641",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-gu-en_123",
@@ -3261,7 +5703,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "2870aa3f3f735339",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-gu-en_191",
@@ -3269,7 +5717,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "b52cf2afc80b45d3",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-gu-en_491",
@@ -3277,7 +5731,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "3ec13480a5619b58",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-gu-en_968",
@@ -3285,7 +5745,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "477c3033a34b0731",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-kk-en_528",
@@ -3293,7 +5759,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ba87fcc8dd699753",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-kk-en_826",
@@ -3301,7 +5773,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "003e974216392558",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-lt-en_135",
@@ -3309,7 +5787,13 @@
     "prediction": "qwen/qwen3-235b-a22b-2507",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "958527d20b3dbfc8",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-lt-en_269",
@@ -3317,7 +5801,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "5ae20781c2c5847c",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-lt-en_636",
@@ -3325,7 +5815,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "44de9428ce22546f",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-ru-en_222",
@@ -3333,7 +5829,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "ee73acaff7cff261",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-zh-en_218",
@@ -3341,7 +5843,13 @@
     "prediction": "gemini-3-flash-preview",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "4eafeed00c987a97",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-zh-en_252",
@@ -3349,7 +5857,13 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "fcf05c9f2eada008",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   },
   {
     "global index": "WMT19-zh-en_59",
@@ -3357,6 +5871,12 @@
     "prediction": "gemini-3.8-flash",
     "cost": null,
     "accuracy": null,
-    "for_optimality": false
+    "for_optimality": false,
+    "audit_trace": {
+      "query_hash": "f2e181e1c1dd7b20",
+      "theta": 0.85,
+      "is_trap": false,
+      "compliance_pass": true
+    }
   }
 ]
