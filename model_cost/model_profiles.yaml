@@ -429,6 +429,12 @@ models:
     aliases: ["qwen_qwen3-vl-235b-a22b-instruct"]
     as_of: "2026-10-31"
     source: "https://openrouter.ai/qwen/qwen3-vl-235b-a22b-instruct"
+  "qwen/qwen3-4b-instruct-2507":
+    price: {input: 0.17, output: 0.25}
+    as_of: "2026-11-03"
+    source: "https://openrouter.ai/qwen/qwen3.5-9b"
+    note: "f-router's routing classifier, run locally (4-bit MLX). No published API price; priced conservatively at the nearest larger listed Qwen (qwen/qwen3.5-9b)."
+    sync: false
   "qwen/qwen3.5-9b":
     price: {input: 0.17, output: 0.25}
     as_of: "2026-10-31"
