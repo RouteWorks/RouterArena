@@ -4,11 +4,11 @@
     "router_cls_name": "external_prediction_file",
     "models": [
       "deepseek/deepseek-v4.1-flash",
-      "google/gemini-3.7-flash"
+      "google/gemini-3.8-flash"
     ],
     "router_models": [
       "sionic-ai/jev-omni"
     ],
-    "description": "OpenGateway og/auto: jev-omni judge + task table (gemini-3.7-flash effort none / deepseek-v4.1-flash), served on live OpenGateway"
+    "description": "OpenGateway og/auto: jev-omni judge + task table (deepseek-v4.1-flash / gemini-3.8-flash effort none), served on live OpenGateway"
   }
 }
