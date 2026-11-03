@@ -23,6 +23,12 @@
 # name that matches no id or alias is charged the highest price in this file.
 
 models:
+  "sionic-ai/jev-omni":
+    price: {input: 0.126, output: 0}
+    as_of: "2026-10-18"
+    source: null
+    note: "Not listed on OpenRouter. OpenGateway list price (input $0.126/MTok, output $0). Router-side decision model (OpenGateway og/auto judge), priced via router_usage."
+    sync: false
   "agnes-2.0-flash":
     price: {input: 0.03, output: 0.15}
     as_of: "2026-09-27"

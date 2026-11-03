@@ -155,6 +155,8 @@ universal_names = [
     "google/gemini-3.8-flash",
     # Divyam router pool additions
     "gemini-3.8-flash",
+    # OpenGateway og/auto: router-side decision model (router_usage only)
+    "sionic-ai/jev-omni",
     # BizRouter submission pool additions (2026-10-13)
     "anthropic/claude-opus-5.5",
     "anthropic/claude-sonnet-5.5",
