@@ -1,6 +1,6 @@
 {
   "sionic-ai/jev-omni": {
-    "input_token_price_per_million": 0.126,
+    "input_token_price_per_million": 0.0063,
     "output_token_price_per_million": 0
   },
   "agnes-2.0-flash": {
