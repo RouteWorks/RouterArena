@@ -3,10 +3,15 @@
     "router_name": "AsiaInfoSec-Token-ERP-Router",
     "router_cls_name": "external_prediction_file",
     "models": [
-      "claude-opus-4-7",
-      "deepseek/deepseek-v4-flash"
+      "qwen/qwen3-235b-a22b-2507",
+      "Qwen/Qwen3-Coder-Next",
+      "gemini-3-flash-preview",
+      "google/gemini-3.1-flash-lite",
+      "deepseek/deepseek-v4-flash",
+      "gemini-3.8-flash"
     ],
     "author": "AsiaInfoSec Token-ERP Team",
-    "codebase": "https://github.com/yeanson028/token-erp"
+    "codebase": "https://github.com/yeanson028/token-erp",
+    "description": "AsiaInfoSec Token-ERP Next-Gen ROI Router with Multi-Model Speculative Dynamic Balancing."
   }
 }
