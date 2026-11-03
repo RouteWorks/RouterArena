@@ -1,0 +1,12 @@
+{
+  "pipeline_params": {
+    "router_name": "AsiaInfoSec-Token-ERP-Router",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "claude-opus-4-7",
+      "deepseek/deepseek-v4-flash"
+    ],
+    "author": "AsiaInfoSec Token-ERP Team",
+    "codebase": "https://github.com/yeanson028/token-erp"
+  }
+}
