@@ -710,5 +710,9 @@
   "z-ai/glm-5.3-flash@default": {
     "input_token_price_per_million": 0.0149,
     "output_token_price_per_million": 0.1543
+  },
+  "jev-1.14.0": {
+    "input_token_price_per_million": 0.042,
+    "output_token_price_per_million": 0.0
   }
 }

@@ -525,3 +525,9 @@ models:
     as_of: "2026-10-31"
     source: "https://openrouter.ai/z-ai/glm-5.3-flash"
     note: "Unified spellings; previous prices: glm-5.3-flash 0.15/0.5; z-ai/glm-5.3-flash 0.15/0.5."
+  "jev-1.14.0":
+    price: {input: 0.042, output: 0.0}
+    as_of: "2026-11-05"
+    source: "https://docs.typesafe.ai/models"
+    note: "TypeSafe Jev 1.14, served directly by TypeSafe for routing assessments. Output tokens are free."
+    sync: false
