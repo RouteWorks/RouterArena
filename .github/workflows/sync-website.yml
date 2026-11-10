@@ -41,7 +41,7 @@ jobs:
       - name: Prepare dataset
         env:
           ROUTERARENA_DATASET_DIR: ${{ github.workspace }}/dataset
-        run: uv run python scripts/process_datasets/prep_datasets.py
+        run: scripts/process_datasets/prepare_datasets.sh
 
       - name: Checkout website repo
         uses: actions/checkout@v5
