@@ -228,6 +228,65 @@ routers:
       github_url: "https://nuroute.ai"
       type: "closed-source"
 
+  - readme_name: "Krusch Cascade Router"
+    website_name: "Krusch Cascade Router"
+    prediction: "krusch-cascade-router"
+    category_key: "krusch-cascade"
+    flip_key: "krusch-cascade"
+    website:
+      affiliation: "@kruschdev"
+      github_url: "https://github.com/kruschdev"
+      type: "open-source"
+
+  - readme_name: "IQ Routing"
+    website_name: "IQ Routing"
+    prediction: "iq-routing"
+    category_key: "iq-routing"
+    flip_key: "iq-routing"
+    website:
+      affiliation: "@George-Avila"
+      github_url: "https://iq-routing.com"
+      type: "closed-source"
+
+  - readme_name: "Corealis Router"
+    website_name: "Corealis Router"
+    prediction: "corealis-router"
+    category_key: "corealis"
+    flip_key: "corealis"
+    website:
+      affiliation: "Corealis Consulting AG"
+      github_url: "https://corealis.ch"
+      type: "closed-source"
+
+  - readme_name: "Liner Router"
+    website_name: "Liner Router"
+    prediction: "liner-router"
+    category_key: "liner"
+    flip_key: "liner"
+    website:
+      affiliation: "Liner"
+      github_url: "https://platform.liner.com"
+      type: "closed-source"
+
+  - readme_name: "f-router"
+    website_name: "f-router"
+    prediction: "f-router"
+    category_key: "f-router"
+    flip_key: "f-router"
+    website:
+      affiliation: "@ehanmire"
+      github_url: "https://github.com/ehanmire"
+      type: "closed-source"
+
+  - readme_name: "ATRouter"
+    website_name: "ATRouter"
+    prediction: "ATRouter"
+    category_key: "atrouter"
+    flip_key: "atrouter"
+    website:
+      affiliation: "@Hyeon-kki"
+      github_url: "https://github.com/Hyeon-kki"
+      type: "closed-source"
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
   - readme_name: "MIRT-BERT"
