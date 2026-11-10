@@ -1,0 +1,22 @@
+{
+    "pipeline_params": {
+        "router_name": "PSAI-Auto-Router-v2",
+        "router_cls_name": "PSAIAutoRouterV2",
+        "models": [
+            "gemini-3-flash-preview",
+            "google/gemini-3.1-flash-lite",
+            "gpt-4o-mini",
+            "claude-opus-4-7",
+            "gpt-5-nano",
+            "gpt-5-mini",
+            "gemini-2.5-flash",
+            "gemini-3.1-pro-preview",
+            "qwen/qwen3-next-80b-a3b-instruct",
+            "gpt-5.4-mini",
+            "gpt-4o",
+            "claude-sonnet-4-5",
+            "gemini-3.8-flash",
+            "gpt-5.6-luna"
+        ]
+    }
+}
