@@ -16,6 +16,7 @@ universal_names = [
     "deepseek/deepseek-v4.1-flash@high",
     "deepseek-ai/DeepSeek-V4-Flash-0731",
     "gpt-5.6-luna",
+    "gpt-5.6-terra",
     "ministral-8b-latest",
     "moonshotai/Kimi-K2.6",
     "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
