@@ -116,28 +116,28 @@
     "output_token_price_per_million": 0.42
   },
   "deepseek/deepseek-v3.2": {
-    "input_token_price_per_million": 0.295,
-    "output_token_price_per_million": 0.88
+    "input_token_price_per_million": 0.28,
+    "output_token_price_per_million": 0.42
   },
   "deepseek-v3.2": {
-    "input_token_price_per_million": 0.295,
-    "output_token_price_per_million": 0.88
+    "input_token_price_per_million": 0.28,
+    "output_token_price_per_million": 0.42
   },
   "deepseek/deepseek-v4-flash": {
     "input_token_price_per_million": 0.14,
     "output_token_price_per_million": 0.28
   },
   "deepseek/deepseek-v4-flash-0731": {
-    "input_token_price_per_million": 0.176,
+    "input_token_price_per_million": 0.15,
     "output_token_price_per_million": 0.528
   },
   "deepseek-ai/DeepSeek-V4-Flash-0731": {
-    "input_token_price_per_million": 0.176,
+    "input_token_price_per_million": 0.15,
     "output_token_price_per_million": 0.528
   },
   "deepseek/deepseek-v4-pro": {
-    "input_token_price_per_million": 1.6,
-    "output_token_price_per_million": 3.2
+    "input_token_price_per_million": 1.32,
+    "output_token_price_per_million": 3.96
   },
   "deepseek/deepseek-v4.1-flash": {
     "input_token_price_per_million": 0.3,
@@ -240,7 +240,7 @@
     "output_token_price_per_million": 0.04
   },
   "google/gemma-4-31b-it": {
-    "input_token_price_per_million": 0.15,
+    "input_token_price_per_million": 0.175,
     "output_token_price_per_million": 0.4
   },
   "gpt-5-chat": {
@@ -268,12 +268,12 @@
     "output_token_price_per_million": 1
   },
   "meta-llama/llama-3.3-70b-instruct": {
-    "input_token_price_per_million": 0.4415,
-    "output_token_price_per_million": 0.715
+    "input_token_price_per_million": 0.59,
+    "output_token_price_per_million": 0.72
   },
   "meta-llama_llama-3.3-70b-instruct": {
-    "input_token_price_per_million": 0.4415,
-    "output_token_price_per_million": 0.715
+    "input_token_price_per_million": 0.59,
+    "output_token_price_per_million": 0.72
   },
   "meta-llama_llama-3.1-405b-instruct": {
     "input_token_price_per_million": 3.5,
@@ -516,15 +516,15 @@
     "output_token_price_per_million": 10
   },
   "openai/gpt-oss-120b": {
-    "input_token_price_per_million": 0.15,
+    "input_token_price_per_million": 0.145,
     "output_token_price_per_million": 0.6
   },
   "gpt-oss-120b": {
-    "input_token_price_per_million": 0.15,
+    "input_token_price_per_million": 0.145,
     "output_token_price_per_million": 0.6
   },
   "openai_gpt-oss-120b": {
-    "input_token_price_per_million": 0.15,
+    "input_token_price_per_million": 0.145,
     "output_token_price_per_million": 0.6
   },
   "openai/gpt-oss-20b": {
@@ -537,19 +537,19 @@
   },
   "qwen/qwen3-235b-a22b-2507": {
     "input_token_price_per_million": 0.145,
-    "output_token_price_per_million": 0.775
+    "output_token_price_per_million": 0.675
   },
   "alibaba/qwen3-235b-a22b-instruct-2507": {
     "input_token_price_per_million": 0.145,
-    "output_token_price_per_million": 0.775
+    "output_token_price_per_million": 0.675
   },
   "qwen3-235b-a22b-instruct-2507": {
     "input_token_price_per_million": 0.145,
-    "output_token_price_per_million": 0.775
+    "output_token_price_per_million": 0.675
   },
   "qwen_qwen3-235b-a22b-2507": {
     "input_token_price_per_million": 0.145,
-    "output_token_price_per_million": 0.775
+    "output_token_price_per_million": 0.675
   },
   "qwen/qwen3-30b-a3b-instruct-2507": {
     "input_token_price_per_million": 0.09,
@@ -596,8 +596,8 @@
     "output_token_price_per_million": 1.9
   },
   "qwen/qwen3-4b-instruct-2507": {
-    "input_token_price_per_million": 0.17,
-    "output_token_price_per_million": 0.25
+    "input_token_price_per_million": 0.084,
+    "output_token_price_per_million": 0.267
   },
   "qwen/qwen3.5-9b": {
     "input_token_price_per_million": 0.1,
