@@ -1,0 +1,97 @@
+name: Price sync
+
+# Every other day, sync model prices with OpenRouter (scripts/pricing/sync_openrouter.py)
+# and, when a price changed, open or update one pull request with the new price table, the
+# sync report and what re-pricing the leaderboard would do. Nothing is merged or re-priced
+# automatically: a maintainer reviews the PR, and re-prices the leaderboard as a separate
+# step (scripts/pricing/reprice.py --all --write).
+#
+# Creating the PR needs either the repository setting "Allow GitHub Actions to create and
+# approve pull requests", or a secret PRICE_SYNC_TOKEN (a fine-grained token with
+# Contents: write and Pull requests: write on this repository). With the secret, the PR's
+# own checks run as for any other PR; with the built-in token they do not.
+
+on:
+  schedule:
+    - cron: "17 6 */2 * *" # 06:17 UTC on odd days of the month
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: price-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install uv
+
+      - name: Sync prices with OpenRouter
+        id: sync
+        run: |
+          set -euo pipefail
+          today=$(date -u +%F)
+          echo "date=$today" >> "$GITHUB_OUTPUT"
+          uv run python scripts/pricing/sync_openrouter.py --date "$today" \
+            --report "$RUNNER_TEMP/sync_report.md"
+          if [[ -n "$(git status --porcelain -- model_cost)" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Preview the leaderboard at the new prices
+        if: ${{ steps.sync.outputs.changed == 'true' }}
+        # Report only: no prediction file or README is written. The dataset is not
+        # downloaded, so the optimality columns are left out of the preview.
+        run: |
+          set -euo pipefail
+          uv run python scripts/pricing/reprice.py --all \
+            --report "$RUNNER_TEMP/reprice_report.md"
+
+      - name: Write the PR description
+        if: ${{ steps.sync.outputs.changed == 'true' }}
+        run: |
+          set -euo pipefail
+          {
+            echo "The scheduled price sync found prices that changed on OpenRouter."
+            echo "Each model is priced at its standard price (the lab's own price, promotions undone); see \`scripts/pricing/sync_openrouter.py\`."
+            echo
+            cat "$RUNNER_TEMP/sync_report.md"
+            echo
+            echo "### Leaderboard at these prices (not applied)"
+            echo
+            cat "$RUNNER_TEMP/reprice_report.md"
+            echo
+            echo "Merging updates the price table only. To bring the leaderboard to these prices, run \`python scripts/pricing/reprice.py --all --write\` on \`main\` and open a PR with the result."
+            echo
+            echo "*Opened by the [price-sync workflow](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}).*"
+          } > "$RUNNER_TEMP/pr_body.md"
+
+      - name: Open or update the pull request
+        if: ${{ steps.sync.outputs.changed == 'true' }}
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.PRICE_SYNC_TOKEN || github.token }}
+          branch: price-sync/auto
+          delete-branch: true
+          add-paths: model_cost/
+          commit-message: "Price sync: OpenRouter standard prices of ${{ steps.sync.outputs.date }}"
+          title: "Price sync: OpenRouter standard prices of ${{ steps.sync.outputs.date }}"
+          body-path: ${{ runner.temp }}/pr_body.md
