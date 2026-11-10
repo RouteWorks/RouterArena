@@ -26,6 +26,12 @@
 # name that matches no id or alias is charged the highest price in this file.
 
 models:
+  "typesafe/jev-1.13":
+    price: {input: 0.042, output: 0}
+    as_of: "2026-11-05"
+    source: "https://openrouter.ai/typesafe/jev-1.13"
+    note: "Router-side judge (router_usage only). Listed on its OpenRouter model page and endpoints API; absent from the /models list, so the price is fixed."
+    sync: false
   "agnes-2.0-flash":
     price: {input: 0.03, output: 0.15}
     as_of: "2026-09-27"

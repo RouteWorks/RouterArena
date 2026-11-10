@@ -1,4 +1,8 @@
 {
+  "typesafe/jev-1.13": {
+    "input_token_price_per_million": 0.042,
+    "output_token_price_per_million": 0
+  },
   "agnes-2.0-flash": {
     "input_token_price_per_million": 0.03,
     "output_token_price_per_million": 0.15
