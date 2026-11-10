@@ -152,6 +152,8 @@ Every model in your config needs a price. Prices live in [`model_cost/model_prof
 
 Then regenerate [`model_cost/model_cost.json`](./model_cost/model_cost.json), which the evaluator reads, with `python scripts/pricing/build_model_cost.py`. A model name with no entry is charged the highest price in the table.
 
+For a model your router runs itself (on-device or self-hosted), don't enter your own cost. Add `local: {base: <id of the listed model whose weights you serve>, bits: <weight precision>}`, or `local: {active_params_b: <active parameters in billions>, bits: <...>}` if no listed model has these weights, plus `sync: false`. Then run `python scripts/pricing/local_price.py --write`, which prices it by [`model_cost/local_pricing.yaml`](./model_cost/local_pricing.yaml): the listed model's price, or the market price of an open-weight model of that size, times a quantization factor.
+
 > [!NOTE]
 > Ensure all models in your above config files are listed in [`./universal_model_names.py`](./universal_model_names.py). If you add a new model, you must also add the API inference endpoint in [`llm_inference/model_inference.py`](./llm_inference/model_inference.py).
 

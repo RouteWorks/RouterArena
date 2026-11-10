@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
+# SPDX-License-Identifier: Apache-2.0
+#
+# Price rule for models a router runs itself (on-device or self-hosted). Applied by
+#   python scripts/pricing/local_price.py
+# to every profile in model_profiles.yaml that has a `local` field.
+#
+# A local model is priced like the same model bought from a host, so that serving it
+# yourself neither hides its cost nor inflates it:
+#   1. if its weights are a listed model's (`local.base`), at that model's price;
+#   2. otherwise at the market price of an open-weight model of its size (size_curve);
+# times the quantization factor of the weights actually served (`local.bits`).
+#
+# The numbers come from OpenRouter's open-weight models, at standard prices (standard
+# tier, promotions undone, median over hosts at 8 bits or more). Refit them with
+#   python scripts/pricing/fit_local_rule.py
+
+fitted: "2026-10-31"
+data: "103 open-weight models on OpenRouter with a known parameter count"
+
+# USD per 1M tokens = coef * (active parameters, in billions) ** exponent.
+# Residual spread around the curve is about x2.3 (input) and x2.8 (output).
+size_curve:
+  input: {coef: 0.0669, exponent: 0.325}
+  output: {coef: 0.2153, exponent: 0.316}
+
+# Multiplier by the precision of the served weights, highest threshold first.
+# Hosts of the same model charge the same at 8 and 16 bits (median ratio 1.00 over 23
+# models) and about 0.8x at 4 bits (0.80 input, 0.83 output, over 41 models). There is
+# no market data below 4 bits, so 2- and 3-bit weights get the 4-bit factor.
+quantization:
+  - {min_bits: 8, factor: 1.0}
+  - {min_bits: 0, factor: 0.8}
