@@ -595,6 +595,10 @@
     "input_token_price_per_million": 0.21,
     "output_token_price_per_million": 1.9
   },
+  "qwen/qwen3-4b-instruct-2507": {
+    "input_token_price_per_million": 0.17,
+    "output_token_price_per_million": 0.25
+  },
   "qwen/qwen3.5-9b": {
     "input_token_price_per_million": 0.1,
     "output_token_price_per_million": 0.15
