@@ -28,8 +28,11 @@ jobs:
     name: MyPy (${{ matrix.python-version }})
     runs-on: ubuntu-latest
     strategy:
+      # One version's failure shouldn't cancel the others' runs.
+      fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        # The versions pyproject.toml supports (>3.10,<3.13).
+        python-version: ["3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v5
 
