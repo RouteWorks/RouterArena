@@ -615,6 +615,10 @@
     "input_token_price_per_million": 0.05,
     "output_token_price_per_million": 0.61
   },
+  "typesafe/jev-1.14": {
+    "input_token_price_per_million": 0.042,
+    "output_token_price_per_million": 0
+  },
   "upstage/solar-mini": {
     "input_token_price_per_million": 0.15,
     "output_token_price_per_million": 0.15
