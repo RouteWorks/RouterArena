@@ -25,9 +25,9 @@
 models:
   "sionic-ai/jev-omni":
     price: {input: 0.0063, output: 0}
-    as_of: "2026-11-03"
-    source: null
-    note: "Not listed on OpenRouter. OpenGateway current price (input $0.0063/MTok, output $0). Router-side decision model (OpenGateway og/auto judge), priced via router_usage."
+    as_of: "2026-11-11"
+    source: "https://opengateway.ai/models/sionic-ai/jev-omni"
+    note: "Not listed on OpenRouter. Public OpenGateway price: list $0.126/MTok input with a standing (no end date) 95% discount, so $0.0063/MTok input, output $0; also served in https://apis.opengateway.ai/v1/models. Router-side decision model (OpenGateway og/auto judge), priced via router_usage."
     sync: false
   "agnes-2.0-flash":
     price: {input: 0.03, output: 0.15}
