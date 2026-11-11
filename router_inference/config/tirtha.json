@@ -1,0 +1,12 @@
+{
+  "pipeline_params": {
+    "router_name": "tirtha",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "google/gemma-4-31b-it-turbo",
+      "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "Qwen/Qwen3.8-Max"
+    ],
+    "description": "Tirtha by Spanda Works (tirtha.ai): an OpenAI-compatible gateway in auto mode. A small model answers first; a second model and a yes/no checker compare answers, and the request climbs to a larger model only when the check fails. The served model is the routing choice. Router-side calls (the second opinion and the checker) are recorded in router_usage. SETUP: Tirtha 1.0 as served in production on 2026-11-10. The second-opinion and checker calls in router_usage are estimated from measured averages, as stated per row."
+  }
+}
