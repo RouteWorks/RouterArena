@@ -41,3 +41,4 @@ tools/addlicense
 
 # Except for this one specific file
 !README.md
+generation_checkpoint*.json
