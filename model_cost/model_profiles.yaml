@@ -555,3 +555,28 @@ models:
     as_of: "2026-10-31"
     source: "https://openrouter.ai/z-ai/glm-5.3-flash"
     note: "Unified spellings; previous prices: glm-5.3-flash 0.15/0.5; z-ai/glm-5.3-flash 0.15/0.5."
+  # ---- Tirtha (Spanda Works) submission: OUR public prices per level (https://api.tirtha.ai/v1/pricing, read 2026-11-11 00:05 ET) ----
+  "google/gemma-4-31b-it-turbo":
+    price: {input: 0.14, output: 0.44}
+    as_of: "2026-11-11"
+    source: "https://api.tirtha.ai/v1/pricing"
+    note: "Tirtha Base level, our public price."
+    sync: false
+  "deepseek-ai/DeepSeek-V4.1-Flash-1017":
+    price: {input: 0.266, output: 0.756}
+    as_of: "2026-11-11"
+    source: "https://api.tirtha.ai/v1/pricing"
+    note: "Tirtha Plus level, our public price; also used for the second-opinion (witness) call, which runs on the same model."
+    sync: false
+  "Qwen/Qwen3.8-Max":
+    price: {input: 2.043, output: 6.09}
+    as_of: "2026-11-11"
+    source: "https://api.tirtha.ai/v1/pricing"
+    note: "Tirtha Max level, our public price."
+    sync: false
+  "baseten/elephant-1":
+    price: {input: 0.035, output: 0.0}
+    as_of: "2026-11-09"
+    source: "https://www.baseten.co/library/"
+    note: "Tirtha's answer checker (a router-side call in router_usage). Its maker's list price; it has no Tirtha customer price."
+    sync: false
