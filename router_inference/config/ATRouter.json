@@ -1,0 +1,13 @@
+{
+  "pipeline_params": {
+    "router_name": "ATRouter",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "google/gemma-4-31b-it",
+      "deepseek/deepseek-v4-flash",
+      "qwen/qwen3-235b-a22b-2507",
+      "gemini-3.8-flash"
+    ],
+    "description": "ATRouter: a closed-source model router."
+  }
+}

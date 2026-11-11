@@ -1,0 +1,11 @@
+{
+  "pipeline_params": {
+    "router_name": "f-router",
+    "models": [
+      "gpt-oss-20b",
+      "z-ai/glm-5.3-flash",
+      "openai/gpt-6-luna",
+      "deepseek/deepseek-v4.1-flash@high"
+    ]
+  }
+}

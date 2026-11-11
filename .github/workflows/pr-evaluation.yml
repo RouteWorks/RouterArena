@@ -258,7 +258,7 @@ jobs:
           # Uses base repo's script (safe - not from PR)
           echo "Preparing dataset..."
           mkdir -p dataset
-          uv run python scripts/process_datasets/prep_datasets.py
+          scripts/process_datasets/prepare_datasets.sh
 
       - name: Enable Swap Space
         run: |

@@ -1,0 +1,12 @@
+{
+  "pipeline_params": {
+    "router_name": "liner-router",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "anthropic/claude-haiku-5.5",
+      "deepseek/deepseek-v4-flash",
+      "google/gemini-3-flash-preview",
+      "google/gemma-4-31b-it"
+    ]
+  }
+}
