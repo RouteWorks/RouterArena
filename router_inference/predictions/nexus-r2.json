@@ -324,7 +324,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.292e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -1089,7 +1089,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.816e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -1833,7 +1833,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 7.700000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -2885,7 +2885,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.712000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -3700,7 +3700,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.418e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -4074,7 +4074,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 7.336e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -4179,7 +4179,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 2.2820000000000002e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -4398,7 +4398,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 7.322000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -4843,7 +4843,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.3180000000000004e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -5542,7 +5542,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00011774000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -5570,7 +5570,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.626000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -6210,7 +6210,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00013706000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -6956,7 +6956,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00014140000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -8676,7 +8676,7 @@
         "total_tokens": 2272
       }
     },
-    "cost": 0.0,
+    "cost": 0.0037435000000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -8886,7 +8886,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0003834,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -10201,7 +10201,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0004061,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -10297,7 +10297,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00024239999999999998,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -10374,7 +10374,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0002483,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -10740,7 +10740,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001771,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -13490,7 +13490,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.000105,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -13910,7 +13910,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001529,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -14951,7 +14951,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00040019999999999997,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -15719,7 +15719,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 4.0999999999999994e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -15804,7 +15804,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.752000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -16153,7 +16153,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.046e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -16173,7 +16173,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.4000000000000005e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -16388,7 +16388,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0008645,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -16435,7 +16435,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.712000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -16631,7 +16631,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0004652200000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -17754,7 +17754,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00013759999999999998,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -17988,7 +17988,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 8.55e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -18527,7 +18527,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 3.71e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -18607,7 +18607,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.45e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -19763,7 +19763,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.32e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -20372,7 +20372,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001451,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -21739,7 +21739,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 2.6320000000000002e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -21824,7 +21824,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.6840000000000005e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -21877,7 +21877,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.424e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -31477,7 +31477,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 3.8e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -31737,7 +31737,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 4.600000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -31830,7 +31830,7 @@
       },
       "model_used": "google/gemini-3.8-flash"
     },
-    "cost": 0.0,
+    "cost": 0.005886,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -32301,7 +32301,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 7.159e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -32407,7 +32407,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.1450000000000005e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -34933,7 +34933,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 7.364e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -35185,7 +35185,7 @@
       },
       "model_used": "google/gemini-3.8-flash"
     },
-    "cost": 0.0,
+    "cost": 0.0129465,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -36250,7 +36250,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00013412,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -36303,7 +36303,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 2.9680000000000004e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -36421,7 +36421,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0001274,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -37200,7 +37200,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.894000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -39100,7 +39100,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.06e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -42177,7 +42177,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 4.62e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -42321,7 +42321,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 4.8100000000000004e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -42613,7 +42613,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0004715,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -42865,7 +42865,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0002082,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -43051,7 +43051,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00020020000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -43071,7 +43071,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00016580000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -43329,7 +43329,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00028224,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -43482,7 +43482,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001028,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -43548,7 +43548,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00016548000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -43595,7 +43595,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00029400000000000004,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -43757,7 +43757,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00013006,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -43824,7 +43824,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00020818000000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -43852,7 +43852,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00038038000000000004,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -43880,7 +43880,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0007912800000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -43927,7 +43927,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00040306000000000006,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -44321,7 +44321,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00021406,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -44841,7 +44841,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00020090000000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -44907,7 +44907,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00018704000000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -45019,7 +45019,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 7.714000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -45072,7 +45072,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00019810000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -45547,7 +45547,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00073346,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -46144,7 +46144,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00014639999999999998,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -46345,7 +46345,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00012502000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -47825,7 +47825,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00025928,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -47870,7 +47870,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00011550000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -47917,7 +47917,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0011265800000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -48008,7 +48008,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.138000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -48998,7 +48998,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00012866,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -49211,7 +49211,7 @@
       },
       "model_used": "google/gemini-3.8-flash"
     },
-    "cost": 0.0,
+    "cost": 0.004030499999999999,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -49957,7 +49957,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 8.036000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -50156,7 +50156,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0008852200000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -50881,7 +50881,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00018872000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -50980,7 +50980,7 @@
       },
       "model_used": "google/gemini-3.8-flash"
     },
-    "cost": 0.0,
+    "cost": 0.00582,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -55440,7 +55440,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00034118,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -55554,7 +55554,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.88e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -55582,7 +55582,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.9220000000000006e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -55780,7 +55780,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 6.188e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -55911,7 +55911,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0024802400000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -56009,7 +56009,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 4.48e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -56167,7 +56167,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001998,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -59945,7 +59945,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.75e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -60005,7 +60005,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 9.04e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -60635,7 +60635,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001129,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -60682,7 +60682,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00029610000000000004,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -60809,7 +60809,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 8.07e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -60967,7 +60967,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00010860000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -61548,7 +61548,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00011300000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -62035,7 +62035,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001182,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -62164,7 +62164,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001349,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -62707,7 +62707,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.81e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -63174,7 +63174,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.4399999999999994e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -63194,7 +63194,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.3899999999999996e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -63404,7 +63404,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.14e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -63588,7 +63588,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.61e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -64563,7 +64563,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.02e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -65000,7 +65000,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 8.900000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -65428,7 +65428,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 9.52e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -65818,7 +65818,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.07e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -65989,7 +65989,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.23e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -66215,7 +66215,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00013309999999999998,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -66548,7 +66548,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 1.56e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -66593,7 +66593,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 1.7800000000000002e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -66923,7 +66923,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 8.15e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -67175,7 +67175,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 3.96e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -67264,7 +67264,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.35e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -67437,7 +67437,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.01e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -67627,7 +67627,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.35e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -67647,7 +67647,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.2600000000000005e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -68096,7 +68096,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 1.87e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -68116,7 +68116,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 2.18e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -68262,7 +68262,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001004,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -68461,7 +68461,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 1.8500000000000002e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -69333,7 +69333,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.379999999999999e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -69890,7 +69890,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.57e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -70267,7 +70267,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 8.72e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -70748,7 +70748,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.21e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -70869,7 +70869,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.03e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -71413,7 +71413,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 8.59e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -71509,7 +71509,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001158,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -71573,7 +71573,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00011180000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -71656,7 +71656,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.989999999999999e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -71859,7 +71859,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 8.329999999999999e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -72022,7 +72022,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 8.719999999999999e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -72227,7 +72227,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 2.34e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -72570,7 +72570,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0002731,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -72802,7 +72802,7 @@
         "total_tokens": 1306
       }
     },
-    "cost": 0.0,
+    "cost": 0.0024955000000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -72901,7 +72901,7 @@
         "total_tokens": 864
       }
     },
-    "cost": 0.0,
+    "cost": 0.0019270000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -73072,7 +73072,7 @@
       },
       "model_used": "google/gemini-3.8-flash"
     },
-    "cost": 0.0,
+    "cost": 0.014745000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -73131,7 +73131,7 @@
         "total_tokens": 836
       }
     },
-    "cost": 0.0,
+    "cost": 0.0019455,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -73266,7 +73266,7 @@
         "total_tokens": 1094
       }
     },
-    "cost": 0.0,
+    "cost": 0.0026595,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -73344,7 +73344,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.17e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -73725,7 +73725,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 4.21e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -73745,7 +73745,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 3.86e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74159,7 +74159,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00019908000000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74225,7 +74225,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00017304,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74272,7 +74272,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00010696000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74320,7 +74320,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00023184,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74386,7 +74386,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00018256,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74444,7 +74444,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.73e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74491,7 +74491,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00022148000000000005,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74519,7 +74519,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00025774,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74547,7 +74547,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0001015,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74651,7 +74651,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00024122000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74717,7 +74717,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00021182000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74841,7 +74841,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 8.932e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74869,7 +74869,7 @@
       "attempt_count": 2,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00016534,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74916,7 +74916,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00016688,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74944,7 +74944,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00015876000000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -74983,7 +74983,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.64e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -75022,7 +75022,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.21e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -75108,7 +75108,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00031640000000000005,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -75185,7 +75185,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 8.16e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -75491,7 +75491,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00024346,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -78118,7 +78118,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.85e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -79505,7 +79505,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00018004000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -80824,7 +80824,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 6.314000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -81262,7 +81262,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 7.406e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -83343,7 +83343,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 8.680000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -83363,7 +83363,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.58e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -85173,7 +85173,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 7.49e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -85395,7 +85395,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.3200000000000006e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -87051,7 +87051,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.152000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -87261,7 +87261,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0009875600000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -87371,7 +87371,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 8.708e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -87513,7 +87513,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 8.61e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -88045,7 +88045,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 3.71e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -88149,7 +88149,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00013790000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -88361,7 +88361,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00021560000000000004,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -89246,7 +89246,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00185528,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -89910,7 +89910,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.14e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -90192,7 +90192,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00660926,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -90728,7 +90728,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0019345200000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -90775,7 +90775,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00029988000000000004,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -91148,7 +91148,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 9.01e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -91184,7 +91184,7 @@
       },
       "model_used": "google/gemini-3.8-flash"
     },
-    "cost": 0.0,
+    "cost": 0.0226125,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -91912,7 +91912,7 @@
         "total_tokens": 631
       }
     },
-    "cost": 0.0,
+    "cost": 0.0010479999999999999,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -92983,7 +92983,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.108000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -93263,7 +93263,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.164e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -93585,7 +93585,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.494000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -95198,7 +95198,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 2.15e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -95256,7 +95256,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 3.4e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -95391,7 +95391,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.47e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -95419,7 +95419,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00028378,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -95565,7 +95565,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.61e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -95689,7 +95689,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0005222,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -95747,7 +95747,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.73e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -95908,7 +95908,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00063504,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -95974,7 +95974,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0009084600000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -96377,7 +96377,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0006641600000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -96538,7 +96538,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0009515800000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -96826,7 +96826,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.42e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -97027,7 +97027,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00038402,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -97535,7 +97535,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.424e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -99967,7 +99967,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.99e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -100025,7 +100025,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.31e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -100216,7 +100216,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00013188000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -100629,7 +100629,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00010038000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -100743,7 +100743,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.000149,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -100878,7 +100878,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001538,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -100918,7 +100918,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.65e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -101001,7 +101001,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.83e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -101078,7 +101078,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0002119,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -101237,7 +101237,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0002117,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -101295,7 +101295,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0002807,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -101543,7 +101543,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00088186,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -101847,7 +101847,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.6099999999999995e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -102184,7 +102184,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.1160000000000006e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -102257,7 +102257,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 7.196000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -102285,7 +102285,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 6.006000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -102951,7 +102951,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.01754676,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -103009,7 +103009,7 @@
         "total_tokens": 795
       }
     },
-    "cost": 0.0,
+    "cost": 0.0013174999999999999,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -104528,7 +104528,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00020916,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -104658,7 +104658,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0003978800000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -104840,7 +104840,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0023786000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -104944,7 +104944,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.9640000000000005e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -105100,7 +105100,7 @@
       },
       "model_used": "google/gemini-3.8-flash"
     },
-    "cost": 0.0,
+    "cost": 0.004104,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -105918,7 +105918,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00013804000000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -106110,7 +106110,7 @@
       },
       "model_used": "google/gemini-3.8-flash"
     },
-    "cost": 0.0,
+    "cost": 0.008901,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -106206,7 +106206,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00011810000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -106329,7 +106329,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.005099920000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -106463,7 +106463,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0008405600000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -109485,7 +109485,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.97e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -109576,7 +109576,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.872000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -112468,7 +112468,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.0400000000000005e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -113457,7 +113457,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.662e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -113705,7 +113705,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.990000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -114085,7 +114085,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0002223,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -114646,7 +114646,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.108e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -114889,7 +114889,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 4.29e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -115162,7 +115162,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0006806800000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -116632,7 +116632,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 7.21e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -116660,7 +116660,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00013468000000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -117155,7 +117155,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.724e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -117759,7 +117759,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00032592000000000005,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -118062,7 +118062,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0001967,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -118493,7 +118493,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00030898000000000004,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -119259,7 +119259,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00012362,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -119325,7 +119325,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.578e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -119608,7 +119608,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.2200000000000003e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -120008,7 +120008,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00012628000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -135170,7 +135170,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 8.932e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -135324,7 +135324,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.4720000000000006e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -136233,7 +136233,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00028260000000000004,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -136370,7 +136370,7 @@
       },
       "model_used": "google/gemini-3.8-flash"
     },
-    "cost": 0.0,
+    "cost": 0.007947,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -137037,7 +137037,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 3.97e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -138649,7 +138649,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0003479,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -141791,7 +141791,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00021588000000000003,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -145159,7 +145159,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0005992,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -145836,7 +145836,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00013529999999999998,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -145938,7 +145938,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.13e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -146450,7 +146450,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001965,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -146682,7 +146682,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001418,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -147457,7 +147457,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.440000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -147534,7 +147534,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.7900000000000005e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -147843,7 +147843,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.730000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -148592,7 +148592,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001238,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -150144,7 +150144,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00010210000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -150183,7 +150183,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 9.070000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -150394,7 +150394,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00014120000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -150414,7 +150414,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00010310000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -151788,7 +151788,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00013340000000000002,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -152114,7 +152114,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001605,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -152193,7 +152193,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.21e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -152270,7 +152270,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 9.28e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -152442,7 +152442,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001019,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -152501,7 +152501,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 8.47e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -152616,7 +152616,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001084,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -152809,7 +152809,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 9.06e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -153097,7 +153097,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001541,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -153194,7 +153194,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00010130000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -153503,7 +153503,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001114,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -153809,7 +153809,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001401,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -156071,7 +156071,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001576,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -156458,7 +156458,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0005015,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -156686,7 +156686,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0004521,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -156991,7 +156991,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.63e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -157011,7 +157011,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0004066,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -157972,7 +157972,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 7.319999999999999e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -157992,7 +157992,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001092,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -158526,7 +158526,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.4800000000000005e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -158911,7 +158911,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0007349,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -159480,7 +159480,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001824,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -159611,7 +159611,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0001305,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -160144,7 +160144,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0008100000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -160229,7 +160229,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00033376,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -160381,7 +160381,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0006186000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -160502,7 +160502,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0005985,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -160638,7 +160638,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0004277,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -160861,7 +160861,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 6.888e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -161021,7 +161021,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 1.106e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -161041,7 +161041,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 2.04e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -161289,7 +161289,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.2760000000000005e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -161386,7 +161386,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.0002156,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -161609,7 +161609,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 4.172e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -161744,7 +161744,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 2.548e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -161847,7 +161847,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.012000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -164729,7 +164729,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 8.288e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -168120,7 +168120,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00011970000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -168598,7 +168598,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 3.9200000000000004e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -170369,7 +170369,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 5.376000000000001e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -172288,7 +172288,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 3.34e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -172421,7 +172421,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 4.23e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -172782,7 +172782,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 4.07e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -173303,7 +173303,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 8.288e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -173614,7 +173614,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00024500000000000005,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -173726,7 +173726,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.59e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -173790,7 +173790,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.000124,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -173892,7 +173892,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.00037529999999999996,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -173912,7 +173912,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 6.71e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -173957,7 +173957,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0005367000000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -174647,7 +174647,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 5.3500000000000006e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -174971,7 +174971,7 @@
       "provider": "OpenAI",
       "error": null
     },
-    "cost": 0.0,
+    "cost": 0.0002695,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -175175,7 +175175,7 @@
       "attempt_count": 1,
       "finish_reason": "stop"
     },
-    "cost": 0.0,
+    "cost": 0.00011956,
     "accuracy": 0.0,
     "for_optimality": false
   },
