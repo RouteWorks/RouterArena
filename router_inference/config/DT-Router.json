@@ -2,10 +2,11 @@
   "pipeline_params": {
     "router_name": "DT-Router",
     "models": [
-      "lingdt-3.0-flash",
-      "anthropic/claude-haiku-5.5",
-      "glm-5.3-flash",
-      "google/gemini-3.8-flash"
+      "google/gemini-3-flash-preview",
+      "google/gemini-3.8-flash",
+      "deepseek/deepseek-v4.1-flash",
+      "openai/gpt-6-luna",
+      "qwen/qwen3-235b-a22b-2507"
     ],
     "description": "DT-Router is a closed-source model router developed by Ant Digital Technologies.",
     "affiliation": "Ant Digital Technologies",

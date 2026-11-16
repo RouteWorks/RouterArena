@@ -154,6 +154,7 @@ universal_names = [
     "anthropic/claude-haiku-5.5",
     "glm-5.3-flash",
     "google/gemini-3.8-flash",
+    "deepseek/deepseek-v4.1-flash",
     # Divyam router pool additions
     "gemini-3.8-flash",
     # liner-router: router-side judge model (router_usage only)
