@@ -1,20 +1,21 @@
 # SPDX-FileCopyrightText: Copyright contributors to the RouterArena project
 # SPDX-License-Identifier: Apache-2.0
 
-"""Sync model prices in ``model_cost/model_profiles.yaml`` with each model's standard price on OpenRouter.
+"""Sync model prices in ``model_cost/model_profiles.yaml`` with each model's price on OpenRouter.
 
-A model is priced at its standard published price, not at a promotion and not at the
-cheapest host of the day. For every profile that resolves to an OpenRouter model, the
-price is read from OpenRouter's per-provider endpoints:
+A model is priced at what OpenRouter's providers charge for it today, discounts and
+introductory prices included, but not at a cheaper service tier or a single outlier host.
+For every profile that resolves to an OpenRouter model, the price is read from OpenRouter's
+per-provider endpoints:
 
 * only standard-tier endpoints count (no Flex, Priority or batch tiers), and only active
   ones when any are;
-* a provider's promotional discount is undone (OpenRouter lists ``discount: 0.5`` next to
-  a halved price, so the standard price is ``price / (1 - discount)``);
+* each endpoint's listed price is used as charged, so a provider's current discount
+  (OpenRouter's ``discount`` field) counts;
 * when the model's own lab sells it on OpenRouter (Google for Gemini, Z.AI for GLM, ...),
-  the lab's lowest standard price is used;
-* otherwise the median over hosts is used, leaving out 4-bit quantizations when
-  higher-precision hosts exist.
+  the lab's lowest price is used;
+* otherwise (e.g. DeepSeek's models, served by other providers) the median over hosts is
+  used, leaving out 4-bit quantizations when higher-precision hosts exist.
 
 The profile's ``price``, ``as_of`` and ``source`` are updated and ``model_cost.json`` is
 regenerated. A profile resolves through its ``openrouter_id`` field, or else through an
@@ -97,7 +98,7 @@ def load_openrouter_prices(source: Optional[str] = None) -> Dict[str, Price]:
     """Map OpenRouter model id -> (input, output) list price, USD per 1M tokens.
 
     Used to resolve profiles to OpenRouter ids; the price itself comes from
-    ``standard_price``. ``source`` is a saved API response (JSON file); by default the
+    ``model_price``. ``source`` is a saved API response (JSON file); by default the
     live API is fetched."""
     if source:
         payload = json.loads(Path(source).read_text(encoding="utf-8"))
@@ -147,10 +148,11 @@ def endpoints_loader(endpoints_dir: Optional[str]) -> Callable[[str], Endpoints]
     return from_dir if endpoints_dir else from_api
 
 
-def standard_price(or_id: str, endpoints: Endpoints) -> Optional[Dict[str, Any]]:
-    """The model's standard price from its OpenRouter endpoints (see the module
-    docstring), as {"price": (input, output), "basis": str, "discount_removed": float},
-    or None if no standard-tier endpoint has a price."""
+def model_price(or_id: str, endpoints: Endpoints) -> Optional[Dict[str, Any]]:
+    """The model's price from its OpenRouter endpoints (see the module docstring), as
+    {"price": (input, output), "basis": str, "discount": float}, where ``discount`` is
+    the discount included in that price (for a median, the largest among the hosts), or
+    None if no standard-tier endpoint has a price."""
     standard = [
         e
         for e in endpoints or []
@@ -163,37 +165,35 @@ def standard_price(or_id: str, endpoints: Endpoints) -> Optional[Dict[str, Any]]
     if not candidates:
         return None
 
-    def undiscounted(endpoint: Dict[str, Any]) -> Tuple[float, float, float]:
+    def charged(endpoint: Dict[str, Any]) -> Tuple[float, float, float]:
         pricing = endpoint["pricing"]
-        discount = float(pricing.get("discount") or 0)
-        factor = 1 / (1 - discount) if 0 < discount < 1 else 1.0
         return (
-            round(float(pricing["prompt"]) * 1e6 * factor, 6),
-            round(float(pricing["completion"]) * 1e6 * factor, 6),
-            discount,
+            round(float(pricing["prompt"]) * 1e6, 6),
+            round(float(pricing["completion"]) * 1e6, 6),
+            float(pricing.get("discount") or 0),
         )
 
     lab = FIRST_PARTY.get(or_id.split("/")[0], set())
     own = [e for e in candidates if e.get("provider_name") in lab]
     if own:
-        best = min(own, key=lambda e: sum(undiscounted(e)[:2]))
-        i, o, d = undiscounted(best)
+        best = min(own, key=lambda e: sum(charged(e)[:2]))
+        i, o, d = charged(best)
         return {
             "price": (i, o),
             "basis": f"{best['provider_name']} (the lab's own price)",
-            "discount_removed": d,
+            "discount": d,
         }
     hosts = [
         e for e in candidates if str(e.get("quantization")) not in LOW_BIT
     ] or candidates
-    prices = [undiscounted(e) for e in hosts]
+    prices = [charged(e) for e in hosts]
     return {
         "price": (
             round(statistics.median(p[0] for p in prices), 6),
             round(statistics.median(p[1] for p in prices), 6),
         ),
         "basis": f"median of {len(prices)} host(s)",
-        "discount_removed": max(p[2] for p in prices),
+        "discount": max(p[2] for p in prices),
     }
 
 
@@ -217,9 +217,9 @@ def plan_updates(
 ) -> Tuple[List[Dict[str, Any]], Dict[str, Dict[str, Any]], List[str], List[str]]:
     """Return (changes, resolved, unresolved, no_data).
 
-    ``changes`` lists profiles whose price differs from the standard price;
+    ``changes`` lists profiles whose price differs from the model's price;
     ``resolved`` maps profile id -> {"openrouter_id", "price", "basis",
-    "discount_removed"} for every synced profile; ``unresolved`` lists profiles that sync
+    "discount"} for every synced profile; ``unresolved`` lists profiles that sync
     but match no OpenRouter model; ``no_data`` lists profiles whose endpoints could not
     be read (they keep their price)."""
     changes: List[Dict[str, Any]] = []
@@ -233,7 +233,7 @@ def plan_updates(
         if or_id is None:
             unresolved.append(model_id)
             continue
-        found = standard_price(or_id, get_endpoints(or_id))
+        found = model_price(or_id, get_endpoints(or_id))
         if found is None:
             no_data.append(model_id)
             continue
@@ -248,7 +248,7 @@ def plan_updates(
                     "old": old,
                     "new": new,
                     "basis": found["basis"],
-                    "discount_removed": found["discount_removed"],
+                    "discount": found["discount"],
                 }
             )
     return changes, resolved, unresolved, no_data
@@ -302,13 +302,13 @@ def write_snapshot(resolved: Dict[str, Dict[str, Any]], today: str) -> Path:
             "input": entry["price"][0],
             "output": entry["price"][1],
             "basis": entry["basis"],
-            "discount_removed": entry["discount_removed"],
+            "discount": entry["discount"],
         }
     payload = {
         "date": today,
         "source": OPENROUTER_ENDPOINTS_URL.format("<id>"),
-        "rule": "standard price: the lab's own standard-tier price, else the median "
-        "over hosts (no 4-bit); promotional discounts undone",
+        "rule": "the lab's own standard-tier price, else the median over hosts "
+        "(no 4-bit); prices as charged, discounts included",
         "prices": prices,
     }
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
@@ -331,8 +331,12 @@ def report(
         ]
         for c in changes:
             basis = c["basis"]
-            if c["discount_removed"]:
-                basis += f", {round(100 * c['discount_removed'])}% promotion undone"
+            if c["discount"] and basis.startswith("median"):
+                basis += (
+                    f", hosts' discounts included (up to {round(100 * c['discount'])}%)"
+                )
+            elif c["discount"]:
+                basis += f", includes a {round(100 * c['discount'])}% discount"
             ratio = max(
                 (c["new"][k] / c["old"][k]) if c["old"][k] else 0 for k in (0, 1)
             )
