@@ -3866,7 +3866,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 3.7300000000000005e-05,
+    "cost": 3.9165e-05,
     "accuracy": 1.0
   },
   {
@@ -7610,7 +7610,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 4.08e-05,
+    "cost": 4.2839999999999996e-05,
     "accuracy": 1.0
   },
   {
@@ -9716,7 +9716,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 4.68e-05,
+    "cost": 4.9139999999999994e-05,
     "accuracy": 0.0
   },
   {
@@ -10274,7 +10274,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 5.89e-05,
+    "cost": 6.184499999999999e-05,
     "accuracy": 0.0
   },
   {
@@ -11534,7 +11534,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 5.01e-05,
+    "cost": 5.2604999999999995e-05,
     "accuracy": 1.0
   },
   {
@@ -12830,7 +12830,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 2.79e-05,
+    "cost": 2.9295e-05,
     "accuracy": 1.0
   },
   {
@@ -14306,7 +14306,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 3.710000000000001e-05,
+    "cost": 3.8955e-05,
     "accuracy": 1.0
   },
   {
@@ -14414,7 +14414,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 3.8700000000000006e-05,
+    "cost": 4.063499999999999e-05,
     "accuracy": 1.0
   },
   {
@@ -14702,7 +14702,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 3.46e-05,
+    "cost": 3.633e-05,
     "accuracy": 1.0
   },
   {
@@ -14720,7 +14720,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 4.1099999999999996e-05,
+    "cost": 4.3154999999999996e-05,
     "accuracy": 1.0
   },
   {
@@ -14828,7 +14828,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 4.7000000000000004e-05,
+    "cost": 4.934999999999999e-05,
     "accuracy": 1.0
   },
   {
@@ -14954,7 +14954,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 3.85e-05,
+    "cost": 4.042499999999999e-05,
     "accuracy": 1.0
   },
   {
@@ -15980,7 +15980,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 5.500000000000001e-05,
+    "cost": 5.7749999999999994e-05,
     "accuracy": 0.0
   },
   {
@@ -16016,7 +16016,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 6.34e-05,
+    "cost": 6.657e-05,
     "accuracy": 1.0
   },
   {
@@ -16574,7 +16574,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 3.04e-05,
+    "cost": 3.191999999999999e-05,
     "accuracy": 1.0
   },
   {
@@ -16934,7 +16934,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 3.4e-05,
+    "cost": 3.57e-05,
     "accuracy": 1.0
   },
   {
@@ -17204,7 +17204,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 3.2800000000000004e-05,
+    "cost": 3.444e-05,
     "accuracy": 1.0
   },
   {
@@ -17582,7 +17582,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 4.44e-05,
+    "cost": 4.662e-05,
     "accuracy": 1.0
   },
   {
@@ -17762,7 +17762,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 3.5900000000000005e-05,
+    "cost": 3.7695e-05,
     "accuracy": 1.0
   },
   {
@@ -18914,7 +18914,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 3.34e-05,
+    "cost": 3.507e-05,
     "accuracy": 1.0
   },
   {
@@ -23270,7 +23270,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 3e-05,
+    "cost": 3.149999999999999e-05,
     "accuracy": 1.0
   },
   {
@@ -24260,7 +24260,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 2.43e-05,
+    "cost": 2.5515e-05,
     "accuracy": 1.0
   },
   {
@@ -32000,7 +32000,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 9.495e-05,
+    "cost": 7.7945e-05,
     "accuracy": 1.0
   },
   {
@@ -32522,7 +32522,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001074,
+    "cost": 8.824e-05,
     "accuracy": 1.0
   },
   {
@@ -32792,7 +32792,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001044,
+    "cost": 8.624e-05,
     "accuracy": 0.0
   },
   {
@@ -41720,7 +41720,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0004692,
+    "cost": 0.00039502000000000005,
     "accuracy": 0.0
   },
   {
@@ -72806,7 +72806,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 8.505e-05,
+    "cost": 7.005499999999999e-05,
     "accuracy": 1.0
   },
   {
@@ -72860,7 +72860,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001053,
+    "cost": 8.653e-05,
     "accuracy": 1.0
   },
   {
@@ -73004,7 +73004,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001404,
+    "cost": 0.00011474,
     "accuracy": 1.0
   },
   {
@@ -73148,7 +73148,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00013275,
+    "cost": 0.000109475,
     "accuracy": 1.0
   },
   {
@@ -73166,7 +73166,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 9.630000000000001e-05,
+    "cost": 7.833000000000002e-05,
     "accuracy": 1.0
   },
   {
@@ -73202,7 +73202,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001467,
+    "cost": 0.00012127,
     "accuracy": 1.0
   },
   {
@@ -73364,7 +73364,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00016725,
+    "cost": 0.000137175,
     "accuracy": 1.0
   },
   {
@@ -73796,7 +73796,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00015465,
+    "cost": 0.00012691500000000001,
     "accuracy": 1.0
   },
   {
@@ -74786,7 +74786,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00014445,
+    "cost": 0.000119195,
     "accuracy": 1.0
   },
   {
@@ -93506,7 +93506,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00013965,
+    "cost": 0.000115265,
     "accuracy": 0.0
   },
   {
@@ -94100,7 +94100,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 9.539999999999999e-05,
+    "cost": 7.879e-05,
     "accuracy": 0.0
   },
   {
@@ -94316,7 +94316,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00025215,
+    "cost": 0.000211565,
     "accuracy": 0.0
   },
   {
@@ -94586,7 +94586,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00014835,
+    "cost": 0.000123085,
     "accuracy": 1.0
   },
   {
@@ -94604,7 +94604,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00020085,
+    "cost": 0.000167935,
     "accuracy": 1.0
   },
   {
@@ -94676,7 +94676,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0002361,
+    "cost": 0.00019721000000000002,
     "accuracy": 1.0
   },
   {
@@ -94892,7 +94892,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00021779999999999998,
+    "cost": 0.00018268,
     "accuracy": 0.0
   },
   {
@@ -94928,7 +94928,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00024464999999999996,
+    "cost": 0.000205615,
     "accuracy": 1.0
   },
   {
@@ -94946,7 +94946,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001299,
+    "cost": 0.00010739000000000001,
     "accuracy": 1.0
   },
   {
@@ -95198,7 +95198,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00027345,
+    "cost": 0.000229695,
     "accuracy": 0.0
   },
   {
@@ -95396,7 +95396,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00014115000000000002,
+    "cost": 0.00011771500000000001,
     "accuracy": 1.0
   },
   {
@@ -95468,7 +95468,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00017774999999999998,
+    "cost": 0.000148025,
     "accuracy": 0.0
   },
   {
@@ -95792,7 +95792,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00011309999999999998,
+    "cost": 9.366e-05,
     "accuracy": 1.0
   },
   {
@@ -96566,7 +96566,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00012915,
+    "cost": 0.000106815,
     "accuracy": 0.0
   },
   {
@@ -99302,7 +99302,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00020999999999999998,
+    "cost": 0.00017624999999999997,
     "accuracy": 1.0
   },
   {
@@ -99428,7 +99428,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 9.944999999999999e-05,
+    "cost": 8.2545e-05,
     "accuracy": 1.0
   },
   {
@@ -99806,7 +99806,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00010769999999999999,
+    "cost": 8.967e-05,
     "accuracy": 0.0
   },
   {
@@ -99968,7 +99968,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 7.785e-05,
+    "cost": 6.3985e-05,
     "accuracy": 1.0
   },
   {
@@ -100040,7 +100040,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00012285,
+    "cost": 0.000102385,
     "accuracy": 1.0
   },
   {
@@ -102236,7 +102236,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00015225,
+    "cost": 0.00012737500000000002,
     "accuracy": 1.0
   },
   {
@@ -102668,7 +102668,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00010305,
+    "cost": 8.5555e-05,
     "accuracy": 1.0
   },
   {
@@ -102884,7 +102884,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00019275,
+    "cost": 0.000161625,
     "accuracy": 1.0
   },
   {
@@ -103640,7 +103640,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00014744999999999998,
+    "cost": 0.00012314500000000001,
     "accuracy": 1.0
   },
   {
@@ -103676,7 +103676,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00016305,
+    "cost": 0.000136455,
     "accuracy": 0.0
   },
   {
@@ -103766,7 +103766,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001059,
+    "cost": 8.789e-05,
     "accuracy": 1.0
   },
   {
@@ -103982,7 +103982,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00010275,
+    "cost": 8.5325e-05,
     "accuracy": 1.0
   },
   {
@@ -105080,7 +105080,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 9.554999999999999e-05,
+    "cost": 7.680500000000001e-05,
     "accuracy": 1.0
   },
   {
@@ -105134,7 +105134,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00010049999999999999,
+    "cost": 8.025e-05,
     "accuracy": 1.0
   },
   {
@@ -105656,7 +105656,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00012285,
+    "cost": 9.9435e-05,
     "accuracy": 1.0
   },
   {
@@ -106142,7 +106142,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00016994999999999998,
+    "cost": 0.000136045,
     "accuracy": 1.0
   },
   {
@@ -106214,7 +106214,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00013365,
+    "cost": 0.00010911500000000001,
     "accuracy": 1.0
   },
   {
@@ -106520,7 +106520,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001047,
+    "cost": 8.452000000000001e-05,
     "accuracy": 1.0
   },
   {
@@ -106790,7 +106790,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001338,
+    "cost": 0.00010843,
     "accuracy": 1.0
   },
   {
@@ -107186,7 +107186,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00016935,
+    "cost": 0.000137835,
     "accuracy": 1.0
   },
   {
@@ -107996,7 +107996,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00012105,
+    "cost": 9.8255e-05,
     "accuracy": 1.0
   },
   {
@@ -108014,7 +108014,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00011175,
+    "cost": 9.062500000000001e-05,
     "accuracy": 1.0
   },
   {
@@ -108032,7 +108032,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00016065,
+    "cost": 0.000129015,
     "accuracy": 1.0
   },
   {
@@ -108212,7 +108212,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00014175,
+    "cost": 0.000113325,
     "accuracy": 1.0
   },
   {
@@ -108320,7 +108320,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001413,
+    "cost": 0.00011498000000000001,
     "accuracy": 0.0
   },
   {
@@ -108410,7 +108410,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00016455000000000002,
+    "cost": 0.00013465500000000002,
     "accuracy": 1.0
   },
   {
@@ -108824,7 +108824,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00015434999999999998,
+    "cost": 0.000124585,
     "accuracy": 1.0
   },
   {
@@ -109400,7 +109400,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001794,
+    "cost": 0.00014724,
     "accuracy": 0.0
   },
   {
@@ -109418,7 +109418,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00015,
+    "cost": 0.0001215,
     "accuracy": 1.0
   },
   {
@@ -109436,7 +109436,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00016305,
+    "cost": 0.00013115500000000001,
     "accuracy": 1.0
   },
   {
@@ -109724,7 +109724,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00025065,
+    "cost": 0.000207665,
     "accuracy": 1.0
   },
   {
@@ -110354,7 +110354,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001566,
+    "cost": 0.00012666,
     "accuracy": 1.0
   },
   {
@@ -110372,7 +110372,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00018015000000000001,
+    "cost": 0.000146915,
     "accuracy": 1.0
   },
   {
@@ -110390,7 +110390,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00024704999999999996,
+    "cost": 0.000204855,
     "accuracy": 0.0
   },
   {
@@ -110588,7 +110588,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00012405,
+    "cost": 0.000101005,
     "accuracy": 1.0
   },
   {
@@ -110894,7 +110894,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00031515,
+    "cost": 0.00026191500000000004,
     "accuracy": 1.0
   },
   {
@@ -110930,7 +110930,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00013335,
+    "cost": 0.000107635,
     "accuracy": 1.0
   },
   {
@@ -111416,7 +111416,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00012045,
+    "cost": 9.8545e-05,
     "accuracy": 0.0
   },
   {
@@ -111578,7 +111578,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00013785,
+    "cost": 0.000111935,
     "accuracy": 0.0
   },
   {
@@ -111596,7 +111596,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001278,
+    "cost": 0.00010373000000000001,
     "accuracy": 0.0
   },
   {
@@ -111722,7 +111722,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00012555,
+    "cost": 0.000101855,
     "accuracy": 1.0
   },
   {
@@ -111830,7 +111830,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001359,
+    "cost": 0.00011114,
     "accuracy": 1.0
   },
   {
@@ -112136,7 +112136,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001368,
+    "cost": 0.00011028000000000001,
     "accuracy": 1.0
   },
   {
@@ -112208,7 +112208,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001401,
+    "cost": 0.00011346,
     "accuracy": 1.0
   },
   {
@@ -112406,7 +112406,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00014115,
+    "cost": 0.000114315,
     "accuracy": 1.0
   },
   {
@@ -112604,7 +112604,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00012419999999999998,
+    "cost": 0.00010036999999999999,
     "accuracy": 1.0
   },
   {
@@ -112838,7 +112838,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00012825,
+    "cost": 0.000103875,
     "accuracy": 1.0
   },
   {
@@ -112892,7 +112892,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0002292,
+    "cost": 0.00018662000000000003,
     "accuracy": 0.0
   },
   {
@@ -113000,7 +113000,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00011355,
+    "cost": 9.365500000000001e-05,
     "accuracy": 1.0
   },
   {
@@ -113324,7 +113324,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0002733,
+    "cost": 0.00022588000000000003,
     "accuracy": 0.0
   },
   {
@@ -113360,7 +113360,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00012615,
+    "cost": 0.000101415,
     "accuracy": 1.0
   },
   {
@@ -116582,7 +116582,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00013455,
+    "cost": 0.00011210499999999998,
     "accuracy": 1.0
   },
   {
@@ -126266,7 +126266,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00017490000000000002,
+    "cost": 0.00013849,
     "accuracy": 0.7083333333333333
   },
   {
@@ -127310,7 +127310,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001548,
+    "cost": 0.00012353,
     "accuracy": 0.44545454545454544
   },
   {
@@ -130424,7 +130424,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.00020475000000000002,
+    "cost": 0.000162425,
     "accuracy": 0.06896551724137931
   },
   {
@@ -132620,7 +132620,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0002448,
+    "cost": 0.00019578,
     "accuracy": 0.369047619047619
   },
   {
@@ -133088,7 +133088,7 @@
       "provider": "azure",
       "error": null
     },
-    "cost": 0.0001374,
+    "cost": 0.00011454,
     "accuracy": 0.0
   },
   {
