@@ -19,7 +19,8 @@
 #                               or {active_params_b: N, bits: N}; priced by the rule in
 #                               local_pricing.yaml (python scripts/pricing/local_price.py --write)
 #
-# Profiles keyed by an OpenRouter id (or with openrouter_id) take OpenRouter's list price
+# Profiles keyed by an OpenRouter id (or with openrouter_id) take their price on
+# OpenRouter (the lab's own price, else the median over hosts; discounts included)
 # when a maintainer runs:
 #   python scripts/pricing/sync_openrouter.py
 # which also records the prices used in model_cost/price_snapshots/<date>.json. A model
@@ -101,9 +102,9 @@ models:
     as_of: "2026-09-27"
     source: null
   "deepseek/deepseek-chat":
-    price: {input: 0.286, output: 1.143}
+    price: {input: 0.2574, output: 1.0287}
     aliases: ["deepseek-chat"]
-    as_of: "2026-10-31"
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/deepseek/deepseek-chat"
   "deepseek/deepseek-reasoner":
     price: {input: 0.28, output: 0.42}
@@ -113,34 +114,28 @@ models:
     note: "DeepSeek's API name; the model behind it changed over time, so it is not synced."
     sync: false
   "deepseek/deepseek-v3.2":
-    price: {input: 0.28, output: 0.42}
+    price: {input: 0.2595, output: 0.4}
     aliases: ["deepseek-v3.2"]
-    as_of: "2026-11-10"
-    source: "https://api-docs.deepseek.com/quick_start/pricing"
-    note: "DeepSeek's last price for V3.2 (input, cache miss / output). DeepSeek no longer sells V3.2 itself (its API names now serve V4.1), so the price is kept fixed."
-    sync: false
+    as_of: "2026-11-16"
+    source: "https://openrouter.ai/deepseek/deepseek-v3.2"
   "deepseek/deepseek-v4-flash":
-    price: {input: 0.14, output: 0.28}
-    as_of: "2026-10-31"
+    price: {input: 0.0966, output: 0.1925}
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/deepseek/deepseek-v4-flash"
   "deepseek/deepseek-v4-flash-0731":
-    price: {input: 0.15, output: 0.528}
+    price: {input: 0.14, output: 0.42}
     aliases: ["deepseek-ai/DeepSeek-V4-Flash-0731"]
-    as_of: "2026-11-10"
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/deepseek/deepseek-v4-flash-0731"
   "deepseek/deepseek-v4-pro":
-    price: {input: 1.32, output: 3.96}
-    as_of: "2026-11-10"
-    source: "https://api-docs.deepseek.com/quick_start/pricing"
-    note: "DeepSeek's own price (standard, peak-hour rate; off-peak hours are half price). DeepSeek sells the model directly but not on OpenRouter, so the price is set by hand."
-    sync: false
+    price: {input: 1.3, output: 2.6}
+    as_of: "2026-11-16"
+    source: "https://openrouter.ai/deepseek/deepseek-v4-pro"
   "deepseek/deepseek-v4.1-flash":
-    price: {input: 0.3, output: 1.2}
+    price: {input: 0.21, output: 0.84}
     aliases: ["deepseek/deepseek-v4.1-flash@high", "deepseek/deepseek-v4.1-flash@low"]
-    as_of: "2026-11-10"
-    source: "https://api-docs.deepseek.com/quick_start/pricing"
-    note: "DeepSeek's own price for deepseek-flash (DeepSeek-V4.1-Flash; standard, peak-hour rate). DeepSeek sells the model directly but not on OpenRouter, so the price is set by hand."
-    sync: false
+    as_of: "2026-11-16"
+    source: "https://openrouter.ai/deepseek/deepseek-v4.1-flash"
   "gemini-2.0-flash-001":
     price: {input: 0.1, output: 0.4}
     as_of: "2026-09-27"
@@ -198,21 +193,21 @@ models:
     as_of: null
     source: null
   "google/gemini-3.7-flash":
-    price: {input: 1.5, output: 7.5}
-    as_of: "2026-10-31"
+    price: {input: 0.75, output: 3.75}
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/google/gemini-3.7-flash"
   "google/gemini-3.8-flash":
-    price: {input: 1.5, output: 7.5}
+    price: {input: 0.75, output: 3.75}
     aliases: ["gemini-3.8-flash"]
-    as_of: "2026-10-31"
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/google/gemini-3.8-flash"
   "google/gemma-3n-e4b-it":
     price: {input: 0.02, output: 0.04}
     as_of: "2026-09-27"
     source: null
   "google/gemma-4-31b-it":
-    price: {input: 0.175, output: 0.4}
-    as_of: "2026-11-10"
+    price: {input: 0.145, output: 0.4}
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/google/gemma-4-31b-it"
   "gpt-5-chat":
     price: {input: 1.25, output: 10}
@@ -227,9 +222,9 @@ models:
     as_of: "2026-09-27"
     source: null
   "inclusionai/ling-3.0-flash":
-    price: {input: 0.06, output: 0.18}
+    price: {input: 0.021, output: 0.063}
     aliases: ["lingdt-3.0-flash"]
-    as_of: "2026-10-31"
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/inclusionai/ling-3.0-flash"
     note: "lingdt-3.0-flash: priced as its public base model, per its submitter (#241)."
   "llama-4-maverick-17b-128e-instruct-fp8":
@@ -276,8 +271,8 @@ models:
     as_of: "2026-09-27"
     source: null
   "moonshotai/kimi-k2.5":
-    price: {input: 0.6, output: 3}
-    as_of: "2026-10-31"
+    price: {input: 0.57, output: 3}
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/moonshotai/kimi-k2.5"
   "moonshotai/kimi-k2.6":
     price: {input: 0.95, output: 4}
@@ -401,9 +396,9 @@ models:
     as_of: null
     source: null
   "openai/gpt-oss-120b":
-    price: {input: 0.145, output: 0.6}
+    price: {input: 0.115, output: 0.51}
     aliases: ["gpt-oss-120b", "openai_gpt-oss-120b"]
-    as_of: "2026-11-10"
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/openai/gpt-oss-120b"
   "openai/gpt-oss-20b":
     price: {input: 0.04, output: 0.15}
@@ -411,9 +406,9 @@ models:
     as_of: "2026-10-31"
     source: "https://openrouter.ai/openai/gpt-oss-20b"
   "qwen/qwen3-235b-a22b-2507":
-    price: {input: 0.145, output: 0.675}
+    price: {input: 0.15, output: 0.75}
     aliases: ["alibaba/qwen3-235b-a22b-instruct-2507", "qwen3-235b-a22b-instruct-2507", "qwen_qwen3-235b-a22b-2507"]
-    as_of: "2026-11-10"
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/qwen/qwen3-235b-a22b-2507"
     note: "Unified spellings; previous prices: qwen3-235b-a22b-instruct-2507 0.5/2. alibaba/qwen3-235b-a22b-instruct-2507: same model, Alibaba's spelling."
   "qwen/qwen3-30b-a3b-instruct-2507":
@@ -423,13 +418,13 @@ models:
     source: "https://openrouter.ai/qwen/qwen3-30b-a3b-instruct-2507"
     note: "Unified spellings; previous prices: qwen/qwen3-30b-a3b-instruct-2507 0.08/0.33."
   "qwen/qwen3-coder":
-    price: {input: 0.35, output: 1.5}
+    price: {input: 0.3, output: 1}
     aliases: ["qwen_qwen3-coder"]
-    as_of: "2026-10-31"
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/qwen/qwen3-coder"
   "qwen/qwen3-coder-30b-a3b-instruct":
-    price: {input: 0.11, output: 0.44}
-    as_of: "2026-10-31"
+    price: {input: 0.15, output: 0.6}
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/qwen/qwen3-coder-30b-a3b-instruct"
   "qwen/qwen3-coder-next":
     price: {input: 0.12, output: 0.8}
@@ -498,8 +493,8 @@ models:
     as_of: null
     source: null
   "upstage/solar-pro4":
-    price: {input: 0.3, output: 1.2}
-    as_of: "2026-10-31"
+    price: {input: 0.15, output: 0.6}
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/upstage/solar-pro4"
   "x-ai/grok-4.1-fast":
     price: {input: 0.2, output: 0.5}
@@ -526,9 +521,9 @@ models:
     as_of: "2026-09-27"
     source: null
   "z-ai/glm-4.5-air":
-    price: {input: 0.2, output: 1.1}
+    price: {input: 0.135, output: 0.855}
     aliases: ["glm-4.5-air"]
-    as_of: "2026-10-31"
+    as_of: "2026-11-16"
     source: "https://openrouter.ai/z-ai/glm-4.5-air"
   "z-ai/glm-4.6":
     price: {input: 0.6, output: 2.2}
