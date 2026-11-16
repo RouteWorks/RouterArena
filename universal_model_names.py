@@ -9,6 +9,12 @@ files in ./router_evaluation/llm_inference/outputs/
 """
 
 universal_names = [
+    # Tirtha (Spanda Works)
+    "baseten/elephant-1",
+    # Tirtha (Spanda Works)
+    "google/gemma-4-31b-it-turbo",
+    "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+    "Qwen/Qwen3.8-Max",
     "z-ai/glm-5.3@low",
     "z-ai/glm-5.3@high",
     "z-ai/glm-5.3-flash@default",

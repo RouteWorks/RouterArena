@@ -730,5 +730,21 @@
   "z-ai/glm-5.3-flash@default": {
     "input_token_price_per_million": 0.15,
     "output_token_price_per_million": 0.5
+  },
+  "google/gemma-4-31b-it-turbo": {
+    "input_token_price_per_million": 0.14,
+    "output_token_price_per_million": 0.44
+  },
+  "deepseek-ai/DeepSeek-V4.1-Flash-1017": {
+    "input_token_price_per_million": 0.266,
+    "output_token_price_per_million": 0.756
+  },
+  "Qwen/Qwen3.8-Max": {
+    "input_token_price_per_million": 2.043,
+    "output_token_price_per_million": 6.09
+  },
+  "baseten/elephant-1": {
+    "input_token_price_per_million": 0.035,
+    "output_token_price_per_million": 0.0
   }
 }
