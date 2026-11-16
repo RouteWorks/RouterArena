@@ -287,6 +287,15 @@ routers:
       affiliation: "@Hyeon-kki"
       github_url: "https://github.com/Hyeon-kki"
       type: "closed-source"
+  - readme_name: "DT-Router"
+    website_name: "DT-Router"
+    prediction: "DT-Router"
+    category_key: "dt-router"
+    flip_key: "dt-router"
+    website:
+      affiliation: "Ant Digital Technologies"
+      github_url: "https://github.com/antgroup/DTRouter"
+      type: "closed-source"
   # --- Externally-evaluated baselines (headline from README; derived data on
   #     the website is preserved as-is) ---
   - readme_name: "MIRT-BERT"
