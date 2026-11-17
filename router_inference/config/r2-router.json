@@ -1,16 +1,15 @@
 {
-  "pipeline_params": {
-    "router_name": "r2-router",
-    "router_cls_name": "R2Router",
-    "models": [
-      "qwen/qwen3-235b-a22b-2507",
-      "qwen/qwen3-next-80b-a3b-instruct",
-      "qwen/qwen3-30b-a3b-instruct-2507",
-      "Qwen/Qwen3-Coder-Next",
-      "gemini-2.5-flash",
-      "claude-3-haiku-20240307"
-    ],
-    "description": "R2-Router: Global KNN (K=80, cosine, distance-weighted) trained on sub_10 split. 6 models, 4 budgets (concise, budget_200, budget_400, budget_800). Routes via risk=(1-lambda)*quality - lambda*tokens*price. Lambda=0.999.",
-    "lambda": 0.999
-  }
+ "pipeline_params": {
+  "router_name": "r2-router",
+  "router_cls_name": "R2Router",
+  "models": [
+   "google/gemma-4-26b-a4b-it",
+   "google/gemma-4-31b-it",
+   "gpt-oss-20b",
+   "ibm-granite/granite-4.2-30b",
+   "nvidia/nemotron-3.5-lightning",
+   "openai/gpt-oss-120b"
+  ],
+  "description": "R2-Router (resubmission): routes over (model, output-length budget) with quality predicted from query embeddings (EmbeddingGemma-300m), trained only on public non-RouterArena datasets; open-weight models served locally with vLLM. Budgets: concise, 200, 500, unlimited."
+ }
 }
