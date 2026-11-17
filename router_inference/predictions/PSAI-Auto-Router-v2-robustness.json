@@ -1195,7 +1195,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.0003885,
+    "cost": 0.000777,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -1375,7 +1375,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.00089625,
+    "cost": 0.0017925,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -1475,7 +1475,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.00048675,
+    "cost": 0.0009735,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -1484,17 +1484,18 @@
     "prompt": "Examine the inquiry below and furnish the appropriate response.\n\nBackdrop: Absent\n\nQuery: Identify the metropolis that serves as the administrative center of the United Kingdom?\n\nPresent the accurate response within \\boxed{X}, where X represents the most prevalent and accurate reply to the inquiry. Limit the explanation or feedback to a maximum of three sentences.",
     "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "The capital of the United Kingdom is London.\n\n\\boxed{London}",
+      "generated_answer": "The metropolis that serves as the administrative center of the United Kingdom is London. It functions as the seat of the British government and houses the Parliament of the United Kingdom.\n\n\\boxed{London}",
       "success": true,
       "token_usage": {
-        "input_tokens": 78,
-        "output_tokens": 15,
-        "total_tokens": 93
+        "input_tokens": 69,
+        "output_tokens": 39,
+        "total_tokens": 108
       },
-      "provider": "openrouter",
-      "error": null
+      "provider": "psai",
+      "error": null,
+      "model_used": "google/gemini-3.1-flash-lite"
     },
-    "cost": 4.2000000000000004e-05,
+    "cost": 7.575e-05,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -2154,7 +2155,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.0007005,
+    "cost": 0.001401,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -2554,7 +2555,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.00097125,
+    "cost": 0.0019425,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -2574,7 +2575,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.00074775,
+    "cost": 0.0014955,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -2654,7 +2655,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.0012262500000000001,
+    "cost": 0.0024525000000000003,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -2734,7 +2735,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.0007582499999999999,
+    "cost": 0.0015164999999999998,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -3114,7 +3115,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.00173925,
+    "cost": 0.0034785,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -3174,7 +3175,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00013936,
+    "cost": 0.00014148,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -3434,7 +3435,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00012439,
+    "cost": 0.000127145,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -3734,7 +3735,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.0011805,
+    "cost": 0.002361,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -4314,7 +4315,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.0009457500000000001,
+    "cost": 0.0018915000000000002,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -4994,7 +4995,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.000321,
+    "cost": 0.000642,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -5314,7 +5315,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00011208,
+    "cost": 0.00011409,
     "accuracy": 0.875,
     "for_optimality": false
   },
@@ -5334,7 +5335,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00014239,
+    "cost": 0.00014559500000000002,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -5414,7 +5415,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00018814,
+    "cost": 0.00019077,
     "accuracy": 0.3829787234042553,
     "for_optimality": false
   },
@@ -5434,7 +5435,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00021642,
+    "cost": 0.00022111,
     "accuracy": 0.05714285714285714,
     "for_optimality": false
   },
@@ -5454,7 +5455,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00014465000000000002,
+    "cost": 0.00014822499999999998,
     "accuracy": 0.6666666666666666,
     "for_optimality": false
   },
@@ -5474,7 +5475,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00015828,
+    "cost": 0.00016194,
     "accuracy": 0.875,
     "for_optimality": false
   },
@@ -5494,7 +5495,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00017483,
+    "cost": 0.000180265,
     "accuracy": 0.4047619047619047,
     "for_optimality": false
   },
@@ -5503,17 +5504,18 @@
     "prompt": "Kindly peruse the ensuing background and respond to the inquiry grounded in its substance.\n\nBackground: The Project Gutenberg EBook of The Lady, or the Tiger?, authored by Frank R. Stockton\n\nThis digital book is available for anyone's use at no expense and with virtually no limitations whatsoever. You are permitted to replicate it, distribute it, or reuse it under the stipulations of the Project Gutenberg License accompanying this eBook or online at www.gutenberg.net\n\nTitle: The Lady, or the Tiger?\n\nAuthor: Frank R. Stockton\n\nRevision Date: December 28, 2008\nPublication Date: July 20, 2008 [EBook #396]\nInitial Release: January, 1995\n\nLanguage: English\n\n*** COMMENCEMENT OF THIS PROJECT GUTENBERG EBOOK THE LADY, OR THE TIGER? ***\n\nCrafted by Edward A. Malone.\n\nTHE LADY, OR THE TIGER?\n\nby\n\nFrank R. Stockton\n\nIn an era long past, there reigned a king of partial barbarism, whose thoughts, though somewhat refined by the advancement of distant Latin neighbors, remained grand, vivid, and unrestricted, reflecting the barbaric aspect of his nature. Endowed with a vivid imagination, he wielded an authority so compelling that he could transform his diverse imaginations into realities at will. Inclined toward introspection, when he and his inner self concurred on any matter, it was executed without delay. When all elements of his household and political mechanisms operated flawlessly, his demeanor was amiable and gracious; yet, when minor disruptions arose, and some components deviated from their paths, his amiability and graciousness intensified, for he delighted in rectifying irregularities and smoothing rough spots.\n\nAmong the borrowed concepts that tempered his barbarism was the notion of the public arena, where displays of human and beastly bravery refined and cultured his people's minds.\n\nHowever, even here his lively and barbaric imagination made its mark. The king's arena was constructed not to offer the populace a chance to hear the laments of dying combatants or witness the inevitable outcome of a clash between faith and famished fangs, but for endeavors more fitting to broaden and enhance the people's intellectual vigor. This colossal amphitheater, with its surrounding galleries, hidden vaults, and invisible passageways, served as a medium of poetic justice, where crime met punishment, or virtue received reward, through the verdicts of an impartial and uncorrupted chance.\n\nWhen an individual was charged with a crime significant enough to captivate the king's interest, public announcement was made that on a designated day the fate of the accused would be determined in the king's arena. This edifice, deserving of its appellation, owed its form and design to distant lands, yet its purpose sprang solely from the mind of this sovereign, who, entirely a king, adhered to no tradition more binding than his whims, grafting onto every adopted form of human thought and action the lush growth of his barbaric idealism.\n\nAs the populace filled the galleries, and the king, encircled by his court, occupied his elevated royal seat on one side of the arena, he signaled, a door below him opened, and the accused entered the amphitheater. Directly across from him, on the opposite side of the enclosed space, stood two identical doors side by side. It was the accused's duty and privilege to approach these doors and open one. He could choose either door, guided only by the aforementioned impartial and uncorrupted chance. If he opened one, a famished tiger, the most ferocious and merciless available, would emerge, pouncing upon him and tearing him apart as retribution for his wrongdoing. Once the criminal's case was resolved thus, mournful iron bells tolled, lamentations rose from the hired mourners stationed at the arena's periphery, and the immense crowd, with bowed heads and heavy hearts, slowly made their way home, lamenting deeply that someone so youthful and fair, or so venerable and esteemed, should meet such a dreadful end.\n\nConversely, if the accused opened the other door, a lady would appear, the most fitting for his age and rank that the king could choose from among his fair subjects, and he would marry her immediately, as a reward for his innocence. It mattered not that he might already have a spouse and family, or that his affections might be engaged with someone of his choosing; the king permitted no such subordinate arrangements to obstruct his grand scheme of retribution and reward. The ceremony, as in the other scenario, occurred instantly and within the arena. Another door beneath the king opened, revealing a priest, followed by a chorus and dancing maidens playing cheerful tunes on golden horns and performing a wedding dance.\n\nInformation about the Mission of Project Gutenberg-tm\n\nProject Gutenberg-tm is equated with the free dissemination of electronic works in formats compatible with the broadest range of computers, including outdated, older, middle-aged, and new models. It thrives due to the dedication of countless volunteers and contributions from individuals across diverse backgrounds.\n\nVolunteer support and financial contributions to provide volunteers with essential assistance are crucial to achieving Project Gutenberg-tm's objectives and ensuring that the Project Gutenberg-tm collection remains freely accessible for future generations. In 2001, the Project Gutenberg Literary Archive Foundation was established to secure a stable and enduring future for Project Gutenberg-tm and future generations. For further information about the Project Gutenberg Literary Archive Foundation and how your efforts and donations can contribute, refer to Sections 3 and 4 and the Foundation's webpage at http://www.pglaf.org.\n\nSection 3. Information about the Project Gutenberg Literary Archive Foundation\n\nThe Project Gutenberg Literary Archive Foundation is a nonprofit 501(c)(3) educational entity established under Mississippi state law and granted tax-exempt status by the Internal Revenue Service. The Foundation's EIN or federal tax identification number is 64-6221541. Its 501(c)(3) letter is available at http://pglaf.org/fundraising. Donations to the Project Gutenberg Literary Archive Foundation are tax-deductible to the fullest extent permitted by U.S. federal laws and your state's laws.\n\nThe Foundation's main office is situated at 4557 Melan Dr. S. Fairbanks, AK, 99712, though its volunteers and staff span numerous locations. Its business office is located at 809 North 1500 West, Salt Lake City, UT 84116, (801) 596-1887, email business@pglaf.org. Email contact links and updated contact information can be found on the Foundation's website and official page at http://pglaf.org.\n\nFor further contact details:\nDr. Gregory B. Newby\nChief Executive and Director\ngbnewby@pglaf.org\n\nSection 4. Information about Donations to the Project Gutenberg Literary Archive Foundation\n\nProject Gutenberg-tm relies on and cannot continue without broad public support and donations to fulfill its mission of expanding the number of public domain and licensed works that can be freely distributed in machine-readable form accessible by the widest range of equipment, including outdated devices. Numerous small donations ($1 to $5,000) are especially vital for maintaining tax-exempt status with the IRS.\n\nThe Foundation is committed to adhering to the laws regulating charities and charitable donations across all 50 U.S. states. Compliance requirements vary significantly and require substantial effort, extensive paperwork, and numerous fees to meet and uphold these requirements. We do not solicit donations in areas where we have not received written compliance confirmation. To SEND DONATIONS or ascertain compliance status for any specific state, visit http://pglaf.org.\n\nAlthough we cannot and do not solicit contributions from states where we have not satisfied solicitation requirements, we know of no restrictions against accepting unsolicited donations from donors in such states who approach us with offers to donate.\n\nInternational donations are gratefully accepted, but we cannot make any statements concerning the tax treatment of donations received from outside the United States. U.S. laws alone overwhelm our small team.\n\nPlease check the Project Gutenberg Web pages for current donation methods and addresses. Donations are accepted through various means, including checks, online payments, and credit card donations. To donate, please visit: http://pglaf.org/donate.\n\nSection 5. General Information About Project Gutenberg-tm electronic works.\n\nProfessor Michael S. Hart is the founder of the Project Gutenberg-tm concept of a library of electronic works that could be freely shared with anyone. For thirty years, he produced and distributed Project Gutenberg-tm eBooks with only a loose network of volunteer support.\n\nProject Gutenberg-tm eBooks are often created from several printed editions, all confirmed as Public Domain in the U.S. unless a copyright notice is included. Thus, we do not necessarily keep eBooks in compliance with any particular paper edition.\n\nMost users begin at our Web site, which hosts the main PG search facility: http://www.gutenberg.net\n\nThis Web site includes information about Project Gutenberg-tm, including how to donate to the Project Gutenberg Literary Archive Foundation, how to assist in producing new eBooks, and how to subscribe to our email newsletter for updates on new eBooks.\n\nInquiry: How does the princess exert her sway?\n\nProvide your conclusive response in \\boxed{{}} format. Keep your explanation straightforward, succinct, and within 3 sentences.",
     "prediction": "qwen/qwen3-next-80b-a3b-instruct",
     "generated_result": {
-      "generated_answer": "The context provided does not mention the princess or her actions, as the excerpt ends before the story’s climax involving her. Therefore, based on the given text, nothing can be said about what the princess uses her influence to do.\n\n\\boxed{{}}",
+      "generated_answer": "The princess exerts her sway by subtly influencing the accused’s choice in the arena—she knows what lies behind each door and uses her knowledge, emotion, and power to guide his decision, though the story leaves her ultimate choice ambiguous. Her influence stems from her intimate connection to the king and her deep, conflicting feelings for the accused. Thus, she wields control not through open authority, but through concealed, impassioned manipulation.  \n\n$\\boxed{\\text{The princess sways the outcome by secretly guiding the accused’s choice with her knowledge of the doors and her powerful emotions.}}$",
       "success": true,
       "token_usage": {
-        "input_tokens": 2288,
-        "output_tokens": 51,
-        "total_tokens": 2339
+        "input_tokens": 1951,
+        "output_tokens": 119,
+        "total_tokens": 2070
       },
-      "provider": "local-vllm",
-      "error": null
+      "provider": "psai",
+      "error": null,
+      "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00026202,
+    "cost": 0.00031624500000000005,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -5533,7 +5535,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00016829,
+    "cost": 0.000171345,
     "accuracy": 0.1,
     "for_optimality": false
   },
@@ -5593,7 +5595,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00014715,
+    "cost": 0.00014982500000000002,
     "accuracy": 0.8151260504201682,
     "for_optimality": false
   },
@@ -5613,7 +5615,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00017974000000000004,
+    "cost": 0.00018172000000000002,
     "accuracy": 0.2573529411764706,
     "for_optimality": false
   },
@@ -5633,7 +5635,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00013178000000000002,
+    "cost": 0.00013409,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -5673,7 +5675,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00019523,
+    "cost": 0.000197765,
     "accuracy": 0.23428571428571435,
     "for_optimality": false
   },
@@ -5762,17 +5764,18 @@
     "prompt": "pleese raed the folowing mltiple-choice qestions adn provide teh most likely corect answr bsed on th optins given.\n\nContex: None\n\nQestion: What was teh caus of Marily Monroe's suciide?\n\nOptons:  \nA. Drug Ovrdose  \nB. House Fir  \nC. Gunsot  \nD. Knfe Atack  \n\nProvd the corect leter choce in \\boxed{X}, wher X is teh corect leter choce. Keeep teh explnation or feedbak within 3 senteces.",
     "prediction": "google/gemini-3.1-flash-lite",
     "generated_result": {
-      "generated_answer": "\\boxed{A}\n\nMarilyn Monroe died from an acute barbiturate poisoning, which was ruled a probable suicide by drug overdose.",
+      "generated_answer": "The most likely correct answer based on the provided options is \\boxed{A}. Marilyn Monroe's death was officially ruled by the Los Angeles County coroner as a probable suicide resulting from an overdose of barbiturates. The other listed causes of death are inconsistent with historical records regarding her passing.",
       "success": true,
       "token_usage": {
-        "input_tokens": 125,
-        "output_tokens": 28,
-        "total_tokens": 153
+        "input_tokens": 131,
+        "output_tokens": 58,
+        "total_tokens": 189
       },
-      "provider": "openrouter",
-      "error": null
+      "provider": "psai",
+      "error": null,
+      "model_used": "google/gemini-3.1-flash-lite"
     },
-    "cost": 7.324999999999999e-05,
+    "cost": 0.00011975000000000001,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6072,7 +6075,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.00292125,
+    "cost": 0.0058425,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -6312,7 +6315,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00015528000000000002,
+    "cost": 0.00015749,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6452,7 +6455,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00012239,
+    "cost": 0.000123995,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6472,7 +6475,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00014047000000000002,
+    "cost": 0.000142835,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6532,7 +6535,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00012145,
+    "cost": 0.000124225,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6572,7 +6575,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00012689,
+    "cost": 0.00012929500000000003,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6832,7 +6835,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.00064425,
+    "cost": 0.0012885,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6852,7 +6855,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00010899000000000001,
+    "cost": 0.00010954500000000001,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -6872,7 +6875,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.00058725,
+    "cost": 0.0011745,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6892,7 +6895,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.0003945,
+    "cost": 0.000789,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -6932,7 +6935,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.0010019999999999999,
+    "cost": 0.0020039999999999997,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -7052,7 +7055,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.0005707500000000001,
+    "cost": 0.0011415000000000002,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -7092,7 +7095,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 8.563e-05,
+    "cost": 8.6415e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -7112,7 +7115,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.00309825,
+    "cost": 0.0061965,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -7172,7 +7175,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.000978,
+    "cost": 0.001956,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -7192,7 +7195,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.001278,
+    "cost": 0.002556,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -7212,7 +7215,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.00363825,
+    "cost": 0.0072765,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -7252,7 +7255,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 9.234000000000001e-05,
+    "cost": 9.307000000000002e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -7412,7 +7415,7 @@
       "error": null,
       "model_used": "gemini-3.8-flash"
     },
-    "cost": 0.0009045,
+    "cost": 0.001809,
     "accuracy": 1.0,
     "for_optimality": false
   },
@@ -7552,7 +7555,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 3.651e-05,
+    "cost": 3.8355e-05,
     "accuracy": 0.0,
     "for_optimality": false
   },
@@ -7672,7 +7675,7 @@
       "error": null,
       "model_used": "qwen/qwen3-next-80b-a3b-instruct"
     },
-    "cost": 0.00040924,
+    "cost": 0.00041077,
     "accuracy": 0.0,
     "for_optimality": false
   },
