@@ -149,6 +149,10 @@ universal_names = [
     "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
     # KT-ModelRouter pool additions
     "google/gemma-4-31b-it",
+    # R2-Router (resubmission) self-hosted pool additions
+    "google/gemma-4-26b-a4b-it",
+    "nvidia/nemotron-3.5-lightning",
+    "ibm-granite/granite-4.2-30b",
     # DT-Router candidate models
     "lingdt-3.0-flash",
     "anthropic/claude-haiku-5.5",

@@ -209,6 +209,12 @@ models:
     price: {input: 0.145, output: 0.4}
     as_of: "2026-11-16"
     source: "https://openrouter.ai/google/gemma-4-31b-it"
+  "google/gemma-4-26b-a4b-it":
+    price: {input: 0.09, output: 0.3}
+    aliases: ["google/gemma-4-26B-A4B-it"]
+    as_of: "2026-11-17"
+    source: "https://openrouter.ai/google/gemma-4-26b-a4b-it"
+    note: "R2-Router serves the same weights locally with vLLM (bf16); priced at the OpenRouter list price."
   "gpt-5-chat":
     price: {input: 1.25, output: 10}
     as_of: "2026-09-27"
@@ -227,6 +233,13 @@ models:
     as_of: "2026-11-16"
     source: "https://openrouter.ai/inclusionai/ling-3.0-flash"
     note: "lingdt-3.0-flash: priced as its public base model, per its submitter (#241)."
+  "ibm-granite/granite-4.2-30b":
+    price: {input: 0.202, output: 0.631}
+    local: {active_params_b: 30, bits: 16}
+    as_of: "2026-11-17"
+    source: "local-model rule (model_cost/local_pricing.yaml)"
+    note: "R2-Router serves it locally with vLLM (bf16). Not listed on OpenRouter, so priced from the size curve (#266)."
+    sync: false
   "llama-4-maverick-17b-128e-instruct-fp8":
     price: {input: 0.25, output: 1}
     as_of: "2026-09-27"
@@ -289,6 +302,12 @@ models:
     as_of: null
     source: null
     note: "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B: same model, Hugging Face spelling."
+  "nvidia/nemotron-3.5-lightning":
+    price: {input: 0.07, output: 0.2}
+    aliases: ["nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16"]
+    as_of: "2026-11-17"
+    source: "https://openrouter.ai/nvidia/nemotron-3.5-lightning"
+    note: "R2-Router serves the same weights locally with vLLM (bf16); priced at the OpenRouter list price."
   "o4-mini":
     price: {input: 1.1, output: 4.4}
     aliases: ["o4-mini-2025-04-16"]
