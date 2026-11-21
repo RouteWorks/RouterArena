@@ -4,6 +4,9 @@
     "router_cls_name": "NexusR2Router",
     "models": [
       "google/gemini-3.1-flash-lite",
+      "gpt-oss-120b",
+      "gpt-oss-20b",
+      "google/gemini-3.5-flash-lite",
       "google/gemini-3-flash-preview",
       "gemini-3-flash-preview",
       "google/gemini-3.8-flash",
@@ -14,6 +17,6 @@
       "openai/gpt-6-luna",
       "anthropic/claude-sonnet-4.5"
     ],
-    "description": "Nexus-R2: Reasoning Token Budgeting (R^2) & Item Response Theory (IRT) Multi-Task Edge Router on ModernBERT INT8. Dynamically routes across Gemini 3.1 Flash-Lite, Gemini 3 Flash Preview, Gemini 3.8 Flash, DeepSeek V4 Flash, DeepSeek V4.1 Flash, Qwen3-Coder-Next, Qwen3-235B-A22B, GPT-6 Luna, and Claude Sonnet 4.5. Validated on RouterArena 8,400 global benchmark split."
+    "description": "Nexus-R2: Reasoning Token Budgeting (R^2) & Item Response Theory (IRT) Multi-Task Edge Router on ModernBERT INT8. Dynamically routes across GPT-OSS 20B, GPT-OSS 120B, Gemini 3.1 Flash-Lite, Gemini 3.5 Flash-Lite, Gemini 3 Flash Preview, Gemini 3.8 Flash, DeepSeek V4 Flash, DeepSeek V4.1 Flash, Qwen3-Coder-Next, Qwen3-235B-A22B, GPT-6 Luna, and Claude Sonnet 4.5. Validated on RouterArena 8,400 global benchmark split."
   }
 }
