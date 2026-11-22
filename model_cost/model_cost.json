@@ -199,6 +199,10 @@
     "input_token_price_per_million": 0.5,
     "output_token_price_per_million": 3
   },
+  "google/gemini-3-flash-preview@none": {
+    "input_token_price_per_million": 0.5,
+    "output_token_price_per_million": 3
+  },
   "google/gemini-3.1-flash-lite": {
     "input_token_price_per_million": 0.25,
     "output_token_price_per_million": 1.5
@@ -232,6 +236,10 @@
     "output_token_price_per_million": 3.75
   },
   "gemini-3.8-flash": {
+    "input_token_price_per_million": 0.75,
+    "output_token_price_per_million": 3.75
+  },
+  "google/gemini-3.8-flash@low": {
     "input_token_price_per_million": 0.75,
     "output_token_price_per_million": 3.75
   },
@@ -595,6 +603,10 @@
     "input_token_price_per_million": 0.21,
     "output_token_price_per_million": 1.9
   },
+  "kt/mmbert-joint3in1": {
+    "input_token_price_per_million": 0.0452,
+    "output_token_price_per_million": 0.147
+  },
   "qwen/qwen3-4b-instruct-2507": {
     "input_token_price_per_million": 0.084,
     "output_token_price_per_million": 0.267
@@ -614,6 +626,10 @@
   "qwen_qwen3-vl-32b-instruct": {
     "input_token_price_per_million": 0.5,
     "output_token_price_per_million": 1.5
+  },
+  "tencent/hy4-flash": {
+    "input_token_price_per_million": 0.035,
+    "output_token_price_per_million": 0.1405
   },
   "test": {
     "input_token_price_per_million": 1,

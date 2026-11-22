@@ -171,7 +171,7 @@ models:
     source: null
   "google/gemini-3-flash-preview":
     price: {input: 0.5, output: 3}
-    aliases: ["gemini-3-flash-preview"]
+    aliases: ["gemini-3-flash-preview", "google/gemini-3-flash-preview@none"]
     as_of: "2026-09-27"
     source: null
   "google/gemini-3.1-flash-lite":
@@ -198,7 +198,7 @@ models:
     source: "https://openrouter.ai/google/gemini-3.7-flash"
   "google/gemini-3.8-flash":
     price: {input: 0.75, output: 3.75}
-    aliases: ["gemini-3.8-flash"]
+    aliases: ["gemini-3.8-flash", "google/gemini-3.8-flash@low"]
     as_of: "2026-11-16"
     source: "https://openrouter.ai/google/gemini-3.8-flash"
   "google/gemma-3n-e4b-it":
@@ -440,6 +440,13 @@ models:
     aliases: ["qwen_qwen3-vl-235b-a22b-instruct"]
     as_of: "2026-10-31"
     source: "https://openrouter.ai/qwen/qwen3-vl-235b-a22b-instruct"
+  "kt/mmbert-joint3in1":
+    price: {input: 0.0452, output: 0.147}
+    local: {active_params_b: 0.3, bits: 16}
+    as_of: "2026-11-17"
+    source: "local-model rule (model_cost/local_pricing.yaml)"
+    note: "KT-ModelRouter's TLD labeler (mmBERT-based encoder, 0.3B), run by the router itself. Not listed on OpenRouter, so priced from the size curve. Encoder only: output_tokens is 0."
+    sync: false
   "qwen/qwen3-4b-instruct-2507":
     price: {input: 0.084, output: 0.267}
     local: {active_params_b: 4, bits: 4}
@@ -463,6 +470,11 @@ models:
     price: {input: 0.5, output: 1.5}
     as_of: "2026-09-27"
     source: null
+  "tencent/hy4-flash":
+    price: {input: 0.035, output: 0.1405}
+    as_of: "2026-11-22"
+    source: "https://openrouter.ai/tencent/hy4-flash"
+    note: "Tencent's own endpoint on OpenRouter (the only host); price as charged, with Tencent's current 50% discount (list $0.07/$0.281)."
   "test":
     price: {input: 1, output: 2}
     as_of: "2026-09-27"

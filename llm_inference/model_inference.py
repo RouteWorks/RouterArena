@@ -194,6 +194,7 @@ class ModelInference:
             "qwen/qwen3-next-80b-a3b-instruct": "openrouter",
             "Qwen/Qwen3-Coder-Next": "openrouter",
             "deepseek/deepseek-v4-flash": "openrouter",
+            "tencent/hy4-flash": "openrouter",
             "x-ai/grok-4.1-fast": "openrouter",
             "mistralai/devstral-2512:free": "openrouter",
             "meta-llama/llama-3.3-70b-instruct": "openrouter",
