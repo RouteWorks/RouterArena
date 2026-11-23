@@ -447,6 +447,13 @@ models:
     source: "local-model rule (model_cost/local_pricing.yaml)"
     note: "f-router's routing classifier, run locally (4-bit MLX). Not listed on OpenRouter, so priced from the size curve (#266)."
     sync: false
+  "qwen/qwen3-1.7b":
+    price: {input: 0.0795, output: 0.255}
+    local: {active_params_b: 1.7, bits: 16}
+    as_of: "2026-11-22"
+    source: "local-model rule (model_cost/local_pricing.yaml)"
+    note: "f-router-v2 routing classifier (Qwen3-1.7B hidden-state probe, bf16, run locally). Priced from the size curve."
+    sync: false
   "qwen/qwen3.5-9b":
     price: {input: 0.1, output: 0.15}
     as_of: "2026-10-31"

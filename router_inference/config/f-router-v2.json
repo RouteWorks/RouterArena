@@ -1,0 +1,10 @@
+{
+  "pipeline_params": {
+    "router_name": "f-router-v2",
+    "models": [
+      "google/gemini-3.8-flash",
+      "openai/gpt-6.1-sol",
+      "Qwen/Qwen3-Coder-Next"
+    ]
+  }
+}
