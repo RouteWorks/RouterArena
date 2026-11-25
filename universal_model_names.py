@@ -177,6 +177,10 @@ universal_names = [
     "upstage/solar-pro3",
     "upstage/solar-pro4",
     "z-ai/glm-5.3-flash",
+    # liner-router-v2
+    "deepseek/deepseek-v4-flash@high",
+    "google/gemini-3-flash-preview@minimal",
+    "google/gemini-3.8-flash@low",
 ]
 
 
