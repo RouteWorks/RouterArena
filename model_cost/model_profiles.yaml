@@ -120,6 +120,7 @@ models:
     source: "https://openrouter.ai/deepseek/deepseek-v3.2"
   "deepseek/deepseek-v4-flash":
     price: {input: 0.0966, output: 0.1925}
+    aliases: ["deepseek/deepseek-v4-flash@high"]
     as_of: "2026-11-16"
     source: "https://openrouter.ai/deepseek/deepseek-v4-flash"
   "deepseek/deepseek-v4-flash-0731":
@@ -171,7 +172,7 @@ models:
     source: null
   "google/gemini-3-flash-preview":
     price: {input: 0.5, output: 3}
-    aliases: ["gemini-3-flash-preview"]
+    aliases: ["gemini-3-flash-preview", "google/gemini-3-flash-preview@minimal"]
     as_of: "2026-09-27"
     source: null
   "google/gemini-3.1-flash-lite":
@@ -198,7 +199,7 @@ models:
     source: "https://openrouter.ai/google/gemini-3.7-flash"
   "google/gemini-3.8-flash":
     price: {input: 0.75, output: 3.75}
-    aliases: ["gemini-3.8-flash"]
+    aliases: ["gemini-3.8-flash", "google/gemini-3.8-flash@low"]
     as_of: "2026-11-16"
     source: "https://openrouter.ai/google/gemini-3.8-flash"
   "google/gemma-3n-e4b-it":

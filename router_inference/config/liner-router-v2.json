@@ -1,0 +1,15 @@
+{
+  "pipeline_params": {
+    "router_name": "liner-router-v2",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "deepseek/deepseek-v4-flash",
+      "deepseek/deepseek-v4-flash@high",
+      "google/gemini-3-flash-preview@minimal",
+      "google/gemini-3.8-flash@low",
+      "google/gemma-4-31b-it"
+    ],
+    "description": "Liner Router v2: a fixed routing table keyed by the query's rule-based task type and, for multiple-choice questions, the number of answer options. Some cells answer with one model; others ask two or three cheap models first and keep their answer when they agree, escalating to gemini-3.8-flash (low reasoning, answer-only instruction) otherwise. Probe calls are charged in router_usage.",
+    "affiliation": "Liner"
+  }
+}
