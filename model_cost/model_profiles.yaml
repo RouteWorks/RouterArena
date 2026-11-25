@@ -550,3 +550,8 @@ models:
     as_of: "2026-10-31"
     source: "https://openrouter.ai/z-ai/glm-5.3-flash"
     note: "Unified spellings; previous prices: glm-5.3-flash 0.15/0.5; z-ai/glm-5.3-flash 0.15/0.5."
+  "perplexity/pplx-decider-v1.3":
+    price: {input: 0.02, output: 0}
+    as_of: "2026-11-25"
+    source: "https://docs.perplexity.ai/docs/getting-started/pricing#decisions-api-pricing"
+    note: "Proposed reference price for router-side Decider calls, using Perplexity's published paid rate."
