@@ -177,6 +177,8 @@ universal_names = [
     "upstage/solar-pro3",
     "upstage/solar-pro4",
     "z-ai/glm-5.3-flash",
+    "inclusionai/ling-3.0-flash",
+    "perplexity/pplx-decider-v1.3",
 ]
 
 

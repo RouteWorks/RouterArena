@@ -730,5 +730,9 @@
   "z-ai/glm-5.3-flash@default": {
     "input_token_price_per_million": 0.15,
     "output_token_price_per_million": 0.5
+  },
+  "perplexity/pplx-decider-v1.3": {
+    "input_token_price_per_million": 0.02,
+    "output_token_price_per_million": 0
   }
 }
