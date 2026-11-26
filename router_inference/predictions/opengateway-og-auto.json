@@ -23237,7 +23237,7 @@
   "prediction": "google/gemini-3-flash-preview",
   "generated_result": {
    "generated_answer": "",
-   "success": true,
+   "success": false,
    "model_used": "google/gemini-3-flash-preview",
    "served_model": "google/gemini-3-flash-preview",
    "effort": "none",
@@ -23250,7 +23250,8 @@
    "token_usage": {
     "input_tokens": 561,
     "output_tokens": 257
-   }
+   },
+   "error": "empty response from model (no answer text returned)"
   },
   "router_usage": [
    {
@@ -23477,7 +23478,7 @@
   "prediction": "google/gemini-3-flash-preview",
   "generated_result": {
    "generated_answer": "\n",
-   "success": true,
+   "success": false,
    "model_used": "google/gemini-3-flash-preview",
    "served_model": "google/gemini-3-flash-preview",
    "effort": "none",
@@ -23490,7 +23491,8 @@
    "token_usage": {
     "input_tokens": 285,
     "output_tokens": 30722
-   }
+   },
+   "error": "empty response from model (no answer text returned)"
   },
   "router_usage": [
    {
