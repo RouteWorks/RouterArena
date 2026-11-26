@@ -1,0 +1,22 @@
+{
+  "pipeline_params": {
+    "router_name": "opengateway-og-auto",
+    "router_cls_name": "external_prediction_file",
+    "models": [
+      "google/gemini-3-flash-preview",
+      "google/gemini-3.1-flash-lite",
+      "google/gemini-3.8-flash",
+      "openai/gpt-6-luna",
+      "z-ai/glm-5.3-flash"
+    ],
+    "router_models": [
+      "google/gemini-3-flash-preview",
+      "openai/gpt-6-luna",
+      "sionic-ai/jev-omni",
+      "z-ai/glm-5.3-flash"
+    ],
+    "description": "OpenGateway og/auto: sionic-ai/jev-omni classifies each prompt's task from the prompt text alone; a fixed per-task table then routes it, with answer-agreement cascades for some tasks. Model variants: GLM = z-ai/glm-5.3-flash (OpenGateway UltraFast; GLM-2k = max_tokens 2048, GLM-med = reasoning_effort medium), Luna = openai/gpt-6-luna (reasoning_effort high), G3F = google/gemini-3-flash-preview (reasoning_effort none), G38F = google/gemini-3.8-flash (reasoning_effort none), G31L = google/gemini-3.1-flash-lite. multiple_choice: GLM-2k and Luna; if they agree return GLM-2k, else ask G3F and return it if it matches either, else G38F. math: GLM and GLM-2k; if they agree return GLM, else Luna. passage_qa: GLM and GLM-med; if they agree return GLM, else G38F. factual_recall: G38F. coding: G3F. translation: G31L. other: Luna. No dataset names or query IDs are used. The table and cost weight were selected by 5-fold cross-validation over our own runs; the PR reports a nested 5-fold out-of-fold estimate. prediction = the model whose answer is returned, in both full and robustness splits (robustness rows were routed by running the cascade on the perturbed prompts); the jev-omni decision and every earlier cascade call (voters, lower tiers) are recorded in router_usage and charged.",
+    "affiliation": "Sionic AI",
+    "router_homepage": "https://opengateway.ai"
+  }
+}

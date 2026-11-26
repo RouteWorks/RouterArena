@@ -157,6 +157,8 @@ universal_names = [
     "deepseek/deepseek-v4.1-flash",
     # Divyam router pool additions
     "gemini-3.8-flash",
+    # OpenGateway og/auto: router-side decision model (router_usage only)
+    "sionic-ai/jev-omni",
     # liner-router: router-side judge model (router_usage only)
     "typesafe/jev-1.13",
     # BizRouter submission pool additions (2026-10-13)
