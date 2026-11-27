@@ -1,0 +1,10 @@
+{
+    "pipeline_params": {
+        "router_name": "alprouter",
+        "models": [
+            "google/gemini-3-flash-preview",
+            "google/gemini-3.1-flash-lite",
+            "qwen/qwen3-235b-a22b-2507"
+        ]
+    }
+}
